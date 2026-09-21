@@ -14,6 +14,7 @@ import {
   Layers,
   Type,
   Palette,
+  Star,
   Check,
   Copy,
   Sliders,
@@ -215,6 +216,11 @@ import {
   DatePicker,
   Combobox,
   TimePicker,
+  Rating,
+  OTPInput,
+  CopyButton,
+  Swatch,
+  NumberField,
 } from '../ui';
 
 type SectionTab =
@@ -1641,6 +1647,49 @@ export default function App() {
         </div>
       </section>
 
+      {/* 4.12 WAVE H SPOTLIGHT — Rating/OTPInput/CopyButton/Swatch/NumberField */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <Star className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                11. Wave H — Input & Polish Finals
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                Rating · OTPInput · CopyButton · Swatch · NumberField
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">NEW</Badge>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Rating & NumberField</h3>
+            <WaveHInputsDemo />
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">OTPInput</h3>
+            <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">Auto-advance · paste · arrows</p>
+            <OTPInput length={6} />
+            <CopyButton text="npx @99/ui init" label="Copy install" />
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Swatch</h3>
+            <div className="grid grid-cols-2 gap-3">
+              <Swatch name="Root" hex="#06070A" />
+              <Swatch name="Surface 1" hex="#0B0C11" />
+              <Swatch name="Surface 2" hex="#131318" />
+              <Swatch name="Accent" hex="#B45309" contrastNote="AAA on canvas" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 5. LINEAR-GRADE PATTERNS: Issue Tracker & Workflows */}
       {/* ========================================================================= */}
       {(activeSection === 'ALL' || activeSection === 'LINEAR_PATTERNS') && (
@@ -2148,6 +2197,24 @@ export default function App() {
           </CommandGroup>
         </CommandList>
       </CommandDialog>
+    </div>
+  );
+}
+
+// ——— Wave H interactive demo (local state) ———
+function WaveHInputsDemo() {
+  const [rating, setRating] = useState(4);
+  const [count, setCount] = useState(3);
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <span className="text-xs text-zinc-500 dark:text-[#8E8E98]">Rating</span>
+        <Rating value={rating} onChange={setRating} />
+      </div>
+      <div className="flex items-center justify-between">
+        <span className="text-xs text-zinc-500 dark:text-[#8E8E98]">Pomodoros</span>
+        <NumberField value={count} onChange={setCount} min={1} max={12} suffix="×" label="Pomodoros" />
+      </div>
     </div>
   );
 }

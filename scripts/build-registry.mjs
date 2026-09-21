@@ -36,6 +36,8 @@ const KIT_COMPONENTS = [
   'AvatarStack', 'CodeBlock', 'Carousel',
   // Wave F (3): interactive heavyweights
   'DatePicker', 'Combobox', 'TimePicker',
+  // Wave H (5): input & polish finals (EmptyState exists in Feedback)
+  'Rating', 'OTPInput', 'CopyButton', 'Swatch', 'NumberField',
 ];
 
 /** npm deps the kit requires at runtime (mirrors dist-kit manifest). */

@@ -268,6 +268,18 @@ export type { ComboboxProps, ComboboxOption } from './Combobox';
 export { TimePicker } from './TimePicker';
 export type { TimePickerProps } from './TimePicker';
 
+// ——— Wave H: input & polish finals ———
+export { Rating } from './Rating';
+export type { RatingProps } from './Rating';
+export { OTPInput } from './OTPInput';
+export type { OTPInputProps } from './OTPInput';
+export { CopyButton } from './CopyButton';
+export type { CopyButtonProps } from './CopyButton';
+export { Swatch } from './Swatch';
+export type { SwatchProps } from './Swatch';
+export { NumberField } from './NumberField';
+export type { NumberFieldProps } from './NumberField';
+
 // =====================================================================
 // DOMAIN COMPOSITES (app-level; require AppContext/AuthContext/domain types)
 // =====================================================================
