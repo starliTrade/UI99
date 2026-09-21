@@ -208,7 +208,7 @@ export function DocsView() {
               }}
               className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-mono transition-all cursor-pointer ${
                 isActive
-                  ? 'bg-emerald-500 text-black font-bold shadow-xs'
+                  ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 font-bold'
                   : 'bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white border border-black/[0.04] dark:border-white/[0.03]'
               }`}
             >
@@ -219,9 +219,9 @@ export function DocsView() {
       </div>
 
       {/* 2. TWO-COLUMN LAYOUT: SIDEBAR & MAIN DOCS CONTAINER */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
         {/* LEFT STICKY NAVIGATION SIDEBAR */}
-        <aside className="hidden md:block md:col-span-3 space-y-6 md:sticky md:top-20">
+        <aside className="hidden md:block md:col-span-3 space-y-6 md:sticky md:top-16">
           {/* Quick Filter */}
           <div className="space-y-2">
             <SearchBar
