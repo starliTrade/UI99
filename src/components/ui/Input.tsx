@@ -5,7 +5,7 @@
  */
 
 import React, { InputHTMLAttributes, TextareaHTMLAttributes, forwardRef, ReactNode } from 'react';
-import { Search, X } from 'lucide-react';
+import { Search, X, Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 // --- Input ---
@@ -14,10 +14,18 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
+  inputSize?: 'sm' | 'md' | 'lg';
+  loading?: boolean;
 }
 
+const inputSizeStyles = {
+  sm: 'text-xs px-3 py-1.5 h-8 rounded-lg',
+  md: 'text-sm px-3.5 py-2.5 h-10 rounded-xl',
+  lg: 'text-base px-4 py-3 h-12 rounded-xl',
+} as const;
+
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, leftIcon, rightIcon, className = '', id, ...props }, ref) => {
+  ({ label, error, leftIcon, rightIcon, inputSize = 'md', loading = false, className = '', id, ...props }, ref) => {
     const inputId = id || (label ? `input-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined);
     const helperId = error ? `${inputId}-error` : undefined;
     return (
@@ -39,7 +47,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={error ? true : undefined}
             aria-describedby={helperId}
             className={cn(
-              'w-full bg-white dark:bg-[#131317] border border-black/[0.08] dark:border-white/[0.06] rounded-xl px-3.5 py-2.5 text-sm text-zinc-900 dark:text-[#EDEDEF] placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-safa',
+              'w-full bg-white dark:bg-[#131317] border border-black/[0.08] dark:border-white/[0.06] text-zinc-900 dark:text-[#EDEDEF] placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-safa',
+              inputSizeStyles[inputSize],
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',
               error && 'border-rose-500/60 focus:border-rose-500',
@@ -47,9 +56,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             )}
             {...props}
           />
-          {rightIcon && (
+          {(rightIcon || loading) && (
             <div className="absolute right-3.5 text-zinc-400 dark:text-[#71717A] flex items-center">
-              {rightIcon}
+              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : rightIcon}
             </div>
           )}
         </div>

@@ -1,7 +1,8 @@
 /**
- * SAFA — Unified Tactile Controls (Button, IconButton, Tag, Avatar) (Build 02.2)
- * High-craft, velvety cohesion, soft satin active states, dual-theme support.
- * Refactored to standard cva (class-variance-authority) and cn utility architecture.
+ * SAFA — Unified Tactile Controls (Button, IconButton, Tag, Avatar) (Build 03.0)
+ * Full shadcn-grade variant/size matrix on the SAFA velvet token system.
+ * Five-state contract per docs/standards.md §12: default/hover/press/
+ * focus-visible/disabled — focus ring via focus-safa (WCAG 2.4.13).
  */
 
 import React, { ReactNode, ButtonHTMLAttributes } from 'react';
@@ -10,7 +11,7 @@ import { X, Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export const buttonVariants = cva(
-  'inline-flex items-center justify-center font-medium tracking-tight transition-all duration-150 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 disabled:pointer-events-none select-none active:scale-[0.97] focus-visible:outline-none focus-safa',
+  'inline-flex items-center justify-center font-medium tracking-tight transition-all duration-150 cursor-pointer select-none active:scale-[0.97] focus-visible:outline-none focus-safa disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 disabled:pointer-events-none',
   {
     variants: {
       variant: {
@@ -18,22 +19,33 @@ export const buttonVariants = cva(
           'bg-[#111116] text-white hover:bg-[#1E1E24] border border-black/10 shadow-xs dark:bg-[#EBEBEF] dark:text-[#0C0C0E] dark:hover:bg-[#F5F5F8] dark:border-white/10',
         secondary:
           'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 hover:text-black border border-black/[0.05] shadow-xs dark:bg-[#16161B] dark:text-[#D4D4D8] dark:hover:bg-[#1C1C22] dark:hover:text-white dark:border-white/[0.06]',
+        outline:
+          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-black/[0.03] shadow-xs dark:text-[#D4D4D8] dark:border-white/[0.08] dark:hover:bg-white/[0.04]',
+        ghost:
+          'bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-[#92929B] dark:hover:bg-white/[0.04] dark:hover:text-[#EDEDEF]',
+        link: 'bg-transparent underline-offset-4 hover:underline text-zinc-900 dark:text-[#EDEDEF] hover:bg-transparent px-0',
+        destructive:
+          'bg-rose-600 text-white hover:bg-rose-500 border border-rose-700/40 shadow-xs dark:bg-rose-500 dark:hover:bg-rose-400 dark:text-[#2A0A10]',
+        success:
+          'bg-emerald-600 text-white hover:bg-emerald-500 border border-emerald-700/40 shadow-xs dark:bg-emerald-500 dark:hover:bg-emerald-400 dark:text-[#06251A]',
         'white-pill':
           'bg-[#EBEBEF] text-[#0C0C0E] font-semibold hover:bg-[#F5F5F8] shadow-xs border border-white/20',
         'dark-pill':
           'bg-[#111116] text-[#EDEDEF] hover:bg-[#1C1C22] hover:text-white border border-black/10 dark:border-white/[0.06] shadow-xs',
-        ghost:
-          'bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-[#92929B] dark:hover:bg-white/[0.04] dark:hover:text-[#EDEDEF]',
-        outline:
-          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-black/[0.03] dark:text-[#D4D4D8] dark:border-white/[0.08] dark:hover:bg-white/[0.04]',
         rose:
           'bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200/60 dark:bg-[#18181F] dark:text-[#D4C5B9] dark:hover:bg-[#20202A] dark:border-white/[0.07]',
       },
       size: {
-        xs: 'text-[11px] px-2.5 py-1 rounded-full gap-1',
-        sm: 'text-xs px-3.5 py-1.5 rounded-full gap-1.5',
-        md: 'text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full gap-2',
-        lg: 'text-base px-6 py-3 rounded-full gap-2.5',
+        xs: 'text-[11px] px-2.5 py-1 rounded-full gap-1 h-6',
+        sm: 'text-xs px-3.5 py-1.5 rounded-full gap-1.5 h-8',
+        md: 'text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full gap-2 h-10',
+        lg: 'text-base px-6 py-3 rounded-full gap-2.5 h-12',
+        icon: 'w-10 h-10 rounded-full p-0 [&_svg]:size-4',
+      },
+      shape: {
+        pill: '',
+        rounded: 'rounded-xl',
+        square: 'rounded-lg',
       },
       fullWidth: {
         true: 'w-full',
@@ -43,6 +55,7 @@ export const buttonVariants = cva(
     defaultVariants: {
       variant: 'primary',
       size: 'md',
+      shape: 'pill',
       fullWidth: false,
     },
   }
@@ -60,6 +73,7 @@ export interface ButtonProps
 export function Button({
   variant = 'primary',
   size = 'md',
+  shape = 'pill',
   children,
   icon,
   fullWidth = false,
@@ -70,22 +84,19 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={cn(buttonVariants({ variant, size, fullWidth }), className)}
+      className={cn(buttonVariants({ variant, size, shape, fullWidth }), className)}
       disabled={disabled || loading}
       {...props}
     >
-      {loading ? (
-        <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />
-      ) : (
-        icon && <span className="shrink-0">{icon}</span>
-      )}
+      {loading && <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />}
+      {icon && !loading && <span className="shrink-0 inline-flex">{icon}</span>}
       <span className="whitespace-nowrap">{children}</span>
     </button>
   );
 }
 
 export const iconButtonVariants = cva(
-  'rounded-full inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-safa',
+  'rounded-full inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-safa disabled:opacity-40 disabled:cursor-not-allowed',
   {
     variants: {
       variant: {
@@ -95,8 +106,13 @@ export const iconButtonVariants = cva(
           'bg-white text-zinc-900 hover:bg-zinc-100 shadow-xs border border-black/[0.06] dark:bg-[#EBEBEF] dark:text-[#0C0C0E] dark:hover:bg-[#F5F5F8]',
         secondary:
           'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 border border-black/[0.05] dark:bg-[#16161B] dark:text-[#D4D4D8] dark:hover:bg-[#1E1E26] dark:border-white/[0.06]',
+        outline:
+          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-black/[0.03] dark:text-[#D4D4D8] dark:border-white/[0.08] dark:hover:bg-white/[0.04]',
         ghost:
           'bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-[#92929B] dark:hover:bg-white/[0.04] dark:hover:text-[#EDEDEF]',
+        link: 'bg-transparent hover:bg-transparent text-zinc-900 dark:text-[#EDEDEF] hover:scale-100',
+        destructive:
+          'bg-rose-600 text-white hover:bg-rose-500 border border-rose-700/40 shadow-xs dark:bg-rose-500 dark:hover:bg-rose-400 dark:text-[#2A0A10]',
         rose:
           'bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200/60 dark:bg-[#18181F] dark:text-[#D4C5B9] dark:hover:bg-[#20202A] dark:border-white/[0.07]',
       },
@@ -136,11 +152,7 @@ export function IconButton({
   return (
     <button
       type="button"
-      className={cn(
-        iconButtonVariants({ variant, size }),
-        (disabled || loading) && 'opacity-40 cursor-not-allowed',
-        className
-      )}
+      className={cn(iconButtonVariants({ variant, size }), className)}
       title={label}
       aria-label={label}
       disabled={disabled || loading}
@@ -151,12 +163,12 @@ export function IconButton({
   );
 }
 
-// --- Tag / Badge ---
+// --- Tag ---
 export interface TagProps {
   children?: ReactNode;
   label?: string;
-  variant?: 'neutral' | 'amber' | 'purple' | 'green' | 'red' | 'rose' | 'blue';
-  color?: 'neutral' | 'amber' | 'purple' | 'green' | 'red' | 'rose' | 'blue';
+  variant?: 'neutral' | 'amber' | 'purple' | 'green' | 'red' | 'rose' | 'blue' | 'outline' | 'solid';
+  color?: TagProps['variant'];
   size?: 'sm' | 'md';
   onRemove?: () => void;
   className?: string;
@@ -189,6 +201,10 @@ export function Tag({
       'bg-stone-100 text-stone-800 border border-stone-200 font-medium dark:bg-white/[0.05] dark:text-[#D4C5B9] dark:border-white/[0.07]',
     blue:
       'bg-blue-50 text-blue-800 border border-blue-300/40 font-medium dark:bg-blue-400/[0.08] dark:text-blue-300/90 dark:border-blue-400/20',
+    outline:
+      'bg-transparent text-zinc-700 border border-black/[0.12] dark:text-[#A1A1AA] dark:border-white/[0.12]',
+    solid:
+      'bg-zinc-900 text-white border border-zinc-900 dark:bg-[#EBEBEF] dark:text-[#0C0C0E] dark:border-[#EBEBEF]',
   }[effectiveVariant];
 
   return (

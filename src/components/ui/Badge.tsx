@@ -1,9 +1,11 @@
 /**
- * SAFA — Linear-Grade Status & Priority Badges (Build 02.2)
- * Pixel-accurate, semantic, dual-theme indicators for world-class product workflows.
+ * SAFA — Linear-Grade Status & Priority Badges (Build 03.0)
+ * Full shadcn-grade matrix: Badge 9 variants x 3 sizes (cva) on the velvet
+ * token system, plus semantic PriorityBadge / StatusBadge indicators.
  */
 
 import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import {
   AlertCircle,
   SignalHigh,
@@ -16,9 +18,60 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { useIsDark } from './theme';
+import { cn } from '../../lib/utils';
 
 export type PriorityLevel = 'urgent' | 'high' | 'medium' | 'low' | 'none';
 export type IssueStatus = 'backlog' | 'todo' | 'in_progress' | 'review' | 'done' | 'canceled';
+
+// =====================================================================
+// Badge — shadcn-grade generic badge (cva)
+// =====================================================================
+
+export const badgeVariants = cva(
+  'inline-flex items-center gap-1 rounded-full font-mono font-medium tracking-tight whitespace-nowrap select-none transition-colors',
+  {
+    variants: {
+      variant: {
+        default: 'bg-zinc-900 text-white shadow-xs dark:bg-white dark:text-black',
+        secondary:
+          'bg-zinc-100 dark:bg-white/[0.05] text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.03]',
+        outline:
+          'border border-zinc-300 dark:border-white/[0.08] text-zinc-800 dark:text-zinc-200',
+        destructive: 'bg-rose-600 text-white shadow-xs dark:bg-rose-500 dark:text-[#2A0A10]',
+        green:
+          'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20',
+        amber:
+          'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20',
+        rose: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20',
+        purple:
+          'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20',
+        blue: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20',
+      },
+      size: {
+        sm: 'text-[10px] px-2 py-0.5 [&_svg]:size-3',
+        md: 'text-xs px-2.5 py-0.5 [&_svg]:size-3.5',
+        lg: 'text-sm px-3 py-1 [&_svg]:size-4',
+      },
+    },
+    defaultVariants: { variant: 'default', size: 'md' },
+  }
+);
+
+export interface BadgeProps
+  extends React.HTMLAttributes<HTMLSpanElement>,
+    VariantProps<typeof badgeVariants> {}
+
+export function Badge({ variant, size, className, children, ...props }: BadgeProps) {
+  return (
+    <span className={cn(badgeVariants({ variant, size }), className)} {...props}>
+      {children}
+    </span>
+  );
+}
+
+// =====================================================================
+// PriorityBadge — Linear-style semantic priority indicator
+// =====================================================================
 
 export interface PriorityBadgeProps {
   priority: PriorityLevel;
@@ -76,8 +129,8 @@ export function PriorityBadge({
   return (
     <span
       className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border text-[11px] font-medium tracking-tight whitespace-nowrap transition-colors ${
-        config.style
-      } ${className}`}
+        size === 'md' ? 'px-2.5 py-1 text-xs' : ''
+      } ${config.style} ${className}`}
       title={config.label}
     >
       {config.icon}
@@ -86,15 +139,21 @@ export function PriorityBadge({
   );
 }
 
+// =====================================================================
+// StatusBadge — Linear-style workflow status indicator
+// =====================================================================
+
 export interface StatusBadgeProps {
   status: IssueStatus;
   showLabel?: boolean;
+  size?: 'sm' | 'md';
   className?: string;
 }
 
 export function StatusBadge({
   status,
   showLabel = true,
+  size = 'sm',
   className = '',
 }: StatusBadgeProps) {
   const isDark = useIsDark();
@@ -135,38 +194,11 @@ export function StatusBadge({
   return (
     <span
       className={`inline-flex items-center gap-1.5 text-xs font-medium tracking-tight whitespace-nowrap ${
-        config.style
-      } ${className}`}
+        size === 'md' ? 'text-sm gap-2' : ''
+      } ${config.style} ${className}`}
     >
       {config.icon}
       {showLabel && <span>{config.label}</span>}
-    </span>
-  );
-}
-
-export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?: 'default' | 'secondary' | 'outline' | 'green' | 'amber' | 'rose' | 'purple' | 'blue';
-  children?: React.ReactNode;
-}
-
-export function Badge({ variant = 'default', className = '', children, ...props }: BadgeProps) {
-  const styles = {
-    default: 'bg-zinc-900 text-white dark:bg-white dark:text-black shadow-xs',
-    secondary: 'bg-zinc-100 dark:bg-white/[0.05] text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.03]',
-    outline: 'border border-zinc-300 dark:border-white/[0.08] text-zinc-800 dark:text-zinc-200',
-    green: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20',
-    amber: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20',
-    rose: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20',
-    purple: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20',
-    blue: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20',
-  }[variant];
-
-  return (
-    <span
-      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-medium transition-colors select-none ${styles} ${className}`}
-      {...props}
-    >
-      {children}
     </span>
   );
 }
