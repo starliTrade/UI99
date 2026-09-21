@@ -18,6 +18,43 @@
 
 ---
 
+## Phase 4 — Component Roster Expansion (Waves) — در حال اجرا
+
+هدف: roster کامل در کلاس shadcn (۶۴ آیتم). شمارش فعلی: **۴۴ registry item**
+(۴۲ component + utils + theme). هر Wave شامل: پیاده‌سازی + gallery + registry +
+آزمون axe/رفتاری.
+
+### ✅ Wave A (۱۰) — Layout & Feedback
+Separator · Label · Toggle · ToggleGroup · HoverCard · Collapsible ·
+ScrollArea · AspectRatio · FormField/Hint/Error · Alert
+
+### ✅ Wave B (۴) — Flows & Data Display
+AlertDialog · RadioGroup (radix) · Table · Pagination
+
+### ✅ Wave C (۳) — Product Patterns
+Stepper · Timeline · FileUpload
+
+### 🔜 Wave D (۶) — Charts & Micro-Data (بعدی)
+Sparkline (SVG، صفر-dep) · DonutRing · HeatMapCalendar · StatTile ·
+MeterBar · TrendDelta
+
+### 🔜 Wave E (۵) — Navigation Advanced
+Menubar (radix) · NavigationMenu (radix) · Sidebar primitive · Breadcrumb2
+(منو-دار) · CommandBar (footgun-safe aliases)
+
+### 🔜 Wave F (۶) — Composites (شفاف با owner-code contract)
+DatePicker (ماه‌گرید سبک) · TimePicker · ColorPicker (token-first) ·
+Combobox (Dropdown ارتقا) · TransferList · CreditCardInput
+
+### 🔜 Wave G (۴+) — Media & Polish
+Carousel (emuka-free، scroll-snap) · Lightbox · AvatarStack · CodeBlock
+(highlight سبک)
+
+> **ماندنی تا ۶۴:** 44 + 6(D) + 5(E) + 6(F) + 4(G) = **65** ✅
+> ترتیب انجام بر اساس ارزش محصول: D (دیتا) → E (ناوبری) → F (کامپوزیت) → G (مدیا)
+
+---
+
 ## Phase 1.5 — shadcn-Grade Variant/Size Matrix (DONE)
 
 قاعده: هر primitive باید ماتریس کامل variant×size داشته باشد (الگو: Button شادسن با
