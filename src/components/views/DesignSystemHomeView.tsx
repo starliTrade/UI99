@@ -39,6 +39,7 @@ import {
   Palette,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
+import { useChoreography } from '../ui/motion';
 import {
   Button,
   Card,
@@ -127,6 +128,7 @@ export function DesignSystemHomeView() {
   const { themeMode, addToast, setCurrentTab } = useApp();
   const isDark = themeMode === 'dark';
 
+  const { reveal } = useChoreography();
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [explorerQuery, setExplorerQuery] = useState('');
   const [explorerCat, setExplorerCat] = useState<'ALL' | 'Actions' | 'Inputs' | 'Navigation' | 'Data' | 'Overlays' | 'Layout' | 'Feedback' | 'Display'>('ALL');
@@ -169,8 +171,7 @@ export function DesignSystemHomeView() {
 
         {/* Announcement Pill (shadcn-style) */}
         <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
+          {...reveal(0)}
           className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-800 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.04] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)] cursor-pointer hover:border-emerald-500/40 transition-all duration-200"
           onClick={() => setCurrentTab('DOCS')}
         >
@@ -186,9 +187,7 @@ export function DesignSystemHomeView() {
 
         {/* Headline */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.08 }}
+          {...reveal(1)}
           className="space-y-4"
         >
           <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.08]">
@@ -202,9 +201,7 @@ export function DesignSystemHomeView() {
 
         {/* CTA Button Group (shadcn-style) — stacked full-width on mobile */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.16 }}
+          {...reveal(2)}
           className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 pt-2 w-full"
         >
           <Button
