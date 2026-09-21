@@ -653,6 +653,82 @@
       "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
     },
     {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "ui/alertdialog.tsx",
+          "type": "registry:ui",
+          "content": "/**\n * UI99 — AlertDialog (Wave B)\n * Radix alert-dialog: interruptive confirmation with destructive CTA.\n * Cannot be dismissed by overlay click — by design (WCAG-protected flow).\n */\n\nimport React from 'react';\nimport * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';\nimport type { VariantProps } from 'class-variance-authority';\nimport { cn } from '../../lib/utils';\nimport { buttonVariants } from './Button';\n\ntype ButtonVariantProps = VariantProps<typeof buttonVariants>;\n\nexport function AlertDialog({\n  ...props\n}: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Root>) {\n  return <AlertDialogPrimitive.Root {...props} />;\n}\nAlertDialog.displayName = 'AlertDialog';\n\nexport function AlertDialogTrigger({\n  ...props\n}: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Trigger>) {\n  return <AlertDialogPrimitive.Trigger {...props} />;\n}\nAlertDialogTrigger.displayName = 'AlertDialogTrigger';\n\nexport function AlertDialogPortal({\n  ...props\n}: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Portal>) {\n  return <AlertDialogPrimitive.Portal {...props} />;\n}\nAlertDialogPortal.displayName = 'AlertDialogPortal';\n\nexport function AlertDialogOverlay({\n  className = '',\n  ...props\n}: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Overlay>) {\n  return (\n    <AlertDialogPrimitive.Overlay\n      className={cn(\n        'fixed inset-0 z-50 bg-black/40 backdrop-blur-[2px]',\n        'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0',\n        className\n      )}\n      {...props}\n    />\n  );\n}\nAlertDialogOverlay.displayName = 'AlertDialogOverlay';\n\nexport function AlertDialogContent({\n  className = '',\n  ...props\n}: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content>) {\n  return (\n    <AlertDialogPortal>\n      <AlertDialogOverlay />\n      <AlertDialogPrimitive.Content\n        className={cn(\n          'fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/[0.03] bg-white dark:bg-[#131318] p-6 shadow-[0_24px_56px_-10px_rgba(0,0,0,0.75)] focus:outline-none',\n          'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',\n          className\n        )}\n        {...props}\n      />\n    </AlertDialogPortal>\n  );\n}\nAlertDialogContent.displayName = 'AlertDialogContent';\n\nexport function AlertDialogHeader({ className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn('space-y-2', className)} {...props} />;\n}\nAlertDialogHeader.displayName = 'AlertDialogHeader';\n\nexport function AlertDialogFooter({ className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      className={cn('flex flex-col-reverse sm:flex-row sm:justify-end gap-2 pt-4', className)}\n      {...props}\n    />\n  );\n}\nAlertDialogFooter.displayName = 'AlertDialogFooter';\n\nexport function AlertDialogTitle({\n  className = '',\n  ...props\n}: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Title>) {\n  return (\n    <AlertDialogPrimitive.Title\n      className={cn('text-base font-bold tracking-tight text-zinc-950 dark:text-white', className)}\n      {...props}\n    />\n  );\n}\nAlertDialogTitle.displayName = 'AlertDialogTitle';\n\nexport function AlertDialogDescription({\n  className = '',\n  ...props\n}: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Description>) {\n  return (\n    <AlertDialogPrimitive.Description\n      className={cn('text-xs leading-relaxed text-zinc-500 dark:text-[#8E8E98]', className)}\n      {...props}\n    />\n  );\n}\nAlertDialogDescription.displayName = 'AlertDialogDescription';\n\nexport function AlertDialogAction({\n  className = '',\n  variant = 'primary',\n  ...props\n}: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action> &\n  Pick<ButtonVariantProps, 'variant'>) {\n  return (\n    <AlertDialogPrimitive.Action\n      className={cn(buttonVariants({ variant, size: 'md' }), 'min-h-[44px]', className)}\n      {...props}\n    />\n  );\n}\nAlertDialogAction.displayName = 'AlertDialogAction';\n\nexport function AlertDialogCancel({\n  className = '',\n  ...props\n}: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel>) {\n  return (\n    <AlertDialogPrimitive.Cancel\n      className={cn(buttonVariants({ variant: 'outline', size: 'md' }), 'min-h-[44px]', className)}\n      {...props}\n    />\n  );\n}\nAlertDialogCancel.displayName = 'AlertDialogCancel';\n",
+          "target": "src/components/ui/AlertDialog.tsx"
+        }
+      ],
+      "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/radiogroup.tsx",
+          "type": "registry:ui",
+          "content": "/**\n * UI99 — RadioGroup (Wave B)\n * Radix radio-group: full arrow-navigation + roving tabindex parity.\n * Visual uses the kit's velvet dot indicator with focus-safa-inset ring.\n */\n\nimport React from 'react';\nimport * as RadioGroupPrimitive from '@radix-ui/react-radio-group';\nimport { Circle } from 'lucide-react';\nimport { cn } from '../../lib/utils';\n\nexport function RadioGroup({\n  className = '',\n  ...props\n}: React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>) {\n  return (\n    <RadioGroupPrimitive.Root\n      className={cn('grid gap-2.5', className)}\n      {...props}\n    />\n  );\n}\nRadioGroup.displayName = 'RadioGroup';\n\nexport function RadioGroupItem({\n  className = '',\n  ...props\n}: React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>) {\n  return (\n    <RadioGroupPrimitive.Item\n      className={cn(\n        'aspect-square h-4.5 w-4.5 text-zinc-900 dark:text-[#EBEBEF] shrink-0 cursor-pointer',\n        'rounded-full border border-black/[0.2] dark:border-white/[0.2] shadow-xs',\n        'focus-visible:outline-none focus-safa disabled:opacity-40 disabled:cursor-not-allowed',\n        'data-[state=checked]:border-current',\n        className\n      )}\n      {...props}\n    >\n      <RadioGroupPrimitive.Indicator className=\"flex items-center justify-center\">\n        <Circle className=\"h-2 w-2 fill-current text-current\" />\n      </RadioGroupPrimitive.Indicator>\n    </RadioGroupPrimitive.Item>\n  );\n}\nRadioGroupItem.displayName = 'RadioGroupItem';\n",
+          "target": "src/components/ui/RadioGroup.tsx"
+        }
+      ],
+      "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/table.tsx",
+          "type": "registry:ui",
+          "content": "/**\n * UI99 — Table (Wave B)\n * Composable table primitives with hairline rows, sticky header option,\n * and mobile-friendly overflow wrapper.\n */\n\nimport React from 'react';\nimport { cn } from '../../lib/utils';\n\nexport function Table({ className = '', ...props }: React.TableHTMLAttributes<HTMLTableElement>) {\n  return (\n    <div className=\"relative w-full overflow-x-auto\">\n      <table\n        className={cn('w-full caption-bottom border-collapse text-xs', className)}\n        {...props}\n      />\n    </div>\n  );\n}\nTable.displayName = 'Table';\n\nexport function TableHeader({ className = '', ...props }: React.HTMLAttributes<HTMLTableSectionElement>) {\n  return <thead className={cn('[&_tr]:border-b [&_tr]:border-black/[0.06] dark:[&_tr]:border-white/[0.05]', className)} {...props} />;\n}\nTableHeader.displayName = 'TableHeader';\n\nexport function TableBody({ className = '', ...props }: React.HTMLAttributes<HTMLTableSectionElement>) {\n  return <tbody className={cn('[&_tr:last-child]:border-0', className)} {...props} />;\n}\nTableBody.displayName = 'TableBody';\n\nexport function TableFooter({ className = '', ...props }: React.HTMLAttributes<HTMLTableSectionElement>) {\n  return (\n    <tfoot\n      className={cn(\n        'border-t border-black/[0.06] dark:border-white/[0.05] bg-zinc-50 dark:bg-[#0E0E13] font-medium',\n        className\n      )}\n      {...props}\n    />\n  );\n}\nTableFooter.displayName = 'TableFooter';\n\nexport function TableRow({ className = '', ...props }: React.HTMLAttributes<HTMLTableRowElement>) {\n  return (\n    <tr\n      className={cn(\n        'border-b border-black/[0.05] dark:border-white/[0.04] transition-colors hover:bg-black/[0.02] dark:hover:bg-white/[0.02] data-[state=selected]:bg-black/[0.03] dark:data-[state=selected]:bg-white/[0.04]',\n        className\n      )}\n      {...props}\n    />\n  );\n}\nTableRow.displayName = 'TableRow';\n\nexport function TableHead({ className = '', ...props }: React.ThHTMLAttributes<HTMLTableCellElement>) {\n  return (\n    <th\n      className={cn(\n        'h-10 px-3 text-left align-middle text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-500 dark:text-[#8E8E98] [&:has([role=checkbox])]:pr-0',\n        className\n      )}\n      {...props}\n    />\n  );\n}\nTableHead.displayName = 'TableHead';\n\nexport function TableCell({ className = '', ...props }: React.TdHTMLAttributes<HTMLTableCellElement>) {\n  return (\n    <td\n      className={cn('px-3 py-2.5 align-middle text-zinc-800 dark:text-[#D4D4D8] [&:has([role=checkbox])]:pr-0', className)}\n      {...props}\n    />\n  );\n}\nTableCell.displayName = 'TableCell';\n\nexport function TableCaption({ className = '', ...props }: React.HTMLAttributes<HTMLTableCaptionElement>) {\n  return <caption className={cn('mt-3 text-[11px] text-zinc-500 dark:text-[#8E8E98]', className)} {...props} />;\n}\nTableCaption.displayName = 'TableCaption';\n",
+          "target": "src/components/ui/Table.tsx"
+        }
+      ],
+      "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "ui/pagination.tsx",
+          "type": "registry:ui",
+          "content": "/**\n * UI99 — Pagination (Wave B)\n * Composable pagination with aria-current, 44px touch targets, and the kit\n * icon-button visual. RTL-safe via logical flex ordering.\n */\n\nimport React from 'react';\nimport { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';\nimport { cn } from '../../lib/utils';\nimport { buttonVariants } from './Button';\n\nexport function Pagination({ className = '', ...props }: React.ComponentProps<'nav'>) {\n  return (\n    <nav\n      role=\"navigation\"\n      aria-label=\"Pagination\"\n      className={cn('flex items-center justify-center gap-1', className)}\n      {...props}\n    />\n  );\n}\nPagination.displayName = 'Pagination';\n\nexport function PaginationContent({ className = '', ...props }: React.ComponentProps<'ul'>) {\n  return <ul className={cn('flex items-center gap-1', className)} {...props} />;\n}\nPaginationContent.displayName = 'PaginationContent';\n\nexport function PaginationItem({ className = '', ...props }: React.ComponentProps<'li'>) {\n  return <li className={cn('list-none', className)} {...props} />;\n}\nPaginationItem.displayName = 'PaginationItem';\n\ninterface PaginationLinkProps extends React.ComponentProps<'a'> {\n  isActive?: boolean;\n  size?: 'sm' | 'md' | 'icon';\n  disabled?: boolean;\n}\n\nexport function PaginationLink({\n  className,\n  isActive = false,\n  size = 'icon',\n  disabled,\n  'aria-current': ariaCurrent,\n  ...props\n}: PaginationLinkProps) {\n  return (\n    <a\n      aria-current={isActive ? 'page' : ariaCurrent}\n      aria-disabled={disabled || undefined}\n      className={cn(\n        buttonVariants({\n          variant: isActive ? 'secondary' : 'ghost',\n          size: size === 'icon' ? 'icon' : size,\n        }),\n        'min-h-[44px] min-w-[44px] pointer-events-none',\n        disabled && 'opacity-40',\n        className\n      )}\n      {...props}\n    />\n  );\n}\nPaginationLink.displayName = 'PaginationLink';\n\nexport function PaginationPrevious({ className = '', ...props }: React.ComponentProps<typeof PaginationLink>) {\n  return (\n    <PaginationLink aria-label=\"Previous page\" size=\"md\" className={cn('gap-1 pl-2.5', className)} {...props}>\n      <ChevronLeft className=\"h-4 w-4\" />\n      <span className=\"hidden sm:inline\">Prev</span>\n    </PaginationLink>\n  );\n}\nPaginationPrevious.displayName = 'PaginationPrevious';\n\nexport function PaginationNext({ className = '', ...props }: React.ComponentProps<typeof PaginationLink>) {\n  return (\n    <PaginationLink aria-label=\"Next page\" size=\"md\" className={cn('gap-1 pr-2.5', className)} {...props}>\n      <span className=\"hidden sm:inline\">Next</span>\n      <ChevronRight className=\"h-4 w-4\" />\n    </PaginationLink>\n  );\n}\nPaginationNext.displayName = 'PaginationNext';\n\nexport function PaginationEllipsis({ className = '', ...props }: React.ComponentProps<'span'>) {\n  return (\n    <span\n      aria-hidden=\"true\"\n      className={cn('flex h-9 w-9 items-center justify-center text-zinc-400', className)}\n      {...props}\n    >\n      <MoreHorizontal className=\"h-4 w-4\" />\n    </span>\n  );\n}\nPaginationEllipsis.displayName = 'PaginationEllipsis';\n",
+          "target": "src/components/ui/Pagination.tsx"
+        }
+      ],
+      "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
+    },
+    {
       "name": "utils",
       "type": "registry:lib",
       "dependencies": [

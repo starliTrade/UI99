@@ -153,6 +153,30 @@ import {
   ScrollArea,
   AspectRatio,
   Badge,
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+  AlertDialogCancel,
+  RadioGroup,
+  RadioGroupItem,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
 } from '../ui';
 
 type SectionTab =
@@ -1158,6 +1182,115 @@ export function UIKitView() {
                 </AspectRatio>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4.6 WAVE B SPOTLIGHT — AlertDialog/RadioGroup/Table/Pagination            */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <ShieldCheck className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                05. Wave B — Flows & Data Display
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                AlertDialog · RadioGroup · Table · Pagination
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">NEW</Badge>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* AlertDialog + RadioGroup */}
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Interruptive Flows</h3>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" size="sm">Delete workspace…</Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete “safa-prod”?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This permanently removes the workspace and every object inside it. This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction variant="destructive">Delete forever</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
+            <Separator />
+
+            <fieldset className="space-y-2.5">
+              <legend className="text-xs font-semibold text-zinc-700 dark:text-[#92929B] mb-2">Visibility</legend>
+              <RadioGroup defaultValue="private">
+                <div className="flex items-center gap-2.5">
+                  <RadioGroupItem value="private" id="rg-private" />
+                  <Label htmlFor="rg-private" className="font-normal text-xs cursor-pointer">Private — only me</Label>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <RadioGroupItem value="team" id="rg-team" />
+                  <Label htmlFor="rg-team" className="font-normal text-xs cursor-pointer">Team — workspace members</Label>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <RadioGroupItem value="public" id="rg-public" disabled />
+                  <Label htmlFor="rg-public" className="font-normal text-xs opacity-50">Public (soon)</Label>
+                </div>
+              </RadioGroup>
+            </fieldset>
+          </div>
+
+          {/* Table + Pagination */}
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Data Display</h3>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Object</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Priority</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {[
+                  { name: 'UI-101 · Registry CLI', status: 'In Progress', p: 'Urgent' },
+                  { name: 'UI-99 · Velvet tokens', status: 'Done', p: 'Medium' },
+                  { name: 'UI-77 · Docs site', status: 'Todo', p: 'Low' },
+                ].map((row) => (
+                  <TableRow key={row.name}>
+                    <TableCell className="font-medium">{row.name}</TableCell>
+                    <TableCell>
+                      <StatusBadge status={row.status === 'Done' ? 'done' : row.status === 'Todo' ? 'todo' : 'in_progress'} />
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <PriorityBadge priority={row.p === 'Urgent' ? 'urgent' : row.p === 'Medium' ? 'medium' : 'low'} showLabel={false} />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious href="#" aria-disabled="true" disabled />
+                </PaginationItem>
+                <PaginationItem><PaginationLink href="#" isActive>1</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink href="#">2</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
+                <PaginationItem><PaginationEllipsis /></PaginationItem>
+                <PaginationItem>
+                  <PaginationNext href="#" />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
           </div>
         </div>
       </section>

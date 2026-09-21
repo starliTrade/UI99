@@ -146,6 +146,44 @@ export { Alert, alertVariants } from './Alert';
 export type { AlertProps } from './Alert';
 
 // =====================================================================
+// WAVE B — heavyweights (alert flows, radio groups, data display)
+// =====================================================================
+
+export {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogPortal,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from './AlertDialog';
+export { RadioGroup, RadioGroupItem } from './RadioGroup';
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
+} from './Table';
+export {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from './Pagination';
+
+// =====================================================================
 // DOMAIN COMPOSITES (app-level; require AppContext/AuthContext/domain types)
 // =====================================================================
 

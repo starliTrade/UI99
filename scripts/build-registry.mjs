@@ -24,6 +24,8 @@ const KIT_COMPONENTS = [
   // Wave A
   'Separator', 'Label', 'Toggle', 'ToggleGroup', 'HoverCard', 'Collapsible',
   'ScrollArea', 'AspectRatio', 'Field', 'Alert',
+  // Wave B
+  'AlertDialog', 'RadioGroup', 'Table', 'Pagination',
 ];
 
 /** npm deps the kit requires at runtime (mirrors dist-kit manifest). */
