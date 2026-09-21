@@ -639,27 +639,52 @@ export function UIKitView() {
                 <span className="text-[11px] font-mono text-zinc-400">Button, IconButton</span>
               </div>
               <div className="flex flex-wrap items-center gap-2.5">
-                <Button variant="primary" icon={<Sparkles className="w-4 h-4" />}>
-                  Primary Pill
-                </Button>
-                <Button variant="secondary">Secondary</Button>
-                <Button variant="outline">Outline</Button>
-                <Button variant="ghost">Ghost</Button>
-                <Button variant="rose" icon={<Flame className="w-4 h-4" />}>
-                  Rose Accent
-                </Button>
-                <Button variant="primary" loading>
-                  Loading
-                </Button>
-                <Button variant="secondary" disabled>
-                  Disabled
-                </Button>
+                {(
+                  [
+                    'primary',
+                    'secondary',
+                    'outline',
+                    'ghost',
+                    'link',
+                    'destructive',
+                    'success',
+                    'rose',
+                  ] as const
+                ).map((v) => (
+                  <Button key={v} variant={v}>{
+                    v.charAt(0).toUpperCase() + v.slice(1)
+                  }</Button>
+                ))}
+                <Button variant="primary" loading>Loading</Button>
+                <Button variant="secondary" disabled>Disabled</Button>
               </div>
-              <div className="flex items-center gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
-                <IconButton icon={<Sparkles className="w-4 h-4" />} variant="primary" label="Sparkles" />
-                <IconButton icon={<Share2 className="w-4 h-4" />} variant="secondary" label="Share" />
-                <IconButton icon={<Bell className="w-4 h-4" />} variant="rose" label="Alert" />
-                <IconButton icon={<Zap className="w-4 h-4" />} variant="white" label="Zap" />
+
+              {/* Size ladder — h-6 → h-12 + icon */}
+              <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+                {(['xs', 'sm', 'md', 'lg', 'icon'] as const).map((s) => (
+                  <Button key={s} size={s} variant="secondary" icon={s === 'icon' ? <Sparkles className="w-4 h-4" /> : undefined}>
+                    {s === 'icon' ? '' : s.toUpperCase()}
+                  </Button>
+                ))}
+                <span className="text-[10px] font-mono text-zinc-400 ml-1">h-6→h-12 + icon</span>
+              </div>
+
+              {/* Shape prop — pill / rounded / square */}
+              <div className="flex flex-wrap items-center gap-2">
+                <Button shape="pill" variant="outline">Pill</Button>
+                <Button shape="rounded" variant="outline">Rounded</Button>
+                <Button shape="square" variant="outline">Square</Button>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+                {(['primary', 'white', 'secondary', 'outline', 'ghost', 'link', 'destructive', 'rose'] as const).map((v) => (
+                  <IconButton
+                    key={v}
+                    icon={<Sparkles className="w-4 h-4" />}
+                    variant={v}
+                    label={`${v} icon button`}
+                  />
+                ))}
               </div>
             </div>
 

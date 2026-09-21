@@ -18,6 +18,26 @@
 
 ---
 
+## Phase 1.5 — shadcn-Grade Variant/Size Matrix (DONE)
+
+قاعده: هر primitive باید ماتریس کامل variant×size داشته باشد (الگو: Button شادسن با
+۱۳ حالت × ۴ سایز). ماتریس فعلی کیت:
+
+| کامپوننت | Variants | Sizes | Extras |
+|---|---|---|---|
+| Button | ۱۰ (primary/secondary/outline/ghost/link/destructive/success/white-pill/dark-pill/rose) | ۶ (xs/sm/md/lg/icon + fullWidth) | shape: pill/rounded/square، loading، icon slot |
+| IconButton | ۸ (+outline/link/destructive) | ۴ | label، loading |
+| Badge | ۹ (+destructive، ۶ رنگ) | ۳ (sm/md/lg) | cva، `[&_svg]` sizing |
+| Input | — | ۳ (sm/md/lg) | left/right icon، loading، error/label |
+| Tag | ۹ (+outline/solid) | ۲ | onRemove با hit-area |
+| Card/Surface | ۷ (surface/glass/elevated/…) | ۷ radius × ۶ padding | hoverable/interactive |
+| Switch/Checkbox/Segmented/Progress | semantic | ۲–۳ | RTL، aria |
+
+**نکته ممیزی:** سایزها حالا ارتفاع صریح دارند (`h-6…h-12`) تا touch target ≥44px
+(md/lg) تضمین شود. محاسبه variantها: **۱۰۰+ ترکیب** در سراسر کیت.
+
+---
+
 ## Phase 1 — Ruthless Component Audit (در حال اجرا)
 
 ### 1.1 نمودار ممیزی: هر کامپوننت × هر سکشن استاندارد
