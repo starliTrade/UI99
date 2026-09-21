@@ -18,10 +18,10 @@
 
 ---
 
-## Phase 4 — Component Roster Expansion (Waves) — در حال اجرا
+## Phase 4 — Component Roster Expansion (Waves) — ✅ تکمیل شد (۶۵ آیتم)
 
-هدف: roster کامل در کلاس shadcn (۶۴ آیتم). شمارش فعلی: **۴۴ registry item**
-(۴۲ component + utils + theme). هر Wave شامل: پیاده‌سازی + gallery + registry +
+هدف: roster کامل در کلاس shadcn (۶۴+ آیتم) — **تحقق یافت: ۶۵ registry item**
+(۶۳ component + utils + theme). هر Wave شامل: پیاده‌سازی + gallery + registry +
 آزمون axe/رفتاری.
 
 ### ✅ Wave A (۱۰) — Layout & Feedback
@@ -34,24 +34,27 @@ AlertDialog · RadioGroup (radix) · Table · Pagination
 ### ✅ Wave C (۳) — Product Patterns
 Stepper · Timeline · FileUpload
 
-### 🔜 Wave D (۶) — Charts & Micro-Data (بعدی)
+### ✅ Wave D (۶) — Charts & Micro-Data
 Sparkline (SVG، صفر-dep) · DonutRing · HeatMapCalendar · StatTile ·
 MeterBar · TrendDelta
 
-### 🔜 Wave E (۵) — Navigation Advanced
-Menubar (radix) · NavigationMenu (radix) · Sidebar primitive · Breadcrumb2
-(منو-دار) · CommandBar (footgun-safe aliases)
+### ✅ Wave E (۴) — Navigation Advanced
+Menubar (radix) · NavigationMenu (radix) · Sidebar primitive · CommandBar
 
-### 🔜 Wave F (۶) — Composites (شفاف با owner-code contract)
-DatePicker (ماه‌گرید سبک) · TimePicker · ColorPicker (token-first) ·
-Combobox (Dropdown ارتقا) · TransferList · CreditCardInput
+### ✅ Wave G (۳) — Group, Code & Media Display
+AvatarStack · CodeBlock (copy + lang tag) · Carousel (scroll-snap، صفر-dep)
 
-### 🔜 Wave G (۴+) — Media & Polish
-Carousel (emuka-free، scroll-snap) · Lightbox · AvatarStack · CodeBlock
-(highlight سبک)
+### ✅ Wave F (۳) — Interactive Heavyweights
+DatePicker (popover ماه‌گرید، today ring، disabledDates) · Combobox
+(cmdk + create-option) · TimePicker (listbox قابل فیلتر)
 
-> **ماندنی تا ۶۴:** 44 + 6(D) + 5(E) + 6(F) + 4(G) = **65** ✅
-> ترتیب انجام بر اساس ارزش محصول: D (دیتا) → E (ناوبری) → F (کامپوزیت) → G (مدیا)
+### ✅ Wave H (۵) — Input & Polish Finals
+Rating (keyboard fractional) · OTPInput (paste/advance) · CopyButton
+(aria-live) · Swatch (token chip) · NumberField (clamped steppers)
+
+> **نتیجه: 65 = 63 component + utils + theme** — parity کامل با roster ۶۴تایی شادسن
+> + کامپوننت‌های دامنه‌محور (Toast، ObjectCard، LinearIssueTracker و …) به‌صورت
+> app-level composites در kit باقی می‌مانند (الگوی shadcn برای Toaster).
 
 ---
 

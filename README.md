@@ -63,12 +63,17 @@ document.documentElement.classList.replace('dark', 'light');
 
 ## Components
 
-**Actions** Button · IconButton · Tag · Avatar
-**Inputs** Input · Textarea · SearchBar · Switch · Checkbox · Radio · Dropdown · Slider
-**Navigation** SegmentedControl · Breadcrumb · Tabs · Accordion
-**Data** Badge · PriorityBadge · StatusBadge · Kbd · Progress · Skeleton
-**Overlays** Dialog · Modal · Sheet · Popover · DropdownMenu · Command · Tooltip
-**Feedback** EmptyState · LoadingState
+**63 components** in the npm kit (65 registry items including `utils` + theme).
+
+**Actions** Button · IconButton · Tag · Avatar · Toggle · ToggleGroup · CopyButton
+**Inputs** Input · Textarea · SearchBar · Switch · Checkbox · RadioGroup · Dropdown · Slider · Pin/OTPInput · Rating · NumberField · DatePicker · TimePicker · Combobox · FileUpload
+**Forms** Label · Field/Hint/Error
+**Navigation** SegmentedControl · Breadcrumb · Tabs · Accordion · Pagination · Menubar · NavigationMenu · Sidebar · CommandBar
+**Data** Badge · PriorityBadge · StatusBadge · Kbd · Progress · Skeleton · Table · Sparkline · DonutRing · HeatMapCalendar · StatTile · MeterBar · TrendDelta · Timeline · Stepper
+**Overlays** Dialog · AlertDialog · Modal · Sheet · Popover · DropdownMenu · Command · Tooltip · HoverCard
+**Layout** Separator · ScrollArea · AspectRatio · Card/Surface · Collapsible
+**Feedback** EmptyState · LoadingState · Alert
+**Display** AvatarStack · CodeBlock · Carousel · Swatch
 **Brand** SafaBrandLogo · UI99BrandLogo
 
 Every primitive ships with the five-state contract
