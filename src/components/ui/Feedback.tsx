@@ -29,11 +29,11 @@ export function EmptyState({
   return (
     <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-2xl bg-white dark:bg-[#111114] border border-black/[0.06] dark:border-white/[0.055] shadow-[0_8px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.4)]">
       {icon && (
-        <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-[#16161B] border border-black/[0.06] dark:border-white/[0.06] text-zinc-600 dark:text-[#92929B] flex items-center justify-center mb-3">
+        <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-[#16161B] border border-black/[0.06] dark:border-white/[0.06] text-(--text-secondary) flex items-center justify-center mb-3">
           {icon}
         </div>
       )}
-      <h3 className="text-base font-semibold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
+      <h3 className="text-base font-semibold text-(--text-primary) tracking-tight">
         {title}
       </h3>
       {persianTitle && (
@@ -41,7 +41,7 @@ export function EmptyState({
           {persianTitle}
         </p>
       )}
-      <p className="text-xs text-zinc-500 dark:text-[#92929B] mt-1 max-w-xs leading-relaxed">
+      <p className="text-xs text-(--text-secondary) mt-1 max-w-xs leading-relaxed">
         {description}
       </p>
       {actionLabel && onAction && (
@@ -58,8 +58,8 @@ export function EmptyState({
 export function LoadingState({ message = 'Accessing Safa Space...' }: { message?: string }) {
   return (
     <div role="status" aria-live="polite" className="flex flex-col items-center justify-center py-16 text-center">
-      <Loader2 className="w-6 h-6 text-zinc-500 dark:text-[#92929B] animate-spin mb-3" />
-      <p className="text-xs text-zinc-500 dark:text-[#8E8E98] tracking-tight">{message}</p>
+      <Loader2 className="w-6 h-6 text-(--text-secondary) animate-spin mb-3" />
+      <p className="text-xs text-(--text-secondary) tracking-tight">{message}</p>
     </div>
   );
 }

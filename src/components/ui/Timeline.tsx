@@ -50,11 +50,11 @@ export function TimelineItem({
         )}
       />
       {timestamp && (
-        <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-[#5C5C68] mb-1">
+        <div className="text-[10px] font-mono uppercase tracking-wider text-(--text-muted) mb-1">
           {timestamp}
         </div>
       )}
-      <div className="text-xs text-zinc-800 dark:text-[#D4D4D8] leading-relaxed">{children}</div>
+      <div className="text-xs text-(--text-primary) leading-relaxed">{children}</div>
     </li>
   );
 }

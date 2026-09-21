@@ -16,7 +16,7 @@ export function ToggleGroup({
   return (
     <ToggleGroupPrimitive.Root
       className={cn(
-        'inline-flex items-center gap-1 rounded-xl bg-zinc-100 dark:bg-[#0E0E14] p-1 border border-black/[0.04] dark:border-white/[0.03]',
+        'inline-flex items-center gap-1 rounded-xl bg-(--bg-sunken) p-1 border border-(--border-hairline)',
         className
       )}
       {...props}

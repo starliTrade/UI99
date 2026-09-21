@@ -86,7 +86,7 @@ export function DatePicker({
           className={cn(
             'inline-flex h-10 min-w-[180px] items-center gap-2 rounded-xl border border-black/[0.07] bg-white px-3 text-sm text-zinc-950',
             'dark:border-white/[0.07] dark:bg-[#131318] dark:text-[#EDEDEF]',
-            'transition-colors hover:bg-black/[0.02] dark:hover:bg-white/[0.04]',
+            'transition-colors hover:bg-(--state-hover)',
             'focus-visible:outline-none focus-safa-inset cursor-pointer',
             'disabled:cursor-not-allowed disabled:opacity-45',
             className
@@ -113,7 +113,7 @@ export function DatePicker({
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="text-sm font-semibold text-zinc-950 dark:text-[#EDEDEF]" aria-live="polite">
+            <span className="text-sm font-semibold text-(--text-primary)" aria-live="polite">
               {MONTHS[view.m]} {view.y}
             </span>
             <button
@@ -128,7 +128,7 @@ export function DatePicker({
 
           <div className="grid grid-cols-7 gap-0.5" role="grid" aria-label={`${MONTHS[view.m]} ${view.y}`}>
             {WEEKDAYS.map((wd) => (
-              <div key={wd} role="columnheader" className="py-1 text-center text-[10px] font-mono uppercase text-zinc-400 dark:text-[#71717A]">
+              <div key={wd} role="columnheader" className="py-1 text-center text-[10px] font-mono uppercase text-(--text-muted)">
                 {wd}
               </div>
             ))}
@@ -145,10 +145,10 @@ export function DatePicker({
                   onClick={() => select(cell.iso)}
                   className={cn(
                     'h-8 w-8 rounded-lg text-xs font-medium transition-colors focus-visible:outline-none focus-safa-inset',
-                    'hover:bg-black/[0.05] dark:hover:bg-white/[0.07]',
+                    'hover:bg-(--state-hover)',
                     cell.iso === value
                       ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950'
-                      : 'text-zinc-700 dark:text-[#C6C6CE]',
+                      : 'text-(--text-primary)',
                     cell.iso === todayISO && cell.iso !== value && 'ring-1 ring-black/[0.25] dark:ring-white/[0.35]',
                     disabledDates?.(cell.iso) && 'cursor-not-allowed opacity-30 line-through hover:bg-transparent dark:hover:bg-transparent'
                   )}

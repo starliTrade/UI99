@@ -23,7 +23,7 @@ export const buttonVariants = cva(
           'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-black/[0.03] shadow-xs dark:text-[#D4D4D8] dark:border-white/[0.08] dark:hover:bg-white/[0.04]',
         ghost:
           'bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-[#92929B] dark:hover:bg-white/[0.04] dark:hover:text-[#EDEDEF]',
-        link: 'bg-transparent underline-offset-4 hover:underline text-zinc-900 dark:text-[#EDEDEF] hover:bg-transparent px-0',
+        link: 'bg-transparent underline-offset-4 hover:underline text-(--text-primary) hover:bg-transparent px-0',
         destructive:
           'bg-rose-600 text-white hover:bg-rose-500 border border-rose-700/40 shadow-xs dark:bg-rose-500 dark:hover:bg-rose-400 dark:text-[#2A0A10]',
         success:
@@ -110,7 +110,7 @@ export const iconButtonVariants = cva(
           'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-black/[0.03] dark:text-[#D4D4D8] dark:border-white/[0.08] dark:hover:bg-white/[0.04]',
         ghost:
           'bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-[#92929B] dark:hover:bg-white/[0.04] dark:hover:text-[#EDEDEF]',
-        link: 'bg-transparent hover:bg-transparent text-zinc-900 dark:text-[#EDEDEF] hover:scale-100',
+        link: 'bg-transparent hover:bg-transparent text-(--text-primary) hover:scale-100',
         destructive:
           'bg-rose-600 text-white hover:bg-rose-500 border border-rose-700/40 shadow-xs dark:bg-rose-500 dark:hover:bg-rose-400 dark:text-[#2A0A10]',
         rose:

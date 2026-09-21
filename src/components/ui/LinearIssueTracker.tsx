@@ -378,7 +378,7 @@ export function LinearIssueTracker() {
   return (
     <div className="space-y-4">
       {/* 1. WORKFLOW TOOLBAR */}
-      <div className="rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs overflow-hidden">
+      <div className="rounded-3xl bg-(--bg-card) border border-(--border-hairline) shadow-xs overflow-hidden">
         {/* Top Segment Views & Action Button */}
         <div className="p-4 border-b border-black/[0.05] dark:border-white/[0.04] flex flex-col md:flex-row md:items-center justify-between gap-3 bg-zinc-50/50 dark:bg-white/[0.01]">
           {/* View Tabs */}
@@ -538,7 +538,7 @@ export function LinearIssueTracker() {
                     }
                   }}
                   placeholder="Issue title (e.g. Calibrate specular rim reflection for cards)..."
-                  className="w-full px-3.5 py-2 rounded-xl text-sm font-medium bg-white dark:bg-[#131318] border border-black/[0.08] dark:border-white/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-zinc-950 dark:text-[#EDEDEF] placeholder:text-zinc-400"
+                  className="w-full px-3.5 py-2 rounded-xl text-sm font-medium bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-(--text-primary) placeholder:text-zinc-400"
                 />
 
                 <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
@@ -548,7 +548,7 @@ export function LinearIssueTracker() {
                       <DropdownMenuTrigger asChild>
                         <button
                           type="button"
-                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-white dark:bg-[#131318] border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
+                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
                         >
                           <PriorityBadge priority={newPriority} showLabel={true} />
                         </button>
@@ -567,7 +567,7 @@ export function LinearIssueTracker() {
                       <DropdownMenuTrigger asChild>
                         <button
                           type="button"
-                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-white dark:bg-[#131318] border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
+                          className="px-2.5 py-1 rounded-lg text-xs font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
                         >
                           <StatusBadge status={newStatus} showLabel={true} />
                         </button>
@@ -587,7 +587,7 @@ export function LinearIssueTracker() {
                       value={newLabel}
                       onChange={(e) => setNewLabel(e.target.value)}
                       placeholder="Tag..."
-                      className="w-28 px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-[#131318] border border-black/[0.06] dark:border-white/[0.06] text-zinc-800 dark:text-zinc-200 outline-none"
+                      className="w-28 px-2.5 py-1 rounded-lg text-xs bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] text-zinc-800 dark:text-zinc-200 outline-none"
                     />
                   </div>
 
@@ -680,7 +680,7 @@ export function LinearIssueTracker() {
                     className={`text-xs sm:text-sm font-medium tracking-tight truncate ${
                       issue.completed
                         ? 'line-through text-zinc-400 dark:text-zinc-500'
-                        : 'text-zinc-950 dark:text-[#EDEDEF]'
+                        : 'text-(--text-primary)'
                     }`}
                   >
                     {issue.title}
@@ -751,7 +751,7 @@ export function LinearIssueTracker() {
         </div>
 
         {/* 4. FOOTER WITH LINEAR KEYBOARD GUIDE */}
-        <div className="px-5 py-3 border-t border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-50/30 dark:bg-white/[0.01]">
+        <div className="px-5 py-3 border-t border-(--border-hairline) flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-50/30 dark:bg-white/[0.01]">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
               <Kbd size="xs">J</Kbd> / <Kbd size="xs">K</Kbd> Navigate

@@ -11,7 +11,7 @@ const Command = React.forwardRef<
   <CommandPrimitive
     ref={ref}
     className={cn(
-      'flex h-full w-full flex-col overflow-hidden rounded-3xl bg-white dark:bg-[#111114] text-zinc-950 dark:text-[#EDEDEF]',
+      'flex h-full w-full flex-col overflow-hidden rounded-3xl bg-white dark:bg-[#111114] text-(--text-primary)',
       className
     )}
     {...props}
@@ -44,7 +44,7 @@ const CommandInput = React.forwardRef<
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
-        'flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-zinc-400 dark:placeholder:text-[#5C5C66] disabled:cursor-not-allowed disabled:opacity-50 text-zinc-900 dark:text-[#EDEDEF]',
+        'flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-zinc-400 dark:placeholder:text-[#5C5C66] disabled:cursor-not-allowed disabled:opacity-50 text-(--text-primary)',
         className
       )}
       {...props}
@@ -71,7 +71,7 @@ const CommandEmpty = React.forwardRef<
 >((props, ref) => (
   <CommandPrimitive.Empty
     ref={ref}
-    className="py-6 text-center text-xs text-zinc-500 dark:text-[#8E8E98]"
+    className="py-6 text-center text-xs text-(--text-secondary)"
     {...props}
   />
 ));
@@ -128,7 +128,7 @@ const CommandShortcut = ({
   return (
     <span
       className={cn(
-        'ml-auto text-[10px] tracking-widest text-zinc-400 dark:text-[#71717A] font-mono px-1.5 py-0.5 rounded bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.04] dark:border-white/[0.06]',
+        'ml-auto text-[10px] tracking-widest text-(--text-muted) font-mono px-1.5 py-0.5 rounded bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.04] dark:border-white/[0.06]',
         className
       )}
       {...props}

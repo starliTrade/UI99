@@ -66,7 +66,7 @@ export function Combobox({
           className={cn(
             'inline-flex h-10 w-full items-center justify-between gap-2 rounded-xl border border-black/[0.07] bg-white px-3 text-sm',
             'dark:border-white/[0.07] dark:bg-[#131318]',
-            'transition-colors hover:bg-black/[0.02] dark:hover:bg-white/[0.04]',
+            'transition-colors hover:bg-(--state-hover)',
             'focus-visible:outline-none focus-safa-inset cursor-pointer',
             'disabled:cursor-not-allowed disabled:opacity-45',
             className
@@ -75,7 +75,7 @@ export function Combobox({
           <span className={cn('truncate', !selected && 'text-zinc-400 dark:text-[#8E8E98]')}>
             {selected ? selected.label : placeholder}
           </span>
-          <ChevronsUpDown className="w-4 h-4 shrink-0 text-zinc-400 dark:text-[#71717A]" />
+          <ChevronsUpDown className="w-4 h-4 shrink-0 text-(--text-muted)" />
         </button>
       </PopoverPrimitive.Trigger>
       <PopoverPrimitive.Portal>
@@ -108,7 +108,7 @@ export function Combobox({
                     />
                     <span className="truncate">{option.label}</span>
                     {option.hint && (
-                      <span className="ml-auto pl-2 text-[10px] font-mono text-zinc-400 dark:text-[#71717A]">
+                      <span className="ml-auto pl-2 text-[10px] font-mono text-(--text-muted)">
                         {option.hint}
                       </span>
                     )}

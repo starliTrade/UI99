@@ -51,7 +51,7 @@ export function TopHeader() {
   }, [isDropdownOpen]);
 
   return (
-    <header className="sticky top-0 z-40 w-full px-3 sm:px-6 py-2.5 sm:py-3 transition-colors select-none backdrop-blur-xl bg-[#06070A]/80 dark:bg-[#06070A]/80 border-b border-black/[0.04] dark:border-white/[0.03]">
+    <header className="sticky top-0 z-40 w-full px-3 sm:px-6 py-2.5 sm:py-3 transition-colors select-none backdrop-blur-xl bg-[#06070A]/80 dark:bg-[#06070A]/80 border-b border-(--border-hairline)">
       <div className="max-w-5xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
         {/* Left: UI \ [99] JetBrains Mono Logo */}
         <div className="flex items-center gap-4 sm:gap-6">

@@ -59,7 +59,7 @@ export function AlertDialogContent({
       <AlertDialogOverlay />
       <AlertDialogPrimitive.Content
         className={cn(
-          'fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/[0.03] bg-white dark:bg-[#131318] p-6 shadow-[0_24px_56px_-10px_rgba(0,0,0,0.75)] focus:outline-none',
+          'fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/[0.03] bg-(--bg-elevated) p-6 shadow-[0_24px_56px_-10px_rgba(0,0,0,0.75)] focus:outline-none',
           'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
           className
         )}
@@ -104,7 +104,7 @@ export function AlertDialogDescription({
 }: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Description>) {
   return (
     <AlertDialogPrimitive.Description
-      className={cn('text-xs leading-relaxed text-zinc-500 dark:text-[#8E8E98]', className)}
+      className={cn('text-xs leading-relaxed text-(--text-secondary)', className)}
       {...props}
     />
   );

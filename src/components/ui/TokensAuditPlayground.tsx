@@ -146,11 +146,11 @@ export function TokensAuditPlayground() {
         <div>
           <div className="flex items-center gap-2">
             <Scale className="w-5 h-5 text-emerald-500" />
-            <h3 className="text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+            <h3 className="text-base sm:text-lg font-bold tracking-tight text-(--text-primary)">
               Mathematical Tokens & Radii Nesting Engine (Phase 2)
             </h3>
           </div>
-          <p className="text-xs text-zinc-500 dark:text-[#8E8E98] mt-1">
+          <p className="text-xs text-(--text-secondary) mt-1">
             Strict verification against Anti-Slop mandates: concentric corner curves, brightness delta caps, and WCAG AAA ratios.
           </p>
         </div>
@@ -162,16 +162,16 @@ export function TokensAuditPlayground() {
       </div>
 
       {/* 1. CONCENTRIC RADII NESTING SIMULATOR */}
-      <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-6">
+      <div className="p-6 rounded-3xl bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <div className="flex items-center gap-2">
               <Maximize2 className="w-4 h-4 text-emerald-500" />
-              <h4 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">
+              <h4 className="text-sm font-bold text-(--text-primary)">
                 Live Concentric Corner Radius Simulator
               </h4>
             </div>
-            <p className="text-xs text-zinc-500 dark:text-[#8E8E98] mt-0.5">
+            <p className="text-xs text-(--text-secondary) mt-0.5">
               Formula: <code className="font-mono text-emerald-500">r_inner = Math.max(0, r_outer - padding)</code>
             </p>
           </div>
@@ -188,7 +188,7 @@ export function TokensAuditPlayground() {
         </div>
 
         {/* Sliders Control Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline)">
           {/* Outer Radius Slider */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-xs font-semibold">
@@ -238,7 +238,7 @@ export function TokensAuditPlayground() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
           {/* Calculated Output & Formula Card */}
           <div className="space-y-4">
-            <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] space-y-2.5">
+            <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline) space-y-2.5">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-zinc-500">Calculated Inner Radius</span>
                 <span className="text-sm font-mono font-bold text-emerald-500">
@@ -281,14 +281,14 @@ export function TokensAuditPlayground() {
           </div>
 
           {/* Real-time Interactive Rendered Preview */}
-          <div className="p-6 rounded-2xl bg-zinc-100 dark:bg-[#06070A] border border-black/[0.06] dark:border-white/[0.04] flex flex-col items-center justify-center">
+          <div className="p-6 rounded-2xl bg-zinc-100 dark:bg-[#06070A] border border-(--border-subtle) flex flex-col items-center justify-center">
             {/* Outer Container Element */}
             <div
               style={{
                 borderRadius: `${outerRadius}px`,
                 padding: `${padding}px`,
               }}
-              className="w-full max-w-xs bg-white dark:bg-[#131318] border border-black/[0.08] dark:border-white/[0.06] shadow-md transition-all duration-150 flex flex-col items-center justify-center gap-2"
+              className="w-full max-w-xs bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] shadow-md transition-all duration-150 flex flex-col items-center justify-center gap-2"
             >
               <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
                 Outer (r = {outerRadius}px, p = {padding}px)
@@ -304,7 +304,7 @@ export function TokensAuditPlayground() {
                 className={`w-full p-4 border transition-all duration-150 text-center ${
                   showBadComparison
                     ? 'bg-rose-500/10 border-rose-500/30 text-rose-400'
-                    : 'bg-zinc-50 dark:bg-[#0B0C11] border-black/[0.06] dark:border-white/[0.05] text-zinc-900 dark:text-[#EDEDEF]'
+                    : 'bg-zinc-50 dark:bg-[#0B0C11] border-black/[0.06] dark:border-white/[0.05] text-(--text-primary)'
                 }`}
               >
                 <div className="text-xs font-bold font-mono">
@@ -326,11 +326,11 @@ export function TokensAuditPlayground() {
       {/* 2. ANTI-SLOP BRIGHTNESS LIMIT & LUMINANCE DELTA */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Dark Mode Brightness Audit */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+        <div className="p-6 rounded-3xl bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Moon className="w-4 h-4 text-zinc-400" />
-              <h4 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">
+              <h4 className="text-sm font-bold text-(--text-primary)">
                 Dark Mode Brightness Delta Rule
               </h4>
             </div>
@@ -339,11 +339,11 @@ export function TokensAuditPlayground() {
             </span>
           </div>
 
-          <p className="text-xs text-zinc-500 dark:text-[#8E8E98] leading-relaxed">
+          <p className="text-xs text-(--text-secondary) leading-relaxed">
             Anti-Slop rule: Container brightness difference from canvas must not exceed 12% in dark mode to prevent visual shock and jarring neon cards.
           </p>
 
-          <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] space-y-3">
+          <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline) space-y-3">
             <div className="flex justify-between text-xs">
               <span className="text-zinc-500">Root Canvas ({darkAudit.bgHex})</span>
               <span className="font-mono text-zinc-300 font-semibold">{darkAudit.bgBrightness}% Brightness</span>
@@ -367,11 +367,11 @@ export function TokensAuditPlayground() {
         </div>
 
         {/* Light Mode Brightness Audit */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+        <div className="p-6 rounded-3xl bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Sun className="w-4 h-4 text-amber-500" />
-              <h4 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">
+              <h4 className="text-sm font-bold text-(--text-primary)">
                 Light Mode Brightness Delta Rule
               </h4>
             </div>
@@ -380,11 +380,11 @@ export function TokensAuditPlayground() {
             </span>
           </div>
 
-          <p className="text-xs text-zinc-500 dark:text-[#8E8E98] leading-relaxed">
+          <p className="text-xs text-(--text-secondary) leading-relaxed">
             Anti-Slop rule: Container brightness difference from canvas must not exceed 7% in light mode to maintain daylight matte calm without stark contrasts.
           </p>
 
-          <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] space-y-3">
+          <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline) space-y-3">
             <div className="flex justify-between text-xs">
               <span className="text-zinc-500">Matte Day Canvas ({lightAudit.bgHex})</span>
               <span className="font-mono text-zinc-300 font-semibold">{lightAudit.bgBrightness}% Brightness</span>
@@ -409,13 +409,13 @@ export function TokensAuditPlayground() {
       </div>
 
       {/* 3. WCAG AAA CONTRAST MATRIX */}
-      <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+      <div className="p-6 rounded-3xl bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">
+            <h4 className="text-sm font-bold text-(--text-primary)">
               WCAG AAA Contrast Ratio Matrix
             </h4>
-            <p className="text-xs text-zinc-500 dark:text-[#8E8E98] mt-0.5">
+            <p className="text-xs text-(--text-secondary) mt-0.5">
               Certified mathematical contrast verification (AA ≥ 4.5:1, AAA ≥ 7.0:1)
             </p>
           </div>
@@ -432,7 +432,7 @@ export function TokensAuditPlayground() {
             return (
               <div
                 key={idx}
-                className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] space-y-2"
+                className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline) space-y-2"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 truncate">
@@ -470,13 +470,13 @@ export function TokensAuditPlayground() {
       </div>
 
       {/* 4. BUTTON 2:1 PADDING & CONTAINER CONTAINMENT VALIDATOR */}
-      <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+      <div className="p-6 rounded-3xl bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">
+            <h4 className="text-sm font-bold text-(--text-primary)">
               Padding Math: Button 2:1 Ratio & Boundary Containment
             </h4>
-            <p className="text-xs text-zinc-500 dark:text-[#8E8E98] mt-0.5">
+            <p className="text-xs text-(--text-secondary) mt-0.5">
               Strictly enforces horizontal padding = 2x vertical padding and container padding ≥ child gap.
             </p>
           </div>
@@ -489,7 +489,7 @@ export function TokensAuditPlayground() {
             return (
               <div
                 key={btn.name}
-                className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] space-y-1.5"
+                className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline) space-y-1.5"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100">{btn.name}</span>

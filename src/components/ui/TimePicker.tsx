@@ -55,18 +55,18 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
             onClick={() => onChange(t)}
             className={cn(
               'flex min-h-[36px] w-full items-center justify-between rounded-lg px-3 text-left text-xs font-mono transition-colors',
-              'hover:bg-black/[0.04] dark:hover:bg-white/[0.06]',
+              'hover:bg-(--state-hover)',
               'focus-visible:outline-none focus-safa-inset cursor-pointer',
               t === value
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950'
-                : 'text-zinc-700 dark:text-[#C6C6CE]'
+                : 'text-(--text-primary)'
             )}
           >
             {t}
           </button>
         ))}
         {filtered.length === 0 && (
-          <div className="px-3 py-4 text-center text-xs text-zinc-400 dark:text-[#71717A]">No match</div>
+          <div className="px-3 py-4 text-center text-xs text-(--text-muted)">No match</div>
         )}
       </div>
     </div>

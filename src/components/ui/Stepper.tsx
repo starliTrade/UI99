@@ -50,7 +50,7 @@ export function Stepper({
                 isCurrent &&
                   'bg-zinc-900 text-white border-zinc-900 dark:bg-[#EBEBEF] dark:text-[#0C0C0E] dark:border-[#EBEBEF] ring-4 ring-black/[0.04] dark:ring-white/[0.06]',
                 !isDone && !isCurrent &&
-                  'bg-transparent text-zinc-400 border-black/[0.12] dark:border-white/[0.12]'
+                  'bg-transparent text-zinc-400 border-(--border-strong)'
               )}
             >
               {isDone ? <Check className="w-3.5 h-3.5" /> : i + 1}
@@ -61,7 +61,7 @@ export function Stepper({
                 orientation === 'horizontal' ? 'ml-2 hidden sm:block' : '',
                 isCurrent
                   ? 'text-zinc-950 dark:text-white font-semibold'
-                  : 'text-zinc-500 dark:text-[#8E8E98]'
+                  : 'text-(--text-secondary)'
               )}
             >
               {step}

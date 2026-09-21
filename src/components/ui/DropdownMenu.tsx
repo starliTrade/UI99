@@ -39,7 +39,7 @@ const DropdownMenuSubContent = React.forwardRef<
     ref={ref}
     className={cn(
       'z-50 min-w-[8rem] overflow-hidden rounded-2xl p-1 shadow-xl backdrop-blur-2xl',
-      'bg-white/95 dark:bg-[#0E0E14]/95 text-zinc-950 dark:text-[#EDEDEF]',
+      'bg-white/95 dark:bg-[#0E0E14]/95 text-(--text-primary)',
       'border border-black/[0.06] dark:border-white/[0.07]',
       'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
       className
@@ -59,7 +59,7 @@ const DropdownMenuContent = React.forwardRef<
       sideOffset={sideOffset}
       className={cn(
         'z-50 min-w-[10rem] overflow-hidden rounded-2xl p-1.5 shadow-xl backdrop-blur-2xl',
-        'bg-white/95 dark:bg-[#0E0E14]/95 text-zinc-950 dark:text-[#EDEDEF]',
+        'bg-white/95 dark:bg-[#0E0E14]/95 text-(--text-primary)',
         'border border-black/[0.06] dark:border-white/[0.07]',
         'shadow-[0_16px_36px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_48px_rgba(0,0,0,0.85)]',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
@@ -149,7 +149,7 @@ const DropdownMenuLabel = React.forwardRef<
   <DropdownMenuPrimitive.Label
     ref={ref}
     className={cn(
-      'px-2.5 py-1.5 text-[11px] font-semibold text-zinc-500 dark:text-[#8E8E98] tracking-tight',
+      'px-2.5 py-1.5 text-[11px] font-semibold text-(--text-secondary) tracking-tight',
       inset && 'pl-8',
       className
     )}
@@ -177,7 +177,7 @@ const DropdownMenuShortcut = ({
   return (
     <span
       className={cn(
-        'ml-auto text-[10px] tracking-widest text-zinc-400 dark:text-[#71717A] font-mono',
+        'ml-auto text-[10px] tracking-widest text-(--text-muted) font-mono',
         className
       )}
       {...props}

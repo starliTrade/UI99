@@ -44,7 +44,7 @@ export function Modal({
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 overflow-hidden pointer-events-none">
           <DialogPrimitive.Content
             className={cn(
-              'pointer-events-auto relative w-full bg-white dark:bg-[#111114] text-zinc-950 dark:text-[#EDEDEF]',
+              'pointer-events-auto relative w-full bg-white dark:bg-[#111114] text-(--text-primary)',
               'border border-black/[0.08] dark:border-white/[0.06]',
               'shadow-[0_24px_50px_rgba(0,0,0,0.14)] dark:shadow-[0_24px_60px_-10px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.04)]',
               'sm:rounded-3xl rounded-t-[28px] overflow-hidden max-h-[92vh] flex flex-col z-10 pb-safe outline-none',
@@ -62,12 +62,12 @@ export function Modal({
               <div className="px-5 sm:px-6 pt-3 sm:pt-4 pb-3.5 border-b border-black/[0.06] dark:border-white/[0.05] flex items-center justify-between shrink-0">
                 <div>
                   {title && (
-                    <DialogPrimitive.Title className="text-lg sm:text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                    <DialogPrimitive.Title className="text-lg sm:text-xl font-bold tracking-tight text-(--text-primary)">
                       {title}
                     </DialogPrimitive.Title>
                   )}
                   {subtitle && (
-                    <DialogPrimitive.Description className="text-xs text-zinc-500 dark:text-[#92929B] mt-0.5">
+                    <DialogPrimitive.Description className="text-xs text-(--text-secondary) mt-0.5">
                       {subtitle}
                     </DialogPrimitive.Description>
                   )}

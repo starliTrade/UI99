@@ -37,7 +37,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <div className="relative flex items-center">
           {leftIcon && (
-            <div className="absolute left-3.5 text-zinc-400 dark:text-[#71717A] pointer-events-none flex items-center">
+            <div className="absolute left-3.5 text-(--text-muted) pointer-events-none flex items-center">
               {leftIcon}
             </div>
           )}
@@ -47,7 +47,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={error ? true : undefined}
             aria-describedby={helperId}
             className={cn(
-              'w-full bg-white dark:bg-[#131317] border border-black/[0.08] dark:border-white/[0.06] text-zinc-900 dark:text-[#EDEDEF] placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-safa',
+              'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] text-(--text-primary) placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-safa',
               inputSizeStyles[inputSize],
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',
@@ -57,7 +57,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {(rightIcon || loading) && (
-            <div className="absolute right-3.5 text-zinc-400 dark:text-[#71717A] flex items-center">
+            <div className="absolute right-3.5 text-(--text-muted) flex items-center">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : rightIcon}
             </div>
           )}
@@ -93,7 +93,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={error ? true : undefined}
           aria-describedby={helperId}
           className={cn(
-            'w-full bg-white dark:bg-[#131317] border border-black/[0.08] dark:border-white/[0.06] rounded-xl p-3.5 text-sm text-zinc-900 dark:text-[#EDEDEF] placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-safa',
+            'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-xl p-3.5 text-sm text-(--text-primary) placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-safa',
             error && 'border-rose-500/60 focus:border-rose-500',
             className
           )}
@@ -126,14 +126,14 @@ export function SearchBar({
 }: SearchBarProps) {
   return (
     <div className={cn('relative w-full flex items-center', className)}>
-      <Search className="absolute left-3.5 w-4 h-4 text-zinc-400 dark:text-[#71717A] pointer-events-none" />
+      <Search className="absolute left-3.5 w-4 h-4 text-(--text-muted) pointer-events-none" />
       <input
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         autoFocus={autoFocus}
-        className="w-full bg-white dark:bg-[#131317] border border-black/[0.08] dark:border-white/[0.06] rounded-full pl-10 pr-10 py-2.5 text-sm text-zinc-900 dark:text-[#EDEDEF] placeholder-zinc-400 dark:placeholder-[#5C5C66] focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] transition-all shadow-xs tracking-tight"
+        className="w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-full pl-10 pr-10 py-2.5 text-sm text-(--text-primary) placeholder-zinc-400 dark:placeholder-[#5C5C66] focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] transition-all shadow-xs tracking-tight"
       />
       {value && onClear && (
         <button

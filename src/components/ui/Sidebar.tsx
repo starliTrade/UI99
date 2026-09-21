@@ -80,7 +80,7 @@ export function SidebarBody({ className = '', ...props }: React.ComponentProps<'
 SidebarBody.displayName = 'SidebarBody';
 
 export function SidebarFooter({ className = '', ...props }: React.ComponentProps<'div'>) {
-  return <div className={cn('shrink-0 border-t border-black/[0.04] dark:border-white/[0.03] p-3', className)} {...props} />;
+  return <div className={cn('shrink-0 border-t border-(--border-hairline) p-3', className)} {...props} />;
 }
 SidebarFooter.displayName = 'SidebarFooter';
 

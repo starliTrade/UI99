@@ -33,7 +33,7 @@ export function TableFooter({ className = '', ...props }: React.HTMLAttributes<H
   return (
     <tfoot
       className={cn(
-        'border-t border-black/[0.06] dark:border-white/[0.05] bg-zinc-50 dark:bg-[#0E0E13] font-medium',
+        'border-t border-black/[0.06] dark:border-white/[0.05] bg-(--bg-sunken) font-medium',
         className
       )}
       {...props}
@@ -59,7 +59,7 @@ export function TableHead({ className = '', ...props }: React.ThHTMLAttributes<H
   return (
     <th
       className={cn(
-        'h-10 px-3 text-left align-middle text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-500 dark:text-[#8E8E98] [&:has([role=checkbox])]:pr-0',
+        'h-10 px-3 text-left align-middle text-[10px] font-mono font-bold uppercase tracking-wider text-(--text-secondary) [&:has([role=checkbox])]:pr-0',
         className
       )}
       {...props}
@@ -71,7 +71,7 @@ TableHead.displayName = 'TableHead';
 export function TableCell({ className = '', ...props }: React.TdHTMLAttributes<HTMLTableCellElement>) {
   return (
     <td
-      className={cn('px-3 py-2.5 align-middle text-zinc-800 dark:text-[#D4D4D8] [&:has([role=checkbox])]:pr-0', className)}
+      className={cn('px-3 py-2.5 align-middle text-(--text-primary) [&:has([role=checkbox])]:pr-0', className)}
       {...props}
     />
   );
@@ -79,6 +79,6 @@ export function TableCell({ className = '', ...props }: React.TdHTMLAttributes<H
 TableCell.displayName = 'TableCell';
 
 export function TableCaption({ className = '', ...props }: React.HTMLAttributes<HTMLTableCaptionElement>) {
-  return <caption className={cn('mt-3 text-[11px] text-zinc-500 dark:text-[#8E8E98]', className)} {...props} />;
+  return <caption className={cn('mt-3 text-[11px] text-(--text-secondary)', className)} {...props} />;
 }
 TableCaption.displayName = 'TableCaption';

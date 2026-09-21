@@ -23,7 +23,9 @@
   --bg-card: #0E0F14;
   --bg-card-hover: #131319;
   --bg-elevated: #131318;
+  --bg-sunken: #0B0C11;
   --border-subtle: transparent;
+  --border-strong: rgba(255, 255, 255, 0.09);
   --border-specular: rgba(255, 255, 255, 0.06);
   --border-hairline: rgba(255, 255, 255, 0.025);
 
@@ -31,6 +33,7 @@
   --text-primary: #FFFFFF;
   --text-secondary: #8E8E98;
   --text-muted: #5C5C68;
+  --text-on-fill: #0C0C0E;
 
   /* Dock / glass */
   --dock-bg: rgba(14, 14, 19, 0.9);
@@ -53,13 +56,16 @@
   --bg-card: #FFFFFF;
   --bg-card-hover: #F8F8FA;
   --bg-elevated: #FFFFFF;
+  --bg-sunken: #F0F0F4;
   --border-subtle: rgba(0, 0, 0, 0.045);
+  --border-strong: rgba(0, 0, 0, 0.12);
   --border-specular: rgba(255, 255, 255, 1);
   --border-hairline: rgba(0, 0, 0, 0.03);
 
   --text-primary: #111116;
   --text-secondary: #646470;
   --text-muted: #9494A0;
+  --text-on-fill: #FFFFFF;
 
   --dock-bg: rgba(255, 255, 255, 0.94);
   --dock-border: rgba(0, 0, 0, 0.05);

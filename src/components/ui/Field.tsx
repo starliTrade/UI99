@@ -43,7 +43,7 @@ export function FormField({
             )}
           </Label>
           {hint && (
-            <span id={hintId} className="text-[10px] font-mono text-zinc-400 dark:text-[#5C5C68]">
+            <span id={hintId} className="text-[10px] font-mono text-(--text-muted)">
               {hint}
             </span>
           )}
@@ -62,7 +62,7 @@ export function FormField({
 export interface FormHintProps extends React.HTMLAttributes<HTMLParagraphElement> {}
 
 export function FormHint({ className = '', ...props }: FormHintProps) {
-  return <p className={cn('text-xs text-zinc-500 dark:text-[#8E8E98]', className)} {...props} />;
+  return <p className={cn('text-xs text-(--text-secondary)', className)} {...props} />;
 }
 
 export interface FormErrorProps extends React.HTMLAttributes<HTMLParagraphElement> {}

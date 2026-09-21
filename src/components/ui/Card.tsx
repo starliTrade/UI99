@@ -55,13 +55,13 @@ export function Surface({
 
   const variantMap = {
     surface:
-      'bg-white dark:bg-[#0E0E13] border border-black/[0.045] dark:border-white/[0.025] shadow-[0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_8px_24px_-4px_rgba(0,0,0,0.5)]',
+      'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-[0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_8px_24px_-4px_rgba(0,0,0,0.5)]',
     surfaceSecondary:
       'bg-[#F8F8FA] dark:bg-[#0B0C11] border border-black/[0.035] dark:border-white/[0.02] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)]',
     elevated:
-      'bg-white dark:bg-[#131318] border border-black/[0.05] dark:border-white/[0.035] shadow-[0_8px_28px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_16px_36px_-6px_rgba(0,0,0,0.65)]',
+      'bg-(--bg-elevated) border border-(--border-hairline) shadow-[0_8px_28px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_16px_36px_-6px_rgba(0,0,0,0.65)]',
     glass:
-      'bg-white/80 dark:bg-[#0E0E13]/55 backdrop-blur-2xl border border-black/[0.04] dark:border-white/[0.03] shadow-[0_8px_24px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_18px_40px_-10px_rgba(0,0,0,0.65)]',
+      'bg-white/80 dark:bg-[#0E0E13]/55 backdrop-blur-2xl border border-(--border-hairline) shadow-[0_8px_24px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_18px_40px_-10px_rgba(0,0,0,0.65)]',
     compact:
       'bg-white/90 dark:bg-[#0B0C11] border border-black/[0.03] dark:border-white/[0.02] shadow-xs',
     flat:
@@ -105,7 +105,7 @@ export function CardContent({ className = '', ...props }: HTMLAttributes<HTMLDiv
 }
 
 export function CardFooter({ className = '', ...props }: HTMLAttributes<HTMLDivElement>) {
-  return <div className={`flex items-center pt-3 border-t border-black/[0.04] dark:border-white/[0.03] ${className}`} {...props} />;
+  return <div className={`flex items-center pt-3 border-t border-(--border-hairline) ${className}`} {...props} />;
 }
 
 export function GlassSurface({

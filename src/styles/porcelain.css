@@ -18,7 +18,9 @@
   --bg-card: #FFFFFF;
   --bg-card-hover: #F6F5F1;
   --bg-elevated: #FFFFFF;
+  --bg-sunken: #F1F0EC;
   --border-subtle: rgba(28, 25, 23, 0.06);
+  --border-strong: rgba(28, 25, 23, 0.13);
   --border-specular: rgba(255, 255, 255, 1);
   --border-hairline: rgba(28, 25, 23, 0.035);
 
@@ -26,6 +28,7 @@
   --text-primary: #1C1917;      /* 15.8:1 AAA */
   --text-secondary: #57534E;    /* 6.9:1 AA+ */
   --text-muted: #79716B;        /* 4.6:1 AA */
+  --text-on-fill: #FFFFFF;
 
   /* Dock / glass */
   --dock-bg: rgba(255, 255, 255, 0.82);

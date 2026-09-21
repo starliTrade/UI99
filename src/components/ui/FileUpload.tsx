@@ -45,7 +45,7 @@ export function FileUpload({
       <label
         className={cn(
           'relative flex min-h-[96px] cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border border-dashed p-6 text-center transition-all duration-150',
-          'border-black/[0.12] dark:border-white/[0.12] bg-zinc-50/60 dark:bg-[#0E0E13]/60',
+          'border-(--border-strong) bg-zinc-50/60 dark:bg-[#0E0E13]/60',
           'hover:border-emerald-500/40 hover:bg-emerald-500/[0.03] focus-visible:outline-none focus-safa',
           isDragging && 'border-emerald-500 bg-emerald-500/[0.05] scale-[0.99]',
           disabled && 'opacity-40 pointer-events-none'
@@ -61,8 +61,8 @@ export function FileUpload({
           emit(e.dataTransfer.files);
         }}
       >
-        <UploadCloud className="w-5 h-5 text-zinc-400 dark:text-[#71717A]" />
-        <span className="text-xs font-medium text-zinc-600 dark:text-[#92929B]">{label}</span>
+        <UploadCloud className="w-5 h-5 text-(--text-muted)" />
+        <span className="text-xs font-medium text-(--text-secondary)">{label}</span>
         <input
           ref={inputRef}
           type="file"
