@@ -1,18 +1,16 @@
 /**
- * SAFA Component Library — Master Export Barrel (Build 02.2 → Phase 2.2)
+ * UI99 (@99/ui) — npm Kit Entry (Phase 2.2)
  *
- * Two-tier export contract:
- *  1. **Kit exports** — npm-portable primitives (Phase 2.1/2.2): depend only on
- *     react, radix-*, motion/react, cva/clsx/tailwind-merge, lucide-react.
- *     These ship in the published package via the lib entry below.
- *  2. **Domain composites** — app-level components that need AppContext,
- *     AuthContext, or domain types. Kept in the app barrel for the product;
- *     intentionally NOT in the npm kit entry.
+ * The published package exports ONLY context-free primitives: every module
+ * reachable from this entry depends solely on react, radix-*, motion/react,
+ * cva/clsx/tailwind-merge and lucide-react (acceptance formula, ROADMAP §2.1).
+ *
+ * Domain composites (ToastContainer, TopHeader, BottomNavigation, ObjectCard,
+ * LinearIssueTracker, TokensAuditPlayground) require AppContext/AuthContext/
+ * domain types and are deliberately excluded — they live in the app barrel
+ * `index.ts`. This split is verified in CI-style smoke checks after lib:build
+ * (bundle must not contain AppContext/AuthContext/ObjectContext references).
  */
-
-// =====================================================================
-// KIT EXPORTS (npm-portable primitives)
-// =====================================================================
 
 // Actions & Buttons
 export { Button, IconButton, Tag, Avatar } from './Button';
@@ -123,15 +121,3 @@ export type { UI99BrandLogoProps } from './SafaBrandLogo';
 // Theme protocol (kit-local, no app context)
 export { useIsDark, useThemeClass } from './theme';
 export type { KitThemeMode } from './theme';
-
-// =====================================================================
-// DOMAIN COMPOSITES (app-level; require AppContext/AuthContext/domain types)
-// =====================================================================
-
-export { ToastContainer } from './Toast';
-export { TopHeader } from './TopHeader';
-export { BottomNavigation } from './BottomNavigation';
-export { ObjectCard } from './ObjectCard';
-export { LinearIssueTracker } from './LinearIssueTracker';
-export { TokensAuditPlayground } from './TokensAuditPlayground';
-export type { EmptyStateProps as ToastEmptyStateProps } from './Toast';

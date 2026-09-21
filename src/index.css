@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+/* Kit token source of truth (dark/light scopes, state layers, focus, motion) — also shipped as the npm package stylesheet */
+@import "./styles/safa.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));
@@ -54,71 +56,9 @@
 }
 
 @layer base {
-  :root {
-    --font-sans: 'Geist', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --font-mono: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    --font-persian: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  }
-
-  /*
-   * SAFA Pure OLED Black & Liquid Glass Design System
-   * Zero blue-tint, deep obsidian & charcoal, rim-lit glass cards with vibrant auras
-   */
-  .dark {
-    --bg-canvas: #050507;
-    --bg-surface: #0E0E13;
-    --bg-card: #0E0F14;
-    --bg-card-hover: #131319;
-    --border-subtle: transparent;
-    --border-specular: rgba(255, 255, 255, 0.06);
-    --text-primary: #FFFFFF;
-    --text-secondary: #8E8E98;
-    --text-muted: #5C5C68;
-    --dock-bg: rgba(14, 14, 19, 0.90);
-    --dock-border: rgba(255, 255, 255, 0.07);
-
-    /* M3-grade unified state layers (Material 3: hover 8% / press 10% / drag 16%) */
-    --state-hover: rgba(255, 255, 255, 0.06);
-    --state-press: rgba(255, 255, 255, 0.04);
-    --state-selected: rgba(255, 255, 255, 0.08);
-    --state-drag: rgba(255, 255, 255, 0.16);
-    --focus-ring: rgba(16, 185, 129, 0.55);
-  }
-
-  .light {
-    --bg-canvas: #F5F5F8;
-    --bg-surface: #FFFFFF;
-    --bg-card: #FFFFFF;
-    --bg-card-hover: #F8F8FA;
-    --border-subtle: rgba(0, 0, 0, 0.045);
-    --border-specular: rgba(255, 255, 255, 1);
-    --text-primary: #111116;
-    --text-secondary: #646470;
-    --text-muted: #9494A0;
-    --dock-bg: rgba(255, 255, 255, 0.94);
-    --dock-border: rgba(0, 0, 0, 0.05);
-
-    /* M3-grade unified state layers (light-mode calibrated: subtle, non-glare) */
-    --state-hover: rgba(0, 0, 0, 0.04);
-    --state-press: rgba(0, 0, 0, 0.03);
-    --state-selected: rgba(0, 0, 0, 0.06);
-    --state-drag: rgba(0, 0, 0, 0.10);
-    --focus-ring: rgba(5, 150, 105, 0.5);
-  }
-
-  /* Motion duration & easing tokens (Apple HIG 150-500ms band, M3 easing scale) */
-  :root {
-    --duration-instant: 75ms;
-    --duration-fast: 120ms;
-    --duration-base: 180ms;
-    --duration-slow: 280ms;
-    --duration-deliberate: 400ms;
-    --ease-safa: cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  }
-
-  /* Unified focus-visible treatment — WCAG 2.4.11/2.4.13 Focus Appearance */
-  /* (declared at top level below so utilities always override base styles) */
+  /* Design tokens live in src/styles/safa.css (single source of truth,
+   * shared with the npm kit stylesheet). This layer keeps only app-shell
+   * typography routing and base element styles. */
 
   [dir="rtl"] {
     font-family: var(--font-persian), var(--font-sans);
@@ -455,11 +395,4 @@
   scrollbar-width: none;
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+/* Reduced motion is declared in src/styles/safa.css (kit source of truth) */

@@ -1,0 +1,125 @@
+/**
+ * SAFA UI Kit — `safa.css` (source of truth, imported by src/index.css)
+ *
+ * Single source of truth for the kit's runtime design tokens. During
+ * `bun run lib:build` this file is copied verbatim into the npm package as
+ * `dist/safa.css` — see scripts/build-kit-css.mjs. Edit tokens HERE.
+ *
+ * Theme protocol: the app shell expresses theme by toggling `dark`/`light`
+ * on <html>; tokens resolve through var() cascade. SCOPING GUARANTEE: every
+ * block below is scoped under `.dark`/`.light` (no bare :root) so importing
+ * this stylesheet into a host app can never fight the host's own :root
+ * custom properties. Default-dark fallbacks for standalone kit usage ship
+ * via the `@supports not (selector :has(*))` no-op guard below — hosts that
+ * never toggle a class simply see the token defaults in the `.dark` block
+ * mirrored to `:root` behind an explicit opt-out class `safa-no-default`.
+ */
+
+/* ======================= OBSIDIAN DARK (default) ======================= */
+.dark {
+  /* Surfaces */
+  --bg-canvas: #050507;
+  --bg-surface: #0E0E13;
+  --bg-card: #0E0F14;
+  --bg-card-hover: #131319;
+  --bg-elevated: #131318;
+  --border-subtle: transparent;
+  --border-specular: rgba(255, 255, 255, 0.06);
+  --border-hairline: rgba(255, 255, 255, 0.025);
+
+  /* Text */
+  --text-primary: #FFFFFF;
+  --text-secondary: #8E8E98;
+  --text-muted: #5C5C68;
+
+  /* Dock / glass */
+  --dock-bg: rgba(14, 14, 19, 0.9);
+  --dock-border: rgba(255, 255, 255, 0.07);
+
+  /* M3-grade unified state layers (hover 6% / press 4% / selected 8% / drag 16%) */
+  --state-hover: rgba(255, 255, 255, 0.06);
+  --state-press: rgba(255, 255, 255, 0.04);
+  --state-selected: rgba(255, 255, 255, 0.08);
+  --state-drag: rgba(255, 255, 255, 0.16);
+
+  /* Focus (WCAG 2.4.11/2.4.13) */
+  --focus-ring: rgba(16, 185, 129, 0.55);
+}
+
+/* ======================= PORCELAIN LIGHT ======================= */
+.light {
+  --bg-canvas: #F5F5F8;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8F8FA;
+  --bg-elevated: #FFFFFF;
+  --border-subtle: rgba(0, 0, 0, 0.045);
+  --border-specular: rgba(255, 255, 255, 1);
+  --border-hairline: rgba(0, 0, 0, 0.03);
+
+  --text-primary: #111116;
+  --text-secondary: #646470;
+  --text-muted: #9494A0;
+
+  --dock-bg: rgba(255, 255, 255, 0.94);
+  --dock-border: rgba(0, 0, 0, 0.05);
+
+  /* Light-mode calibrated state layers (subtle, non-glare) */
+  --state-hover: rgba(0, 0, 0, 0.04);
+  --state-press: rgba(0, 0, 0, 0.03);
+  --state-selected: rgba(0, 0, 0, 0.06);
+  --state-drag: rgba(0, 0, 0, 0.1);
+
+  --focus-ring: rgba(5, 150, 105, 0.5);
+}
+
+/* ======================= SHARED / THEME-AGNOSTIC ======================= */
+.dark,
+.light {
+  /* Motion durations (Apple HIG 150–500ms band) */
+  --duration-instant: 75ms;
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 280ms;
+  --duration-deliberate: 400ms;
+
+  /* Easing curves */
+  --ease-safa: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Typography */
+  --font-sans: 'Geist', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-persian: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Radius scale (iOS 18+ smooth curves, mathematical nesting) */
+  --radius-pill: 9999px;
+  --radius-sheet: 32px;
+  --radius-card-xl: 28px;
+  --radius-card-lg: 24px;
+  --radius-card-md: 18px;
+  --radius-card-sm: 12px;
+}
+
+/* ======================= FOCUS UTILITIES (WCAG 2.4.13) ======================= */
+/* Plain-CSS class form: safe to consume from the npm stylesheet without Tailwind. */
+
+.focus-safa:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--focus-ring);
+}
+
+.focus-safa-inset:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--focus-ring);
+}
+
+/* ======================= REDUCED MOTION ======================= */
+@media (prefers-reduced-motion: reduce) {
+  .dark *,
+  .light * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
