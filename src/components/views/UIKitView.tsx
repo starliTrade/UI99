@@ -212,6 +212,9 @@ import {
   AvatarStack,
   CodeBlock,
   Carousel,
+  DatePicker,
+  Combobox,
+  TimePicker,
 } from '../ui';
 
 type SectionTab =
@@ -1584,6 +1587,56 @@ export default function App() {
                 </div>
               ))}
             </Carousel>
+          </div>
+        </div>
+      </section>
+
+      {/* 4.11 WAVE F SPOTLIGHT — DatePicker/Combobox/TimePicker               */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <Calendar className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                10. Wave F — Interactive Heavyweights
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                DatePicker · Combobox · TimePicker — the shadcn "both worlds" trio
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">NEW</Badge>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">DatePicker</h3>
+            <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">Popover month grid · today ring · disabledDates</p>
+            <DatePicker placeholder="Pick a deadline" />
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Combobox</h3>
+            <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">cmdk filter · create-option · 44px rows</p>
+            <Combobox
+              options={[
+                { value: 'deep-work', label: 'Deep work', hint: '90m' },
+                { value: 'review', label: 'Review queue', hint: '25m' },
+                { value: 'sync', label: 'Team sync', hint: '30m' },
+                { value: 'rest', label: 'Velvet rest', hint: '∞' },
+              ]}
+              value={null}
+              onChange={() => {}}
+              placeholder="Choose a block…"
+              allowCreate
+            />
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">TimePicker</h3>
+            <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">Filterable HH:mm listbox · 30m step</p>
+            <TimePicker value={null} onChange={() => {}} step={30} />
           </div>
         </div>
       </section>

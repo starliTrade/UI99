@@ -260,6 +260,14 @@ export type { CodeBlockProps } from './CodeBlock';
 export { Carousel } from './Carousel';
 export type { CarouselProps } from './Carousel';
 
+// ——— Wave F: interactive heavyweights ———
+export { DatePicker } from './DatePicker';
+export type { DatePickerProps } from './DatePicker';
+export { Combobox } from './Combobox';
+export type { ComboboxProps, ComboboxOption } from './Combobox';
+export { TimePicker } from './TimePicker';
+export type { TimePickerProps } from './TimePicker';
+
 // =====================================================================
 // DOMAIN COMPOSITES (app-level; require AppContext/AuthContext/domain types)
 // =====================================================================

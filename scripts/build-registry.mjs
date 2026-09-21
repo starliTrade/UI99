@@ -34,6 +34,8 @@ const KIT_COMPONENTS = [
   'Menubar', 'NavigationMenu', 'Sidebar', 'CommandBar',
   // Wave G (3): group/code/media display
   'AvatarStack', 'CodeBlock', 'Carousel',
+  // Wave F (3): interactive heavyweights
+  'DatePicker', 'Combobox', 'TimePicker',
 ];
 
 /** npm deps the kit requires at runtime (mirrors dist-kit manifest). */
