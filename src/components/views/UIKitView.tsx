@@ -209,6 +209,9 @@ import {
   SidebarItem,
   CommandBar,
   CommandAction,
+  AvatarStack,
+  CodeBlock,
+  Carousel,
 } from '../ui';
 
 type SectionTab =
@@ -1530,6 +1533,61 @@ export function UIKitView() {
       </section>
 
       {/* ========================================================================= */}
+      {/* 4.10 WAVE G SPOTLIGHT — AvatarStack/CodeBlock/Carousel               */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <LayoutGrid className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                09. Wave G — Group, Code & Media Display
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                AvatarStack · CodeBlock · Carousel (scroll-snap, zero-dep)
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">NEW</Badge>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">AvatarStack & CodeBlock</h3>
+            <AvatarStack names={['Sara', 'Ali', 'Nima', 'Raha', 'Omid', 'Bahar']} max={4} size="md" />
+            <CodeBlock
+              language="tsx"
+              filename="safa.config.ts"
+              showLineNumbers
+              code={`import { SafaProvider } from '@99/ui';
+
+export default function App() {
+  return (
+    <SafaProvider theme="dark">
+      <Surface />
+    </SafaProvider>
+  );
+}`}
+            />
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Carousel</h3>
+            <Carousel label="Surface gallery" itemClassName="w-64">
+              {['#0B0C11', '#131318', '#1A1A20', '#0E0E14', '#18181D'].map((token, i) => (
+                <div
+                  key={token}
+                  className="h-36 rounded-2xl border border-white/[0.05] flex items-end p-4"
+                  style={{ background: token }}
+                >
+                  <span className="text-[10px] font-mono text-white/50">surface-{i + 1} · {token}</span>
+                </div>
+              ))}
+            </Carousel>
+          </div>
+        </div>
+      </section>
+
       {/* 5. LINEAR-GRADE PATTERNS: Issue Tracker & Workflows */}
       {/* ========================================================================= */}
       {(activeSection === 'ALL' || activeSection === 'LINEAR_PATTERNS') && (

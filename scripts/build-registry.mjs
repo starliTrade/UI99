@@ -32,6 +32,8 @@ const KIT_COMPONENTS = [
   'Sparkline', 'DonutRing', 'HeatMapCalendar', 'StatTile', 'MeterBar', 'TrendDelta',
   // Wave E
   'Menubar', 'NavigationMenu', 'Sidebar', 'CommandBar',
+  // Wave G (3): group/code/media display
+  'AvatarStack', 'CodeBlock', 'Carousel',
 ];
 
 /** npm deps the kit requires at runtime (mirrors dist-kit manifest). */

@@ -252,6 +252,14 @@ export type { SidebarProps, SidebarItemProps } from './Sidebar';
 export { CommandBar, CommandAction } from './CommandBar';
 export type { CommandBarProps, CommandActionProps } from './CommandBar';
 
+// ——— Wave G: group/code/media display ———
+export { AvatarStack } from './AvatarStack';
+export type { AvatarStackProps } from './AvatarStack';
+export { CodeBlock } from './CodeBlock';
+export type { CodeBlockProps } from './CodeBlock';
+export { Carousel } from './Carousel';
+export type { CarouselProps } from './Carousel';
+
 // =====================================================================
 // DOMAIN COMPOSITES (app-level; require AppContext/AuthContext/domain types)
 // =====================================================================

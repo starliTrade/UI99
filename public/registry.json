@@ -963,6 +963,63 @@
       "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
     },
     {
+      "name": "avatar-stack",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "ui/avatarstack.tsx",
+          "type": "registry:ui",
+          "content": "/**\n * UI99 — AvatarStack (Wave G)\n * Overlapping avatar group with overflow counter; ring gap keeps velvet\n * separation between members.\n */\n\nimport React from 'react';\nimport { cn } from '../../lib/utils';\nimport { Avatar } from './Button';\n\nexport interface AvatarStackProps {\n  names: string[];\n  max?: number;\n  size?: 'xs' | 'sm' | 'md' | 'lg';\n  className?: string;\n}\n\nexport function AvatarStack({ names, max = 4, size = 'sm', className = '' }: AvatarStackProps) {\n  const visible = names.slice(0, max);\n  const overflow = names.length - visible.length;\n\n  return (\n    <div className={cn('flex items-center', className)} aria-label={`${names.length} members`}>\n      {visible.map((name, i) => (\n        <div\n          key={`${name}-${i}`}\n          className={cn(i > 0 && '-ml-2')}\n          style={{ zIndex: visible.length - i }}\n        >\n          <Avatar name={name} size={size} className=\"ring-2 ring-white dark:ring-[#0B0C11]\" />\n        </div>\n      ))}\n      {overflow > 0 && (\n        <div className=\"-ml-2\" style={{ zIndex: 0 }}>\n          <div\n            className={cn(\n              'flex items-center justify-center rounded-full bg-zinc-100 dark:bg-[#1A1A20] font-mono font-semibold text-zinc-600 dark:text-[#92929B] ring-2 ring-white dark:ring-[#0B0C11]',\n              size === 'xs' && 'w-6 h-6 text-[9px]',\n              size === 'sm' && 'w-7 h-7 text-[10px]',\n              size === 'md' && 'w-9 h-9 text-xs',\n              size === 'lg' && 'w-12 h-12 text-sm'\n            )}\n          >\n            +{overflow}\n          </div>\n        </div>\n      )}\n    </div>\n  );\n}\n",
+          "target": "src/components/ui/AvatarStack.tsx"
+        }
+      ],
+      "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
+    },
+    {
+      "name": "code-block",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/codeblock.tsx",
+          "type": "registry:ui",
+          "content": "/**\n * UI99 — CodeBlock (Wave G)\n * Terminal-style code display with copy button and language tag. Syntax\n * highlighting intentionally lightweight: single-accent tint (zero deps);\n * hosts needing full highlighting can swap children for their own renderer.\n */\n\nimport React, { useState } from 'react';\nimport { Check, Copy } from 'lucide-react';\nimport { cn } from '../../lib/utils';\n\nexport interface CodeBlockProps {\n  code: string;\n  language?: string;\n  filename?: string;\n  showLineNumbers?: boolean;\n  className?: string;\n}\n\nexport function CodeBlock({\n  code,\n  language = 'tsx',\n  filename,\n  showLineNumbers = false,\n  className = '',\n}: CodeBlockProps) {\n  const [copied, setCopied] = useState(false);\n  const lines = code.split('\\n');\n\n  const copy = () => {\n    navigator.clipboard.writeText(code);\n    setCopied(true);\n    setTimeout(() => setCopied(false), 1600);\n  };\n\n  return (\n    <div\n      className={cn(\n        'group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0A0B0F] text-zinc-200 shadow-[0_12px_32px_rgba(0,0,0,0.4)]',\n        className\n      )}\n    >\n      <div className=\"flex items-center justify-between border-b border-white/[0.05] px-3 py-2\">\n        <div className=\"flex items-center gap-2\">\n          <span className=\"flex gap-1.5\" aria-hidden=\"true\">\n            <span className=\"h-2.5 w-2.5 rounded-full bg-rose-500/60\" />\n            <span className=\"h-2.5 w-2.5 rounded-full bg-amber-500/60\" />\n            <span className=\"h-2.5 w-2.5 rounded-full bg-emerald-500/60\" />\n          </span>\n          {filename && <span className=\"text-[10px] font-mono text-zinc-500\">{filename}</span>}\n        </div>\n        <div className=\"flex items-center gap-2\">\n          <span className=\"text-[10px] font-mono uppercase tracking-wider text-emerald-400/80\">\n            {language}\n          </span>\n          <button\n            type=\"button\"\n            onClick={copy}\n            aria-label={copied ? 'Copied' : 'Copy code'}\n            className=\"rounded-md p-1.5 text-zinc-500 transition-colors hover:bg-white/[0.06] hover:text-white cursor-pointer focus-visible:outline-none focus-safa-inset relative after:absolute after:-inset-1 after:content-['']\"\n          >\n            {copied ? <Check className=\"w-3.5 h-3.5 text-emerald-400\" /> : <Copy className=\"w-3.5 h-3.5\" />}\n          </button>\n        </div>\n      </div>\n      <pre className=\"overflow-x-auto p-4 text-[11px] leading-relaxed font-mono\">\n        <code>\n          {lines.map((line, i) => (\n            <span key={i} className=\"block\">\n              {showLineNumbers && (\n                <span className=\"mr-3 inline-block w-6 select-none text-right text-zinc-600\">\n                  {i + 1}\n                </span>\n              )}\n              {line || ' '}\n            </span>\n          ))}\n        </code>\n      </pre>\n    </div>\n  );\n}\n",
+          "target": "src/components/ui/CodeBlock.tsx"
+        }
+      ],
+      "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "ui/carousel.tsx",
+          "type": "registry:ui",
+          "content": "/**\n * UI99 — Carousel (Wave G)\n * Native scroll-snap carousel (no animation lib): arrow buttons + dot\n * indicators, keyboard accessible, respects 44px targets. RTL-safe via\n * logical scroll (scrollBy inline direction-agnostic amounts).\n */\n\nimport React, { useRef, useState, useEffect, useCallback } from 'react';\nimport { ChevronLeft, ChevronRight } from 'lucide-react';\nimport { cn } from '../../lib/utils';\nimport { IconButton } from './Button';\n\nexport interface CarouselProps {\n  children: React.ReactNode[];\n  itemClassName?: string;\n  label?: string;\n  className?: string;\n}\n\nexport function Carousel({ children, itemClassName = '', label = 'Carousel', className = '' }: CarouselProps) {\n  const trackRef = useRef<HTMLDivElement>(null);\n  const [activeIndex, setActiveIndex] = useState(0);\n  const count = React.Children.count(children);\n\n  const scrollToIndex = useCallback(\n    (index: number) => {\n      const clamped = Math.max(0, Math.min(index, count - 1));\n      const track = trackRef.current;\n      if (!track) return;\n      const child = track.children[clamped] as HTMLElement | undefined;\n      if (child) track.scrollTo({ left: child.offsetLeft - track.offsetLeft, behavior: 'smooth' });\n      setActiveIndex(clamped);\n    },\n    [count]\n  );\n\n  useEffect(() => {\n    const track = trackRef.current;\n    if (!track) return;\n    const onScroll = () => {\n      const child = track.children[0] as HTMLElement | undefined;\n      if (!child) return;\n      const step = child.offsetWidth + 16;\n      setActiveIndex(Math.round(track.scrollLeft / step));\n    };\n    track.addEventListener('scroll', onScroll, { passive: true });\n    return () => track.removeEventListener('scroll', onScroll);\n  }, []);\n\n  return (\n    <div className={cn('relative', className)} role=\"region\" aria-label={label} aria-roledescription=\"carousel\">\n      <div\n        ref={trackRef}\n        className=\"flex gap-4 overflow-x-auto scroll-smooth no-scrollbar snap-x snap-mandatory pb-1\"\n      >\n        {React.Children.map(children, (child, i) => (\n          <div key={i} className={cn('snap-start shrink-0', itemClassName)}>\n            {child}\n          </div>\n        ))}\n      </div>\n\n      <div className=\"mt-3 flex items-center justify-between\">\n        <div className=\"flex items-center gap-1.5\" role=\"tablist\" aria-label={`${label} position`}>\n          {Array.from({ length: count }).map((_, i) => (\n            <button\n              key={i}\n              type=\"button\"\n              role=\"tab\"\n              aria-selected={i === activeIndex}\n              aria-label={`Go to slide ${i + 1}`}\n              onClick={() => scrollToIndex(i)}\n              className={cn(\n                'h-2 rounded-full transition-all duration-200 cursor-pointer focus-visible:outline-none focus-safa',\n                i === activeIndex\n                  ? 'w-5 bg-zinc-900 dark:bg-white'\n                  : 'w-2 bg-black/[0.15] dark:bg-white/[0.15] hover:bg-black/[0.25] dark:hover:bg-white/[0.3]'\n              )}\n            />\n          ))}\n        </div>\n        <div className=\"flex items-center gap-1.5\">\n          <IconButton\n            icon={<ChevronLeft className=\"w-4 h-4\" />}\n            variant=\"outline\"\n            size=\"sm\"\n            label=\"Previous slide\"\n            onClick={() => scrollToIndex(activeIndex - 1)}\n            disabled={activeIndex === 0}\n          />\n          <IconButton\n            icon={<ChevronRight className=\"w-4 h-4\" />}\n            variant=\"outline\"\n            size=\"sm\"\n            label=\"Next slide\"\n            onClick={() => scrollToIndex(activeIndex + 1)}\n            disabled={activeIndex >= count - 1}\n          />\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+          "target": "src/components/ui/Carousel.tsx"
+        }
+      ],
+      "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
+    },
+    {
       "name": "utils",
       "type": "registry:lib",
       "dependencies": [
