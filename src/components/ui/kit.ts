@@ -208,3 +208,44 @@ export { MeterBar } from './MeterBar';
 export type { MeterBarProps } from './MeterBar';
 export { TrendDelta } from './TrendDelta';
 export type { TrendDeltaProps } from './TrendDelta';
+
+// =====================================================================
+// WAVE E — navigation advanced
+// =====================================================================
+
+export {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarCheckboxItem,
+  MenubarRadioItem,
+  MenubarLabel,
+  MenubarSeparator,
+  MenubarSub,
+  MenubarSubTrigger,
+  MenubarSubContent,
+  MenubarShortcut,
+} from './Menubar';
+export {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuLink,
+  NavigationMenuContent,
+  NavigationMenuViewport,
+} from './NavigationMenu';
+export {
+  SidebarProvider,
+  Sidebar,
+  SidebarHeader,
+  SidebarBody,
+  SidebarFooter,
+  SidebarItem,
+  useSidebar,
+} from './Sidebar';
+export type { SidebarProps, SidebarItemProps } from './Sidebar';
+export { CommandBar, CommandAction } from './CommandBar';
+export type { CommandBarProps, CommandActionProps } from './CommandBar';

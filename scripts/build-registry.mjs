@@ -30,6 +30,8 @@ const KIT_COMPONENTS = [
   'Stepper', 'Timeline', 'FileUpload',
   // Wave D
   'Sparkline', 'DonutRing', 'HeatMapCalendar', 'StatTile', 'MeterBar', 'TrendDelta',
+  // Wave E
+  'Menubar', 'NavigationMenu', 'Sidebar', 'CommandBar',
 ];
 
 /** npm deps the kit requires at runtime (mirrors dist-kit manifest). */

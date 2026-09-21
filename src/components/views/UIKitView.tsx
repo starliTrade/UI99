@@ -187,6 +187,28 @@ import {
   StatTile,
   MeterBar,
   TrendDelta,
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarShortcut,
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  NavigationMenuViewport,
+  SidebarProvider,
+  Sidebar,
+  SidebarHeader,
+  SidebarBody,
+  SidebarFooter,
+  SidebarItem,
+  CommandBar,
+  CommandAction,
 } from '../ui';
 
 type SectionTab =
@@ -1412,6 +1434,97 @@ export function UIKitView() {
               <TrendDelta delta={0} />
               <TrendDelta delta={8} invertTone />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4.9 WAVE E SPOTLIGHT — Menubar/NavigationMenu/Sidebar/CommandBar          */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <LayoutGrid className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                08. Wave E — Advanced Navigation
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                Menubar · NavigationMenu · Sidebar · CommandBar
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">NEW</Badge>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Menubar & NavigationMenu</h3>
+            <Menubar>
+              <MenubarMenu>
+                <MenubarTrigger>File</MenubarTrigger>
+                <MenubarContent>
+                  <MenubarItem>New object <MenubarShortcut>⌘N</MenubarShortcut></MenubarItem>
+                  <MenubarItem>Export…</MenubarItem>
+                  <MenubarSeparator />
+                  <MenubarItem disabled>Archive workspace</MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+              <MenubarMenu>
+                <MenubarTrigger>View</MenubarTrigger>
+                <MenubarContent>
+                  <MenubarItem>Toggle density</MenubarItem>
+                  <MenubarItem>Focus mode <MenubarShortcut>F</MenubarShortcut></MenubarItem>
+                </MenubarContent>
+              </MenubarMenu>
+            </Menubar>
+
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Foundations</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid w-[320px] gap-2">
+                      <NavigationMenuLink href="#">Color tokens</NavigationMenuLink>
+                      <NavigationMenuLink href="#">Focus system</NavigationMenuLink>
+                      <NavigationMenuLink href="#">Motion</NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="#">Components</NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+              <NavigationMenuViewport />
+            </NavigationMenu>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Sidebar rail & CommandBar</h3>
+            <SidebarProvider>
+              <div className="flex h-56 overflow-hidden rounded-2xl border border-black/[0.05] dark:border-white/[0.04]">
+                <Sidebar width={180}>
+                  <SidebarHeader>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Workspace</span>
+                  </SidebarHeader>
+                  <SidebarBody>
+                    <SidebarItem label="Inbox" icon={<Inbox className="w-4 h-4" />} isActive />
+                    <SidebarItem label="Calendar" icon={<Calendar className="w-4 h-4" />} />
+                    <SidebarItem label="Media" icon={<Layers className="w-4 h-4" />} />
+                  </SidebarBody>
+                  <SidebarFooter>
+                    <span className="text-[10px] text-zinc-400">v1.0</span>
+                  </SidebarFooter>
+                </Sidebar>
+                <div className="flex-1 p-4">
+                  <CommandBar leading={<Terminal className="w-4 h-4" />}>
+                    <CommandAction keys={["⌘", "K"]}>Palette</CommandAction>
+                    <CommandAction>Capture</CommandAction>
+                    <CommandAction active>Share</CommandAction>
+                  </CommandBar>
+                </div>
+              </div>
+            </SidebarProvider>
           </div>
         </div>
       </section>
