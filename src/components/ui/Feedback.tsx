@@ -57,7 +57,7 @@ export function EmptyState({
 
 export function LoadingState({ message = 'Accessing Safa Space...' }: { message?: string }) {
   return (
-    <div className="flex flex-col items-center justify-center py-16 text-center">
+    <div role="status" aria-live="polite" className="flex flex-col items-center justify-center py-16 text-center">
       <Loader2 className="w-6 h-6 text-zinc-500 dark:text-[#92929B] animate-spin mb-3" />
       <p className="text-xs text-zinc-500 dark:text-[#8E8E98] tracking-tight">{message}</p>
     </div>

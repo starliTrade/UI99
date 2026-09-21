@@ -22,6 +22,18 @@ expect.extend({
   },
 });
 
+// jsdom lacks ResizeObserver (required by cmdk/Radix)
+class ResizeObserverStub {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+(globalThis as Record<string, unknown>).ResizeObserver =
+  (globalThis as Record<string, unknown>).ResizeObserver ?? ResizeObserverStub;
+
+// jsdom lacks scrollIntoView (required by cmdk selected item)
+Element.prototype.scrollIntoView = Element.prototype.scrollIntoView ?? (() => {});
+
 afterEach(() => {
   cleanup();
 });
