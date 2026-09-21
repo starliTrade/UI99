@@ -1,0 +1,76 @@
+/**
+ * UI99 — StatTile (Wave D)
+ * Metric card: value, label, delta chip (up/down/flat), optional trailing
+ * sparkline slot. The workhorse of dashboards.
+ */
+
+import React from 'react';
+import { ArrowUpRight, ArrowDownRight, Minus } from 'lucide-react';
+import { cn } from '../../lib/utils';
+
+export interface StatTileProps {
+  label: string;
+  value: string | number;
+  delta?: number;
+  deltaSuffix?: string;
+  trend?: React.ReactNode;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+export function StatTile({
+  label,
+  value,
+  delta,
+  deltaSuffix = '%',
+  trend,
+  size = 'md',
+  className = '',
+}: StatTileProps) {
+  const deltaTone =
+    delta === undefined ? 'neutral' : delta > 0 ? 'up' : delta < 0 ? 'down' : 'flat';
+  const toneStyle = {
+    up: 'text-emerald-600 dark:text-emerald-400',
+    down: 'text-rose-600 dark:text-rose-400',
+    flat: 'text-zinc-500 dark:text-[#8E8E98]',
+    neutral: '',
+  }[deltaTone];
+  const DeltaIcon =
+    deltaTone === 'up' ? ArrowUpRight : deltaTone === 'down' ? ArrowDownRight : Minus;
+
+  const valueSize = {
+    sm: 'text-lg',
+    md: 'text-2xl',
+    lg: 'text-3xl sm:text-4xl',
+  }[size];
+
+  return (
+    <div
+      className={cn(
+        'rounded-2xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] p-4 sm:p-5',
+        'shadow-[0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_8px_24px_-4px_rgba(0,0,0,0.5)]',
+        'space-y-1.5',
+        className
+      )}
+    >
+      <div className="flex items-center justify-between gap-2">
+        <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 dark:text-[#8E8E98]">
+          {label}
+        </span>
+        {trend && <span className="shrink-0">{trend}</span>}
+      </div>
+      <div className={cn('font-bold font-mono tracking-tight text-zinc-950 dark:text-white', valueSize)}>
+        {value}
+      </div>
+      {delta !== undefined && (
+        <div className={cn('flex items-center gap-1 text-[11px] font-mono font-semibold', toneStyle)}>
+          <DeltaIcon className="w-3 h-3" />
+          {delta > 0 ? '+' : ''}
+          {delta}
+          {deltaSuffix}
+          <span className="text-zinc-400 dark:text-[#5C5C68] font-normal">vs last week</span>
+        </div>
+      )}
+    </div>
+  );
+}

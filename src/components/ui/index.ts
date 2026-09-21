@@ -195,6 +195,23 @@ export { FileUpload } from './FileUpload';
 export type { FileUploadProps } from './FileUpload';
 
 // =====================================================================
+// WAVE D — micro-data & charts (zero-dependency SVG)
+// =====================================================================
+
+export { Sparkline } from './Sparkline';
+export type { SparklineProps } from './Sparkline';
+export { DonutRing } from './DonutRing';
+export type { DonutRingProps, DonutSegment } from './DonutRing';
+export { HeatMapCalendar } from './HeatMapCalendar';
+export type { HeatMapCalendarProps } from './HeatMapCalendar';
+export { StatTile } from './StatTile';
+export type { StatTileProps } from './StatTile';
+export { MeterBar } from './MeterBar';
+export type { MeterBarProps } from './MeterBar';
+export { TrendDelta } from './TrendDelta';
+export type { TrendDeltaProps } from './TrendDelta';
+
+// =====================================================================
 // DOMAIN COMPOSITES (app-level; require AppContext/AuthContext/domain types)
 // =====================================================================
 

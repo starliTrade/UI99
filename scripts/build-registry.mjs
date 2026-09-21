@@ -28,6 +28,8 @@ const KIT_COMPONENTS = [
   'AlertDialog', 'RadioGroup', 'Table', 'Pagination',
   // Wave C
   'Stepper', 'Timeline', 'FileUpload',
+  // Wave D
+  'Sparkline', 'DonutRing', 'HeatMapCalendar', 'StatTile', 'MeterBar', 'TrendDelta',
 ];
 
 /** npm deps the kit requires at runtime (mirrors dist-kit manifest). */

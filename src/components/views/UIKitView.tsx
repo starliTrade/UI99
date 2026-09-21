@@ -181,6 +181,12 @@ import {
   Timeline,
   TimelineItem,
   FileUpload,
+  Sparkline,
+  DonutRing,
+  HeatMapCalendar,
+  StatTile,
+  MeterBar,
+  TrendDelta,
 } from '../ui';
 
 type SectionTab =
@@ -1337,6 +1343,75 @@ export function UIKitView() {
           <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">FileUpload</h3>
             <FileUpload label="Drop attachments or click to browse" multiple />
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4.8 WAVE D SPOTLIGHT — Sparkline/DonutRing/HeatMap/StatTile/Meter/Trend   */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <SlidersHorizontal className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                07. Wave D — Micro-Data & Charts
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                Sparkline · DonutRing · HeatMapCalendar · StatTile · MeterBar · TrendDelta — zero chart deps, pure SVG
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">NEW</Badge>
+        </div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatTile label="Focus hours" value={184} delta={12.4} size="md" trend={<Sparkline data={[3,5,4,8,6,9,7,11]} width={64} height={24} />} />
+          <StatTile label="Deep tasks" value={47} delta={-3.1} size="md" trend={<Sparkline data={[9,7,8,5,6,5,4,4]} width={64} height={24} color="rose" mode="bar" />} />
+          <StatTile label="Streak" value="21d" delta={0} size="md" />
+          <StatTile label="Review load" value={68} size="md" trend={<DonutRing segments={[{ value: 68 }]} size={40} thickness={5} label="Review load" />} />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Sparkline modes</h3>
+            <div className="flex items-end gap-4 flex-wrap">
+              <Sparkline data={[2,4,3,6,5,8,7,10]} label="Weekly momentum" />
+              <Sparkline data={[8,6,7,5,6,4,5,3]} color="rose" fill={false} label="Distractions" />
+              <Sparkline data={[1,2,3,5,4,6,9,8]} color="purple" mode="bar" label="Output bars" />
+            </div>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 flex flex-col items-center">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] self-start">DonutRing</h3>
+            <DonutRing
+              segments={[
+                { value: 62, color: 'emerald' },
+                { value: 24, color: 'blue' },
+                { value: 14, color: 'amber' },
+              ]}
+              showValue
+              label="Energy split"
+            />
+            <MeterBar value={72} label="Weekly goal" />
+            <MeterBar value={91} low={30} label="System health" size="sm" />
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">HeatMap + Delta</h3>
+            <HeatMapCalendar
+              weeks={14}
+              color="emerald"
+              label="14-week activity"
+              data={Array.from({ length: 14 * 7 }, (_, i) => ((i * 2654435761) % 97) / 97 > 0.6 ? ((i * 40503) % 9) + 1 : 0)}
+            />
+            <div className="flex items-center gap-2 pt-1">
+              <TrendDelta delta={12.4} />
+              <TrendDelta delta={-3.1} />
+              <TrendDelta delta={0} />
+              <TrendDelta delta={8} invertTone />
+            </div>
           </div>
         </div>
       </section>
