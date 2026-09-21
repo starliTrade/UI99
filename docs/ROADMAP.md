@@ -185,6 +185,39 @@ Rating (keyboard fractional) · OTPInput (paste/advance) · CopyButton
 
 ---
 
+## Phase 6 — Light-Theme Equality (Token Migration) — ✅ DONE
+
+هدف نقد: «تم روشن شهروند درجه دوم است» — حل شد.
+
+- [x] موجودیت‌سنجی: ۱۸ الگوی exact dual-literal (۱۴۱ occurrence) در ui/
+- [x] codemod دقیق (`scripts/tokenize-kit-classes.mjs`) → `bg-(--bg-card)`،
+  `border-(--border-hairline)`، `text-(--text-secondary)`، `hover:bg-(--state-hover)` …
+- [x] توکن‌های جدید در هر سه بلوک تم: `--bg-sunken`، `--border-strong`، `--text-on-fill`
+- [x] سوئیچ تم اکنون به‌صورت cascade بومی روی همه primitives کار می‌کند؛
+  override sweep حالت exception است نه قاعده
+- باقی‌مانده (فاز بعد): ~۲۵ الگوی باقی‌مانده در Button/TokensAuditPlayground که
+  semantic-equivalent نیستند — طبق گزارش leftover codemod
+
+## Phase 7 — Motion Choreography — ✅ DONE
+
+هدف نقد: «تأخیرهای متوالی، نه choreography» — حل شد.
+
+- [x] `src/components/ui/motion.ts`: خانواده spring مشترک (enter/overlay/micro)
+- [x] `staggerY()` مبتنی بر فاصله — بدون delay stacking
+- [x] `useChoreography()` با reduced-motion flattening (سفر صفر، خط زمانی حفظ)
+- [x] `overlayMotion` قرارداد مشترک Modal/Sheet/Dialog/Dropdown
+- [x] Hero روی خط زمانی واحد: pill/headline/CTAs از یک لحظه مشترک
+
+## Phase 8 — IntelliSense-First Token Docs — ✅ DONE
+
+هدف نقد: «حرفه‌ای‌ها اول hover را می‌بینند» — حل شد.
+
+- [x] `@token` JSDoc روی ۱۸ primitive: کدام var هر سطح می‌خواند
+- [x] ButtonProps کامل مستند: union واقعی cva (white-pill/dark-pill/rose)
+  + معنای هر variant بر حسب توکن
+- [x] قرارداد: کامپوننت جدید بدون `@token` merge نمی‌شود (AGENTS.md §6)
+
+
 ## Phase 5 — Launch & Governance
 
 - [ ] README.md حرفه‌ای (EN): hero، install، preview GIF، badge‌ها (npm/CI/coverage/PRs welcome)
