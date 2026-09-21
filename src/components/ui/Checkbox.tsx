@@ -38,20 +38,22 @@ export function Checkbox({
       className={`inline-flex items-start gap-2.5 cursor-pointer select-none ${
         disabled ? 'opacity-40 cursor-not-allowed' : ''
       } ${className}`}
-      onClick={(e) => {
-        if (!disabled) {
-          e.preventDefault();
-          onChange(!checked);
-        }
-      }}
     >
+      {/* Native input for keyboard & assistive-tech support (WCAG 4.1.2) */}
+      <input
+        type="checkbox"
+        className="peer sr-only"
+        checked={checked}
+        disabled={disabled}
+        onChange={(e) => onChange(e.target.checked)}
+      />
       <div
-        className={`relative flex items-center justify-center shrink-0 mt-0.5 transition-all duration-150 ${boxSize} ${
+        className={`relative flex items-center justify-center shrink-0 mt-0.5 transition-all duration-150 peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500/55 ${boxSize} ${
           checked
             ? 'bg-emerald-500 text-white shadow-[0_0_10px_rgba(16,185,129,0.3)] border border-emerald-400'
             : isDark
-            ? 'bg-[#15151C] border border-white/[0.1] hover:border-white/[0.2]'
-            : 'bg-zinc-100 border border-black/[0.12] hover:border-black/[0.25]'
+            ? 'bg-[#15151C] border border-white/[0.1] peer-hover:border-white/[0.2]'
+            : 'bg-zinc-100 border border-black/[0.12] peer-hover:border-black/[0.25]'
         }`}
       >
         {checked && (
@@ -105,6 +107,7 @@ export function Radio({
   checked,
   onChange,
   label,
+  name,
   disabled = false,
   className = '',
 }: RadioProps) {
@@ -116,20 +119,23 @@ export function Radio({
       className={`inline-flex items-center gap-2.5 cursor-pointer select-none ${
         disabled ? 'opacity-40 cursor-not-allowed' : ''
       } ${className}`}
-      onClick={(e) => {
-        if (!disabled) {
-          e.preventDefault();
-          onChange();
-        }
-      }}
     >
+      {/* Native input for keyboard & assistive-tech support (WCAG 4.1.2) */}
+      <input
+        type="radio"
+        className="peer sr-only"
+        checked={checked}
+        disabled={disabled}
+        name={name}
+        onChange={onChange}
+      />
       <div
-        className={`w-4.5 h-4.5 rounded-full flex items-center justify-center shrink-0 transition-all ${
+        className={`w-4.5 h-4.5 rounded-full flex items-center justify-center shrink-0 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500/55 ${
           checked
             ? 'border-2 border-emerald-500'
             : isDark
-            ? 'border border-white/[0.12] bg-[#15151C] hover:border-white/[0.25]'
-            : 'border border-black/[0.15] bg-zinc-100 hover:border-black/[0.3]'
+            ? 'border border-white/[0.12] bg-[#15151C] peer-hover:border-white/[0.25]'
+            : 'border border-black/[0.15] bg-zinc-100 peer-hover:border-black/[0.3]'
         }`}
       >
         {checked && (

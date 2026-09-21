@@ -14,7 +14,11 @@ export function ToastContainer() {
   const { toasts, removeToast } = useApp();
 
   return (
-    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none w-full max-w-sm px-4">
+    <div
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none w-full max-w-sm px-4 pt-safe"
+      role="status"
+      aria-live="polite"
+    >
       <AnimatePresence>
         {toasts.map((t) => {
           return (

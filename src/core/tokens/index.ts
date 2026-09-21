@@ -170,6 +170,39 @@ export const tokens = {
     gentle: { type: 'spring', stiffness: 380, damping: 28 },
     fluid: { type: 'spring', stiffness: 320, damping: 24 },
   },
+
+  // State Layers (Material 3-grade, unified across all components; see index.css --state-*)
+  // Usage: bg-state-hover / bg-state-press / bg-state-selected / bg-state-drag
+  stateLayers: {
+    hover: 'var(--state-hover)',      // dark: 6% white | light: 4% black
+    press: 'var(--state-press)',      // dark: 4% white | light: 3% black
+    selected: 'var(--state-selected)',// dark: 8% white | light: 6% black
+    drag: 'var(--state-drag)',        // dark: 16% white | light: 10% black
+  },
+
+  // Motion Durations (Apple HIG 150–500ms band; see index.css --duration-* and docs/standards.md §6)
+  duration: {
+    instant: '75ms',   // state toggles, color swaps
+    fast: '120ms',     // hover/press feedback
+    base: '180ms',     // small overlays
+    slow: '280ms',     // dialogs, sheets
+    deliberate: '400ms', // page/hero transitions
+  },
+  easing: {
+    safa: 'var(--ease-safa)',           // cubic-bezier(0.16, 1, 0.3, 1) — signature SAFA ease
+    standard: 'var(--ease-standard)',   // cubic-bezier(0.2, 0, 0, 1) — M3 standard
+  },
+
+  // Focus System (WCAG 2.4.11/2.4.13; see index.css .focus-safa / .focus-safa-inset)
+  focus: {
+    ringColor: 'var(--focus-ring)',
+    ringWidth: '2px',
+    gapWidth: '2px',   // canvas-colored separation ring
+    classes: {
+      outer: 'focus-safa',       // double-ring for buttons, inputs, icon targets
+      inset: 'focus-safa-inset', // inner ring for segmented pills, list rows, accordion triggers
+    },
+  },
 };
 
 /**

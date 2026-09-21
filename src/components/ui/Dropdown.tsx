@@ -71,12 +71,13 @@ export function Dropdown<T extends string = string>({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between rounded-xl font-medium transition-all duration-150 cursor-pointer select-none ${sizeClass} ${
+        className={`w-full flex items-center justify-between rounded-xl font-medium transition-all duration-150 cursor-pointer select-none focus-safa ${sizeClass} ${
           isDark
             ? 'bg-[#131317] text-[#EDEDEF] border border-white/[0.06] hover:border-white/[0.14] shadow-xs'
             : 'bg-white text-zinc-900 border border-black/[0.08] hover:border-black/[0.18] shadow-xs'
         }`}
         aria-expanded={isOpen}
+        aria-haspopup="listbox"
       >
         <span className="flex items-center gap-2 truncate">
           {selectedOption?.icon && <span className="shrink-0">{selectedOption.icon}</span>}
@@ -102,7 +103,11 @@ export function Dropdown<T extends string = string>({
                 : 'bg-white/95 border border-black/[0.06] shadow-[0_16px_36px_rgba(0,0,0,0.08)]'
             }`}
           >
-            <div className="max-h-60 overflow-y-auto no-scrollbar space-y-0.5">
+            <div
+              className="max-h-60 overflow-y-auto no-scrollbar space-y-0.5"
+              role="listbox"
+              aria-label={label}
+            >
               {options.map((option) => {
                 const isSelected = option.value === value;
                 return (
@@ -113,7 +118,9 @@ export function Dropdown<T extends string = string>({
                       onChange(option.value);
                       setIsOpen(false);
                     }}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors cursor-pointer text-left rtl:text-right ${
+                    role="option"
+                    aria-selected={isSelected}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors cursor-pointer text-left rtl:text-right focus-safa-inset ${
                       isSelected
                         ? isDark
                           ? 'bg-white/[0.08] text-white font-semibold'

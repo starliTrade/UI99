@@ -1,7 +1,32 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));
+
+/* Expose state-layer tokens as Tailwind utilities: bg-state-hover, bg-state-press, ... */
+@theme inline {
+  --color-state-hover: var(--state-hover);
+  --color-state-press: var(--state-press);
+  --color-state-selected: var(--state-selected);
+  --color-state-drag: var(--state-drag);
+}
+
+/* Unified focus-visible treatment — WCAG 2.4.11/2.4.13 Focus Appearance (2px ring, 2px canvas gap) */
+/* Registered as @utility so Tailwind variants (focus-visible:, etc.) compose correctly */
+@utility focus-safa {
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--focus-ring);
+  }
+}
+
+@utility focus-safa-inset {
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--focus-ring);
+  }
+}
 
 @layer base {
   :root {
@@ -26,6 +51,13 @@
     --text-muted: #5C5C68;
     --dock-bg: rgba(14, 14, 19, 0.90);
     --dock-border: rgba(255, 255, 255, 0.07);
+
+    /* M3-grade unified state layers (Material 3: hover 8% / press 10% / drag 16%) */
+    --state-hover: rgba(255, 255, 255, 0.06);
+    --state-press: rgba(255, 255, 255, 0.04);
+    --state-selected: rgba(255, 255, 255, 0.08);
+    --state-drag: rgba(255, 255, 255, 0.16);
+    --focus-ring: rgba(16, 185, 129, 0.55);
   }
 
   .light {
@@ -40,7 +72,28 @@
     --text-muted: #9494A0;
     --dock-bg: rgba(255, 255, 255, 0.94);
     --dock-border: rgba(0, 0, 0, 0.05);
+
+    /* M3-grade unified state layers (light-mode calibrated: subtle, non-glare) */
+    --state-hover: rgba(0, 0, 0, 0.04);
+    --state-press: rgba(0, 0, 0, 0.03);
+    --state-selected: rgba(0, 0, 0, 0.06);
+    --state-drag: rgba(0, 0, 0, 0.10);
+    --focus-ring: rgba(5, 150, 105, 0.5);
   }
+
+  /* Motion duration & easing tokens (Apple HIG 150-500ms band, M3 easing scale) */
+  :root {
+    --duration-instant: 75ms;
+    --duration-fast: 120ms;
+    --duration-base: 180ms;
+    --duration-slow: 280ms;
+    --duration-deliberate: 400ms;
+    --ease-safa: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  /* Unified focus-visible treatment — WCAG 2.4.11/2.4.13 Focus Appearance */
+  /* (declared at top level below so utilities always override base styles) */
 
   [dir="rtl"] {
     font-family: var(--font-persian), var(--font-sans);

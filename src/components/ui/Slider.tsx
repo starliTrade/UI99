@@ -66,13 +66,14 @@ export function Slider({
         {/* Real hidden range input overlaid for native accessibility & keyboard support */}
         <input
           type="range"
+          aria-label={label}
           min={min}
           max={max}
           step={step}
           value={value}
           disabled={disabled}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer focus-visible:focus-safa"
         />
 
         {/* Visual tactile thumb */}

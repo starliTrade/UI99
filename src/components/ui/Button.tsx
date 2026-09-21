@@ -10,7 +10,7 @@ import { X, Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export const buttonVariants = cva(
-  'inline-flex items-center justify-center font-medium tracking-tight transition-all duration-150 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed select-none active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50',
+  'inline-flex items-center justify-center font-medium tracking-tight transition-all duration-150 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 disabled:pointer-events-none select-none active:scale-[0.97] focus-visible:outline-none focus-safa',
   {
     variants: {
       variant: {
@@ -85,7 +85,7 @@ export function Button({
 }
 
 export const iconButtonVariants = cva(
-  'rounded-full inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50',
+  'rounded-full inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-safa',
   {
     variants: {
       variant: {
@@ -199,11 +199,12 @@ export function Tag({
       {onRemove && (
         <button
           type="button"
+          aria-label="Remove"
           onClick={(e) => {
             e.stopPropagation();
             onRemove();
           }}
-          className="hover:opacity-75 transition-opacity p-0.5 cursor-pointer"
+          className="relative hover:opacity-75 transition-opacity p-0.5 cursor-pointer after:absolute after:-inset-2 after:content-['']"
         >
           <X className="w-2.5 h-2.5" />
         </button>

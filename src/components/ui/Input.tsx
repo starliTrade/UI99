@@ -17,11 +17,13 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, leftIcon, rightIcon, className = '', ...props }, ref) => {
+  ({ label, error, leftIcon, rightIcon, className = '', id, ...props }, ref) => {
+    const inputId = id || (label ? `input-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined);
+    const helperId = error ? `${inputId}-error` : undefined;
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label className="block text-xs font-semibold text-zinc-700 dark:text-[#92929B] tracking-tight">
+          <label htmlFor={inputId} className="block text-xs font-semibold text-zinc-700 dark:text-[#92929B] tracking-tight">
             {label}
           </label>
         )}
@@ -33,8 +35,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           <input
             ref={ref}
+            id={inputId}
+            aria-invalid={error ? true : undefined}
+            aria-describedby={helperId}
             className={cn(
-              'w-full bg-white dark:bg-[#131317] border border-black/[0.08] dark:border-white/[0.06] rounded-xl px-3.5 py-2.5 text-sm text-zinc-900 dark:text-[#EDEDEF] placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs',
+              'w-full bg-white dark:bg-[#131317] border border-black/[0.08] dark:border-white/[0.06] rounded-xl px-3.5 py-2.5 text-sm text-zinc-900 dark:text-[#EDEDEF] placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-safa',
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',
               error && 'border-rose-500/60 focus:border-rose-500',
@@ -48,7 +53,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </div>
           )}
         </div>
-        {error && <p className="text-xs text-rose-500 mt-1">{error}</p>}
+        {error && <p id={helperId} className="text-xs text-rose-500 mt-1">{error}</p>}
       </div>
     );
   }
@@ -62,25 +67,30 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ label, error, className = '', rows = 3, ...props }, ref) => {
+  ({ label, error, className = '', rows = 3, id, ...props }, ref) => {
+    const textareaId = id || (label ? `textarea-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined);
+    const helperId = error ? `${textareaId}-error` : undefined;
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label className="block text-xs font-semibold text-zinc-700 dark:text-[#92929B] tracking-tight">
+          <label htmlFor={textareaId} className="block text-xs font-semibold text-zinc-700 dark:text-[#92929B] tracking-tight">
             {label}
           </label>
         )}
         <textarea
           ref={ref}
+          id={textareaId}
           rows={rows}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={helperId}
           className={cn(
-            'w-full bg-white dark:bg-[#131317] border border-black/[0.08] dark:border-white/[0.06] rounded-xl p-3.5 text-sm text-zinc-900 dark:text-[#EDEDEF] placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs',
+            'w-full bg-white dark:bg-[#131317] border border-black/[0.08] dark:border-white/[0.06] rounded-xl p-3.5 text-sm text-zinc-900 dark:text-[#EDEDEF] placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-safa',
             error && 'border-rose-500/60 focus:border-rose-500',
             className
           )}
           {...props}
         />
-        {error && <p className="text-xs text-rose-500 mt-1">{error}</p>}
+        {error && <p id={helperId} className="text-xs text-rose-500 mt-1">{error}</p>}
       </div>
     );
   }

@@ -44,9 +44,9 @@ export function Switch({
   }[size];
 
   const thumbSizes = {
-    sm: 'h-4 w-4 data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0.5',
-    md: 'h-5 w-5 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0.5',
-    lg: 'h-5 w-5 data-[state=checked]:translate-x-6 data-[state=unchecked]:translate-x-1',
+    sm: 'h-4 w-4 data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0.5 rtl:data-[state=checked]:-translate-x-4 rtl:data-[state=unchecked]:-translate-x-0.5',
+    md: 'h-5 w-5 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0.5 rtl:data-[state=checked]:-translate-x-5 rtl:data-[state=unchecked]:-translate-x-0.5',
+    lg: 'h-5 w-5 data-[state=checked]:translate-x-6 data-[state=unchecked]:translate-x-1 rtl:data-[state=checked]:-translate-x-6 rtl:data-[state=unchecked]:-translate-x-1',
   }[size];
 
   return (
@@ -62,7 +62,7 @@ export function Switch({
         onCheckedChange={handleChange}
         disabled={disabled}
         className={cn(
-          'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 disabled:cursor-not-allowed',
+          'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-safa disabled:cursor-not-allowed',
           rootSizes,
           checked
             ? 'bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.35)]'

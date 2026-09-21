@@ -43,3 +43,7 @@
 - All newly created views, widgets, cards, modals, sheets, and inputs MUST adhere strictly to the tokens above.
 - Always use the unified `ObjectCard`, `Card`, `SegmentedControl`, or matching CSS utility classes (`material-obsidian-card`, `liquid-glass-dark-dock`).
 - Maintain mobile-first responsive touch targets (minimum 44px) and smooth springs with `motion/react`.
+
+## 6. Standards & Audit Reference (Mandatory)
+- The full, ruthless standards list (WCAG 2.2, Apple HIG, Material 3, HCI laws, API design) lives in `docs/standards.md`.
+- Every new component MUST pass the audit checklist in `docs/standards.md` §12 before merge: five component states (default/hover/press/focus-visible/disabled), keyboard support, `focus-safa`/`focus-safa-inset` focus rings, no hard-coded hex outside tokens, and contrast verification via `src/core/tokens/math.ts`.

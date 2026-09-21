@@ -55,7 +55,7 @@ export function Accordion({
             <AccordionPrimitive.Header className="flex">
               <AccordionPrimitive.Trigger
                 className={cn(
-                  'w-full px-4 py-3.5 flex items-center justify-between gap-3 text-left rtl:text-right transition-colors cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50',
+                  'w-full px-4 py-3.5 flex items-center justify-between gap-3 text-left rtl:text-right transition-colors cursor-pointer select-none outline-none focus-safa-inset',
                   isDark ? 'hover:bg-white/[0.02]' : 'hover:bg-black/[0.02]',
                   '[&[data-state=open]>div>svg]:rotate-180'
                 )}

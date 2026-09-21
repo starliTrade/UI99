@@ -55,7 +55,8 @@ export function SegmentedControl<T extends string = string>({
               key={opt.value}
               type="button"
               onClick={() => onChange(opt.value)}
-              className={`relative ${itemPad} rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer select-none whitespace-nowrap ${
+              aria-pressed={isSelected}
+              className={`relative ${itemPad} rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer select-none whitespace-nowrap focus-safa-inset ${
                 fullWidth ? 'flex-1' : ''
               } ${
                 isSelected
