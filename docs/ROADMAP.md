@@ -83,11 +83,12 @@
 - [ ] حذف هر business logic / import از بیرون `src/components/ui`
 - [ ] فرمول پذیرش: هر فایل کامپوننت فقط `react` + `radix-*` + `motion/react` + `clsx`/`tailwind-merge` + `lucide-react`
 
-### 2.2 Build کتابخانه
-- [ ] Vite lib mode (یا tsdown): خروجی ESM + CJS + `d.ts` (tsc --emitDeclarationOnly یا api-extractor)
-- [ ] `package.json` پابلیش: `exports` map، `types`، `sideEffects: false`، `files: ["dist"]`، peerDeps (react ^18||^19, react-dom, tailwindcss ^4)
-- [ ] Ship `safa.css`: تمام CSS variables توکن‌ها به صورت یک stylesheet importable + Tailwind v4 `@theme` preset
-- [ ] تست `npm pack` → نصب تمیز در پروژه Vite خالی (smoke script)
+### 2.2 Build کتابخانه — ✅ DONE
+- [x] Vite lib mode (`vite.config.lib.ts` جدا از اپ): ESM + CJS از entry خالص `kit.ts` — 72KB / 15KB gzip، صفر ارجاع به context های اپ (تأیید با grep gate)
+- [x] `d.ts` با `tsc -p tsconfig.lib.json` (emitDeclarationOnly) → `dist-kit/types`
+- [x] manifest پابلیش تولیدی (`scripts/build-kit-manifest.mjs`): exports map، types، sideEffects فقط CSS، peerDeps react 18/19
+- [x] Ship CSS: `safa.css` (منبع واحد `src/styles/safa.css`) + `dark.css`/`light.css` تولیدی (no-JS default با استخراج بلوک‌ها در build time)
+- [x] `npm pack --dry-run` تمیز: ۳۶ فایل، 64KB — شامل CLI و registry snapshot
 
 ### 2.3 نسخه‌دهی
 - [ ] Changesets → CHANGELOG.md + semver خودکار
@@ -97,13 +98,16 @@
 
 ---
 
-## Phase 3 — shadcn-style Registry + CLI
+## Phase 3 — shadcn-style Registry + CLI — ✅ DONE
 
-- [ ] ارتقای `public/registry.json` به schema کامل shadcn registry (هر کامپوننت: files, dependencies, registryDependencies, cssVars, docs)
-- [ ] CLI: `npx ui99 add button` → fetch registry → نصب deps → کپی سورس در پروژه کاربر (چون کپی-سورس است، مثل shadcn کاربر مالک کد می‌شود)
-- [ ] Hosted registry (GitHub raw / docs site) + کش CDN
-- [ ] Preset themes در registry: `obsidian` (پیش‌فرض) / `porcelain` + سواپ accent
-- [ ] `components.json` استاندارد برای پروژه‌های مصرف‌کننده + generator آن (`ui99 init`)
+- [x] `public/registry.json` با schema کامل shadcn — **تولید از سورس** (`scripts/build-registry.mjs`):
+  ۲۷ آیتم (۲۵ registry:ui + 1 registry:lib `utils` + 1 registry:theme `safa-theme`)،
+  dependencies از importهای واقعی، content اینلاین، registryDependencies انتقالی (button→utils، segmented→theme، feedback→button)، kebab-case
+- [x] CLI صفر-وابستگی (`scripts/cli.mjs` → bin `ui99` داخل پکیج): `init` (components.json)،
+  `add` (رزولوشن انتقالی + کپی به target path + نصب با PM شناسایی‌شده + `--dry-run`)، `list`
+- [x] Hosted registry: GitHub raw (`REGISTRY_URL` override با env) + snapshot داخل پکیج برای offline
+- [x] Smoke تست واقعی: پروژه تمیز → `add button segmented-control` → ۴ فایل + ۵ dep صحیح
+- [ ] Preset themes اضافی (porcelain به‌عنوان registry:theme جدا) — ساختار آماده است
 
 **Exit criteria:** یک پروژه Vite خالی با `ui99 init && ui99 add button dialog` زیر ۲ دقیقه آماده است.
 

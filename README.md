@@ -5,7 +5,7 @@
 **The velvet-obsidian React component kit.**
 shadcn-grade DX · WCAG 2.2-audited · axe-clean · RTL-first · Tailwind v4
 
-[![tests](https://img.shields.io/badge/tests-38%2F38-green)](#development) [![axe](https://img.shields.io/badge/axe--core-0%20violations-brightgreen)](#accessibility) [![contrast](https://img.shields.io/badge/contrast-WCAG%20AAA%20verified-blue)](#design-tokens) [![license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
+[![tests](https://img.shields.io/badge/tests-38%2F38-green)](#development) [![axe](https://img.shields.io/badge/axe--core-0%20violations-brightgreen)](#accessibility) [![contrast](https://img.shields.io/badge/contrast-WCAG%20AAA%20verified-blue)](#design-tokens) [![ci](https://img.shields.io/badge/CI-typecheck%20%C2%B7%20tests%20%C2%B7%20registry%20%C2%B7%20pack-blueviolet)](.github/workflows/ci.yml) [![license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
 
 [Getting started](#getting-started) · [Components](#components) · [Theming](#theming) · [Accessibility](#accessibility) · [Roadmap](docs/ROADMAP.md)
 
@@ -50,9 +50,16 @@ Theme protocol — toggle a class on `<html>` (default: dark):
 document.documentElement.classList.replace('dark', 'light');
 ```
 
-> The npm package is built from this repo with `bun run lib:build` (ESM + CJS +
-> TypeScript declarations + three stylesheets). Registry/CLI (`npx ui99 add …`)
-> lands in [Phase 3](docs/ROADMAP.md).
+> Prefer owning the source, shadcn-style? The registry + CLI ship inside the
+> package:
+>
+> ```bash
+> npx @99/ui init            # components.json
+> npx @99/ui add button card # copy the source, you own the code
+> ```
+>
+> The npm package is built from this repo with `bun run lib:build`
+> (ESM + CJS + TypeScript declarations + three stylesheets + CLI + registry).
 
 ## Components
 
@@ -95,10 +102,11 @@ Import `@99/ui/styles.css` and drive everything with two classes.
 
 ```bash
 bun install
-bun run dev          # product app + living component showcase
-bun run test         # vitest + axe + contrast gates
-bun run lint         # tsc
-bun run lib:build    # npm kit → dist-kit/ (ESM/CJS/d.ts/CSS)
+bun run dev              # product app + living component showcase
+bun run test             # vitest + axe + contrast gates
+bun run lint             # typecheck
+bun run lib:build        # npm kit → dist-kit/ (ESM/CJS/d.ts/CSS/CLI/registry)
+bun run registry:build   # regenerate public/registry.json from source
 ```
 
 ## License

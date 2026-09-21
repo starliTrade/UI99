@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Typecheck
+        run: bun run lint
+
+      - name: Tests (behavioral + axe + contrast)
+        run: bun run test
+
+      - name: Registry validation
+        run: |
+          bun run registry:build
+          node -e "
+            const r = require('./public/registry.json');
+            const names = new Set(r.items.map(i => i.name));
+            const dangling = [];
+            for (const item of r.items)
+              for (const d of item.registryDependencies ?? [])
+                if (!names.has(d)) dangling.push(item.name + ' -> ' + d);
+            if (dangling.length) { console.error('dangling refs:', dangling); process.exit(1); }
+            if (r.items.length < 20) { console.error('registry suspiciously small'); process.exit(1); }
+            console.log('registry OK:', r.items.length, 'items');
+          "
+
+      - name: Kit build (ESM/CJS/d.ts/CSS + npm pack dry-run)
+        run: bun run lib:build && cd dist-kit && npm pack --dry-run
