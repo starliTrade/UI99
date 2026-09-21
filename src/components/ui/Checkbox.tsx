@@ -6,7 +6,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export interface CheckboxProps {
   checked: boolean;
@@ -27,8 +27,7 @@ export function Checkbox({
   size = 'md',
   className = '',
 }: CheckboxProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   const boxSize = size === 'sm' ? 'w-4 h-4 rounded-md' : 'w-5 h-5 rounded-[7px]';
   const iconSize = size === 'sm' ? 'w-3 h-3' : 'w-3.5 h-3.5';
@@ -111,8 +110,7 @@ export function Radio({
   disabled = false,
   className = '',
 }: RadioProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   return (
     <label

@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { ChevronRight, Home } from 'lucide-react';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export interface BreadcrumbItem {
   label: string;
@@ -21,8 +21,7 @@ export interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   return (
     <nav aria-label="Breadcrumb" className={`flex items-center space-x-1.5 text-xs font-medium ${className}`}>

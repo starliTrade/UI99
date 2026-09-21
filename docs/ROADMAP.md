@@ -73,7 +73,13 @@
 
 ### 2.1 کامپوننت‌ها باید self-contained شوند ⚠️ (بزرگ‌ترین refactor)
 الان ۱۵ کامپوننت به `useApp()` (کانتکست اپ) وابسته‌اند برای theme.
-- [ ] حذف وابستگی `useApp` از primitives → استایل با CSS variables (`.dark`/`.light` classes) + `data-theme`، نه JS branching
+- [x] حذف وابستگی `useApp` از primitives → `src/components/ui/theme.ts` با `useIsDark()`
+  (`useSyncExternalStore` + MutationObserver روی کلاس `.dark`/`.light` ریشه — reactive به سوییچ تم اپ،
+  SSR-safe، بدون context) — **۱۳ primitive جدا شد** (Accordion, Badge, Breadcrumb, Checkbox, Dropdown,
+  Kbd, ObjectCard, Progress, SafaBrandLogo, SegmentedControl, Skeleton, Slider, Switch + TokensAuditPlayground)
+- [x] مرز معماری مستند شد: Toast (الگوی shadcn Toaster)، TopHeader، BottomNavigation کامپوزیت‌های
+  app-level می‌مانند (nav/toast state ذاتاً context-دارند)؛ LinearIssueTracker فقط `addToast` می‌گیرد
+- [ ] مهاجرت تدریجی JS branching → CSS variables (`.dark`/`.light`) برای حذف رندرهای دوبل کلاس‌ها
 - [ ] حذف هر business logic / import از بیرون `src/components/ui`
 - [ ] فرمول پذیرش: هر فایل کامپوننت فقط `react` + `radix-*` + `motion/react` + `clsx`/`tailwind-merge` + `lucide-react`
 

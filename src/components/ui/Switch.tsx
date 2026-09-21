@@ -6,7 +6,7 @@
 import React from 'react';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { cn } from '../../lib/utils';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export interface SwitchProps {
   checked: boolean;
@@ -29,8 +29,7 @@ export function Switch({
   size = 'md',
   className = '',
 }: SwitchProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   const handleChange = (val: boolean) => {
     onChange?.(val);

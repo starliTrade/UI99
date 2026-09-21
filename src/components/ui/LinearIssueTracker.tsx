@@ -36,6 +36,7 @@ import {
   CheckCircle,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 import { Button } from './Button';
 import { SearchBar } from './Input';
 import { Checkbox } from './Checkbox';
@@ -130,8 +131,8 @@ const DEFAULT_ISSUES: IssueItem[] = [
 ];
 
 export function LinearIssueTracker() {
-  const { themeMode, addToast } = useApp();
-  const isDark = themeMode === 'dark';
+  const { addToast } = useApp();
+  const isDark = useIsDark();
 
   const [issues, setIssues] = useState<IssueItem[]>(DEFAULT_ISSUES);
   const [activeCursorIndex, setActiveCursorIndex] = useState<number>(0);

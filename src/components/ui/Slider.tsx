@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export interface SliderProps {
   value: number;
@@ -32,8 +32,7 @@ export function Slider({
   disabled = false,
   className = '',
 }: SliderProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   const percentage = Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
 

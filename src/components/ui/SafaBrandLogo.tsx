@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export interface UI99BrandLogoProps {
   className?: string;
@@ -21,8 +21,7 @@ export function UI99BrandLogo({
   variant = 'full',
   withSubtitle = false,
 }: UI99BrandLogoProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   const fontStyle = {
     fontFamily: "'JetBrains Mono', 'Geist Mono', monospace",

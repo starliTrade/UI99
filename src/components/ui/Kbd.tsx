@@ -4,7 +4,7 @@
  */
 
 import React, { ReactNode } from 'react';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export interface KbdProps {
   children: ReactNode;
@@ -13,8 +13,7 @@ export interface KbdProps {
 }
 
 export function Kbd({ children, size = 'sm', className = '' }: KbdProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   const sizeStyles = {
     xs: 'text-[9px] min-w-[16px] h-4 px-1 rounded',

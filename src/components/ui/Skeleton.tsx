@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export interface SkeletonProps {
   className?: string;
@@ -12,8 +12,7 @@ export interface SkeletonProps {
 }
 
 export function Skeleton({ className = '', rounded = 'md' }: SkeletonProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   const roundMap = {
     sm: 'rounded-md',

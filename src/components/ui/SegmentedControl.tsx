@@ -8,7 +8,7 @@
 
 import React, { useRef } from 'react';
 import { motion } from 'motion/react';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export interface SegmentOption<T extends string = string> {
   value: T;
@@ -36,8 +36,7 @@ export function SegmentedControl<T extends string = string>({
   fullWidth = true,
   className = '',
 }: SegmentedControlProps<T>) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
   const groupRef = useRef<HTMLDivElement>(null);
   const padMap = size === 'sm' ? 'p-1' : 'p-1.5';
   const itemPad = size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-xs sm:text-sm';

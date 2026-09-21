@@ -7,7 +7,7 @@ import React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export interface AccordionItemProps {
   id: string;
@@ -30,8 +30,7 @@ export function Accordion({
   allowMultiple = false,
   className = '',
 }: AccordionProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   if (allowMultiple) {
     return (

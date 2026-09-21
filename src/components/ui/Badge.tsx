@@ -15,7 +15,7 @@ import {
   Circle,
   CheckCircle2,
 } from 'lucide-react';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export type PriorityLevel = 'urgent' | 'high' | 'medium' | 'low' | 'none';
 export type IssueStatus = 'backlog' | 'todo' | 'in_progress' | 'review' | 'done' | 'canceled';
@@ -33,8 +33,7 @@ export function PriorityBadge({
   size = 'sm',
   className = '',
 }: PriorityBadgeProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   const config = {
     urgent: {
@@ -98,8 +97,7 @@ export function StatusBadge({
   showLabel = true,
   className = '',
 }: StatusBadgeProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   const config = {
     backlog: {

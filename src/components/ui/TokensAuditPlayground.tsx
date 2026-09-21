@@ -22,7 +22,7 @@ import {
   Copy,
   Check,
 } from 'lucide-react';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 import {
   calculateConcentricRadius,
   calculateContrastRatio,
@@ -34,8 +34,7 @@ import {
 import { Button } from './Button';
 
 export function TokensAuditPlayground() {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   // State for Concentric Radii Simulator
   const [outerRadius, setOuterRadius] = useState<number>(28);

@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 
 export interface ProgressProps {
   value: number; // 0 to 100
@@ -27,8 +27,7 @@ export function Progress({
   segmented,
   className = '',
 }: ProgressProps) {
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
 
   const percentage = Math.min(100, Math.max(0, (value / max) * 100));
 

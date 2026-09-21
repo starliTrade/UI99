@@ -9,7 +9,7 @@ import { motion } from 'motion/react';
 import { BaseObject, ObjectStatus, ObjectType } from '../../core/types/objects';
 import { useObjects } from '../../core/context/ObjectContext';
 import { useAuth } from '../../core/context/AuthContext';
-import { useApp } from '../../core/context/AppContext';
+import { useIsDark } from './theme';
 import { Tag } from './Button';
 import {
   CheckCircle2,
@@ -33,8 +33,7 @@ export function ObjectCard({
 }: ObjectCardProps) {
   const { updateObject, getRelatedObjects } = useObjects();
   const { isRTL } = useAuth();
-  const { themeMode } = useApp();
-  const isDark = themeMode === 'dark';
+  const isDark = useIsDark();
   const related = getRelatedObjects(object.id);
 
   const isTask = object.type === ObjectType.TASK;
