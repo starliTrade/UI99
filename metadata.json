@@ -1,0 +1,6 @@
+{
+  "name": "UI \\ [99] — Design System & Component Registry",
+  "description": "The official UI \\ [99] design system and component registry engineered with linear speed, obsidian velvet depth, and shadcn copy-source architecture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

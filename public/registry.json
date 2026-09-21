@@ -1,0 +1,98 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "@99/ui",
+  "version": "1.0.0",
+  "description": "UI \\ [99] — Obsidian Dark Velvet Design System & Linear Workflow Primitives",
+  "homepage": "https://ui99.design",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge", "lucide-react"],
+      "files": [
+        {
+          "path": "ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "dependencies": ["lucide-react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "dependencies": ["@radix-ui/react-switch", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "dependencies": ["@radix-ui/react-tabs", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "linear-issue-tracker",
+      "type": "registry:component",
+      "dependencies": ["motion", "lucide-react", "@radix-ui/react-dropdown-menu", "clsx", "tailwind-merge"],
+      "registryDependencies": ["button", "badge", "dropdown-menu", "checkbox", "kbd"],
+      "files": [
+        {
+          "path": "ui/linear-issue-tracker.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "safa-brand-logo",
+      "type": "registry:ui",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "ui/safa-brand-logo.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}
