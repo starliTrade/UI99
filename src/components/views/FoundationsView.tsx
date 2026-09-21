@@ -13,6 +13,8 @@
 import React, { useState } from 'react';
 import {
   Palette,
+  Zap,
+  Code2,
   Compass,
   Type,
   SunMoon,
@@ -24,6 +26,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Kbd } from '../ui';
+import { Reveal } from '../ui/motion';
 
 export function FoundationsView() {
   const { themeMode, addToast } = useApp();
@@ -235,6 +238,51 @@ export function FoundationsView() {
           </div>
         </div>
       </section>
+
+      {/* Migrated from product home: design pillars */}
+      {/* ========================================================================= */}
+      {/* 4. DESIGN PILLARS (Anti-Slop, Velvet Base & Linear Speed)                 */}
+      {/* ========================================================================= */}
+        <Reveal index={1}>
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="p-6 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+          <div className="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-xs font-bold">
+            #06
+          </div>
+          <h3 className="text-base font-bold text-zinc-950 dark:text-white">
+            Obsidian Velvet Palette
+          </h3>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            True obsidian black base (<code className="text-emerald-400 font-mono">#06070A</code>) with sub-pixel top rim highlights for zero visual fatigue during prolonged engineering workflows.
+          </p>
+        </div>
+
+        <div className="p-6 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+          <div className="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-xs font-bold">
+            <Zap className="w-4 h-4" />
+          </div>
+          <h3 className="text-base font-bold text-zinc-950 dark:text-white">
+            Linear Velocity Controls
+          </h3>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            Keyboard first navigation (<Kbd size="xs">J</Kbd> / <Kbd size="xs">K</Kbd> / <Kbd size="xs">C</Kbd>) paired with instant spring physics and haptic micro-interactions.
+          </p>
+        </div>
+
+        <div className="p-6 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+          <div className="w-8 h-8 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono text-xs font-bold">
+            <Code2 className="w-4 h-4" />
+          </div>
+          <h3 className="text-base font-bold text-zinc-950 dark:text-white">
+            Copy-Paste Architecture
+          </h3>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            100% code ownership. Copy source code directly into your components folder with Tailwind v4 classes and zero external wrapper dependencies.
+          </p>
+        </div>
+      </section>
+      </Reveal>
+
     </div>
   );
 }

@@ -23,7 +23,6 @@ import {
   Github,
   BookOpen,
   Keyboard,
-  Compass,
   Sliders,
   CheckCircle2,
   Calendar,
@@ -32,8 +31,6 @@ import {
   SlidersHorizontal,
   ChevronRight,
   ExternalLink,
-  Zap,
-  Code2,
   Shield,
   Command,
   Palette,
@@ -168,10 +165,6 @@ export function DesignSystemHomeView() {
   const [inputVal, setInputVal] = useState('contact@atelier99.design');
   const [selectedPriority, setSelectedPriority] = useState<'urgent' | 'high' | 'medium' | 'low'>('urgent');
 
-  // Mathematical Radii interactive state
-  const [outerRadius, setOuterRadius] = useState(24);
-  const [paddingVal, setPaddingVal] = useState(16);
-  const innerRadius = Math.max(0, outerRadius - paddingVal);
 
   const copyToClipboard = (text: string, key: string) => {
     navigator.clipboard.writeText(text);
@@ -181,7 +174,7 @@ export function DesignSystemHomeView() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-20 sm:space-y-28 pb-20 px-2 sm:px-4">
+    <div className="w-full max-w-5xl mx-auto space-y-14 sm:space-y-20 pb-20 px-2 sm:px-4">
       {/* ========================================================================= */}
       {/* 1. HERO — 3D depth stage: perspective tilt, cursor aurora, live parallax */}
       {/* ========================================================================= */}
@@ -233,7 +226,7 @@ export function DesignSystemHomeView() {
               Build your component library.
             </h1>
             <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed">
-              Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source. Engineered with true velvet obsidian depth and Linear speed.
+              Accessible, copy-and-paste React primitives with velvet obsidian depth — engine built for teams who sweat the last pixel.
             </p>
           </motion.div>
 
@@ -682,135 +675,11 @@ export function DesignSystemHomeView() {
       </section>
       </Reveal>
 
-      {/* ========================================================================= */}
-      {/* 3. MATHEMATICAL RADII & ANTI-SLOP SYSTEM                                   */}
-      {/* ========================================================================= */}
-        <Reveal index={1}>
-      <section className="space-y-6">
-        <div className="space-y-1">
-          <div className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-500 font-bold uppercase tracking-wider">
-            <Compass className="w-3.5 h-3.5" />
-            <span>Mathematical Foundations</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-white">
-            Zero-Slop Mathematical Radii
-          </h2>
-          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-xl">
-            Clean nested containers require optical calculation. The inner corner radius must equal the outer corner radius minus container padding: <code className="text-emerald-400 font-mono">r_in = r_out - p</code>.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.035] shadow-xs">
-          {/* Left Controls */}
-          <div className="md:col-span-6 space-y-4">
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs font-mono text-zinc-500">
-                <span>Outer Radius (r_out)</span>
-                <span className="font-bold text-zinc-900 dark:text-zinc-100">{outerRadius}px</span>
-              </div>
-              <input
-                type="range"
-                min="16"
-                max="40"
-                value={outerRadius}
-                onChange={(e) => setOuterRadius(Number(e.target.value))}
-                className="w-full accent-emerald-500 cursor-pointer"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs font-mono text-zinc-500">
-                <span>Container Padding (p)</span>
-                <span className="font-bold text-zinc-900 dark:text-zinc-100">{paddingVal}px</span>
-              </div>
-              <input
-                type="range"
-                min="8"
-                max="24"
-                value={paddingVal}
-                onChange={(e) => setPaddingVal(Number(e.target.value))}
-                className="w-full accent-emerald-500 cursor-pointer"
-              />
-            </div>
-
-            <div className="p-4 rounded-2xl bg-white dark:bg-[#131318] border border-black/[0.04] dark:border-white/[0.03] space-y-1 text-xs font-mono">
-              <div className="text-zinc-400">Calculated Inner Radius:</div>
-              <div className="text-emerald-500 font-bold text-base">
-                {outerRadius}px - {paddingVal}px = {innerRadius}px
-              </div>
-            </div>
-          </div>
-
-          {/* Right Live Visual Simulation */}
-          <div className="md:col-span-6 flex items-center justify-center">
-            <div
-              style={{
-                borderRadius: `${outerRadius}px`,
-                padding: `${paddingVal}px`,
-              }}
-              className="w-full max-w-xs bg-zinc-200 dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.04] transition-all duration-150 shadow-xs"
-            >
-              <div
-                style={{
-                  borderRadius: `${innerRadius}px`,
-                }}
-                className="p-5 bg-white dark:bg-[#131318] border border-black/[0.06] dark:border-white/[0.04] text-center text-xs font-mono text-zinc-800 dark:text-zinc-200 shadow-sm transition-all duration-150"
-              >
-                Nested Element ({innerRadius}px)
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      </Reveal>
-
-      {/* ========================================================================= */}
-      {/* 4. DESIGN PILLARS (Anti-Slop, Velvet Base & Linear Speed)                 */}
-      {/* ========================================================================= */}
-        <Reveal index={1}>
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="p-6 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-xs font-bold">
-            #06
-          </div>
-          <h3 className="text-base font-bold text-zinc-950 dark:text-white">
-            Obsidian Velvet Palette
-          </h3>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            True obsidian black base (<code className="text-emerald-400 font-mono">#06070A</code>) with sub-pixel top rim highlights for zero visual fatigue during prolonged engineering workflows.
-          </p>
-        </div>
-
-        <div className="p-6 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-xs font-bold">
-            <Zap className="w-4 h-4" />
-          </div>
-          <h3 className="text-base font-bold text-zinc-950 dark:text-white">
-            Linear Velocity Controls
-          </h3>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            Keyboard first navigation (<Kbd size="xs">J</Kbd> / <Kbd size="xs">K</Kbd> / <Kbd size="xs">C</Kbd>) paired with instant spring physics and haptic micro-interactions.
-          </p>
-        </div>
-
-        <div className="p-6 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono text-xs font-bold">
-            <Code2 className="w-4 h-4" />
-          </div>
-          <h3 className="text-base font-bold text-zinc-950 dark:text-white">
-            Copy-Paste Architecture
-          </h3>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            100% code ownership. Copy source code directly into your components folder with Tailwind v4 classes and zero external wrapper dependencies.
-          </p>
-        </div>
-      </section>
-      </Reveal>
 
       {/* ========================================================================= */}
       {/* 4.5 THEMES — Obsidian × Porcelain                                         */}
       {/* ========================================================================= */}
-        <Reveal index={1}>
+      <Reveal index={1}>
       <section className="space-y-6">
         <div className="space-y-1">
           <div className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-500 font-bold uppercase tracking-wider">

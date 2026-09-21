@@ -19,17 +19,11 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
 
-const NAV_ITEMS = [
-  { id: 'HOME', label: 'Overview' },
-  { id: 'UIKIT', label: 'UI Kit' },
-  { id: 'DOCS', label: 'Docs' },
-  { id: 'FOUNDATIONS', label: 'Foundations' },
-  { id: 'BLOCKS', label: 'Blocks' },
-] as const;
+// Ground navigation lives in the bottom dock (mobile-first product shell);
+// the top bar stays a calm brand + actions capsule (shadcn/Linear posture).
 
 export function TopHeader() {
   const {
-    currentTab,
     setCurrentTab,
     themeMode,
     setThemeMode,
@@ -101,42 +95,7 @@ export function TopHeader() {
             <SafaBrandLogo size="md" />
           </button>
 
-          <nav className="hidden md:flex items-center gap-0.5 font-mono text-xs relative" aria-label="Primary">
-            {NAV_ITEMS.map((item) => {
-              const active = currentTab === item.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setCurrentTab(item.id)}
-                  aria-current={active ? 'page' : undefined}
-                  className={`relative px-3 py-1.5 rounded-full cursor-pointer transition-colors min-h-[34px] ${
-                    active
-                      ? isDark
-                        ? 'text-white font-bold'
-                        : 'text-zinc-950 font-bold'
-                      : isDark
-                        ? 'text-zinc-400 hover:text-zinc-100'
-                        : 'text-zinc-600 hover:text-zinc-950'
-                  }`}
-                >
-                  {active && (
-                    <motion.span
-                      layoutId="nav-cushion"
-                      transition={{ type: 'spring', stiffness: 420, damping: 34 }}
-                      className={`absolute inset-0 rounded-full ${
-                        isDark
-                          ? 'bg-white/[0.07] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.07)]'
-                          : 'bg-black/[0.05] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.7)]'
-                      }`}
-                      aria-hidden="true"
-                    />
-                  )}
-                  <span className="relative z-10">{item.label}</span>
-                </button>
-              );
-            })}
-          </nav>
+          {/* Ground nav intentionally omitted — bottom dock owns navigation */}
         </div>
 
         {/* Right actions */}
