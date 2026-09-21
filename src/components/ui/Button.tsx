@@ -3,6 +3,11 @@
  * Full shadcn-grade variant/size matrix on the SAFA velvet token system.
  * Five-state contract per docs/standards.md §12: default/hover/press/
  * focus-visible/disabled — focus ring via focus-safa (WCAG 2.4.13).
+ *
+ * @token Surfaces resolve via `--bg-card` / `--bg-elevated`; state layers via
+ *   `--state-hover` (6% dark / 4% light, M3 ratios). Fill inverses read
+ *   `--text-on-fill`. Override the theme by toggling `.dark`/`.light`/
+ *   `.porcelain` on <html> — never hardcode hex in consumers.
  */
 
 import React, { ReactNode, ButtonHTMLAttributes } from 'react';
@@ -65,9 +70,36 @@ export const buttonVariants = cva(
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
+  /** Button content. Icons route through `icon` for RTL-safe spacing. */
   children: ReactNode;
+  /** Leading icon (lucide); sized to the current `size` ladder. */
   icon?: ReactNode;
+  /** Shows a spinner and sets `disabled` while true. */
   loading?: boolean;
+  /**
+   * Visual intent. `primary` fills with the ink token and reads
+   * `--text-on-fill`; `outline`/`secondary` ride `--border-strong` /
+   * `--state-hover`; `link` is a text-level affordance. `white-pill` /
+   * `dark-pill` are theme-contrast pills for hero CTA pairs; `rose` is
+   * the soft destructive-affordance tint.
+   */
+  variant?:
+    | 'primary'
+    | 'secondary'
+    | 'outline'
+    | 'ghost'
+    | 'link'
+    | 'destructive'
+    | 'success'
+    | 'white-pill'
+    | 'dark-pill'
+    | 'rose';
+  /** Size ladder — heights are explicit (`h-6…h-12`) for density control. */
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'icon';
+  /** Corner geometry: `pill` (default, velvet), `rounded`, `square`. */
+  shape?: 'pill' | 'rounded' | 'square';
+  /** Stretch to container width (mobile-first CTA pattern). */
+  fullWidth?: boolean;
 }
 
 export function Button({

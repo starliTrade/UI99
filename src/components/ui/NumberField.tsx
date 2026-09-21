@@ -2,7 +2,8 @@
  * UI99 — NumberField (Wave H)
  * Numeric input with +/- steppers: clamped to [min,max], stepped,
  * arrows/Up/Down keyboard support, disabled state.
- */
+  * @token Steppers ride `--state-hover`; input body `--bg-elevated`; clamp disable uses opacity-40 (never gray-on-gray).
+*/
 
 import React from 'react';
 import { Minus, Plus } from 'lucide-react';

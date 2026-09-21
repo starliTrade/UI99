@@ -2,6 +2,11 @@
  * SAFA — Obsidian Liquid Glass (SOLG) Reusable Surfaces & Card Primitives (Build 02.2)
  * Authentic layered materials: Canvas -> Surface -> Elevated -> Liquid Glass
  * Dual-theme (Obsidian Dark / Porcelain Light) responsive.
+ *
+ * @token Surface ladder: canvas → `--bg-surface` → `--bg-card` →
+ *   `--bg-elevated`; elevation steps add the deep-diffusion shadow profile
+ *   (18px/40px −10px) and the specular top rim (`--border-specular`).
+ *   Hover elevation lifts to `--bg-card-hover`.
  */
 
 import React, { ReactNode, HTMLAttributes } from 'react';

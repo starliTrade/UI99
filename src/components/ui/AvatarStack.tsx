@@ -2,7 +2,8 @@
  * UI99 — AvatarStack (Wave G)
  * Overlapping avatar group with overflow counter; ring gap keeps velvet
  * separation between members.
- */
+  * @token Member rings separate via the surface color of the hosting card (`ring-2`), keeping velvet gap on any `--bg-card`/`--bg-surface`.
+*/
 
 import React from 'react';
 import { cn } from '../../lib/utils';

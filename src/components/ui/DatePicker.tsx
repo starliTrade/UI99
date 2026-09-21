@@ -3,7 +3,8 @@
  * Popover month-grid picker (Radix popover + controlled grid). Velvet
  * day cells with today ring, aria-selected, keyboard focusable, disabledDates.
  * Value contract: ISO `yyyy-mm-dd` string or null (uncontrolled optional).
- */
+  * @token Grid cells ride `--state-hover` on `--bg-elevated`; selection inverts with `--text-on-fill`; today-ring uses `--border-strong`.
+*/
 
 import React, { useState, useMemo } from 'react';
 import * as PopoverPrimitive from '@radix-ui/react-popover';

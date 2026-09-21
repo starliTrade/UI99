@@ -2,7 +2,8 @@
  * UI99 — Swatch (Wave H)
  * Design-token presentation chip: literal hex display + copy affordance.
  * The color-science layer of the docs — every palette token shown exactly.
- */
+  * @token Chip label bar resolves `--bg-card`; hex text is computed against the swatch itself for guaranteed ≥4.5:1.
+*/
 
 import React from 'react';
 import { cn } from '../../lib/utils';

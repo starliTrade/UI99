@@ -2,6 +2,10 @@
  * SAFA — Unified Velvet Form Inputs (Build 02.2)
  * High-craft tactile inputs, dual-theme support (Obsidian Dark / Matte Light),
  * micro-hairlines, and calm focus rings with cn utility.
+ *
+ * @token Field body resolves `--bg-elevated` on `--bg-card` containers;
+ *   resting border `--border-hairline`, focus ring `focus-safa-inset` riding
+ *   `--focus-ring` (WCAG 2.4.13). Placeholder uses `--text-muted`.
  */
 
 import React, { InputHTMLAttributes, TextareaHTMLAttributes, forwardRef, ReactNode } from 'react';

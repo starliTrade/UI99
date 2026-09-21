@@ -3,7 +3,8 @@
  * Terminal-style code display with copy button and language tag. Syntax
  * highlighting intentionally lightweight: single-accent tint (zero deps);
  * hosts needing full highlighting can swap children for their own renderer.
- */
+  * @token Host body is the fixed terminal surface (#0A0B0F) — intentionally theme-constant so code reads identically in both themes.
+*/
 
 import React, { useState } from 'react';
 import { Check, Copy } from 'lucide-react';

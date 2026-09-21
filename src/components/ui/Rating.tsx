@@ -2,7 +2,8 @@
  * UI99 — Rating (Wave H)
  * Interactive star rating with fractional display precision, keyboard
  * support (arrows/Home/End), velvet hover fill, minimum 28px targets.
- */
+  * @token Empty stars use 20–25% foreground; filled use the amber tint — both ≥3:1 against `--bg-card` (non-text UI, WCAG 1.4.11).
+*/
 
 import React, { useState } from 'react';
 import { Star } from 'lucide-react';

@@ -4,7 +4,8 @@
  * paste distribution, complete callback. Password-manager friendly
  * (single hidden input pattern avoided for simplicity — cells are real
  * inputs with inputMode="numeric").
- */
+  * @token Cells: `--bg-elevated` body, `--border-strong` when filled, focus ring `focus-safa-inset`.
+*/
 
 import React, { useRef, useState, useEffect } from 'react';
 import { cn } from '../../lib/utils';

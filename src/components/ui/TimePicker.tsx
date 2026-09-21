@@ -2,7 +2,8 @@
  * UI99 — TimePicker (Wave F)
  * Filterable 24h time listbox at a configurable step. Velvet rows with
  * selected inversion, keyboard focusable options, `HH:mm` contract.
- */
+  * @token Rows invert on selection (`--text-on-fill`); filter input focus rides `--focus-ring` via `focus-safa-inset`.
+*/
 
 import React, { useState, useMemo } from 'react';
 import { cn } from '../../lib/utils';

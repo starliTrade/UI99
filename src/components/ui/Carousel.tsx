@@ -3,7 +3,8 @@
  * Native scroll-snap carousel (no animation lib): arrow buttons + dot
  * indicators, keyboard accessible, respects 44px targets. RTL-safe via
  * logical scroll (scrollBy inline direction-agnostic amounts).
- */
+  * @token Dots/arrows resolve `--text-primary` active vs 15% foreground idle; arrows are outline buttons on `--border-strong`.
+*/
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';

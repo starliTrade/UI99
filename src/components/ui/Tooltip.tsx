@@ -3,7 +3,8 @@
  * Dual-theme (Obsidian Dark / Porcelain Light) with Radix UI collision detection.
  * Keyboard-accessible: Radix Trigger opens on focus AND hover (WAI-ARIA APG pattern);
  * wrapper span no longer overrides pointer-events/cursor of the trigger.
- */
+  * @token Panel is `--bg-elevated` at 96% with `--border-hairline`; arrow inherits the same surface — no contrast seam.
+*/
 
 import React from 'react';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';

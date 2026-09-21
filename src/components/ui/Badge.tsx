@@ -2,6 +2,10 @@
  * SAFA — Linear-Grade Status & Priority Badges (Build 03.0)
  * Full shadcn-grade matrix: Badge 9 variants x 3 sizes (cva) on the velvet
  * token system, plus semantic PriorityBadge / StatusBadge indicators.
+ *
+ * @token Semantic tints are opacity-lifted over the card surface
+ *   (`--bg-card`) so both theme families keep ≥4.5:1 on their text;
+ *   hairline rings follow `--border-hairline`.
  */
 
 import React from 'react';

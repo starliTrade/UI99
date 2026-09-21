@@ -2,7 +2,8 @@
  * UI99 — Combobox (Wave F)
  * Popover + cmdk filtered list with "both worlds" input (shadcn pattern):
  * filter-as-you-type, create-option affordance, 44px rows, full keyboard nav.
- */
+  * @token Panel resolves `--bg-elevated` + `--border-subtle`; rows hover via `--state-hover`; selected check rides `--text-primary`.
+*/
 
 import React, { useState } from 'react';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
