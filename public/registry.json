@@ -137,7 +137,7 @@
       "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
     },
     {
-      "name": "segmentedcontrol",
+      "name": "segmented-control",
       "type": "registry:ui",
       "dependencies": [
         "motion"
@@ -385,7 +385,7 @@
       "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
     },
     {
-      "name": "dropdownmenu",
+      "name": "dropdown-menu",
       "type": "registry:ui",
       "dependencies": [
         "@radix-ui/react-dropdown-menu",
@@ -445,7 +445,7 @@
       "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
     },
     {
-      "name": "safabrandlogo",
+      "name": "safa-brand-logo",
       "type": "registry:ui",
       "dependencies": [],
       "registryDependencies": [

@@ -100,13 +100,19 @@ for (const name of KIT_COMPONENTS) {
     }
   }
   const deps = importedDeps(src).filter((d) => d !== 'motion' || name !== 'theme');
+  // shadcn convention: kebab-case item names (segmented-control, dropdown-menu…)
+  const kebab = name
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .toLowerCase();
   items.push({
-    name: name.toLowerCase(),
+    name: kebab,
     type: 'registry:ui',
     dependencies: deps,
     registryDependencies: internalRefs(src, name)
       .filter((r) => r !== name)
-      .map((r) => r.toLowerCase()),
+      .map((r) =>
+        r.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase(),
+      ),
     files: [
       {
         path: `ui/${name.toLowerCase()}${ext}`,

@@ -4,7 +4,7 @@
  * package.json + README.md into dist-kit/.
  * Run: bun run lib:manifest   (invoked by lib:build)
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -25,6 +25,7 @@ const pkg = {
   main: './index.cjs',
   module: './index.js',
   types: './types/components/ui/kit.d.ts',
+  bin: { ui99: './cli.js' },
   exports: {
     '.': {
       types: './types/components/ui/kit.d.ts',
@@ -34,9 +35,10 @@ const pkg = {
     './styles.css': './safa.css',
     './dark.css': './dark.css',
     './light.css': './light.css',
+    './registry.json': './registry.json',
     './package.json': './package.json',
   },
-  files: ['index.js', 'index.cjs', 'safa.css', 'dark.css', 'light.css', 'types'],
+  files: ['index.js', 'index.cjs', 'safa.css', 'dark.css', 'light.css', 'types', 'cli.js', 'registry.json'],
   keywords: [
     'react',
     'ui',
@@ -105,6 +107,11 @@ const readme = existsSync(readmePath)
   ? readFileSync(readmePath, 'utf8')
   : defaultReadmeLines.join('\n');
 writeFileSync(resolve(outDir, 'README.md'), readme);
+
+// CLI ships inside the package (npx @99/ui add button)
+copyFileSync(resolve(root, 'scripts/cli.mjs'), resolve(outDir, 'cli.js'));
+// Registry snapshot ships inside the package (offline-capable CLI)
+copyFileSync(resolve(root, 'public/registry.json'), resolve(outDir, 'registry.json'));
 
 console.log('[kit-manifest] package.json + README.md written to dist-kit/');
 console.log(
