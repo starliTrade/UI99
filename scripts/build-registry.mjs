@@ -21,6 +21,9 @@ const KIT_COMPONENTS = [
   'SegmentedControl', 'Breadcrumb', 'Badge', 'Kbd', 'Progress', 'Skeleton',
   'Tooltip', 'Accordion', 'Feedback', 'Modal', 'Dialog', 'Popover', 'Sheet',
   'DropdownMenu', 'Command', 'Tabs', 'SafaBrandLogo', 'theme',
+  // Wave A
+  'Separator', 'Label', 'Toggle', 'ToggleGroup', 'HoverCard', 'Collapsible',
+  'ScrollArea', 'AspectRatio', 'Field', 'Alert',
 ];
 
 /** npm deps the kit requires at runtime (mirrors dist-kit manifest). */

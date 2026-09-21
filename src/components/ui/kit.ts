@@ -121,3 +121,24 @@ export type { UI99BrandLogoProps } from './SafaBrandLogo';
 // Theme protocol (kit-local, no app context)
 export { useIsDark, useThemeClass } from './theme';
 export type { KitThemeMode } from './theme';
+
+// =====================================================================
+// WAVE A — layout & primitives (roster expansion toward 60+)
+// =====================================================================
+
+export { Separator } from './Separator';
+export type { SeparatorProps } from './Separator';
+export { Label } from './Label';
+export type { LabelProps } from './Label';
+export { Toggle, toggleVariants } from './Toggle';
+export type { ToggleProps } from './Toggle';
+export { ToggleGroup, ToggleGroupItem } from './ToggleGroup';
+export type { ToggleGroupItemProps } from './ToggleGroup';
+export { HoverCard, HoverCardTrigger, HoverCardContent } from './HoverCard';
+export { Collapsible, CollapsibleTrigger, CollapsibleContent } from './Collapsible';
+export { ScrollArea, ScrollBar } from './ScrollArea';
+export { AspectRatio } from './AspectRatio';
+export { FormField, FormHint, FormError } from './Field';
+export type { FormFieldProps } from './Field';
+export { Alert, alertVariants } from './Alert';
+export type { AlertProps } from './Alert';

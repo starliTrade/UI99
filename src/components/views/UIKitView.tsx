@@ -66,6 +66,8 @@ import {
   Hash,
   MoveHorizontal,
   Maximize2,
+  Bold,
+  ChevronDown,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
 import { useAuth } from '../../core/context/AuthContext';
@@ -135,6 +137,22 @@ import {
   TabsContent,
   TokensAuditPlayground,
   LinearIssueTracker,
+  Toggle,
+  ToggleGroup,
+  ToggleGroupItem,
+  Separator,
+  Label,
+  FormField,
+  Alert,
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+  ScrollArea,
+  AspectRatio,
+  Badge,
 } from '../ui';
 
 type SectionTab =
@@ -1043,6 +1061,106 @@ export function UIKitView() {
           </div>
         </section>
       )}
+
+      {/* ========================================================================= */}
+      {/* 4.5 WAVE A SPOTLIGHT — Separator/Toggle/Label/HoverCard/ScrollArea/Alert  */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <Sparkles className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                04. Wave A — Layout & Feedback Primitives
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                Separator · Label · Toggle · ToggleGroup · HoverCard · Collapsible · ScrollArea · AspectRatio · FormField · Alert
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">NEW</Badge>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Toggle + ToggleGroup */}
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Toggle & Group</h3>
+            <div className="flex flex-wrap items-center gap-2">
+              <Toggle defaultPressed aria-label="Bold">
+                <Bold className="w-4 h-4" />
+              </Toggle>
+              <Toggle defaultPressed variant="outline" size="sm">Outline</Toggle>
+              <Toggle variant="secondary" size="sm">Secondary</Toggle>
+            </div>
+            <ToggleGroup type="single" defaultValue="day" aria-label="View density">
+              <ToggleGroupItem value="day" size="sm">Day</ToggleGroupItem>
+              <ToggleGroupItem value="week" size="sm">Week</ToggleGroupItem>
+              <ToggleGroupItem value="month" size="sm">Month</ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+
+          {/* Separator + Label + FormField */}
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Form Scaffolding</h3>
+            <FormField label="Workspace name" htmlFor="wave-a-ws" required hint="max 32">
+              <Input id="wave-a-ws" placeholder="safa-prod" inputSize="sm" />
+            </FormField>
+            <Separator />
+            <FormField label="API endpoint" htmlFor="wave-a-api" error="Endpoint must start with https://">
+              <Input id="wave-a-api" defaultValue="http://atelier99.dev" inputSize="sm" error="Endpoint must start with https://" />
+            </FormField>
+          </div>
+
+          {/* Alert matrix */}
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Alert Severity</h3>
+            <Alert variant="success" title="Deployed">All 27 registry items validated.</Alert>
+            <Alert variant="warning" icon={<AlertTriangle className="w-4 h-4" />}>
+              Two legacy hexes detected in MoreView.
+            </Alert>
+            <Alert variant="destructive" title="Build failed">Contrast gate rejected amber-600.</Alert>
+          </div>
+
+          {/* ScrollArea + HoverCard + Collapsible + AspectRatio */}
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Overlay & Scroll Primitives</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <ScrollArea className="h-36 rounded-2xl border border-black/[0.05] dark:border-white/[0.04] p-4">
+                <div className="space-y-2 text-xs text-zinc-600 dark:text-zinc-300">
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <p key={i} className="leading-relaxed">Row {i + 1} — velvet scroll primitives keep the 3px thumb aesthetic cross-browser.</p>
+                  ))}
+                </div>
+              </ScrollArea>
+              <div className="space-y-3">
+                <HoverCard>
+                  <HoverCardTrigger>
+                    <span className="text-xs font-semibold underline decoration-dashed underline-offset-4 text-zinc-700 dark:text-[#92929B]">@ui99 hover me</span>
+                  </HoverCardTrigger>
+                  <HoverCardContent>
+                    <div className="space-y-1">
+                      <p className="text-sm font-semibold">UI99 Registry</p>
+                      <p className="text-xs text-zinc-500 dark:text-zinc-400">Copy-anywhere primitives with WCAG-computed tokens.</p>
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
+                <Collapsible>
+                  <CollapsibleTrigger className="flex items-center gap-1.5 text-xs font-semibold text-zinc-700 dark:text-[#92929B]">
+                    <ChevronDown className="w-3.5 h-3.5 transition-transform group-data-[state=open]:rotate-180" />
+                    Show install steps
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <p className="pt-2 text-xs font-mono text-emerald-500">npx @99/ui add separator toggle alert</p>
+                  </CollapsibleContent>
+                </Collapsible>
+                <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500/10 to-blue-500/10 border border-black/[0.04] dark:border-white/[0.04] flex items-center justify-center">
+                  <span className="text-[10px] font-mono text-zinc-500">16:9 AspectRatio</span>
+                </AspectRatio>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ========================================================================= */}
       {/* 5. LINEAR-GRADE PATTERNS: Issue Tracker & Workflows */}
