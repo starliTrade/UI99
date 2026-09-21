@@ -1,26 +1,31 @@
 /**
- * UI \ [99] — Floating Glass Command Bar (Linear-class nav)
- * Detached capsule: logo | links | actions. Scroll-aware morph (transparent
- * → glass + hairline + shadow), shared-layout active cushion (layoutId) that
- * glides between items, 44px targets, full keyboard support.
+ * UI \ [99] — Top Command Bar (Linear-class, transparent)
+ * NO background, NO border, NO capsule: the bar is part of the page.
+ * Brand wordmark in JetBrains Mono; exactly two unified outline actions
+ * (Search ⌘K, Studio ⚙). Ground navigation stays in the bottom dock.
  */
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../../core/context/AppContext';
 import { useAuth } from '../../core/context/AuthContext';
-import { SafaBrandLogo } from './SafaBrandLogo';
-import {
-  Moon,
-  Sun,
-  Globe,
-  SlidersHorizontal,
-  Search,
-  ChevronDown,
-} from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
+import { Moon, Sun, Globe, SlidersHorizontal, Search, ChevronDown, Settings } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
-// Ground navigation lives in the bottom dock (mobile-first product shell);
-// the top bar stays a calm brand + actions capsule (shadcn/Linear posture).
+/** JetBrains Mono wordmark — the "UI / [99]" logotype. */
+function BrandMark({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="UI [99] home"
+      className="inline-flex items-center font-mono font-bold tracking-tight text-zinc-950 dark:text-white cursor-pointer focus-visible:outline-none focus-safa rounded-md px-1 -mx-1 min-h-[44px]"
+    >
+      <span className="text-[15px] sm:text-base">UI</span>
+      <span className="text-[13px] sm:text-sm text-zinc-400 dark:text-zinc-500 font-normal px-0.5">/</span>
+      <span className="text-[15px] sm:text-base">[99]</span>
+    </button>
+  );
+}
 
 export function TopHeader() {
   const {
@@ -30,154 +35,107 @@ export function TopHeader() {
     setIsSearchOpen,
     setIsSettingsOpen,
   } = useApp();
-  const { user, isRTL, toggleRTL } = useAuth();
+  const { isRTL, toggleRTL } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
   const isDark = themeMode === 'dark';
 
-  const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 12));
-
-  // Close dropdown on outside click
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    function onDoc(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIsDropdownOpen(false);
       }
     }
-    if (isDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    if (isDropdownOpen) document.addEventListener('mousedown', onDoc);
+    return () => document.removeEventListener('mousedown', onDoc);
   }, [isDropdownOpen]);
 
-  const pillBase = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full cursor-pointer transition-all active:scale-95 min-h-[38px] text-xs font-mono';
-  const pillChrome = isDark
-    ? 'bg-[#0E0E14]/85 hover:bg-[#14141A] text-zinc-300 hover:text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)] border border-white/[0.04]'
-    : 'bg-white hover:bg-zinc-50 text-zinc-700 hover:text-zinc-950 border border-black/[0.05]';
+  /** Unified soft-outline action button — the ONLY chrome on the bar. */
+  const actionBtn =
+    'inline-flex items-center justify-center gap-1.5 h-9 px-3 rounded-xl border font-medium text-xs cursor-pointer transition-all active:scale-[0.97] focus-visible:outline-none focus-safa-inset';
+  const actionChrome = isDark
+    ? 'border-white/[0.08] bg-transparent text-zinc-300 hover:bg-white/[0.05] hover:text-white'
+    : 'border-black/[0.09] bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950';
 
   return (
-    <div className="sticky top-0 z-40 w-full px-3 sm:px-6 pt-3 pb-2 pointer-events-none select-none">
-      <motion.header
-        initial={false}
-        animate={{
-          y: scrolled ? -2 : 0,
-          boxShadow: scrolled
-            ? isDark
-              ? '0 18px 40px -12px rgba(0,0,0,0.7)'
-              : '0 18px 40px -12px rgba(0,0,0,0.18)'
-            : '0 0 0 rgba(0,0,0,0)',
-        }}
-        transition={{ type: 'spring', stiffness: 320, damping: 30 }}
-        className={`max-w-4xl mx-auto flex items-center justify-between gap-2 rounded-2xl sm:rounded-full px-2.5 py-1.5 pointer-events-auto backdrop-blur-2xl saturate-150 transition-colors duration-300 ${
-          scrolled
-            ? isDark
-              ? 'bg-[#0B0C11]/72 border border-white/[0.06] shadow-[inset_0_1px_0.5px_0_rgba(255,255,255,0.05)]'
-              : 'bg-white/78 border border-black/[0.05] shadow-[inset_0_1px_0.5px_0_rgba(255,255,255,0.8)]'
-            : isDark
-              ? 'bg-[#06070A]/45 border border-transparent'
-              : 'bg-white/45 border border-transparent'
-        }`}
-      >
-        {/* Left: brand + desktop links */}
-        <div className="flex items-center gap-3 sm:gap-5 min-w-0">
-          <button
-            type="button"
-            onClick={() => setCurrentTab('HOME')}
-            className="flex items-center group cursor-pointer focus:outline-none transition-transform active:scale-95 rounded-full"
-            title="UI \ [99] — Home"
-            aria-label="UI \ [99] Home"
-          >
-            <SafaBrandLogo size="md" />
-          </button>
+    <header className="sticky top-0 z-40 w-full px-3 sm:px-6 pt-3 pb-2 bg-transparent border-none select-none">
+      <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
+        {/* Brand */}
+        <BrandMark onClick={() => setCurrentTab('HOME')} />
 
-          {/* Ground nav intentionally omitted — bottom dock owns navigation */}
-        </div>
-
-        {/* Right actions */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        {/* Actions */}
+        <div className="flex items-center gap-2">
+          {/* Search */}
           <button
             type="button"
             onClick={() => setIsSearchOpen(true)}
-            className={`${pillBase} ${pillChrome}`}
-            title="Quick search (Cmd+K)"
-            aria-label="Quick search"
+            className={`${actionBtn} ${actionChrome}`}
+            aria-label="Search (Cmd+K)"
+            title="Search ⌘K"
           >
             <Search className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Search</span>
-            <span className="hidden sm:inline text-[10px] px-1 py-0.5 rounded bg-black/10 dark:bg-white/10 text-zinc-500 dark:text-zinc-400">⌘K</span>
+            <span className="hidden md:inline text-[10px] font-mono opacity-60">⌘K</span>
           </button>
 
-          {/* Settings & Theme Dropdown */}
+          {/* Studio dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
               type="button"
-              onClick={() => setIsDropdownOpen((prev) => !prev)}
-              className={`${pillBase} ${pillChrome}`}
+              onClick={() => setIsDropdownOpen((v) => !v)}
+              className={`${actionBtn} ${actionChrome}`}
               aria-expanded={isDropdownOpen}
-              aria-label="Settings and Preferences"
+              aria-label="Studio preferences"
             >
-              <span className={`text-xs font-semibold tracking-tight ${isDark ? 'text-zinc-200' : 'text-zinc-800'}`}>
-                {user?.profile?.name || 'Studio'}
-              </span>
-              <ChevronDown
-                className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  isDropdownOpen ? 'rotate-180' : ''
-                } ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}
-              />
+              <Settings className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Studio</span>
+              <ChevronDown className={`w-3 h-3 opacity-60 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
 
             <AnimatePresence>
               {isDropdownOpen && (
                 <motion.div
-                  initial={{ opacity: 0, y: -6, scale: 0.96 }}
+                  initial={{ opacity: 0, y: -6, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -6, scale: 0.96 }}
+                  exit={{ opacity: 0, y: -6, scale: 0.97 }}
                   transition={{ type: 'spring', stiffness: 420, damping: 32 }}
-                  className={`absolute right-0 rtl:right-auto rtl:left-0 mt-2 w-64 rounded-3xl p-2 z-50 backdrop-blur-2xl ${
+                  className={`absolute end-0 mt-2 w-64 rounded-2xl p-2 z-50 backdrop-blur-2xl ${
                     isDark
                       ? 'bg-[#0E0E14]/95 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),0_24px_48px_rgba(0,0,0,0.8)] border border-white/[0.04]'
                       : 'bg-white/95 text-[#111116] shadow-[0_20px_44px_rgba(0,0,0,0.08)] border border-black/[0.04]'
                   }`}
                 >
+                  {/* Theme */}
                   <div className="p-2 mb-1">
-                    <span className="block text-[10px] font-bold font-mono uppercase tracking-wider text-zinc-500 mb-2 px-1">
-                      Theme Mode
-                    </span>
+                    <span className="block text-[10px] font-bold font-mono uppercase tracking-wider text-zinc-500 mb-2 px-1">Theme</span>
                     <div className={`grid grid-cols-2 p-1 rounded-2xl ${isDark ? 'bg-[#060608]' : 'bg-[#F2F2F6]'}`}>
                       <button
                         type="button"
                         onClick={() => setThemeMode('dark')}
                         className={`flex items-center justify-center gap-1.5 py-1.5 rounded-xl text-xs font-semibold cursor-pointer transition-all ${
-                          isDark
-                            ? 'bg-white/[0.12] text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]'
-                            : 'text-[#787885] hover:text-[#111116]'
+                          isDark ? 'bg-white/[0.12] text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]' : 'text-[#687685] hover:text-[#111116]'
                         }`}
                       >
-                        <Moon className="w-3.5 h-3.5" />
-                        <span>Dark</span>
+                        <Moon className="w-3.5 h-3.5" /> Dark
                       </button>
                       <button
                         type="button"
                         onClick={() => setThemeMode('light')}
                         className={`flex items-center justify-center gap-1.5 py-1.5 rounded-xl text-xs font-semibold cursor-pointer transition-all ${
-                          !isDark
-                            ? 'bg-white text-[#111116] shadow-[0_2px_8px_rgba(0,0,0,0.08)]'
-                            : 'text-[#787885] hover:text-white'
+                          !isDark ? 'bg-white text-[#111116] shadow-[0_2px_8px_rgba(0,0,0,0.08)]' : 'text-[#687685] hover:text-white'
                         }`}
                       >
-                        <Sun className="w-3.5 h-3.5 text-amber-500" />
-                        <span>Light</span>
+                        <Sun className="w-3.5 h-3.5 text-amber-500" /> Light
                       </button>
                     </div>
+                    <p className="mt-2 px-1 text-[10px] font-mono text-zinc-500 dark:text-zinc-600">
+                      Porcelain preset installs via registry.
+                    </p>
                   </div>
 
                   <div className={`h-[1px] my-1 ${isDark ? 'bg-white/[0.05]' : 'bg-black/[0.05]'}`} />
 
+                  {/* RTL */}
                   <button
                     type="button"
                     onClick={() => {
@@ -188,15 +146,14 @@ export function TopHeader() {
                       isDark ? 'hover:bg-white/[0.06] text-[#D8D8E0]' : 'hover:bg-black/[0.04] text-[#333338]'
                     }`}
                   >
-                    <div className="flex items-center gap-2.5">
+                    <span className="flex items-center gap-2.5">
                       <Globe className="w-4 h-4 text-[#8E8E98]" />
-                      <span>{isRTL ? 'English (EN - Default)' : 'فارسی (FA)'}</span>
-                    </div>
-                    <span className="text-[10px] font-mono uppercase text-[#787885]">
-                      {isRTL ? 'FA' : 'EN'}
+                      {isRTL ? 'English (EN)' : 'فارسی (FA)'}
                     </span>
+                    <span className="text-[10px] font-mono uppercase text-[#787885]">{isRTL ? 'FA' : 'EN'}</span>
                   </button>
 
+                  {/* Preferences */}
                   <button
                     type="button"
                     onClick={() => {
@@ -215,7 +172,7 @@ export function TopHeader() {
             </AnimatePresence>
           </div>
         </div>
-      </motion.header>
-    </div>
+      </div>
+    </header>
   );
 }

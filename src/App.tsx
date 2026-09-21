@@ -79,7 +79,7 @@ function MainShell() {
       <TopHeader />
 
       {/* Main Content Area */}
-      <main className="relative z-10 flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 pt-2 sm:pt-4 pb-28 sm:pb-32">
+      <main className="relative z-10 flex-1 w-full max-w-4xl mx-auto px-3 sm:px-5 pt-1 sm:pt-2 pb-24 sm:pb-28">
         {renderActiveView()}
       </main>
 

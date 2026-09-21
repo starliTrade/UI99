@@ -23,6 +23,9 @@ export interface ToastItem {
 interface AppContextType {
   currentTab: NavTab;
   setCurrentTab: (tab: NavTab) => void;
+  /** Component selected from home explorer → UIKit opens focused on it. */
+  focusComponent: string | null;
+  setFocusComponent: (slug: string | null) => void;
   lifeSubview: LifeSubview;
   setLifeSubview: (subview: LifeSubview) => void;
   createSubview: CreateSubview;
@@ -55,6 +58,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [currentTab, setCurrentTab] = useState<NavTab>('HOME');
+  const [focusComponent, setFocusComponent] = useState<string | null>(null);
   const [lifeSubview, setLifeSubview] = useState<LifeSubview>('TASKS');
   const [createSubview, setCreateSubview] = useState<CreateSubview>('NOTES');
   const [mediaSubview, setMediaSubview] = useState<MediaSubview>('PHOTOS');
@@ -134,6 +138,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       value={{
         currentTab,
         setCurrentTab,
+        focusComponent,
+        setFocusComponent,
         lifeSubview,
         setLifeSubview,
         createSubview,

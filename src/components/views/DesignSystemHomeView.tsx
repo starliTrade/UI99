@@ -109,7 +109,7 @@ const CATS: ('All' | Cat)[] = ['All', 'Actions', 'Inputs', 'Navigation', 'Data',
 /* ------------------------------------------------------------------ */
 
 export function DesignSystemHomeView() {
-  const { setCurrentTab, addToast } = useApp();
+  const { setCurrentTab, addToast, setFocusComponent } = useApp();
   const { reveal } = useChoreography();
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -322,7 +322,7 @@ export function DesignSystemHomeView() {
                 63 components. Zero lock-in.
               </h2>
               <p className="mt-1.5 text-sm text-zinc-500 dark:text-[#8E8E98]">
-                Click any name to copy its install command.
+                Click any component to open its live preview, variants and code.
               </p>
             </div>
             <div className="relative w-full sm:w-56 shrink-0">
@@ -360,14 +360,15 @@ export function DesignSystemHomeView() {
               <button
                 key={c.name}
                 type="button"
-                onClick={() => copy(`npx @99/ui add ${c.slug}`, `x-${c.slug}`)}
-                title={`Copy: npx @99/ui add ${c.slug}`}
-                className="group flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.035] text-left cursor-pointer transition-all duration-150 hover:border-emerald-500/35 focus-visible:outline-none focus-safa min-h-[44px]"
+                onClick={() => {
+                  setFocusComponent(c.slug);
+                  setCurrentTab('UIKIT');
+                }}
+                title={`View ${c.name} — variants, sizes & code`}
+                className="group flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.035] text-left cursor-pointer transition-all duration-150 hover:border-emerald-500/35 hover:bg-black/[0.01] dark:hover:bg-white/[0.02] focus-visible:outline-none focus-safa min-h-[44px]"
               >
                 <span className="text-xs font-medium text-zinc-800 dark:text-zinc-200 truncate">{c.name}</span>
-                <span className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {copiedKey === `x-${c.slug}` ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Terminal className="w-3 h-3 text-zinc-400" />}
-                </span>
+                <ArrowRight className="w-3.5 h-3.5 shrink-0 text-zinc-300 dark:text-zinc-600 opacity-0 group-hover:opacity-100 -translate-x-0.5 group-hover:translate-x-0 transition-all rtl:rotate-180" />
               </button>
             ))}
             {filtered.length === 0 && (

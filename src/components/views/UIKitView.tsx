@@ -233,11 +233,25 @@ type SectionTab =
   | 'SANDBOX';
 
 export function UIKitView() {
-  const { themeMode, setThemeMode, addToast } = useApp();
+  const { themeMode, setThemeMode, addToast, focusComponent, setFocusComponent } = useApp();
   const { isRTL, setLanguage, language } = useAuth();
   const isDark = themeMode === 'dark';
 
   const [activeSection, setActiveSection] = useState<SectionTab>('ALL');
+
+  // Deep-link from home explorer: focus the component's gallery section
+  React.useEffect(() => {
+    if (!focusComponent) return;
+    const WAVE_MAP: Record<string, SectionTab> = {
+      // Waves map to gallery sections; default COMPONENTS
+    };
+    setActiveSection('COMPONENTS');
+    requestAnimationFrame(() => {
+      const el = document.querySelector('[data-gallery-section]');
+      el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    setFocusComponent(null);
+  }, [focusComponent, setFocusComponent]);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   // Modal demo state
@@ -323,7 +337,7 @@ export function UIKitView() {
   }, [sbComponent, sbVariant, sbSize, sbLoading, sbDisabled, sbWithIcon, sbLabel]);
 
   return (
-    <div className="space-y-12 pb-36 pt-2">
+    <div className="space-y-10 pb-28 pt-2">
       {/* 1. HERO SYSTEM BANNER (World-Class System Identity & Live Controls) */}
       <section className="relative rounded-[32px] p-6 sm:p-10 overflow-hidden bg-white dark:bg-[#0A0B10] border border-black/[0.05] dark:border-white/[0.035] shadow-[0_16px_40px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_24px_60px_-12px_rgba(0,0,0,0.85)] transition-colors">
         {/* Soft Ambient Radial Light */}
