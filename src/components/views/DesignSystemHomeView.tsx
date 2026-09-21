@@ -123,18 +123,19 @@ export function DesignSystemHomeView() {
           </p>
         </motion.div>
 
-        {/* CTA Button Group (shadcn-style) */}
+        {/* CTA Button Group (shadcn-style) — stacked full-width on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.16 }}
-          className="flex flex-wrap items-center justify-center gap-3 pt-2"
+          className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 pt-2 w-full"
         >
           <Button
             size="md"
             variant="primary"
             onClick={() => setCurrentTab('DOCS')}
             icon={<ArrowRight className="w-4 h-4" />}
+            className="w-full sm:w-auto min-h-[44px]"
           >
             Get Started
           </Button>
@@ -144,19 +145,22 @@ export function DesignSystemHomeView() {
             variant="secondary"
             onClick={() => setCurrentTab('UIKIT')}
             icon={<Layers className="w-4 h-4" />}
+            className="w-full sm:w-auto min-h-[44px]"
           >
             Browse Components
           </Button>
 
           {/* Quick CLI Copy Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.06] dark:border-white/[0.04] text-xs font-mono text-zinc-800 dark:text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)]">
-            <span className="text-zinc-500 select-none">$</span>
-            <span className="font-semibold">npx @99/ui init</span>
+          <div className="inline-flex items-center justify-between sm:justify-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.06] dark:border-white/[0.04] text-xs font-mono text-zinc-800 dark:text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)] w-full sm:w-auto min-h-[44px]">
+            <span className="truncate">
+              <span className="text-zinc-500 select-none">$ </span>
+              <span className="font-semibold">npx @99/ui init</span>
+            </span>
             <button
               type="button"
               onClick={() => copyToClipboard('npx @99/ui init', 'hero-cli')}
-              className="ml-1 p-1 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
-              title="Copy to clipboard"
+              aria-label="Copy install command to clipboard"
+              className="ml-1 p-2 -m-1 rounded-lg hover:text-black dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer relative after:absolute after:-inset-1 after:content-['']"
             >
               {copiedKey === 'hero-cli' ? (
                 <Check className="w-3.5 h-3.5 text-emerald-400" />
@@ -166,6 +170,29 @@ export function DesignSystemHomeView() {
             </button>
           </div>
         </motion.div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 1.5 SYSTEM STATS STRIP — real numbers, mobile-first 2x2 grid              */}
+      {/* ========================================================================= */}
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        {[
+          { value: '25', label: 'Primitives', sub: 'registry:ui items' },
+          { value: '100+', label: 'Variants', sub: 'full size matrix' },
+          { value: '0', label: 'Axe Violations', sub: 'CI-blocked gate' },
+          { value: 'AAA', label: 'Contrast', sub: 'computed, not claimed' },
+        ].map((stat) => (
+          <div
+            key={stat.label}
+            className="p-4 sm:p-5 rounded-2xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)] space-y-1"
+          >
+            <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-white font-mono">
+              {stat.value}
+            </div>
+            <div className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">{stat.label}</div>
+            <div className="text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 font-mono">{stat.sub}</div>
+          </div>
+        ))}
       </section>
 
       {/* ========================================================================= */}
@@ -182,7 +209,7 @@ export function DesignSystemHomeView() {
             <span className="text-xs text-zinc-500">Live Production Primitives</span>
           </div>
 
-          <div className="flex items-center gap-1 bg-zinc-100 dark:bg-white/[0.03] p-1 rounded-xl border border-black/[0.04] dark:border-white/[0.03] self-start sm:self-auto">
+          <div className="flex items-center gap-1 bg-zinc-100 dark:bg-white/[0.03] p-1 rounded-xl border border-black/[0.04] dark:border-white/[0.03] self-start overflow-x-auto no-scrollbar max-w-full">
             {(
               [
                 { id: 'cards', label: 'Cards & Surfaces' },
@@ -195,7 +222,7 @@ export function DesignSystemHomeView() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveShowcaseTab(tab.id)}
-                className={`px-3 py-1 rounded-lg text-xs font-medium cursor-pointer transition-all duration-150 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium cursor-pointer transition-all duration-150 whitespace-nowrap min-h-[36px] ${
                   activeShowcaseTab === tab.id
                     ? 'bg-white text-zinc-950 dark:bg-[#131318] dark:text-white font-semibold shadow-xs border border-black/[0.04] dark:border-white/[0.04]'
                     : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
@@ -570,29 +597,24 @@ export function DesignSystemHomeView() {
           <UI99BrandLogo size="md" withSubtitle={true} />
 
           <div className="flex items-center gap-4 text-xs font-mono text-zinc-500">
-            <button
-              type="button"
-              onClick={() => setCurrentTab('UIKIT')}
-              className="hover:text-black dark:hover:text-white transition-colors cursor-pointer"
-            >
-              Components
-            </button>
-            <span>•</span>
-            <button
-              type="button"
-              onClick={() => setCurrentTab('DOCS')}
-              className="hover:text-black dark:hover:text-white transition-colors cursor-pointer"
-            >
-              Documentation
-            </button>
-            <span>•</span>
-            <button
-              type="button"
-              onClick={() => setCurrentTab('BLOCKS')}
-              className="hover:text-black dark:hover:text-white transition-colors cursor-pointer"
-            >
-              Blocks
-            </button>
+            {(
+              [
+                { id: 'UIKIT', label: 'Components' },
+                { id: 'DOCS', label: 'Documentation' },
+                { id: 'BLOCKS', label: 'Blocks' },
+              ] as const
+            ).map((link, i) => (
+              <React.Fragment key={link.id}>
+                {i > 0 && <span>•</span>}
+                <button
+                  type="button"
+                  onClick={() => setCurrentTab(link.id)}
+                  className="hover:text-black dark:hover:text-white transition-colors cursor-pointer py-2 min-h-[44px] flex items-center focus-visible:outline-none focus-safa"
+                >
+                  {link.label}
+                </button>
+              </React.Fragment>
+            ))}
           </div>
         </div>
 
