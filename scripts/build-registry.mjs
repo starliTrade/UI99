@@ -177,6 +177,23 @@ items.push({
   docs: 'Obsidian Dark + Porcelain Light token layer (state layers, focus rings, motion). Import once; toggle .dark/.light on <html>.',
 });
 
+// ---- Theme preset 2: Porcelain (warm bone light theme) ----
+const porcelainCss = readFileSync(resolve(root, 'src/styles/porcelain.css'), 'utf8');
+items.push({
+  name: 'safa-theme-porcelain',
+  type: 'registry:theme',
+  cssVars: {},
+  files: [
+    {
+      path: 'theme/porcelain.css',
+      type: 'registry:theme',
+      content: porcelainCss,
+      target: 'src/styles/porcelain.css',
+    },
+  ],
+  docs: 'Porcelain preset — warm bone-white light theme. Import after safa-theme; toggle .porcelain on <html>.',
+});
+
 const registry = {
   $schema: 'https://ui.shadcn.com/schema/registry.json',
   name: '@99/ui',

@@ -39,6 +39,7 @@ const safaCss = readFileSync(resolve(root, 'src/styles/safa.css'), 'utf8');
 
 // 1) Verbatim token stylesheet (single source of truth)
 copyFileSync(resolve(root, 'src/styles/safa.css'), resolve(outDir, 'safa.css'));
+copyFileSync(resolve(root, 'src/styles/porcelain.css'), resolve(outDir, 'porcelain.css'));
 
 // 2) No-JS theme entries: re-emit the theme block under :root (generated, not hand-copied)
 const darkBody = extractBlock(safaCss, '.dark');
@@ -57,5 +58,5 @@ writeFileSync(
   `${banner('light theme entry (no-JS default)')}\n@import "./safa.css";\n\n/* Pre-activate porcelain light tokens for hosts that never toggle a theme class. */\n:root {\n${lightBody}\n}\n\n${focusAndMotion}\n`,
 );
 
-console.log('[kit-css] safa.css + dark.css + light.css generated in dist-kit/');
+console.log('[kit-css] safa.css + porcelain.css + dark.css + light.css generated in dist-kit/');
 console.log(`[kit-css] dark tokens: ${darkBody.split('\n').length} lines, shared: ${sharedBody.split('\n').length} lines`);
