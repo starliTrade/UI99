@@ -729,6 +729,62 @@
       "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
     },
     {
+      "name": "stepper",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/stepper.tsx",
+          "type": "registry:ui",
+          "content": "/**\n * UI99 — Stepper (Wave C)\n * Multi-step progress indicator (Linear/Onboarding pattern): completed /\n * current / upcoming states, connector hairlines, aria-current=\"step\".\n */\n\nimport React from 'react';\nimport { Check } from 'lucide-react';\nimport { cn } from '../../lib/utils';\n\nexport interface StepperProps extends React.ComponentProps<'ol'> {\n  steps: string[];\n  current: number;\n  orientation?: 'horizontal' | 'vertical';\n}\n\nexport function Stepper({\n  steps,\n  current,\n  orientation = 'horizontal',\n  className = '',\n  ...props\n}: StepperProps) {\n  return (\n    <ol\n      className={cn(\n        'flex gap-0',\n        orientation === 'horizontal' ? 'flex-row items-center' : 'flex-col',\n        className\n      )}\n      {...props}\n    >\n      {steps.map((step, i) => {\n        const isDone = i < current;\n        const isCurrent = i === current;\n        return (\n          <li\n            key={step}\n            aria-current={isCurrent ? 'step' : undefined}\n            className={cn(\n              'flex items-center',\n              orientation === 'horizontal' ? 'flex-1 last:flex-none' : 'gap-3 pb-4 last:pb-0'\n            )}\n          >\n            <span\n              className={cn(\n                'flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-[11px] font-mono font-bold transition-all duration-200',\n                isDone &&\n                  'bg-emerald-500 text-white border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.35)]',\n                isCurrent &&\n                  'bg-zinc-900 text-white border-zinc-900 dark:bg-[#EBEBEF] dark:text-[#0C0C0E] dark:border-[#EBEBEF] ring-4 ring-black/[0.04] dark:ring-white/[0.06]',\n                !isDone && !isCurrent &&\n                  'bg-transparent text-zinc-400 border-black/[0.12] dark:border-white/[0.12]'\n              )}\n            >\n              {isDone ? <Check className=\"w-3.5 h-3.5\" /> : i + 1}\n            </span>\n            <span\n              className={cn(\n                'text-xs font-medium tracking-tight',\n                orientation === 'horizontal' ? 'ml-2 hidden sm:block' : '',\n                isCurrent\n                  ? 'text-zinc-950 dark:text-white font-semibold'\n                  : 'text-zinc-500 dark:text-[#8E8E98]'\n              )}\n            >\n              {step}\n            </span>\n            {orientation === 'horizontal' && i < steps.length - 1 && (\n              <span\n                aria-hidden=\"true\"\n                className={cn(\n                  'mx-3 h-px flex-1 transition-colors duration-200',\n                  i < current ? 'bg-emerald-500/50' : 'bg-black/[0.08] dark:bg-white/[0.08]'\n                )}\n              />\n            )}\n          </li>\n        );\n      })}\n    </ol>\n  );\n}\n",
+          "target": "src/components/ui/Stepper.tsx"
+        }
+      ],
+      "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "ui/timeline.tsx",
+          "type": "registry:ui",
+          "content": "/**\n * UI99 — Timeline (Wave C)\n * Vertical event feed (Life-OS pattern): dot-on-rail with timestamp + content\n * slots; accent variants per event kind.\n */\n\nimport React from 'react';\nimport { cn } from '../../lib/utils';\n\nexport interface TimelineProps extends React.ComponentProps<'ol'> {}\n\nexport function Timeline({ className = '', ...props }: TimelineProps) {\n  return (\n    <ol\n      className={cn('relative space-y-6 before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-px before:bg-black/[0.08] dark:before:bg-white/[0.08]', className)}\n      {...props}\n    />\n  );\n}\nTimeline.displayName = 'Timeline';\n\nexport interface TimelineItemProps extends React.ComponentProps<'li'> {\n  timestamp?: string;\n  accent?: 'emerald' | 'amber' | 'rose' | 'blue' | 'purple' | 'neutral';\n}\n\nconst accentMap = {\n  emerald: 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]',\n  amber: 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]',\n  rose: 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.4)]',\n  blue: 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.4)]',\n  purple: 'bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.4)]',\n  neutral: 'bg-zinc-400 dark:bg-zinc-600',\n};\n\nexport function TimelineItem({\n  timestamp,\n  accent = 'neutral',\n  className = '',\n  children,\n  ...props\n}: TimelineItemProps) {\n  return (\n    <li className={cn('relative pl-7', className)} {...props}>\n      <span\n        aria-hidden=\"true\"\n        className={cn(\n          'absolute left-0 top-1 h-[15px] w-[15px] rounded-full border-2 border-white dark:border-[#0B0C11]',\n          accentMap[accent]\n        )}\n      />\n      {timestamp && (\n        <div className=\"text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-[#5C5C68] mb-1\">\n          {timestamp}\n        </div>\n      )}\n      <div className=\"text-xs text-zinc-800 dark:text-[#D4D4D8] leading-relaxed\">{children}</div>\n    </li>\n  );\n}\nTimelineItem.displayName = 'TimelineItem';\n",
+          "target": "src/components/ui/Timeline.tsx"
+        }
+      ],
+      "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "ui/fileupload.tsx",
+          "type": "registry:ui",
+          "content": "/**\n * UI99 — FileUpload (Wave C)\n * Dropzone + keyboard-accessible trigger (hidden native input, label-wrapped):\n * drag state, file list with remove, WCAG-compliant error surfacing.\n */\n\nimport React, { useCallback, useRef, useState } from 'react';\nimport { UploadCloud, X, File as FileIcon } from 'lucide-react';\nimport { cn } from '../../lib/utils';\nimport { Tag } from './Button';\n\nexport interface FileUploadProps {\n  label?: string;\n  accept?: string;\n  multiple?: boolean;\n  disabled?: boolean;\n  onFilesSelected?: (files: File[]) => void;\n  className?: string;\n}\n\nexport function FileUpload({\n  label = 'Drop files here or click to browse',\n  accept,\n  multiple = false,\n  disabled,\n  onFilesSelected,\n  className = '',\n}: FileUploadProps) {\n  const inputRef = useRef<HTMLInputElement>(null);\n  const [isDragging, setIsDragging] = useState(false);\n  const [files, setFiles] = useState<File[]>([]);\n\n  const emit = useCallback(\n    (list: FileList | null) => {\n      if (!list || list.length === 0) return;\n      const next = Array.from(list);\n      setFiles((prev) => (multiple ? [...prev, ...next] : next));\n      onFilesSelected?.(next);\n    },\n    [multiple, onFilesSelected]\n  );\n\n  return (\n    <div className={cn('w-full space-y-2', className)}>\n      <label\n        className={cn(\n          'relative flex min-h-[96px] cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border border-dashed p-6 text-center transition-all duration-150',\n          'border-black/[0.12] dark:border-white/[0.12] bg-zinc-50/60 dark:bg-[#0E0E13]/60',\n          'hover:border-emerald-500/40 hover:bg-emerald-500/[0.03] focus-visible:outline-none focus-safa',\n          isDragging && 'border-emerald-500 bg-emerald-500/[0.05] scale-[0.99]',\n          disabled && 'opacity-40 pointer-events-none'\n        )}\n        onDragOver={(e) => {\n          e.preventDefault();\n          setIsDragging(true);\n        }}\n        onDragLeave={() => setIsDragging(false)}\n        onDrop={(e) => {\n          e.preventDefault();\n          setIsDragging(false);\n          emit(e.dataTransfer.files);\n        }}\n      >\n        <UploadCloud className=\"w-5 h-5 text-zinc-400 dark:text-[#71717A]\" />\n        <span className=\"text-xs font-medium text-zinc-600 dark:text-[#92929B]\">{label}</span>\n        <input\n          ref={inputRef}\n          type=\"file\"\n          className=\"sr-only\"\n          accept={accept}\n          multiple={multiple}\n          disabled={disabled}\n          onChange={(e) => {\n            emit(e.target.files);\n            e.target.value = '';\n          }}\n        />\n      </label>\n\n      {files.length > 0 && (\n        <ul className=\"flex flex-wrap gap-1.5\" aria-label=\"Selected files\">\n          {files.map((f, i) => (\n            <li key={`${f.name}-${i}`}>\n              <Tag\n                variant=\"neutral\"\n                onRemove={() => setFiles((prev) => prev.filter((_, j) => j !== i))}\n              >\n                <FileIcon className=\"w-3 h-3 mr-1 inline\" aria-hidden=\"true\" />\n                {f.name}\n              </Tag>\n            </li>\n          ))}\n        </ul>\n      )}\n    </div>\n  );\n}\n",
+          "target": "src/components/ui/FileUpload.tsx"
+        }
+      ],
+      "docs": "Copy-and-paste primitive. Pairs with '@99/ui/styles.css' tokens; theme class on <html> drives .dark/.light."
+    },
+    {
       "name": "utils",
       "type": "registry:lib",
       "dependencies": [

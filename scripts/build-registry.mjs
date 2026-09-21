@@ -26,6 +26,8 @@ const KIT_COMPONENTS = [
   'ScrollArea', 'AspectRatio', 'Field', 'Alert',
   // Wave B
   'AlertDialog', 'RadioGroup', 'Table', 'Pagination',
+  // Wave C
+  'Stepper', 'Timeline', 'FileUpload',
 ];
 
 /** npm deps the kit requires at runtime (mirrors dist-kit manifest). */

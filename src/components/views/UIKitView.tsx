@@ -177,6 +177,10 @@ import {
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
+  Stepper,
+  Timeline,
+  TimelineItem,
+  FileUpload,
 } from '../ui';
 
 type SectionTab =
@@ -1291,6 +1295,48 @@ export function UIKitView() {
                 </PaginationItem>
               </PaginationContent>
             </Pagination>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4.7 WAVE C SPOTLIGHT — Stepper/Timeline/FileUpload                        */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <Compass className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                06. Wave C — Product Patterns
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                Stepper · Timeline · FileUpload
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">NEW</Badge>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Stepper</h3>
+            <Stepper steps={['Capture', 'Organize', 'Review']} current={1} />
+            <Stepper steps={['Draft', 'Review', 'Ship']} current={3} orientation="vertical" className="pt-2" />
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Timeline</h3>
+            <Timeline>
+              <TimelineItem timestamp="09:41" accent="emerald">Morning pages synced to vault.</TimelineItem>
+              <TimelineItem timestamp="12:15" accent="amber">Focus block started — 90m deep work.</TimelineItem>
+              <TimelineItem timestamp="18:02" accent="blue">Weekly review drafted automatically.</TimelineItem>
+            </Timeline>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">FileUpload</h3>
+            <FileUpload label="Drop attachments or click to browse" multiple />
           </div>
         </div>
       </section>

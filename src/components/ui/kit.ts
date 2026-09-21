@@ -180,3 +180,14 @@ export {
   PaginationNext,
   PaginationEllipsis,
 } from './Pagination';
+
+// =====================================================================
+// WAVE C — product patterns (Life-OS compositions)
+// =====================================================================
+
+export { Stepper } from './Stepper';
+export type { StepperProps } from './Stepper';
+export { Timeline, TimelineItem } from './Timeline';
+export type { TimelineItemProps } from './Timeline';
+export { FileUpload } from './FileUpload';
+export type { FileUploadProps } from './FileUpload';

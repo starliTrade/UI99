@@ -184,6 +184,17 @@ export {
 } from './Pagination';
 
 // =====================================================================
+// WAVE C — product patterns (Life-OS compositions)
+// =====================================================================
+
+export { Stepper } from './Stepper';
+export type { StepperProps } from './Stepper';
+export { Timeline, TimelineItem } from './Timeline';
+export type { TimelineItemProps } from './Timeline';
+export { FileUpload } from './FileUpload';
+export type { FileUploadProps } from './FileUpload';
+
+// =====================================================================
 // DOMAIN COMPOSITES (app-level; require AppContext/AuthContext/domain types)
 // =====================================================================
 
