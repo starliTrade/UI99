@@ -70,9 +70,6 @@ export function SegmentedControl<T extends string = string>({
       case 'ArrowLeft':
         next = isRTL ? currentIndex + 1 : currentIndex - 1;
         break;
-      case 'ArrowLeft':
-        next = isRTL ? currentIndex - 1 : currentIndex - 1;
-        break;
       case 'ArrowUp':
         next = currentIndex - 1;
         break;

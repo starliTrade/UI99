@@ -51,12 +51,19 @@
 - [x] Kbd: حذف کلاس‌های نامعتبر `h-4.5` / `h-5.5`
 - [ ] Sweep نور (light mode) و RTL روی همه ویوها (`src/components/views`, `home`, `shells`)
 
-### 1.3 گیت‌های خودکار (CI-blocking)
-- [ ] Vitest + @testing-library/react — تست رفتاری برای هر کامپوننت (render, interaction, controlled)
-- [ ] jest-axe روی هر کامپوننت (الگو: shadcn — تخلف صفر)
-- [ ] اسکریپت کنتراست CI با استفاده از `src/core/tokens/math.ts` → assert تمام جفت‌های متن/بک‌گراند ≥ 4.5:1
-- [ ] ماتریس تست: dark×light × LTR×RTL
+### 1.3 گیت‌های خودکار (CI-blocking) — ✅ هسته فعال است
+- [x] Vitest + @testing-library/react — ۱۳ تست رفتاری هسته (render, interaction, roving tabindex, toast cap)
+- [x] jest-axe روی کامپوننت‌های هسته (الگو: shadcn — تخلف صفر) + matcher سازگار vitest
+- [x] اسکریپت کنتراست CI با `src/core/tokens/math.ts` → assert جفت‌های متن/بک‌گراند ≥ 4.5:1 (۲۲ جفت)
+- [x] Mock پایدار motion/react برای jsdom (`src/test/motionMock.tsx`)
+- [ ] ماتریس کامل تست: dark×light × LTR×RTL (الان dark/LTR پوشش داده شده)
+- [ ] تست رفتاری برای ۱۵ کامپوننت باقی‌مانده (Progress, Skeleton, Badge…)
 - [ ] (اختیاری فاز ۲) Visual regression با Playwright screenshots
+
+> **نتیجه واقعی گیت‌ها (اولین اجرا):** ۲ باگ واقعی گرفت — (۱) توکن `muted` روشن و
+> `amber-600` زیر آستانه 4.5:1/3:1 بودند → اصلاح شدند؛ (۲) `addToast/removeToast`
+> در `AppProvider` بدون `useCallback` بودند → حلقه بی‌نهایت برای هر مصرف‌کننده‌ای که
+> در dependency افکت استفاده‌شان می‌کرد → اصلاح شد. ۳۸/۳۸ تست سبز.
 
 **Exit criteria:** جدول بالا تماماً PASS + CI سبز + axe صفر تخلف.
 

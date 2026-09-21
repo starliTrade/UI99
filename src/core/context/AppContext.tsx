@@ -3,7 +3,7 @@
  * Global UI navigation, modals, theme mode (Obsidian Dark / Matte Light), and state.
  */
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { ObjectType } from '../types/objects';
 
 export type NavTab = 'HOME' | 'UIKIT' | 'DOCS' | 'FOUNDATIONS' | 'BLOCKS' | 'LIFE' | 'CREATE' | 'MEDIA' | 'MORE' | 'INBOX';
@@ -90,35 +90,44 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [activeChip, setActiveChip] = useState<QuickChip>('ALL');
   const [prioritySearch, setPrioritySearch] = useState<string>('');
 
-  const setThemeMode = (mode: ThemeMode) => {
+  // All context functions are memoized: consumers rely on stable identities
+  // in effect dependency arrays (an unstable addToast causes infinite update
+  // loops in any consumer syncing state inside useEffect).
+  const setThemeMode = useCallback((mode: ThemeMode) => {
     setThemeModeState(mode);
     localStorage.setItem('safa_theme_mode', mode);
-  };
+  }, []);
 
-  const toggleTheme = () => {
-    const next = themeMode === 'dark' ? 'light' : 'dark';
-    setThemeMode(next);
-  };
+  const toggleTheme = useCallback(() => {
+    setThemeModeState((prev) => {
+      const next = prev === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('safa_theme_mode', next);
+      return next;
+    });
+  }, []);
 
-  const openCapture = (type?: ObjectType) => {
+  const openCapture = useCallback((type?: ObjectType) => {
     setCaptureDefaultType(type || null);
     setIsCaptureOpen(true);
-  };
+  }, []);
 
-  const addToast = (
-    message: string,
-    type: 'info' | 'success' | 'warning' | 'rose' | 'amber' | 'purple' = 'rose'
-  ) => {
-    const id = `toast_${Date.now()}_${Math.random()}`;
-    const newToast: ToastItem = { id, message, type };
-    setToasts((prev) => [...prev, newToast]);
-    // Auto-dismiss timing lives in <ToastContainer> so it can pause on
-    // hover/focus (WCAG 2.2.1 Timing Adjustable).
-  };
+  const addToast = useCallback(
+    (
+      message: string,
+      type: 'info' | 'success' | 'warning' | 'rose' | 'amber' | 'purple' = 'rose'
+    ) => {
+      const id = `toast_${Date.now()}_${Math.random()}`;
+      const newToast: ToastItem = { id, message, type };
+      setToasts((prev) => [...prev, newToast]);
+      // Auto-dismiss timing lives in <ToastContainer> so it can pause on
+      // hover/focus (WCAG 2.2.1 Timing Adjustable).
+    },
+    []
+  );
 
-  const removeToast = (id: string) => {
+  const removeToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
-  };
+  }, []);
 
   return (
     <AppContext.Provider

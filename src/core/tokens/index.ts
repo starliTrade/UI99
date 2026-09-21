@@ -117,7 +117,7 @@ export const tokens = {
       muted: '#9494A0',                 // Caption text
       subtle: '#B5B5BE',                // Hairline text
       accentEmerald: '#059669',
-      accentAmber: '#D97706',
+      accentAmber: '#B45309', // amber-700 — amber-600 fails WCAG UI 3:1 on #F5F5F8 (2.93:1)
       accentRose: '#E11D48',
       accentSapphire: '#2563EB',
       accentAmethyst: '#7C3AED',
