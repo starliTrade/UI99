@@ -786,7 +786,7 @@ export function DesignSystemHomeView() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-zinc-500 pt-4 border-t border-black/[0.04] dark:border-white/[0.03]">
-          <span>© 2026 UI \ [99]. Built with Obsidian Velvet Depth & Linear Velocity.</span>
+          <span>© 2026 UI \ [99]. Velvet Depth & Linear Velocity · build <b className="text-emerald-500">v1.0-velvet</b></span>
           <span>MIT License</span>
         </div>
       </footer>
