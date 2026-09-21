@@ -36,6 +36,7 @@ import {
   Code2,
   Shield,
   Command,
+  Palette,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
 import {
@@ -56,14 +57,90 @@ import {
   UI99BrandLogo,
 } from '../ui';
 
+const COMPONENT_INDEX: { name: string; slug: string; cat: 'Actions' | 'Inputs' | 'Navigation' | 'Data' | 'Overlays' | 'Layout' | 'Feedback' | 'Display' }[] = [
+  { name: 'Button', slug: 'button', cat: 'Actions' },
+  { name: 'IconButton', slug: 'icon-button', cat: 'Actions' },
+  { name: 'Toggle', slug: 'toggle', cat: 'Actions' },
+  { name: 'ToggleGroup', slug: 'toggle-group', cat: 'Actions' },
+  { name: 'CopyButton', slug: 'copy-button', cat: 'Actions' },
+  { name: 'Input', slug: 'input', cat: 'Inputs' },
+  { name: 'Textarea', slug: 'textarea', cat: 'Inputs' },
+  { name: 'SearchBar', slug: 'search-bar', cat: 'Inputs' },
+  { name: 'Switch', slug: 'switch', cat: 'Inputs' },
+  { name: 'Checkbox', slug: 'checkbox', cat: 'Inputs' },
+  { name: 'RadioGroup', slug: 'radio-group', cat: 'Inputs' },
+  { name: 'Slider', slug: 'slider', cat: 'Inputs' },
+  { name: 'DatePicker', slug: 'date-picker', cat: 'Inputs' },
+  { name: 'TimePicker', slug: 'time-picker', cat: 'Inputs' },
+  { name: 'Combobox', slug: 'combobox', cat: 'Inputs' },
+  { name: 'Rating', slug: 'rating', cat: 'Inputs' },
+  { name: 'OTPInput', slug: 'otp-input', cat: 'Inputs' },
+  { name: 'NumberField', slug: 'number-field', cat: 'Inputs' },
+  { name: 'FileUpload', slug: 'file-upload', cat: 'Inputs' },
+  { name: 'Label', slug: 'label', cat: 'Inputs' },
+  { name: 'SegmentedControl', slug: 'segmented-control', cat: 'Navigation' },
+  { name: 'Breadcrumb', slug: 'breadcrumb', cat: 'Navigation' },
+  { name: 'Tabs', slug: 'tabs', cat: 'Navigation' },
+  { name: 'Pagination', slug: 'pagination', cat: 'Navigation' },
+  { name: 'Menubar', slug: 'menubar', cat: 'Navigation' },
+  { name: 'NavigationMenu', slug: 'navigation-menu', cat: 'Navigation' },
+  { name: 'Sidebar', slug: 'sidebar', cat: 'Navigation' },
+  { name: 'CommandBar', slug: 'command-bar', cat: 'Navigation' },
+  { name: 'Table', slug: 'table', cat: 'Data' },
+  { name: 'Badge', slug: 'badge', cat: 'Data' },
+  { name: 'Progress', slug: 'progress', cat: 'Data' },
+  { name: 'Sparkline', slug: 'sparkline', cat: 'Data' },
+  { name: 'DonutRing', slug: 'donut-ring', cat: 'Data' },
+  { name: 'HeatMapCalendar', slug: 'heat-map-calendar', cat: 'Data' },
+  { name: 'StatTile', slug: 'stat-tile', cat: 'Data' },
+  { name: 'MeterBar', slug: 'meter-bar', cat: 'Data' },
+  { name: 'TrendDelta', slug: 'trend-delta', cat: 'Data' },
+  { name: 'Timeline', slug: 'timeline', cat: 'Data' },
+  { name: 'Stepper', slug: 'stepper', cat: 'Data' },
+  { name: 'Kbd', slug: 'kbd', cat: 'Data' },
+  { name: 'Dialog', slug: 'dialog', cat: 'Overlays' },
+  { name: 'AlertDialog', slug: 'alert-dialog', cat: 'Overlays' },
+  { name: 'Modal', slug: 'modal', cat: 'Overlays' },
+  { name: 'Sheet', slug: 'sheet', cat: 'Overlays' },
+  { name: 'Popover', slug: 'popover', cat: 'Overlays' },
+  { name: 'DropdownMenu', slug: 'dropdown-menu', cat: 'Overlays' },
+  { name: 'Tooltip', slug: 'tooltip', cat: 'Overlays' },
+  { name: 'HoverCard', slug: 'hover-card', cat: 'Overlays' },
+  { name: 'Command', slug: 'command', cat: 'Overlays' },
+  { name: 'Separator', slug: 'separator', cat: 'Layout' },
+  { name: 'ScrollArea', slug: 'scroll-area', cat: 'Layout' },
+  { name: 'AspectRatio', slug: 'aspect-ratio', cat: 'Layout' },
+  { name: 'Card', slug: 'card', cat: 'Layout' },
+  { name: 'Collapsible', slug: 'collapsible', cat: 'Layout' },
+  { name: 'Accordion', slug: 'accordion', cat: 'Layout' },
+  { name: 'Alert', slug: 'alert', cat: 'Feedback' },
+  { name: 'EmptyState', slug: 'empty-state', cat: 'Feedback' },
+  { name: 'LoadingState', slug: 'loading-state', cat: 'Feedback' },
+  { name: 'Skeleton', slug: 'skeleton', cat: 'Feedback' },
+  { name: 'AvatarStack', slug: 'avatar-stack', cat: 'Display' },
+  { name: 'CodeBlock', slug: 'code-block', cat: 'Display' },
+  { name: 'Carousel', slug: 'carousel', cat: 'Display' },
+  { name: 'Swatch', slug: 'swatch', cat: 'Display' },
+];
+
 export function DesignSystemHomeView() {
   const { themeMode, addToast, setCurrentTab } = useApp();
   const isDark = themeMode === 'dark';
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [explorerQuery, setExplorerQuery] = useState('');
+  const [explorerCat, setExplorerCat] = useState<'ALL' | 'Actions' | 'Inputs' | 'Navigation' | 'Data' | 'Overlays' | 'Layout' | 'Feedback' | 'Display'>('ALL');
+  const explorerQuery_fn = (v: string) => v;
 
   // Live Showcase interactive state
   const [activeShowcaseTab, setActiveShowcaseTab] = useState<'cards' | 'forms' | 'badges' | 'cli'>('cards');
+  const [pm, setPm] = useState<'npm' | 'pnpm' | 'bun' | 'yarn'>('npm');
+  const PM_ADD: Record<typeof pm, string> = {
+    npm: 'npx @99/ui add button card',
+    pnpm: 'pnpm dlx @99/ui add button card',
+    bun: 'bunx @99/ui add button card',
+    yarn: 'yarn dlx @99/ui add button card',
+  };
   const [sliderVal, setSliderVal] = useState(72);
   const [switchVal, setSwitchVal] = useState(true);
   const [inputVal, setInputVal] = useState('contact@atelier99.design');
@@ -142,6 +219,16 @@ export function DesignSystemHomeView() {
 
           <Button
             size="md"
+            variant="outline"
+            icon={<Github className="w-4 h-4" />}
+            onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
+            className="w-full sm:w-auto min-h-[44px]"
+          >
+            GitHub
+          </Button>
+
+          <Button
+            size="md"
             variant="secondary"
             onClick={() => setCurrentTab('UIKIT')}
             icon={<Layers className="w-4 h-4" />}
@@ -177,10 +264,10 @@ export function DesignSystemHomeView() {
       {/* ========================================================================= */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         {[
-          { value: '25', label: 'Primitives', sub: 'registry:ui items' },
+          { value: '63', label: 'Components', sub: 'registry:ui items' },
           { value: '100+', label: 'Variants', sub: 'full size matrix' },
           { value: '0', label: 'Axe Violations', sub: 'CI-blocked gate' },
-          { value: 'AAA', label: 'Contrast', sub: 'computed, not claimed' },
+          { value: '2', label: 'Themes', sub: 'Obsidian · Porcelain' },
         ].map((stat) => (
           <div
             key={stat.label}
@@ -429,23 +516,33 @@ export function DesignSystemHomeView() {
                 </p>
               </div>
 
+              <div className="flex items-center gap-1 bg-white dark:bg-white/[0.03] p-1 rounded-xl border border-black/[0.04] dark:border-white/[0.03] w-fit">
+                {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((mgr) => (
+                  <button
+                    key={mgr}
+                    type="button"
+                    onClick={() => setPm(mgr)}
+                    className={`px-2.5 py-1 rounded-lg text-[11px] font-mono cursor-pointer transition-colors min-h-[28px] ${
+                      pm === mgr
+                        ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 font-semibold'
+                        : 'text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white'
+                    }`}
+                  >
+                    {mgr}
+                  </button>
+                ))}
+              </div>
+
               <div className="p-4 rounded-2xl bg-zinc-950 border border-white/[0.06] font-mono text-xs text-zinc-200 space-y-2">
                 <div className="flex items-center justify-between text-zinc-400 border-b border-white/[0.06] pb-2">
                   <span>Terminal</span>
                   <span className="text-[10px] text-emerald-400">bash</span>
                 </div>
                 <div className="flex items-center justify-between pt-1">
-                  <span className="text-emerald-400">
-                    npx @99/ui add button card status-badge
-                  </span>
+                  <span className="text-emerald-400">{PM_ADD[pm]}</span>
                   <button
                     type="button"
-                    onClick={() =>
-                      copyToClipboard(
-                        'npx @99/ui add button card status-badge',
-                        'cli-box'
-                      )
-                    }
+                    onClick={() => copyToClipboard(PM_ADD[pm], 'cli-box')}
                     className="p-1 rounded hover:bg-white/10 transition-colors cursor-pointer text-zinc-400 hover:text-white"
                   >
                     {copiedKey === 'cli-box' ? (
@@ -466,6 +563,80 @@ export function DesignSystemHomeView() {
             </div>
           )}
         </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 2.5 COMPONENT EXPLORER — searchable 63-item grid (shadcn parity)          */}
+      {/* ========================================================================= */}
+      <section className="space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-500 font-bold uppercase tracking-wider">
+              <Layers className="w-3.5 h-3.5" />
+              <span>Registry</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-white">
+              63 Components. Zero lock-in.
+            </h2>
+          </div>
+          <div className="relative w-full sm:w-64">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400 pointer-events-none" />
+            <input
+              type="text"
+              value={explorerQuery}
+              onChange={(e) => setExplorerQuery(explorerQuery_fn(e.target.value))}
+              placeholder="Search components…"
+              aria-label="Search components"
+              className="w-full h-10 pl-9 pr-3 rounded-xl bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] text-xs text-zinc-950 dark:text-zinc-100 placeholder:text-zinc-400 focus-visible:outline-none focus-safa-inset"
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 -mx-2 px-2">
+          {(['ALL', 'Actions', 'Inputs', 'Navigation', 'Data', 'Overlays', 'Layout', 'Feedback', 'Display'] as const).map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setExplorerCat(cat)}
+              className={`px-3 py-1.5 rounded-full text-[11px] font-mono whitespace-nowrap cursor-pointer transition-colors min-h-[32px] border ${
+                explorerCat === cat
+                  ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 border-transparent font-semibold'
+                  : 'bg-transparent text-zinc-500 border-black/[0.06] dark:text-zinc-400 dark:border-white/[0.06] hover:text-zinc-950 dark:hover:text-white'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+          {COMPONENT_INDEX.filter(
+            (c) =>
+              (explorerCat === 'ALL' || c.cat === explorerCat) &&
+              c.name.toLowerCase().includes(explorerQuery.toLowerCase())
+          ).map((c) => (
+            <button
+              key={c.name}
+              type="button"
+              onClick={() => copyToClipboard(`npx @99/ui add ${c.slug}`, `explorer-${c.slug}`)}
+              className="group flex items-center justify-between gap-2 px-3.5 py-3 rounded-xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.035] text-left cursor-pointer transition-all duration-150 hover:border-emerald-500/35 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] focus-visible:outline-none focus-safa min-h-[44px]"
+              title={`Copy: npx @99/ui add ${c.slug}`}
+            >
+              <span className="text-xs font-medium text-zinc-800 dark:text-zinc-200 truncate">{c.name}</span>
+              <span className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                {copiedKey === `explorer-${c.slug}` ? (
+                  <Check className="w-3.5 h-3.5 text-emerald-500" />
+                ) : (
+                  <Terminal className="w-3 h-3 text-zinc-400" />
+                )}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <p className="text-[11px] font-mono text-zinc-400 dark:text-zinc-600">
+          Click any component to copy its install command · powered by the same registry behind npx @99/ui
+        </p>
       </section>
 
       {/* ========================================================================= */}
@@ -586,6 +757,84 @@ export function DesignSystemHomeView() {
           <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
             100% code ownership. Copy source code directly into your components folder with Tailwind v4 classes and zero external wrapper dependencies.
           </p>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4.5 THEMES — Obsidian × Porcelain                                         */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="space-y-1">
+          <div className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-500 font-bold uppercase tracking-wider">
+            <Palette className="w-3.5 h-3.5" />
+            <span>Theme Presets</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-white">
+            Two token universes, one audit bar.
+          </h2>
+          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-xl">
+            Every preset passes the same WCAG-computed contrast gate. Install as a registry theme item — no runtime JS.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {([
+            {
+              id: 'safa-theme',
+              name: 'Obsidian Dark',
+              desc: 'Velvet obsidian canvas with specular rim highlights. The default.',
+              canvas: '#06070A',
+              swatches: ['#0B0C11', '#131318', '#FFFFFF', '#10B981', '#B45309'],
+              dark: true,
+            },
+            {
+              id: 'safa-theme-porcelain',
+              name: 'Porcelain Light',
+              desc: 'Warm bone-white ceramic with ink text and copper focus.',
+              canvas: '#FAF9F6',
+              swatches: ['#FFFFFF', '#F6F5F1', '#1C1917', '#059669', '#B45309'],
+              dark: false,
+            },
+          ] as const).map((theme) => (
+            <div
+              key={theme.id}
+              className="p-6 rounded-3xl border border-black/[0.05] dark:border-white/[0.03] bg-zinc-50/70 dark:bg-[#0B0C11] space-y-4"
+            >
+              <div
+                className="h-24 rounded-2xl border p-4 flex flex-col justify-between"
+                style={{ background: theme.canvas, borderColor: theme.dark ? 'rgba(255,255,255,0.06)' : 'rgba(28,25,23,0.08)' }}
+              >
+                <span
+                  className="text-xs font-mono font-bold"
+                  style={{ color: theme.dark ? '#EDEDEF' : '#1C1917' }}
+                >
+                  {theme.name}
+                </span>
+                <div className="flex gap-2">
+                  {theme.swatches.map((hex) => (
+                    <span
+                      key={hex}
+                      className="w-7 h-7 rounded-lg border"
+                      style={{ background: hex, borderColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(28,25,23,0.1)' }}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-3">
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{theme.desc}</p>
+                <div className="flex items-center gap-2">
+                  <Button
+                    size="xs"
+                    variant="outline"
+                    onClick={() => copyToClipboard(`npx @99/ui add ${theme.id}`, `theme-${theme.id}`)}
+                  >
+                    {copiedKey === `theme-${theme.id}` ? 'Copied!' : 'Copy install'}
+                  </Button>
+                  <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-600">registry:theme</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
