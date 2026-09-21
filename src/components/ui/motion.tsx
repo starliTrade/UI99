@@ -12,7 +12,8 @@
  *    variants — the timeline exists, the travel does not.
  */
 
-import { useReducedMotion } from 'motion/react';
+import { useReducedMotion, motion, type MotionProps } from 'motion/react';
+import React from 'react';
 
 /** Shared spring family. Import these — never hand-roll transition objects. */
 export const springs = {
@@ -52,3 +53,29 @@ export const overlayMotion = {
   animate: { opacity: 1, scale: 1, y: 0, transition: springs.overlay },
   exit: { opacity: 0, scale: 0.98, y: 6, transition: { duration: 0.14, ease: [0.3, 0, 0.4, 1] as const } },
 } as const;
+
+/**
+ * Scroll-reveal wrapper — the ONE way sections enter the viewport.
+ * distance-based rise + micro blur; once:true (no re-trigger churn);
+ * reduced-motion flattens travel but keeps the fade.
+ */
+export function Reveal({
+  index = 0,
+  className = '',
+  children,
+  ...rest
+}: { index?: number; className?: string; children: React.ReactNode } & Omit<MotionProps, 'initial' | 'animate'>) {
+  const reduced = useReducedMotion();
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: reduced ? 0 : 28 - Math.min(index, 3) * 0, filter: reduced ? 'none' : 'blur(8px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ ...springs.enter, delay: reduced ? 0 : Math.min(index * 0.045, 0.14) }}
+      className={className}
+      {...rest}
+    >
+      {children}
+    </motion.div>
+  );
+}

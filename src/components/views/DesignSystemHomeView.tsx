@@ -12,7 +12,7 @@
  */
 
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import {
   ArrowRight,
   Terminal,
@@ -39,7 +39,7 @@ import {
   Palette,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
-import { useChoreography } from '../ui/motion';
+import { useChoreography, Reveal } from '../ui/motion';
 import {
   Button,
   Card,
@@ -129,6 +129,26 @@ export function DesignSystemHomeView() {
   const isDark = themeMode === 'dark';
 
   const { reveal } = useChoreography();
+
+  // — 3D pointer-tracked hero tilt (spring-damped,Apple-grade restraint) —
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const springTiltX = useSpring(tiltX, { stiffness: 150, damping: 20 });
+  const springTiltY = useSpring(tiltY, { stiffness: 150, damping: 20 });
+  const heroRotateX = useTransform(springTiltY, [-0.5, 0.5], [6, -6]);
+  const heroRotateY = useTransform(springTiltX, [-0.5, 0.5], [-8, 8]);
+  const glowX = useTransform(springTiltX, [-0.5, 0.5], ['38%', '62%']);
+  const glowY = useTransform(springTiltY, [-0.5, 0.5], ['30%', '70%']);
+
+  const onHeroPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    tiltX.set((e.clientX - rect.left) / rect.width - 0.5);
+    tiltY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+  const onHeroPointerLeave = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+  };
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [explorerQuery, setExplorerQuery] = useState('');
   const [explorerCat, setExplorerCat] = useState<'ALL' | 'Actions' | 'Inputs' | 'Navigation' | 'Data' | 'Overlays' | 'Layout' | 'Feedback' | 'Display'>('ALL');
@@ -163,102 +183,123 @@ export function DesignSystemHomeView() {
   return (
     <div className="w-full max-w-5xl mx-auto space-y-20 sm:space-y-28 pb-20 px-2 sm:px-4">
       {/* ========================================================================= */}
-      {/* 1. HERO SECTION: Pure shadcn/ui Minimalist & High-Impact Typography       */}
+      {/* 1. HERO — 3D depth stage: perspective tilt, cursor aurora, live parallax */}
       {/* ========================================================================= */}
-      <section className="relative pt-8 sm:pt-16 flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-        {/* Subtle Ambient Radial Lighting */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[320px] bg-emerald-500/[0.035] dark:bg-emerald-400/[0.025] blur-[130px] rounded-full pointer-events-none -z-10" />
-
-        {/* Announcement Pill (shadcn-style) */}
+        <section
+        className="relative pt-6 sm:pt-14 pb-4 max-w-5xl mx-auto"
+        style={{ perspective: 1200 }}
+        onPointerMove={onHeroPointerMove}
+        onPointerLeave={onHeroPointerLeave}
+      >
+        {/* Cursor-tracking aurora glow (spring-damped) */}
         <motion.div
-          {...reveal(0)}
-          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-800 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.04] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)] cursor-pointer hover:border-emerald-500/40 transition-all duration-200"
-          onClick={() => setCurrentTab('DOCS')}
-        >
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100">UI \ [99] v1.0</span>
-          <span className="text-zinc-400 dark:text-zinc-600">/</span>
-          <span className="text-zinc-600 dark:text-zinc-400">Obsidian Velvet Registry</span>
-          <ChevronRight className="w-3 h-3 text-zinc-400" />
-        </motion.div>
+          aria-hidden="true"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] rounded-full blur-[130px] pointer-events-none -z-10"
+          style={{
+            background: 'radial-gradient(closest-side, rgba(16,185,129,0.10), transparent)',
+            left: glowX,
+            top: glowY,
+          }}
+        />
 
-        {/* Headline */}
         <motion.div
-          {...reveal(1)}
-          className="space-y-4"
+          style={{ rotateX: heroRotateX, rotateY: heroRotateY, transformStyle: 'preserve-3d' }}
+          className="relative flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto"
         >
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.08]">
-            Build your component library.
-          </h1>
-
-          <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed">
-            Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source. Engineered with true velvet obsidian depth and Linear speed.
-          </p>
-        </motion.div>
-
-        {/* CTA Button Group (shadcn-style) — stacked full-width on mobile */}
-        <motion.div
-          {...reveal(2)}
-          className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 pt-2 w-full"
-        >
-          <Button
-            size="md"
-            variant="primary"
+          {/* Layer z=0 — announcement pill (reveal(0)) */}
+          <motion.div
+            {...reveal(0)}
+            style={{ transform: 'translateZ(30px)' }}
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-800 dark:text-zinc-300 border border-black/[0.06] dark:border-white/[0.04] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)] cursor-pointer hover:border-emerald-500/40 transition-all duration-200"
             onClick={() => setCurrentTab('DOCS')}
-            icon={<ArrowRight className="w-4 h-4" />}
-            className="w-full sm:w-auto min-h-[44px]"
           >
-            Get Started
-          </Button>
-
-          <Button
-            size="md"
-            variant="outline"
-            icon={<Github className="w-4 h-4" />}
-            onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
-            className="w-full sm:w-auto min-h-[44px]"
-          >
-            GitHub
-          </Button>
-
-          <Button
-            size="md"
-            variant="secondary"
-            onClick={() => setCurrentTab('UIKIT')}
-            icon={<Layers className="w-4 h-4" />}
-            className="w-full sm:w-auto min-h-[44px]"
-          >
-            Browse Components
-          </Button>
-
-          {/* Quick CLI Copy Pill */}
-          <div className="inline-flex items-center justify-between sm:justify-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.06] dark:border-white/[0.04] text-xs font-mono text-zinc-800 dark:text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)] w-full sm:w-auto min-h-[44px]">
-            <span className="truncate">
-              <span className="text-zinc-500 select-none">$ </span>
-              <span className="font-semibold">npx @99/ui init</span>
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            <button
-              type="button"
-              onClick={() => copyToClipboard('npx @99/ui init', 'hero-cli')}
-              aria-label="Copy install command to clipboard"
-              className="ml-1 p-2 -m-1 rounded-lg hover:text-black dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer relative after:absolute after:-inset-1 after:content-['']"
+            <span className="font-semibold text-zinc-900 dark:text-zinc-100">UI \ [99] v1.0</span>
+            <span className="text-zinc-400 dark:text-zinc-600">/</span>
+            <span className="text-zinc-600 dark:text-zinc-400">Obsidian Velvet Registry</span>
+            <ChevronRight className="w-3 h-3 text-zinc-400" />
+          </motion.div>
+
+          {/* Layer z=55 — headline */}
+          <motion.div
+            {...reveal(1)}
+            style={{ transform: 'translateZ(55px)' }}
+            className="space-y-4"
+          >
+            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.08]">
+              Build your component library.
+            </h1>
+            <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed">
+              Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source. Engineered with true velvet obsidian depth and Linear speed.
+            </p>
+          </motion.div>
+
+          {/* Layer z=40 — CTA row */}
+          <motion.div
+            {...reveal(2)}
+            style={{ transform: 'translateZ(40px)' }}
+            className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 pt-2 w-full"
+          >
+            <Button
+              size="md"
+              variant="primary"
+              onClick={() => setCurrentTab('DOCS')}
+              icon={<ArrowRight className="w-4 h-4" />}
+              className="w-full sm:w-auto min-h-[44px]"
             >
-              {copiedKey === 'hero-cli' ? (
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
-              ) : (
-                <Copy className="w-3.5 h-3.5 text-zinc-400" />
-              )}
-            </button>
-          </div>
+              Get Started
+            </Button>
+
+            <Button
+              size="md"
+              variant="outline"
+              icon={<Github className="w-4 h-4" />}
+              onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
+              className="w-full sm:w-auto min-h-[44px]"
+            >
+              GitHub
+            </Button>
+
+            <Button
+              size="md"
+              variant="secondary"
+              icon={<Layers className="w-4 h-4" />}
+              onClick={() => setCurrentTab('UIKIT')}
+              className="w-full sm:w-auto min-h-[44px]"
+            >
+              Browse Components
+            </Button>
+
+            {/* Quick CLI copy pill */}
+            <div className="inline-flex items-center justify-between sm:justify-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.06] dark:border-white/[0.04] text-xs font-mono text-zinc-800 dark:text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)] w-full sm:w-auto min-h-[44px]">
+              <span className="truncate">
+                <span className="text-zinc-500 select-none">$ </span>
+                <span className="font-semibold">npx @99/ui init</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => copyToClipboard('npx @99/ui init', 'hero-cli')}
+                aria-label="Copy install command to clipboard"
+                className="ml-1 p-2 -m-1 rounded-lg hover:text-black dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer relative after:absolute after:-inset-1 after:content-['']"
+              >
+                {copiedKey === 'hero-cli' ? (
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                ) : (
+                  <Copy className="w-3.5 h-3.5 text-zinc-400" />
+                )}
+              </button>
+            </div>
+          </motion.div>
         </motion.div>
       </section>
 
       {/* ========================================================================= */}
       {/* 1.5 SYSTEM STATS STRIP — real numbers, mobile-first 2x2 grid              */}
       {/* ========================================================================= */}
+        <Reveal>
       <section className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         {[
           { value: '63', label: 'Components', sub: 'registry:ui items' },
@@ -278,10 +319,12 @@ export function DesignSystemHomeView() {
           </div>
         ))}
       </section>
+      </Reveal>
 
       {/* ========================================================================= */}
       {/* 2. SHADCN-STYLE INTERACTIVE SHOWCASE STAGE                                */}
       {/* ========================================================================= */}
+        <Reveal index={1}>
       <section className="space-y-4">
         {/* Showcase Header Tabs */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.06] dark:border-white/[0.04] pb-3">
@@ -561,10 +604,12 @@ export function DesignSystemHomeView() {
           )}
         </div>
       </section>
+      </Reveal>
 
       {/* ========================================================================= */}
       {/* 2.5 COMPONENT EXPLORER — searchable 63-item grid (shadcn parity)          */}
       {/* ========================================================================= */}
+        <Reveal index={1}>
       <section className="space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="space-y-1">
@@ -635,10 +680,12 @@ export function DesignSystemHomeView() {
           Click any component to copy its install command · powered by the same registry behind npx @99/ui
         </p>
       </section>
+      </Reveal>
 
       {/* ========================================================================= */}
       {/* 3. MATHEMATICAL RADII & ANTI-SLOP SYSTEM                                   */}
       {/* ========================================================================= */}
+        <Reveal index={1}>
       <section className="space-y-6">
         <div className="space-y-1">
           <div className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-500 font-bold uppercase tracking-wider">
@@ -715,10 +762,12 @@ export function DesignSystemHomeView() {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* ========================================================================= */}
       {/* 4. DESIGN PILLARS (Anti-Slop, Velvet Base & Linear Speed)                 */}
       {/* ========================================================================= */}
+        <Reveal index={1}>
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-6 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
           <div className="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-xs font-bold">
@@ -756,10 +805,12 @@ export function DesignSystemHomeView() {
           </p>
         </div>
       </section>
+      </Reveal>
 
       {/* ========================================================================= */}
       {/* 4.5 THEMES — Obsidian × Porcelain                                         */}
       {/* ========================================================================= */}
+        <Reveal index={1}>
       <section className="space-y-6">
         <div className="space-y-1">
           <div className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-500 font-bold uppercase tracking-wider">
@@ -834,6 +885,7 @@ export function DesignSystemHomeView() {
           ))}
         </div>
       </section>
+      </Reveal>
 
       {/* ========================================================================= */}
       {/* 5. FOOTER                                                                 */}
