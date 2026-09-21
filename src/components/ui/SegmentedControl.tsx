@@ -1,10 +1,12 @@
 /**
- * SAFA — Unified Velvet Segmented Control (Build 02.2)
+ * SAFA — Unified Velvet Segmented Control (Build 02.3)
  * Seamless dark container matching #111114 with satin pill transitions.
  * Authentic Apple / Linear tactile active cushion for light and dark modes.
+ * WAI-ARIA radiogroup pattern: roving tabindex, Arrow/Home/End navigation,
+ * Space/Enter selection, RTL-aware arrow mapping (WCAG-compliant keyboard UX).
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'motion/react';
 import { useApp } from '../../core/context/AppContext';
 
@@ -19,6 +21,7 @@ export interface SegmentedControlProps<T extends string = string> {
   options: SegmentOption<T>[];
   value: T;
   onChange: (val: T) => void;
+  label?: string;
   size?: 'sm' | 'md';
   fullWidth?: boolean;
   className?: string;
@@ -28,17 +31,75 @@ export function SegmentedControl<T extends string = string>({
   options,
   value,
   onChange,
+  label,
   size = 'md',
   fullWidth = true,
   className = '',
 }: SegmentedControlProps<T>) {
   const { themeMode } = useApp();
   const isDark = themeMode === 'dark';
+  const groupRef = useRef<HTMLDivElement>(null);
   const padMap = size === 'sm' ? 'p-1' : 'p-1.5';
   const itemPad = size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-4 py-2 text-xs sm:text-sm';
 
+  const isRTL =
+    typeof document !== 'undefined' &&
+    (document.documentElement.getAttribute('dir') === 'rtl' ||
+      document.documentElement.dir === 'rtl');
+
+  const selectAt = (index: number) => {
+    if (index < 0 || index >= options.length) return;
+    onChange(options[index].value);
+    // Move focus to the newly selected tab-stop button (roving tabindex)
+    const buttons = groupRef.current?.querySelectorAll<HTMLButtonElement>('[role="radio"]');
+    buttons?.[index]?.focus();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const currentIndex = options.findIndex((o) => o.value === value);
+    let next: number | null = null;
+
+    switch (e.key) {
+      case 'ArrowDown':
+        next = currentIndex + 1;
+        break;
+      case 'ArrowRight':
+        // In RTL, ArrowRight moves to the previous (visually-left) segment
+        next = isRTL ? currentIndex - 1 : currentIndex + 1;
+        break;
+      case 'ArrowLeft':
+        next = isRTL ? currentIndex + 1 : currentIndex - 1;
+        break;
+      case 'ArrowLeft':
+        next = isRTL ? currentIndex - 1 : currentIndex - 1;
+        break;
+      case 'ArrowUp':
+        next = currentIndex - 1;
+        break;
+      case 'Home':
+        next = 0;
+        break;
+      case 'End':
+        next = options.length - 1;
+        break;
+      case ' ':
+      case 'Enter':
+        e.preventDefault();
+        return;
+      default:
+        return;
+    }
+
+    e.preventDefault();
+    if (next !== null) selectAt(next);
+  };
+
   return (
     <div
+      ref={groupRef}
+      role="radiogroup"
+      aria-label={label}
+      onKeyDown={handleKeyDown}
       className={`${
         fullWidth ? 'w-full flex' : 'inline-flex'
       } items-center rounded-full transition-all overflow-x-auto no-scrollbar ${
@@ -50,12 +111,16 @@ export function SegmentedControl<T extends string = string>({
       <div className={`flex items-center gap-1 ${fullWidth ? 'w-full' : ''}`}>
         {options.map((opt) => {
           const isSelected = opt.value === value;
+          const selectedIndex = options.findIndex((o) => o.value === value);
+          const isFocusTarget = isSelected || (selectedIndex === -1 && opt === options[0]);
           return (
             <button
               key={opt.value}
               type="button"
+              role="radio"
+              aria-checked={isSelected}
+              tabIndex={isFocusTarget ? 0 : -1}
               onClick={() => onChange(opt.value)}
-              aria-pressed={isSelected}
               className={`relative ${itemPad} rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer select-none whitespace-nowrap focus-safa-inset ${
                 fullWidth ? 'flex-1' : ''
               } ${

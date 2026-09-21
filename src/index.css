@@ -28,6 +28,31 @@
   }
 }
 
+/* Slider RTL mirroring: fill grows from the right, thumb mirrors horizontally */
+.slider-safa[dir='rtl'] .slider-fill {
+  margin-left: auto;
+  margin-right: 0;
+  transform-origin: right;
+}
+
+.slider-safa[dir='rtl'] .slider-fill {
+  margin-left: auto;
+}
+
+[dir='rtl'] .slider-safa {
+  direction: ltr; /* input[type=range] stays LTR-native; visual thumb mirrors below */
+}
+
+[dir='rtl'] .slider-safa .slider-thumb {
+  left: auto !important;
+  right: var(--thumb-pos, 0%);
+  transform: translateX(50%);
+}
+
+[dir='rtl'] .slider-safa input[type='range'] {
+  direction: rtl;
+}
+
 @layer base {
   :root {
     --font-sans: 'Geist', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;

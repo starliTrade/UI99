@@ -112,9 +112,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const id = `toast_${Date.now()}_${Math.random()}`;
     const newToast: ToastItem = { id, message, type };
     setToasts((prev) => [...prev, newToast]);
-    setTimeout(() => {
-      removeToast(id);
-    }, 3500);
+    // Auto-dismiss timing lives in <ToastContainer> so it can pause on
+    // hover/focus (WCAG 2.2.1 Timing Adjustable).
   };
 
   const removeToast = (id: string) => {

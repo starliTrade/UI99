@@ -1,5 +1,8 @@
 /**
- * SAFA — Unified Velvet Dropdown / Select Component (Build 02.2)
+ * SAFA — Unified Velvet Dropdown / Select Component (Build 02.3)
+ * Full WAI-ARIA listbox pattern: aria-haspopup="listbox", aria-activedescendant,
+ * Arrow/Home/End/Type-ahead keyboard navigation, Escape dismissal with focus return,
+ * focus trap while open, RTL-aware text alignment.
  * Dual-theme (Obsidian / Matte Porcelain) with tactile spring animations.
  */
 
@@ -38,10 +41,14 @@ export function Dropdown<T extends string = string>({
   const { themeMode } = useApp();
   const isDark = themeMode === 'dark';
   const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const typeAheadRef = useRef<{ chars: string; ts: number }>({ chars: '', ts: 0 });
 
   const selectedOption = options.find((o) => o.value === value);
 
+  // Close on outside click
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
@@ -54,23 +61,81 @@ export function Dropdown<T extends string = string>({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
 
+  // Open → land focus/active on selected option; Close → restore focus to trigger
+  useEffect(() => {
+    if (isOpen) {
+      const idx = options.findIndex((o) => o.value === value);
+      setActiveIndex(idx >= 0 ? idx : 0);
+    } else {
+      triggerRef.current?.focus({ preventScroll: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
+  const commit = (index: number) => {
+    const opt = options[index];
+    if (!opt) return;
+    onChange(opt.value);
+    setIsOpen(false);
+  };
+
+  const handleTriggerKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (!isOpen) {
+        setIsOpen(true);
+        return;
+      }
+      if (e.key === 'ArrowDown') {
+        setActiveIndex((i) => Math.min(options.length - 1, i + 1));
+      } else if (e.key === 'ArrowUp') {
+        setActiveIndex((i) => Math.max(0, i - 1));
+      } else {
+        commit(activeIndex);
+      }
+      return;
+    }
+    if (e.key === 'Escape') {
+      if (isOpen) {
+        e.preventDefault();
+        setIsOpen(false);
+      }
+      return;
+    }
+    if (isOpen) typeAhead(e);
+  };
+
+  const typeAhead = (e: React.KeyboardEvent) => {
+    if (!/^[a-zA-Z0-9\u0600-\u06FF]$/.test(e.key)) return;
+    const now = Date.now();
+    const chars = now - typeAheadRef.current.ts > 500 ? e.key : typeAheadRef.current.chars + e.key;
+    typeAheadRef.current = { chars, ts: now };
+    const needle = chars.toLowerCase();
+    const idx = options.findIndex((o) => o.label.toLowerCase().startsWith(needle));
+    if (idx >= 0) setActiveIndex(idx);
+  };
+
   const sizeClass = size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-3.5 py-2 text-sm';
+  const listId = `dropdown-list-${label || 'default'}`.replace(/\s+/g, '-').toLowerCase();
 
   return (
     <div className={`relative w-full ${className}`} ref={containerRef}>
       {label && (
-        <label
+        <span
+          id={`${listId}-label`}
           className={`block text-xs font-semibold mb-1.5 ${
             isDark ? 'text-[#92929B]' : 'text-zinc-700'
           }`}
         >
           {label}
-        </label>
+        </span>
       )}
 
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={handleTriggerKeyDown}
         className={`w-full flex items-center justify-between rounded-xl font-medium transition-all duration-150 cursor-pointer select-none focus-safa ${sizeClass} ${
           isDark
             ? 'bg-[#131317] text-[#EDEDEF] border border-white/[0.06] hover:border-white/[0.14] shadow-xs'
@@ -78,6 +143,8 @@ export function Dropdown<T extends string = string>({
         }`}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
+        aria-labelledby={label ? `${listId}-label` : undefined}
+        aria-activedescendant={isOpen && activeIndex >= 0 ? `${listId}-opt-${activeIndex}` : undefined}
       >
         <span className="flex items-center gap-2 truncate">
           {selectedOption?.icon && <span className="shrink-0">{selectedOption.icon}</span>}
@@ -92,7 +159,10 @@ export function Dropdown<T extends string = string>({
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <motion.ul
+            id={listId}
+            role="listbox"
+            aria-labelledby={label ? `${listId}-label` : undefined}
             initial={{ opacity: 0, y: -4, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.98 }}
@@ -103,34 +173,29 @@ export function Dropdown<T extends string = string>({
                 : 'bg-white/95 border border-black/[0.06] shadow-[0_16px_36px_rgba(0,0,0,0.08)]'
             }`}
           >
-            <div
-              className="max-h-60 overflow-y-auto no-scrollbar space-y-0.5"
-              role="listbox"
-              aria-label={label}
-            >
-              {options.map((option) => {
+            <div className="max-h-60 overflow-y-auto no-scrollbar space-y-0.5">
+              {options.map((option, index) => {
                 const isSelected = option.value === value;
+                const isActive = index === activeIndex;
                 return (
-                  <button
+                  <li
                     key={option.value}
-                    type="button"
-                    onClick={() => {
-                      onChange(option.value);
-                      setIsOpen(false);
-                    }}
+                    id={`${listId}-opt-${index}`}
                     role="option"
                     aria-selected={isSelected}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors cursor-pointer text-left rtl:text-right focus-safa-inset ${
-                      isSelected
+                    onClick={() => commit(index)}
+                    onMouseEnter={() => setActiveIndex(index)}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-medium cursor-pointer text-left rtl:text-right focus-safa-inset ${
+                      isActive
                         ? isDark
-                          ? 'bg-white/[0.08] text-white font-semibold'
-                          : 'bg-black/[0.05] text-zinc-950 font-semibold'
+                          ? 'bg-white/[0.08] text-white'
+                          : 'bg-black/[0.05] text-zinc-950'
                         : isDark
-                        ? 'text-zinc-300 hover:bg-white/[0.04] hover:text-white'
-                        : 'text-zinc-700 hover:bg-black/[0.03] hover:text-zinc-950'
-                    }`}
+                        ? 'text-zinc-300'
+                        : 'text-zinc-700'
+                    } ${isSelected ? 'font-semibold' : ''}`}
                   >
-                    <div className="flex items-center gap-2 truncate">
+                    <div className="flex items-center gap-2 truncate pointer-events-none">
                       {option.icon && <span className="shrink-0">{option.icon}</span>}
                       <div className="truncate">
                         <div>{option.label}</div>
@@ -146,13 +211,13 @@ export function Dropdown<T extends string = string>({
                       </div>
                     </div>
                     {isSelected && (
-                      <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 ml-2" />
+                      <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 ml-2 pointer-events-none" />
                     )}
-                  </button>
+                  </li>
                 );
               })}
             </div>
-          </motion.div>
+          </motion.ul>
         )}
       </AnimatePresence>
     </div>

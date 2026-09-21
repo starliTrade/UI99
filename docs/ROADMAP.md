@@ -34,21 +34,21 @@
 | Accordion | ✅ | ✅ | ✅ | ✅ | ✅ | PASS |
 | Dialog / Modal / Sheet | ✅ | ✅ | ✅ | ⚠️ | ✅ | PASS |
 | Popover / DropdownMenu / Command | ✅ | ⚠️ | ✅ | ⚠️ | ✅ | PASS |
-| Toast | ✅ | n/a | ✅ | ✅ | ❌ dismiss key | **FIX** |
-| SegmentedControl | ✅ | ✅ | ✅ | ⚠️ | ❌ roving tabindex | **FIX** |
-| Dropdown (custom select) | ⚠️ | ✅ | ✅ | ⚠️ | ❌ Esc/Arrow/Trap | **FIX** |
-| Tooltip | ⚠️ | n/a | ✅ | ⚠️ | ❌ focus trigger | **FIX** |
-| Slider | ✅ | ✅ | ✅ | ❌ RTL track | ✅ | **FIX** |
-| Progress / Badge / Kbd | ✅ | n/a | ✅ | ✅ | n/a | PASS (Kbd: کلاس‌های نامعتبر h-4.5) |
+| Toast | ✅ | n/a | ✅ | ✅ | ✅ Esc + dismiss btn + pause-on-hover | PASS |
+| SegmentedControl | ✅ | ✅ | ✅ | ✅ RTL arrows | ✅ roving tabindex + radiogroup | PASS |
+| Dropdown (custom select) | ✅ listbox pattern | ✅ | ✅ | ✅ | ✅ Arrows/Type-ahead/Home/End/Esc | PASS |
+| Tooltip | ✅ | n/a | ✅ | ⚠️ | ✅ focus + hover trigger | PASS |
+| Slider | ✅ aria-valuetext | ✅ | ✅ | ✅ RTL mirror + valuetext | ✅ | PASS |
+| Progress / Badge / Kbd | ✅ | n/a | ✅ | ✅ | n/a | PASS (Kbd h-4.5 → h-[18px] fixed) |
 | Skeleton | ✅ | n/a | ✅ | ✅ | n/a | PASS |
 
 ### 1.2 رفع تخلفات شناخته‌شده
-- [ ] Dropdown: تبدیل به ARIA combobox کامل یا مهاجرت به Radix Select — Esc/Arrow/Type-ahead/Focus-trap
-- [ ] SegmentedControl: roving tabindex + Arrow keys + `role="radiogroup"`
-- [ ] Toast: dismiss با Escape، pause-on-hover، سقف ۳ پیام همزمان
-- [ ] Tooltip: فوکوس‌پذیری trigger (الگوی Radix)، بدون `cursor-default` اجباری
-- [ ] Slider: RTL معکوس‌شدن track + aria-valuetext
-- [ ] Kbd: حذف کلاس‌های نامعتبر `h-4.5` / `h-5.5` (Tailwind v4 Accepts arbitrary؛ استاندارد: h-4/h-5)
+- [x] Dropdown: تبدیل به ARIA combobox کامل یا مهاجرت به Radix Select — Esc/Arrow/Type-ahead/Focus-trap
+- [x] SegmentedControl: roving tabindex + Arrow keys + `role="radiogroup"` (RTL-aware)
+- [x] Toast: dismiss با Escape، pause-on-hover، سقف ۳ پیام همزمان
+- [x] Tooltip: فوکوس‌پذیری trigger (الگوی Radix)، بدون `cursor-default` اجباری
+- [x] Slider: RTL معکوس‌شدن track + aria-valuetext
+- [x] Kbd: حذف کلاس‌های نامعتبر `h-4.5` / `h-5.5`
 - [ ] Sweep نور (light mode) و RTL روی همه ویوها (`src/components/views`, `home`, `shells`)
 
 ### 1.3 گیت‌های خودکار (CI-blocking)

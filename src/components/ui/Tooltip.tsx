@@ -1,6 +1,8 @@
 /**
- * SAFA — Tactile Velvet Tooltip Component (Build 02.2)
- * Dual-theme (Obsidian Dark / Porcelain Light) with Radix UI collision detection & WAI-ARIA accessibility.
+ * SAFA — Tactile Velvet Tooltip Component (Build 02.3)
+ * Dual-theme (Obsidian Dark / Porcelain Light) with Radix UI collision detection.
+ * Keyboard-accessible: Radix Trigger opens on focus AND hover (WAI-ARIA APG pattern);
+ * wrapper span no longer overrides pointer-events/cursor of the trigger.
  */
 
 import React from 'react';
@@ -26,12 +28,13 @@ export function Tooltip({
     <TooltipPrimitive.Provider delayDuration={delayMs}>
       <TooltipPrimitive.Root>
         <TooltipPrimitive.Trigger asChild className={className}>
-          <span className="inline-flex cursor-default">{children}</span>
+          {children}
         </TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal>
           <TooltipPrimitive.Content
             side={side}
             sideOffset={6}
+            role="tooltip"
             className={cn(
               'z-50 overflow-hidden rounded-xl px-2.5 py-1 text-[11px] font-medium tracking-tight shadow-lg border select-none',
               'bg-[#111116] text-white border-black/[0.1] shadow-[0_8px_20px_rgba(0,0,0,0.15)]',
