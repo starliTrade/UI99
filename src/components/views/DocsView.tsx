@@ -67,7 +67,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   Kbd,
-  UI99BrandLogo,
+  UI99Wordmark,
 } from '../ui';
 
 type DocSection =
@@ -838,7 +838,7 @@ export function cn(...inputs: ClassValue[]) {
 
                         {activeComponent.id === 'safa-brand-logo' && (
                           <div className="flex flex-col items-center gap-4">
-                            <UI99BrandLogo size="lg" />
+                            <UI99Wordmark size="lg" />
                             <span className="text-xs font-mono text-zinc-400">
                               Hover to observe velvet dissipation glow
                             </span>

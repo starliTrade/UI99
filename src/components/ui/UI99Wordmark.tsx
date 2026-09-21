@@ -8,19 +8,19 @@
 import React from 'react';
 import { useIsDark } from './theme';
 
-export interface UI99BrandLogoProps {
+export interface UI99WordmarkProps {
   className?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'full' | 'icon-only' | 'badge' | 'text-only';
   withSubtitle?: boolean;
 }
 
-export function UI99BrandLogo({
+export function UI99Wordmark({
   className = '',
   size = 'md',
   variant = 'full',
   withSubtitle = false,
-}: UI99BrandLogoProps) {
+}: UI99WordmarkProps) {
   const isDark = useIsDark();
 
   const fontStyle = {
@@ -137,5 +137,3 @@ export function UI99BrandLogo({
   );
 }
 
-// Backward compatibility alias
-export const SafaBrandLogo = UI99BrandLogo;

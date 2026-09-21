@@ -29,7 +29,7 @@ import {
   TrendDelta,
   Progress,
   SegmentedControl,
-  UI99BrandLogo,
+  UI99Wordmark,
 } from '../ui';
 
 /* ------------------------------------------------------------------ */
@@ -411,7 +411,7 @@ export function DesignSystemHomeView() {
          ══════════════════════════════════════════════════════════════ */}
       <footer className="pt-16 mt-20 border-t border-black/[0.05] dark:border-white/[0.04]">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <UI99BrandLogo size="md" withSubtitle />
+          <UI99Wordmark size="md" withSubtitle />
           <nav className="flex items-center gap-4 text-xs font-mono text-zinc-500" aria-label="Footer">
             {(['UIKIT', 'DOCS', 'FOUNDATIONS', 'BLOCKS'] as const).map((tab) => (
               <button

@@ -20,7 +20,7 @@ const KIT_COMPONENTS = [
   'Button', 'Card', 'Input', 'Switch', 'Checkbox', 'Dropdown', 'Slider',
   'SegmentedControl', 'Breadcrumb', 'Badge', 'Kbd', 'Progress', 'Skeleton',
   'Tooltip', 'Accordion', 'Feedback', 'Modal', 'Dialog', 'Popover', 'Sheet',
-  'DropdownMenu', 'Command', 'Tabs', 'SafaBrandLogo', 'theme',
+  'DropdownMenu', 'Command', 'Tabs', 'UI99Wordmark', 'theme',
   // Wave A
   'Separator', 'Label', 'Toggle', 'ToggleGroup', 'HoverCard', 'Collapsible',
   'ScrollArea', 'AspectRatio', 'Field', 'Alert',
@@ -120,6 +120,7 @@ for (const name of KIT_COMPONENTS) {
   // shadcn convention: kebab-case item names (segmented-control, dropdown-menu…)
   const kebab = name
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2')
     .toLowerCase();
   items.push({
     name: kebab,

@@ -115,8 +115,8 @@ export {
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
 
 // Brand & Identity
-export { UI99BrandLogo, SafaBrandLogo } from './SafaBrandLogo';
-export type { UI99BrandLogoProps } from './SafaBrandLogo';
+export { UI99Wordmark } from './UI99Wordmark';
+export type { UI99WordmarkProps } from './UI99Wordmark';
 
 // Theme protocol (kit-local, no app context)
 export { useIsDark, useThemeClass } from './theme';

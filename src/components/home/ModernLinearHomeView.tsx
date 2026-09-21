@@ -1,5 +1,5 @@
 /**
- * SAFA — Linear-Native Modern Mobile Shell for Home View
+ * UI99 — Linear-Native Modern Mobile Shell for Home View
  * High-velocity, ultra-crisp, zero card fatigue, true iOS native feeling.
  */
 

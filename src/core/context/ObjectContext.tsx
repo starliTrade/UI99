@@ -1,5 +1,5 @@
 /**
- * SAFA — Universal Object & Relationship Context
+ * UI99 — Universal Object & Relationship Context
  * Reactive state and operations for the universal connected graph.
  */
 

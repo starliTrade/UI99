@@ -1,5 +1,5 @@
 /**
- * SAFA — AI Provider Abstraction Types
+ * UI99 — AI Provider Abstraction Types
  * Structured AI operations: Understand, Extract, Classify, Connect, Reason, Suggest, Plan, Act.
  * Validation pipeline: AI suggests -> System validates schema & permissions -> User confirms.
  */

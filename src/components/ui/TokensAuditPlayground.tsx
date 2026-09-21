@@ -1,5 +1,5 @@
 /**
- * SAFA — Concentric Radii & Design Tokens Audit Playground (Build 02.2)
+ * UI99 — Concentric Radii & Design Tokens Audit Playground (Build 02.2)
  *
  * Provides interactive validation tools for Phase 2:
  * 1. Live Concentric Corner Radius Nesting Simulator (r_inner = r_outer - padding)

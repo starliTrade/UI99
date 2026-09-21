@@ -1,6 +1,6 @@
 /**
- * SAFA — Living Home Spotlight & Deterministic Priority Engine
- * Curation engine for Safa's personal living world.
+ * UI99 — Living Home Spotlight & Deterministic Priority Engine
+ * Curation engine for UI99's personal living world.
  */
 
 import { BaseObject, ObjectType, ObjectStatus } from '../../core/types/objects';
@@ -24,7 +24,7 @@ export function getLivingAtmosphere(hour: number, dayOfWeek: number): DailyAtmos
   // Time-of-day contextual greeting & light spectrum
   if (hour >= 5 && hour < 12) {
     return {
-      greetingEn: 'Good morning, Safa',
+      greetingEn: 'Good morning, UI99',
       greetingFa: 'صبح به‌خیر، صفای عزیز',
       subtitleEn: 'Today is yours. Breathe, create, and enjoy the quiet moments.',
       subtitleFa: 'امروز برای توئه؛ با آرامش نفس بکش، خلق کن و از لحظه‌هات لذت ببر.',
@@ -34,7 +34,7 @@ export function getLivingAtmosphere(hour: number, dayOfWeek: number): DailyAtmos
     };
   } else if (hour >= 12 && hour < 17) {
     return {
-      greetingEn: 'Good afternoon, Safa',
+      greetingEn: 'Good afternoon, UI99',
       greetingFa: 'عصر به‌خیر، صفا جان',
       subtitleEn: 'Flowing through the day with quiet focus and inspiration.',
       subtitleFa: 'جریان آرام روز در آتلیه؛ پر از تمرکز و حس‌های خوب.',
@@ -44,7 +44,7 @@ export function getLivingAtmosphere(hour: number, dayOfWeek: number): DailyAtmos
     };
   } else if (hour >= 17 && hour < 21) {
     return {
-      greetingEn: 'Good evening, Safa',
+      greetingEn: 'Good evening, UI99',
       greetingFa: 'غروب به‌خیر، صفای عزیز',
       subtitleEn: 'A golden hour for unwinding, good music, and reflections.',
       subtitleFa: 'لحظه‌های طلایی غروب؛ چای گرم، موسیقی خوب و آرامش دل.',
@@ -54,7 +54,7 @@ export function getLivingAtmosphere(hour: number, dayOfWeek: number): DailyAtmos
     };
   } else {
     return {
-      greetingEn: 'Peaceful night, Safa',
+      greetingEn: 'Peaceful night, UI99',
       greetingFa: 'شب آرام، صفای جان',
       subtitleEn: 'Rest your thoughts in stillness and peaceful dreams.',
       subtitleFa: 'آرامش شبانه و خلوت دل؛ استراحت کن و به رویاهات فکر کن.',

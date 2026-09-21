@@ -1,5 +1,5 @@
 /**
- * SAFA — Ethereum Sparkline Widget
+ * UI99 — Ethereum Sparkline Widget
  * Pixel-perfect implementation of IMG_7716.jpeg:
  * - Squircle container (rounded-[34px]) with 3D glass specular rim
  * - Authentic sapphire/ice-blue glass reflection along top-right curve

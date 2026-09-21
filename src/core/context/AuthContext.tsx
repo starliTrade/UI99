@@ -1,5 +1,5 @@
 /**
- * SAFA — Auth Context
+ * UI99 — Auth Context
  * Authentic session management, profile state, and language/RTL preferences.
  */
 
@@ -36,7 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         document.documentElement.dir = 'ltr';
         document.documentElement.lang = 'en';
 
-        const storedToken = localStorage.getItem('safa_auth_token');
+        const storedToken = localStorage.getItem('ui99_auth_token');
         if (storedToken) {
           const res = await api.getMe();
           setUser(res.user);

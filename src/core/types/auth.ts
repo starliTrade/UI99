@@ -1,5 +1,5 @@
 /**
- * SAFA — Auth & User Identity Types
+ * UI99 — Auth & User Identity Types
  */
 
 export interface UserProfile {

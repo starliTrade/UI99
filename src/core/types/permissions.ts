@@ -1,5 +1,5 @@
 /**
- * SAFA — Permission Model
+ * UI99 — Permission Model
  * Private-by-default architecture with granular access control and SLO integration.
  */
 

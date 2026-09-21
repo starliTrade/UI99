@@ -1,5 +1,5 @@
 /**
- * SAFA — Unified Velvet Dropdown / Select Component (Build 02.3)
+ * UI99 — Unified Velvet Dropdown / Select Component (Build 02.3)
  * Full WAI-ARIA listbox pattern: aria-haspopup="listbox", aria-activedescendant,
  * Arrow/Home/End/Type-ahead keyboard navigation, Escape dismissal with focus return,
  * focus trap while open, RTL-aware text alignment.

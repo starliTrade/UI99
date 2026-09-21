@@ -1,5 +1,5 @@
 /**
- * SAFA — Global Search & Command Foundation (Build 02.0)
+ * UI99 — Global Search & Command Foundation (Build 02.0)
  * Fast multi-type search across the Universal Object Graph.
  */
 
@@ -110,7 +110,7 @@ export function GlobalSearchModal() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-white">SAFA UI KIT & Design System</span>
+                    <span className="text-xs font-semibold text-white">UI99 UI KIT & Design System</span>
                     <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-300">
                       LINEAR SPEC
                     </span>

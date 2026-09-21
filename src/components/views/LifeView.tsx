@@ -1,5 +1,5 @@
 /**
- * SAFA — Life Shell (Build 02.0)
+ * UI99 — Life Shell (Build 02.0)
  * Calm productivity: Tasks, Calendar rhythm, Reminders, Goals, Habits, and Projects.
  */
 
@@ -135,7 +135,7 @@ export function LifeView() {
       {filteredObjects.length === 0 ? (
         <EmptyState
           title={`No ${lifeSubview.toLowerCase()} found`}
-          description={`Start capturing and tracking your ${lifeSubview.toLowerCase()} in SAFA.`}
+          description={`Start capturing and tracking your ${lifeSubview.toLowerCase()} in UI99.`}
           actionLabel={`Add ${subviewOptions.find((o) => o.value === lifeSubview)?.label || 'Item'}`}
           onAction={() => openCapture(currentType)}
         />

@@ -499,19 +499,19 @@ TabsList.displayName = TabsPrimitive.List.displayName;`,
       'Interactive hover glow aura with velvet Obsidian dissipation',
       'Sizes: sm, md, lg',
     ],
-    usageSnippet: `import { UI99BrandLogo } from "@/components/ui"
+    usageSnippet: `import { UI99Wordmark } from "@/components/ui"
 
 export default function Demo() {
   return (
     <div className="flex items-center gap-4">
-      <UI99BrandLogo size="md" />
-      <UI99BrandLogo size="lg" />
+      <UI99Wordmark size="md" />
+      <UI99Wordmark size="lg" />
     </div>
   )
 }`,
-    codeSnippet: `// See /src/components/ui/SafaBrandLogo.tsx
-import { UI99BrandLogo } from '@/components/ui/SafaBrandLogo';
-export { UI99BrandLogo };`,
+    codeSnippet: `// See /src/components/ui/UI99Wordmark.tsx
+import { UI99Wordmark } from '@/components/ui/UI99Wordmark';
+export { UI99Wordmark };`,
     props: [
       { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Optical scale tier.' },
     ],

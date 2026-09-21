@@ -1,6 +1,6 @@
 /**
- * SAFA — Music Moment (Now / Today in Music) (Build 03)
- * Media-first visual surface showcasing Safa's soundtrack & ambient focus music.
+ * UI99 — Music Moment (Now / Today in Music) (Build 03)
+ * Media-first visual surface showcasing UI99's soundtrack & ambient focus music.
  */
 
 import React from 'react';

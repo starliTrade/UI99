@@ -1,5 +1,5 @@
 /**
- * SAFA — Obsidian Liquid Glass (SOLG) Unified Date Rail (Build 02.1)
+ * UI99 — Obsidian Liquid Glass (SOLG) Unified Date Rail (Build 02.1)
  * Seamless dark depth (#0E0E13) with soft satin selected token (#EDEDEF).
  * iPhone-first touch gestures with centered active scrolling.
  */

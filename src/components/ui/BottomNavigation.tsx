@@ -1,5 +1,5 @@
 /**
- * SAFA — Ultra-Refined Frosted Liquid-Glass Capsule Dock & Companion Action
+ * UI99 — Ultra-Refined Frosted Liquid-Glass Capsule Dock & Companion Action
  * Authentic Liquid Glassmorphism:
  * - Ultra-subtle, whisper-thin border with velvety seamless fusion
  * - Soft, understated active indicator with smooth spring motion

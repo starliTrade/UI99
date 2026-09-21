@@ -1,5 +1,5 @@
 /**
- * SAFA — Universal Capture Shell (Build 02.0)
+ * UI99 — Universal Capture Shell (Build 02.0)
  * "Put anything here" — Fast capture with server-side AI extraction & structured object validation.
  */
 
@@ -63,7 +63,7 @@ export function UniversalCaptureModal() {
         if (res.extraction.suggestedTags?.length) {
           setTags(Array.from(new Set([...tags, ...res.extraction.suggestedTags])));
         }
-        addToast(isRTL ? 'هوش مصنوعی صفا یادداشت را تحلیل کرد' : 'SAFA AI analyzed your capture', 'purple');
+        addToast(isRTL ? 'هوش مصنوعی صفا یادداشت را تحلیل کرد' : 'UI99 AI analyzed your capture', 'purple');
       }
     } catch (err: any) {
       addToast(err.message || 'AI analysis unavailable', 'warning');

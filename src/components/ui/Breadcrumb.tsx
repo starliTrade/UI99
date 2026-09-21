@@ -1,5 +1,5 @@
 /**
- * SAFA — Breadcrumb Navigation Component (Build 02.2)
+ * UI99 — Breadcrumb Navigation Component (Build 02.2)
  * Dual-theme (Obsidian Dark / Porcelain Light).
  */
 

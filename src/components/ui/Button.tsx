@@ -1,6 +1,6 @@
 /**
- * SAFA — Unified Tactile Controls (Button, IconButton, Tag, Avatar) (Build 03.0)
- * Full shadcn-grade variant/size matrix on the SAFA velvet token system.
+ * UI99 — Unified Tactile Controls (Button, IconButton, Tag, Avatar) (Build 03.0)
+ * Full shadcn-grade variant/size matrix on the UI99 velvet token system.
  * Five-state contract per docs/standards.md §12: default/hover/press/
  * focus-visible/disabled — focus ring via focus-safa (WCAG 2.4.13).
  *
@@ -271,7 +271,7 @@ export interface AvatarProps {
 }
 
 export function Avatar({
-  name = 'Safa',
+  name = 'UI99',
   src,
   size = 'md',
   status,

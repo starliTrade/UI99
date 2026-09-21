@@ -1,5 +1,5 @@
 /**
- * SAFA — Mathematical Design System Algorithms & Validation Utilities (Build 02.2)
+ * UI99 — Mathematical Design System Algorithms & Validation Utilities (Build 02.2)
  *
  * Implements strict optical, geometric, and chromatic rules:
  * 1. Concentric Corner Radius Nesting: r_inner = Math.max(0, r_outer - padding)

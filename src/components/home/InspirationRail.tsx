@@ -1,5 +1,5 @@
 /**
- * SAFA — Inspiration Rail (Saved For Later & Visual Worlds) (Build 03)
+ * UI99 — Inspiration Rail (Saved For Later & Visual Worlds) (Build 03)
  * Pinterest-style horizontal visual rail for aesthetics, architecture, and moodboards.
  */
 

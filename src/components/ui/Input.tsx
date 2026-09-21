@@ -1,5 +1,5 @@
 /**
- * SAFA — Unified Velvet Form Inputs (Build 02.2)
+ * UI99 — Unified Velvet Form Inputs (Build 02.2)
  * High-craft tactile inputs, dual-theme support (Obsidian Dark / Matte Light),
  * micro-hairlines, and calm focus rings with cn utility.
  *
@@ -123,7 +123,7 @@ export interface SearchBarProps {
 export function SearchBar({
   value,
   onChange,
-  placeholder = 'Search everything in SAFA...',
+  placeholder = 'Search everything in UI99...',
   onClear,
   autoFocus,
   className = '',

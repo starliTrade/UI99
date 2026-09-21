@@ -1,5 +1,5 @@
 /**
- * SAFA — Relationship Model
+ * UI99 — Relationship Model
  * First-class relationship graph architecture connecting any Universal Object.
  */
 

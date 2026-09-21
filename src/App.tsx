@@ -1,5 +1,5 @@
 /**
- * SAFA — Personal Life OS
+ * UI99 — Personal Life OS
  * Root Application Shell (Build 02.0)
  * Obsidian Dark & Crisp Matte Light Theme with iPhone-first ergonomics.
  */

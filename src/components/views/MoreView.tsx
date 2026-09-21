@@ -1,5 +1,5 @@
 /**
- * SAFA — More Shell (Build 02.0)
+ * UI99 — More Shell (Build 02.0)
  * Memories, Journal Reflection, Connected Graph Map, SLO Hub, and Data Sovereignty.
  */
 
@@ -147,7 +147,7 @@ export function MoreView() {
           </div>
 
           <p className={`text-xs leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
-            In SAFA, everything is connected. Ideas inspire projects, tasks belong to goals, books generate notes, and memories link to people.
+            In UI99, everything is connected. Ideas inspire projects, tasks belong to goals, books generate notes, and memories link to people.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
@@ -250,7 +250,7 @@ export function MoreView() {
           <div>
             <div className="flex items-center gap-2">
               <h4 className={`text-sm font-bold ${isDark ? 'text-white' : 'text-zinc-900'}`}>
-                SAFA UI KIT & Design System
+                UI99 UI KIT & Design System
               </h4>
               <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-400/10 text-emerald-400 border border-emerald-400/20">
                 Linear Standards

@@ -1,5 +1,5 @@
 /**
- * Phase 1.3 CI Gate — WCAG contrast verification over the SAFA token matrix.
+ * Phase 1.3 CI Gate — WCAG contrast verification over the UI99 token matrix.
  * Body text pairs must be ≥ 4.5:1; large-text/UI-component pairs ≥ 3:1.
  * Source of truth: src/core/tokens/index.ts + math helpers.
  */

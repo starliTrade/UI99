@@ -1,5 +1,5 @@
 /**
- * SAFA Component Library — Master Export Barrel (Build 02.2 → Phase 2.2)
+ * UI99 Component Library — Master Export Barrel (Build 02.2 → Phase 2.2)
  *
  * Two-tier export contract:
  *  1. **Kit exports** — npm-portable primitives (Phase 2.1/2.2): depend only on
@@ -117,8 +117,8 @@ export {
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
 
 // Brand & Identity
-export { UI99BrandLogo, SafaBrandLogo } from './SafaBrandLogo';
-export type { UI99BrandLogoProps } from './SafaBrandLogo';
+export { UI99Wordmark } from './UI99Wordmark';
+export type { UI99WordmarkProps } from './UI99Wordmark';
 
 // Theme protocol (kit-local, no app context)
 export { useIsDark, useThemeClass } from './theme';

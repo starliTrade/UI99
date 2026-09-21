@@ -1,5 +1,5 @@
 /**
- * SAFA — Unified Velvet Segmented Control (Build 02.3)
+ * UI99 — Unified Velvet Segmented Control (Build 02.3)
  * Seamless dark container matching #111114 with satin pill transitions.
  * Authentic Apple / Linear tactile active cushion for light and dark modes.
  * WAI-ARIA radiogroup pattern: roving tabindex, Arrow/Home/End navigation,

@@ -16,6 +16,16 @@
 
 /* Unified focus-visible treatment — WCAG 2.4.11/2.4.13 Focus Appearance (2px ring, 2px canvas gap) */
 /* Registered as @utility so Tailwind variants (focus-visible:, etc.) compose correctly */
+/* UI99 aliases (focus-safa retained for backward compat) */
+@utility focus-ui99 {
+  outline: none;
+  box-shadow: var(--focus-ring, 0 0 0 3px rgba(16, 185, 129, 0.5));
+}
+@utility focus-ui99-inset {
+  outline: none;
+  box-shadow: var(--focus-ring, 0 0 0 3px rgba(16, 185, 129, 0.5)), inset 0 0 0 1px rgba(16, 185, 129, 0.25);
+}
+
 @utility focus-safa {
   &:focus-visible {
     outline: none;

@@ -1,5 +1,5 @@
 /**
- * SAFA — Tactile Checkbox & Radio Controls (Build 02.2)
+ * UI99 — Tactile Checkbox & Radio Controls (Build 02.2)
  * Pixel-accurate, micro-spring check animations, dual-theme support.
  */
 

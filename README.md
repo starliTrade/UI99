@@ -74,7 +74,7 @@ document.documentElement.classList.replace('dark', 'light');
 **Layout** Separator · ScrollArea · AspectRatio · Card/Surface · Collapsible
 **Feedback** EmptyState · LoadingState · Alert
 **Display** AvatarStack · CodeBlock · Carousel · Swatch
-**Brand** SafaBrandLogo · UI99BrandLogo
+**Brand** UI99Wordmark
 
 Every primitive ships with the five-state contract
 (`default / hover / press / focus-visible / disabled`), keyboard support, and the

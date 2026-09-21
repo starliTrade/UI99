@@ -1,5 +1,5 @@
 /**
- * SAFA — Tactile Switch / Toggle Component (Build 02.2)
+ * UI99 — Tactile Switch / Toggle Component (Build 02.2)
  * Dual-theme (Obsidian / Matte Porcelain) with Radix UI headless accessibility and tactile spring.
  *
  * @token Track off-state rides `--state-selected` over `--bg-sunken`; on-state

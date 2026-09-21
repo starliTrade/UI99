@@ -1,5 +1,5 @@
 /**
- * SAFA — Daily Timeline & Real-Time Schedule Track (Build 04)
+ * UI99 — Daily Timeline & Real-Time Schedule Track (Build 04)
  * Strictly REAL Object Graph Projection.
  * Zero fabricated schedule items.
  * Shows scheduled events, time-locked tasks, deadlines, or a beautiful poetic invitation.

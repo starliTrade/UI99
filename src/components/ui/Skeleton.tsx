@@ -1,5 +1,5 @@
 /**
- * SAFA — Skeleton Loading Placeholders (Build 02.2)
+ * UI99 — Skeleton Loading Placeholders (Build 02.2)
  * Subtle shimmering placeholder lines, cards, and avatars.
   * @token Shimmer sweeps 8%–14% foreground (both themes) — respects `prefers-reduced-motion` by holding mid-gray.
 */

@@ -1,5 +1,5 @@
 /**
- * SAFA — Today's Emotional Moment (Build 03.2 - Open Editorial Reflection)
+ * UI99 — Today's Emotional Moment (Build 03.2 - Open Editorial Reflection)
  * Unboxed, seamless editorial quote & reflection flowing directly on the canvas.
  */
 
@@ -63,7 +63,7 @@ export function DailyMoment() {
 
               <div className="flex items-center justify-between text-[11px] text-[#92929B] pt-1">
                 <span className="font-medium text-zinc-400">
-                  {isRTL ? current.author : 'SAFA Sanctuary Reflection'}
+                  {isRTL ? current.author : 'UI99 Sanctuary Reflection'}
                 </span>
                 <span className="text-[10px] text-zinc-600 font-mono">
                   {index + 1} / {DAILY_INTENTIONS.length}

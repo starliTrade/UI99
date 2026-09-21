@@ -1,5 +1,5 @@
 /**
- * SAFA — Daily Spending Widget
+ * UI99 — Daily Spending Widget
  * Pixel-perfect implementation of IMG_7886.jpeg:
  * - Ambient illuminated segmented neon circle ring encircling the widget
  * - Squircle container (rounded-[34px]) with 3D glass specular rim

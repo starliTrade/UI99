@@ -1,5 +1,5 @@
 /**
- * SAFA UI Kit — `safa.css` (source of truth, imported by src/index.css)
+ * UI99 UI Kit — `safa.css` (source of truth, imported by src/index.css)
  *
  * Single source of truth for the kit's runtime design tokens. During
  * `bun run lib:build` this file is copied verbatim into the npm package as

@@ -1,5 +1,5 @@
 /**
- * SAFA — Project Progress Capsule Widget
+ * UI99 — Project Progress Capsule Widget
  * Pixel-perfect adaptation of IMG_7885.jpeg to the unified obsidian palette:
  * - Ultra-close surface (#101114) matching IMG_7872
  * - Micro-hairline border-white/[0.04]

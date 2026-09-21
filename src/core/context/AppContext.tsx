@@ -1,5 +1,5 @@
 /**
- * SAFA — App Context (Build 02.0)
+ * UI99 — App Context (Build 02.0)
  * Global UI navigation, modals, theme mode (Obsidian Dark / Matte Light), and state.
  */
 
@@ -71,7 +71,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   
   // Default to Obsidian Dark permanently locked across the platform
   const [themeMode, setThemeModeState] = useState<ThemeMode>(() => {
-    const saved = localStorage.getItem('safa_theme_mode');
+    const saved = localStorage.getItem('ui99_theme_mode');
     return saved === 'light' ? 'light' : 'dark';
   });
 
@@ -99,13 +99,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // loops in any consumer syncing state inside useEffect).
   const setThemeMode = useCallback((mode: ThemeMode) => {
     setThemeModeState(mode);
-    localStorage.setItem('safa_theme_mode', mode);
+    localStorage.setItem('ui99_theme_mode', mode);
   }, []);
 
   const toggleTheme = useCallback(() => {
     setThemeModeState((prev) => {
       const next = prev === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('safa_theme_mode', next);
+      localStorage.setItem('ui99_theme_mode', next);
       return next;
     });
   }, []);

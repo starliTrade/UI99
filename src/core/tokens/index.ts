@@ -1,5 +1,5 @@
 /**
- * SAFA — Obsidian Liquid Glass (SOLG) Unified Design Tokens (Build 02.2)
+ * UI99 — Obsidian Liquid Glass (SOLG) Unified Design Tokens (Build 02.2)
  * 
  * Engineering & Color Science Standards:
  * - 60-30-10 Chromatic Balance: 60% Velvet Canvas, 30% Layer Surfaces, 10% Accents.
@@ -12,7 +12,7 @@
 export const tokens = {
   // Theme Metadata & Color Science
   meta: {
-    systemName: 'SAFA Design System (SOLG v02.2)',
+    systemName: 'UI99 Design System (SOLG v02.2)',
     specification: 'Linear-Grade & Apple Human Interface Guidelines Hybrid',
     contrastRatio: 'WCAG AAA (18.4:1 dark / 17.2:1 light)',
     rhythmGrid: '4px / 8px atomic base unit',
@@ -189,7 +189,7 @@ export const tokens = {
     deliberate: '400ms', // page/hero transitions
   },
   easing: {
-    safa: 'var(--ease-safa)',           // cubic-bezier(0.16, 1, 0.3, 1) — signature SAFA ease
+    safa: 'var(--ease-safa)',           // cubic-bezier(0.16, 1, 0.3, 1) — signature UI99 ease
     standard: 'var(--ease-standard)',   // cubic-bezier(0.2, 0, 0, 1) — M3 standard
   },
 

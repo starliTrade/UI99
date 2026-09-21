@@ -1,5 +1,5 @@
 /**
- * SAFA — Typed API Client
+ * UI99 — Typed API Client
  * Clean abstraction over the server endpoints with error handling.
  */
 
@@ -13,15 +13,15 @@ class ApiClient {
   private token: string | null = null;
 
   constructor() {
-    this.token = typeof window !== 'undefined' ? localStorage.getItem('safa_auth_token') : null;
+    this.token = typeof window !== 'undefined' ? localStorage.getItem('ui99_auth_token') : null;
   }
 
   setToken(token: string | null) {
     this.token = token;
     if (token) {
-      localStorage.setItem('safa_auth_token', token);
+      localStorage.setItem('ui99_auth_token', token);
     } else {
-      localStorage.removeItem('safa_auth_token');
+      localStorage.removeItem('ui99_auth_token');
     }
   }
 

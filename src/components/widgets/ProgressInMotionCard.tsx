@@ -1,5 +1,5 @@
 /**
- * SAFA — Progress in Motion Card
+ * UI99 — Progress in Motion Card
  * Pixel-perfect implementation of the hero momentum widget from IMG_7872.jpeg:
  * - Ultra-close dark obsidian background (#101114)
  * - Faint micro-hairline border-white/[0.04]

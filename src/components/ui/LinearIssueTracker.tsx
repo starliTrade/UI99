@@ -1,5 +1,5 @@
 /**
- * SAFA — Linear-Grade Issue Tracker & Workflow Engine (Build 02.2)
+ * UI99 — Linear-Grade Issue Tracker & Workflow Engine (Build 02.2)
  *
  * Implements high-velocity Linear.app interactive patterns:
  * 1. J / K / Arrow Up / Arrow Down keyboard navigation with active cursor ring.
@@ -76,7 +76,7 @@ const DEFAULT_ISSUES: IssueItem[] = [
     priority: 'high',
     label: 'Design System',
     labelColor: 'purple',
-    assignee: 'Safa',
+    assignee: 'UI99',
     date: 'Today',
     completed: true,
   },

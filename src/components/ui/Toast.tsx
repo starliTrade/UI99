@@ -1,5 +1,5 @@
 /**
- * SAFA — Unified Velvet UX Feedback States: Toast, EmptyState, LoadingState (Build 02.3)
+ * UI99 — Unified Velvet UX Feedback States: Toast, EmptyState, LoadingState (Build 02.3)
  * Semantic toast types with pause-on-hover/focus timing (WCAG 2.2.1), Escape dismissal,
  * dismiss button, aria-live announcements, and a 3-message concurrent cap (M3 snackbar).
  * Dual-theme (Obsidian / Matte Porcelain).
@@ -185,7 +185,7 @@ export function EmptyState({
 }
 
 // --- LoadingState ---
-export function LoadingState({ message = 'Accessing Safa Space...' }: { message?: string }) {
+export function LoadingState({ message = 'Accessing UI99 Space...' }: { message?: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
       <Loader2 className="w-6 h-6 text-(--text-secondary) animate-spin mb-3" />

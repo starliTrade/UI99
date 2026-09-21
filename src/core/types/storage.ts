@@ -1,5 +1,5 @@
 /**
- * SAFA — Storage & Search Types
+ * UI99 — Storage & Search Types
  */
 
 export interface StorageAsset {

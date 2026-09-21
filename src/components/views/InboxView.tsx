@@ -1,5 +1,5 @@
 /**
- * SAFA — Universal Inbox Shell (Build 02.0)
+ * UI99 — Universal Inbox Shell (Build 02.0)
  * Triage raw thoughts, quick captures, and unorganized inputs with AI assistance.
  */
 

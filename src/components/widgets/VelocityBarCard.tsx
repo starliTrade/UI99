@@ -1,5 +1,5 @@
 /**
- * SAFA — Income Velocity Pillar Widget
+ * UI99 — Income Velocity Pillar Widget
  * Pixel-perfect implementation of IMG_7892.jpeg:
  * - Squircle container (rounded-[34px]) with 3D glass specular rim
  * - Authentic emerald/cyan glass corner refraction along top-left curve

@@ -1,5 +1,5 @@
 /**
- * SAFA — Streak & Habit Widget
+ * UI99 — Streak & Habit Widget
  * Pixel-perfect adaptation of IMG_7882.jpeg to the unified obsidian palette:
  * - Ultra-close surface (#101114)
  * - Micro-hairline border-white/[0.04]

@@ -1,5 +1,5 @@
 /**
- * SAFA — Universal Object Model
+ * UI99 — Universal Object Model
  * Core foundational abstraction for all entities across the Life OS.
  */
 

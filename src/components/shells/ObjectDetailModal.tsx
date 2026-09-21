@@ -1,5 +1,5 @@
 /**
- * SAFA — Object Detail & Relationship Inspector Modal (Build 02.0)
+ * UI99 — Object Detail & Relationship Inspector Modal (Build 02.0)
  * Deep inspection and connection graph management for any Universal Object.
  */
 
@@ -64,7 +64,7 @@ export function ObjectDetailModal() {
   };
 
   const handleDelete = async () => {
-    if (confirm('Are you sure you want to delete this object from SAFA?')) {
+    if (confirm('Are you sure you want to delete this object from UI99?')) {
       try {
         await deleteObject(selectedObject.id);
         addToast('Object deleted', 'purple');

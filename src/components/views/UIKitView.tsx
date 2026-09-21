@@ -1,5 +1,5 @@
 /**
- * SAFA — World-Class UI Kit, Design System & Component Registry (Build 02.2)
+ * UI99 — World-Class UI Kit, Design System & Component Registry (Build 02.2)
  * 
  * Benchmarked against Linear.app, Apple Human Interface Guidelines, and shadcn/ui.
  * Full dual-theme parity (Obsidian Dark #06070A & Matte Porcelain #F5F5F8),
@@ -923,7 +923,7 @@ export function UIKitView() {
                 items={[
                   {
                     id: 'item-1',
-                    title: 'How does dual-theme parity work in SAFA?',
+                    title: 'How does dual-theme parity work in UI99?',
                     subtitle: 'Tailwind v4 custom variants & token cascading',
                     icon: <Palette className="w-4 h-4" />,
                     children: (
@@ -1185,7 +1185,7 @@ export function UIKitView() {
           <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Form Scaffolding</h3>
             <FormField label="Workspace name" htmlFor="wave-a-ws" required hint="max 32">
-              <Input id="wave-a-ws" placeholder="safa-prod" inputSize="sm" />
+              <Input id="wave-a-ws" placeholder="ui99-prod" inputSize="sm" />
             </FormField>
             <Separator />
             <FormField label="API endpoint" htmlFor="wave-a-api" error="Endpoint must start with https://">
@@ -1273,7 +1273,7 @@ export function UIKitView() {
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Delete “safa-prod”?</AlertDialogTitle>
+                  <AlertDialogTitle>Delete “ui99-prod”?</AlertDialogTitle>
                   <AlertDialogDescription>
                     This permanently removes the workspace and every object inside it. This action cannot be undone.
                   </AlertDialogDescription>
@@ -1582,13 +1582,13 @@ export function UIKitView() {
               language="tsx"
               filename="safa.config.ts"
               showLineNumbers
-              code={`import { SafaProvider } from '@99/ui';
+              code={`import { UI99Provider } from '@99/ui';
 
 export default function App() {
   return (
-    <SafaProvider theme="dark">
+    <UI99Provider theme="dark">
       <Surface />
-    </SafaProvider>
+    </UI99Provider>
   );
 }`}
             />

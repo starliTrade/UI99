@@ -1,5 +1,5 @@
 /**
- * SAFA UI Kit — Self-Contained Theme Detection (Phase 2.1)
+ * UI99 UI Kit — Self-Contained Theme Detection (Phase 2.1)
  *
  * Kit primitives must not depend on app context (npm-package portability,
  * the shadcn/ui standard: copy a component anywhere and it works).
@@ -31,7 +31,7 @@ function getSnapshot(): KitThemeMode {
 }
 
 function getServerSnapshot(): KitThemeMode {
-  // SAFA is dark-first (AGENTS.md §1)
+  // UI99 is dark-first (AGENTS.md §1)
   return 'dark';
 }
 

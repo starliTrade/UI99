@@ -1,5 +1,5 @@
 /**
- * SAFA — Daily Fortune / Fal (فال صفا) (Build 03)
+ * UI99 — Daily Fortune / Fal (فال صفا) (Build 03)
  * Playful daily fortune, poetic whisper & constellation reveal.
  */
 

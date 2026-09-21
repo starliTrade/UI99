@@ -1,5 +1,5 @@
 /**
- * SAFA — Keyboard Hotkey Badge `<Kbd>` (Build 02.2)
+ * UI99 — Keyboard Hotkey Badge `<Kbd>` (Build 02.2)
  * Linear / Raycast-grade monospace hotkey indicators.
  */
 

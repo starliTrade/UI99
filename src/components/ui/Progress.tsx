@@ -1,5 +1,5 @@
 /**
- * SAFA — Progress & Segmented Step Meter Component (Build 02.2)
+ * UI99 — Progress & Segmented Step Meter Component (Build 02.2)
  * Dual-theme (Obsidian Dark / Porcelain Light) with shimmer aura.
   * @token Track is `--state-selected` over the hosting surface; fill uses the emerald success token — constant across themes.
 */

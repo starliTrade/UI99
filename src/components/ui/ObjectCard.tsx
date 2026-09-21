@@ -1,5 +1,5 @@
 /**
- * SAFA — Unified Velvet Object Card (Build 02.2)
+ * UI99 — Unified Velvet Object Card (Build 02.2)
  * Enhanced with iOS-squircle corners (rounded-[24px]), specular top edge (inset 0 1px 1px),
  * luminous glowing progress / streaks and smooth spring micro-physics.
  */

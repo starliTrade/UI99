@@ -1,6 +1,6 @@
 /**
- * SAFA — Creative & Fashion Atelier Moment (Build 03)
- * Large editorial preview of Safa's fashion projects, textile palettes & design sketches.
+ * UI99 — Creative & Fashion Atelier Moment (Build 03)
+ * Large editorial preview of UI99's fashion projects, textile palettes & design sketches.
  */
 
 import React from 'react';

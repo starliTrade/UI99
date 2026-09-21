@@ -1,5 +1,5 @@
 /**
- * SAFA — Tactile Range Slider Component (Build 02.3)
+ * UI99 — Tactile Range Slider Component (Build 02.3)
  * Dual-theme (Obsidian Dark / Porcelain Light), smooth spring thumb, value readout.
  * RTL-aware: track fills and thumb position mirror under [dir="rtl"].
  * The native <input type="range"> is the accessibility root (keyboard + AT),

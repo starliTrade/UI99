@@ -1,5 +1,5 @@
 /**
- * SAFA — Home Composition Engine (Build 04)
+ * UI99 — Home Composition Engine (Build 04)
  * The foundational projection layer that turns the Universal Object Graph
  * into a breathing, emotionally intelligent, beautifully composed personal world.
  *

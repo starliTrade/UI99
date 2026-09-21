@@ -1,5 +1,5 @@
 /**
- * SAFA — Obsidian Liquid Glass (SOLG) Reusable Surfaces & Card Primitives (Build 02.2)
+ * UI99 — Obsidian Liquid Glass (SOLG) Reusable Surfaces & Card Primitives (Build 02.2)
  * Authentic layered materials: Canvas -> Surface -> Elevated -> Liquid Glass
  * Dual-theme (Obsidian Dark / Porcelain Light) responsive.
  *

@@ -18,7 +18,7 @@ const pkg = {
   name: '@99/ui',
   version: rootPkg.version ?? '0.1.0',
   description:
-    'SAFA UI99 — a velvet-obsidian, WCAG 2.2-audited React component kit. shadcn-grade DX: copy-anywhere primitives, dual theme (Obsidian Dark / Porcelain Light), axe-clean.',
+    'UI99 — a velvet-obsidian, WCAG 2.2-audited React component kit. shadcn-grade DX: copy-anywhere primitives, dual theme (Obsidian Dark / Porcelain Light), axe-clean.',
   license: 'MIT',
   type: 'module',
   sideEffects: ['**/*.css'],
@@ -83,7 +83,7 @@ writeFileSync(resolve(outDir, 'package.json'), JSON.stringify(pkg, null, 2) + '\
 
 const readmePath = resolve(root, 'KIT_README.md');
 const defaultReadmeLines = [
-  '# @99/ui — SAFA UI99 Kit',
+  '# @99/ui — UI99 Kit',
   '',
   'Velvet-obsidian React component kit (WCAG 2.2-audited, axe-clean, RTL-ready).',
   '',

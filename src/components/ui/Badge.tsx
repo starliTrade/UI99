@@ -1,5 +1,5 @@
 /**
- * SAFA — Linear-Grade Status & Priority Badges (Build 03.0)
+ * UI99 — Linear-Grade Status & Priority Badges (Build 03.0)
  * Full shadcn-grade matrix: Badge 9 variants x 3 sizes (cva) on the velvet
  * token system, plus semantic PriorityBadge / StatusBadge indicators.
  *

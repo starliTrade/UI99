@@ -1,5 +1,5 @@
 /**
- * SAFA UI Kit — Pure Feedback States (Phase 2.2)
+ * UI99 UI Kit — Pure Feedback States (Phase 2.2)
  * EmptyState & LoadingState are context-free primitives; they live here so the
  * npm kit entry can export them without pulling app-context toast state
  * (ToastContainer remains an app-level composite, shadcn Toaster style).
@@ -55,7 +55,7 @@ export function EmptyState({
   );
 }
 
-export function LoadingState({ message = 'Accessing Safa Space...' }: { message?: string }) {
+export function LoadingState({ message = 'Accessing UI99 Space...' }: { message?: string }) {
   return (
     <div role="status" aria-live="polite" className="flex flex-col items-center justify-center py-16 text-center">
       <Loader2 className="w-6 h-6 text-(--text-secondary) animate-spin mb-3" />

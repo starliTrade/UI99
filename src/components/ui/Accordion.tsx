@@ -1,5 +1,5 @@
 /**
- * SAFA — Tactile Velvet Accordion Component (Build 02.2)
+ * UI99 — Tactile Velvet Accordion Component (Build 02.2)
  * Dual-theme (Obsidian Dark / Porcelain Light) with Radix UI WAI-ARIA keyboard navigation and smooth height animation.
  */
 

@@ -1,5 +1,5 @@
 /**
- * SAFA — Tactile Velvet Tooltip Component (Build 02.3)
+ * UI99 — Tactile Velvet Tooltip Component (Build 02.3)
  * Dual-theme (Obsidian Dark / Porcelain Light) with Radix UI collision detection.
  * Keyboard-accessible: Radix Trigger opens on focus AND hover (WAI-ARIA APG pattern);
  * wrapper span no longer overrides pointer-events/cursor of the trigger.

@@ -1,5 +1,5 @@
 /**
- * SAFA — Unified Velvet Modal & Mobile BottomSheet (Build 02.2)
+ * UI99 — Unified Velvet Modal & Mobile BottomSheet (Build 02.2)
  * Seamless dark depth matching #111114, micro-hairlines, soft diffusion shadows,
  * backed by Radix UI Dialog primitives for full WAI-ARIA focus management & keyboard interaction.
   * @token Backdrop is canvas-black at 70% + blur(8px); dialog resolves `--bg-elevated` and the specular top rim.

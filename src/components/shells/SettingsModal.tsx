@@ -1,5 +1,5 @@
 /**
- * SAFA — Settings, Profile, SLO & Data Ownership Modal (Build 02.0)
+ * UI99 — Settings, Profile, SLO & Data Ownership Modal (Build 02.0)
  */
 
 import React, { useState, useEffect } from 'react';
@@ -231,7 +231,7 @@ export function SettingsModal() {
                 onClick={handleExportData}
                 icon={<Download className="w-3.5 h-3.5" />}
               >
-                Export Full SAFA Archive (.json)
+                Export Full UI99 Archive (.json)
               </Button>
             </div>
           </div>
@@ -243,7 +243,7 @@ export function SettingsModal() {
             <div className="p-4 bg-[#18181D] rounded-2xl border border-white/[0.08] space-y-2.5">
               <div className="flex items-center gap-2 font-bold text-white">
                 <Sparkles className="w-4 h-4 text-purple-400" />
-                <span>SAFA Intelligence Architecture</span>
+                <span>UI99 Intelligence Architecture</span>
               </div>
               <p className="text-zinc-400 leading-relaxed">
                 • Model: <span className="font-mono text-purple-300">gemini-3.8-flash</span> via server-side abstraction.
