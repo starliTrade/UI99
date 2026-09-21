@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist-kit/types",
+    "rootDir": "src",
+    "tsBuildInfoFile": "tsconfig.lib.tsbuildinfo"
+  },
+  "include": ["src/components/ui/kit.ts"],
+  "exclude": ["src/test", "src/types/jest-axe.d.ts", "src/types/vitest-axe.d.ts", "server", "scripts"]
+}

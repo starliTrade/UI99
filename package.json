@@ -11,7 +11,9 @@
     "lint": "tsc --noEmit",
     "test": "vitest run",
     "lib:css": "node scripts/build-kit-css.mjs",
-    "lib:build": "vite build --config vite.config.lib.ts && bun run lib:css"
+    "lib:types": "tsc -p tsconfig.lib.json",
+    "lib:manifest": "node scripts/build-kit-manifest.mjs",
+    "lib:build": "vite build --config vite.config.lib.ts && bun run lib:css && bun run lib:types && bun run lib:manifest"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
