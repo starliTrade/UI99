@@ -13,7 +13,8 @@
     "lib:css": "node scripts/build-kit-css.mjs",
     "lib:types": "tsc -p tsconfig.lib.json",
     "lib:manifest": "node scripts/build-kit-manifest.mjs",
-    "lib:build": "vite build --config vite.config.lib.ts && bun run lib:css && bun run lib:types && bun run lib:manifest"
+    "registry:build": "node scripts/build-registry.mjs",
+    "lib:build": "vite build --config vite.config.lib.ts && bun run lib:css && bun run lib:types && bun run lib:manifest && bun run registry:build"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
