@@ -5,16 +5,9 @@
 
 import React, { useState } from 'react';
 import {
-  LayoutTemplate,
+  Check,
   CheckCircle2,
   Copy,
-  Check,
-  Zap,
-  Shield,
-  Layers,
-  Sparkles,
-  BarChart3,
-  TrendingUp,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Switch, Tag, PriorityBadge, StatusBadge, Kbd } from '../ui';
@@ -118,22 +111,22 @@ export function ${blockId.charAt(0).toUpperCase() + blockId.slice(1)}Block() {
   };
 
   return (
-    <div className="w-full space-y-12 pb-16">
-      {/* Header */}
-      <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-purple-500/10 text-purple-500 border border-purple-500/20">
-          <LayoutTemplate className="w-3.5 h-3.5" />
-          <span>Production Blocks & Templates</span>
+    <div className="w-full space-y-8 pb-16">
+      {/* PAGE HEADER — quiet, same language as Kit/Docs */}
+      <header className="pt-6 sm:pt-10 pb-2 space-y-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          composed from 63 primitives · copy-ready
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-white">
-          Production Blocks & Templates
+        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.05] text-balance">
+          Production Blocks.
         </h1>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
-          Pre-built application modules and views crafted with UI \ [99] design tokens, ready for instant integration into real software.
+        <p className="text-sm sm:text-base text-zinc-500 dark:text-[#92929B] max-w-xl leading-relaxed">
+          Real application modules assembled from the kit — study the pattern, then take the code.
         </p>
-      </div>
+      </header>
 
-      {/* Block Category Navigation */}
+      {/* Block Category Navigation — same pill rail language */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-black/[0.06] dark:border-white/[0.04]">
         <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.03]">
           <button
