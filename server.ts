@@ -40,12 +40,12 @@ async function startServer() {
   // Auth: Login / Quick Access
   app.post('/api/auth/login', (req: Request, res: Response) => {
     const { email } = req.body;
-    const user = db.getUserByEmail(email || 'safa@personal.os') || db.getUserById('usr_safa_01');
+    const user = db.getUserByEmail(email || 'studio@ui99.dev') || db.getUserById('usr_safa_01');
     if (!user) {
       return res.status(401).json({ error: 'User not found' });
     }
     res.json({
-      token: `safa_sess_${Date.now()}`,
+      token: `ui99_sess_${Date.now()}`,
       user: {
         id: user.id,
         email: user.email,
@@ -240,7 +240,7 @@ async function startServer() {
     if (!user) return res.status(401).json({ error: 'Unauthorized' });
     const bundle = db.exportAllData(user.id);
     res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Content-Disposition', `attachment; filename=safa-export-${Date.now()}.json`);
+    res.setHeader('Content-Disposition', `attachment; filename=ui99-export-${Date.now()}.json`);
     res.json(bundle);
   });
 
@@ -274,6 +274,17 @@ async function startServer() {
     app.get('*', (req: Request, res: Response) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
+  }
+
+  // Port guard: if an instance of this server is already serving on PORT,
+  // exit cleanly instead of crashing with EADDRINUSE. This makes restarts
+  // race-safe (stale instance keeps serving; managed process exits 0).
+  const alreadyServing = await fetch(`http://127.0.0.1:${PORT}/api/health`)
+    .then((r) => r.ok)
+    .catch(() => false);
+  if (alreadyServing) {
+    console.log(`[UI99] Port ${PORT} already served by a healthy instance — exiting.`);
+    process.exit(0);
   }
 
   app.listen(PORT, '0.0.0.0', () => {
