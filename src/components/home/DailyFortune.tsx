@@ -1,5 +1,5 @@
 /**
- * UI99 — Daily Fortune / Fal (فال صفا) (Build 03)
+ * UI99 — Daily Fortune / Fal (فال) (Build 03)
  * Playful daily fortune, poetic whisper & constellation reveal.
  */
 
@@ -41,7 +41,7 @@ export function DailyFortune() {
             {fortune.symbol}
           </span>
           <span className="text-[10.5px] uppercase font-bold tracking-widest text-violet-300">
-            {isRTL ? 'فال و نجوای صفا' : 'Daily Fortune & Whisper'}
+            {isRTL ? 'فال و نجوا' : 'Daily Fortune & Whisper'}
           </span>
         </div>
 
@@ -107,7 +107,7 @@ export function DailyFortune() {
 
       {/* Subtle Bottom Footer */}
       <div className="flex items-center justify-between pt-3 border-t border-white/[0.025] text-[10px] text-[#92929B] relative z-10">
-        <span>{isRTL ? 'نیت قلبی صفا' : 'Personal delight moment'}</span>
+        <span>{isRTL ? 'نیت قلبی' : 'Personal delight moment'}</span>
         <span className="text-violet-400 font-medium group-hover:underline">
           {isRevealed ? (isRTL ? 'بستن' : 'Close') : isRTL ? 'گشودن فال' : 'Reveal'}
         </span>

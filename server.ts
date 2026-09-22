@@ -1,5 +1,5 @@
 /**
- * SAFA — Personal Life OS
+ * UI99 — Design System & Component Registry
  * Express + Vite Server Entry Point
  */
 
@@ -19,7 +19,7 @@ async function startServer() {
 
   // Helper auth middleware
   const getAuthUser = (req: Request) => {
-    // In this foundation build, default to Safa user or authorization header
+    // In this foundation build, default to studio user or authorization header
     const token = req.headers.authorization?.replace('Bearer ', '');
     return db.getUserById('usr_safa_01');
   };
@@ -30,7 +30,7 @@ async function startServer() {
   app.get('/api/health', (req: Request, res: Response) => {
     res.json({
       status: 'ok',
-      product: 'SAFA (صفا) Personal Life OS',
+      product: 'UI99 Design System',
       version: '1.0.0-build01',
       aiConfigured: AIService.isAvailable(),
       timestamp: new Date().toISOString(),
@@ -277,7 +277,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`[SAFA Personal Life OS] Server running on http://0.0.0.0:${PORT}`);
+    console.log(`[UI99] Server running on http://0.0.0.0:${PORT}`);
   });
 }
 

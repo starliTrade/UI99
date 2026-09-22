@@ -57,7 +57,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
       ];
       const copy = morningMicrocopies[dayIndex % morningMicrocopies.length];
       return {
-        greeting: { fa: 'صبح به‌خیر، صفای عزیز', en: 'Good morning, UI99' },
+        greeting: { fa: 'صبح به‌خیر', en: 'Good morning, UI99' },
         microcopy: copy,
         icon: Sunrise,
         auraColor: 'from-rose-500/10 via-amber-500/5 to-transparent',
@@ -80,7 +80,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
       ];
       const copy = afternoonMicrocopies[dayIndex % afternoonMicrocopies.length];
       return {
-        greeting: { fa: 'عصر به‌خیر، صفا جان', en: 'Good afternoon, UI99' },
+        greeting: { fa: 'عصر به‌خیر', en: 'Good afternoon, UI99' },
         microcopy: copy,
         icon: Sun,
         auraColor: 'from-amber-500/10 via-rose-500/5 to-transparent',
@@ -103,7 +103,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
       ];
       const copy = eveningMicrocopies[dayIndex % eveningMicrocopies.length];
       return {
-        greeting: { fa: 'غروب به‌خیر، صفای عزیز', en: 'Good evening, UI99' },
+        greeting: { fa: 'غروب به‌خیر', en: 'Good evening, UI99' },
         microcopy: copy,
         icon: Sunset,
         auraColor: 'from-violet-500/12 via-rose-500/6 to-transparent',
@@ -126,7 +126,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
       ];
       const copy = nightMicrocopies[dayIndex % nightMicrocopies.length];
       return {
-        greeting: { fa: 'شب آرام، صفای جان', en: 'Peaceful night, UI99' },
+        greeting: { fa: 'شب آرام', en: 'Peaceful night, UI99' },
         microcopy: copy,
         icon: Moon,
         auraColor: 'from-indigo-500/12 via-violet-500/6 to-transparent',

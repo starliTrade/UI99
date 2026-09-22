@@ -25,7 +25,7 @@ export function getLivingAtmosphere(hour: number, dayOfWeek: number): DailyAtmos
   if (hour >= 5 && hour < 12) {
     return {
       greetingEn: 'Good morning, UI99',
-      greetingFa: 'صبح به‌خیر، صفای عزیز',
+      greetingFa: 'صبح به‌خیر',
       subtitleEn: 'Today is yours. Breathe, create, and enjoy the quiet moments.',
       subtitleFa: 'امروز برای توئه؛ با آرامش نفس بکش، خلق کن و از لحظه‌هات لذت ببر.',
       themeTag: 'Morning Light',
@@ -35,7 +35,7 @@ export function getLivingAtmosphere(hour: number, dayOfWeek: number): DailyAtmos
   } else if (hour >= 12 && hour < 17) {
     return {
       greetingEn: 'Good afternoon, UI99',
-      greetingFa: 'عصر به‌خیر، صفا جان',
+      greetingFa: 'عصر به‌خیر',
       subtitleEn: 'Flowing through the day with quiet focus and inspiration.',
       subtitleFa: 'جریان آرام روز در آتلیه؛ پر از تمرکز و حس‌های خوب.',
       themeTag: 'Atelier Sunlight',
@@ -45,7 +45,7 @@ export function getLivingAtmosphere(hour: number, dayOfWeek: number): DailyAtmos
   } else if (hour >= 17 && hour < 21) {
     return {
       greetingEn: 'Good evening, UI99',
-      greetingFa: 'غروب به‌خیر، صفای عزیز',
+      greetingFa: 'غروب به‌خیر',
       subtitleEn: 'A golden hour for unwinding, good music, and reflections.',
       subtitleFa: 'لحظه‌های طلایی غروب؛ چای گرم، موسیقی خوب و آرامش دل.',
       themeTag: 'Twilight Hour',
@@ -55,7 +55,7 @@ export function getLivingAtmosphere(hour: number, dayOfWeek: number): DailyAtmos
   } else {
     return {
       greetingEn: 'Peaceful night, UI99',
-      greetingFa: 'شب آرام، صفای جان',
+      greetingFa: 'شب آرام',
       subtitleEn: 'Rest your thoughts in stillness and peaceful dreams.',
       subtitleFa: 'آرامش شبانه و خلوت دل؛ استراحت کن و به رویاهات فکر کن.',
       themeTag: 'Deep Obsidian',
@@ -103,7 +103,7 @@ export const DAILY_INTENTIONS = [
   {
     textFa: 'امروز لازم نیست همه‌چیز را حل کنی؛ فقط با آرامش قدم بعدی را بردار.',
     textEn: "You don't have to figure everything out today; just take the next quiet step.",
-    author: 'صفای درون',
+    author: 'درون',
   },
   {
     textFa: 'زیبایی واقعی در سادگی، اصالت و فضایی است که برای نفس کشیدن می‌گذاری.',
@@ -113,7 +113,7 @@ export const DAILY_INTENTIONS = [
   {
     textFa: 'هر خطی که در آتلیه می‌کشی، بازتابی از دنیای آرام درون توست.',
     textEn: 'Every line drawn in the atelier is a reflection of your serene inner world.',
-    author: 'آتلیه صفا',
+    author: 'آتلیه',
   },
   {
     textFa: 'لحظه‌ها سریع می‌گذرند؛ آنچه با عشق و حضور لمس شود جاودانه می‌ماند.',
@@ -128,7 +128,7 @@ export const DAILY_INTENTIONS = [
 ];
 
 /**
- * Curated Daily Fortunes (فال و نجوای صفا)
+ * Curated Daily Fortunes (فال و نجوا)
  */
 export const DAILY_FORTUNES = [
   {

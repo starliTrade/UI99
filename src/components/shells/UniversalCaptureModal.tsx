@@ -63,7 +63,7 @@ export function UniversalCaptureModal() {
         if (res.extraction.suggestedTags?.length) {
           setTags(Array.from(new Set([...tags, ...res.extraction.suggestedTags])));
         }
-        addToast(isRTL ? 'هوش مصنوعی صفا یادداشت را تحلیل کرد' : 'UI99 AI analyzed your capture', 'purple');
+        addToast(isRTL ? 'دستیار هوشمند یادداشت را تحلیل کرد' : 'UI99 AI analyzed your capture', 'purple');
       }
     } catch (err: any) {
       addToast(err.message || 'AI analysis unavailable', 'warning');
@@ -132,7 +132,7 @@ export function UniversalCaptureModal() {
     <Modal
       isOpen={isCaptureOpen}
       onClose={() => setIsCaptureOpen(false)}
-      title={isRTL ? 'ثبت سریع صفا' : 'Universal Fast Capture'}
+      title={isRTL ? 'ثبت سریع' : 'Universal Fast Capture'}
       subtitle={isRTL ? 'هر فکری، وظیفه‌ای یا الهامی را سریع بنویسید' : 'Put anything here — thoughts, tasks, ideas, inspiration'}
       maxWidth="lg"
     >
@@ -180,7 +180,7 @@ export function UniversalCaptureModal() {
             <div className="flex items-center justify-between text-purple-300 font-semibold">
               <span className="flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
-                {isRTL ? 'پیشنهاد هوش مصنوعی صفا' : 'AI Suggested Classification'}
+                {isRTL ? 'پیشنهاد هوشمند' : 'AI Suggested Classification'}
               </span>
               <span className="text-[10px] bg-purple-900/50 px-2 py-0.5 rounded-full border border-purple-500/40 text-purple-200">
                 {Math.round(aiResult.confidence * 100)}%

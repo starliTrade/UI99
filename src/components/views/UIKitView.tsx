@@ -541,7 +541,7 @@ export function UIKitView() {
                   فارسی فاخر (وزیرمتن با اعداد فارسی)
                 </span>
                 <p className="text-2xl font-bold font-persian-luxury text-zinc-950 dark:text-[#EDEDEF]">
-                  صفا: آرامش ذهن و سیستم‌عامل زندگی
+                  UI99 — سیستم طراحی و رجیستری کامپوننت
                 </p>
                 <p className="text-sm font-persian-luxury text-zinc-600 dark:text-[#92929B] leading-relaxed">
                   تراز اپتیکال دقیق خطوط، خوانایی حداکثری، و قالب‌بندی ارقام فارسی: ۱۲۳،۴۵۶ ریال در کادرها.

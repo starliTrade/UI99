@@ -61,7 +61,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
             <BookOpen className="w-3 h-3 stroke-[2.2]" />
           </span>
           <span className="text-[10.5px] uppercase font-bold tracking-widest text-[#EDEDEF]">
-            {isRTL ? 'کتابخانه و مطالعه صفا' : 'Currently Reading'}
+            {isRTL ? 'کتابخانه و مطالعه' : 'Currently Reading'}
           </span>
         </div>
 

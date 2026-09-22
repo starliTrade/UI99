@@ -37,7 +37,7 @@ export function AtelierMoment({
             </div>
             <div>
               <h4 className="text-base font-bold text-[#EDEDEF]">
-                {isRTL ? 'کارگاه طراحی و آتلیه صفا' : 'Atelier & Design World'}
+                {isRTL ? 'کارگاه طراحی و آتلیه' : 'Atelier & Design World'}
               </h4>
               <p className="text-xs text-[#92929B] mt-0.5">
                 {isRTL ? 'طرح جدید، پالت رنگ یا الگوی پارچه را ثبت کن' : 'Your next collection or silhouette is waiting'}
@@ -72,7 +72,7 @@ export function AtelierMoment({
             <Scissors className="w-3 h-3 stroke-[2.2]" />
           </span>
           <span className="text-[10.5px] uppercase font-bold tracking-widest text-amber-400">
-            {isRTL ? 'آتلیه طراحی صفا' : 'Atelier Moment'}
+            {isRTL ? 'آتلیه طراحی' : 'Atelier Moment'}
           </span>
         </div>
 

@@ -123,7 +123,7 @@ export function SettingsModal() {
                 value={persianName}
                 onChange={(e) => setPersianName(e.target.value)}
                 className="w-full bg-[#18181D] border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-white font-persian-luxury focus:outline-none focus:border-white/30"
-                placeholder="صفا"
+                placeholder="نام نمایشی"
               />
             </div>
 

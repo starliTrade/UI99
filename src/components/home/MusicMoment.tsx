@@ -65,7 +65,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
             <Music className="w-3 h-3 stroke-[2.2]" />
           </span>
           <span className="text-[10.5px] uppercase font-bold tracking-widest text-[#EDEDEF]">
-            {isRTL ? 'نوای امروز صفا' : 'Today in Music'}
+            {isRTL ? 'نوای امروز' : 'Today in Music'}
           </span>
         </div>
 
