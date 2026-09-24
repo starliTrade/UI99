@@ -23,11 +23,11 @@ export const buttonVariants = cva(
         primary:
           'bg-[#111116] text-white hover:bg-[#1E1E24] border border-black/10 shadow-xs dark:bg-[#EDEDEF] dark:text-[#060709] dark:hover:bg-white dark:border-white/10 dark:shadow-[0_2px_10px_rgba(255,255,255,0.06)]',
         secondary:
-          'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 hover:text-black border border-black/[0.05] shadow-xs dark:bg-white/[0.045] dark:text-[#EDEDEF] dark:hover:bg-white/[0.075] dark:hover:text-white dark:border-white/[0.025] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)]',
+          'bg-zinc-100 text-zinc-800 hover:bg-state-hover hover:text-black border border-black/[0.05] shadow-xs dark:bg-white/[0.045] dark:text-[#EDEDEF] dark:hover:text-white dark:border-white/[0.025] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)]',
         outline:
-          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-black/[0.03] shadow-xs dark:text-[#EDEDEF] dark:border-white/[0.04] dark:hover:bg-white/[0.03]',
+          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-[#EDEDEF] dark:border-white/[0.04]',
         ghost:
-          'bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-[#92929B] dark:hover:bg-white/[0.035] dark:hover:text-[#EDEDEF]',
+          'bg-transparent text-zinc-600 hover:bg-state-hover hover:text-zinc-950 dark:text-[#92929B] dark:hover:text-[#EDEDEF]',
         link: 'bg-transparent underline-offset-4 hover:underline text-(--text-primary) hover:bg-transparent px-0',
         destructive:
           'bg-rose-600 text-white hover:bg-rose-500 border border-rose-700/40 shadow-xs dark:bg-rose-500 dark:hover:bg-rose-400 dark:text-[#2A0A10]',
@@ -139,9 +139,9 @@ export const iconButtonVariants = cva(
         secondary:
           'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 border border-black/[0.05] dark:bg-[#16161B] dark:text-[#D4D4D8] dark:hover:bg-[#1E1E26] dark:border-white/[0.06]',
         outline:
-          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-black/[0.03] dark:text-[#D4D4D8] dark:border-white/[0.08] dark:hover:bg-white/[0.04]',
+          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover dark:text-[#D4D4D8] dark:border-white/[0.08]',
         ghost:
-          'bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-[#92929B] dark:hover:bg-white/[0.04] dark:hover:text-[#EDEDEF]',
+          'bg-transparent text-zinc-600 hover:bg-state-hover hover:text-zinc-950 dark:text-[#92929B] dark:hover:text-[#EDEDEF]',
         link: 'bg-transparent hover:bg-transparent text-(--text-primary) hover:scale-100',
         destructive:
           'bg-rose-600 text-white hover:bg-rose-500 border border-rose-700/40 shadow-xs dark:bg-rose-500 dark:hover:bg-rose-400 dark:text-[#2A0A10]',

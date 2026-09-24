@@ -51,7 +51,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={error ? true : undefined}
             aria-describedby={helperId}
             className={cn(
-              'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] text-(--text-primary) placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-ui99',
+              'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-ui99',
               inputSizeStyles[inputSize],
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',
@@ -97,7 +97,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={error ? true : undefined}
           aria-describedby={helperId}
           className={cn(
-            'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-xl p-3.5 text-sm text-(--text-primary) placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-ui99',
+            'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-xl p-3.5 text-sm text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-ui99',
             error && 'border-rose-500/60 focus:border-rose-500',
             className
           )}
@@ -137,7 +137,7 @@ export function SearchBar({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         autoFocus={autoFocus}
-        className="w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-full pl-10 pr-10 py-2.5 text-sm text-(--text-primary) placeholder-zinc-400 dark:placeholder-[#5C5C66] focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] transition-all shadow-xs tracking-tight"
+        className="w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-full pl-10 pr-10 py-2.5 text-sm text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] transition-all shadow-xs tracking-tight"
       />
       {value && onClear && (
         <button
