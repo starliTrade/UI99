@@ -107,7 +107,7 @@ export function CodeBlock({
       className={cn(
         'group relative overflow-hidden rounded-2xl sm:rounded-2xl',
         'border border-zinc-200/80 dark:border-white/[0.045]',
-        'bg-[#FBFBFC] dark:bg-[#07080B]',
+        'bg-[#FBFBFC] dark:bg-(--bg-sunken)',
         'shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_48px_-12px_rgba(0,0,0,0.75)]',
         'transition-all duration-200',
         className
@@ -115,7 +115,7 @@ export function CodeBlock({
     >
       {/* Top Header Tab Bar */}
       {showChrome && (
-        <div className="flex items-center justify-between border-b border-zinc-200/70 dark:border-white/[0.04] bg-zinc-100/70 dark:bg-[#090A0E] px-3 sm:px-3.5 py-1.5 sm:py-2 select-none min-w-0">
+        <div className="flex items-center justify-between border-b border-zinc-200/70 dark:border-white/[0.04] bg-zinc-100/70 dark:bg-(--bg-surface) px-3 sm:px-3.5 py-1.5 sm:py-2 select-none min-w-0">
           {/* Active File Tab */}
           <div className="flex items-center gap-2 min-w-0 flex-1">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white dark:bg-white/[0.05] border border-zinc-200/80 dark:border-white/[0.06] shadow-xs min-w-0">
@@ -189,7 +189,7 @@ export function CodeBlock({
       {/* Code View Canvas */}
       <div
         className={cn(
-          'overflow-x-auto p-3.5 sm:p-4 font-mono text-[12px] sm:text-[13px] leading-relaxed text-zinc-800 dark:text-[#EDEDEF]',
+          'overflow-x-auto p-3.5 sm:p-4 font-mono text-[12px] sm:text-[13px] leading-relaxed text-zinc-800 dark:text-(--text-primary)',
           isCollapsed ? 'max-h-[160px] overflow-hidden' : ''
         )}
         style={{
@@ -233,8 +233,8 @@ export function CodeBlock({
       {allowCollapse && lineCount > 12 && (
         <div
           className={cn(
-            'flex items-center justify-center p-2 border-t border-zinc-200/60 dark:border-white/[0.03] bg-zinc-100/80 dark:bg-[#0A0B10]/90 backdrop-blur-md',
-            isCollapsed && 'absolute inset-x-0 bottom-0 pt-10 bg-gradient-to-t from-white dark:from-[#07080C] via-white/90 dark:via-[#07080C]/90 to-transparent'
+            'flex items-center justify-center p-2 border-t border-zinc-200/60 dark:border-white/[0.03] bg-zinc-100/80 dark:bg-(--bg-surface)/90 backdrop-blur-md',
+            isCollapsed && 'absolute inset-x-0 bottom-0 pt-10 bg-gradient-to-t from-white dark:from-(--bg-sunken) via-white/90 dark:via-(--bg-sunken)/90 to-transparent'
           )}
         >
           <button

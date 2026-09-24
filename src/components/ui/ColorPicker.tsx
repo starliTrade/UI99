@@ -67,7 +67,7 @@ export function ColorPicker({
   };
 
   return (
-    <div className={cn('flex flex-col gap-3 p-3.5 rounded-2xl bg-white dark:bg-[#0E0E14] border border-black/[0.06] dark:border-white/[0.04] shadow-lg max-w-[280px]', className)}>
+    <div className={cn('flex flex-col gap-3 p-3.5 rounded-2xl bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.04] shadow-lg max-w-[280px]', className)}>
       {label && (
         <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">{label}</span>
       )}
@@ -79,7 +79,7 @@ export function ColorPicker({
           className="w-9 h-9 rounded-xl border border-black/10 dark:border-white/10 shrink-0 shadow-inner transition-transform active:scale-95"
           style={{ backgroundColor: color }}
         />
-        <div className="flex-1 flex items-center bg-zinc-100 dark:bg-[#131318] rounded-xl px-2.5 py-1.5 border border-black/[0.04] dark:border-white/[0.03]">
+        <div className="flex-1 flex items-center bg-zinc-100 dark:bg-(--bg-elevated) rounded-xl px-2.5 py-1.5 border border-black/[0.04] dark:border-white/[0.03]">
           <span className="text-xs font-mono text-zinc-500 mr-1">#</span>
           <input
             type="text"
@@ -130,7 +130,7 @@ export function ColorPicker({
             aria-label={`Select color ${preset}`}
             className={cn(
               'w-5 h-5 rounded-lg border border-black/10 dark:border-white/10 transition-all hover:scale-110 active:scale-95',
-              color.toLowerCase() === preset.toLowerCase() && 'ring-2 ring-emerald-500 ring-offset-1 dark:ring-offset-[#0E0E14]'
+              color.toLowerCase() === preset.toLowerCase() && 'ring-2 ring-emerald-500 ring-offset-1 dark:ring-offset-(--bg-canvas)'
             )}
             style={{ backgroundColor: preset }}
           />

@@ -28,14 +28,14 @@ export function AvatarStack({ names, max = 4, size = 'sm', className = '' }: Ava
           className={cn(i > 0 && '-ml-2')}
           style={{ zIndex: visible.length - i }}
         >
-          <Avatar name={name} size={size} className="ring-2 ring-white dark:ring-[#0B0C11]" />
+          <Avatar name={name} size={size} className="ring-2 ring-white dark:ring-(--bg-card)" />
         </div>
       ))}
       {overflow > 0 && (
         <div className="-ml-2" style={{ zIndex: 0 }}>
           <div
             className={cn(
-              'flex items-center justify-center rounded-full bg-zinc-100 dark:bg-[#1A1A20] font-mono font-semibold text-(--text-secondary) ring-2 ring-white dark:ring-[#0B0C11]',
+              'flex items-center justify-center rounded-full bg-zinc-100 dark:bg-(--bg-card-hover) font-mono font-semibold text-(--text-secondary) ring-2 ring-white dark:ring-(--bg-card)',
               size === 'xs' && 'w-6 h-6 text-[9px]',
               size === 'sm' && 'w-7 h-7 text-[10px]',
               size === 'md' && 'w-9 h-9 text-xs',

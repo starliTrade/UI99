@@ -139,6 +139,7 @@ import {
   TabsTrigger,
   TabsContent,
   TokensAuditPlayground,
+  AllPropsPlayground,
   LinearIssueTracker,
   Toggle,
   ToggleGroup,
@@ -2552,6 +2553,11 @@ export default function App() {
             </div>
           </div>
         </section>
+      )}
+
+      {/* Heavy Primitives Playground — all-props live lab (Sandbox + All Overview) */}
+      {isSectionVisible('SANDBOX', ['sandbox', 'live', 'code lab', 'generator', 'jsx', 'interactive']) && (
+        <AllPropsPlayground />
       )}
 
       {/* Velvet Demo Modal */}

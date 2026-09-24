@@ -53,7 +53,7 @@ export function TourGuide({
       aria-label={`Product tour, step ${currentStep + 1} of ${steps.length}: ${step.title}`}
       aria-live="polite"
       className={cn(
-        'w-full max-w-sm p-4 rounded-2xl bg-white dark:bg-[#131318] border border-black/10 dark:border-white/[0.06]',
+        'w-full max-w-sm p-4 rounded-2xl bg-white dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.06]',
         'shadow-[0_20px_48px_-10px_rgba(0,0,0,0.6)] backdrop-blur-xl animate-in fade-in zoom-in-95',
         className
       )}

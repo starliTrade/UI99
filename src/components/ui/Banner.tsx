@@ -38,7 +38,7 @@ export function Banner({
   if (closed) return null;
 
   const variants = {
-    obsidian: 'bg-zinc-900/90 dark:bg-[#0E0E14] text-white border-black/10 dark:border-white/[0.04]',
+    obsidian: 'bg-zinc-900/90 dark:bg-(--bg-elevated) text-white border-black/10 dark:border-white/[0.04]',
     emerald: 'bg-emerald-500/10 text-emerald-900 dark:text-emerald-300 border-emerald-500/20',
     amber: 'bg-amber-500/10 text-amber-900 dark:text-amber-300 border-amber-500/20',
     sapphire: 'bg-blue-500/10 text-blue-900 dark:text-blue-300 border-blue-500/20',

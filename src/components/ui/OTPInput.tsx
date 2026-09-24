@@ -98,7 +98,7 @@ export function OTPInput({ length = 6, value, onChange, onComplete, disabled = f
           onPaste={handlePaste}
           className={cn(
             'h-12 w-10 rounded-xl border bg-white text-center text-lg font-semibold text-zinc-950 transition-colors',
-            'dark:bg-[#131318] dark:text-[#EDEDEF]',
+            'dark:bg-(--bg-elevated) dark:text-(--text-primary)',
             'border-(--border-strong)',
             'hover:border-black/[0.18] dark:hover:border-white/[0.2]',
             'focus-visible:outline-none focus-ui99-inset focus-visible:border-black/[0.3] dark:focus-visible:border-white/[0.35]',

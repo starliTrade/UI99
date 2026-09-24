@@ -27,9 +27,9 @@ export function EmptyState({
   persianTitle,
 }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-2xl bg-white dark:bg-[#111114] border border-black/[0.06] dark:border-white/[0.055] shadow-[0_8px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.4)]">
+    <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-2xl bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.055] shadow-[0_8px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.4)]">
       {icon && (
-        <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-[#16161B] border border-black/[0.06] dark:border-white/[0.06] text-(--text-secondary) flex items-center justify-center mb-3">
+        <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-(--bg-card-hover) border border-black/[0.06] dark:border-white/[0.06] text-(--text-secondary) flex items-center justify-center mb-3">
           {icon}
         </div>
       )}
@@ -37,7 +37,7 @@ export function EmptyState({
         {title}
       </h3>
       {persianTitle && (
-        <p className="font-persian-luxury text-xs text-zinc-400 dark:text-[#5C5C66] mt-0.5">
+        <p className="font-persian-luxury text-xs text-zinc-400 dark:text-(--text-muted) mt-0.5">
           {persianTitle}
         </p>
       )}

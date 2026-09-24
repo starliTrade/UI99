@@ -123,7 +123,7 @@ export function Dropdown<T extends string = string>({
         <span
           id={`${listId}-label`}
           className={`block text-xs font-semibold mb-1.5 ${
-            isDark ? 'text-[#92929B]' : 'text-zinc-700'
+            isDark ? 'text-(--text-secondary)' : 'text-zinc-700'
           }`}
         >
           {label}
@@ -137,7 +137,7 @@ export function Dropdown<T extends string = string>({
         onKeyDown={handleTriggerKeyDown}
         className={`w-full flex items-center justify-between rounded-xl font-medium transition-all duration-150 cursor-pointer select-none focus-ui99 ${sizeClass} ${
           isDark
-            ? 'bg-[#131317] text-[#EDEDEF] border border-white/[0.06] hover:border-white/[0.14] shadow-xs'
+            ? 'bg-(--bg-elevated) text-(--text-primary) border border-white/[0.06] hover:border-white/[0.14] shadow-xs'
             : 'bg-white text-zinc-900 border border-black/[0.08] hover:border-black/[0.18] shadow-xs'
         }`}
         aria-expanded={isOpen}
@@ -168,7 +168,7 @@ export function Dropdown<T extends string = string>({
             transition={{ duration: 0.14 }}
             className={`absolute left-0 right-0 mt-1.5 p-1 rounded-2xl z-50 backdrop-blur-2xl shadow-xl overflow-hidden ${
               isDark
-                ? 'bg-[#0E0E14]/95 border border-white/[0.07] shadow-[0_20px_40px_rgba(0,0,0,0.8)]'
+                ? 'bg-(--bg-elevated)/95 border border-white/[0.07] shadow-[0_20px_40px_rgba(0,0,0,0.8)]'
                 : 'bg-white/95 border border-black/[0.06] shadow-[0_16px_36px_rgba(0,0,0,0.08)]'
             }`}
           >

@@ -86,15 +86,15 @@ export function DatePicker({
           disabled={disabled}
           className={cn(
             'inline-flex h-10 min-w-[180px] items-center gap-2 rounded-xl border border-black/[0.07] bg-white px-3 text-sm text-zinc-950',
-            'dark:border-white/[0.07] dark:bg-[#131318] dark:text-[#EDEDEF]',
+            'dark:border-white/[0.07] dark:bg-(--bg-elevated) dark:text-(--text-primary)',
             'transition-colors hover:bg-(--state-hover)',
             'focus-visible:outline-none focus-ui99-inset cursor-pointer',
             'disabled:cursor-not-allowed disabled:opacity-45',
             className
           )}
         >
-          <CalendarDays className="w-4 h-4 text-zinc-400 dark:text-[#8E8E98]" />
-          <span className={cn(!parsed && 'text-zinc-400 dark:text-[#8E8E98]')}>
+          <CalendarDays className="w-4 h-4 text-zinc-400 dark:text-(--text-secondary)" />
+          <span className={cn(!parsed && 'text-zinc-400 dark:text-(--text-secondary)')}>
             {parsed ? value : placeholder}
           </span>
         </button>
@@ -103,14 +103,14 @@ export function DatePicker({
         <PopoverPrimitive.Content
           sideOffset={8}
           align="start"
-          className="z-50 w-[280px] rounded-2xl border border-black/[0.06] bg-white p-3 shadow-[0_20px_48px_-12px_rgba(0,0,0,0.7)] dark:border-white/[0.06] dark:bg-[#131318]"
+          className="z-50 w-[280px] rounded-2xl border border-black/[0.06] bg-white p-3 shadow-[0_20px_48px_-12px_rgba(0,0,0,0.7)] dark:border-white/[0.06] dark:bg-(--bg-elevated)"
         >
           <div className="mb-2 flex items-center justify-between">
             <button
               type="button"
               onClick={() => shiftMonth(-1)}
               aria-label="Previous month"
-              className="rounded-lg p-1.5 text-zinc-500 hover:bg-black/[0.04] dark:text-[#92929B] dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
+              className="rounded-lg p-1.5 text-zinc-500 hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -121,7 +121,7 @@ export function DatePicker({
               type="button"
               onClick={() => shiftMonth(1)}
               aria-label="Next month"
-              className="rounded-lg p-1.5 text-zinc-500 hover:bg-black/[0.04] dark:text-[#92929B] dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
+              className="rounded-lg p-1.5 text-zinc-500 hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>

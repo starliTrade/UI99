@@ -1,6 +1,6 @@
 /**
  * UI99 — Unified Velvet Segmented Control (Build 02.3)
- * Seamless dark container matching #111114 with satin pill transitions.
+ * Seamless dark container on --bg-elevated with satin pill transitions.
  * Authentic Apple / Linear tactile active cushion for light and dark modes.
  * WAI-ARIA radiogroup pattern: roving tabindex, Arrow/Home/End navigation,
  * Space/Enter selection, RTL-aware arrow mapping (WCAG-compliant keyboard UX).
@@ -100,7 +100,7 @@ export function SegmentedControl<T extends string = string>({
         fullWidth ? 'w-full flex' : 'inline-flex'
       } items-center rounded-full transition-all overflow-x-auto no-scrollbar scroll-smooth ${
         isDark
-          ? 'bg-[#0E0E14] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.045),0_8px_20px_rgba(0,0,0,0.45)] border border-white/[0.025]'
+          ? 'bg-(--bg-elevated) shadow-[inset_0_1px_0_0_rgba(255,255,255,0.045),0_8px_20px_rgba(0,0,0,0.45)] border border-white/[0.025]'
           : 'bg-zinc-100/90 shadow-[inset_0_1px_1px_0_rgba(0,0,0,0.04)] border border-black/[0.04]'
       } ${padMap} ${className}`}
     >
@@ -125,7 +125,7 @@ export function SegmentedControl<T extends string = string>({
                     ? 'text-black font-semibold'
                     : 'text-zinc-950 font-semibold'
                   : isDark
-                  ? 'text-[#8E8E98] hover:text-white hover:bg-white/[0.03]'
+                  ? 'text-(--text-secondary) hover:text-white hover:bg-white/[0.03]'
                   : 'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.03]'
               }`}
             >
@@ -151,7 +151,7 @@ export function SegmentedControl<T extends string = string>({
                           ? 'bg-black text-white'
                           : 'bg-zinc-100 text-zinc-900 border border-black/[0.06]'
                         : isDark
-                        ? 'bg-white/[0.08] text-[#92929B]'
+                        ? 'bg-white/[0.08] text-(--text-secondary)'
                         : 'bg-black/[0.06] text-zinc-600'
                     }`}
                   >

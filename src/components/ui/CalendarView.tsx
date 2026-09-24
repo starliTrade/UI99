@@ -53,7 +53,7 @@ export function CalendarView({
   return (
     <div
       className={cn(
-        'flex flex-col gap-3 p-4 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.06] dark:border-white/[0.04] shadow-md w-full',
+        'flex flex-col gap-3 p-4 rounded-3xl bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04] shadow-md w-full',
         className
       )}
     >
@@ -121,7 +121,7 @@ export function CalendarView({
                 'min-h-[44px] sm:min-h-[58px] p-1 sm:p-1.5 rounded-lg sm:rounded-xl border flex flex-col items-start justify-between text-left transition-all duration-150',
                 isSelected
                   ? 'bg-zinc-100 dark:bg-white/[0.08] border-black/20 dark:border-white/20 shadow-xs'
-                  : 'bg-zinc-50/50 dark:bg-[#131318]/50 border-black/[0.04] dark:border-white/[0.02] hover:bg-zinc-100 dark:hover:bg-white/[0.04]'
+                  : 'bg-zinc-50/50 dark:bg-(--bg-elevated)/50 border-black/[0.04] dark:border-white/[0.02] hover:bg-zinc-100 dark:hover:bg-white/[0.04]'
               )}
             >
               <span

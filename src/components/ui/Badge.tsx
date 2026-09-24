@@ -41,7 +41,7 @@ export const badgeVariants = cva(
           'bg-zinc-100 dark:bg-white/[0.05] text-zinc-700 dark:text-zinc-300 border border-(--border-hairline)',
         outline:
           'border border-zinc-300 dark:border-white/[0.08] text-zinc-800 dark:text-zinc-200',
-        destructive: 'bg-rose-600 text-white shadow-xs dark:bg-rose-500 dark:text-[#2A0A10]',
+        destructive: 'bg-(--intent-rose) text-(--intent-rose-on) shadow-xs hover:bg-(--intent-rose-hover)',
         green:
           'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20',
         amber:

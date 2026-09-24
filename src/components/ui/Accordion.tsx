@@ -40,7 +40,7 @@ export function Accordion({
         className={cn(
           'rounded-2xl border divide-y overflow-hidden transition-colors',
           isDark
-            ? 'bg-[#0E0E14] border-white/[0.04] divide-white/[0.04]'
+            ? 'bg-(--bg-elevated) border-white/[0.04] divide-white/[0.04]'
             : 'bg-white border-black/[0.06] divide-black/[0.06]',
           className
         )}
@@ -69,7 +69,7 @@ export function Accordion({
                     <h4
                       className={cn(
                         'text-xs sm:text-sm font-semibold tracking-tight truncate',
-                        isDark ? 'text-[#EDEDEF]' : 'text-zinc-900'
+                        isDark ? 'text-(--text-primary)' : 'text-zinc-900'
                       )}
                     >
                       {item.title}
@@ -97,7 +97,7 @@ export function Accordion({
               <div
                 className={cn(
                   'px-4 pb-4 pt-1 leading-relaxed',
-                  isDark ? 'text-[#8E8E98]' : 'text-zinc-600'
+                  isDark ? 'text-(--text-secondary)' : 'text-zinc-600'
                 )}
               >
                 {item.children}
@@ -117,7 +117,7 @@ export function Accordion({
       className={cn(
         'rounded-2xl border divide-y overflow-hidden transition-colors',
         isDark
-          ? 'bg-[#0E0E14] border-white/[0.04] divide-white/[0.04]'
+          ? 'bg-(--bg-elevated) border-white/[0.04] divide-white/[0.04]'
           : 'bg-white border-black/[0.06] divide-black/[0.06]',
         className
       )}
@@ -146,7 +146,7 @@ export function Accordion({
                   <h4
                     className={cn(
                       'text-xs sm:text-sm font-semibold tracking-tight truncate',
-                      isDark ? 'text-[#EDEDEF]' : 'text-zinc-900'
+                      isDark ? 'text-(--text-primary)' : 'text-zinc-900'
                     )}
                   >
                     {item.title}
@@ -174,7 +174,7 @@ export function Accordion({
             <div
               className={cn(
                 'px-4 pb-4 pt-1 leading-relaxed',
-                isDark ? 'text-[#8E8E98]' : 'text-zinc-600'
+                isDark ? 'text-(--text-secondary)' : 'text-zinc-600'
               )}
             >
               {item.children}

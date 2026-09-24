@@ -16,7 +16,7 @@
 | **Phase 3** | ریجستری استاندارد و ابزار اختصاصی CLI | ✅ تکمیل شد | 100% |
 | **Phase 4** | داکیومنت تعاملی و Playground زنده کامپوننت‌ها | ✅ تکمیل شد | 100% |
 | **Phase 5** | بلوک‌های آماده و تمپلیت‌های سازمانی (Blocks) | ✅ تکمیل شد | 100% |
-| **Phase 6** | آماده‌سازی انتشار نهایی، Changesets و پکیج رسمی | 🚀 اولویت جاری | 40% |
+| **Phase 6** | آماده‌سازی انتشار نهایی، Changesets و پکیج رسمی | 🚀 اولویت جاری | 55% |
 
 ---
 
@@ -84,8 +84,28 @@
 
 ---
 
+## ⚡ Phase 6.1 — Sprint 1: توکنایزیشن کامل کیت (Tokenization Sweep) (DONE ✅)
+- [x] اسویپ ۷۷ فایل: حذف hex های هاردکد از روستر ۹۲ کامپوننت → `--bg-*` / `--text-*` / `--state-*` / `--border-*`
+- [x] افزودن جفت توکن «جوهری» (ink-fill duality) به `src/styles/ui99.css`:
+  - `--ink-fill` (روشن: `#111116` جوهر · تاریک: `#EDEDEF` پرسلن) و `--ink-on-fill`
+- [x] رفع رگرسیون تم روشن در Button.primary، IconButton.primary/white، Tooltip، white-pill — فیل در تم روشن جوهر تیره شد (قبلاً `--bg-card-hover` خاکستری کم‌کنتراست بود)
+- [x] کاپیتول قانون: `bg-(--bg-*)` برای سطح و `--ink-fill` برای فیل معکوس؛ هرگز `text-(--bg-*)` برای متن روی فیل
+- [x] توکن‌های intent معنایی: `--intent-rose/-emerald` + `--rose-tint` — پاکسازی ۷ hex از Badge.destructive و شاخه‌های Button destructive/success/rose با حفظ جفت‌های کنتراست تأییدشده
+- [x] گیت‌های CI سبز: ۸۵/۸۵ تست (vitest + axe-core + contrast)، `tsc -b` تمیز، registry rebuild ۹۵ آیتم
+- [x] **گیت اسکریپتی متصل به CI**: `tokens:gate` (۱۰۳ فایل پاک، لیست ممنوع شامل intent hex ها) + کدمود `tokens:migrate`؛ در `.github/workflows/ci.yml` و `package.json`
+
+## ⚡ Phase 4.2 — Sprint 3: پلی‌گراند All-Props (DONE ✅)
+- [x] `AllPropsPlayground.tsx` — آزمایشگاه زنده props برای ۷ پریمیتیو سنگین: DataTable (جستجو/مرتب‌سازی/صفحه‌بندی)، Combobox (ایجاد آپشن)، Slider، Switch، PasswordInput، OTPInput، DatePicker
+- [x] کنترل‌های props زنده + JSaX تولیدی قابل کپی لحظه‌ای (الگوی TokensAuditPlayground)، گره به بخش Sandbox در UIKitView
+- [x] خودِ پلی‌گراند هم از گیت توکن عبور کرد — کیت ۱۰۰٪ بدون hex سطح/جوهر
+
+## ⚡ Phase 5.2 — Blocks v2 (DONE ✅)
+- [x] اسنیپت کد Pricing Matrix کامل شد (۳ پلن، توگل سالانه/ماهانه، badge و CTA) — تب Code دیگر استاب نیست
+- [x] بلوک Analytics & Deck به پریمیتیوهای واقعی کیت مهاجرت کرد: StatTile + Sparkline + DonutRing + MeterBar + TrendDelta (پریویو و اسنیپت هم‌خوان)
+
 ## ⏳ Phase 6 — انتشار رسمی، نسخه‌بندی و حاکمیت پروژه (Final Release) (گام بعدی)
-- [ ] راه‌اندازی سیستم خودکار نسخه‌بندی Changesets
-- [ ] انتشار رسمی نسخه ۱.۰.۰ روی رجیستری عمومی npm (`@99/ui`)
-- [ ] نهایی‌سازی فایل‌های README، CONTRIBUTING و راهنمای مشارکت عمومی
+- [x] راه‌اندازی سیستم خودکار نسخه‌بندی Changesets (`.changeset/` + workflow CI موجود)
+- [ ] انتشار رسمی نسخه ۱.۰.۰ روی رجیستری عمومی npm (`@99/ui`) — نیازمند OTP/دسترسی `npm publish` با اکانت سازمانی
+- [x] نهایی‌سازی فایل‌های README، CONTRIBUTING و راهنمای مشارکت عمومی
 - [ ] تست نهایی E2E و ممیزی کیفی در محیط‌های مختلف
+- [ ] **قدم باقی‌مانده برای رقابت با shadcn/daisyUI:** پلی‌گراند All-Props برای ۲۵ کامپوننت باقی‌مانده (الگو: AllPropsPlayground)، صفحه تم زنده Porcelain↔Obsidian، بلوک‌های تمپلیت جدید

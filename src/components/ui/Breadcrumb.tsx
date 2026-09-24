@@ -39,10 +39,10 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
                 className={`flex items-center gap-1.5 px-1.5 py-0.5 rounded-md transition-colors cursor-pointer ${
                   isLast || item.active
                     ? isDark
-                      ? 'text-[#EDEDEF] font-semibold'
+                      ? 'text-(--text-primary) font-semibold'
                       : 'text-zinc-950 font-semibold'
                     : isDark
-                    ? 'text-[#8E8E98] hover:text-white'
+                    ? 'text-(--text-secondary) hover:text-white'
                     : 'text-zinc-500 hover:text-black'
                 }`}
               >
@@ -54,10 +54,10 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
                 className={`flex items-center gap-1.5 px-1.5 py-0.5 ${
                   isLast || item.active
                     ? isDark
-                      ? 'text-[#EDEDEF] font-semibold'
+                      ? 'text-(--text-primary) font-semibold'
                       : 'text-zinc-950 font-semibold'
                     : isDark
-                    ? 'text-[#8E8E98]'
+                    ? 'text-(--text-secondary)'
                     : 'text-zinc-500'
                 }`}
               >

@@ -21,24 +21,24 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-[#111116] text-white hover:bg-[#1E1E24] border border-black/10 shadow-xs dark:bg-[#EDEDEF] dark:text-[#060709] dark:hover:bg-white dark:border-white/10 dark:shadow-[0_2px_10px_rgba(255,255,255,0.06)]',
+          'bg-(--ink-fill) text-(--ink-on-fill) hover:bg-(--ink-fill) border border-black/10 shadow-xs dark:border-white/10 dark:shadow-[0_2px_10px_rgba(255,255,255,0.06)]',
         secondary:
-          'bg-zinc-100 text-zinc-800 hover:bg-state-hover hover:text-black border border-black/[0.05] shadow-xs dark:bg-white/[0.045] dark:text-[#EDEDEF] dark:hover:text-white dark:border-white/[0.025] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)]',
+          'bg-zinc-100 text-zinc-800 hover:bg-state-hover hover:text-black border border-black/[0.05] shadow-xs dark:bg-white/[0.045] dark:text-(--text-primary) dark:hover:text-white dark:border-white/[0.025] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)]',
         outline:
-          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-[#EDEDEF] dark:border-white/[0.04]',
+          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-(--text-primary) dark:border-white/[0.04]',
         ghost:
-          'bg-transparent text-zinc-600 hover:bg-state-hover hover:text-zinc-950 dark:text-[#92929B] dark:hover:text-[#EDEDEF]',
+          'bg-transparent text-zinc-600 hover:bg-state-hover hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:text-(--text-primary)',
         link: 'bg-transparent underline-offset-4 hover:underline text-(--text-primary) hover:bg-transparent px-0',
         destructive:
-          'bg-rose-600 text-white hover:bg-rose-500 border border-rose-700/40 shadow-xs dark:bg-rose-500 dark:hover:bg-rose-400 dark:text-[#2A0A10]',
+          'bg-(--intent-rose) text-(--intent-rose-on) hover:bg-(--intent-rose-hover) border border-rose-700/40 dark:border-rose-400/20 shadow-xs',
         success:
-          'bg-emerald-600 text-white hover:bg-emerald-500 border border-emerald-700/40 shadow-xs dark:bg-emerald-500 dark:hover:bg-emerald-400 dark:text-[#06251A]',
+          'bg-(--intent-emerald) text-(--intent-emerald-on) hover:bg-(--intent-emerald-hover) border border-emerald-700/40 dark:border-emerald-400/20 shadow-xs',
         'white-pill':
-          'bg-[#EDEDEF] text-[#060709] font-semibold hover:bg-white shadow-xs border border-white/20',
+          'bg-(--ink-fill) text-(--ink-on-fill) font-semibold shadow-xs border border-white/20 dark:border-white/10',
         'dark-pill':
-          'bg-[#111116] text-[#EDEDEF] hover:bg-[#1C1C22] hover:text-white border border-black/10 dark:bg-white/[0.045] dark:border-white/[0.03] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)] shadow-xs',
+          'bg-(--bg-sunken) text-(--text-primary) hover:bg-(--bg-card-hover) hover:text-white border border-black/10 dark:bg-white/[0.045] dark:border-white/[0.03] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)] shadow-xs',
         rose:
-          'bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200/60 dark:bg-[#161216] dark:text-[#F3CBD2] dark:hover:bg-[#1E171E] dark:border-rose-500/15',
+          'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
       },
       size: {
         xs: 'text-[11px] px-2.5 py-1 rounded-full gap-1 h-6',
@@ -133,20 +133,20 @@ export const iconButtonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-[#111116] text-white hover:bg-[#1E1E24] shadow-xs dark:bg-[#EBEBEF] dark:text-[#0C0C0E] dark:hover:bg-[#F5F5F8]',
+          'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs',
         white:
-          'bg-white text-zinc-900 hover:bg-zinc-100 shadow-xs border border-black/[0.06] dark:bg-[#EBEBEF] dark:text-[#0C0C0E] dark:hover:bg-[#F5F5F8]',
+          'bg-white text-zinc-900 hover:bg-zinc-100 shadow-xs border border-black/[0.06] dark:bg-(--text-primary) dark:text-(--ink-on-fill) dark:hover:bg-white',
         secondary:
-          'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 border border-black/[0.05] dark:bg-[#16161B] dark:text-[#D4D4D8] dark:hover:bg-[#1E1E26] dark:border-white/[0.06]',
+          'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 border border-black/[0.05] dark:bg-(--bg-card-hover) dark:text-(--text-secondary) dark:hover:bg-(--bg-card-hover) dark:border-white/[0.06]',
         outline:
-          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover dark:text-[#D4D4D8] dark:border-white/[0.08]',
+          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover dark:text-(--text-secondary) dark:border-white/[0.08]',
         ghost:
-          'bg-transparent text-zinc-600 hover:bg-state-hover hover:text-zinc-950 dark:text-[#92929B] dark:hover:text-[#EDEDEF]',
+          'bg-transparent text-zinc-600 hover:bg-state-hover hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:text-(--text-primary)',
         link: 'bg-transparent hover:bg-transparent text-(--text-primary) hover:scale-100',
         destructive:
-          'bg-rose-600 text-white hover:bg-rose-500 border border-rose-700/40 shadow-xs dark:bg-rose-500 dark:hover:bg-rose-400 dark:text-[#2A0A10]',
+          'bg-(--intent-rose) text-(--intent-rose-on) hover:bg-(--intent-rose-hover) border border-rose-700/40 dark:border-rose-400/20 shadow-xs',
         rose:
-          'bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200/60 dark:bg-[#18181F] dark:text-[#D4C5B9] dark:hover:bg-[#20202A] dark:border-white/[0.07]',
+          'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
       },
       size: {
         xs: 'w-7 h-7 text-xs',
@@ -220,7 +220,7 @@ export function Tag({
 
   const variantStyle = {
     neutral:
-      'bg-zinc-100 text-zinc-700 border border-black/[0.06] dark:bg-white/[0.04] dark:text-[#A1A1AA] dark:border-white/[0.06]',
+      'bg-zinc-100 text-zinc-700 border border-black/[0.06] dark:bg-white/[0.04] dark:text-(--text-secondary) dark:border-white/[0.06]',
     amber:
       'bg-amber-50 text-amber-800 border border-amber-300/40 font-medium dark:bg-amber-400/[0.08] dark:text-amber-300/90 dark:border-amber-400/20',
     purple:
@@ -230,13 +230,13 @@ export function Tag({
     red:
       'bg-rose-50 text-rose-800 border border-rose-300/40 font-medium dark:bg-rose-400/[0.08] dark:text-rose-300/90 dark:border-rose-400/20',
     rose:
-      'bg-stone-100 text-stone-800 border border-stone-200 font-medium dark:bg-white/[0.05] dark:text-[#D4C5B9] dark:border-white/[0.07]',
+      'bg-stone-100 text-stone-800 border border-stone-200 font-medium dark:bg-white/[0.05] dark:text-(--text-secondary) dark:border-white/[0.07]',
     blue:
       'bg-blue-50 text-blue-800 border border-blue-300/40 font-medium dark:bg-blue-400/[0.08] dark:text-blue-300/90 dark:border-blue-400/20',
     outline:
-      'bg-transparent text-zinc-700 border border-black/[0.12] dark:text-[#A1A1AA] dark:border-white/[0.12]',
+      'bg-transparent text-zinc-700 border border-black/[0.12] dark:text-(--text-secondary) dark:border-white/[0.12]',
     solid:
-      'bg-zinc-900 text-white border border-zinc-900 dark:bg-[#EBEBEF] dark:text-[#0C0C0E] dark:border-[#EBEBEF]',
+      'bg-zinc-900 text-white border border-zinc-900 dark:bg-(--text-primary) dark:text-(--text-on-fill) dark:border-(--text-primary)',
   }[effectiveVariant];
 
   return (
@@ -300,14 +300,14 @@ export function Avatar({
         />
       ) : (
         <div
-          className={`rounded-full bg-zinc-200 text-zinc-800 dark:bg-[#1A1A20] dark:text-[#D4D4D8] flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
+          className={`rounded-full bg-zinc-200 text-zinc-800 dark:bg-(--bg-card-hover) dark:text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
         >
           {initial}
         </div>
       )}
       {status && (
         <span
-          className={`absolute bottom-0 right-0 rounded-full ring-2 ring-white dark:ring-[#0B0B0D] ${
+          className={`absolute bottom-0 right-0 rounded-full ring-2 ring-white dark:ring-(--bg-sunken) ${
             status === 'online' ? 'bg-emerald-400' : 'bg-zinc-400 dark:bg-zinc-500'
           } ${size === 'xs' || size === 'sm' ? 'w-2 h-2' : 'w-2.5 h-2.5'}`}
         />

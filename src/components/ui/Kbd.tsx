@@ -25,7 +25,7 @@ export function Kbd({ children, size = 'sm', className = '' }: KbdProps) {
     <kbd
       className={`inline-flex items-center justify-center font-mono font-medium select-none shadow-xs border transition-colors ${sizeStyles} ${
         isDark
-          ? 'bg-[#15151B] text-[#A1A1AA] border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]'
+          ? 'bg-(--bg-elevated) text-(--text-secondary) border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]'
           : 'bg-zinc-100 text-zinc-700 border-black/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9),0_1px_2px_rgba(0,0,0,0.04)]'
       } ${className}`}
     >

@@ -60,7 +60,7 @@ export function KeyboardShortcutsDialog({
 }: KeyboardShortcutsDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl max-h-[80vh] overflow-y-auto p-6 rounded-3xl bg-white dark:bg-[#0E0E14] border border-black/10 dark:border-white/[0.04]">
+      <DialogContent className="max-w-xl max-h-[80vh] overflow-y-auto p-6 rounded-3xl bg-white dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.04]">
         <DialogHeader className="pb-4 border-b border-black/[0.04] dark:border-white/[0.03]">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-xl bg-zinc-100 dark:bg-white/[0.06] flex items-center justify-center text-zinc-800 dark:text-zinc-200">

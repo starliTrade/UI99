@@ -29,10 +29,10 @@ export function BottomNavigation() {
           className={`w-3.5 h-3.5 transition-colors duration-150 ${
             active
               ? isDark
-                ? 'stroke-[#EDEDEF] stroke-[2]'
+                ? 'stroke-(--text-primary) stroke-[2]'
                 : 'stroke-zinc-950 stroke-[2]'
               : isDark
-              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.6]'
+              ? 'stroke-(--text-muted) group-hover:stroke-zinc-300 stroke-[1.6]'
               : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]'
           }`}
         />
@@ -47,10 +47,10 @@ export function BottomNavigation() {
           className={`w-3.5 h-3.5 transition-colors duration-150 ${
             active
               ? isDark
-                ? 'stroke-[#EDEDEF] stroke-[2]'
+                ? 'stroke-(--text-primary) stroke-[2]'
                 : 'stroke-zinc-950 stroke-[2]'
               : isDark
-              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.6]'
+              ? 'stroke-(--text-muted) group-hover:stroke-zinc-300 stroke-[1.6]'
               : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]'
           }`}
         />
@@ -65,10 +65,10 @@ export function BottomNavigation() {
           className={`w-3.5 h-3.5 transition-colors duration-150 ${
             active
               ? isDark
-                ? 'stroke-[#EDEDEF] stroke-[2]'
+                ? 'stroke-(--text-primary) stroke-[2]'
                 : 'stroke-zinc-950 stroke-[2]'
               : isDark
-              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.6]'
+              ? 'stroke-(--text-muted) group-hover:stroke-zinc-300 stroke-[1.6]'
               : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]'
           }`}
         />
@@ -83,10 +83,10 @@ export function BottomNavigation() {
           className={`w-3.5 h-3.5 transition-colors duration-150 ${
             active
               ? isDark
-                ? 'stroke-[#EDEDEF] stroke-[2]'
+                ? 'stroke-(--text-primary) stroke-[2]'
                 : 'stroke-zinc-950 stroke-[2]'
               : isDark
-              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.6]'
+              ? 'stroke-(--text-muted) group-hover:stroke-zinc-300 stroke-[1.6]'
               : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]'
           }`}
         />
@@ -101,10 +101,10 @@ export function BottomNavigation() {
           className={`w-3.5 h-3.5 transition-colors duration-150 ${
             active
               ? isDark
-                ? 'stroke-[#EDEDEF] stroke-[2]'
+                ? 'stroke-(--text-primary) stroke-[2]'
                 : 'stroke-zinc-950 stroke-[2]'
               : isDark
-              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.6]'
+              ? 'stroke-(--text-muted) group-hover:stroke-zinc-300 stroke-[1.6]'
               : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]'
           }`}
         />
@@ -157,8 +157,8 @@ export function BottomNavigation() {
                   <span
                     className={`font-mono text-[8.5px] sm:text-[9.5px] tracking-tight transition-colors duration-150 whitespace-nowrap ${
                       isActive
-                        ? isDark ? 'text-[#EDEDEF] font-semibold' : 'text-zinc-950 font-semibold'
-                        : isDark ? 'text-[#85858F] group-hover:text-zinc-200 font-normal' : 'text-zinc-500 group-hover:text-zinc-900 font-normal'
+                        ? isDark ? 'text-(--text-primary) font-semibold' : 'text-zinc-950 font-semibold'
+                        : isDark ? 'text-(--text-muted) group-hover:text-zinc-200 font-normal' : 'text-zinc-500 group-hover:text-zinc-900 font-normal'
                     }`}
                   >
                     {isRTL ? item.faLabel : item.label}
@@ -175,7 +175,7 @@ export function BottomNavigation() {
           onClick={() => setIsSearchOpen(true)}
           className={`relative min-w-[36px] min-h-[36px] sm:min-w-[38px] sm:min-h-[38px] w-9 h-9 sm:w-9.5 sm:h-9.5 rounded-full active:scale-95 flex items-center justify-center transition-all duration-150 cursor-pointer shrink-0 focus-visible:outline-none ${
             isDark
-              ? 'liquid-glass-dark-dock hover:bg-[#14141E]/70 text-[#85858F] hover:text-[#EDEDEF]'
+              ? 'liquid-glass-dark-dock hover:bg-(--bg-elevated)/70 text-(--text-muted) hover:text-(--text-primary)'
               : 'liquid-glass-light-dock hover:bg-white/60 text-zinc-600 hover:text-zinc-950'
           }`}
           title="Search & Spotlight (⌘K)"

@@ -39,7 +39,7 @@ export function Swatch({ name, hex, contrastNote, className = '' }: SwatchProps)
         </span>
         <CopyButton text={hex} label="" size="sm" className={cn('opacity-0 group-hover:opacity-100 transition-opacity', light ? 'border-black/[0.12]' : 'border-white/[0.12]')} />
       </div>
-      <div className="bg-white px-3 py-2.5 dark:bg-[#0B0C11]">
+      <div className="bg-white px-3 py-2.5 dark:bg-(--bg-card)">
         <div className="text-xs font-semibold text-(--text-primary)">{name}</div>
         {contrastNote && (
           <div className="mt-0.5 text-[10px] font-mono text-(--text-muted)">{contrastNote}</div>

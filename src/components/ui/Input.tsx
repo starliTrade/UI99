@@ -35,7 +35,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label htmlFor={inputId} className="block text-xs font-semibold text-zinc-700 dark:text-[#92929B] tracking-tight">
+          <label htmlFor={inputId} className="block text-xs font-semibold text-zinc-700 dark:text-(--text-secondary) tracking-tight">
             {label}
           </label>
         )}
@@ -86,7 +86,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label htmlFor={textareaId} className="block text-xs font-semibold text-zinc-700 dark:text-[#92929B] tracking-tight">
+          <label htmlFor={textareaId} className="block text-xs font-semibold text-zinc-700 dark:text-(--text-secondary) tracking-tight">
             {label}
           </label>
         )}
@@ -143,7 +143,7 @@ export function SearchBar({
         <button
           type="button"
           onClick={onClear}
-          className="absolute right-3.5 p-1 rounded-full text-zinc-400 hover:text-zinc-900 dark:text-[#71717A] dark:hover:text-[#EDEDEF] transition-colors cursor-pointer"
+          className="absolute right-3.5 p-1 rounded-full text-zinc-400 hover:text-zinc-900 dark:text-(--text-muted) dark:hover:text-(--text-primary) transition-colors cursor-pointer"
         >
           <X className="w-3.5 h-3.5" />
         </button>

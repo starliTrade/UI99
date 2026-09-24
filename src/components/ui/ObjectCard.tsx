@@ -97,7 +97,7 @@ export function ObjectCard({
         onClick={onClick}
         className={`group relative p-6 rounded-[26px] cursor-pointer overflow-hidden select-none ${
           isDark
-            ? 'bg-[#0B0C11] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),inset_0_0_0_1px_rgba(255,255,255,0.02),0_18px_40px_-10px_rgba(0,0,0,0.65)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_22px_48px_-10px_rgba(0,0,0,0.8)]'
+            ? 'bg-(--bg-card) shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),inset_0_0_0_1px_rgba(255,255,255,0.02),0_18px_40px_-10px_rgba(0,0,0,0.65)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_22px_48px_-10px_rgba(0,0,0,0.8)]'
             : 'bg-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.95),0_4px_20px_rgba(0,0,0,0.03)] border border-black/[0.035] hover:border-black/[0.08] hover:shadow-[0_8px_28px_rgba(0,0,0,0.05)]'
         }`}
       >
@@ -151,7 +151,7 @@ export function ObjectCard({
         onClick={onClick}
         className={`group relative p-5 rounded-[26px] cursor-pointer flex gap-4 overflow-hidden select-none ${
           isDark
-            ? 'bg-[#0B0C11] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),inset_0_0_0_1px_rgba(255,255,255,0.02),0_18px_40px_-10px_rgba(0,0,0,0.65)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_22px_48px_-10px_rgba(0,0,0,0.8)]'
+            ? 'bg-(--bg-card) shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),inset_0_0_0_1px_rgba(255,255,255,0.02),0_18px_40px_-10px_rgba(0,0,0,0.65)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_22px_48px_-10px_rgba(0,0,0,0.8)]'
             : 'bg-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.95),0_4px_20px_rgba(0,0,0,0.03)] border border-black/[0.035] hover:border-black/[0.08] hover:shadow-[0_8px_28px_rgba(0,0,0,0.05)]'
         }`}
       >
@@ -203,7 +203,7 @@ export function ObjectCard({
         onClick={onClick}
         className={`group relative p-6 rounded-[26px] cursor-pointer overflow-hidden select-none ${
           isDark
-            ? 'bg-[#0B0C11] card-aura-emerald shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),inset_0_0_0_1px_rgba(255,255,255,0.02),0_18px_40px_-10px_rgba(0,0,0,0.65)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_22px_48px_-10px_rgba(0,0,0,0.8)]'
+            ? 'bg-(--bg-card) card-aura-emerald shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),inset_0_0_0_1px_rgba(255,255,255,0.02),0_18px_40px_-10px_rgba(0,0,0,0.65)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_22px_48px_-10px_rgba(0,0,0,0.8)]'
             : 'bg-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.95),0_4px_20px_rgba(0,0,0,0.03)] border border-black/[0.035] hover:border-black/[0.08] hover:shadow-[0_8px_28px_rgba(0,0,0,0.05)]'
         }`}
       >
@@ -262,7 +262,7 @@ export function ObjectCard({
       onClick={onClick}
       className={`group relative p-4 rounded-[20px] cursor-pointer overflow-hidden select-none border transition-all ${
         isDark
-          ? 'bg-[#0B0C11] border-white/[0.025] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_8px_24px_-6px_rgba(0,0,0,0.5)] hover:border-white/[0.06] hover:bg-[#0E0F15]'
+          ? 'bg-(--bg-card) border-white/[0.025] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_8px_24px_-6px_rgba(0,0,0,0.5)] hover:border-white/[0.06] hover:bg-(--bg-card-hover)'
           : 'bg-white border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:border-black/[0.08]'
       } ${isCompleted ? 'opacity-40' : ''}`}
     >
@@ -323,7 +323,7 @@ export function ObjectCard({
           </h4>
 
           {object.description && (
-            <p className={`text-xs mt-0.5 line-clamp-2 leading-relaxed font-light ${isDark ? 'text-[#8E8E98]' : 'text-zinc-600'}`}>
+            <p className={`text-xs mt-0.5 line-clamp-2 leading-relaxed font-light ${isDark ? 'text-(--text-secondary)' : 'text-zinc-600'}`}>
               {object.description}
             </p>
           )}

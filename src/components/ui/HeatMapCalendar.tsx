@@ -19,10 +19,10 @@ export interface HeatMapCalendarProps {
 }
 
 const heatColor = {
-  emerald: ['#0E0E13', 'rgba(16,185,129,0.25)', 'rgba(16,185,129,0.45)', 'rgba(16,185,129,0.7)', '#10B981'],
-  amber: ['#0E0E13', 'rgba(245,158,11,0.25)', 'rgba(245,158,11,0.45)', 'rgba(245,158,11,0.7)', '#F59E0B'],
-  rose: ['#0E0E13', 'rgba(244,63,94,0.25)', 'rgba(244,63,94,0.45)', 'rgba(244,63,94,0.7)', '#F43F5E'],
-  blue: ['#0E0E13', 'rgba(59,130,246,0.25)', 'rgba(59,130,246,0.45)', 'rgba(59,130,246,0.7)', '#3B82F6'],
+  emerald: ['var(--bg-sunken)', 'rgba(16,185,129,0.25)', 'rgba(16,185,129,0.45)', 'rgba(16,185,129,0.7)', '#10B981'],
+  amber: ['var(--bg-sunken)', 'rgba(245,158,11,0.25)', 'rgba(245,158,11,0.45)', 'rgba(245,158,11,0.7)', '#F59E0B'],
+  rose: ['var(--bg-sunken)', 'rgba(244,63,94,0.25)', 'rgba(244,63,94,0.45)', 'rgba(244,63,94,0.7)', '#F43F5E'],
+  blue: ['var(--bg-sunken)', 'rgba(59,130,246,0.25)', 'rgba(59,130,246,0.45)', 'rgba(59,130,246,0.7)', '#3B82F6'],
 } as const;
 
 /** Light-theme palettes: level 0 becomes a faint gray, rest scale color opacity. */

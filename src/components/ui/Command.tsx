@@ -11,7 +11,7 @@ const Command = React.forwardRef<
   <CommandPrimitive
     ref={ref}
     className={cn(
-      'flex h-full w-full flex-col overflow-hidden rounded-3xl bg-white dark:bg-[#111114] text-(--text-primary)',
+      'flex h-full w-full flex-col overflow-hidden rounded-3xl bg-white dark:bg-(--bg-elevated) text-(--text-primary)',
       className
     )}
     {...props}
@@ -40,11 +40,11 @@ const CommandInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   <div className="flex items-center border-b border-black/[0.06] dark:border-white/[0.05] px-4">
-    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50 text-zinc-400 dark:text-[#8E8E98]" />
+    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50 text-zinc-400 dark:text-(--text-secondary)" />
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
-        'flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-zinc-400 dark:placeholder:text-[#5C5C66] disabled:cursor-not-allowed disabled:opacity-50 text-(--text-primary)',
+        'flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-zinc-400 dark:placeholder:text-(--text-muted) disabled:cursor-not-allowed disabled:opacity-50 text-(--text-primary)',
         className
       )}
       {...props}
@@ -84,7 +84,7 @@ const CommandGroup = React.forwardRef<
   <CommandPrimitive.Group
     ref={ref}
     className={cn(
-      'overflow-hidden p-1 text-zinc-700 dark:text-[#92929B] [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:uppercase',
+      'overflow-hidden p-1 text-zinc-700 dark:text-(--text-secondary) [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:uppercase',
       className
     )}
     {...props}

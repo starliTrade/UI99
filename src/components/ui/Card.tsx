@@ -12,9 +12,9 @@
 import React, { ReactNode, HTMLAttributes } from 'react';
 
 export type SurfaceVariant =
-  | 'surface'            // Primary container surface (#0E0E13 / white)
-  | 'surfaceSecondary'   // Secondary container surface (#0B0C11 / #F8F8FA)
-  | 'elevated'           // Elevated interactive surface (#131318 / white)
+  | 'surface'            // Primary container surface (--bg-surface / white)
+  | 'surfaceSecondary'   // Secondary container surface (--bg-card / --bg-sunken)
+  | 'elevated'           // Elevated interactive surface (--bg-elevated / white)
   | 'glass'              // Translucent liquid glass with blur
   | 'compact'            // Ultra-compact quiet list container
   | 'flat'               // Clean minimal container without shadow
@@ -62,11 +62,11 @@ export function Surface({
     surface:
       'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-[0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_12px_32px_-8px_rgba(0,0,0,0.6)]',
     surfaceSecondary:
-      'bg-[#F8F8FA] dark:bg-(--bg-surface) border border-black/[0.035] dark:border-white/[0.02] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.025)]',
+      'bg-(--bg-sunken) dark:bg-(--bg-surface) border border-black/[0.035] dark:border-white/[0.02] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.025)]',
     elevated:
       'bg-(--bg-elevated) border border-(--border-hairline) shadow-[0_8px_28px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.045),0_16px_40px_-8px_rgba(0,0,0,0.65)]',
     glass:
-      'bg-white/80 dark:bg-[#0C0D12]/60 backdrop-blur-2xl border border-(--border-hairline) shadow-[0_8px_24px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_16px_40px_-10px_rgba(0,0,0,0.6)]',
+      'bg-white/80 dark:bg-(--bg-card)/60 backdrop-blur-2xl border border-(--border-hairline) shadow-[0_8px_24px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_16px_40px_-10px_rgba(0,0,0,0.6)]',
     compact:
       'bg-white/90 dark:bg-(--bg-surface) border border-black/[0.03] dark:border-white/[0.02] shadow-xs',
     flat:

@@ -70,7 +70,7 @@ export function Switch({
           checked
             ? 'bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.35)]'
             : isDark
-            ? 'bg-[#181820] border-white/[0.08]'
+            ? 'bg-(--bg-elevated) border-white/[0.08]'
             : 'bg-zinc-200 border-black/[0.06]'
         )}
       >
@@ -88,7 +88,7 @@ export function Switch({
             <span
               className={cn(
                 'text-xs font-semibold tracking-tight',
-                isDark ? 'text-[#EDEDEF]' : 'text-zinc-900'
+                isDark ? 'text-(--text-primary)' : 'text-zinc-900'
               )}
             >
               {label}
@@ -98,7 +98,7 @@ export function Switch({
             <span
               className={cn(
                 'text-[11px] leading-tight',
-                isDark ? 'text-[#8E8E98]' : 'text-zinc-500'
+                isDark ? 'text-(--text-secondary)' : 'text-zinc-500'
               )}
             >
               {description}

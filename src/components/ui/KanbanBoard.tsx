@@ -68,7 +68,7 @@ export function KanbanBoard({
           <div
             key={col.id}
             aria-label={`${col.label} column`}
-            className="flex flex-col gap-3 rounded-2xl bg-zinc-100/60 dark:bg-[#0B0C11] p-3 border border-black/[0.04] dark:border-white/[0.03] min-w-[240px]"
+            className="flex flex-col gap-3 rounded-2xl bg-zinc-100/60 dark:bg-(--bg-card) p-3 border border-black/[0.04] dark:border-white/[0.03] min-w-[240px]"
           >
             {/* Column Header */}
             <div className="flex items-center justify-between px-1">
@@ -99,7 +99,7 @@ export function KanbanBoard({
                   key={card.id}
                   role="listitem"
                   aria-label={`${card.title}, ${card.priority} priority, ${card.status}`}
-                  className="p-3 rounded-xl bg-white dark:bg-[#131318] border border-black/[0.06] dark:border-white/[0.04] shadow-xs hover:border-black/15 dark:hover:border-white/10 transition-all cursor-grab active:cursor-grabbing flex flex-col gap-2 group"
+                  className="p-3 rounded-xl bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.04] shadow-xs hover:border-black/15 dark:hover:border-white/10 transition-all cursor-grab active:cursor-grabbing flex flex-col gap-2 group"
                 >
                   <div className="flex items-center justify-between">
                     <PriorityBadge priority={card.priority} showLabel={false} />

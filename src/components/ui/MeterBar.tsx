@@ -55,7 +55,7 @@ export function MeterBar({
     >
       {showValue && (
         <div className="flex items-center justify-between text-xs">
-          <span className="font-semibold text-zinc-800 dark:text-[#EDEDEF]">{label}</span>
+          <span className="font-semibold text-zinc-800 dark:text-(--text-primary)">{label}</span>
           <span className="font-mono text-[11px] text-(--text-secondary)">
             {value}/{max}
           </span>

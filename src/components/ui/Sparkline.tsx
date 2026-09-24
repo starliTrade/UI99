@@ -25,7 +25,7 @@ const colorMap = {
   rose: '#F43F5E',
   blue: '#3B82F6',
   purple: '#A855F7',
-  neutral: '#8E8E98',
+  neutral: 'var(--text-secondary, #8E8E98)',
 } as const;
 
 export function Sparkline({

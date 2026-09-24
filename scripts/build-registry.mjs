@@ -47,6 +47,7 @@ const EXCLUDED_MODULES = new Set([
   'BottomNavigation',
   'UI99Wordmark',
   'TokensAuditPlayground',
+  'AllPropsPlayground', // docs-side live lab (consumes kit; not a primitive)
   'Toast',
   'LinearIssueTracker',
   'ObjectCard',

@@ -340,6 +340,7 @@ export type { MetricCardProps, SpinnerProps } from './MetricCard';
 // DOMAIN COMPOSITES (app-level; require AppContext/AuthContext/domain types)
 // =====================================================================
 
+export { AllPropsPlayground } from './AllPropsPlayground';
 export { ToastContainer } from './Toast';
 export { TopHeader } from './TopHeader';
 export { BottomNavigation } from './BottomNavigation';

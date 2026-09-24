@@ -68,7 +68,7 @@ export function TagInput({
         onClick={() => inputRef.current?.focus()}
         className={cn(
           'flex flex-wrap items-center gap-1.5 p-2 min-h-[42px] rounded-xl transition-all duration-150 cursor-text',
-          'bg-zinc-50 dark:bg-[#0B0C11] text-zinc-900 dark:text-[#EDEDEF]',
+          'bg-zinc-50 dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary)',
           'border border-black/[0.08] dark:border-white/[0.06] focus-within:border-zinc-500 dark:focus-within:border-white/20',
           className
         )}
@@ -113,7 +113,7 @@ export function TagInput({
 
       {/* Autocomplete Dropdown */}
       {showSuggestions && inputVal && filteredSuggestions.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-1 z-30 p-1 rounded-xl bg-white dark:bg-[#131318] border border-black/10 dark:border-white/10 shadow-xl max-h-40 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1 z-30 p-1 rounded-xl bg-white dark:bg-(--bg-elevated) border border-black/10 dark:border-white/10 shadow-xl max-h-40 overflow-y-auto">
           {filteredSuggestions.map((s) => (
             <button
               key={s}

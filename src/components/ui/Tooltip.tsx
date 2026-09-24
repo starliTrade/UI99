@@ -38,13 +38,13 @@ export function Tooltip({
             role="tooltip"
             className={cn(
               'z-50 overflow-hidden rounded-xl px-2.5 py-1 text-[11px] font-medium tracking-tight shadow-lg border select-none',
-              'bg-[#111116] text-white border-black/[0.1] shadow-[0_8px_20px_rgba(0,0,0,0.15)]',
-              'dark:bg-[#181820] dark:text-[#EDEDEF] dark:border-white/[0.08] dark:shadow-[0_8px_24px_rgba(0,0,0,0.6)]',
+              'bg-(--ink-fill) text-(--ink-on-fill) border-black/[0.1] shadow-[0_8px_20px_rgba(0,0,0,0.15)]',
+              'dark:bg-(--bg-elevated) dark:text-(--text-primary) dark:border-white/[0.08] dark:shadow-[0_8px_24px_rgba(0,0,0,0.6)]',
               'animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-1'
             )}
           >
             {content}
-            <TooltipPrimitive.Arrow className="fill-[#111116] dark:fill-[#181820]" />
+            <TooltipPrimitive.Arrow className="fill-(--ink-fill)" />
           </TooltipPrimitive.Content>
         </TooltipPrimitive.Portal>
       </TooltipPrimitive.Root>

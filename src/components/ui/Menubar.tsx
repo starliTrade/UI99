@@ -10,7 +10,7 @@ import { Check, ChevronRight, Circle } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const menuContentClass =
-  'z-50 min-w-[12rem] overflow-hidden rounded-2xl border border-black/[0.06] dark:border-white/[0.05] bg-white/95 dark:bg-[#131318]/95 backdrop-blur-2xl p-1.5 text-(--text-primary) shadow-[0_12px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.6)] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95';
+  'z-50 min-w-[12rem] overflow-hidden rounded-2xl border border-black/[0.06] dark:border-white/[0.05] bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl p-1.5 text-(--text-primary) shadow-[0_12px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.6)] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95';
 
 const menuItemClass =
   'relative flex cursor-pointer select-none items-center gap-2 rounded-lg px-2 py-1.5 text-xs outline-none transition-colors focus:bg-black/[0.05] focus:text-zinc-950 data-[disabled]:pointer-events-none data-[disabled]:opacity-40 dark:focus:bg-white/[0.06] dark:focus:text-white [&_svg]:size-3.5 [&_svg]:shrink-0';
@@ -43,7 +43,7 @@ export function MenubarTrigger({
   return (
     <MenubarPrimitive.Trigger
       className={cn(
-        'flex cursor-pointer select-none items-center rounded-lg px-2.5 py-1.5 text-xs font-medium outline-none transition-colors focus-visible:outline-none focus-ui99-inset data-[state=open]:bg-white data-[state=open]:shadow-xs dark:data-[state=open]:bg-[#131318]',
+        'flex cursor-pointer select-none items-center rounded-lg px-2.5 py-1.5 text-xs font-medium outline-none transition-colors focus-visible:outline-none focus-ui99-inset data-[state=open]:bg-white data-[state=open]:shadow-xs dark:data-[state=open]:bg-(--bg-elevated)',
         className
       )}
       {...props}

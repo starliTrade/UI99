@@ -99,7 +99,7 @@ function ToastRow({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: stri
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -16, scale: 0.96 }}
       transition={{ type: 'spring', stiffness: 450, damping: 30 }}
-      className={`pointer-events-auto relative w-full flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-[#141418]/95 backdrop-blur-2xl text-(--text-primary) shadow-[0_12px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.05)] text-xs font-medium select-none ${visual.accentClass}`}
+      className={`pointer-events-auto relative w-full flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl text-(--text-primary) shadow-[0_12px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.05)] text-xs font-medium select-none ${visual.accentClass}`}
     >
       {visual.icon}
       <span className="flex-1 leading-snug">{toast.message}</span>
@@ -107,7 +107,7 @@ function ToastRow({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: stri
         type="button"
         aria-label="Dismiss notification"
         onClick={() => onDismiss(toast.id)}
-        className="relative shrink-0 p-1 -m-1 rounded-full text-zinc-400 hover:text-zinc-900 dark:text-[#71717A] dark:hover:text-[#EDEDEF] transition-colors cursor-pointer after:absolute after:-inset-1.5 after:content-['']"
+        className="relative shrink-0 p-1 -m-1 rounded-full text-zinc-400 hover:text-zinc-900 dark:text-(--text-muted) dark:hover:text-(--text-primary) transition-colors cursor-pointer after:absolute after:-inset-1.5 after:content-['']"
       >
         <X className="w-3.5 h-3.5" />
       </button>
@@ -156,9 +156,9 @@ export function EmptyState({
   persianTitle,
 }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-2xl bg-white dark:bg-[#111114] border border-black/[0.06] dark:border-white/[0.055] shadow-[0_8px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.4)]">
+    <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-2xl bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.055] shadow-[0_8px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.4)]">
       {icon && (
-        <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-[#16161B] border border-black/[0.06] dark:border-white/[0.06] text-(--text-secondary) flex items-center justify-center mb-3">
+        <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-(--bg-card-hover) border border-black/[0.06] dark:border-white/[0.06] text-(--text-secondary) flex items-center justify-center mb-3">
           {icon}
         </div>
       )}
@@ -166,7 +166,7 @@ export function EmptyState({
         {title}
       </h3>
       {persianTitle && (
-        <p className="font-persian-luxury text-xs text-zinc-400 dark:text-[#5C5C66] mt-0.5">
+        <p className="font-persian-luxury text-xs text-zinc-400 dark:text-(--text-muted) mt-0.5">
           {persianTitle}
         </p>
       )}

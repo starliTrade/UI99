@@ -51,7 +51,7 @@ export function Checkbox({
           checked
             ? 'bg-emerald-500 text-white shadow-[0_0_10px_rgba(16,185,129,0.3)] border border-emerald-400'
             : isDark
-            ? 'bg-[#15151C] border border-white/[0.1] peer-hover:border-white/[0.2]'
+            ? 'bg-(--bg-elevated) border border-white/[0.1] peer-hover:border-white/[0.2]'
             : 'bg-zinc-100 border border-black/[0.12] peer-hover:border-black/[0.25]'
         }`}
       >
@@ -72,7 +72,7 @@ export function Checkbox({
           {label && (
             <span
               className={`text-xs font-semibold tracking-tight leading-none ${
-                isDark ? 'text-[#EDEDEF]' : 'text-zinc-900'
+                isDark ? 'text-(--text-primary)' : 'text-zinc-900'
               }`}
             >
               {label}
@@ -81,7 +81,7 @@ export function Checkbox({
           {description && (
             <span
               className={`text-[11px] leading-snug mt-1 ${
-                isDark ? 'text-[#8E8E98]' : 'text-zinc-500'
+                isDark ? 'text-(--text-secondary)' : 'text-zinc-500'
               }`}
             >
               {description}
@@ -132,7 +132,7 @@ export function Radio({
           checked
             ? 'border-2 border-emerald-500'
             : isDark
-            ? 'border border-white/[0.12] bg-[#15151C] peer-hover:border-white/[0.25]'
+            ? 'border border-white/[0.12] bg-(--bg-elevated) peer-hover:border-white/[0.25]'
             : 'border border-black/[0.15] bg-zinc-100 peer-hover:border-black/[0.3]'
         }`}
       >
@@ -148,7 +148,7 @@ export function Radio({
       {label && (
         <span
           className={`text-xs font-medium tracking-tight ${
-            isDark ? 'text-[#EDEDEF]' : 'text-zinc-900'
+            isDark ? 'text-(--text-primary)' : 'text-zinc-900'
           }`}
         >
           {label}

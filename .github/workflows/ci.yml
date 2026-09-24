@@ -21,6 +21,9 @@ jobs:
       - name: Typecheck
         run: bun run lint
 
+      - name: Token adherence gate (no hardcoded surface/ink hexes)
+        run: bun run tokens:gate
+
       - name: Tests (behavioral + axe + contrast)
         run: bun run test
 

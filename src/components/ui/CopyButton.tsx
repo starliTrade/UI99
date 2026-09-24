@@ -41,7 +41,7 @@ export function CopyButton({ text, label = 'Copy', size = 'sm', className = '' }
       className={cn(
         'inline-flex items-center gap-1.5 rounded-lg font-mono text-[11px] transition-colors cursor-pointer',
         'border border-black/[0.06] bg-white text-zinc-600 hover:bg-black/[0.03]',
-        'dark:border-white/[0.06] dark:bg-[#131318] dark:text-[#92929B] dark:hover:bg-white/[0.05]',
+        'dark:border-white/[0.06] dark:bg-(--bg-elevated) dark:text-(--text-secondary) dark:hover:bg-white/[0.05]',
         'focus-visible:outline-none focus-ui99-inset',
         size === 'sm' ? 'h-8 px-2.5' : 'h-10 px-3.5',
         className

@@ -33,7 +33,7 @@ export function ToggleGroupItem({ variant = 'default', size, className, ...props
     <ToggleGroupPrimitive.Item
       className={cn(
         toggleVariants({ variant, size }),
-        'min-w-10 border-0 shadow-none bg-transparent data-[state=on]:bg-white data-[state=on]:shadow-xs dark:data-[state=on]:bg-[#131318]',
+        'min-w-10 border-0 shadow-none bg-transparent data-[state=on]:bg-white data-[state=on]:shadow-xs dark:data-[state=on]:bg-(--bg-elevated)',
         className
       )}
       {...props}

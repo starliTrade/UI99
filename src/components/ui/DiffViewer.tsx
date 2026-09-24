@@ -41,12 +41,12 @@ export function DiffViewer({
   return (
     <div
       className={cn(
-        'rounded-2xl bg-white dark:bg-[#06070A] border border-zinc-200 dark:border-white/[0.06] overflow-hidden text-xs font-mono shadow-sm dark:shadow-lg',
+        'rounded-2xl bg-white dark:bg-(--bg-canvas) border border-zinc-200 dark:border-white/[0.06] overflow-hidden text-xs font-mono shadow-sm dark:shadow-lg',
         className
       )}
     >
       {/* Diff Header */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-50 dark:bg-[#0B0C11] border-b border-zinc-200 dark:border-white/[0.04]">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-50 dark:bg-(--bg-card) border-b border-zinc-200 dark:border-white/[0.04]">
         <div className="flex items-center gap-2">
           <GitCommit className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
           <span className="text-zinc-900 dark:text-zinc-200 font-medium">{fileName}</span>

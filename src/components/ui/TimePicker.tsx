@@ -33,7 +33,7 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
   const filtered = useMemo(() => slots.filter((t) => t.includes(query)), [slots, query]);
 
   return (
-    <div className={cn('rounded-2xl border border-black/[0.06] bg-white p-3 dark:border-white/[0.06] dark:bg-[#131318]', className)}>
+    <div className={cn('rounded-2xl border border-black/[0.06] bg-white p-3 dark:border-white/[0.06] dark:bg-(--bg-elevated)', className)}>
       <input
         type="text"
         value={query}
@@ -42,7 +42,7 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
         aria-label="Filter times"
         className={cn(
           'mb-2 h-9 w-full rounded-xl border border-black/[0.07] bg-transparent px-3 text-sm text-zinc-950 placeholder:text-zinc-400',
-          'dark:border-white/[0.07] dark:text-[#EDEDEF] dark:placeholder:text-[#71717A]',
+          'dark:border-white/[0.07] dark:text-(--text-primary) dark:placeholder:text-(--text-muted)',
           'focus-visible:outline-none focus-ui99-inset'
         )}
       />

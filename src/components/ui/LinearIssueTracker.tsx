@@ -448,7 +448,7 @@ export function LinearIssueTracker() {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-[#131318] border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1.5 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <Filter className="w-3 h-3 text-zinc-400" />
                   <span className="capitalize">
@@ -478,7 +478,7 @@ export function LinearIssueTracker() {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-[#131318] border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1.5 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <span className="capitalize">
                     {priorityFilter === 'all' ? 'All Priorities' : priorityFilter}

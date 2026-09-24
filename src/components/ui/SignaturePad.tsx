@@ -76,7 +76,11 @@ export function SignaturePad({
 
     // Resolve color
     const isDark = document.documentElement.classList.contains('dark') || document.body.classList.contains('dark');
-    ctx.strokeStyle = strokeColor || (isDark ? '#EDEDEF' : '#18181B');
+    ctx.strokeStyle =
+      strokeColor ||
+      (isDark
+        ? getComputedStyle(document.documentElement).getPropertyValue('--text-primary').trim() || '#EDEDEF'
+        : '#18181B');
     ctx.lineWidth = strokeWidth;
   };
 
@@ -134,7 +138,7 @@ export function SignaturePad({
   };
 
   return (
-    <div className={cn('flex flex-col gap-2.5 p-3.5 rounded-2xl bg-white dark:bg-[#0B0C11] border border-black/[0.06] dark:border-white/[0.04] shadow-md', className)}>
+    <div className={cn('flex flex-col gap-2.5 p-3.5 rounded-2xl bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04] shadow-md', className)}>
       <div className="flex items-center justify-between pb-1">
         <span className="text-xs font-medium text-zinc-600 dark:text-zinc-400 flex items-center gap-1.5">
           <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
@@ -162,7 +166,7 @@ export function SignaturePad({
         </div>
       </div>
 
-      <div className="relative rounded-xl overflow-hidden bg-zinc-50 dark:bg-[#06070A] border border-dashed border-black/10 dark:border-white/10 touch-none">
+      <div className="relative rounded-xl overflow-hidden bg-zinc-50 dark:bg-(--bg-canvas) border border-dashed border-black/10 dark:border-white/10 touch-none">
         <canvas
           ref={canvasRef}
           width={width}

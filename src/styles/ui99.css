@@ -25,6 +25,9 @@
   --text-secondary: #92929B;
   --text-muted: #60606B;
   --text-on-fill: #060709;
+  /* Inverted fill system — ink-on-paper duality (Linear-style pressed fill) */
+  --ink-fill: #EDEDEF;
+  --ink-on-fill: #060709;
 
   /* Dock / glass */
   --dock-bg: rgba(9, 10, 14, 0.75);
@@ -38,6 +41,20 @@
 
   /* Focus (WCAG 2.4.11/2.4.13) */
   --focus-ring: rgba(16, 185, 129, 0.55);
+
+  /* Semantic intent fills — destructive/success solid actions.
+     Dark theme: bright fill + deep ink text (≥5.5:1), the audited pairing. */
+  --intent-rose: #F43F5E;          /* rose-500 */
+  --intent-rose-hover: #FB7185;    /* rose-400 */
+  --intent-rose-on: #2A0A10;       /* deep maroon ink on bright rose */
+  --intent-emerald: #10B981;       /* emerald-500 */
+  --intent-emerald-hover: #34D399; /* emerald-400 */
+  --intent-emerald-on: #06251A;    /* deep pine ink on bright emerald */
+
+  /* Soft rose affinity tint (surface lifted over --bg-card) */
+  --rose-tint: #161216;
+  --rose-tint-hover: #1E171E;
+  --rose-tint-text: #F3CBD2;
 }
 
 /* ======================= PORCELAIN LIGHT ======================= */
@@ -57,6 +74,9 @@
   --text-secondary: #646470;
   --text-muted: #9494A0;
   --text-on-fill: #FFFFFF;
+  /* Light theme: fill is the dark ink itself; content on it is porcelain */
+  --ink-fill: #111116;
+  --ink-on-fill: #F5F5F8;
 
   --dock-bg: rgba(255, 255, 255, 0.94);
   --dock-border: rgba(0, 0, 0, 0.05);
@@ -68,6 +88,20 @@
   --state-drag: rgba(0, 0, 0, 0.1);
 
   --focus-ring: rgba(5, 150, 105, 0.5);
+
+  /* Semantic intent fills — light theme: deep fill + white text (≥4.5:1).
+     emerald sits at 700 so the white label keeps AA (600 measured 3.8:1). */
+  --intent-rose: #E11D48;          /* rose-600 */
+  --intent-rose-hover: #F43F5E;    /* rose-500 */
+  --intent-rose-on: #FFFFFF;
+  --intent-emerald: #047857;       /* emerald-700 — AA with white */
+  --intent-emerald-hover: #059669; /* emerald-600 */
+  --intent-emerald-on: #FFFFFF;
+
+  /* Soft rose affinity tint */
+  --rose-tint: #FFF1F2;            /* rose-50 */
+  --rose-tint-hover: #FFE4E6;      /* rose-100 */
+  --rose-tint-text: #9F1239;       /* rose-800 */
 }
 
 /* ======================= SHARED / THEME-AGNOSTIC ======================= */

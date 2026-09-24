@@ -42,6 +42,11 @@ import {
   PasswordInput,
   Badge,
   SegmentedControl,
+  Sparkline,
+  DonutRing,
+  TrendDelta,
+  MeterBar,
+  StatTile,
 } from '../ui';
 
 // ── BLOCK 1: LINEAR ISSUE WORKFLOW ──
@@ -394,26 +399,89 @@ export function AuthCardBlock() {
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Button, SegmentedControl } from '@99/ui';
 import { Check } from 'lucide-react';
 
+const plans = [
+  { name: 'Starter',  price: { monthly: '$0',  yearly: '$0'  }, period: 'forever',
+    description: 'Ideal for solo developers building modern web apps.',
+    features: ['Up to 10 projects', 'All 92 UI primitives', 'Community support'], cta: 'Get Started Free' },
+  { name: 'Pro Team', price: { monthly: '$39', yearly: '$29' }, period: 'per seat / month', highlight: true, badge: 'MOST POPULAR',
+    description: 'Designed for fast-moving engineering and product teams.',
+    features: ['Unlimited projects', 'Full CLI registry access', 'Private team presets', 'Figma token sync'], cta: 'Start 14-Day Free Trial' },
+  { name: 'Enterprise', price: { monthly: 'Custom', yearly: 'Custom' }, period: 'annual billing',
+    description: 'Dedicated infrastructure, custom tokens, and SLAs.',
+    features: ['Custom design audit', '99.99% Uptime SLA', 'SOC2 Type II compliance'], cta: 'Contact Sales' },
+];
+
 export function PricingPlansBlock() {
   const [billing, setBilling] = useState<'monthly' | 'yearly'>('yearly');
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {/* Plan Card (Starter, Pro Team, Enterprise) */}
+    <div className="space-y-8">
+      <SegmentedControl
+        options={[{ label: 'Monthly', value: 'monthly' }, { label: 'Yearly (Save 25%)', value: 'yearly' }]}
+        value={billing}
+        onChange={setBilling}
+      />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {plans.map((plan) => (
+          <Card key={plan.name} className={plan.highlight ? 'ring-1 ring-emerald-500/20' : ''}>
+            <CardHeader>
+              <CardTitle>{plan.name}</CardTitle>
+              <CardDescription>{plan.description}</CardDescription>
+              <div className="pt-4 flex items-baseline gap-1.5">
+                <span className="text-4xl font-mono font-bold">{plan.price[billing]}</span>
+                <span className="text-xs font-mono text-zinc-500">/{plan.period}</span>
+              </div>
+            </CardHeader>
+            <CardContent>
+              {plan.features.map((f) => (
+                <div key={f} className="flex items-center gap-2 text-xs">
+                  <Check className="w-3.5 h-3.5 text-emerald-400" /> <span>{f}</span>
+                </div>
+              ))}
+            </CardContent>
+            <CardFooter>
+              <Button variant={plan.highlight ? 'primary' : 'outline'} className="w-full">{plan.cta}</Button>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }`,
     analytics: `import React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@99/ui';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, StatTile, TrendDelta, Sparkline, DonutRing, MeterBar } from '@99/ui';
 
 export function AnalyticsMetricsBlock() {
+  const invocations = [12, 18, 14, 22, 30, 26, 34, 41, 38, 45, 52, 49, 58, 64];
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <StatTile label="API Invocations" value="1,429,820" delta={18.4} />
+        <StatTile label="P99 Latency" value="11.4 ms" delta={-2.1} deltaSuffix=" ms" />
+        <StatTile label="Global Uptime" value="99.99%" />
+      </div>
+
       <Card>
         <CardHeader>
-          <CardDescription>Total API Invocations</CardDescription>
-          <CardTitle className="text-2xl font-mono">1,429,820</CardTitle>
+          <CardTitle>Rolling 30-Day Throughput</CardTitle>
+          <CardDescription>Requests per minute, edge regions aggregated.</CardDescription>
         </CardHeader>
+        <CardContent className="flex items-center gap-6">
+          <Sparkline data={invocations} color="emerald" width={320} height={64} />
+          <DonutRing segments={[{ value: 92, color: 'emerald' }, { value: 8, color: 'neutral' }]} size={96} label="92%" />
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Resource Allocation</CardTitle>
+          <CardDescription>Plan limits across edge regions.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <MeterBar value={72} label="Resource allocation — 72% of plan limits" showValue />
+          <TrendDelta delta={24.8} />
+        </CardContent>
       </Card>
     </div>
   );
@@ -606,60 +674,36 @@ export function SecuritySettingsBlock() {
           {activeBlock === 'analytics' && (
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <Card>
-                  <CardHeader>
-                    <CardDescription>Total API Invocations</CardDescription>
-                    <CardTitle className="text-2xl font-mono">1,429,820</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-2 text-xs text-emerald-500 font-medium">
-                      <span>+18.4%</span>
-                      <span className="text-zinc-400">vs last cycle</span>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardDescription>P99 Latency</CardDescription>
-                    <CardTitle className="text-2xl font-mono">11.4 ms</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-2 text-xs text-emerald-500 font-medium">
-                      <span>-2.1 ms</span>
-                      <span className="text-zinc-400">speed optimization</span>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardDescription>Global Uptime</CardDescription>
-                    <CardTitle className="text-2xl font-mono">99.99%</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-2 text-xs text-zinc-400 font-medium">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
-                      <span>All edge nodes operational</span>
-                    </div>
-                  </CardContent>
-                </Card>
+                <StatTile label="API Invocations" value="1,429,820" delta={18.4} size="md" />
+                <StatTile label="P99 Latency" value="11.4 ms" delta={2.1} deltaSuffix=" ms faster" size="md" />
+                <StatTile label="Global Uptime" value="99.99%" size="md" />
               </div>
 
               <Card>
                 <CardHeader>
                   <CardTitle>Rolling 30-Day Throughput</CardTitle>
-                  <CardDescription>Real-time edge performance and response distribution.</CardDescription>
+                  <CardDescription>Real-time edge performance — requests per minute, regions aggregated.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-44 w-full rounded-2xl bg-zinc-100 dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.03] flex items-end p-4 gap-2">
-                    {[40, 55, 30, 70, 85, 60, 75, 90, 65, 80, 95, 85, 70, 60, 92].map((height, i) => (
-                      <div
-                        key={i}
-                        style={{ height: `${height}%` }}
-                        className="flex-1 bg-zinc-300 dark:bg-white/[0.1] hover:bg-emerald-500 dark:hover:bg-emerald-400 transition-colors rounded-t-sm"
-                      />
-                    ))}
+                  <div className="flex flex-col sm:flex-row items-center gap-6">
+                    <div className="flex-1 w-full min-w-0">
+                      <Sparkline data={[12, 18, 14, 22, 30, 26, 34, 41, 38, 45, 52, 49, 58, 64]} color="emerald" height={72} />
+                    </div>
+                    <DonutRing segments={[{ value: 92, color: 'emerald' }, { value: 8, color: 'neutral' }]} size={104} label="92%" />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Resource Allocation</CardTitle>
+                  <CardDescription>Plan limits across edge regions.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <MeterBar value={72} label="Resource allocation — 72% of plan limits" showValue size="md" />
+                  <div className="flex items-center gap-2">
+                    <TrendDelta delta={24.8} />
+                    <span className="text-xs text-zinc-500">throughput vs last cycle</span>
                   </div>
                 </CardContent>
               </Card>

@@ -243,7 +243,7 @@ export function TreeView({ data, selectedId, onSelect, className, label = 'File 
       aria-label={label}
       onKeyDown={handleNavKey}
       className={cn(
-        'p-2 rounded-2xl bg-white dark:bg-[#0B0C11] border border-black/[0.06] dark:border-white/[0.04]',
+        'p-2 rounded-2xl bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04]',
         'flex flex-col gap-0.5 overflow-hidden',
         className
       )}

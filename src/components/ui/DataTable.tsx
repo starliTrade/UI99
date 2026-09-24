@@ -84,7 +84,7 @@ export function DataTable<T extends Record<string, any>>({
         </div>
       )}
 
-      <div className="rounded-xl border border-zinc-200/80 dark:border-white/[0.04] overflow-hidden bg-white dark:bg-[#0A0B10]">
+      <div className="rounded-xl border border-zinc-200/80 dark:border-white/[0.04] overflow-hidden bg-white dark:bg-(--bg-surface)">
         <Table>
           <TableHeader>
             <TableRow>

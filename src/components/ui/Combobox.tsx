@@ -66,14 +66,14 @@ export function Combobox({
           disabled={disabled}
           className={cn(
             'inline-flex h-10 w-full items-center justify-between gap-2 rounded-xl border border-black/[0.07] bg-white px-3 text-sm',
-            'dark:border-white/[0.07] dark:bg-[#131318]',
+            'dark:border-white/[0.07] dark:bg-(--bg-elevated)',
             'transition-colors hover:bg-(--state-hover)',
             'focus-visible:outline-none focus-ui99-inset cursor-pointer',
             'disabled:cursor-not-allowed disabled:opacity-45',
             className
           )}
         >
-          <span className={cn('truncate', !selected && 'text-zinc-400 dark:text-[#8E8E98]')}>
+          <span className={cn('truncate', !selected && 'text-zinc-400 dark:text-(--text-secondary)')}>
             {selected ? selected.label : placeholder}
           </span>
           <ChevronsUpDown className="w-4 h-4 shrink-0 text-(--text-muted)" />
@@ -83,7 +83,7 @@ export function Combobox({
         <PopoverPrimitive.Content
           sideOffset={6}
           align="start"
-          className="z-50 w-[var(--radix-popover-trigger-width)] rounded-2xl border border-black/[0.06] bg-white shadow-[0_20px_48px_-12px_rgba(0,0,0,0.7)] dark:border-white/[0.06] dark:bg-[#131318]"
+          className="z-50 w-[var(--radix-popover-trigger-width)] rounded-2xl border border-black/[0.06] bg-white shadow-[0_20px_48px_-12px_rgba(0,0,0,0.7)] dark:border-white/[0.06] dark:bg-(--bg-elevated)"
         >
           <Command shouldFilter>
             <CommandInput placeholder={searchPlaceholder} onValueChange={setQuery} />

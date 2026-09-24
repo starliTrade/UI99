@@ -48,7 +48,7 @@ export function Stepper({
                 isDone &&
                   'bg-emerald-500 text-white border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.35)]',
                 isCurrent &&
-                  'bg-zinc-900 text-white border-zinc-900 dark:bg-[#EBEBEF] dark:text-[#0C0C0E] dark:border-[#EBEBEF] ring-4 ring-black/[0.04] dark:ring-white/[0.06]',
+                  'bg-zinc-900 text-white border-zinc-900 dark:bg-(--text-primary) dark:text-(--text-on-fill) dark:border-(--text-primary) ring-4 ring-black/[0.04] dark:ring-white/[0.06]',
                 !isDone && !isCurrent &&
                   'bg-transparent text-zinc-400 border-(--border-strong)'
               )}

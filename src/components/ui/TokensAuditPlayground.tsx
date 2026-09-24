@@ -48,13 +48,44 @@ export function TokensAuditPlayground() {
     [outerRadius, padding]
   );
 
-  // State for live Brightness Audit
-  const darkCanvas = '#06070A';
-  const darkSurface = '#0E0E14';
-  const darkElevated = '#131318';
+  /**
+   * Live token values read from the :root scope — the audit audits the REAL
+   * token system (src/styles/ui99.css), never a duplicated literal. A stale
+   * copy here would let the audit and the theme drift apart silently.
+   */
+  const liveTokens = useMemo(() => {
+    if (typeof window === 'undefined') return null;
+    const styles = getComputedStyle(document.documentElement);
+    const read = (name: string, fallback: string) =>
+      styles.getPropertyValue(name).trim() || fallback;
+    return {
+      darkCanvas: read('--bg-canvas', '#06070A'),
+      darkSurface: read('--bg-elevated', '#0E0E14'),
+      darkElevated: read('--bg-elevated', '#131318'),
+      lightCanvas: read('--bg-canvas', '#F5F5F8'),
+      lightSurface: read('--bg-surface', '#FFFFFF'),
+      darkText: read('--text-primary', '#EDEDEF'),
+      darkSecondary: read('--text-secondary', '#8E8E98'),
+      darkAccent: read('--focus-ring', '#10B981'),
+      lightText: read('--text-primary', '#111116'),
+      lightSecondary: read('--text-secondary', '#646470'),
+      lightAccent: '#059669',
+    };
+  }, []);
 
-  const lightCanvas = '#F5F5F8';
-  const lightSurface = '#FFFFFF';
+  const darkCanvas = liveTokens?.darkCanvas ?? '#06070A';
+  const darkSurface = liveTokens?.darkSurface ?? '#0E0E14';
+  const darkElevated = liveTokens?.darkElevated ?? '#131318';
+
+  const lightCanvas = liveTokens?.lightCanvas ?? '#F5F5F8';
+  const lightSurface = liveTokens?.lightSurface ?? '#FFFFFF';
+
+  const darkText = liveTokens?.darkText ?? '#EDEDEF';
+  const darkSecondary = liveTokens?.darkSecondary ?? '#8E8E98';
+  const darkAccent = liveTokens?.darkAccent ?? '#10B981';
+  const lightText = liveTokens?.lightText ?? '#111116';
+  const lightSecondary = liveTokens?.lightSecondary ?? '#646470';
+  const lightAccent = liveTokens?.lightAccent ?? '#059669';
 
   const darkAudit = useMemo(
     () => auditBrightnessLimit(darkCanvas, darkSurface, 'dark'),
@@ -66,60 +97,61 @@ export function TokensAuditPlayground() {
     [lightCanvas, lightSurface]
   );
 
-  // Live WCAG Contrast Matrix
+  // Live WCAG Contrast Matrix — pairs are computed from the LIVE token values
+  // (liveTokens) so the audit can never disagree with the stylesheet.
   const contrastPairs = useMemo(
     () => [
       {
         label: 'Dark Primary Text on Canvas',
-        fg: '#EDEDEF',
-        bg: '#06070A',
+        fg: darkText,
+        bg: darkCanvas,
         mode: 'dark',
         minRequired: 7.0, // AAA
       },
       {
         label: 'Dark Secondary Text on Canvas',
-        fg: '#8E8E98',
-        bg: '#06070A',
+        fg: darkSecondary,
+        bg: darkCanvas,
         mode: 'dark',
         minRequired: 4.5, // AA
       },
       {
         label: 'Dark Primary Text on Surface L1',
-        fg: '#EDEDEF',
-        bg: '#0E0E14',
+        fg: darkText,
+        bg: darkSurface,
         mode: 'dark',
         minRequired: 7.0, // AAA
       },
       {
         label: 'Dark Emerald Accent on Canvas',
-        fg: '#10B981',
-        bg: '#06070A',
+        fg: darkAccent,
+        bg: darkCanvas,
         mode: 'dark',
         minRequired: 4.5,
       },
       {
         label: 'Light Primary Text on Canvas',
-        fg: '#111116',
-        bg: '#F5F5F8',
+        fg: lightText,
+        bg: lightCanvas,
         mode: 'light',
         minRequired: 7.0, // AAA
       },
       {
         label: 'Light Secondary Text on Canvas',
-        fg: '#646470',
-        bg: '#F5F5F8',
+        fg: lightSecondary,
+        bg: lightCanvas,
         mode: 'light',
         minRequired: 4.5, // AA
       },
       {
         label: 'Light Emerald Accent on Canvas',
-        fg: '#059669',
-        bg: '#F5F5F8',
+        fg: lightAccent,
+        bg: lightCanvas,
         mode: 'light',
         minRequired: 4.5,
       },
     ],
-    []
+    [liveTokens, darkCanvas, darkSurface, lightCanvas]
   );
 
   // Button 2:1 Padding Audit List
@@ -188,7 +220,7 @@ export function TokensAuditPlayground() {
         </div>
 
         {/* Sliders Control Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline)">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline)">
           {/* Outer Radius Slider */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-xs font-semibold">
@@ -238,7 +270,7 @@ export function TokensAuditPlayground() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
           {/* Calculated Output & Formula Card */}
           <div className="space-y-4">
-            <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline) space-y-2.5">
+            <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-2.5">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-zinc-500">Calculated Inner Radius</span>
                 <span className="text-sm font-mono font-bold text-emerald-500">
@@ -281,7 +313,7 @@ export function TokensAuditPlayground() {
           </div>
 
           {/* Real-time Interactive Rendered Preview */}
-          <div className="p-6 rounded-2xl bg-zinc-100 dark:bg-[#06070A] border border-(--border-subtle) flex flex-col items-center justify-center">
+          <div className="p-6 rounded-2xl bg-zinc-100 dark:bg-(--bg-canvas) border border-(--border-subtle) flex flex-col items-center justify-center">
             {/* Outer Container Element */}
             <div
               style={{
@@ -304,7 +336,7 @@ export function TokensAuditPlayground() {
                 className={`w-full p-4 border transition-all duration-150 text-center ${
                   showBadComparison
                     ? 'bg-rose-500/10 border-rose-500/30 text-rose-400'
-                    : 'bg-zinc-50 dark:bg-[#0B0C11] border-black/[0.06] dark:border-white/[0.05] text-(--text-primary)'
+                    : 'bg-zinc-50 dark:bg-(--bg-card) border-black/[0.06] dark:border-white/[0.05] text-(--text-primary)'
                 }`}
               >
                 <div className="text-xs font-bold font-mono">
@@ -343,7 +375,7 @@ export function TokensAuditPlayground() {
             Anti-Slop rule: Container brightness difference from canvas must not exceed 12% in dark mode to prevent visual shock and jarring neon cards.
           </p>
 
-          <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline) space-y-3">
+          <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-3">
             <div className="flex justify-between text-xs">
               <span className="text-zinc-500">Root Canvas ({darkAudit.bgHex})</span>
               <span className="font-mono text-zinc-300 font-semibold">{darkAudit.bgBrightness}% Brightness</span>
@@ -384,7 +416,7 @@ export function TokensAuditPlayground() {
             Anti-Slop rule: Container brightness difference from canvas must not exceed 7% in light mode to maintain daylight matte calm without stark contrasts.
           </p>
 
-          <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline) space-y-3">
+          <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-3">
             <div className="flex justify-between text-xs">
               <span className="text-zinc-500">Matte Day Canvas ({lightAudit.bgHex})</span>
               <span className="font-mono text-zinc-300 font-semibold">{lightAudit.bgBrightness}% Brightness</span>
@@ -432,7 +464,7 @@ export function TokensAuditPlayground() {
             return (
               <div
                 key={idx}
-                className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline) space-y-2"
+                className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-2"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 truncate">
@@ -489,7 +521,7 @@ export function TokensAuditPlayground() {
             return (
               <div
                 key={btn.name}
-                className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-[#0E0E14] border border-(--border-hairline) space-y-1.5"
+                className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-1.5"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100">{btn.name}</span>

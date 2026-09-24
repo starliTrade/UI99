@@ -53,7 +53,7 @@ export function Progress({
         {(label || showValue) && (
           <div className="flex items-center justify-between text-xs">
             {label && (
-              <span className={`font-semibold ${isDark ? 'text-[#EDEDEF]' : 'text-zinc-800'}`}>
+              <span className={`font-semibold ${isDark ? 'text-(--text-primary)' : 'text-zinc-800'}`}>
                 {label}
               </span>
             )}
@@ -90,7 +90,7 @@ export function Progress({
       {(label || showValue) && (
         <div className="flex items-center justify-between text-xs">
           {label && (
-            <span className={`font-semibold ${isDark ? 'text-[#EDEDEF]' : 'text-zinc-800'}`}>
+            <span className={`font-semibold ${isDark ? 'text-(--text-primary)' : 'text-zinc-800'}`}>
               {label}
             </span>
           )}

@@ -119,12 +119,12 @@ export function TerminalEmulator({
   return (
     <div
       className={cn(
-        'rounded-2xl bg-[#06070A] border border-white/[0.06] text-xs font-mono flex flex-col shadow-xl overflow-hidden w-full',
+        'rounded-2xl bg-(--bg-canvas) border border-white/[0.06] text-xs font-mono flex flex-col shadow-xl overflow-hidden w-full',
         className
       )}
     >
       {/* Top Titlebar */}
-      <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#0B0C11] border-b border-white/[0.04]">
+      <div className="flex items-center justify-between px-3.5 py-2.5 bg-(--bg-card) border-b border-white/[0.04]">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
@@ -185,7 +185,7 @@ export function TerminalEmulator({
       {/* Command Input Form */}
       <form
         onSubmit={runCommand}
-        className="flex items-center gap-2 px-3.5 py-2.5 bg-[#0B0C11] border-t border-white/[0.04]"
+        className="flex items-center gap-2 px-3.5 py-2.5 bg-(--bg-card) border-t border-white/[0.04]"
       >
         <span className="text-emerald-400 font-bold">$</span>
         <input

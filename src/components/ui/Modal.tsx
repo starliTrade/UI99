@@ -1,6 +1,6 @@
 /**
  * UI99 — Unified Velvet Modal & Mobile BottomSheet (Build 02.2)
- * Seamless dark depth matching #111114, micro-hairlines, soft diffusion shadows,
+ * Seamless dark depth on --bg-elevated, micro-hairlines, soft diffusion shadows,
  * backed by Radix UI Dialog primitives for full WAI-ARIA focus management & keyboard interaction.
   * @token Backdrop is canvas-black at 70% + blur(8px); dialog resolves `--bg-elevated` and the specular top rim.
 */
@@ -45,7 +45,7 @@ export function Modal({
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 overflow-hidden pointer-events-none">
           <DialogPrimitive.Content
             className={cn(
-              'pointer-events-auto relative w-full bg-white dark:bg-[#111114] text-(--text-primary)',
+              'pointer-events-auto relative w-full bg-white dark:bg-(--bg-elevated) text-(--text-primary)',
               'border border-black/[0.08] dark:border-white/[0.06]',
               'shadow-[0_24px_50px_rgba(0,0,0,0.14)] dark:shadow-[0_24px_60px_-10px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.04)]',
               'sm:rounded-3xl rounded-t-[28px] overflow-hidden max-h-[92vh] flex flex-col z-10 pb-safe outline-none',

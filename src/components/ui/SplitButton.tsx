@@ -67,7 +67,7 @@ export function SplitButton({
     primary:
       'bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 border border-transparent shadow-xs',
     secondary:
-      'bg-zinc-100 dark:bg-[#111218] text-zinc-900 dark:text-[#EDEDEF] hover:bg-zinc-200 dark:hover:bg-[#171822] border border-zinc-200/80 dark:border-white/[0.04]',
+      'bg-zinc-100 dark:bg-(--bg-elevated) text-zinc-900 dark:text-(--text-primary) hover:bg-zinc-200 dark:hover:bg-(--bg-card-hover) border border-zinc-200/80 dark:border-white/[0.04]',
     outline:
       'bg-transparent text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] border border-zinc-300 dark:border-white/[0.08]',
   }[variant];
@@ -107,7 +107,7 @@ export function SplitButton({
 
       {/* Dropdown Menu */}
       {open && (
-        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-xl bg-white dark:bg-[#0E0F16] border border-zinc-200 dark:border-white/[0.06] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-100">
+        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-xl bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-100">
           {items.map((item, idx) => (
             <button
               key={idx}

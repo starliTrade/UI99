@@ -43,7 +43,7 @@ export function Slider({
       {(label || unit) && (
         <div className="flex items-center justify-between text-xs">
           {label && (
-            <span className={`font-semibold tracking-tight ${isDark ? 'text-[#EDEDEF]' : 'text-zinc-800'}`}>
+            <span className={`font-semibold tracking-tight ${isDark ? 'text-(--text-primary)' : 'text-zinc-800'}`}>
               {label}
             </span>
           )}
@@ -87,7 +87,7 @@ export function Slider({
         <div
           className={`absolute pointer-events-none w-4 h-4 rounded-full -translate-x-1/2 shadow-md transition-transform duration-75 slider-thumb ${
             isDark
-              ? 'bg-white border-2 border-[#131318] shadow-[0_2px_8px_rgba(0,0,0,0.5)]'
+              ? 'bg-white border-2 border-(--bg-elevated) shadow-[0_2px_8px_rgba(0,0,0,0.5)]'
               : 'bg-white border-2 border-emerald-500 shadow-[0_2px_8px_rgba(0,0,0,0.15)]'
           }`}
           style={{ left: `${percentage}%`, ['--thumb-pos' as string]: `${100 - percentage}%` }}

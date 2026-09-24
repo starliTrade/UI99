@@ -45,7 +45,7 @@ export function TimelineItem({
       <span
         aria-hidden="true"
         className={cn(
-          'absolute left-0 top-1 h-[15px] w-[15px] rounded-full border-2 border-white dark:border-[#0B0C11]',
+          'absolute left-0 top-1 h-[15px] w-[15px] rounded-full border-2 border-white dark:border-(--bg-card)',
           accentMap[accent]
         )}
       />

@@ -31,7 +31,7 @@ export function TrendDelta({
   const toneStyle = {
     up: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20',
     down: 'bg-rose-500/10 text-rose-700 dark:text-rose-400 border-rose-500/20',
-    flat: 'bg-black/[0.04] text-zinc-600 dark:bg-white/[0.05] dark:text-[#8E8E98] border-black/[0.04] dark:border-white/[0.05]',
+    flat: 'bg-black/[0.04] text-zinc-600 dark:bg-white/[0.05] dark:text-(--text-secondary) border-black/[0.04] dark:border-white/[0.05]',
   }[tone];
   const Icon = tone === 'up' ? ArrowUpRight : tone === 'down' ? ArrowDownRight : Minus;
 

@@ -41,7 +41,7 @@ export function DateRangePicker({
         type="button"
         disabled={disabled}
         onClick={() => setOpen(!open)}
-        className="h-9 px-3 rounded-xl bg-white dark:bg-[#0A0B10] border border-zinc-200 dark:border-white/[0.04] text-xs font-mono text-zinc-900 dark:text-white inline-flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-[#12131C] transition-colors cursor-pointer disabled:opacity-50"
+        className="h-9 px-3 rounded-xl bg-white dark:bg-(--bg-surface) border border-zinc-200 dark:border-white/[0.04] text-xs font-mono text-zinc-900 dark:text-white inline-flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-(--bg-elevated) transition-colors cursor-pointer disabled:opacity-50"
       >
         <Calendar className="w-3.5 h-3.5 text-zinc-400" />
         <span>{start}</span>
@@ -50,7 +50,7 @@ export function DateRangePicker({
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-1.5 p-3 rounded-2xl bg-white dark:bg-[#0E0F16] border border-zinc-200 dark:border-white/[0.06] shadow-2xl z-50 animate-in fade-in duration-100 space-y-3 min-w-[280px]">
+        <div className="absolute top-full left-0 mt-1.5 p-3 rounded-2xl bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-2xl z-50 animate-in fade-in duration-100 space-y-3 min-w-[280px]">
           <div className="flex items-center justify-between text-xs font-mono font-bold text-zinc-950 dark:text-white">
             <span>Select Date Range</span>
             <span className="text-[10px] text-emerald-500 font-normal">Active Sprint</span>

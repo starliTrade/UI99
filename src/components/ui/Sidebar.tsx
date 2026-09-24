@@ -57,7 +57,7 @@ export function Sidebar({
       className={cn(
         'relative flex h-full shrink-0 flex-col overflow-hidden border-r transition-[width] duration-200',
         isDark
-          ? 'border-white/[0.03] bg-[#0B0C11]'
+          ? 'border-white/[0.03] bg-(--bg-card)'
           : 'border-black/[0.04] bg-white',
         className
       )}
@@ -101,7 +101,7 @@ export function SidebarItem({ icon, isActive, label, className = '', ...props }:
         'group flex min-h-[44px] items-center gap-2.5 rounded-xl px-2.5 text-xs font-medium transition-colors cursor-pointer focus-visible:outline-none focus-ui99-inset',
         isActive
           ? 'bg-black/[0.05] text-zinc-950 dark:bg-white/[0.05] dark:text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]'
-          : 'text-zinc-600 hover:bg-black/[0.03] hover:text-zinc-950 dark:text-[#8E8E98] dark:hover:bg-white/[0.03] dark:hover:text-[#EDEDEF]',
+          : 'text-zinc-600 hover:bg-black/[0.03] hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:bg-white/[0.03] dark:hover:text-(--text-primary)',
         collapsed && 'justify-center px-0',
         className
       )}
