@@ -39,7 +39,7 @@ export function NumberField({
   const stepperCls = cn(
     'inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors cursor-pointer',
     'text-zinc-500 hover:bg-black/[0.04] dark:text-[#92929B] dark:hover:bg-white/[0.06]',
-    'focus-visible:outline-none focus-safa-inset',
+    'focus-visible:outline-none focus-ui99-inset',
     'disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent dark:disabled:hover:bg-transparent'
   );
 
@@ -76,7 +76,7 @@ export function NumberField({
           className={cn(
             'h-10 w-20 rounded-xl border border-black/[0.07] bg-white text-center text-sm font-semibold text-zinc-950',
             'dark:border-white/[0.07] dark:bg-[#131318] dark:text-[#EDEDEF]',
-            'focus-visible:outline-none focus-safa-inset',
+            'focus-visible:outline-none focus-ui99-inset',
             'disabled:cursor-not-allowed disabled:opacity-45'
           )}
         />

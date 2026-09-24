@@ -52,7 +52,7 @@ export function NavigationMenuTrigger({
       className={cn(
         'inline-flex h-9 items-center justify-center gap-1 rounded-full px-3 text-xs font-medium transition-colors cursor-pointer',
         'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04] dark:text-[#92929B] dark:hover:text-[#EDEDEF] dark:hover:bg-white/[0.04]',
-        'focus-visible:outline-none focus-safa data-[state=open]:bg-black/[0.05] dark:data-[state=open]:bg-white/[0.06]',
+        'focus-visible:outline-none focus-ui99 data-[state=open]:bg-black/[0.05] dark:data-[state=open]:bg-white/[0.06]',
         className
       )}
       {...props}
@@ -72,7 +72,7 @@ export function NavigationMenuLink({
       className={cn(
         'inline-flex h-9 items-center rounded-full px-3 text-xs font-medium transition-colors',
         'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04] dark:text-[#92929B] dark:hover:text-[#EDEDEF] dark:hover:bg-white/[0.04]',
-        'focus-visible:outline-none focus-safa',
+        'focus-visible:outline-none focus-ui99',
         className
       )}
       {...props}

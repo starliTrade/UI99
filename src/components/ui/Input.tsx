@@ -4,7 +4,7 @@
  * micro-hairlines, and calm focus rings with cn utility.
  *
  * @token Field body resolves `--bg-elevated` on `--bg-card` containers;
- *   resting border `--border-hairline`, focus ring `focus-safa-inset` riding
+ *   resting border `--border-hairline`, focus ring `focus-ui99-inset` riding
  *   `--focus-ring` (WCAG 2.4.13). Placeholder uses `--text-muted`.
  */
 
@@ -51,7 +51,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={error ? true : undefined}
             aria-describedby={helperId}
             className={cn(
-              'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] text-(--text-primary) placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-safa',
+              'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] text-(--text-primary) placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-ui99',
               inputSizeStyles[inputSize],
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',
@@ -97,7 +97,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={error ? true : undefined}
           aria-describedby={helperId}
           className={cn(
-            'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-xl p-3.5 text-sm text-(--text-primary) placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-safa',
+            'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-xl p-3.5 text-sm text-(--text-primary) placeholder-zinc-400 dark:placeholder-[#5C5C66] transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-ui99',
             error && 'border-rose-500/60 focus:border-rose-500',
             className
           )}

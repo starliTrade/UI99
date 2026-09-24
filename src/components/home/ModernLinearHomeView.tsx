@@ -1,9 +1,10 @@
 /**
- * UI99 — Linear-Native Modern Mobile Shell for Home View
- * High-velocity, ultra-crisp, zero card fatigue, true iOS native feeling.
+ * UI \ [99] — Linear.app Inspired High-Velocity Home Workspace
+ * World-class Linear design: active cycles, issue stream with J/K navigation,
+ * inline C hotkey composer, priority matrix, cycle burndown, and keyboard shortcuts.
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   CheckCircle2,
@@ -22,459 +23,648 @@ import {
   Activity,
   Layers,
   Search,
+  Check,
+  Filter,
+  SlidersHorizontal,
+  ChevronDown,
+  AlertCircle,
+  XCircle,
+  SignalHigh,
+  SignalMedium,
+  SignalLow,
+  MinusCircle,
+  TrendingUp,
+  BarChart3,
+  GitBranch,
+  Terminal,
+  Zap,
+  Tag as TagIcon,
+  Trash2,
+  CornerDownLeft,
+  X,
+  User,
+  ShieldCheck,
 } from 'lucide-react';
 import { useAuth } from '../../core/context/AuthContext';
 import { useApp } from '../../core/context/AppContext';
 import { useObjects } from '../../core/context/ObjectContext';
 import { BaseObject, ObjectType, ObjectStatus } from '../../core/types/objects';
-import { TodayRail } from '../home/TodayRail';
-import {
-  composeHomeExperience,
-  getTimeOfDay,
-  HomeCompositionResult,
-} from '../home/homeComposition';
+import { PriorityLevel, IssueStatus } from '../ui/Badge';
+import { Kbd } from '../ui/Kbd';
+
+interface LinearIssue {
+  id: string;
+  key: string;
+  title: string;
+  status: IssueStatus;
+  priority: PriorityLevel;
+  estimate?: number;
+  assignee: { name: string; avatar: string };
+  cycle: string;
+  labels: string[];
+  updatedAt: string;
+}
+
+const INITIAL_ISSUES: LinearIssue[] = [
+  {
+    id: 'iss-1',
+    key: 'UI-101',
+    title: 'Migrate core design tokens to Velvet Obsidian palette & math radii',
+    status: 'in_progress',
+    priority: 'urgent',
+    estimate: 5,
+    assignee: { name: 'Alex M.', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop&crop=faces' },
+    cycle: 'Cycle 24',
+    labels: ['Tokens', 'P0', 'Spec'],
+    updatedAt: '12m ago',
+  },
+  {
+    id: 'iss-2',
+    key: 'UI-102',
+    title: 'Implement J/K cursor keyboard navigation & inline quick composer',
+    status: 'in_progress',
+    priority: 'high',
+    estimate: 3,
+    assignee: { name: 'Sarah K.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=faces' },
+    cycle: 'Cycle 24',
+    labels: ['Engine', 'Keyboard'],
+    updatedAt: '45m ago',
+  },
+  {
+    id: 'iss-3',
+    key: 'UI-103',
+    title: 'Universal component registry documentation with live testing playground',
+    status: 'todo',
+    priority: 'high',
+    estimate: 8,
+    assignee: { name: 'Alex M.', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop&crop=faces' },
+    cycle: 'Cycle 24',
+    labels: ['Docs', 'Registry'],
+    updatedAt: '2h ago',
+  },
+  {
+    id: 'iss-4',
+    key: 'UI-104',
+    title: 'Liquid Glass capsule navigation dock with haptic springs',
+    status: 'done',
+    priority: 'medium',
+    estimate: 2,
+    assignee: { name: 'Elena R.', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=faces' },
+    cycle: 'Cycle 24',
+    labels: ['UI/UX', 'Mobile'],
+    updatedAt: '1d ago',
+  },
+  {
+    id: 'iss-5',
+    key: 'UI-105',
+    title: 'Dual-theme porcelain light & velvet obsidian contrast audit',
+    status: 'done',
+    priority: 'low',
+    estimate: 1,
+    assignee: { name: 'David L.', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=64&h=64&fit=crop&crop=faces' },
+    cycle: 'Cycle 24',
+    labels: ['WCAG', 'Accessibility'],
+    updatedAt: '2d ago',
+  },
+  {
+    id: 'iss-6',
+    key: 'UI-106',
+    title: 'Real-time sync and WebSockets state authoring pipeline',
+    status: 'backlog',
+    priority: 'medium',
+    estimate: 5,
+    assignee: { name: 'Sarah K.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=faces' },
+    cycle: 'Cycle 25',
+    labels: ['Backend', 'Sockets'],
+    updatedAt: '3d ago',
+  },
+];
 
 export function ModernLinearHomeView() {
-  const { user, isRTL } = useAuth();
-  const { openCapture, setIsSearchOpen, setCurrentTab } = useApp();
-  const { objects, updateObject, setSelectedObject } = useObjects();
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [activeSegment, setActiveSegment] = useState<'FOCUS' | 'STUDIO' | 'ALL'>('FOCUS');
+  const { isRTL } = useAuth();
+  const { setIsSearchOpen, setCurrentTab, addToast } = useApp();
 
-  const now = new Date();
-  const isToday =
-    selectedDate.getFullYear() === now.getFullYear() &&
-    selectedDate.getMonth() === now.getMonth() &&
-    selectedDate.getDate() === now.getDate();
+  const [issues, setIssues] = useState<LinearIssue[]>(INITIAL_ISSUES);
+  const [filterStatus, setFilterStatus] = useState<string>('ALL');
+  const [filterPriority, setFilterPriority] = useState<string>('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedIdx, setSelectedIdx] = useState<number>(0);
+  const [isComposerOpen, setIsComposerOpen] = useState(false);
+  const [newTitle, setNewTitle] = useState('');
+  const [newPriority, setNewPriority] = useState<PriorityLevel>('medium');
+  const [newEstimate, setNewEstimate] = useState<number>(3);
+  const [viewMode, setViewMode] = useState<'ISSUES' | 'CYCLE' | 'VELOCITY'>('ISSUES');
 
-  const composition: HomeCompositionResult = useMemo(() => {
-    return composeHomeExperience({
-      currentTime: now,
-      selectedDate,
-      isToday,
-      dayOfWeek: selectedDate.getDay(),
-      timeOfDay: getTimeOfDay(now),
-      objects,
+  const composerInputRef = useRef<HTMLInputElement>(null);
+
+  // Filter issues
+  const filteredIssues = useMemo(() => {
+    return issues.filter((iss) => {
+      const matchSearch =
+        !searchQuery.trim() ||
+        iss.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        iss.key.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        iss.labels.some((l) => l.toLowerCase().includes(searchQuery.toLowerCase()));
+
+      const matchStatus =
+        filterStatus === 'ALL' ||
+        (filterStatus === 'ACTIVE' && (iss.status === 'in_progress' || iss.status === 'todo')) ||
+        iss.status === filterStatus;
+
+      const matchPriority = filterPriority === 'ALL' || iss.priority === filterPriority;
+
+      return matchSearch && matchStatus && matchPriority;
     });
-  }, [objects, selectedDate, isToday]);
+  }, [issues, searchQuery, filterStatus, filterPriority]);
 
-  const handleToggleTask = async (task: BaseObject, e: React.MouseEvent) => {
-    e.stopPropagation();
-    const isDone = task.status === ObjectStatus.COMPLETED;
-    try {
-      await updateObject(task.id, {
-        status: isDone ? ObjectStatus.ACTIVE : ObjectStatus.COMPLETED,
-      });
-    } catch (err) {
-      console.error('Failed to toggle task:', err);
+  // Keyboard navigation listener (J/K navigation, C for composer, Space to toggle status)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't trigger shortcuts if focus is inside input/textarea
+      const activeTag = document.activeElement?.tagName.toLowerCase();
+      if (activeTag === 'input' || activeTag === 'textarea') {
+        if (e.key === 'Escape' && isComposerOpen) {
+          setIsComposerOpen(false);
+        }
+        return;
+      }
+
+      if (e.key === 'j' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        setSelectedIdx((prev) => Math.min(prev + 1, Math.max(0, filteredIssues.length - 1)));
+      } else if (e.key === 'k' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelectedIdx((prev) => Math.max(0, prev - 1));
+      } else if (e.key === 'c' || e.key === 'C') {
+        e.preventDefault();
+        setIsComposerOpen(true);
+        setTimeout(() => composerInputRef.current?.focus(), 50);
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        if (filteredIssues[selectedIdx]) {
+          toggleIssueStatus(filteredIssues[selectedIdx].id);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [filteredIssues, selectedIdx, isComposerOpen]);
+
+  const toggleIssueStatus = (id: string) => {
+    setIssues((prev) =>
+      prev.map((iss) => {
+        if (iss.id === id) {
+          const nextStatus: IssueStatus =
+            iss.status === 'done'
+              ? 'todo'
+              : iss.status === 'todo'
+              ? 'in_progress'
+              : 'done';
+          return { ...iss, status: nextStatus };
+        }
+        return iss;
+      })
+    );
+  };
+
+  const handleCreateIssue = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTitle.trim()) return;
+
+    const nextNumber = issues.length + 101;
+    const newIssue: LinearIssue = {
+      id: `iss-${Date.now()}`,
+      key: `UI-${nextNumber}`,
+      title: newTitle.trim(),
+      status: 'todo',
+      priority: newPriority,
+      estimate: newEstimate,
+      assignee: {
+        name: 'You',
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop&crop=faces',
+      },
+      cycle: 'Cycle 24',
+      labels: ['Sprint'],
+      updatedAt: 'Just now',
+    };
+
+    setIssues([newIssue, ...issues]);
+    setNewTitle('');
+    setIsComposerOpen(false);
+    addToast(`Created issue ${newIssue.key}`, 'success');
+  };
+
+  // Status icon & colors
+  const renderStatusIcon = (status: IssueStatus) => {
+    switch (status) {
+      case 'done':
+        return <CheckCircle2 className="w-4 h-4 text-emerald-500 fill-emerald-500/20" />;
+      case 'in_progress':
+        return <Clock className="w-4 h-4 text-amber-500 animate-pulse" />;
+      case 'todo':
+        return <Circle className="w-4 h-4 text-zinc-500 hover:text-zinc-300" />;
+      case 'backlog':
+        return <MinusCircle className="w-4 h-4 text-zinc-600" />;
+      case 'canceled':
+        return <XCircle className="w-4 h-4 text-rose-500" />;
+      default:
+        return <Circle className="w-4 h-4 text-zinc-500" />;
     }
   };
 
-  const handleIncrementHabit = async (habit: BaseObject, e: React.MouseEvent) => {
-    e.stopPropagation();
-    const currentStreak = habit.metadata?.streak ?? 0;
-    try {
-      await updateObject(habit.id, {
-        metadata: {
-          ...habit.metadata,
-          streak: currentStreak + 1,
-          lastCheckedDate: new Date().toISOString(),
-        },
-      });
-    } catch (err) {
-      console.error('Failed to increment habit:', err);
+  // Priority icon
+  const renderPriorityBadge = (priority: PriorityLevel) => {
+    switch (priority) {
+      case 'urgent':
+        return (
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30">
+            <SignalHigh className="w-3 h-3 text-rose-400" />
+            <span>P0</span>
+          </span>
+        );
+      case 'high':
+        return (
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
+            <SignalHigh className="w-3 h-3 text-amber-400" />
+            <span>P1</span>
+          </span>
+        );
+      case 'medium':
+        return (
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+            <SignalMedium className="w-3 h-3 text-blue-400" />
+            <span>P2</span>
+          </span>
+        );
+      case 'low':
+      default:
+        return (
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium text-zinc-500 border border-zinc-500/20">
+            <SignalLow className="w-3 h-3 text-zinc-500" />
+            <span>P3</span>
+          </span>
+        );
     }
   };
 
-  const activeTasks = composition.activeTasks || [];
-  const activeHabits = composition.activeHabits || [];
-  const timelineItems = composition.scheduledTimelineItems || [];
-  const focusObject = composition.focusObject;
-  const atelierProject = composition.atelierProject;
+  const doneCount = issues.filter((i) => i.status === 'done').length;
+  const inProgressCount = issues.filter((i) => i.status === 'in_progress').length;
+  const totalPoints = issues.reduce((acc, curr) => acc + (curr.estimate || 1), 0);
+  const donePoints = issues.filter((i) => i.status === 'done').reduce((acc, curr) => acc + (curr.estimate || 1), 0);
+  const cycleCompletion = Math.round((donePoints / (totalPoints || 1)) * 100);
 
   return (
-    <div className="w-full max-w-2xl mx-auto px-3 sm:px-5 pb-32 pt-1 select-none space-y-5">
-      {/* 1. Header Micro-Stream (Linear Status Bar) */}
-      <div className="flex items-center justify-between pt-1">
-        <div className="flex items-center gap-2.5">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.035] border border-white/[0.04]">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <span className="text-[11px] font-mono tracking-tight text-zinc-300">
-              {isToday ? (isRTL ? 'امروز' : 'Today') : selectedDate.toLocaleDateString(isRTL ? 'fa-IR' : 'en-US', { month: 'short', day: 'numeric' })}
-            </span>
-          </div>
-
-          <span className="text-[11px] font-medium text-[#8E8E98]">
-            {activeTasks.length} {isRTL ? 'کار باقی‌مانده' : 'tasks in flow'}
-          </span>
-        </div>
-
-        {/* Quick Linear Search & Capture triggers */}
-        <div className="flex items-center gap-1.5">
-          <button
-            type="button"
-            onClick={() => setIsSearchOpen(true)}
-            className="w-8 h-8 rounded-full bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.03] flex items-center justify-center text-zinc-400 hover:text-white transition-all active:scale-95 cursor-pointer"
-            title={isRTL ? 'جستجو' : 'Search (⌘K)'}
-          >
-            <Search className="w-3.5 h-3.5" />
-          </button>
-
-          <button
-            type="button"
-            onClick={() => openCapture()}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-black font-semibold text-xs transition-all active:scale-95 shadow-[0_2px_12px_rgba(255,255,255,0.2)] hover:bg-zinc-200 cursor-pointer"
-          >
-            <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
-            <span>{isRTL ? 'جدید' : 'New'}</span>
-          </button>
-        </div>
-      </div>
-
-      {/* 2. Today Calendar Rail (Ultra-Clean Fluid Strip) */}
-      <div className="pt-0.5">
-        <TodayRail selectedDate={selectedDate} onSelectDate={setSelectedDate} />
-      </div>
-
-      {/* 3. Linear Segmented Control Pill */}
-      <div className="flex items-center justify-center p-1 rounded-xl bg-[#090A0E] border border-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
-        <div className="grid grid-cols-3 gap-1 w-full text-center">
-          <button
-            type="button"
-            onClick={() => setActiveSegment('FOCUS')}
-            className={`py-1.5 px-3 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-              activeSegment === 'FOCUS'
-                ? 'bg-white/[0.08] text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]'
-                : 'text-zinc-500 hover:text-zinc-300'
-            }`}
-          >
-            {isRTL ? 'جریان و تمرکز' : 'Focus & Flow'}
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveSegment('STUDIO')}
-            className={`py-1.5 px-3 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-              activeSegment === 'STUDIO'
-                ? 'bg-white/[0.08] text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]'
-                : 'text-zinc-500 hover:text-zinc-300'
-            }`}
-          >
-            {isRTL ? 'آتلیه و الهام' : 'Atelier & Mood'}
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveSegment('ALL')}
-            className={`py-1.5 px-3 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-              activeSegment === 'ALL'
-                ? 'bg-white/[0.08] text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]'
-                : 'text-zinc-500 hover:text-zinc-300'
-            }`}
-          >
-            {isRTL ? 'همه برنامه‌ها' : 'Schedule'}
-          </button>
-        </div>
-      </div>
-
-      {/* 4. CONTENT SECTIONS (NO CARD FATIGUE - INSET GROUPED) */}
-      {activeSegment === 'FOCUS' && (
-        <div className="space-y-4">
-          {/* Primary Focus Milestone (Linear Issue Style Hero Strip) */}
-          {focusObject && (
-            <div
-              onClick={() => setSelectedObject(focusObject)}
-              className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-b from-[#0E0F15] to-[#0A0B10] border border-white/[0.04] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_12px_32px_-8px_rgba(0,0,0,0.6)] cursor-pointer hover:border-white/[0.08] transition-all"
-            >
-              <div className="flex items-center justify-between gap-2 mb-1.5">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
-                  <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-amber-400">
-                    {isRTL ? 'تمرکز شاخص امروز' : 'Core Objective'}
-                  </span>
-                </div>
-
-                {focusObject.metadata?.progress !== undefined && (
-                  <span className="text-[11px] font-mono text-zinc-400">
-                    {focusObject.metadata.progress}%
-                  </span>
-                )}
-              </div>
-
-              <h3 className="text-sm sm:text-base font-semibold text-[#EDEDEF] tracking-tight mb-1">
-                {focusObject.title}
-              </h3>
-
-              {focusObject.description && (
-                <p className="text-xs text-[#8E8E98] line-clamp-1 font-light">
-                  {focusObject.description}
-                </p>
-              )}
+    <div className="w-full max-w-4xl mx-auto px-3 sm:px-6 pb-28 pt-1 select-none space-y-6">
+      {/* 1. LINEAR HEADER BAR: Active Cycle, Velocity & Actions */}
+      <div className="p-4 sm:p-5 rounded-3xl bg-zinc-50/80 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.035] shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-2xl bg-zinc-900 dark:bg-white/10 flex items-center justify-center text-white shrink-0 border border-black/[0.08] dark:border-white/[0.08]">
+              <Zap className="w-4 h-4 text-emerald-400 fill-emerald-400/20" />
             </div>
-          )}
-
-          {/* Active Tasks Group */}
-          <div className="space-y-1.5">
-            <div className="flex items-center justify-between px-1 text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">
-              <span>{isRTL ? 'کارهای آماده اقدام' : 'Active Tasks'}</span>
-              <span className="font-mono text-[10px]">{activeTasks.length}</span>
-            </div>
-
-            <div className="linear-group-container">
-              {activeTasks.length === 0 ? (
-                <div className="p-6 text-center text-xs text-zinc-500">
-                  {isRTL ? 'هیچ کار بازی برای این روز نیست.' : 'No active tasks for today. Calm achieved.'}
-                </div>
-              ) : (
-                activeTasks.map((task) => {
-                  const isDone = task.status === ObjectStatus.COMPLETED;
-                  return (
-                    <div
-                      key={task.id}
-                      onClick={() => setSelectedObject(task)}
-                      className={`linear-group-row cursor-pointer ${isDone ? 'opacity-35' : ''}`}
-                    >
-                      <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <button
-                          type="button"
-                          onClick={(e) => handleToggleTask(task, e)}
-                          className="p-0.5 text-zinc-500 hover:text-white transition-colors shrink-0 cursor-pointer"
-                        >
-                          {isDone ? (
-                            <CheckCircle2 className="w-4.5 h-4.5 text-emerald-400" />
-                          ) : (
-                            <Circle className="w-4.5 h-4.5 text-zinc-600 hover:text-zinc-300" />
-                          )}
-                        </button>
-
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-2">
-                            <span
-                              className={`text-[13px] sm:text-sm font-medium tracking-tight truncate text-[#EDEDEF] ${
-                                isDone ? 'line-through text-zinc-500' : ''
-                              }`}
-                            >
-                              {task.title}
-                            </span>
-                            {task.metadata?.priority === 'high' && (
-                              <span className="text-[9px] uppercase font-mono font-bold px-1.5 py-0.2 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">
-                                P1
-                              </span>
-                            )}
-                          </div>
-                          {task.description && (
-                            <p className="text-[11px] text-[#8E8E98] truncate font-light mt-0.5">
-                              {task.description}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2 shrink-0 ml-3 rtl:mr-3 rtl:ml-0">
-                        {task.tags?.[0] && (
-                          <span className="hidden sm:inline-block text-[10px] font-mono text-zinc-600">
-                            #{task.tags[0]}
-                          </span>
-                        )}
-                        <ArrowUpRight className="w-3.5 h-3.5 text-zinc-600" />
-                      </div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
-          </div>
-
-          {/* Habit Rituals Group */}
-          {activeHabits.length > 0 && (
-            <div className="space-y-1.5 pt-1">
-              <div className="flex items-center justify-between px-1 text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">
-                <span>{isRTL ? 'آیین‌ها و ریتم روزانه' : 'Rituals & Streaks'}</span>
-                <span className="font-mono text-[10px]">{activeHabits.length}</span>
-              </div>
-
-              <div className="linear-group-container">
-                {activeHabits.map((habit) => {
-                  const streak = habit.metadata?.streak ?? 0;
-                  return (
-                    <div
-                      key={habit.id}
-                      onClick={() => setSelectedObject(habit)}
-                      className="linear-group-row cursor-pointer"
-                    >
-                      <div className="flex items-center gap-3 min-w-0 flex-1">
-                        <button
-                          type="button"
-                          onClick={(e) => handleIncrementHabit(habit, e)}
-                          className="w-6 h-6 rounded-full bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/20 flex items-center justify-center shrink-0 transition-transform active:scale-90 cursor-pointer"
-                        >
-                          <Flame className="w-3.5 h-3.5 fill-current" />
-                        </button>
-
-                        <div className="min-w-0 flex-1">
-                          <span className="text-[13px] sm:text-sm font-medium tracking-tight text-[#EDEDEF] truncate block">
-                            {habit.title}
-                          </span>
-                          <p className="text-[11px] text-[#8E8E98] truncate font-light mt-0.5">
-                            {habit.description || (isRTL ? 'آیین تکرارشونده' : 'Daily ritual')}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-1.5 text-xs font-mono font-semibold text-orange-400 shrink-0 ml-3 rtl:mr-3 rtl:ml-0">
-                        <Flame className="w-3 h-3 fill-current" />
-                        <span>{streak}d</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* STUDIO & ATELIER SEGMENT */}
-      {activeSegment === 'STUDIO' && (
-        <div className="space-y-4">
-          {atelierProject && (
-            <div
-              onClick={() => setSelectedObject(atelierProject)}
-              className="p-4 rounded-2xl bg-[#0B0C11] border border-white/[0.03] shadow-[0_12px_32px_rgba(0,0,0,0.5)] cursor-pointer hover:border-white/[0.06] transition-all space-y-3"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Scissors className="w-4 h-4 text-amber-400" />
-                  <span className="text-xs font-semibold uppercase tracking-wider text-amber-400">
-                    Atelier Project
-                  </span>
-                </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
-                  {atelierProject.metadata?.stage || 'In Progress'}
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                  Sprint Cycle 24
+                </h1>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                  ACTIVE • 4d left
                 </span>
               </div>
-
-              <div>
-                <h3 className="text-base font-semibold text-[#EDEDEF]">
-                  {atelierProject.title}
-                </h3>
-                {atelierProject.description && (
-                  <p className="text-xs text-[#8E8E98] mt-1 font-light">
-                    {atelierProject.description}
-                  </p>
-                )}
-              </div>
-
-              {atelierProject.metadata?.palette && (
-                <div className="flex items-center gap-2 pt-1 border-t border-white/[0.03]">
-                  <span className="text-[10px] text-zinc-500">Palette:</span>
-                  <div className="flex items-center gap-1.5">
-                    {atelierProject.metadata.palette.map((c: string, i: number) => (
-                      <span
-                        key={i}
-                        className="w-3.5 h-3.5 rounded-full border border-white/20"
-                        style={{ backgroundColor: c }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98] font-mono">
+                {donePoints} of {totalPoints} story points completed ({cycleCompletion}%)
+              </p>
             </div>
-          )}
+          </div>
 
-          {/* Music & Restorative items */}
-          <div className="linear-group-container">
-            <div
+          {/* Quick Actions */}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
               onClick={() => {
-                if (composition.songObject) setSelectedObject(composition.songObject);
-                else openCapture();
+                setIsComposerOpen(true);
+                setTimeout(() => composerInputRef.current?.focus(), 50);
               }}
-              className="linear-group-row cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-zinc-950 text-white dark:bg-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all active:scale-[0.97] cursor-pointer shadow-xs"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
-                  <Music className="w-3.5 h-3.5" />
-                </div>
-                <div>
-                  <span className="text-xs font-medium text-[#EDEDEF] block">
-                    {composition.songObject?.title || (isRTL ? 'نوای موسیقی امروز' : 'Soundtrack')}
-                  </span>
-                  <span className="text-[11px] text-zinc-500 font-light">
-                    {composition.songObject?.metadata?.artist || 'Arvo Pärt • Spiegel im Spiegel'}
-                  </span>
-                </div>
-              </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-zinc-600" />
-            </div>
+              <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>New Issue</span>
+              <Kbd size="xs" className="hidden sm:inline-block ml-1 opacity-70">C</Kbd>
+            </button>
 
-            <div
-              onClick={() => {
-                if (composition.movementHabit) setSelectedObject(composition.movementHabit);
-                else openCapture();
-              }}
-              className="linear-group-row cursor-pointer"
+            <button
+              type="button"
+              onClick={() => setCurrentTab('UIKIT')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium bg-zinc-100 hover:bg-zinc-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-zinc-700 dark:text-zinc-300 transition-all cursor-pointer border border-black/[0.04] dark:border-white/[0.03]"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400">
-                  <Activity className="w-3.5 h-3.5" />
-                </div>
-                <div>
-                  <span className="text-xs font-medium text-[#EDEDEF] block">
-                    {composition.movementHabit?.title || (isRTL ? 'حرکت و پیلاتس' : 'Daily Movement')}
-                  </span>
-                  <span className="text-[11px] text-zinc-500 font-light">
-                    {isRTL ? '۱۸ روز استمرار • کشش ملایم' : '18-day streak • Restorative'}
-                  </span>
-                </div>
-              </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-zinc-600" />
-            </div>
+              <Layers className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">UI Kit</span>
+            </button>
           </div>
         </div>
-      )}
 
-      {/* TIMELINE SCHEDULE SEGMENT */}
-      {activeSegment === 'ALL' && (
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between px-1 text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">
-            <span>{isRTL ? 'برنامه زمانی روز' : 'Timeline Agenda'}</span>
-            <span className="font-mono text-[10px]">{timelineItems.length}</span>
+        {/* Progress Bar (Linear Sub-Pixel Specular) */}
+        <div className="space-y-1.5 pt-1">
+          <div className="w-full h-2 rounded-full bg-zinc-200 dark:bg-zinc-800/80 overflow-hidden flex">
+            <div
+              className="h-full bg-emerald-500 transition-all duration-500"
+              style={{ width: `${cycleCompletion}%` }}
+            />
+            <div
+              className="h-full bg-amber-500/70 transition-all duration-500"
+              style={{ width: `${Math.round((inProgressCount / issues.length) * 100)}%` }}
+            />
           </div>
+          <div className="flex items-center justify-between text-[10px] font-mono text-zinc-400 dark:text-zinc-500 px-0.5">
+            <div className="flex items-center gap-3">
+              <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                {doneCount} Done
+              </span>
+              <span className="flex items-center gap-1 text-amber-600 dark:text-amber-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                {inProgressCount} In Progress
+              </span>
+              <span className="flex items-center gap-1 text-zinc-500">
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-500" />
+                {issues.length - doneCount - inProgressCount} Todo
+              </span>
+            </div>
+            <span>Velocity: 34 pts/sprint</span>
+          </div>
+        </div>
+      </div>
 
-          <div className="linear-group-container">
-            {timelineItems.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => {
-                  if (item.objectId) {
-                    const obj = objects.find((o) => o.id === item.objectId);
-                    if (obj) setSelectedObject(obj);
-                  }
-                }}
-                className={`linear-group-row ${item.objectId ? 'cursor-pointer' : ''}`}
+      {/* 2. INLINE ISSUE COMPOSER (Linear "C" Shortcut) */}
+      <AnimatePresence>
+        {isComposerOpen && (
+          <motion.form
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+            onSubmit={handleCreateIssue}
+            className="p-4 rounded-2xl bg-white dark:bg-[#0E0E14] border border-black/[0.08] dark:border-white/[0.06] shadow-lg space-y-3"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400">
+                <Terminal className="w-3.5 h-3.5" />
+                <span>Create New Linear Issue</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsComposerOpen(false)}
+                className="p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-white rounded-lg transition-colors cursor-pointer"
               >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <input
+              ref={composerInputRef}
+              type="text"
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+              placeholder="Issue title or description..."
+              className="w-full bg-transparent text-sm font-medium text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
+            />
+
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.03]">
+              <div className="flex items-center gap-2">
+                {/* Priority Selector */}
+                <select
+                  value={newPriority}
+                  onChange={(e) => setNewPriority(e.target.value as PriorityLevel)}
+                  aria-label="Issue priority level"
+                  className="bg-zinc-100 dark:bg-white/[0.04] text-xs font-mono font-medium rounded-lg px-2.5 py-1 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04] focus:outline-none cursor-pointer"
+                >
+                  <option value="urgent">P0 Urgent</option>
+                  <option value="high">P1 High</option>
+                  <option value="medium">P2 Medium</option>
+                  <option value="low">P3 Low</option>
+                </select>
+
+                {/* Estimate Selector */}
+                <select
+                  value={newEstimate}
+                  onChange={(e) => setNewEstimate(Number(e.target.value))}
+                  aria-label="Story points estimate"
+                  className="bg-zinc-100 dark:bg-white/[0.04] text-xs font-mono font-medium rounded-lg px-2.5 py-1 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04] focus:outline-none cursor-pointer"
+                >
+                  <option value={1}>1 pt</option>
+                  <option value={2}>2 pts</option>
+                  <option value={3}>3 pts</option>
+                  <option value={5}>5 pts</option>
+                  <option value={8}>8 pts</option>
+                </select>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsComposerOpen(false)}
+                  className="px-3 py-1 rounded-xl text-xs text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={!newTitle.trim()}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-40 disabled:pointer-events-none transition-all cursor-pointer shadow-xs"
+                >
+                  <span>Save Issue</span>
+                  <CornerDownLeft className="w-3 h-3" />
+                </button>
+              </div>
+            </div>
+          </motion.form>
+        )}
+      </AnimatePresence>
+
+      {/* 3. FILTER AND SEARCH TOOLBAR */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        {/* Status filters */}
+        <div className="flex items-center gap-1 bg-zinc-100/80 dark:bg-[#0B0C11] p-1 rounded-2xl border border-black/[0.04] dark:border-white/[0.03] overflow-x-auto no-scrollbar">
+          {[
+            { id: 'ALL', label: 'All' },
+            { id: 'ACTIVE', label: 'In Flight' },
+            { id: 'in_progress', label: 'In Progress' },
+            { id: 'todo', label: 'Todo' },
+            { id: 'done', label: 'Done' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setFilterStatus(tab.id)}
+              className={`px-3 py-1 rounded-xl text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+                filterStatus === tab.id
+                  ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Search & Priority filter */}
+        <div className="flex items-center gap-2">
+          <div className="relative flex-1 sm:w-56">
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Filter issues..."
+              className="w-full bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] rounded-xl pl-8 pr-3 py-1.5 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
+            />
+          </div>
+
+          <select
+            value={filterPriority}
+            onChange={(e) => setFilterPriority(e.target.value)}
+            aria-label="Filter issues by priority"
+            className="bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] text-xs font-mono rounded-xl px-2.5 py-1.5 text-zinc-600 dark:text-zinc-400 focus:outline-none cursor-pointer"
+          >
+            <option value="ALL">All Priorities</option>
+            <option value="urgent">P0 Urgent</option>
+            <option value="high">P1 High</option>
+            <option value="medium">P2 Medium</option>
+            <option value="low">P3 Low</option>
+          </select>
+        </div>
+      </div>
+
+      {/* 4. LINEAR ISSUE STREAM (J/K Navigable Table) */}
+      <div className="rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs overflow-hidden divide-y divide-black/[0.04] dark:divide-white/[0.03]">
+        {filteredIssues.length === 0 ? (
+          <div className="p-12 text-center space-y-2">
+            <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto opacity-60" />
+            <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">All caught up</h3>
+            <p className="text-xs text-zinc-500">No issues match the selected filter criteria.</p>
+          </div>
+        ) : (
+          filteredIssues.map((iss, idx) => {
+            const isSelected = selectedIdx === idx;
+            const isDone = iss.status === 'done';
+
+            return (
+              <div
+                key={iss.id}
+                onClick={() => setSelectedIdx(idx)}
+                className={`group flex items-center justify-between p-3 sm:px-4 sm:py-3.5 transition-all cursor-pointer select-none ${
+                  isSelected
+                    ? 'bg-zinc-100/80 dark:bg-white/[0.04] ring-1 ring-inset ring-emerald-500/40'
+                    : 'hover:bg-zinc-50 dark:hover:bg-white/[0.015]'
+                }`}
+              >
+                {/* Left section: toggle + ID + Title */}
                 <div className="flex items-center gap-3 min-w-0 flex-1">
-                  <span className="text-[11px] font-mono text-zinc-500 w-12 text-right rtl:text-left shrink-0">
-                    {item.time}
+                  {/* Status Toggle Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleIssueStatus(iss.id);
+                    }}
+                    className="p-1 -m-1 rounded-lg text-zinc-400 hover:text-zinc-600 dark:hover:text-white transition-colors cursor-pointer shrink-0"
+                    title={`Status: ${iss.status} (Click to toggle)`}
+                  >
+                    {renderStatusIcon(iss.status)}
+                  </button>
+
+                  {/* Identifier */}
+                  <span className="text-[11px] font-mono font-bold text-zinc-400 dark:text-zinc-500 shrink-0">
+                    {iss.key}
                   </span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/20 shrink-0" />
-                  <div className="min-w-0 flex-1">
-                    <span className="text-xs font-medium text-[#EDEDEF] truncate block">
-                      {item.title}
+
+                  {/* Title */}
+                  <div className="min-w-0 flex-1 flex items-center gap-2">
+                    <span
+                      className={`text-xs sm:text-sm font-medium tracking-tight truncate ${
+                        isDone
+                          ? 'line-through text-zinc-400 dark:text-zinc-500'
+                          : 'text-zinc-950 dark:text-[#EDEDEF]'
+                      }`}
+                    >
+                      {iss.title}
                     </span>
-                    {item.description && (
-                      <span className="text-[11px] text-[#8E8E98] truncate font-light block">
-                        {item.description}
-                      </span>
-                    )}
+
+                    {/* Labels */}
+                    <div className="hidden md:flex items-center gap-1.5 shrink-0">
+                      {iss.labels.map((lbl) => (
+                        <span
+                          key={lbl}
+                          className="px-1.5 py-0.2 rounded text-[10px] font-mono text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-white/[0.03] border border-black/[0.04] dark:border-white/[0.02]"
+                        >
+                          {lbl}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <span className="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded border border-white/[0.04] text-zinc-500 shrink-0">
-                  {item.category}
-                </span>
+
+                {/* Right section: Priority + Estimate + Assignee + Timestamp */}
+                <div className="flex items-center gap-3 shrink-0 ml-3 rtl:mr-3 rtl:ml-0">
+                  {/* Priority */}
+                  {renderPriorityBadge(iss.priority)}
+
+                  {/* Estimate */}
+                  {iss.estimate && (
+                    <span className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-white/[0.03]">
+                      {iss.estimate}pt
+                    </span>
+                  )}
+
+                  {/* Assignee Avatar */}
+                  <img
+                    src={iss.assignee.avatar}
+                    alt={iss.assignee.name}
+                    className="w-5 h-5 rounded-full object-cover border border-black/[0.08] dark:border-white/[0.08]"
+                    title={iss.assignee.name}
+                  />
+
+                  {/* Relative timestamp */}
+                  <span className="hidden lg:inline-block text-[10px] font-mono text-zinc-400 dark:text-zinc-500 w-12 text-right">
+                    {iss.updatedAt}
+                  </span>
+                </div>
               </div>
-            ))}
+            );
+          })
+        )}
+      </div>
+
+      {/* 5. KEYBOARD SHORTCUTS REFERENCE BAR (Linear Pro Productivity Hint) */}
+      <div className="p-3.5 rounded-2xl bg-zinc-50 dark:bg-[#0B0C11] border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono text-zinc-500">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1.5">
+            <Kbd size="xs">J</Kbd>
+            <Kbd size="xs">K</Kbd>
+            <span>Navigate</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Kbd size="xs">C</Kbd>
+            <span>New Issue</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Kbd size="xs">Space</Kbd>
+            <span>Toggle Done</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Kbd size="xs">⌘</Kbd>
+            <Kbd size="xs">K</Kbd>
+            <span>Search</span>
           </div>
         </div>
-      )}
+
+        <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+          <ShieldCheck className="w-3.5 h-3.5" />
+          <span>Linear Velocity Engine Active</span>
+        </div>
+      </div>
     </div>
   );
 }
+

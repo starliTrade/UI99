@@ -60,19 +60,19 @@ export function Surface({
 
   const variantMap = {
     surface:
-      'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-[0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_8px_24px_-4px_rgba(0,0,0,0.5)]',
+      'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-[0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_12px_32px_-8px_rgba(0,0,0,0.6)]',
     surfaceSecondary:
-      'bg-[#F8F8FA] dark:bg-[#0B0C11] border border-black/[0.035] dark:border-white/[0.02] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)]',
+      'bg-[#F8F8FA] dark:bg-(--bg-surface) border border-black/[0.035] dark:border-white/[0.02] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.025)]',
     elevated:
-      'bg-(--bg-elevated) border border-(--border-hairline) shadow-[0_8px_28px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_16px_36px_-6px_rgba(0,0,0,0.65)]',
+      'bg-(--bg-elevated) border border-(--border-hairline) shadow-[0_8px_28px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.045),0_16px_40px_-8px_rgba(0,0,0,0.65)]',
     glass:
-      'bg-white/80 dark:bg-[#0E0E13]/55 backdrop-blur-2xl border border-(--border-hairline) shadow-[0_8px_24px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_18px_40px_-10px_rgba(0,0,0,0.65)]',
+      'bg-white/80 dark:bg-[#0C0D12]/60 backdrop-blur-2xl border border-(--border-hairline) shadow-[0_8px_24px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_16px_40px_-10px_rgba(0,0,0,0.6)]',
     compact:
-      'bg-white/90 dark:bg-[#0B0C11] border border-black/[0.03] dark:border-white/[0.02] shadow-xs',
+      'bg-white/90 dark:bg-(--bg-surface) border border-black/[0.03] dark:border-white/[0.02] shadow-xs',
     flat:
-      'bg-zinc-100/80 dark:bg-[#0B0C11]/80 border-transparent',
+      'bg-zinc-100/80 dark:bg-(--bg-surface)/80 border-transparent',
     outline:
-      'bg-transparent border border-black/[0.08] dark:border-white/[0.04]',
+      'bg-transparent border border-black/[0.08] dark:border-white/[0.035]',
   }[variant];
 
   const hoverStyle =

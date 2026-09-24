@@ -69,6 +69,7 @@ import {
   Maximize2,
   Bold,
   ChevronDown,
+  Boxes,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
 import { useAuth } from '../../core/context/AuthContext';
@@ -221,6 +222,35 @@ import {
   CopyButton,
   Swatch,
   NumberField,
+  ColorPicker,
+  SignaturePad,
+  PasswordInput,
+  TagInput,
+  RichTextEditorBar,
+  Banner,
+  EmptyPlaceholder,
+  TourGuide,
+  Confetti,
+  KeyboardShortcutsDialog,
+  TreeView,
+  KanbanBoard,
+  DiffViewer,
+  CalendarView,
+  AudioPlayer,
+  TerminalEmulator,
+  ActivityFeed,
+  SplitButton,
+  FloatingActionButton,
+  LinkButton,
+  DropdownButton,
+  PinInput,
+  CurrencyInput,
+  DateRangePicker,
+  RangeSlider,
+  CheckboxGroup,
+  DataTable,
+  MetricCard,
+  Spinner,
 } from '../ui';
 
 type SectionTab =
@@ -238,6 +268,33 @@ export function UIKitView() {
   const isDark = themeMode === 'dark';
 
   const [activeSection, setActiveSection] = useState<SectionTab>('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sbPackageManager, setSbPackageManager] = useState<'npm' | 'pnpm' | 'yarn' | 'bun'>('npm');
+
+  const getSbCliCmd = (compName: string, pm: 'npm' | 'pnpm' | 'yarn' | 'bun' = sbPackageManager) => {
+    switch (pm) {
+      case 'pnpm':
+        return `pnpm dlx @99/ui add ${compName}`;
+      case 'yarn':
+        return `yarn dlx @99/ui add ${compName}`;
+      case 'bun':
+        return `bunx --bun @99/ui add ${compName}`;
+      case 'npm':
+      default:
+        return `npx @99/ui add ${compName}`;
+    }
+  };
+
+  const isSectionVisible = (sectionName: SectionTab, keywords: string[] = []) => {
+    if (!searchQuery.trim()) {
+      return activeSection === 'ALL' || activeSection === sectionName;
+    }
+    const q = searchQuery.toLowerCase().trim();
+    return (
+      sectionName.toLowerCase().includes(q) ||
+      keywords.some((k) => k.toLowerCase().includes(q))
+    );
+  };
 
   // Deep-link from home explorer: focus the component's gallery section
   React.useEffect(() => {
@@ -283,6 +340,20 @@ export function UIKitView() {
   const [sbDisabled, setSbDisabled] = useState(false);
   const [sbWithIcon, setSbWithIcon] = useState(true);
   const [sbLabel, setSbLabel] = useState('Launch Workflow');
+
+  // Wave I & J Interactive Demo State
+  const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [demoColor, setDemoColor] = useState('#3B82F6');
+  const [demoTags, setDemoTags] = useState(['Obsidian', 'TypeScript', 'WCAG-AAA']);
+
+  // Wave K (99 Primitives) Interactive Demo State
+  const [demoCurrency, setDemoCurrency] = useState(349.99);
+  const [demoPin, setDemoPin] = useState('9942');
+  const [demoRangeSlider, setDemoRangeSlider] = useState<[number, number]>([15, 85]);
+  const [demoDateRange, setDemoDateRange] = useState({ start: '2026-09-01', end: '2026-09-30' });
+  const [demoEnv, setDemoEnv] = useState('prod');
+  const [demoCheckboxGroup, setDemoCheckboxGroup] = useState(['telemetry', 'realtime']);
 
   // Command palette keyboard shortcut listener
   React.useEffect(() => {
@@ -337,30 +408,106 @@ export function UIKitView() {
   }, [sbComponent, sbVariant, sbSize, sbLoading, sbDisabled, sbWithIcon, sbLabel]);
 
   return (
-    <div className="space-y-10 pb-28 pt-2">
-      {/* 1. PAGE HEADER — quiet, purposeful (shadcn-class) */}
-      <header className="pt-6 sm:pt-10 pb-2 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-          63 components · WCAG-verified · MIT
+    <div className="space-y-10 pb-28">
+      {/* 1. PAGE HEADER — Atmospheric Obsidian Halo & Precision Hierarchy */}
+      <header className="relative pb-4 space-y-5 overflow-visible">
+        {/* Soft emerald brand halo glow */}
+        <div
+          aria-hidden="true"
+          className="absolute -top-16 left-1/4 -translate-x-1/2 w-[320px] sm:w-[680px] h-[220px] sm:h-[340px] rounded-full blur-[100px] sm:blur-[160px] pointer-events-none -z-10 opacity-70 dark:opacity-85 transition-opacity"
+          style={{
+            background:
+              'radial-gradient(ellipse at 50% 45%, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.03) 40%, transparent 75%)',
+          }}
+        />
+
+        <div className="flex flex-col items-start gap-2.5">
+          <h1 className="text-4xl sm:text-6xl font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.06] text-balance font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]">
+            The UI Kit.
+          </h1>
+          <p className="text-sm sm:text-base text-zinc-600 dark:text-[#8E909D] max-w-2xl leading-relaxed tracking-[-0.01em]">
+            Every certified obsidian primitive and foundational token, live. Precision micro-interactions, WCAG 2.2 AAA certified specular highlights, and copy-ready production JSX.
+          </p>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.05] text-balance">
-          The UI Kit.
-        </h1>
-        <p className="text-sm sm:text-base text-zinc-500 dark:text-[#92929B] max-w-xl leading-relaxed">
-          Every primitive, live. Switch theme, flip direction, then copy the code.
-        </p>
+
+        {/* 4-Pillar Quality Indicators */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Catalog</span>
+            <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">99 Primitives</span>
+          </div>
+          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Accessibility</span>
+            <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 font-mono">WCAG 2.2 AAA</span>
+          </div>
+          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Radii Nested</span>
+            <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">R_in = R_out - P</span>
+          </div>
+          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Engineering</span>
+            <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">Zero AI Slop</span>
+          </div>
+        </div>
+
+        {/* Hero Quick Action Bar */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
+          {/* CLI Box */}
+          <div className="h-9 inline-flex items-center gap-2 pl-3 pr-1.5 rounded-xl bg-zinc-100/80 dark:bg-[#0A0B10] border border-zinc-200/80 dark:border-white/[0.035] text-xs font-mono text-zinc-800 dark:text-zinc-200">
+            <span className="text-emerald-500 font-bold select-none">&gt;_</span>
+            <span className="font-medium">npx @99/ui add button</span>
+            <button
+              type="button"
+              onClick={() => copyToClipboard('npx @99/ui add button', 'CLI Command')}
+              aria-label="Copy CLI"
+              className="p-1 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/[0.06] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer"
+            >
+              {copiedCode === 'CLI Command' ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+            </button>
+          </div>
+
           <Button variant="outline" size="sm" icon={<Copy className="w-3.5 h-3.5" />} onClick={() => copyToClipboard(JSON.stringify(tokens, null, 2), 'Design Tokens JSON')}>
-            {copiedCode === 'Design Tokens JSON' ? 'Copied!' : 'Export tokens'}
+            {copiedCode === 'Design Tokens JSON' ? 'Tokens Copied!' : 'Export Tokens JSON'}
+          </Button>
+          <Button variant="secondary" size="sm" icon={<Command className="w-3.5 h-3.5" />} onClick={() => setIsCommandOpen(true)}>
+            Command Palette <Kbd size="xs" className="ml-1">⌘K</Kbd>
           </Button>
           <Button variant="ghost" size="sm" icon={<ShieldCheck className="w-3.5 h-3.5" />} onClick={() => setIsDemoModalOpen(true)}>
-            Preview modal
+            Preview Modal
           </Button>
         </div>
       </header>
-      {/* 2. CATEGORY SELECTOR (Linear-Style Sticky Filter Rail) */}
-      <div className="sticky top-14 z-30 py-2 backdrop-blur-xl bg-white/85 dark:bg-[#06070A]/85 border-b border-black/[0.04] dark:border-white/[0.02]">
+
+      {/* 2. CATEGORY SELECTOR & INSTANT COMPONENT SEARCH (Linear-Style Sticky Filter Rail) */}
+      <div className="sticky top-14 z-30 py-2.5 backdrop-blur-xl bg-white/90 dark:bg-[#06070A]/90 border-b border-black/[0.04] dark:border-white/[0.02] space-y-2">
+        <div className="flex items-center gap-2">
+          {/* Quick Search */}
+          <div className="relative flex-1 max-w-sm">
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={isRTL ? 'جستجو در ۹۹ کامپوننت و توکن...' : 'Filter 99 components...'}
+              className="w-full pl-8 pr-7 py-1.5 rounded-xl text-xs font-mono bg-zinc-100 dark:bg-[#0E0E14] border border-zinc-200/80 dark:border-white/[0.04] text-zinc-900 dark:text-[#EDEDEF] placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-all"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 cursor-pointer"
+              >
+                <X className="w-3 h-3" />
+              </button>
+            )}
+          </div>
+
+          {/* Search Status / Total */}
+          <span className="hidden sm:inline-block text-[11px] font-mono text-zinc-500 dark:text-zinc-400 px-2 py-1 rounded-lg bg-zinc-100/80 dark:bg-white/[0.03]">
+            {searchQuery ? `Searching: "${searchQuery}"` : `99 Elements Live`}
+          </span>
+        </div>
+
         <SegmentedControl
           options={sectionOptions as any}
           value={activeSection}
@@ -373,7 +520,7 @@ export function UIKitView() {
       {/* ========================================================================= */}
       {/* 3. FOUNDATIONS SECTION: Color Science, Psychology, Typography, Radii Math */}
       {/* ========================================================================= */}
-      {(activeSection === 'ALL' || activeSection === 'FOUNDATIONS') && (
+      {isSectionVisible('FOUNDATIONS', ['foundation', 'color', 'obsidian', 'porcelain', 'psychology', 'contrast', 'wcag', 'typography', 'radii']) && (
         <section className="space-y-8">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
@@ -492,7 +639,7 @@ export function UIKitView() {
           </div>
 
           {/* 10% Semantic Functional Accents with Psychological Rationale */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
               10% Semantic Color Psychology (Functional Signals)
             </h3>
@@ -523,7 +670,7 @@ export function UIKitView() {
           </div>
 
           {/* Typography Scale: Persian Luxury + Latin Pair */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-6">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-6">
             <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
               <div className="flex items-center gap-2">
                 <Type className="w-4 h-4 text-emerald-500" />
@@ -572,7 +719,7 @@ export function UIKitView() {
           </div>
 
           {/* Mathematical Radius Nesting Rule Demonstration */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
               <div className="flex items-center gap-2">
                 <Maximize2 className="w-4 h-4 text-emerald-500" />
@@ -607,7 +754,7 @@ export function UIKitView() {
       {/* ========================================================================= */}
       {/* 4. COMPONENT SUITE (shadcn/ui style live registry) */}
       {/* ========================================================================= */}
-      {(activeSection === 'ALL' || activeSection === 'COMPONENTS') && (
+      {isSectionVisible('COMPONENTS', ['button', 'buttons', 'slider', 'progress', 'switch', 'checkbox', 'radio', 'dropdown', 'input', 'textarea', 'modal', 'accordion', 'tooltip', 'breadcrumb', 'tag', 'avatar', 'wave', 'separator', 'alert', 'dialog', 'table', 'stepper', 'timeline', 'sparkline', 'stat', 'donut', 'heatmap', 'menubar', 'rating', 'otp', 'color', 'password', 'tag', 'editor', 'banner', 'kanban', 'diff', 'tree', 'terminal', 'audio', 'split', 'fab', 'currency', 'pin', 'spinner']) && (
         <section className="space-y-8">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
@@ -629,7 +776,7 @@ export function UIKitView() {
           {/* Interactive Component Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Card 1: Buttons & IconButtons */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Buttons & IconButtons</h3>
                 <span className="text-[11px] font-mono text-zinc-400">Button, IconButton</span>
@@ -685,7 +832,7 @@ export function UIKitView() {
             </div>
 
             {/* Card 2: Switches & Checkboxes */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Tactile Toggles & Checkboxes</h3>
                 <span className="text-[11px] font-mono text-zinc-400">Switch, Checkbox, Radio</span>
@@ -718,7 +865,7 @@ export function UIKitView() {
             </div>
 
             {/* Card 3: Slider & Progress Meter */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Slider & Progress Indicators</h3>
                 <span className="text-[11px] font-mono text-zinc-400">Slider, Progress</span>
@@ -745,7 +892,7 @@ export function UIKitView() {
             </div>
 
             {/* Card 4: Tooltips, Breadcrumb & Badges */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Breadcrumbs, Tooltips & Kbd</h3>
                 <span className="text-[11px] font-mono text-zinc-400">Breadcrumb, Tooltip, Kbd</span>
@@ -777,7 +924,7 @@ export function UIKitView() {
             </div>
 
             {/* Card 5: Inputs, SearchBar, Textarea & Dropdown */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Form Controls & Dropdowns</h3>
                 <span className="text-[11px] font-mono text-zinc-400">Input, SearchBar, Dropdown, Textarea</span>
@@ -809,7 +956,7 @@ export function UIKitView() {
             </div>
 
             {/* Card 6: Accordion Collapsible */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Velvet Accordion Collapsible</h3>
                 <span className="text-[11px] font-mono text-zinc-400">Accordion</span>
@@ -844,7 +991,7 @@ export function UIKitView() {
             </div>
 
             {/* Card 7: Radix Dialog & Popover (shadcn standard) */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Radix Dialog & Popover</h3>
                 <span className="text-[11px] font-mono text-emerald-500 font-semibold">shadcn/ui spec</span>
@@ -921,7 +1068,7 @@ export function UIKitView() {
             </div>
 
             {/* Card 8: Radix Sheet & DropdownMenu */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Sheet Drawer & DropdownMenu</h3>
                 <span className="text-[11px] font-mono text-emerald-500 font-semibold">shadcn/ui spec</span>
@@ -992,7 +1139,7 @@ export function UIKitView() {
             </div>
 
             {/* Card 9: Radix Tabs & cmdk Command Palette */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Radix Tabs & cmdk Command Palette</h3>
@@ -1061,7 +1208,7 @@ export function UIKitView() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Toggle + ToggleGroup */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Toggle & Group</h3>
             <div className="flex flex-wrap items-center gap-2">
               <Toggle defaultPressed aria-label="Bold">
@@ -1078,7 +1225,7 @@ export function UIKitView() {
           </div>
 
           {/* Separator + Label + FormField */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Form Scaffolding</h3>
             <FormField label="Workspace name" htmlFor="wave-a-ws" required hint="max 32">
               <Input id="wave-a-ws" placeholder="ui99-prod" inputSize="sm" />
@@ -1090,7 +1237,7 @@ export function UIKitView() {
           </div>
 
           {/* Alert matrix */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Alert Severity</h3>
             <Alert variant="success" title="Deployed">All 27 registry items validated.</Alert>
             <Alert variant="warning" icon={<AlertTriangle className="w-4 h-4" />}>
@@ -1100,7 +1247,7 @@ export function UIKitView() {
           </div>
 
           {/* ScrollArea + HoverCard + Collapsible + AspectRatio */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Overlay & Scroll Primitives</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ScrollArea className="h-36 rounded-2xl border border-black/[0.05] dark:border-white/[0.04] p-4">
@@ -1161,7 +1308,7 @@ export function UIKitView() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* AlertDialog + RadioGroup */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Interruptive Flows</h3>
             <AlertDialog>
               <AlertDialogTrigger asChild>
@@ -1203,7 +1350,7 @@ export function UIKitView() {
           </div>
 
           {/* Table + Pagination */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Data Display</h3>
             <Table>
               <TableHeader>
@@ -1269,13 +1416,13 @@ export function UIKitView() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Stepper</h3>
             <Stepper steps={['Capture', 'Organize', 'Review']} current={1} />
             <Stepper steps={['Draft', 'Review', 'Ship']} current={3} orientation="vertical" className="pt-2" />
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Timeline</h3>
             <Timeline>
               <TimelineItem timestamp="09:41" accent="emerald">Morning pages synced to vault.</TimelineItem>
@@ -1284,7 +1431,7 @@ export function UIKitView() {
             </Timeline>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">FileUpload</h3>
             <FileUpload label="Drop attachments or click to browse" multiple />
           </div>
@@ -1318,7 +1465,7 @@ export function UIKitView() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Sparkline modes</h3>
             <div className="flex items-end gap-4 flex-wrap">
               <Sparkline data={[2,4,3,6,5,8,7,10]} label="Weekly momentum" />
@@ -1327,7 +1474,7 @@ export function UIKitView() {
             </div>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 flex flex-col items-center">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 flex flex-col items-center">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] self-start">DonutRing</h3>
             <DonutRing
               segments={[
@@ -1342,7 +1489,7 @@ export function UIKitView() {
             <MeterBar value={91} low={30} label="System health" size="sm" />
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">HeatMap + Delta</h3>
             <HeatMapCalendar
               weeks={14}
@@ -1380,7 +1527,7 @@ export function UIKitView() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Menubar & NavigationMenu</h3>
             <Menubar>
               <MenubarMenu>
@@ -1421,7 +1568,7 @@ export function UIKitView() {
             </NavigationMenu>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Sidebar rail & CommandBar</h3>
             <SidebarProvider>
               <div className="flex h-56 overflow-hidden rounded-2xl border border-black/[0.05] dark:border-white/[0.04]">
@@ -1471,12 +1618,12 @@ export function UIKitView() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">AvatarStack & CodeBlock</h3>
             <AvatarStack names={['Sara', 'Ali', 'Nima', 'Raha', 'Omid', 'Bahar']} max={4} size="md" />
             <CodeBlock
               language="tsx"
-              filename="safa.config.ts"
+              filename="ui99.config.ts"
               showLineNumbers
               code={`import { UI99Provider } from '@99/ui';
 
@@ -1490,7 +1637,7 @@ export default function App() {
             />
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Carousel</h3>
             <Carousel label="Surface gallery" itemClassName="w-64">
               {['#0B0C11', '#131318', '#1A1A20', '#0E0E14', '#18181D'].map((token, i) => (
@@ -1526,13 +1673,13 @@ export default function App() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">DatePicker</h3>
             <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">Popover month grid · today ring · disabledDates</p>
             <DatePicker placeholder="Pick a deadline" />
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Combobox</h3>
             <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">cmdk filter · create-option · 44px rows</p>
             <Combobox
@@ -1549,7 +1696,7 @@ export default function App() {
             />
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">TimePicker</h3>
             <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">Filterable HH:mm listbox · 30m step</p>
             <TimePicker value={null} onChange={() => {}} step={30} />
@@ -1576,19 +1723,19 @@ export default function App() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Rating & NumberField</h3>
             <WaveHInputsDemo />
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">OTPInput</h3>
             <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">Auto-advance · paste · arrows</p>
             <OTPInput length={6} />
             <CopyButton text="npx @99/ui init" label="Copy install" />
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Swatch</h3>
             <div className="grid grid-cols-2 gap-3">
               <Swatch name="Root" hex="#06070A" />
@@ -1600,9 +1747,370 @@ export default function App() {
         </div>
       </section>
 
+      {/* 4.13 WAVE I SPOTLIGHT — ColorPicker / SignaturePad / PasswordInput / TagInput / TourGuide / Banner */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <Sparkles className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                12. Wave I — Advanced Inputs & Overlays
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                ColorPicker · SignaturePad · PasswordInput · TagInput · RichTextEditorBar · Banner · TourGuide · Confetti
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">NEW</Badge>
+        </div>
+
+        {/* Live Announcement Banner */}
+        <Banner
+          title="UI99 Component Engine 2.0 is Live"
+          description="99 Master components engineered with Velvet Obsidian Dark & Matte Porcelain parity."
+          actionLabel="View Shortcuts"
+          onAction={() => setIsShortcutsOpen(true)}
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* ColorPicker & RichTextEditorBar */}
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">ColorPicker & Toolbar</h3>
+            <ColorPicker value={demoColor} onChange={setDemoColor} label="Brand Hex Accent" />
+            <div className="pt-2">
+              <RichTextEditorBar />
+            </div>
+          </div>
+
+          {/* PasswordInput & TagInput */}
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Password & Multi-Tag Input</h3>
+            <PasswordInput defaultValue="Vault@2026!Secure" />
+            <div className="pt-2">
+              <TagInput tags={demoTags} onChange={setDemoTags} label="Framework Tags" />
+            </div>
+          </div>
+
+          {/* TourGuide & Confetti trigger */}
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">TourGuide & Confetti</h3>
+              <Button
+                size="xs"
+                variant="primary"
+                onClick={() => {
+                  setShowConfetti(true);
+                  setTimeout(() => setShowConfetti(false), 3000);
+                }}
+              >
+                🎉 Celebrate
+              </Button>
+            </div>
+            <TourGuide
+              steps={[
+                { title: 'Velvet Obsidian Canvas', description: 'Zero blue light fatigue with deep #06070A grounding.' },
+                { title: 'Sub-Pixel Specular Highlight', description: '1px physical glass top rim light (inset 0 1px 0 0).' },
+                { title: 'Full Keyboard Flow', description: 'J/K cursor navigation with CMD+K global menu.' },
+              ]}
+              onComplete={() => addToast('Tour completed!', 'success')}
+            />
+          </div>
+        </div>
+
+        {/* Signature Pad */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Vector SignaturePad</h3>
+            <SignaturePad />
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3 flex flex-col justify-center">
+            <EmptyPlaceholder
+              title="No Pending Approvals"
+              description="All contracts and sprint cycle reviews have been signed off."
+              actionLabel="New Review"
+              shortcut="N"
+              onAction={() => addToast('Review created', 'info')}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 4.14 WAVE J SPOTLIGHT — TreeView / Kanban / Diff / Calendar / Audio / Terminal / Feed */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <Layers className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                13. Wave J — Visualizations & Heavyweight Workflows
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                TreeView · KanbanBoard · DiffViewer · CalendarView · AudioPlayer · TerminalEmulator · ActivityFeed
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">NEW</Badge>
+        </div>
+
+        {/* Terminal & Audio Player */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Interactive CLI Terminal</h3>
+            <TerminalEmulator />
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 flex flex-col justify-between">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Velvet Waveform AudioPlayer</h3>
+            <AudioPlayer />
+            <div className="pt-2">
+              <DiffViewer
+                fileName="src/tokens/palette.ts"
+                lines={[
+                  { type: 'normal', oldLineNumber: 1, newLineNumber: 1, content: 'export const tokens = {' },
+                  { type: 'delete', oldLineNumber: 2, content: '  canvas: "#000000",' },
+                  { type: 'add', newLineNumber: 2, content: '  canvas: "#06070A", // Velvet Obsidian' },
+                  { type: 'add', newLineNumber: 3, content: '  rimHighlight: "inset 0 1px 0 0 rgba(255,255,255,0.05)",' },
+                  { type: 'normal', oldLineNumber: 3, newLineNumber: 4, content: '};' },
+                ]}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Kanban Board */}
+        <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+          <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Sprint Kanban Board</h3>
+          <KanbanBoard />
+        </div>
+
+        {/* TreeView, CalendarView, ActivityFeed */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Hierarchical TreeView</h3>
+            <TreeView
+              data={[
+                {
+                  id: 'src',
+                  name: 'src',
+                  type: 'folder',
+                  children: [
+                    {
+                      id: 'components',
+                      name: 'components',
+                      type: 'folder',
+                      children: [
+                        { id: 'btn', name: 'Button.tsx', type: 'file', extension: 'tsx' },
+                        { id: 'card', name: 'Card.tsx', type: 'file', extension: 'tsx' },
+                        { id: 'tree', name: 'TreeView.tsx', type: 'file', extension: 'tsx' },
+                      ],
+                    },
+                    {
+                      id: 'tokens',
+                      name: 'tokens',
+                      type: 'folder',
+                      children: [
+                        { id: 'idx', name: 'index.ts', type: 'file', extension: 'ts' },
+                        { id: 'spec', name: 'spec.json', type: 'file', extension: 'json' },
+                      ],
+                    },
+                  ],
+                },
+              ]}
+            />
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Calendar Month View</h3>
+            <CalendarView />
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <ActivityFeed />
+          </div>
+        </div>
+      </section>
+
+      {/* 4.15 WAVE K SPOTLIGHT — 99-Element Certification & Action Primitives */}
+      {/* ========================================================================= */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
+          <div className="flex items-center gap-2.5">
+            <Boxes className="w-5 h-5 text-emerald-500" />
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                14. Wave K — 99 Standard Primitives & Actions
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                SplitButton · FloatingActionButton · LinkButton · DropdownButton · PinInput · CurrencyInput · DateRangePicker · RangeSlider · CheckboxGroup · DataTable · MetricCard · Spinner
+              </p>
+            </div>
+          </div>
+          <Badge variant="green" size="sm">99 ELEMENTS</Badge>
+        </div>
+
+        {/* Row 1: Actions & Advanced Buttons */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">SplitButton</h3>
+            <p className="text-xs text-zinc-500">Primary action + chevron menu</p>
+            <SplitButton
+              label="Deploy Build"
+              onClick={() => addToast('Deploy initiated', 'success')}
+              items={[
+                { label: 'Staging Environment', onClick: () => addToast('Deploying to Staging', 'info') },
+                { label: 'Canary Release (10%)', onClick: () => addToast('Canary release deployed', 'info') },
+              ]}
+            />
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">FloatingActionButton (FAB)</h3>
+            <p className="text-xs text-zinc-500">Promoted circular action</p>
+            <div className="flex items-center gap-3">
+              <FloatingActionButton
+                label="New Issue"
+                onClick={() => addToast('New issue modal opened', 'info')}
+                variant="primary"
+              />
+              <FloatingActionButton
+                onClick={() => addToast('Quick action executed', 'success')}
+                variant="emerald"
+                size="md"
+              />
+            </div>
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">DropdownButton & Link</h3>
+            <p className="text-xs text-zinc-500">Selectable action trigger</p>
+            <div className="space-y-3">
+              <DropdownButton
+                label="Target Cluster"
+                selected={demoEnv}
+                onSelect={(val) => {
+                  setDemoEnv(val);
+                  addToast(`Cluster set to ${val}`, 'info');
+                }}
+                options={[
+                  { value: 'prod', label: 'us-east (Prod)' },
+                  { value: 'eu', label: 'eu-central (Frankfurt)' },
+                  { value: 'asia', label: 'ap-northeast (Tokyo)' },
+                ]}
+              />
+              <div>
+                <LinkButton href="https://github.com/starliTrade/UI99" external variant="emerald">
+                  View Source on GitHub
+                </LinkButton>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Spinners & Loaders</h3>
+            <p className="text-xs text-zinc-500">Sub-pixel SVG rotation</p>
+            <div className="flex items-center gap-3 pt-2">
+              <Spinner size="xs" variant="emerald" />
+              <Spinner size="sm" variant="emerald" />
+              <Spinner size="md" variant="emerald" label="Syncing..." />
+            </div>
+          </div>
+        </div>
+
+        {/* Row 2: Precision Form Inputs */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">PinInput (Security)</h3>
+            <p className="text-xs text-zinc-500">Masked bullet progression</p>
+            <PinInput length={4} value={demoPin} onChange={setDemoPin} />
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">CurrencyInput</h3>
+            <p className="text-xs text-zinc-500">Formatted monetary input</p>
+            <CurrencyInput value={demoCurrency} onChange={setDemoCurrency} currency="USD" />
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">DateRangePicker</h3>
+            <p className="text-xs text-zinc-500">Start & end sprint selector</p>
+            <DateRangePicker
+              startDate={demoDateRange.start}
+              endDate={demoDateRange.end}
+              onChange={setDemoDateRange}
+            />
+          </div>
+
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">RangeSlider</h3>
+            <p className="text-xs text-zinc-500">Dual-thumb interval selector</p>
+            <RangeSlider value={demoRangeSlider} onChange={setDemoRangeSlider} min={0} max={100} />
+          </div>
+        </div>
+
+        {/* Row 3: DataTable, MetricCard, CheckboxGroup */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Enterprise DataTable</h3>
+            <p className="text-xs text-zinc-500">Searchable, sortable, paginated high-velocity table</p>
+            <DataTable
+              columns={[
+                { key: 'id', header: 'ID', sortable: true },
+                { key: 'name', header: 'Primitive Name', sortable: true },
+                { key: 'category', header: 'Category' },
+                {
+                  key: 'status',
+                  header: 'Certification',
+                  render: () => <Badge variant="green" size="sm">WCAG AAA</Badge>,
+                },
+              ]}
+              data={[
+                { id: '01', name: 'SplitButton', category: 'Actions', status: 'Ready' },
+                { id: '02', name: 'FloatingActionButton', category: 'Actions', status: 'Ready' },
+                { id: '03', name: 'PinInput', category: 'Forms', status: 'Ready' },
+                { id: '04', name: 'CurrencyInput', category: 'Forms', status: 'Ready' },
+                { id: '05', name: 'DataTable', category: 'Data', status: 'Ready' },
+                { id: '06', name: 'RangeSlider', category: 'Forms', status: 'Ready' },
+              ]}
+              pageSize={3}
+            />
+          </div>
+
+          <div className="space-y-6">
+            <MetricCard
+              label="Weekly Active Nodes"
+              value="1,492"
+              delta={18.4}
+              deltaLabel="vs last week"
+              sparklineData={[12, 18, 14, 25, 30, 42, 58, 65]}
+            />
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
+              <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">CheckboxGroup</h3>
+              <CheckboxGroup
+                options={[
+                  { value: 'telemetry', label: 'Real-time Telemetry', description: 'Stream events to edge bus' },
+                  { value: 'realtime', label: 'WebSocket Heartbeat', description: '100ms ping latency' },
+                  { value: 'security', label: 'Double-Ring Focus', description: 'WCAG 2.2 strict audit' },
+                ]}
+                value={demoCheckboxGroup}
+                onChange={setDemoCheckboxGroup}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Confetti celebration canvas */}
+      <Confetti active={showConfetti} onComplete={() => setShowConfetti(false)} />
+
+      {/* Keyboard shortcuts dialog */}
+      <KeyboardShortcutsDialog open={isShortcutsOpen} onOpenChange={setIsShortcutsOpen} />
+
       {/* 5. LINEAR-GRADE PATTERNS: Issue Tracker & Workflows */}
       {/* ========================================================================= */}
-      {(activeSection === 'ALL' || activeSection === 'LINEAR_PATTERNS') && (
+      {isSectionVisible('LINEAR_PATTERNS', ['linear', 'issue', 'tracker', 'task', 'workflow', 'priority', 'status']) && (
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
@@ -1630,7 +2138,7 @@ export default function App() {
       {/* ========================================================================= */}
       {/* 6. SURFACES & LIQUID GLASS */}
       {/* ========================================================================= */}
-      {(activeSection === 'ALL' || activeSection === 'SURFACES') && (
+      {isSectionVisible('SURFACES', ['surface', 'glass', 'dock', 'liquid glass', 'auras', 'specular', 'materials']) && (
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
@@ -1651,7 +2159,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Obsidian Liquid Glass Dock */}
-            <div className="p-6 rounded-3xl bg-[#06070A] border border-white/[0.06] shadow-2xl space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#06070A] border border-white/[0.06] shadow-2xl space-y-4">
               <div className="flex items-center justify-between text-white">
                 <span className="text-xs font-bold font-mono">OBSIDIAN LIQUID DOCK</span>
                 <span className="text-[10px] text-zinc-400">rgba(14,14,19,0.52) • blur(20px)</span>
@@ -1678,7 +2186,7 @@ export default function App() {
             </div>
 
             {/* Matte Porcelain Liquid Dock */}
-            <div className="p-6 rounded-3xl bg-[#F5F5F8] border border-black/[0.08] shadow-md space-y-4">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#F5F5F8] border border-black/[0.08] shadow-md space-y-4">
               <div className="flex items-center justify-between text-zinc-900">
                 <span className="text-xs font-bold font-mono">PORCELAIN MATTE DOCK</span>
                 <span className="text-[10px] text-zinc-500">rgba(255,255,255,0.72) • blur(24px)</span>
@@ -1710,7 +2218,7 @@ export default function App() {
       {/* ========================================================================= */}
       {/* 7. REGISTRY & USAGE GUIDE (shadcn/ui style import documentation) */}
       {/* ========================================================================= */}
-      {(activeSection === 'ALL' || activeSection === 'REGISTRY') && (
+      {isSectionVisible('REGISTRY', ['registry', 'install', 'cli', 'npm', 'package', 'architecture']) && (
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
@@ -1729,7 +2237,7 @@ export default function App() {
             </span>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-6">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-6">
             <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
               Single Barrel Import (Just Like shadcn/ui)
             </h3>
@@ -1821,7 +2329,7 @@ export default function App() {
       {/* ========================================================================= */}
       {/* 8. INTERACTIVE SANDBOX & LIVE CODE GENERATOR */}
       {/* ========================================================================= */}
-      {(activeSection === 'ALL' || activeSection === 'SANDBOX') && (
+      {isSectionVisible('SANDBOX', ['sandbox', 'live', 'code lab', 'generator', 'jsx', 'interactive']) && (
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
@@ -1842,7 +2350,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Controls */}
-            <div className="lg:col-span-5 p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
+            <div className="lg:col-span-5 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
                 Configure Properties
               </h3>
@@ -1921,10 +2429,39 @@ export default function App() {
 
             {/* Live Preview & Code */}
             <div className="lg:col-span-7 flex flex-col gap-4">
-              <div className="p-8 rounded-3xl bg-zinc-50 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] flex items-center justify-center min-h-[160px] relative">
-                <span className="absolute top-3 left-4 text-[10px] font-mono text-zinc-400">
-                  TACTILE PREVIEW STAGE
-                </span>
+              <div
+                className="p-8 rounded-3xl bg-zinc-50 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] flex items-center justify-center min-h-[170px] relative overflow-hidden"
+                style={{
+                  backgroundImage: isDark
+                    ? 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0)'
+                    : 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)',
+                  backgroundSize: '16px 16px',
+                }}
+              >
+                <div className="absolute top-3 left-4 flex items-center gap-2">
+                  <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
+                    TACTILE PREVIEW STAGE
+                  </span>
+                </div>
+
+                <div className="absolute top-3 right-4 flex items-center gap-1.5">
+                  <div className="flex items-center p-0.5 rounded-lg bg-zinc-200/60 dark:bg-[#07080B] border border-zinc-300/40 dark:border-white/[0.04]">
+                    {(['npm', 'pnpm', 'yarn', 'bun'] as const).map((pm) => (
+                      <button
+                        key={pm}
+                        type="button"
+                        onClick={() => setSbPackageManager(pm)}
+                        className={`px-1.5 py-0.5 rounded text-[10px] font-mono transition-all cursor-pointer ${
+                          sbPackageManager === pm
+                            ? 'bg-white dark:bg-white text-zinc-950 font-bold shadow-xs'
+                            : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
+                        }`}
+                      >
+                        {pm}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
                 {sbComponent === 'button' && (
                   <Button
@@ -1979,21 +2516,34 @@ export default function App() {
                 )}
               </div>
 
-              <div className="p-4 rounded-2xl bg-zinc-900 text-zinc-100 dark:bg-[#06070A] border border-black/[0.08] dark:border-white/[0.04] relative">
-                <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.08]">
-                  <span className="text-[11px] font-mono text-zinc-400">Ready-To-Paste JSX</span>
-                  <button
-                    type="button"
-                    onClick={() => copyToClipboard(sandboxJSXCode, 'Sandbox JSX')}
-                    className="flex items-center gap-1 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
-                  >
+              {/* Install CLI Pill */}
+              <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-zinc-100/70 dark:bg-[#07080B] border border-zinc-200/70 dark:border-white/[0.04] text-xs font-mono text-zinc-700 dark:text-zinc-300">
+                <span className="flex items-center gap-2 truncate">
+                  <span className="text-emerald-500 font-bold">&gt;_</span>
+                  <span className="truncate">{getSbCliCmd(sbComponent)}</span>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard(getSbCliCmd(sbComponent), 'CLI Install')}
+                  className="p-1 rounded hover:bg-zinc-200 dark:hover:bg-white/[0.06] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer shrink-0 ml-2"
+                  title="Copy CLI command"
+                >
+                  {copiedCode === 'CLI Install' ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-500" />
+                  ) : (
                     <Copy className="w-3.5 h-3.5" />
-                    <span>{copiedCode === 'Sandbox JSX' ? 'Copied!' : 'Copy JSX'}</span>
-                  </button>
-                </div>
-                <pre className="text-xs font-mono text-emerald-300 overflow-x-auto no-scrollbar whitespace-pre-wrap">
-                  {sandboxJSXCode}
-                </pre>
+                  )}
+                </button>
+              </div>
+
+              <div className="w-full">
+                <CodeBlock
+                  code={sandboxJSXCode}
+                  language="tsx"
+                  filename="SandboxDemo.tsx"
+                  showLineNumbers
+                  maxHeight="220px"
+                />
               </div>
             </div>
           </div>
@@ -2107,6 +2657,19 @@ export default function App() {
           </CommandGroup>
         </CommandList>
       </CommandDialog>
+
+      {/* Floating Quick Action: Back to Top */}
+      <div className="fixed bottom-20 right-4 sm:right-6 z-30 pointer-events-auto">
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="h-10 w-10 rounded-full flex items-center justify-center bg-white/90 dark:bg-[#0E0E14]/90 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200/80 dark:border-white/[0.06] shadow-[0_8px_20px_rgba(0,0,0,0.1)] dark:shadow-[0_12px_28px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all active:scale-95 cursor-pointer hover:border-emerald-500/40"
+          title={isRTL ? 'بازگشت به بالا' : 'Back to top'}
+          aria-label="Back to top"
+        >
+          <ArrowUpRight className="w-4 h-4 -rotate-45" />
+        </button>
+      </div>
     </div>
   );
 }

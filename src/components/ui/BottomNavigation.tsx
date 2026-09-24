@@ -1,9 +1,6 @@
 /**
- * UI99 — Ultra-Refined Frosted Liquid-Glass Capsule Dock & Companion Action
- * Authentic Liquid Glassmorphism:
- * - Ultra-subtle, whisper-thin border with velvety seamless fusion
- * - Soft, understated active indicator with smooth spring motion
- * - Curated luxury icon set from lucide-react (LayoutGrid, Compass, SquarePen, Waves, Inbox, Search)
+ * UI99 — Ultra-Refined Frosted Liquid-Glass Capsule Dock
+ * Compact sizing, JetBrains Mono typography, and velvet active cushion
  */
 
 import React from 'react';
@@ -29,14 +26,14 @@ export function BottomNavigation() {
       faLabel: 'خانه',
       icon: (active: boolean) => (
         <LayoutGrid
-          className={`w-[16.5px] h-[16.5px] transition-colors duration-200 ${
+          className={`w-3.5 h-3.5 transition-colors duration-150 ${
             active
               ? isDark
-                ? 'stroke-[#EDEDEF] stroke-[1.9]'
-                : 'stroke-zinc-900 stroke-[1.9]'
+                ? 'stroke-[#EDEDEF] stroke-[2]'
+                : 'stroke-zinc-950 stroke-[2]'
               : isDark
-              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.5]'
-              : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.5]'
+              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.6]'
+              : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]'
           }`}
         />
       ),
@@ -44,17 +41,17 @@ export function BottomNavigation() {
     {
       tab: 'UIKIT',
       label: 'UI Kit',
-      faLabel: 'کیت اجزا',
+      faLabel: 'کیت',
       icon: (active: boolean) => (
         <Layers
-          className={`w-[16.5px] h-[16.5px] transition-colors duration-200 ${
+          className={`w-3.5 h-3.5 transition-colors duration-150 ${
             active
               ? isDark
-                ? 'stroke-[#EDEDEF] stroke-[1.9]'
-                : 'stroke-zinc-900 stroke-[1.9]'
+                ? 'stroke-[#EDEDEF] stroke-[2]'
+                : 'stroke-zinc-950 stroke-[2]'
               : isDark
-              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.5]'
-              : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.5]'
+              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.6]'
+              : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]'
           }`}
         />
       ),
@@ -65,14 +62,14 @@ export function BottomNavigation() {
       faLabel: 'مستندات',
       icon: (active: boolean) => (
         <BookOpen
-          className={`w-[16.5px] h-[16.5px] transition-colors duration-200 ${
+          className={`w-3.5 h-3.5 transition-colors duration-150 ${
             active
               ? isDark
-                ? 'stroke-[#EDEDEF] stroke-[1.9]'
-                : 'stroke-zinc-900 stroke-[1.9]'
+                ? 'stroke-[#EDEDEF] stroke-[2]'
+                : 'stroke-zinc-950 stroke-[2]'
               : isDark
-              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.5]'
-              : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.5]'
+              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.6]'
+              : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]'
           }`}
         />
       ),
@@ -80,17 +77,17 @@ export function BottomNavigation() {
     {
       tab: 'FOUNDATIONS',
       label: 'Tokens',
-      faLabel: 'پایه‌ها',
+      faLabel: 'توکن‌ها',
       icon: (active: boolean) => (
         <Palette
-          className={`w-[16.5px] h-[16.5px] transition-colors duration-200 ${
+          className={`w-3.5 h-3.5 transition-colors duration-150 ${
             active
               ? isDark
-                ? 'stroke-[#EDEDEF] stroke-[1.9]'
-                : 'stroke-zinc-900 stroke-[1.9]'
+                ? 'stroke-[#EDEDEF] stroke-[2]'
+                : 'stroke-zinc-950 stroke-[2]'
               : isDark
-              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.5]'
-              : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.5]'
+              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.6]'
+              : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]'
           }`}
         />
       ),
@@ -101,14 +98,14 @@ export function BottomNavigation() {
       faLabel: 'قالب‌ها',
       icon: (active: boolean) => (
         <LayoutTemplate
-          className={`w-[16.5px] h-[16.5px] transition-colors duration-200 ${
+          className={`w-3.5 h-3.5 transition-colors duration-150 ${
             active
               ? isDark
-                ? 'stroke-[#EDEDEF] stroke-[1.9]'
-                : 'stroke-zinc-900 stroke-[1.9]'
+                ? 'stroke-[#EDEDEF] stroke-[2]'
+                : 'stroke-zinc-950 stroke-[2]'
               : isDark
-              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.5]'
-              : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.5]'
+              ? 'stroke-[#85858F] group-hover:stroke-zinc-300 stroke-[1.6]'
+              : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]'
           }`}
         />
       ),
@@ -118,13 +115,13 @@ export function BottomNavigation() {
   return (
     <nav
       aria-label="Bottom Navigation"
-      className="fixed inset-x-0 bottom-0 z-40 px-4 sm:px-6 pb-safe pt-1 pointer-events-none flex justify-center items-center mb-2.5 sm:mb-4 w-full"
+      className="fixed inset-x-0 bottom-0 z-40 px-3 sm:px-6 pb-safe pt-1 pointer-events-none flex justify-center items-center mb-2.5 sm:mb-3.5 w-full"
       dir="ltr"
     >
-      <div className="pointer-events-auto flex items-center justify-center gap-2 w-full max-w-[440px] mx-auto">
-        {/* Full-width Slim Liquid Glass Capsule Dock */}
+      <div className="pointer-events-auto flex items-center justify-center gap-1.5 w-full max-w-[380px] mx-auto">
+        {/* Compact Liquid Glass Capsule Dock */}
         <div
-          className={`relative flex-1 flex items-center justify-between p-1 rounded-full select-none transition-all duration-300 ${
+          className={`relative flex-1 flex items-center justify-between p-0.5 sm:p-1 rounded-full select-none transition-all duration-300 ${
             isDark
               ? 'liquid-glass-dark-dock'
               : 'liquid-glass-light-dock'
@@ -138,7 +135,7 @@ export function BottomNavigation() {
                 key={item.tab}
                 type="button"
                 onClick={() => setCurrentTab(item.tab)}
-                className="group relative flex-1 min-h-[44px] py-1 px-1 rounded-full cursor-pointer flex flex-col items-center justify-center transition-all duration-200 active:scale-95"
+                className="group relative flex-1 min-h-[36px] sm:min-h-[38px] py-1 px-1 rounded-full cursor-pointer flex flex-col items-center justify-center transition-all duration-150 active:scale-95 focus-visible:outline-none"
                 title={isRTL ? item.faLabel : item.label}
                 aria-label={item.label}
               >
@@ -148,20 +145,20 @@ export function BottomNavigation() {
                     layoutId="glassCushionActive"
                     className={`absolute inset-0.5 rounded-full ${
                       isDark
-                        ? 'bg-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)]'
+                        ? 'bg-white/[0.04] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]'
                         : 'liquid-glass-light-active-cushion'
                     }`}
-                    transition={{ type: 'spring', stiffness: 420, damping: 36 }}
+                    transition={{ type: 'spring', stiffness: 460, damping: 38 }}
                   />
                 )}
 
                 <div className="relative z-10 flex flex-col items-center justify-center gap-0.5">
                   {item.icon(isActive)}
                   <span
-                    className={`text-[9.5px] sm:text-[10px] leading-tight tracking-tight transition-colors duration-200 whitespace-nowrap ${
+                    className={`font-mono text-[8.5px] sm:text-[9.5px] tracking-tight transition-colors duration-150 whitespace-nowrap ${
                       isActive
-                        ? isDark ? 'text-[#EDEDEF] font-medium' : 'text-zinc-900 font-medium'
-                        : isDark ? 'text-[#85858F] group-hover:text-zinc-300 font-normal' : 'text-zinc-500 group-hover:text-zinc-800 font-normal'
+                        ? isDark ? 'text-[#EDEDEF] font-semibold' : 'text-zinc-950 font-semibold'
+                        : isDark ? 'text-[#85858F] group-hover:text-zinc-200 font-normal' : 'text-zinc-500 group-hover:text-zinc-900 font-normal'
                     }`}
                   >
                     {isRTL ? item.faLabel : item.label}
@@ -176,15 +173,15 @@ export function BottomNavigation() {
         <button
           type="button"
           onClick={() => setIsSearchOpen(true)}
-          className={`relative min-w-[44px] min-h-[44px] w-11 h-11 rounded-full active:scale-95 flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 ${
+          className={`relative min-w-[36px] min-h-[36px] sm:min-w-[38px] sm:min-h-[38px] w-9 h-9 sm:w-9.5 sm:h-9.5 rounded-full active:scale-95 flex items-center justify-center transition-all duration-150 cursor-pointer shrink-0 focus-visible:outline-none ${
             isDark
-              ? 'liquid-glass-dark-dock hover:bg-[#14141E]/60 text-[#85858F] hover:text-[#EDEDEF]'
-              : 'liquid-glass-light-dock hover:bg-white/50 text-zinc-600 hover:text-zinc-900'
+              ? 'liquid-glass-dark-dock hover:bg-[#14141E]/70 text-[#85858F] hover:text-[#EDEDEF]'
+              : 'liquid-glass-light-dock hover:bg-white/60 text-zinc-600 hover:text-zinc-950'
           }`}
-          title="Search & Spotlight"
+          title="Search & Spotlight (⌘K)"
           aria-label="Search"
         >
-          <Search className="w-3.5 h-3.5 stroke-[1.9]" />
+          <Search className="w-3.5 h-3.5 stroke-[1.8]" />
         </button>
       </div>
     </nav>

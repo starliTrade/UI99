@@ -280,6 +280,62 @@ export type { SwatchProps } from './Swatch';
 export { NumberField } from './NumberField';
 export type { NumberFieldProps } from './NumberField';
 
+// ——— Wave I: Advanced Inputs & Overlays ———
+export { ColorPicker } from './ColorPicker';
+export type { ColorPickerProps } from './ColorPicker';
+export { SignaturePad } from './SignaturePad';
+export type { SignaturePadProps } from './SignaturePad';
+export { PasswordInput } from './PasswordInput';
+export type { PasswordInputProps } from './PasswordInput';
+export { TagInput } from './TagInput';
+export type { TagInputProps } from './TagInput';
+export { RichTextEditorBar } from './RichTextEditorBar';
+export type { RichTextEditorBarProps } from './RichTextEditorBar';
+export { Banner } from './Banner';
+export type { BannerProps } from './Banner';
+export { EmptyPlaceholder } from './EmptyPlaceholder';
+export type { EmptyPlaceholderProps } from './EmptyPlaceholder';
+export { TourGuide } from './TourGuide';
+export type { TourGuideProps, TourStep } from './TourGuide';
+export { Confetti } from './Confetti';
+export type { ConfettiProps } from './Confetti';
+export { KeyboardShortcutsDialog } from './KeyboardShortcutsDialog';
+export type { KeyboardShortcutsDialogProps, ShortcutGroup } from './KeyboardShortcutsDialog';
+
+// ——— Wave J: Visualizations & Workflows ———
+export { TreeView } from './TreeView';
+export type { TreeViewProps, TreeNode } from './TreeView';
+export { KanbanBoard } from './KanbanBoard';
+export type { KanbanBoardProps, KanbanCardItem } from './KanbanBoard';
+export { DiffViewer } from './DiffViewer';
+export type { DiffViewerProps, DiffLine } from './DiffViewer';
+export { CalendarView } from './CalendarView';
+export type { CalendarViewProps, CalendarEvent } from './CalendarView';
+export { AudioPlayer } from './AudioPlayer';
+export type { AudioPlayerProps } from './AudioPlayer';
+export { TerminalEmulator } from './TerminalEmulator';
+export type { TerminalEmulatorProps, TerminalLog } from './TerminalEmulator';
+export { ActivityFeed } from './ActivityFeed';
+export type { ActivityFeedProps, ActivityEvent } from './ActivityFeed';
+
+// ——— Wave K: Precision 99 Primitives & Actions ———
+export { SplitButton } from './SplitButton';
+export type { SplitButtonProps, SplitButtonItem } from './SplitButton';
+export { FloatingActionButton } from './FloatingActionButton';
+export type { FloatingActionButtonProps } from './FloatingActionButton';
+export { LinkButton, DropdownButton } from './DropdownButton';
+export type { LinkButtonProps, DropdownButtonProps, DropdownButtonOption } from './DropdownButton';
+export { PinInput, CurrencyInput } from './PinInput';
+export type { PinInputProps, CurrencyInputProps } from './PinInput';
+export { DateRangePicker } from './DateRangePicker';
+export type { DateRangePickerProps } from './DateRangePicker';
+export { RangeSlider, CheckboxGroup } from './RangeSlider';
+export type { RangeSliderProps, CheckboxGroupProps, CheckboxGroupOption } from './RangeSlider';
+export { DataTable } from './DataTable';
+export type { DataTableProps, DataTableColumn } from './DataTable';
+export { MetricCard, Spinner } from './MetricCard';
+export type { MetricCardProps, SpinnerProps } from './MetricCard';
+
 // =====================================================================
 // DOMAIN COMPOSITES (app-level; require AppContext/AuthContext/domain types)
 // =====================================================================

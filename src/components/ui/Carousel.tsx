@@ -72,7 +72,7 @@ export function Carousel({ children, itemClassName = '', label = 'Carousel', cla
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => scrollToIndex(i)}
               className={cn(
-                'h-2 rounded-full transition-all duration-200 cursor-pointer focus-visible:outline-none focus-safa',
+                'h-2 rounded-full transition-all duration-200 cursor-pointer focus-visible:outline-none focus-ui99',
                 i === activeIndex
                   ? 'w-5 bg-zinc-900 dark:bg-white'
                   : 'w-2 bg-black/[0.15] dark:bg-white/[0.15] hover:bg-black/[0.25] dark:hover:bg-white/[0.3]'

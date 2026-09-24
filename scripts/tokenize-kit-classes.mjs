@@ -1,6 +1,6 @@
 /**
  * UI99 — Token Migration Codemod (Phase 6: Light-theme equality)
- * Rewrites exact dual-literal Tailwind class pairs to safa.css token
+ * Rewrites exact dual-literal Tailwind class pairs to ui99.css token
  * utilities (Tailwind v4 `bg-(--token)` syntax). Exact-literal mapping only;
  * occurrences NOT in the map are left untouched and reported, so the next
  * iteration can classify them (semantic-equivalent vs intentional).

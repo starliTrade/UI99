@@ -6,8 +6,8 @@
  * Obsidian pairing — body text ≥ 7:1 (AAA), secondary ≥ 4.5:1 (AA),
  * hairlines under perceptual-noise threshold.
  *
- * Usage: import once AFTER safa.css, then toggle `.porcelain` on <html>.
- * The `.light` block in safa.css remains the neutral light baseline;
+ * Usage: import once AFTER ui99.css, then toggle `.porcelain` on <html>.
+ * The `.light` block in ui99.css remains the neutral light baseline;
  * porcelain overrides it for hosts that prefer warmth.
  */
 

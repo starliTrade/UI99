@@ -68,7 +68,7 @@ export function Combobox({
             'inline-flex h-10 w-full items-center justify-between gap-2 rounded-xl border border-black/[0.07] bg-white px-3 text-sm',
             'dark:border-white/[0.07] dark:bg-[#131318]',
             'transition-colors hover:bg-(--state-hover)',
-            'focus-visible:outline-none focus-safa-inset cursor-pointer',
+            'focus-visible:outline-none focus-ui99-inset cursor-pointer',
             'disabled:cursor-not-allowed disabled:opacity-45',
             className
           )}

@@ -98,13 +98,13 @@ export function SegmentedControl<T extends string = string>({
       onKeyDown={handleKeyDown}
       className={`${
         fullWidth ? 'w-full flex' : 'inline-flex'
-      } items-center rounded-full transition-all overflow-x-auto no-scrollbar ${
+      } items-center rounded-full transition-all overflow-x-auto no-scrollbar scroll-smooth ${
         isDark
           ? 'bg-[#0E0E14] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.045),0_8px_20px_rgba(0,0,0,0.45)] border border-white/[0.025]'
           : 'bg-zinc-100/90 shadow-[inset_0_1px_1px_0_rgba(0,0,0,0.04)] border border-black/[0.04]'
       } ${padMap} ${className}`}
     >
-      <div className={`flex items-center gap-1 ${fullWidth ? 'w-full' : ''}`}>
+      <div className={`flex items-center gap-1 min-w-max sm:min-w-0 ${fullWidth ? 'w-full' : ''}`}>
         {options.map((opt) => {
           const isSelected = opt.value === value;
           const selectedIndex = options.findIndex((o) => o.value === value);
@@ -117,7 +117,7 @@ export function SegmentedControl<T extends string = string>({
               aria-checked={isSelected}
               tabIndex={isFocusTarget ? 0 : -1}
               onClick={() => onChange(opt.value)}
-              className={`relative ${itemPad} rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer select-none whitespace-nowrap focus-safa-inset ${
+              className={`relative ${itemPad} rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer select-none whitespace-nowrap shrink-0 sm:shrink focus-ui99-inset ${
                 fullWidth ? 'flex-1' : ''
               } ${
                 isSelected

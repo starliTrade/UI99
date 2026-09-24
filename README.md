@@ -23,7 +23,7 @@ ruthless standards of Apple HIG, Material 3, and WCAG 2.2:
 - **Velvet surfaces, not slabs.** Hairline borders (`rgba(255,255,255,0.025)`),
   sub-pixel specular rim lighting, deep diffused shadows — glass that melts into
   the canvas instead of sitting on it.
-- **A real focus system.** Double-ring `focus-safa` (2px ring + 2px canvas gap)
+- **A real focus system.** Double-ring `focus-ui99` (2px ring + 2px canvas gap)
   implementing WCAG 2.4.11/2.4.13 Focus Appearance — consistent across every
   interactive primitive, with an inset variant for nested pills and rows.
 - **Material 3 state layers as tokens.** `bg-state-hover/press/selected/drag`
@@ -78,7 +78,7 @@ document.documentElement.classList.replace('dark', 'light');
 
 Every primitive ships with the five-state contract
 (`default / hover / press / focus-visible / disabled`), keyboard support, and the
-`focus-safa` ring. The full audit matrix lives in
+`focus-ui99` ring. The full audit matrix lives in
 [`docs/ROADMAP.md` §1.1](docs/ROADMAP.md).
 
 ## Theming
@@ -87,9 +87,9 @@ Tokens are plain CSS custom properties — no runtime, no JS branching:
 
 | Layer | Where |
 |---|---|
-| Source of truth | `src/styles/safa.css` (scoped `.dark` / `.light`) |
+| Source of truth | `src/styles/ui99.css` (scoped `.dark` / `.light`) |
 | State layers & focus | `--state-*`, `--focus-ring` |
-| Motion | `--duration-*` (75–400ms, HIG band), `--ease-safa` |
+| Motion | `--duration-*` (75–400ms, HIG band), `--ease-ui99` |
 | Surfaces | `--bg-canvas/surface/card/elevated` |
 
 Import `@99/ui/styles.css` and drive everything with two classes.

@@ -41,7 +41,7 @@ export function CommandAction({ keys, active, className = '', children, ...props
       type="button"
       className={cn(
         'inline-flex min-h-[36px] shrink-0 items-center gap-1.5 rounded-full px-2.5 text-xs font-medium transition-colors cursor-pointer',
-        'focus-visible:outline-none focus-safa-inset active:scale-[0.97]',
+        'focus-visible:outline-none focus-ui99-inset active:scale-[0.97]',
         active
           ? 'bg-zinc-900 text-white dark:bg-[#EBEBEF] dark:text-[#0C0C0E]'
           : 'text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-[#92929B] dark:hover:bg-white/[0.05] dark:hover:text-white',

@@ -1,13 +1,13 @@
 {
-  "name": "@safa/ui",
+  "name": "@99/ui",
   "version": "1.0.0",
-  "description": "SAFA Design System — Obsidian Dark Velvet & Linear Workflow UI Primitives",
-  "author": "SAFA Team",
+  "description": "UI \\ [99] — Obsidian Dark Velvet & Linear Workflow UI Primitives and Registry",
+  "author": "99 UI Team",
   "license": "MIT",
-  "homepage": "https://safa.design",
+  "homepage": "https://ui99.dev",
   "repository": {
     "type": "git",
-    "url": "https://github.com/safa/safa-ui"
+    "url": "https://github.com/99ui/ui"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

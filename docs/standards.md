@@ -1,6 +1,6 @@
-# SAFA Design System — Standards & Audit Reference (Build 02.3)
+# UI \ [99] Design System — Standards & Audit Reference (Build 02.3)
 
-> معیارهای رسمی ممیزی SAFA. هر ویو، ویجت و کامپوننت جدید قبل از ادغام باید از این چک‌لیست عبور کند.
+> معیارهای رسمی ممیزی UI \ [99]. هر ویو، ویجت و کامپوننت جدید قبل از ادغام باید از این چک‌لیست عبور کند.
 > منابع: Apple HIG، Material Design 3، WCAG 2.2، پژوهش‌های HCI (Fitts / Hick / Miller / Gestalt)، و الگوهای مرجع shadcn/ui + Radix.
 
 ---
@@ -38,7 +38,7 @@
 2. **رنگ = بار معنایی.** سبز فقط completion/positive، زرد فقط warning/focus، قرمز فقط destructive/urgent، آبی فقط info/sync، بنفش فقط insight/memory. هیچ‌وقت برعکس.
 3. **Accent فقط foreground.** رنگ‌های accent فقط روی foreground (متن/آیکون/دکمه)؛ بک‌گراند accent با alpha ≤ 10%. هیچ بلاک بزرگ رنگ اشباع روی canvas.
 4. **هیچ رنگ‌آمیزی روانی تصادفی.** هر استفاده از accent باید rationale روانشناسی معتبر داشته باشد (tokens.ts §psychology).
-5. **فاصله روشنایی مرز قابل ادراک:** دو سطح مجاور باید diff روشنایی ≥ حداقل ادراک داشته باشند — SAFA audit: dark ≤ 12% و light ≤ 7% بین canvas و surface.
+5. **فاصله روشنایی مرز قابل ادراک:** دو سطح مجاور باید diff روشنایی ≥ حداقل ادراک داشته باشند — UI99 audit: dark ≤ 12% و light ≤ 7% بین canvas و surface.
 6. **هیچ hard-coded hex جدید.** فقط token یا palette معتبر Tailwind. hard-code = reject در code review.
 
 ## 3. فاصله‌گذاری (Spacing) — ریتم 4px
@@ -91,8 +91,8 @@
 
 | تعامل | Duration | Easing |
 |---|---|---|
-| Hover/press feedback | 120–180ms | `--ease-safa` |
-| Overlays (dialog/sheet/dropdown) | 180–280ms | `--ease-safa` |
+| Hover/press feedback | 120–180ms | `--ease-ui99` |
+| Overlays (dialog/sheet/dropdown) | 180–280ms | `--ease-ui99` |
 | Tab/page transitions | 280–400ms | `--ease-standard` |
 | Skeleton shimmer | 1.2–1.6s loop | linear |
 | Toast auto-dismiss | 3–5s | M3 guidance |
@@ -111,7 +111,7 @@
 - آیکون‌ب Button ≥ 40×40 (اگر مطلقاً کوچک‌تر، hit-area proxy: pseudo-element بزرگ‌تر).
 - Bottom nav icon: 44×44 حداقل.
 - حداقل 8px فاصله بین دو target مجاور.
-- Slider: h-5 hit area + native `<input type=range>` overlay (الگوی صحیح SAFA).
+- Slider: h-5 hit area + native `<input type=range>` overlay (الگوی صحیح UI99).
 
 ## 8. حالت‌های اجزا (Component States)
 
@@ -119,7 +119,7 @@
 1. **Default** — حالت پایه
 2. **Hover** — `bg-state-hover` (6% white در dark / 4% black در light)
 3. **Press/Active** — `active:scale-[0.97]` + press feedback
-4. **Focus-visible** — `focus-safa` double-ring (canvas-gap + emerald ring)
+4. **Focus-visible** — `focus-ui99` double-ring (canvas-gap + emerald ring)
 5. **Disabled** — `opacity-40`، بدون feedback تعاملی، cursor-not-allowed
 
 ### 8.2 Form Fields

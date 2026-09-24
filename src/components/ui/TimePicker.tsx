@@ -2,7 +2,7 @@
  * UI99 — TimePicker (Wave F)
  * Filterable 24h time listbox at a configurable step. Velvet rows with
  * selected inversion, keyboard focusable options, `HH:mm` contract.
-  * @token Rows invert on selection (`--text-on-fill`); filter input focus rides `--focus-ring` via `focus-safa-inset`.
+  * @token Rows invert on selection (`--text-on-fill`); filter input focus rides `--focus-ring` via `focus-ui99-inset`.
 */
 
 import React, { useState, useMemo } from 'react';
@@ -43,7 +43,7 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
         className={cn(
           'mb-2 h-9 w-full rounded-xl border border-black/[0.07] bg-transparent px-3 text-sm text-zinc-950 placeholder:text-zinc-400',
           'dark:border-white/[0.07] dark:text-[#EDEDEF] dark:placeholder:text-[#71717A]',
-          'focus-visible:outline-none focus-safa-inset'
+          'focus-visible:outline-none focus-ui99-inset'
         )}
       />
       <div role="listbox" aria-label="Time" className="no-scrollbar max-h-48 overflow-y-auto">
@@ -57,7 +57,7 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
             className={cn(
               'flex min-h-[36px] w-full items-center justify-between rounded-lg px-3 text-left text-xs font-mono transition-colors',
               'hover:bg-(--state-hover)',
-              'focus-visible:outline-none focus-safa-inset cursor-pointer',
+              'focus-visible:outline-none focus-ui99-inset cursor-pointer',
               t === value
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950'
                 : 'text-(--text-primary)'

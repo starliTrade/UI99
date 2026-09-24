@@ -1,5 +1,5 @@
 /**
- * UI99 — Obsidian Liquid Glass (SOLG) Unified Design Tokens (Build 02.2)
+ * UI99 — Obsidian Liquid Glass Unified Design Tokens (Build 02.2)
  * 
  * Engineering & Color Science Standards:
  * - 60-30-10 Chromatic Balance: 60% Velvet Canvas, 30% Layer Surfaces, 10% Accents.
@@ -12,7 +12,7 @@
 export const tokens = {
   // Theme Metadata & Color Science
   meta: {
-    systemName: 'UI99 Design System (SOLG v02.2)',
+    systemName: 'UI99 Design System',
     specification: 'Linear-Grade & Apple Human Interface Guidelines Hybrid',
     contrastRatio: 'WCAG AAA (18.4:1 dark / 17.2:1 light)',
     rhythmGrid: '4px / 8px atomic base unit',
@@ -189,18 +189,18 @@ export const tokens = {
     deliberate: '400ms', // page/hero transitions
   },
   easing: {
-    safa: 'var(--ease-safa)',           // cubic-bezier(0.16, 1, 0.3, 1) — signature UI99 ease
+    ui99: 'var(--ease-ui99)',           // cubic-bezier(0.16, 1, 0.3, 1) — signature UI99 ease
     standard: 'var(--ease-standard)',   // cubic-bezier(0.2, 0, 0, 1) — M3 standard
   },
 
-  // Focus System (WCAG 2.4.11/2.4.13; see index.css .focus-safa / .focus-safa-inset)
+  // Focus System (WCAG 2.4.11/2.4.13; see index.css .focus-ui99 / .focus-ui99-inset)
   focus: {
     ringColor: 'var(--focus-ring)',
     ringWidth: '2px',
     gapWidth: '2px',   // canvas-colored separation ring
     classes: {
-      outer: 'focus-safa',       // double-ring for buttons, inputs, icon targets
-      inset: 'focus-safa-inset', // inner ring for segmented pills, list rows, accordion triggers
+      outer: 'focus-ui99',       // double-ring for buttons, inputs, icon targets
+      inset: 'focus-ui99-inset', // inner ring for segmented pills, list rows, accordion triggers
     },
   },
 };

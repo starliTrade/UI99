@@ -1,7 +1,7 @@
 /**
  * UI99 — RadioGroup (Wave B)
  * Radix radio-group: full arrow-navigation + roving tabindex parity.
- * Visual uses the kit's velvet dot indicator with focus-safa-inset ring.
+ * Visual uses the kit's velvet dot indicator with focus-ui99-inset ring.
  */
 
 import React from 'react';
@@ -31,7 +31,7 @@ export function RadioGroupItem({
       className={cn(
         'aspect-square h-4.5 w-4.5 text-zinc-900 dark:text-[#EBEBEF] shrink-0 cursor-pointer',
         'rounded-full border border-black/[0.2] dark:border-white/[0.2] shadow-xs',
-        'focus-visible:outline-none focus-safa disabled:opacity-40 disabled:cursor-not-allowed',
+        'focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed',
         'data-[state=checked]:border-current',
         className
       )}

@@ -4,7 +4,7 @@
  * paste distribution, complete callback. Password-manager friendly
  * (single hidden input pattern avoided for simplicity — cells are real
  * inputs with inputMode="numeric").
-  * @token Cells: `--bg-elevated` body, `--border-strong` when filled, focus ring `focus-safa-inset`.
+  * @token Cells: `--bg-elevated` body, `--border-strong` when filled, focus ring `focus-ui99-inset`.
 */
 
 import React, { useRef, useState, useEffect } from 'react';
@@ -101,7 +101,7 @@ export function OTPInput({ length = 6, value, onChange, onComplete, disabled = f
             'dark:bg-[#131318] dark:text-[#EDEDEF]',
             'border-(--border-strong)',
             'hover:border-black/[0.18] dark:hover:border-white/[0.2]',
-            'focus-visible:outline-none focus-safa-inset focus-visible:border-black/[0.3] dark:focus-visible:border-white/[0.35]',
+            'focus-visible:outline-none focus-ui99-inset focus-visible:border-black/[0.3] dark:focus-visible:border-white/[0.35]',
             code[i] && 'border-black/[0.3] dark:border-white/[0.3]',
             disabled && 'cursor-not-allowed opacity-45'
           )}

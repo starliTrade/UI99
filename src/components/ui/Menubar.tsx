@@ -43,7 +43,7 @@ export function MenubarTrigger({
   return (
     <MenubarPrimitive.Trigger
       className={cn(
-        'flex cursor-pointer select-none items-center rounded-lg px-2.5 py-1.5 text-xs font-medium outline-none transition-colors focus-visible:outline-none focus-safa-inset data-[state=open]:bg-white data-[state=open]:shadow-xs dark:data-[state=open]:bg-[#131318]',
+        'flex cursor-pointer select-none items-center rounded-lg px-2.5 py-1.5 text-xs font-medium outline-none transition-colors focus-visible:outline-none focus-ui99-inset data-[state=open]:bg-white data-[state=open]:shadow-xs dark:data-[state=open]:bg-[#131318]',
         className
       )}
       {...props}

@@ -55,7 +55,7 @@ export function Slider({
       )}
 
       {/* RTL mirroring: container is dir-neutral; [dir=rtl] fills from the right */}
-      <div className="relative flex items-center h-5 slider-safa" dir="ltr">
+      <div className="relative flex items-center h-5 slider-ui99" dir="ltr">
         {/* Track background */}
         <div
           className={`w-full h-1.5 rounded-full overflow-hidden ${

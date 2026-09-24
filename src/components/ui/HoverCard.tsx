@@ -23,7 +23,7 @@ export function HoverCardTrigger({
 }: React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Trigger>) {
   return (
     <HoverCardPrimitive.Trigger
-      className={cn('cursor-pointer focus-visible:outline-none focus-safa', className)}
+      className={cn('cursor-pointer focus-visible:outline-none focus-ui99', className)}
       {...props}
     />
   );

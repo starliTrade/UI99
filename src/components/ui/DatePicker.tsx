@@ -88,7 +88,7 @@ export function DatePicker({
             'inline-flex h-10 min-w-[180px] items-center gap-2 rounded-xl border border-black/[0.07] bg-white px-3 text-sm text-zinc-950',
             'dark:border-white/[0.07] dark:bg-[#131318] dark:text-[#EDEDEF]',
             'transition-colors hover:bg-(--state-hover)',
-            'focus-visible:outline-none focus-safa-inset cursor-pointer',
+            'focus-visible:outline-none focus-ui99-inset cursor-pointer',
             'disabled:cursor-not-allowed disabled:opacity-45',
             className
           )}
@@ -110,7 +110,7 @@ export function DatePicker({
               type="button"
               onClick={() => shiftMonth(-1)}
               aria-label="Previous month"
-              className="rounded-lg p-1.5 text-zinc-500 hover:bg-black/[0.04] dark:text-[#92929B] dark:hover:bg-white/[0.06] focus-visible:outline-none focus-safa cursor-pointer"
+              className="rounded-lg p-1.5 text-zinc-500 hover:bg-black/[0.04] dark:text-[#92929B] dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -121,7 +121,7 @@ export function DatePicker({
               type="button"
               onClick={() => shiftMonth(1)}
               aria-label="Next month"
-              className="rounded-lg p-1.5 text-zinc-500 hover:bg-black/[0.04] dark:text-[#92929B] dark:hover:bg-white/[0.06] focus-visible:outline-none focus-safa cursor-pointer"
+              className="rounded-lg p-1.5 text-zinc-500 hover:bg-black/[0.04] dark:text-[#92929B] dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -145,7 +145,7 @@ export function DatePicker({
                   disabled={disabledDates?.(cell.iso)}
                   onClick={() => select(cell.iso)}
                   className={cn(
-                    'h-8 w-8 rounded-lg text-xs font-medium transition-colors focus-visible:outline-none focus-safa-inset',
+                    'h-8 w-8 rounded-lg text-xs font-medium transition-colors focus-visible:outline-none focus-ui99-inset',
                     'hover:bg-(--state-hover)',
                     cell.iso === value
                       ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950'

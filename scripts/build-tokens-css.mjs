@@ -34,9 +34,9 @@ function renderSheet(scope, sections, footer) {
   return `/*!\n * UI99 (@99/ui) — ${scope} tokens stylesheet\n * Auto-generated from src/core/tokens/index.ts — DO NOT EDIT BY HAND.\n * Regenerate: bun run lib:build\n */\n:root${scope === 'dark' ? '.dark' : ''} {\n${body}\n${footer ? `\n${footer}\n` : ''}}\n`;
 }
 
-const { safaTokens } = await import(resolve(root, 'src/core/tokens/index.ts'));
+const { tokens } = await import(resolve(root, 'src/core/tokens/index.ts'));
 const out = {};
-flatten(safaTokens, '', out);
+flatten(tokens, '', out);
 
 // ---- Classify entries by scope ----
 const base = {};

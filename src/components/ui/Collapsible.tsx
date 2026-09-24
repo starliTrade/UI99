@@ -21,7 +21,7 @@ export function CollapsibleTrigger({
 }: React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.Trigger>) {
   return (
     <CollapsiblePrimitive.Trigger
-      className={cn('group cursor-pointer focus-visible:outline-none focus-safa-inset', className)}
+      className={cn('group cursor-pointer focus-visible:outline-none focus-ui99-inset', className)}
       {...props}
     />
   );

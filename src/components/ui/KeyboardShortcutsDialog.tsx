@@ -1,0 +1,109 @@
+/**
+ * UI99 — KeyboardShortcutsDialog Component
+ * Complete modal table displaying keyboard shortcuts organized by category.
+ */
+
+import React from 'react';
+import { Command, X, Search, Sparkles } from 'lucide-react';
+import { cn } from '../../lib/utils';
+import { Kbd } from './Kbd';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './Dialog';
+
+export interface ShortcutGroup {
+  category: string;
+  shortcuts: Array<{
+    description: string;
+    keys: string[];
+  }>;
+}
+
+export interface KeyboardShortcutsDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  groups?: ShortcutGroup[];
+}
+
+const DEFAULT_SHORTCUTS: ShortcutGroup[] = [
+  {
+    category: 'Navigation',
+    shortcuts: [
+      { description: 'Next issue / row item', keys: ['J', '↓'] },
+      { description: 'Previous issue / row item', keys: ['K', '↑'] },
+      { description: 'Open Global Command Menu', keys: ['⌘', 'K'] },
+      { description: 'Switch to next workspace view', keys: ['G', 'N'] },
+    ],
+  },
+  {
+    category: 'Actions & Creation',
+    shortcuts: [
+      { description: 'Create new issue / item', keys: ['C'] },
+      { description: 'Save and submit inline creation', keys: ['⌘', '↵'] },
+      { description: 'Toggle task done / completed', keys: ['Space'] },
+      { description: 'Toggle multi-selection checkbox', keys: ['X'] },
+      { description: 'Open action filter bar', keys: ['F'] },
+    ],
+  },
+  {
+    category: 'Application',
+    shortcuts: [
+      { description: 'Show keyboard shortcuts helper', keys: ['?'] },
+      { description: 'Toggle Obsidian Dark / Matte Porcelain', keys: ['⌘', 'D'] },
+      { description: 'Close current modal or floating sheet', keys: ['Esc'] },
+    ],
+  },
+];
+
+export function KeyboardShortcutsDialog({
+  open,
+  onOpenChange,
+  groups = DEFAULT_SHORTCUTS,
+}: KeyboardShortcutsDialogProps) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-xl max-h-[80vh] overflow-y-auto p-6 rounded-3xl bg-white dark:bg-[#0E0E14] border border-black/10 dark:border-white/[0.04]">
+        <DialogHeader className="pb-4 border-b border-black/[0.04] dark:border-white/[0.03]">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-xl bg-zinc-100 dark:bg-white/[0.06] flex items-center justify-center text-zinc-800 dark:text-zinc-200">
+              <Command className="w-4 h-4" />
+            </div>
+            <div>
+              <DialogTitle className="text-base font-semibold text-zinc-900 dark:text-white">
+                Keyboard Shortcuts
+              </DialogTitle>
+              <DialogDescription className="text-xs text-zinc-500 dark:text-zinc-400">
+                High-velocity hotkeys configured for the UI99 workspace.
+              </DialogDescription>
+            </div>
+          </div>
+        </DialogHeader>
+
+        <div className="flex flex-col gap-6 pt-4">
+          {groups.map((group) => (
+            <div key={group.category} className="flex flex-col gap-2.5">
+              <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                {group.category}
+              </h4>
+              <div className="flex flex-col divide-y divide-black/[0.04] dark:divide-white/[0.03]">
+                {group.shortcuts.map((sc, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between py-2.5 text-xs text-zinc-700 dark:text-zinc-300"
+                  >
+                    <span>{sc.description}</span>
+                    <div className="flex items-center gap-1">
+                      {sc.keys.map((k, kIdx) => (
+                        <Kbd key={kIdx} size="sm">
+                          {k}
+                        </Kbd>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}

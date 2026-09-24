@@ -65,7 +65,7 @@ export function Switch({
         onCheckedChange={handleChange}
         disabled={disabled}
         className={cn(
-          'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-safa disabled:cursor-not-allowed',
+          'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-ui99 disabled:cursor-not-allowed',
           rootSizes,
           checked
             ? 'bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.35)]'

@@ -3,7 +3,7 @@
  * Generates public/registry.json (shadcn registry schema) FROM SOURCE:
  * scans the kit entry's components, parses real package imports for
  * `dependencies`, and emits registry:ui items + a registry:theme item
- * carrying the safa.css token layer. Deterministic — regenerate, never edit.
+ * carrying the ui99.css token layer. Deterministic — regenerate, never edit.
  *
  * Run: bun run registry:build
  */
@@ -161,18 +161,18 @@ items.push({
   docs: 'Class-merging helper (clsx + tailwind-merge). Installed automatically as a dependency of kit components.',
 });
 
-// ---- Theme item: the safa.css token layer as an installable registry item ----
-const safaCss = readFileSync(resolve(root, 'src/styles/safa.css'), 'utf8');
+// ---- Theme item: the ui99.css token layer as an installable registry item ----
+const ui99Css = readFileSync(resolve(root, 'src/styles/ui99.css'), 'utf8');
 items.push({
-  name: 'safa-theme',
+  name: 'ui99-theme',
   type: 'registry:theme',
   cssVars: {},
   files: [
     {
-      path: 'theme/safa.css',
+      path: 'theme/ui99.css',
       type: 'registry:theme',
-      content: safaCss,
-      target: 'src/styles/safa.css',
+      content: ui99Css,
+      target: 'src/styles/ui99.css',
     },
   ],
   docs: 'Obsidian Dark + Porcelain Light token layer (state layers, focus rings, motion). Import once; toggle .dark/.light on <html>.',
@@ -181,7 +181,7 @@ items.push({
 // ---- Theme preset 2: Porcelain (warm bone light theme) ----
 const porcelainCss = readFileSync(resolve(root, 'src/styles/porcelain.css'), 'utf8');
 items.push({
-  name: 'safa-theme-porcelain',
+  name: 'ui99-theme-porcelain',
   type: 'registry:theme',
   cssVars: {},
   files: [
@@ -192,7 +192,7 @@ items.push({
       target: 'src/styles/porcelain.css',
     },
   ],
-  docs: 'Porcelain preset — warm bone-white light theme. Import after safa-theme; toggle .porcelain on <html>.',
+  docs: 'Porcelain preset — warm bone-white light theme. Import after ui99-theme; toggle .porcelain on <html>.',
 });
 
 const registry = {

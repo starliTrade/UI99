@@ -2,7 +2,7 @@
  * UI99 — Unified Tactile Controls (Button, IconButton, Tag, Avatar) (Build 03.0)
  * Full shadcn-grade variant/size matrix on the UI99 velvet token system.
  * Five-state contract per docs/standards.md §12: default/hover/press/
- * focus-visible/disabled — focus ring via focus-safa (WCAG 2.4.13).
+ * focus-visible/disabled — focus ring via focus-ui99 (WCAG 2.4.13).
  *
  * @token Surfaces resolve via `--bg-card` / `--bg-elevated`; state layers via
  *   `--state-hover` (6% dark / 4% light, M3 ratios). Fill inverses read
@@ -16,29 +16,29 @@ import { X, Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export const buttonVariants = cva(
-  'inline-flex items-center justify-center font-medium tracking-tight transition-all duration-150 cursor-pointer select-none active:scale-[0.97] focus-visible:outline-none focus-safa disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 disabled:pointer-events-none',
+  'inline-flex items-center justify-center font-medium tracking-tight transition-all duration-150 cursor-pointer select-none active:scale-[0.97] focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 disabled:pointer-events-none',
   {
     variants: {
       variant: {
         primary:
-          'bg-[#111116] text-white hover:bg-[#1E1E24] border border-black/10 shadow-xs dark:bg-[#EBEBEF] dark:text-[#0C0C0E] dark:hover:bg-[#F5F5F8] dark:border-white/10',
+          'bg-[#111116] text-white hover:bg-[#1E1E24] border border-black/10 shadow-xs dark:bg-[#EDEDEF] dark:text-[#060709] dark:hover:bg-white dark:border-white/10 dark:shadow-[0_2px_10px_rgba(255,255,255,0.06)]',
         secondary:
-          'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 hover:text-black border border-black/[0.05] shadow-xs dark:bg-[#16161B] dark:text-[#D4D4D8] dark:hover:bg-[#1C1C22] dark:hover:text-white dark:border-white/[0.06]',
+          'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 hover:text-black border border-black/[0.05] shadow-xs dark:bg-white/[0.045] dark:text-[#EDEDEF] dark:hover:bg-white/[0.075] dark:hover:text-white dark:border-white/[0.025] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)]',
         outline:
-          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-black/[0.03] shadow-xs dark:text-[#D4D4D8] dark:border-white/[0.08] dark:hover:bg-white/[0.04]',
+          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-black/[0.03] shadow-xs dark:text-[#EDEDEF] dark:border-white/[0.04] dark:hover:bg-white/[0.03]',
         ghost:
-          'bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-[#92929B] dark:hover:bg-white/[0.04] dark:hover:text-[#EDEDEF]',
+          'bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-[#92929B] dark:hover:bg-white/[0.035] dark:hover:text-[#EDEDEF]',
         link: 'bg-transparent underline-offset-4 hover:underline text-(--text-primary) hover:bg-transparent px-0',
         destructive:
           'bg-rose-600 text-white hover:bg-rose-500 border border-rose-700/40 shadow-xs dark:bg-rose-500 dark:hover:bg-rose-400 dark:text-[#2A0A10]',
         success:
           'bg-emerald-600 text-white hover:bg-emerald-500 border border-emerald-700/40 shadow-xs dark:bg-emerald-500 dark:hover:bg-emerald-400 dark:text-[#06251A]',
         'white-pill':
-          'bg-[#EBEBEF] text-[#0C0C0E] font-semibold hover:bg-[#F5F5F8] shadow-xs border border-white/20',
+          'bg-[#EDEDEF] text-[#060709] font-semibold hover:bg-white shadow-xs border border-white/20',
         'dark-pill':
-          'bg-[#111116] text-[#EDEDEF] hover:bg-[#1C1C22] hover:text-white border border-black/10 dark:border-white/[0.06] shadow-xs',
+          'bg-[#111116] text-[#EDEDEF] hover:bg-[#1C1C22] hover:text-white border border-black/10 dark:bg-white/[0.045] dark:border-white/[0.03] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)] shadow-xs',
         rose:
-          'bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200/60 dark:bg-[#18181F] dark:text-[#D4C5B9] dark:hover:bg-[#20202A] dark:border-white/[0.07]',
+          'bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200/60 dark:bg-[#161216] dark:text-[#F3CBD2] dark:hover:bg-[#1E171E] dark:border-rose-500/15',
       },
       size: {
         xs: 'text-[11px] px-2.5 py-1 rounded-full gap-1 h-6',
@@ -128,7 +128,7 @@ export function Button({
 }
 
 export const iconButtonVariants = cva(
-  'rounded-full inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-safa disabled:opacity-40 disabled:cursor-not-allowed',
+  'rounded-full inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed',
   {
     variants: {
       variant: {
@@ -264,6 +264,7 @@ export function Tag({
 // --- Avatar ---
 export interface AvatarProps {
   name?: string;
+  alt?: string;
   src?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg';
   status?: 'online' | 'offline';
@@ -272,6 +273,7 @@ export interface AvatarProps {
 
 export function Avatar({
   name = 'UI99',
+  alt,
   src,
   size = 'md',
   status,
@@ -284,14 +286,15 @@ export function Avatar({
     lg: 'w-12 h-12 text-base font-semibold',
   }[size];
 
-  const initial = name ? name.charAt(0).toUpperCase() : 'S';
+  const displayName = alt || name;
+  const initial = displayName ? displayName.charAt(0).toUpperCase() : 'U';
 
   return (
     <div className="relative inline-block shrink-0">
       {src ? (
         <img
           src={src}
-          alt={name}
+          alt={displayName}
           className={`rounded-full object-cover ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
           referrerPolicy="no-referrer"
         />

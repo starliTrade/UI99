@@ -53,7 +53,7 @@ class ApiClient {
   async login(email?: string): Promise<{ token: string; user: User }> {
     const res = await this.request<{ token: string; user: User }>('/api/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ email: email || 'safa@personal.os' }),
+      body: JSON.stringify({ email: email || 'alex@ui99.dev' }),
     });
     this.setToken(res.token);
     return res;

@@ -78,8 +78,8 @@ function MainShell() {
       {/* Dedicated Universal Top Header */}
       <TopHeader />
 
-      {/* Main Content Area */}
-      <main className="relative z-10 flex-1 w-full max-w-4xl mx-auto px-3 sm:px-5 pt-1 sm:pt-2 pb-24 sm:pb-28">
+      {/* Main Content Area — Standardized vertical spacing from TopHeader across all views */}
+      <main className="relative z-10 flex-1 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-6 sm:pt-14 md:pt-16 pb-24 sm:pb-28">
         {renderActiveView()}
       </main>
 

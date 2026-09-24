@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-/* Kit token source of truth (dark/light scopes, state layers, focus, motion) — also shipped as the npm package stylesheet */
-@import "./styles/safa.css";
+/* Kit token source of truth (dark/light scopes, state layers, focus, motion) */
+@import "./styles/ui99.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));
@@ -12,28 +12,23 @@
   --color-state-press: var(--state-press);
   --color-state-selected: var(--state-selected);
   --color-state-drag: var(--state-drag);
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Geist Mono', monospace;
 }
 
-/* Unified focus-visible treatment — WCAG 2.4.11/2.4.13 Focus Appearance (2px ring, 2px canvas gap) */
-/* Registered as @utility so Tailwind variants (focus-visible:, etc.) compose correctly */
-/* UI99 aliases (focus-safa retained for backward compat) */
+@utility font-code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Geist Mono', monospace;
+  font-feature-settings: "calt" 1, "zero" 1, "ss01" 1;
+}
+
+/* Unified focus-visible treatment — WCAG 2.4.11/2.4.13 Focus Appearance */
 @utility focus-ui99 {
-  outline: none;
-  box-shadow: var(--focus-ring, 0 0 0 3px rgba(16, 185, 129, 0.5));
-}
-@utility focus-ui99-inset {
-  outline: none;
-  box-shadow: var(--focus-ring, 0 0 0 3px rgba(16, 185, 129, 0.5)), inset 0 0 0 1px rgba(16, 185, 129, 0.25);
-}
-
-@utility focus-safa {
   &:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--focus-ring);
   }
 }
 
-@utility focus-safa-inset {
+@utility focus-ui99-inset {
   &:focus-visible {
     outline: none;
     box-shadow: inset 0 0 0 2px var(--focus-ring);
@@ -41,34 +36,32 @@
 }
 
 /* Slider RTL mirroring: fill grows from the right, thumb mirrors horizontally */
-.slider-safa[dir='rtl'] .slider-fill {
+.slider-ui99[dir='rtl'] .slider-fill {
   margin-left: auto;
   margin-right: 0;
   transform-origin: right;
 }
 
-.slider-safa[dir='rtl'] .slider-fill {
+.slider-ui99[dir='rtl'] .slider-fill {
   margin-left: auto;
 }
 
-[dir='rtl'] .slider-safa {
+[dir='rtl'] .slider-ui99 {
   direction: ltr; /* input[type=range] stays LTR-native; visual thumb mirrors below */
 }
 
-[dir='rtl'] .slider-safa .slider-thumb {
+[dir='rtl'] .slider-ui99 .slider-thumb {
   left: auto !important;
   right: var(--thumb-pos, 0%);
   transform: translateX(50%);
 }
 
-[dir='rtl'] .slider-safa input[type='range'] {
+[dir='rtl'] .slider-ui99 input[type='range'] {
   direction: rtl;
 }
 
 @layer base {
-  /* Design tokens live in src/styles/safa.css (single source of truth,
-   * shared with the npm kit stylesheet). This layer keeps only app-shell
-   * typography routing and base element styles. */
+  /* Design tokens live in src/styles/ui99.css */
 
   [dir="rtl"] {
     font-family: var(--font-persian), var(--font-sans);
@@ -112,30 +105,30 @@
 /* Velvet Materials & Seamless Rim-Lit Obsidian Glass Cards */
 .material-obsidian-card {
   position: relative;
-  background: #0B0C11;
+  background: var(--bg-card, #0C0D12);
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border-hairline, rgba(255, 255, 255, 0.025));
   box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.035),
     0 16px 40px -10px rgba(0, 0, 0, 0.65);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .material-obsidian-card:hover {
-  background: #101117;
-  border-color: rgba(255, 255, 255, 0.05);
+  background: var(--bg-card-hover, #101117);
+  border-color: rgba(255, 255, 255, 0.04);
   box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
-    0 22px 48px -12px rgba(0, 0, 0, 0.75);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+    0 22px 48px -10px rgba(0, 0, 0, 0.75);
 }
 
 /* Linear & iOS Modern Inset Grouped Feed */
 .linear-group-container {
-  background: #0B0C11;
+  background: var(--bg-surface, #090A0E);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-hairline, rgba(255, 255, 255, 0.025));
   box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.035),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.03),
     0 12px 32px -8px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
@@ -419,4 +412,165 @@
   scrollbar-width: none;
 }
 
-/* Reduced motion is declared in src/styles/safa.css (kit source of truth) */
+/* Reduced motion is declared in src/styles/ui99.css (kit source of truth) */
+
+/* ══════════════════════════════════════════════════════════════
+   PRISM.JS DUAL SYNTAX THEME (Obsidian Dark & Clean Light)
+   ══════════════════════════════════════════════════════════════ */
+.code-token-render .token.comment,
+.code-token-render .token.prolog,
+.code-token-render .token.doctype,
+.code-token-render .token.cdata {
+  color: #64748B;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.code-token-render .token.punctuation {
+  color: #94A3B8;
+  opacity: 0.85;
+}
+
+.code-token-render .token.symbol,
+.code-token-render .token.deleted {
+  color: #38BDF8;
+}
+
+.code-token-render .token.boolean,
+.code-token-render .token.number {
+  color: #FB923C;
+  font-weight: 500;
+}
+
+.code-token-render .token.selector,
+.code-token-render .token.string,
+.code-token-render .token.char,
+.code-token-render .token.builtin,
+.code-token-render .token.inserted {
+  color: #FDE047;
+}
+
+.code-token-render .token.operator,
+.code-token-render .token.entity,
+.code-token-render .token.url,
+.code-token-render .language-css .token.string,
+.code-token-render .style .token.string {
+  color: #E2E8F0;
+}
+
+.code-token-render .token.atrule,
+.code-token-render .token.attr-value,
+.code-token-render .token.keyword {
+  color: #34D399;
+  font-weight: 600;
+}
+
+.code-token-render .token.function,
+.code-token-render .token.class-name {
+  color: #C084FC;
+  font-weight: 500;
+}
+
+.code-token-render .token.regex,
+.code-token-render .token.important,
+.code-token-render .token.variable {
+  color: #F472B6;
+}
+
+.code-token-render .token.tag {
+  color: #34D399;
+  font-weight: 600;
+}
+
+.code-token-render .token.tag .token.tag {
+  color: #34D399;
+}
+
+.code-token-render .token.tag .token.punctuation {
+  color: #64748B;
+}
+
+.code-token-render .token.tag .token.attr-name {
+  color: #93C5FD;
+}
+
+.code-token-render .token.tag .token.attr-value {
+  color: #FDE047;
+}
+
+.code-token-render .token.plain-text {
+  color: #EDEDEF;
+}
+
+/* Light Mode Syntax Tokens (Crisp VS Code / GitHub Porcelain) */
+.light .code-token-render .token.comment,
+.light .code-token-render .token.prolog,
+.light .code-token-render .token.doctype,
+.light .code-token-render .token.cdata {
+  color: #6B7280;
+}
+
+.light .code-token-render .token.punctuation {
+  color: #4B5563;
+  opacity: 1;
+}
+
+.light .code-token-render .token.symbol,
+.light .code-token-render .token.deleted {
+  color: #0284C7;
+}
+
+.light .code-token-render .token.boolean,
+.light .code-token-render .token.number {
+  color: #D97706;
+}
+
+.light .code-token-render .token.selector,
+.light .code-token-render .token.string,
+.light .code-token-render .token.char,
+.light .code-token-render .token.builtin,
+.light .code-token-render .token.inserted {
+  color: #15803D;
+}
+
+.light .code-token-render .token.operator,
+.light .code-token-render .token.entity,
+.light .code-token-render .token.url {
+  color: #374151;
+}
+
+.light .code-token-render .token.atrule,
+.light .code-token-render .token.attr-value,
+.light .code-token-render .token.keyword {
+  color: #7C3AED;
+  font-weight: 600;
+}
+
+.light .code-token-render .token.function,
+.light .code-token-render .token.class-name {
+  color: #2563EB;
+  font-weight: 600;
+}
+
+.light .code-token-render .token.regex,
+.light .code-token-render .token.important,
+.light .code-token-render .token.variable {
+  color: #DB2777;
+}
+
+.light .code-token-render .token.tag {
+  color: #7C3AED;
+  font-weight: 600;
+}
+
+.light .code-token-render .token.tag .token.attr-name {
+  color: #2563EB;
+}
+
+.light .code-token-render .token.tag .token.attr-value {
+  color: #15803D;
+}
+
+.light .code-token-render .token.plain-text {
+  color: #1F2937;
+}
