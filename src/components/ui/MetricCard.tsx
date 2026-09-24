@@ -30,6 +30,8 @@ export function MetricCard({
 }: MetricCardProps) {
   return (
     <div
+      role="group"
+      aria-label={`${label}: ${typeof value === 'string' || typeof value === 'number' ? value : ''}${delta !== undefined ? `, ${delta > 0 ? 'up' : 'down'} ${Math.abs(delta)} percent` : ''}`}
       className={`p-4 rounded-2xl bg-white dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-xs space-y-3 ${className}`}
     >
       <div className="flex items-center justify-between">

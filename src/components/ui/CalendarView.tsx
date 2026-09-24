@@ -60,7 +60,7 @@ export function CalendarView({
       {/* Month Navigation Header */}
       <div className="flex items-center justify-between pb-2 border-b border-black/[0.04] dark:border-white/[0.03]">
         <div className="flex items-center gap-2">
-          <CalendarIcon className="w-4 h-4 text-emerald-500" />
+          <CalendarIcon className="w-4 h-4 text-emerald-500" aria-hidden="true" />
           <h4 className="text-sm font-semibold text-zinc-900 dark:text-white">
             {month} {year}
           </h4>
@@ -69,12 +69,14 @@ export function CalendarView({
         <div className="flex items-center gap-1">
           <button
             type="button"
+            aria-label="Previous month"
             className="p-1 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             type="button"
+            aria-label="Next month"
             className="p-1 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
           >
             <ChevronRight className="w-4 h-4" />
@@ -91,7 +93,7 @@ export function CalendarView({
         ))}
       </div>
 
-      {/* Days Matrix */}
+      {/* Days Matrix — plain presentation; cells are real buttons with labels */}
       <div className="grid grid-cols-7 gap-1">
         {/* Leading blanks */}
         {Array.from({ length: startDayOffset }).map((_, idx) => (
@@ -109,6 +111,8 @@ export function CalendarView({
             <button
               key={dayNum}
               type="button"
+              aria-pressed={isSelected}
+              aria-label={`${month} ${dayNum}${isToday ? ', today' : ''}${dayEvents.length > 0 ? `, ${dayEvents.length} event${dayEvents.length > 1 ? 's' : ''}` : ''}`}
               onClick={() => {
                 setSelectedDay(dayNum);
                 onSelectDay?.(dayNum);

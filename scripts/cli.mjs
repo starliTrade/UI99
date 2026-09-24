@@ -102,15 +102,25 @@ async function cmdAdd(names, dryRun = false) {
   const items = resolveTransitive(registry, names);
   const pm = detectPackageManager();
   const allDeps = new Set();
-  let written = 0;
+  if (dryRun) {
+    info(`--dry-run: would write ${items.length} item(s):`);
+    for (const item of items) {
+      for (const file of item.files) {
+        info(`  ${file.target ?? file.path}`);
+      }
+    }
+  }
 
+  let written = 0;
   for (const item of items) {
     for (const dep of item.dependencies ?? []) allDeps.add(dep);
     for (const file of item.files) {
-      const targetPath = resolve(process.cwd(), file.target ?? file.path);
-      mkdirSync(dirname(targetPath), { recursive: true });
-      writeFileSync(targetPath, file.content);
-      ok(`wrote ${join('.', file.target ?? file.path)}`);
+      if (!dryRun) {
+        const targetPath = resolve(process.cwd(), file.target ?? file.path);
+        mkdirSync(dirname(targetPath), { recursive: true });
+        writeFileSync(targetPath, file.content);
+        ok(`wrote ${join('.', file.target ?? file.path)}`);
+      }
       written++;
     }
   }
@@ -127,6 +137,8 @@ async function cmdAdd(names, dryRun = false) {
     execSync(installCmd, { stdio: 'inherit' });
   } else if (allDeps.size > 0) {
     info(`--dry-run: would install ${[...allDeps].join(', ')}`);
+  } else {
+    info('--dry-run: nothing to install.');
   }
 
   log('');

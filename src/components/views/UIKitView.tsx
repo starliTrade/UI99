@@ -9,6 +9,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 import {
   Sparkles,
   Layers,
@@ -347,7 +348,7 @@ export function UIKitView() {
   const [demoColor, setDemoColor] = useState('#3B82F6');
   const [demoTags, setDemoTags] = useState(['Obsidian', 'TypeScript', 'WCAG-AAA']);
 
-  // Wave K (99 Primitives) Interactive Demo State
+  // Wave K (all primitives) Interactive Demo State
   const [demoCurrency, setDemoCurrency] = useState(349.99);
   const [demoPin, setDemoPin] = useState('9942');
   const [demoRangeSlider, setDemoRangeSlider] = useState<[number, number]>([15, 85]);
@@ -422,6 +423,9 @@ export function UIKitView() {
         />
 
         <div className="flex flex-col items-start gap-2.5">
+          <div className="inline-flex items-center h-7 px-3 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+            {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
+          </div>
           <h1 className="text-4xl sm:text-6xl font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.06] text-balance font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]">
             The UI Kit.
           </h1>
@@ -434,7 +438,7 @@ export function UIKitView() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
           <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
             <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Catalog</span>
-            <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">99 Primitives</span>
+            <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">{KIT_COMPONENT_COUNT} Primitives</span>
           </div>
           <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
             <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Accessibility</span>
@@ -488,7 +492,7 @@ export function UIKitView() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={isRTL ? 'جستجو در ۹۹ کامپوننت و توکن...' : 'Filter 99 components...'}
+              placeholder={isRTL ? `جستجو در ${KIT_COMPONENT_COUNT.toLocaleString('fa-IR')} کامپوننت و توکن...` : `Filter ${KIT_COMPONENT_COUNT} components...`}
               className="w-full pl-8 pr-7 py-1.5 rounded-xl text-xs font-mono bg-zinc-100 dark:bg-[#0E0E14] border border-zinc-200/80 dark:border-white/[0.04] text-zinc-900 dark:text-[#EDEDEF] placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-all"
             />
             {searchQuery && (

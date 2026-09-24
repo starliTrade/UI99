@@ -198,7 +198,7 @@ export function CodeBlock({
       >
         <pre className={cn('font-mono m-0 p-0 bg-transparent', wordWrap ? 'whitespace-pre-wrap break-words' : 'whitespace-pre')}>
           <code className={cn(`language-${normalizedLang}`, 'font-mono block')}>
-            {lines.map((lineHtml, idx) => {
+            {lines.map((lineHtml: string, idx: number) => {
               const lineNum = idx + 1;
               const isHighlighted = highlightLines.includes(lineNum);
 

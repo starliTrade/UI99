@@ -23,6 +23,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
+import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 import {
   Button,
   Card,
@@ -203,7 +204,7 @@ function PricingPlansBlock() {
       price: billing === 'yearly' ? '$0' : '$0',
       period: 'forever',
       description: 'Ideal for solo developers building modern web apps.',
-      features: ['Up to 10 projects', 'All 63 UI primitives', 'Community Discord support', 'MIT License'],
+      features: ['Up to 10 projects', `All ${KIT_COMPONENT_COUNT} UI primitives`, 'Community Discord support', 'MIT License'],
       highlight: false,
       cta: 'Get Started Free',
     },
@@ -444,9 +445,8 @@ export function SecuritySettingsBlock() {
     <div className="w-full space-y-8 pb-16">
       {/* PAGE HEADER */}
       <header className="pb-2 space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-          composed from 63 primitives · copy-ready blocks
+        <div className="inline-flex items-center h-7 px-3 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+          {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.05] text-balance">
           Production Blocks.

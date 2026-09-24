@@ -19,7 +19,7 @@ export default defineConfig({
         index: r('src/components/ui/kit.ts'),
       },
       formats: ['es', 'cjs'],
-      cssFileName: 'safa-ui',
+      cssFileName: 'ui99-kit',
     },
     rollupOptions: {
       external: [/node_modules/],

@@ -78,6 +78,7 @@ export function DataTable<T extends Record<string, any>>({
               setPage(0);
             }}
             placeholder="Search records..."
+            aria-label="Search records"
             className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200 dark:border-white/[0.06] text-xs font-mono text-zinc-950 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20"
           />
         </div>
@@ -87,26 +88,55 @@ export function DataTable<T extends Record<string, any>>({
         <Table>
           <TableHeader>
             <TableRow>
-              {columns.map((col) => (
-                <TableHead
-                  key={String(col.key)}
-                  onClick={() => col.sortable && handleSort(String(col.key))}
-                  className={col.sortable ? 'cursor-pointer select-none hover:text-zinc-950 dark:hover:text-white' : ''}
-                >
-                  <div className="flex items-center gap-1.5">
-                    <span>{col.header}</span>
-                    {col.sortable && sortKey === col.key && (
-                      <span>
-                        {sortDir === 'asc' ? (
-                          <ChevronUp className="w-3 h-3 text-emerald-500" />
-                        ) : (
-                          <ChevronDown className="w-3 h-3 text-emerald-500" />
-                        )}
-                      </span>
-                    )}
-                  </div>
-                </TableHead>
-              ))}
+              {columns.map((col) => {
+                const isSorted = col.sortable && sortKey === col.key;
+                return (
+                  <TableHead
+                    key={String(col.key)}
+                    onClick={() => col.sortable && handleSort(String(col.key))}
+                    onKeyDown={(e) => {
+                      if (col.sortable && (e.key === 'Enter' || e.key === ' ')) {
+                        e.preventDefault();
+                        handleSort(String(col.key));
+                      }
+                    }}
+                    aria-sort={
+                      isSorted
+                        ? sortDir === 'asc'
+                          ? 'ascending'
+                          : 'descending'
+                        : col.sortable
+                          ? 'none'
+                          : undefined
+                    }
+                    tabIndex={col.sortable ? 0 : undefined}
+                    aria-label={
+                      col.sortable
+                        ? `${col.header}${isSorted ? (sortDir === 'asc' ? ', sorted ascending' : ', sorted descending') : ', activate to sort'}`
+                        : undefined
+                    }
+                    className={col.sortable ? 'cursor-pointer select-none hover:text-zinc-950 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60' : ''}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <span>{col.header}</span>
+                      {col.sortable && !isSorted && (
+                        <span aria-hidden="true" className="text-zinc-400">
+                          <ChevronDown className="w-3 h-3 opacity-0" />
+                        </span>
+                      )}
+                      {isSorted && (
+                        <span aria-hidden="true">
+                          {sortDir === 'asc' ? (
+                            <ChevronUp className="w-3 h-3 text-emerald-500" />
+                          ) : (
+                            <ChevronDown className="w-3 h-3 text-emerald-500" />
+                          )}
+                        </span>
+                      )}
+                    </div>
+                  </TableHead>
+                );
+              })}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -142,6 +172,7 @@ export function DataTable<T extends Record<string, any>>({
               type="button"
               disabled={page === 0}
               onClick={() => setPage(page - 1)}
+              aria-label="Previous page"
               className="p-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-white/[0.06] disabled:opacity-40"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -150,6 +181,7 @@ export function DataTable<T extends Record<string, any>>({
               type="button"
               disabled={page >= totalPages - 1}
               onClick={() => setPage(page + 1)}
+              aria-label="Next page"
               className="p-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-white/[0.06] disabled:opacity-40"
             >
               <ChevronRight className="w-4 h-4" />

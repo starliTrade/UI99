@@ -53,6 +53,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
 import { REGISTRY_COMPONENTS, ComponentRegistryItem } from '../../registry/registryData';
+import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 import {
   Button,
   Card,
@@ -1186,7 +1187,7 @@ export function DocsView() {
                             </div>
                             <div className="space-y-1 text-xs">
                               <div className="font-semibold text-zinc-200">Design System Audit</div>
-                              <div className="text-zinc-400">78 / 99 criteria verified</div>
+                              <div className="text-zinc-400">78 / {KIT_COMPONENT_COUNT} criteria verified</div>
                             </div>
                           </div>
                         )}
@@ -1790,8 +1791,11 @@ export function DocsView() {
           {activeSection === 'intro' && (
             <article className="space-y-8">
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
+                <div className="inline-flex items-center h-7 px-3 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+                  {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
+                </div>
                 <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
-                  Introduction
+                  Introduction.
                 </h1>
                 <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
                   Re-usable components built using Radix UI primitives, Tailwind CSS, and Velvet Obsidian Dark design tokens.

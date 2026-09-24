@@ -5,7 +5,7 @@
 **The velvet-obsidian React component kit.**
 shadcn-grade DX · WCAG 2.2-audited · axe-clean · RTL-first · Tailwind v4
 
-[![tests](https://img.shields.io/badge/tests-38%2F38-green)](#development) [![axe](https://img.shields.io/badge/axe--core-0%20violations-brightgreen)](#accessibility) [![contrast](https://img.shields.io/badge/contrast-WCAG%20AAA%20verified-blue)](#design-tokens) [![ci](https://img.shields.io/badge/CI-typecheck%20%C2%B7%20tests%20%C2%B7%20registry%20%C2%B7%20pack-blueviolet)](.github/workflows/ci.yml) [![license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
+[![tests](https://img.shields.io/badge/tests-85%2F85-green)](#development) [![axe](https://img.shields.io/badge/axe--core-0%20violations-brightgreen)](#accessibility) [![contrast](https://img.shields.io/badge/contrast-WCAG%20AAA%20verified-blue)](#design-tokens) [![ci](https://img.shields.io/badge/CI-typecheck%20%C2%B7%20tests%20%C2%B7%20registry%20%C2%B7%20pack-blueviolet)](.github/workflows/ci.yml) [![license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
 
 [Getting started](#getting-started) · [Components](#components) · [Theming](#theming) · [Accessibility](#accessibility) · [Roadmap](docs/ROADMAP.md)
 
@@ -63,7 +63,7 @@ document.documentElement.classList.replace('dark', 'light');
 
 ## Components
 
-**63 components** in the npm kit (65 registry items including `utils` + theme).
+**92 components** in the npm kit (95 registry items including `utils`, `theme` + both token themes). The count is generated — `KIT_COMPONENT_COUNT` in `src/generated/kit-count.ts` — and can never drift from the registry.
 
 **Actions** Button · IconButton · Tag · Avatar · Toggle · ToggleGroup · CopyButton
 **Inputs** Input · Textarea · SearchBar · Switch · Checkbox · RadioGroup · Dropdown · Slider · Pin/OTPInput · Rating · NumberField · DatePicker · TimePicker · Combobox · FileUpload

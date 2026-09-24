@@ -67,6 +67,7 @@ export function KanbanBoard({
         return (
           <div
             key={col.id}
+            aria-label={`${col.label} column`}
             className="flex flex-col gap-3 rounded-2xl bg-zinc-100/60 dark:bg-[#0B0C11] p-3 border border-black/[0.04] dark:border-white/[0.03] min-w-[240px]"
           >
             {/* Column Header */}
@@ -83,18 +84,21 @@ export function KanbanBoard({
               <button
                 type="button"
                 onClick={() => onAddCard?.(col.id)}
+                aria-label={`Add card to ${col.label}`}
                 className="p-1 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
-                title="Add card"
               >
                 <Plus className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            {/* Cards List */}
-            <div className="flex flex-col gap-2 min-h-[140px]">
+            {/* Cards List — the only accessibility `list` in the column,
+                so its children are strictly `listitem` (axe-clean). */}
+            <div role="list" aria-label={`${col.label} column, ${colCards.length} cards`} className="flex flex-col gap-2 min-h-[140px]">
               {colCards.map((card) => (
                 <div
                   key={card.id}
+                  role="listitem"
+                  aria-label={`${card.title}, ${card.priority} priority, ${card.status}`}
                   className="p-3 rounded-xl bg-white dark:bg-[#131318] border border-black/[0.06] dark:border-white/[0.04] shadow-xs hover:border-black/15 dark:hover:border-white/10 transition-all cursor-grab active:cursor-grabbing flex flex-col gap-2 group"
                 >
                   <div className="flex items-center justify-between">
@@ -110,13 +114,19 @@ export function KanbanBoard({
                   </p>
 
                   {/* Status Quick Cycle on Hover */}
-                  <div className="flex items-center gap-1 pt-1 opacity-40 group-hover:opacity-100 transition-opacity">
+                  <div
+                    role="toolbar"
+                    aria-label={`Move ${card.title} to another column`}
+                    className="flex items-center gap-1 pt-1 opacity-40 group-hover:opacity-100 focus-within:opacity-100 transition-opacity"
+                  >
                     {COLUMNS.map((targetCol) => (
                       <button
                         key={targetCol.id}
                         type="button"
                         onClick={() => moveCard(card.id, targetCol.id)}
                         disabled={card.status === targetCol.id}
+                        aria-label={`Move ${card.title} to ${targetCol.label}`}
+                        aria-pressed={card.status === targetCol.id}
                         className={cn(
                           'text-[9px] px-1.5 py-0.5 rounded font-mono transition-colors',
                           card.status === targetCol.id

@@ -10,7 +10,10 @@ import { Button } from './Button';
 
 export interface BannerProps {
   title: string;
+  /** Inline secondary text next to the title (or use `children` for rich content). */
   description?: string;
+  /** Rich content rendered under the title row — composes with `description`. */
+  children?: React.ReactNode;
   variant?: 'obsidian' | 'emerald' | 'amber' | 'sapphire';
   actionLabel?: string;
   onAction?: () => void;
@@ -22,6 +25,7 @@ export interface BannerProps {
 export function Banner({
   title,
   description,
+  children,
   variant = 'obsidian',
   actionLabel,
   onAction,
@@ -42,6 +46,7 @@ export function Banner({
 
   return (
     <div
+      role={variant === 'amber' ? 'alert' : 'status'}
       className={cn(
         'w-full flex items-center justify-between gap-3 px-4 py-3 rounded-2xl border backdrop-blur-md shadow-sm',
         variants[variant],
@@ -62,6 +67,8 @@ export function Banner({
         </div>
       </div>
 
+      {children && <div className="min-w-0 text-xs opacity-90">{children}</div>}
+
       <div className="flex items-center gap-2 shrink-0">
         {actionLabel && (
           <Button
@@ -80,8 +87,8 @@ export function Banner({
             setClosed(true);
             onDismiss?.();
           }}
+          aria-label="Dismiss banner"
           className="p-1 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
-          title="Dismiss banner"
         >
           <X className="w-3.5 h-3.5" />
         </button>

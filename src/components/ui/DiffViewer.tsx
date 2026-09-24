@@ -59,8 +59,8 @@ export function DiffViewer({
         <button
           type="button"
           onClick={copyDiff}
+          aria-label="Copy diff"
           className="p-1 rounded text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer"
-          title="Copy diff"
         >
           {copied ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
         </button>

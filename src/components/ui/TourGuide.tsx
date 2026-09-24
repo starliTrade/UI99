@@ -48,6 +48,10 @@ export function TourGuide({
 
   return (
     <div
+      role="dialog"
+      aria-modal="false"
+      aria-label={`Product tour, step ${currentStep + 1} of ${steps.length}: ${step.title}`}
+      aria-live="polite"
       className={cn(
         'w-full max-w-sm p-4 rounded-2xl bg-white dark:bg-[#131318] border border-black/10 dark:border-white/[0.06]',
         'shadow-[0_20px_48px_-10px_rgba(0,0,0,0.6)] backdrop-blur-xl animate-in fade-in zoom-in-95',
@@ -62,6 +66,7 @@ export function TourGuide({
         <button
           type="button"
           onClick={onDismiss}
+          aria-label="Dismiss tour"
           className="p-1 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
         >
           <X className="w-3.5 h-3.5" />
@@ -82,10 +87,11 @@ export function TourGuide({
       {/* Step Indicators & Actions */}
       <div className="flex items-center justify-between pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
         {/* Progress Dots */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1" role="progressbar" aria-valuemin={1} aria-valuemax={steps.length} aria-valuenow={currentStep + 1} aria-label={`Tour progress: step ${currentStep + 1} of ${steps.length}`}>
           {steps.map((_, idx) => (
             <div
               key={idx}
+              aria-hidden="true"
               className={cn(
                 'h-1.5 rounded-full transition-all duration-300',
                 idx === currentStep
@@ -99,7 +105,7 @@ export function TourGuide({
         {/* Buttons */}
         <div className="flex items-center gap-1.5">
           {currentStep > 0 && (
-            <Button size="xs" variant="ghost" onClick={prev}>
+            <Button size="xs" variant="ghost" onClick={prev} aria-label="Previous step">
               <ChevronLeft className="w-3.5 h-3.5" />
             </Button>
           )}
@@ -107,6 +113,7 @@ export function TourGuide({
             size="xs"
             variant="primary"
             onClick={next}
+            aria-label={isLast ? 'Finish tour' : 'Next step'}
             className="text-xs px-3"
           >
             <span>{isLast ? 'Finish' : 'Next'}</span>

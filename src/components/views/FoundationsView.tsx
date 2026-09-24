@@ -27,6 +27,7 @@ import {
 import { useApp } from '../../core/context/AppContext';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Kbd } from '../ui';
 import { Reveal } from '../ui/motion';
+import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 
 export function FoundationsView() {
   const { themeMode, addToast } = useApp();
@@ -59,12 +60,11 @@ export function FoundationsView() {
     <div className="w-full space-y-12 pb-20">
       {/* Header */}
       <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-          <Palette className="w-3.5 h-3.5" />
-          <span>Foundations & Design Tokens</span>
+        <div className="inline-flex items-center h-7 px-3 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+          {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-white">
-          Engineering Foundations & Tokens
+          Foundations.
         </h1>
         <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
           The mathematical values, color tokens, optical refraction highlights, typographic scales, and anti-slop rules powering the UI \ [99] design system.

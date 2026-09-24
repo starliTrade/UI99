@@ -51,6 +51,8 @@ export function AudioPlayer({
 
   return (
     <div
+      role="group"
+      aria-label={`Audio player: ${title} by ${artist}`}
       className={cn(
         'p-4 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.06] dark:border-white/[0.04]',
         'shadow-[0_16px_36px_-8px_rgba(0,0,0,0.5)] flex flex-col gap-3 w-full max-w-md',
@@ -78,9 +80,23 @@ export function AudioPlayer({
         </span>
       </div>
 
-      {/* Simulated Waveform Visualization */}
+      {/* Simulated Waveform Visualization — scrubber */}
       <div
-        className="flex items-end justify-between h-10 gap-1 px-1 cursor-pointer"
+        role="slider"
+        tabIndex={0}
+        aria-label="Seek position"
+        aria-valuemin={0}
+        aria-valuemax={durationSec}
+        aria-valuenow={Math.round(currentTime)}
+        aria-valuetext={`${formatTime(currentTime)} of ${formatTime(durationSec)}`}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            const delta = e.key === 'ArrowLeft' ? -10 : 10;
+            setCurrentTime((prev) => Math.min(durationSec, Math.max(0, prev + delta)));
+          }
+        }}
+        className="flex items-end justify-between h-10 gap-1 px-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 rounded-lg"
         onClick={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
           const clickX = e.clientX - rect.left;
@@ -113,8 +129,8 @@ export function AudioPlayer({
           <button
             type="button"
             onClick={() => setCurrentTime((prev) => Math.max(0, prev - 10))}
+            aria-label="Rewind 10 seconds"
             className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
-            title="Rewind 10s"
           >
             <RotateCcw className="w-3.5 h-3.5" />
           </button>
@@ -122,6 +138,8 @@ export function AudioPlayer({
           <button
             type="button"
             onClick={() => setPlaying(!playing)}
+            aria-label={playing ? 'Pause' : 'Play'}
+            aria-pressed={playing}
             className="w-9 h-9 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-black flex items-center justify-center shadow-md active:scale-95 transition-transform"
           >
             {playing ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
@@ -130,8 +148,8 @@ export function AudioPlayer({
           <button
             type="button"
             onClick={() => setCurrentTime((prev) => Math.min(durationSec, prev + 10))}
+            aria-label="Forward 10 seconds"
             className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
-            title="Forward 10s"
           >
             <RotateCw className="w-3.5 h-3.5" />
           </button>
@@ -142,6 +160,8 @@ export function AudioPlayer({
           <button
             type="button"
             onClick={() => setMuted(!muted)}
+            aria-label={muted ? 'Unmute' : 'Mute'}
+            aria-pressed={muted}
             className="text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             {muted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -155,6 +175,7 @@ export function AudioPlayer({
               setVolume(Number(e.target.value));
               if (muted) setMuted(false);
             }}
+            aria-label="Volume"
             className="w-16 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-zinc-900 dark:accent-white"
           />
         </div>

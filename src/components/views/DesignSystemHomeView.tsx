@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
 import { useChoreography, Reveal } from '../ui/motion';
+import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 import {
   Button,
   IconButton,
@@ -290,14 +291,12 @@ export function DesignSystemHomeView() {
           }}
         />
 
-        {/* Main Display Headline */}
+        {/* Main Display Headline — minimal, dotted, per house style */}
         <motion.h1
           {...reveal(0)}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.08] sm:leading-[1.03] text-left font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]"
         >
-          Craft interfaces <br />
-          with obsidian <br />
-          precision
+          The Design System.
         </motion.h1>
 
         {/* Subtitle */}
@@ -305,7 +304,7 @@ export function DesignSystemHomeView() {
           {...reveal(2)}
           className="mt-3.5 sm:mt-5 text-xs sm:text-sm md:text-[15px] text-zinc-600 dark:text-[#8E909D] leading-relaxed text-left max-w-xl font-normal tracking-[-0.01em] font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]"
         >
-          An obsidian-dark design system with 99 precision-tested tactile primitives, animated micro-interactions, <br className="hidden sm:inline" />
+          An obsidian-dark design system with {KIT_COMPONENT_COUNT} precision-tested tactile primitives, animated micro-interactions, <br className="hidden sm:inline" />
           and sub-pixel specular tokens engineered for React &amp; Next.js.
         </motion.p>
 
@@ -325,7 +324,7 @@ export function DesignSystemHomeView() {
             onClick={() => setCurrentTab('UIKIT')}
             className="h-9 px-3.5 rounded-xl inline-flex items-center justify-center gap-1.5 text-xs font-semibold cursor-pointer transition-all bg-zinc-900 dark:bg-[#EDEDEF] hover:bg-zinc-800 dark:hover:bg-white text-white dark:text-zinc-950 shadow-xs active:scale-[0.98] whitespace-nowrap"
           >
-            <span>Explore 99 Components</span>
+            <span>Explore {KIT_COMPONENT_COUNT} Components</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
 
@@ -479,7 +478,7 @@ export function DesignSystemHomeView() {
 
               <div className="h-4 w-px bg-zinc-300/70 dark:bg-white/[0.08] shrink-0" />
 
-              {/* Horizontal Components Ribbon (Supporting All 99 Elements) */}
+              {/* Horizontal Components Ribbon (Supporting All {KIT_COMPONENT_COUNT} Elements) */}
               <div className="flex items-center gap-1.5 shrink-0">
                 {filteredComponents.map((c) => (
                   <button
@@ -1141,7 +1140,7 @@ export function DesignSystemHomeView() {
               <div className="space-y-1 min-w-0">
                 <div className="flex items-center gap-1.5">
                   <h3 className="text-xs sm:text-sm font-bold text-zinc-950 dark:text-white">
-                    Keyboard Velocity &amp; 99 Elements
+                    Keyboard Velocity &amp; {KIT_COMPONENT_COUNT} Elements
                   </h3>
                 </div>
                 <p className="text-[11px] sm:text-xs text-zinc-600 dark:text-[#92929B] leading-relaxed">
@@ -1196,7 +1195,7 @@ export function DesignSystemHomeView() {
             <span className="font-mono text-xs sm:text-sm font-bold text-zinc-950 dark:text-white">
               UI \ [99]
             </span>
-            <span className="text-[10px] font-mono text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">99 Elements</span>
+            <span className="text-[10px] font-mono text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">{KIT_COMPONENT_COUNT} Elements</span>
           </div>
 
           <nav className="flex items-center gap-3 sm:gap-4 text-xs font-mono text-zinc-500 dark:text-zinc-400" aria-label="Footer Navigation">
@@ -1207,7 +1206,7 @@ export function DesignSystemHomeView() {
                 onClick={() => setCurrentTab(tab)}
                 className="hover:text-zinc-950 dark:hover:text-white transition-colors cursor-pointer"
               >
-                {tab === 'UIKIT' ? '99 Components' : tab === 'DOCS' ? 'API Docs' : tab === 'FOUNDATIONS' ? 'Foundations' : 'Blocks'}
+                {tab === 'UIKIT' ? `${KIT_COMPONENT_COUNT} Components` : tab === 'DOCS' ? 'API Docs' : tab === 'FOUNDATIONS' ? 'Foundations' : 'Blocks'}
               </button>
             ))}
           </nav>
@@ -1215,7 +1214,7 @@ export function DesignSystemHomeView() {
 
         <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-white/[0.03] flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-mono text-zinc-500">
           <span>© 2026 UI \ [99] · MIT Licensed</span>
-          <span>Dual Obsidian / Light Primitives · 99 Certified Elements</span>
+          <span>Dual Obsidian / Light Primitives · {KIT_COMPONENT_COUNT} Certified Elements</span>
         </div>
       </footer>
     </div>

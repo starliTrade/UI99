@@ -75,6 +75,7 @@ export function ColorPicker({
       {/* Main Preview Swatch & Hex input */}
       <div className="flex items-center gap-2.5">
         <div
+          aria-hidden="true"
           className="w-9 h-9 rounded-xl border border-black/10 dark:border-white/10 shrink-0 shadow-inner transition-transform active:scale-95"
           style={{ backgroundColor: color }}
         />
@@ -84,6 +85,7 @@ export function ColorPicker({
             type="text"
             value={color.replace('#', '')}
             onChange={(e) => handleColorChange(`#${e.target.value}`)}
+            aria-label="Hex color value"
             className="w-full bg-transparent text-xs font-mono text-zinc-900 dark:text-zinc-100 outline-none uppercase"
             maxLength={6}
           />
@@ -106,6 +108,7 @@ export function ColorPicker({
             type="color"
             value={color.startsWith('#') && color.length === 7 ? color : '#3B82F6'}
             onChange={(e) => handleColorChange(e.target.value)}
+            aria-label="Custom color"
             className="absolute -top-2 -left-2 w-[120%] h-12 cursor-pointer opacity-0"
           />
           <div
@@ -136,7 +139,7 @@ export function ColorPicker({
           <button
             type="button"
             onClick={handleEyeDropper}
-            title="Pick color from screen"
+            aria-label="Pick color from screen"
             className="w-5 h-5 rounded-lg border border-black/10 dark:border-white/10 flex items-center justify-center bg-zinc-100 dark:bg-white/[0.04] text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             <Pipette className="w-3 h-3" />

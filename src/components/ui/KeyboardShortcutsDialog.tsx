@@ -79,28 +79,28 @@ export function KeyboardShortcutsDialog({
 
         <div className="flex flex-col gap-6 pt-4">
           {groups.map((group) => (
-            <div key={group.category} className="flex flex-col gap-2.5">
+            <section key={group.category} aria-label={`${group.category} shortcuts`} className="flex flex-col gap-2.5">
               <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                 {group.category}
               </h4>
-              <div className="flex flex-col divide-y divide-black/[0.04] dark:divide-white/[0.03]">
+              <dl className="flex flex-col divide-y divide-black/[0.04] dark:divide-white/[0.03]">
                 {group.shortcuts.map((sc, idx) => (
                   <div
                     key={idx}
                     className="flex items-center justify-between py-2.5 text-xs text-zinc-700 dark:text-zinc-300"
                   >
-                    <span>{sc.description}</span>
-                    <div className="flex items-center gap-1">
+                    <dt>{sc.description}</dt>
+                    <dd className="flex items-center gap-1">
                       {sc.keys.map((k, kIdx) => (
                         <Kbd key={kIdx} size="sm">
                           {k}
                         </Kbd>
                       ))}
-                    </div>
+                    </dd>
                   </div>
                 ))}
-              </div>
-            </div>
+              </dl>
+            </section>
           ))}
         </div>
       </DialogContent>
