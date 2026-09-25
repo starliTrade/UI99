@@ -12,7 +12,9 @@ import { AIService } from './server/ai.js';
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  // Freebuff injects the port it expects the preview to listen on; honor it and
+  // fall back to 3000 for plain local `bun run dev`.
+  const PORT = Number(process.env.PORT) || 3000;
 
   app.use(express.json({ limit: '20mb' }));
   app.use(express.urlencoded({ extended: true, limit: '20mb' }));
