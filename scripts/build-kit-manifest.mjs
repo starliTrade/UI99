@@ -1,18 +1,36 @@
 /**
- * UI99 (@99/ui) — dist-kit package manifest generator (Phase 2.2)
+ * UI99 (@99/ui) — dist-kit package manifest generator (Phase 2.2 / v2)
  * Reads the root package.json (name/version) and emits a publish-ready
  * package.json + README.md into dist-kit/.
  * Run: bun run lib:manifest   (invoked by lib:build)
+ *
+ * v2 publish-readiness (audit P0.1):
+ *   - dependencies mirrored from the SHARED KIT_RUNTIME_DEPS source
+ *     (scripts/kit-deps.mjs) — 29 runtime deps, no manual drift
+ *   - porcelain.css shipped + exported (third stylesheet)
+ *   - files whitelist covers every emitted artifact
+ *   - sideEffects scoped to CSS only → JS bundles tree-shake
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { KIT_RUNTIME_DEPS } from './kit-deps.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = resolve(root, 'dist-kit');
 mkdirSync(outDir, { recursive: true });
 
 const rootPkg = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8'));
+
+const missingDeps = KIT_RUNTIME_DEPS.filter((d) => !rootPkg.dependencies?.[d]);
+if (missingDeps.length > 0) {
+  console.error(`[kit-manifest] ✗ root package.json is missing runtime deps: ${missingDeps.join(', ')}`);
+  process.exit(1);
+}
+
+const dependencies = Object.fromEntries(
+  KIT_RUNTIME_DEPS.map((d) => [d, rootPkg.dependencies[d]])
+);
 
 const pkg = {
   name: '@99/ui',
@@ -21,6 +39,7 @@ const pkg = {
     'UI99 — a velvet-obsidian, WCAG 2.2-audited React component kit. shadcn-grade DX: copy-anywhere primitives, dual theme (Obsidian Dark / Porcelain Light), axe-clean.',
   license: 'MIT',
   type: 'module',
+  // Only CSS files have build-time side effects; the JS bundle tree-shakes.
   sideEffects: ['**/*.css'],
   main: './index.cjs',
   module: './index.js',
@@ -35,10 +54,23 @@ const pkg = {
     './styles.css': './ui99.css',
     './dark.css': './dark.css',
     './light.css': './light.css',
+    './porcelain.css': './porcelain.css',
+    './tailwind.css': './tailwind.css',
     './registry.json': './registry.json',
     './package.json': './package.json',
   },
-  files: ['index.js', 'index.cjs', 'ui99.css', 'dark.css', 'light.css', 'types', 'cli.js', 'registry.json'],
+  files: [
+    'index.js',
+    'index.cjs',
+    'ui99.css',
+    'dark.css',
+    'light.css',
+    'porcelain.css',
+    'tailwind.css',
+    'types',
+    'cli.js',
+    'registry.json',
+  ],
   keywords: [
     'react',
     'ui',
@@ -50,27 +82,14 @@ const pkg = {
     'accessibility',
     'wcag',
     'rtl',
+    'component-library',
+    'shadcn',
   ],
   peerDependencies: {
     react: '^18.0.0 || ^19.0.0',
     'react-dom': '^18.0.0 || ^19.0.0',
   },
-  dependencies: {
-    '@radix-ui/react-accordion': rootPkg.dependencies['@radix-ui/react-accordion'],
-    '@radix-ui/react-dialog': rootPkg.dependencies['@radix-ui/react-dialog'],
-    '@radix-ui/react-dropdown-menu': rootPkg.dependencies['@radix-ui/react-dropdown-menu'],
-    '@radix-ui/react-popover': rootPkg.dependencies['@radix-ui/react-popover'],
-    '@radix-ui/react-slider': rootPkg.dependencies['@radix-ui/react-slider'],
-    '@radix-ui/react-switch': rootPkg.dependencies['@radix-ui/react-switch'],
-    '@radix-ui/react-tabs': rootPkg.dependencies['@radix-ui/react-tabs'],
-    '@radix-ui/react-tooltip': rootPkg.dependencies['@radix-ui/react-tooltip'],
-    'class-variance-authority': rootPkg.dependencies['class-variance-authority'],
-    clsx: rootPkg.dependencies.clsx,
-    cmdk: rootPkg.dependencies.cmdk,
-    'lucide-react': rootPkg.dependencies['lucide-react'],
-    motion: rootPkg.dependencies.motion,
-    'tailwind-merge': rootPkg.dependencies['tailwind-merge'],
-  },
+  dependencies,
   repository: {
     type: 'git',
     url: 'git+https://github.com/starliTrade/UI99.git',
@@ -101,6 +120,9 @@ const defaultReadmeLines = [
   '```',
   '',
   'Theme protocol: toggle `.dark` / `.light` on `<html>` (default: dark).',
+  'Warm-light preset: import `@99/ui/porcelain.css` and toggle `.porcelain`.',
+  '',
+  'Own the source instead? `npx @99/ui init` then `npx @99/ui add button`.',
   '',
 ];
 const readme = existsSync(readmePath)
@@ -115,5 +137,5 @@ copyFileSync(resolve(root, 'public/registry.json'), resolve(outDir, 'registry.js
 
 console.log('[kit-manifest] package.json + README.md written to dist-kit/');
 console.log(
-  `[kit-manifest] ${pkg.name}@${pkg.version} — ${Object.keys(pkg.exports).length - 1} export paths`,
+  `[kit-manifest] ${pkg.name}@${pkg.version} — ${Object.keys(pkg.exports).length - 1} export paths, ${Object.keys(dependencies).length} runtime deps`
 );

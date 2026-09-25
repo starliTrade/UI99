@@ -1,0 +1,180 @@
+/**
+ * UI99 — Tailwind v4 Semantic Class Layer (@99/ui/tailwind)
+ *
+ * The daisyUI-class gateway: consumers who prefer semantic classes over
+ * primitives can write `<button class="ui-btn ui-btn-primary">` — generated
+ * FROM the same audited token layer the React kit uses, so the five-state
+ * contract (default/hover/press/focus-visible/disabled) and the contrast
+ * guarantees hold in CSS-only usage too.
+ *
+ * Usage (Tailwind v4 CSS-first):
+ *   @import "tailwindcss";
+ *   @import "@99/ui/styles.css";        /* token layer (required) *​/
+ *   @import "@99/ui/tailwind.css";      /* this file — semantic classes *​/
+ *
+ * Theme protocol is identical to the kit: `.dark` / `.light` on <html>.
+ *
+ * NOTE: shipped as a plain CSS layer (not a JS plugin) so it works with the
+ * Tailwind v4 CSS-first config with zero build steps — the same philosophy as
+ * daisyUI v5, but sourced from UI99's audited tokens.
+ */
+
+@layer components {
+  /* ── ui-btn — the Button primitive as a class ─────────────────────── */
+  .ui-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px; /* Apple HIG touch target */
+    padding: 0 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color var(--duration-fast, 150ms) var(--ease-ui99, ease-out),
+      box-shadow var(--duration-fast, 150ms) var(--ease-ui99, ease-out),
+      transform var(--duration-fast, 150ms) var(--ease-ui99, ease-out);
+    outline: none;
+    border: 1px solid transparent;
+  }
+  .ui-btn:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+  .ui-btn:focus-visible {
+    box-shadow: var(--focus-ring, 0 0 0 2px canvas, 0 0 0 4px rgba(16, 185, 129, 0.55));
+  }
+  .ui-btn:disabled,
+  .ui-btn[aria-disabled='true'] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Variants — intent fills come straight from the audited token pairs */
+  .ui-btn-primary {
+    background: var(--ink-fill);
+    color: var(--ink-on-fill);
+  }
+  .ui-btn-primary:hover:not(:disabled) {
+    background: color-mix(in oklab, var(--ink-fill) 92%, transparent);
+  }
+  .ui-btn-secondary {
+    background: var(--bg-card-hover, var(--bg-elevated));
+    color: var(--text-primary);
+    border-color: var(--border-hairline);
+  }
+  .ui-btn-secondary:hover:not(:disabled) {
+    background: var(--state-hover);
+  }
+  .ui-btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-strong, var(--border-hairline));
+  }
+  .ui-btn-outline:hover:not(:disabled) {
+    background: var(--state-hover);
+  }
+  .ui-btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+  }
+  .ui-btn-ghost:hover:not(:disabled) {
+    background: var(--state-hover);
+    color: var(--text-primary);
+  }
+  .ui-btn-destructive {
+    background: var(--intent-rose, #f43f5e);
+    color: var(--ink-on-fill);
+  }
+  .ui-btn-destructive:hover:not(:disabled) {
+    background: color-mix(in oklab, var(--intent-rose, #f43f5e) 88%, black);
+  }
+
+  /* Sizes */
+  .ui-btn-xs { min-height: 32px; padding: 0 0.625rem; font-size: 0.75rem; border-radius: 0.625rem; }
+  .ui-btn-sm { min-height: 36px; padding: 0 0.75rem; font-size: 0.8125rem; }
+  .ui-btn-lg { min-height: 52px; padding: 0 1.25rem; font-size: 1rem; }
+
+  /* ── ui-card — the Card/Surface primitive as a class ──────────────── */
+  .ui-card {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-hairline);
+    border-radius: 1rem;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+      0 18px 40px -10px rgba(0, 0, 0, 0.65);
+    transition: box-shadow var(--duration-normal, 250ms) var(--ease-ui99, ease-out),
+      background-color var(--duration-normal, 250ms) var(--ease-ui99, ease-out);
+  }
+  .ui-card-hover:hover {
+    background: var(--bg-card-hover, var(--bg-card));
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+      0 22px 48px -10px rgba(0, 0, 0, 0.8);
+  }
+
+  /* ── ui-input — the Input primitive as a class ────────────────────── */
+  .ui-input {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 0.875rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-hairline);
+    outline: none;
+    transition: border-color var(--duration-fast, 150ms) var(--ease-ui99, ease-out),
+      background-color var(--duration-fast, 150ms) var(--ease-ui99, ease-out);
+  }
+  .ui-input::placeholder {
+    color: var(--text-muted, rgba(146, 146, 155, 0.7));
+  }
+  .ui-input:hover:not(:disabled) {
+    border-color: var(--border-strong, var(--border-hairline));
+  }
+  .ui-input:focus-visible {
+    box-shadow: var(--focus-ring, 0 0 0 2px canvas, 0 0 0 4px rgba(16, 185, 129, 0.55));
+    border-color: transparent;
+  }
+  .ui-input:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .ui-input[aria-invalid='true'] {
+    border-color: var(--intent-rose, #f43f5e);
+  }
+
+  /* ── ui-badge — the Badge primitive as a class ────────────────────── */
+  .ui-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    height: 1.5rem;
+    padding: 0 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    background: var(--state-selected);
+    color: var(--text-primary);
+    border: 1px solid var(--border-hairline);
+  }
+  .ui-badge-success { background: color-mix(in oklab, var(--intent-emerald, #10b981) 18%, transparent); color: var(--intent-emerald, #10b981); }
+  .ui-badge-warning { background: color-mix(in oklab, var(--intent-amber, #f59e0b) 18%, transparent); color: var(--intent-amber, #f59e0b); }
+  .ui-badge-danger  { background: color-mix(in oklab, var(--intent-rose, #f43f5e) 18%, transparent); color: var(--intent-rose, #f43f5e); }
+
+  /* ── ui-divider / ui-surface helpers ──────────────────────────────── */
+  .ui-surface {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hairline);
+    border-radius: 0.75rem;
+  }
+  .ui-divider {
+    height: 1px;
+    background: var(--border-hairline);
+    border: 0;
+  }
+}

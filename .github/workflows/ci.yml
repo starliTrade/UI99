@@ -27,20 +27,13 @@ jobs:
       - name: Tests (behavioral + axe + contrast)
         run: bun run test
 
-      - name: Registry validation
+      - name: Registry validation (schema + catalog + a11y metadata)
         run: |
           bun run registry:build
-          node -e "
-            const r = require('./public/registry.json');
-            const names = new Set(r.items.map(i => i.name));
-            const dangling = [];
-            for (const item of r.items)
-              for (const d of item.registryDependencies ?? [])
-                if (!names.has(d)) dangling.push(item.name + ' -> ' + d);
-            if (dangling.length) { console.error('dangling refs:', dangling); process.exit(1); }
-            if (r.items.length < 20) { console.error('registry suspiciously small'); process.exit(1); }
-            console.log('registry OK:', r.items.length, 'items');
-          "
+          bun run registry:validate
 
       - name: Kit build (ESM/CJS/d.ts/CSS + npm pack dry-run)
         run: bun run lib:build && cd dist-kit && npm pack --dry-run
+
+      - name: Publish-readiness audit (manifest fields + files whitelist)
+        run: node scripts/audit-package.mjs

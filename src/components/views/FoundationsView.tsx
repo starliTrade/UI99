@@ -30,7 +30,7 @@ import { Reveal } from '../ui/motion';
 import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 
 export function FoundationsView() {
-  const { themeMode, addToast } = useApp();
+  const { themeMode, setThemeMode, addToast } = useApp();
   const isDark = themeMode === 'dark';
   const [copiedToken, setCopiedToken] = useState<string | null>(null);
 
@@ -235,6 +235,80 @@ export function FoundationsView() {
               <li>• Keyboard-first ergonomics with J/K/C shortcuts</li>
               <li>• Copy-source modularity matching shadcn/ui</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. LIVE THEME LAB — Porcelain ↔ Obsidian (audit P3.11) */}
+      <section className="space-y-6">
+        <div className="space-y-1">
+          <h2 className="text-xl font-bold text-zinc-950 dark:text-white flex items-center gap-2">
+            <Palette className="w-5 h-5 text-emerald-500" />
+            <span>Live Theme Lab — Porcelain ↔ Obsidian</span>
+          </h2>
+          <p className="text-xs text-zinc-500">
+            Flip the whole canvas between the two audited themes and watch every token pair react in real time.
+          </p>
+        </div>
+
+        <div className="p-5 sm:p-7 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-5">
+          <div className="flex flex-wrap items-center gap-3">
+            <Button
+              variant={isDark ? 'outline' : 'primary'}
+              size="sm"
+              icon={<SunMoon className="w-3.5 h-3.5" />}
+              onClick={() => setThemeMode('light')}
+            >
+              Porcelain (Light)
+            </Button>
+            <Button
+              variant={isDark ? 'primary' : 'outline'}
+              size="sm"
+              icon={<SunMoon className="w-3.5 h-3.5" />}
+              onClick={() => setThemeMode('dark')}
+            >
+              Obsidian (Dark)
+            </Button>
+            <span className="text-[11px] font-mono text-zinc-400">
+              active: {themeMode} · data-theme="{themeMode}"
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { label: 'Canvas', token: '--bg-canvas', dark: '#06070A', light: '#F5F5F8' },
+              { label: 'Surface', token: '--bg-surface', dark: '#0B0C11', light: '#FFFFFF' },
+              { label: 'Card', token: '--bg-card', dark: '#0E0E14', light: '#FFFFFF' },
+              { label: 'Elevated', token: '--bg-elevated', dark: '#131318', light: '#FFFFFF' },
+            ].map((row) => (
+              <button
+                key={row.token}
+                type="button"
+                onClick={() => copyValue(`var(${row.token})`, row.token)}
+                className="text-left p-3 rounded-2xl bg-zinc-100/70 dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
+              >
+                <div
+                  className="w-full h-12 rounded-xl border border-black/[0.06] dark:border-white/[0.05]"
+                  style={{ background: `var(${row.token})` }}
+                />
+                <div className="text-[11px] font-semibold text-zinc-900 dark:text-white">{row.label}</div>
+                <div className="font-mono text-[10px] text-zinc-400">{isDark ? row.dark : row.light}</div>
+                <div className="font-mono text-[10px] text-emerald-500/80">{row.token}</div>
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="p-4 rounded-2xl bg-(--bg-card) border border-(--border-hairline) space-y-1.5">
+              <div className="text-xs font-semibold text-(--text-primary)">ui-card sample</div>
+              <div className="text-[11px] text-(--text-secondary)">Tokens resolve live in both themes.</div>
+            </div>
+            <div className="p-4 rounded-2xl bg-(--bg-card) border border-(--border-hairline) flex items-center justify-center">
+              <Button variant="primary" size="sm">Primary</Button>
+            </div>
+            <div className="p-4 rounded-2xl bg-(--bg-card) border border-(--border-hairline) flex items-center justify-center">
+              <span className="ui-badge ui-badge-success">contrast-verified</span>
+            </div>
           </div>
         </div>
       </section>

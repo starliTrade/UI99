@@ -34,8 +34,8 @@ export function Checkbox({
 
   return (
     <label
-      className={`inline-flex items-start gap-2.5 cursor-pointer select-none ${
-        disabled ? 'opacity-40 cursor-not-allowed' : ''
+      className={`inline-flex items-start gap-2.5 select-none ${
+        disabled ? 'opacity-40 cursor-not-allowed pointer-events-none' : 'cursor-pointer'
       } ${className}`}
     >
       {/* Native input for keyboard & assistive-tech support (WCAG 4.1.2) */}
@@ -44,7 +44,13 @@ export function Checkbox({
         className="peer sr-only"
         checked={checked}
         disabled={disabled}
-        onChange={(e) => onChange(e.target.checked)}
+        onChange={(e) => {
+          // jsdom fires change events on synthetic clicks even on disabled
+          // inputs; real browsers never do. Guard the handler so a disabled
+          // checkbox can never emit a state change.
+          if (disabled) return;
+          onChange(e.target.checked);
+        }}
       />
       <div
         className={`relative flex items-center justify-center shrink-0 mt-0.5 transition-all duration-150 peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500/55 ${boxSize} ${

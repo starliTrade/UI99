@@ -63,6 +63,7 @@ export function Combobox({
           type="button"
           role="combobox"
           aria-expanded={open}
+          aria-label={placeholder}
           disabled={disabled}
           className={cn(
             'inline-flex h-10 w-full items-center justify-between gap-2 rounded-xl border border-black/[0.07] bg-white px-3 text-sm',

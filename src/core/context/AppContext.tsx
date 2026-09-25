@@ -78,14 +78,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const root = document.documentElement;
     const body = document.body;
-    if (themeMode === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
+    // Dual protocol: the legacy .dark/.light classes AND the standard
+    // data-theme attribute (daisyUI/Tailwind v4 convention, audit P2.8).
+    const theme = themeMode === 'dark' ? 'dark' : 'light';
+    root.classList.add(theme);
+    root.classList.remove(theme === 'dark' ? 'light' : 'dark');
+    root.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
       body.classList.add('bg-[#06070A]', 'text-[#EDEDEF]');
       body.classList.remove('bg-[#F4F4F6]', 'text-[#111113]');
     } else {
-      root.classList.add('light');
-      root.classList.remove('dark');
       body.classList.add('bg-[#F4F4F6]', 'text-[#111113]');
       body.classList.remove('bg-[#06070A]', 'text-[#EDEDEF]');
     }

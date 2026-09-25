@@ -1,0 +1,51 @@
+name: Bug report
+about: Report a defect in the kit, docs, or tooling
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug. UI99 is standards-first —
+        please include the audit context so we can reproduce fast.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Kit component (React)
+        - Registry / CLI (@99/ui add)
+        - Docs site
+        - Tokens / theming
+        - Packaging (npm)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      placeholder: A clear description including a minimal reproduction.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: a11y
+    attributes:
+      label: Accessibility context
+      options:
+        - label: This is a WCAG 2.2 / axe violation
+        - label: This is a keyboard interaction issue
+        - label: This is an RTL issue
+        - label: Not accessibility-related
+  - type: input
+    id: version
+    attributes:
+      label: @99/ui version
+      placeholder: 1.0.0
+    validations:
+      required: true

@@ -49,13 +49,15 @@ import {
   Menu,
   X,
   RefreshCw,
+  History,
+  Rocket,
   Folder,
   Bold,
   Calendar,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
 import { REGISTRY_COMPONENTS, ComponentRegistryItem } from '../../registry/registryData';
-import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
+import { KIT_COMPONENT_COUNT, KIT_VERSION } from '../../generated/kit-count';
 import {
   Button,
   Card,
@@ -161,6 +163,7 @@ import {
   CommandEmpty,
   CommandGroup,
   CommandItem,
+  CommandShortcut,
   Confetti as ConfettiPrimitive,
   Dialog as DialogRoot,
   DialogTrigger,
@@ -249,6 +252,7 @@ type DocGuideSection =
   | 'theming'
   | 'npm-guide'
   | 'cli'
+  | 'changelog'
   | 'typography';
 
 type PackageManager = 'pnpm' | 'npm' | 'yarn' | 'bun';
@@ -289,6 +293,20 @@ export function DocsView() {
   const [viewportWidth, setViewportWidth] = useState<ViewportSize>('100%');
   const [searchQuery, setSearchQuery] = useState('');
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  // ⌘K Command Palette — jumps to any docs section (audit P3.10)
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setPaletteOpen((v) => !v);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   // Live Component Playground State
   const [demoBtnVariant, setDemoBtnVariant] = useState<'primary' | 'secondary' | 'outline' | 'ghost' | 'rose'>('primary');
@@ -373,6 +391,7 @@ export function DocsView() {
       { id: 'theming', title: 'Theming & Tokens', isGuide: true },
       { id: 'npm-guide', title: 'Registry Architecture', isGuide: true },
       { id: 'cli', title: 'CLI Reference', isGuide: true },
+      { id: 'changelog', title: 'Changelog & Releases', isGuide: true },
     ];
     const comps = REGISTRY_COMPONENTS.map((c) => ({ id: c.id, title: c.title, isGuide: false }));
     return [...guides, ...comps];
@@ -407,6 +426,45 @@ export function DocsView() {
 
   return (
     <div className="w-full space-y-6">
+      {/* ⌘K Command Palette (audit P3.10) — jumps straight to any section */}
+      <CommandDialog open={paletteOpen} onOpenChange={setPaletteOpen}>
+        <CommandInput placeholder="Jump to a component or guide…" />
+        <CommandList>
+          <CommandEmpty>No matches.</CommandEmpty>
+          <CommandGroup heading="Getting Started">
+            <CommandItem onSelect={() => { setActiveSection('intro'); setPaletteOpen(false); }}>
+              Introduction
+            </CommandItem>
+            <CommandItem onSelect={() => { setActiveSection('installation'); setPaletteOpen(false); }}>
+              Installation
+            </CommandItem>
+            <CommandItem onSelect={() => { setActiveSection('theming'); setPaletteOpen(false); }}>
+              Theming &amp; Tokens
+            </CommandItem>
+            <CommandItem onSelect={() => { setActiveSection('cli'); setPaletteOpen(false); }}>
+              CLI Reference
+            </CommandItem>
+            <CommandItem onSelect={() => { setActiveSection('changelog'); setPaletteOpen(false); }}>
+              Changelog &amp; Releases
+            </CommandItem>
+          </CommandGroup>
+          <CommandGroup heading="Components">
+            {REGISTRY_COMPONENTS.map((c) => (
+              <CommandItem
+                key={c.id}
+                value={`${c.title} ${c.name} ${c.category}`}
+                onSelect={() => { setActiveSection(c.id); setPaletteOpen(false); }}
+              >
+                {c.title}
+                <CommandShortcut className="ml-auto text-[10px] font-mono text-zinc-500">
+                  {c.category}
+                </CommandShortcut>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
+
       {/* ── 1. TOP STATUS BAR / BREADCRUMB / REGISTRY QUICK LINK ── */}
       <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 border-b border-black/[0.06] dark:border-white/[0.04] text-xs font-mono">
         <div className="flex items-center gap-1.5 sm:gap-2 text-zinc-500 dark:text-zinc-400">
@@ -502,6 +560,7 @@ export function DocsView() {
                     { id: 'theming', label: 'Theming & Tokens', icon: Palette },
                     { id: 'npm-guide', label: 'Registry Architecture', icon: Package },
                     { id: 'cli', label: 'CLI Reference', icon: FolderGit2 },
+                    { id: 'changelog', label: 'Changelog & Releases', icon: History },
                   ].map((item) => {
                     const Icon = item.icon;
                     const isActive = activeSection === item.id;
@@ -577,6 +636,7 @@ export function DocsView() {
                 <option value="theming">Theming & Tokens</option>
                 <option value="npm-guide">Registry Architecture</option>
                 <option value="cli">CLI Reference</option>
+                <option value="changelog">Changelog & Releases</option>
               </optgroup>
               {Object.entries(categories).map(([cat, items]) => (
                 <optgroup key={cat} label={cat}>
@@ -661,6 +721,7 @@ export function DocsView() {
                 { id: 'theming', label: 'Theming & Tokens', icon: Palette },
                 { id: 'npm-guide', label: 'Registry Architecture', icon: Package },
                 { id: 'cli', label: 'CLI Reference', icon: FolderGit2 },
+                { id: 'changelog', label: 'Changelog & Releases', icon: History },
               ].map((item) => {
                 const Icon = item.icon;
                 const isActive = activeSection === item.id;
@@ -2589,7 +2650,7 @@ export function DocsView() {
             <article className="space-y-8">
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
                 <div className="inline-flex items-center h-7 px-3 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
-                  {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
+                  v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 </div>
                 <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
                   Introduction.
@@ -2997,6 +3058,132 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   </span>
                   <span className="text-sm font-semibold text-zinc-900 dark:text-white">
                     Registry Architecture
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection('changelog');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="flex flex-col items-end gap-1 p-3 rounded-2xl hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                >
+                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
+                    Next <ArrowRight className="w-3 h-3" />
+                  </span>
+                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                    Changelog &amp; Releases
+                  </span>
+                </button>
+              </footer>
+            </article>
+          )}
+
+          {/* GUIDE 6: CHANGELOG & RELEASES (audit P3 — versioning on the site) */}
+          {activeSection === 'changelog' && (
+            <article className="space-y-8">
+              <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
+                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                  Changelog &amp; Releases
+                </h1>
+                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                  Every release of UI \ [99], versioned with Changesets and gated by the full quality pipeline.
+                </p>
+              </header>
+
+              {/* Current release — version is GENERATED (src/generated/kit-count.ts), never hard-coded */}
+              <div className="p-5 sm:p-6 rounded-3xl bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-4">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white text-xs font-mono font-bold">
+                    <Rocket className="w-3.5 h-3.5 text-emerald-400" />
+                    v{KIT_VERSION}
+                  </span>
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    LATEST · STABLE
+                  </span>
+                  <span className="text-xs font-mono text-zinc-400">@99/ui — first stable, publish-ready</span>
+                </div>
+
+                <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>
+                      <strong className="text-zinc-950 dark:text-white">Registry v2.1 (shadcn-grade).</strong>{' '}
+                      {KIT_COMPONENT_COUNT} components scanned from source with title/description/category/keywords and a verified meta.a11y contract — the docs and the registry can never drift again.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>
+                      <strong className="text-zinc-950 dark:text-white">CLI v2 (plug-able).</strong>{' '}
+                      Multi-registry resolution (flag → components.json → env → repo → bundled snapshot → published URL), init with resolvedPaths, search, --dry-run.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>
+                      <strong className="text-zinc-950 dark:text-white">Publish-ready npm kit.</strong>{' '}
+                      exports map (8 paths incl. porcelain + tailwind.css), files whitelist, peerDependencies react/react-dom, sideEffects CSS-only — audited by a CI gate.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>
+                      <strong className="text-zinc-950 dark:text-white">Audit matrix.</strong>{' '}
+                      20 heavy primitives axe-clean + disabled + focus-ui99 gates; All-Props Lab covers 31 interactive primitives with live props and copy-ready JSX.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>
+                      <strong className="text-zinc-950 dark:text-white">daisyUI-class gateway.</strong>{' '}
+                      @99/ui/tailwind.css semantic classes (ui-btn, ui-card, ui-input, ui-badge) generated from the same audited token layer.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Release process — the flow docs/RELEASE.md prescribes */}
+              <div className="space-y-3">
+                <h2 className="text-xl font-bold text-zinc-950 dark:text-white flex items-center gap-2">
+                  <History className="w-5 h-5 text-emerald-400" />
+                  How releases are cut
+                </h2>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                  Versions are minted by Changesets — never bumped by hand. A pull request carrying a changeset
+                  file lands its notes in the generated CHANGELOG.md and GitHub Releases on the next{' '}
+                  <code className="mx-1 px-1 py-0.5 rounded bg-zinc-200/60 dark:bg-white/[0.06] font-mono text-[11px]">version-packages</code>{' '}
+                  run. The full checklist lives in{' '}
+                  <code className="px-1 py-0.5 rounded bg-zinc-200/60 dark:bg-white/[0.06] font-mono text-[11px]">docs/RELEASE.md</code>.
+                </p>
+                <CodeBlock
+                  code={`bun run changeset          # describe the change (semver intent)\nbun run version-packages   # bump version + generate CHANGELOG.md\nbun run lib:build          # rebuild the kit with the new version baked in\ncd dist-kit && npm publish`}
+                  language="bash"
+                  showLineNumbers={false}
+                />
+              </div>
+
+              <div className="p-4 rounded-2xl border border-black/[0.05] dark:border-white/[0.04] bg-white/[0.02] text-[11px] font-mono text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                The version shown on this page, the header badge, and the registry envelope are all generated
+                from one source — <code className="text-emerald-400">src/generated/kit-count.ts</code> — so the site can never advertise a version the package is not.
+              </div>
+
+              {/* Pagination */}
+              <footer className="flex items-center justify-between pt-10 border-t border-black/[0.06] dark:border-white/[0.04]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection('cli');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="flex flex-col items-start gap-1 p-3 rounded-2xl hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                >
+                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
+                    <ArrowLeft className="w-3 h-3" /> Previous
+                  </span>
+                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                    CLI Reference
                   </span>
                 </button>
 

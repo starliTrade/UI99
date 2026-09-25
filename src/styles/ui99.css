@@ -7,7 +7,8 @@
  */
 
 /* ======================= OBSIDIAN DARK (default) ======================= */
-.dark {
+.dark,
+[data-theme='dark'] {
   /* Surfaces with seamless velvet continuity (low-delta tonal progression) */
   --bg-canvas: #060709;
   --bg-surface: #090A0E;
@@ -58,6 +59,7 @@
 }
 
 /* ======================= PORCELAIN LIGHT ======================= */
+[data-theme='light'],
 .light {
   --bg-canvas: #F5F5F8;
   --bg-surface: #FFFFFF;
@@ -106,7 +108,8 @@
 
 /* ======================= SHARED / THEME-AGNOSTIC ======================= */
 .dark,
-.light {
+.light,
+[data-theme] {
   /* Motion durations (Apple HIG 150–500ms band) */
   --duration-instant: 75ms;
   --duration-fast: 120ms;

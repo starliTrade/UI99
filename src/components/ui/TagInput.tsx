@@ -82,11 +82,12 @@ export function TagInput({
             <span>{tag}</span>
             <button
               type="button"
+              aria-label={`Remove tag ${tag}`}
               onClick={(e) => {
                 e.stopPropagation();
                 removeTag(idx);
               }}
-              className="p-0.5 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+              className="p-0.5 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 focus-visible:outline-none focus-ui99-inset"
             >
               <X className="w-3 h-3" />
             </button>
@@ -106,6 +107,7 @@ export function TagInput({
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             onKeyDown={handleKeyDown}
             placeholder={tags.length === 0 ? placeholder : ''}
+            aria-label={label ?? 'Add tag'}
             className="flex-1 min-w-[120px] bg-transparent text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 outline-none py-0.5"
           />
         )}
@@ -124,8 +126,7 @@ export function TagInput({
               <span>{s}</span>
               <Plus className="w-3 h-3 text-zinc-400" />
             </button>
-          ))}
-        </div>
+          ))}        </div>
       )}
     </div>
   );

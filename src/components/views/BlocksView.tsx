@@ -23,7 +23,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
-import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
+import { KIT_COMPONENT_COUNT, KIT_VERSION } from '../../generated/kit-count';
 import {
   Button,
   Card,
@@ -513,8 +513,7 @@ export function SecuritySettingsBlock() {
     <div className="w-full space-y-8 pb-16">
       {/* PAGE HEADER */}
       <header className="pb-2 space-y-3">
-        <div className="inline-flex items-center h-7 px-3 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
-          {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
+        <div className="inline-flex items-center h-7 px-3 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.05] text-balance">
           Production Blocks.

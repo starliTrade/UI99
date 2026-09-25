@@ -10,6 +10,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../../core/context/AppContext';
 import { useAuth } from '../../core/context/AuthContext';
+import { KIT_VERSION } from '../../generated/kit-count';
 import { Moon, Sun, Globe, SlidersHorizontal, Settings, Github, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -95,10 +96,10 @@ export function TopHeader() {
               </span>
             </div>
 
-            {/* Version / Live Capsule */}
+            {/* Version / Live Capsule — GENERATED from the registry scan (never hard-coded) */}
             <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200/80 dark:border-white/[0.03] text-[10px] font-mono text-zinc-500 dark:text-zinc-400 leading-none">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-              <span>v2.0</span>
+              <span>v{KIT_VERSION}</span>
             </div>
           </div>
         </button>

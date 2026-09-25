@@ -5,9 +5,9 @@
 **The velvet-obsidian React component kit.**
 shadcn-grade DX · WCAG 2.2-audited · axe-clean · RTL-first · Tailwind v4
 
-[![tests](https://img.shields.io/badge/tests-85%2F85-green)](#development) [![axe](https://img.shields.io/badge/axe--core-0%20violations-brightgreen)](#accessibility) [![contrast](https://img.shields.io/badge/contrast-WCAG%20AAA%20verified-blue)](#design-tokens) [![ci](https://img.shields.io/badge/CI-typecheck%20%C2%B7%20tests%20%C2%B7%20registry%20%C2%B7%20pack-blueviolet)](.github/workflows/ci.yml) [![license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
+[![tests](https://img.shields.io/badge/tests-122%2F122-green)](#development) [![axe](https://img.shields.io/badge/axe--core-0%20violations-brightgreen)](#accessibility) [![contrast](https://img.shields.io/badge/contrast-WCAG%20AAA%20verified-blue)](#design-tokens) [![ci](https://img.shields.io/badge/CI-typecheck%20%C2%B7%20tests%20%C2%B7%20registry%20%C2%B7%20pack-blueviolet)](.github/workflows/ci.yml) [![license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
 
-[Getting started](#getting-started) · [Components](#components) · [Theming](#theming) · [Accessibility](#accessibility) · [Roadmap](docs/ROADMAP.md)
+[Getting started](#getting-started) · [Components](#components) · [Theming](#theming) · [Accessibility](#accessibility) · [Releases](docs/RELEASE.md) · [Roadmap](docs/ROADMAP.md)
 
 </div>
 

@@ -14,6 +14,7 @@
     "lib:types": "tsc -p tsconfig.lib.json",
     "lib:manifest": "node scripts/build-kit-manifest.mjs",
     "registry:build": "node scripts/build-registry.mjs",
+    "registry:validate": "node scripts/validate-registry.mjs",
     "tokens:gate": "node scripts/tokens-gate.mjs",
     "tokens:migrate": "node scripts/migrate-tokens.mjs",
     "lib:build": "vite build --config vite.config.lib.ts && npm run lib:css && npm run lib:types && npm run lib:manifest && npm run registry:build",

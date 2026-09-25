@@ -9,7 +9,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
+import { KIT_COMPONENT_COUNT, KIT_VERSION } from '../../generated/kit-count';
 import {
   Sparkles,
   Layers,
@@ -425,7 +425,7 @@ export function UIKitView() {
 
         <div className="flex flex-col items-start gap-2.5">
           <div className="inline-flex items-center h-7 px-3 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
-            {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
+v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           </div>
           <h1 className="text-4xl sm:text-6xl font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.06] text-balance font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]">
             The UI Kit.

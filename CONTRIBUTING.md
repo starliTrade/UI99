@@ -35,9 +35,15 @@ bun run lib:build  # npm kit artifacts → dist-kit/
 
 ### Checklist before opening a PR
 
-- [ ] `bun run test` green (behavioral + axe + contrast)
+- [ ] `bun run test` green (behavioral + axe + contrast + audit matrix)
 - [ ] `bun run lint` green
+- [ ] `bun run tokens:gate` green — zero hard-coded surface/ink hexes
+- [ ] `bun run registry:build && bun run registry:validate` green —
+      every component needs title/description/category/keywords/meta.a11y
+      (add it to `src/registry/registryData.ts` if it's a new primitive)
 - [ ] Component added to the audit matrix in `docs/ROADMAP.md` §1.1
+- [ ] `bun run lib:build` green — the publish-readiness audit
+      (`node scripts/audit-package.mjs`) runs in CI after it
 - [ ] New tokens documented in `src/styles/safa.css` comments and, if
       user-facing, in `docs/standards.md`
 - [ ] Touch targets ≥ 44px, RTL checked (`dir="rtl"` smoke test), reduced
@@ -53,8 +59,31 @@ bun run lib:build  # npm kit artifacts → dist-kit/
 - After touching the kit, run `bun run lib:build` and confirm the bundle
   purity check (no `AppContext`/`AuthContext` references in `dist-kit/index.js`).
 
-## Versioning
+## Versioning & release
 
-Releases are prepared with Changesets (Phase 2.3). Until then, keep
-`package.json` version bumps aligned with meaningful milestone commits and
-document behavior changes in `docs/ROADMAP.md`.
+Releases are versioned with **Changesets**:
+
+```bash
+bun run changeset        # declare the next version + changelog entry
+bun run version-packages # consume changesets → bump + CHANGELOG.md
+bun run release          # publish @99/ui to npm (maintainers)
+```
+
+The npm artifact is built with `bun run lib:build` → `dist-kit/` and gated by
+`node scripts/audit-package.mjs` in CI (exports map, files whitelist,
+peerDependencies, dependency parity). A PR that changes kit code but skips a
+changeset will be flagged in review.
+
+## Registry metadata contract
+
+The registry (`public/registry.json`) is **generated, never hand-edited**:
+
+```bash
+bun run registry:build      # scan src/components/ui → registry + metadata
+bun run registry:validate   # CI gate: schema, catalog, a11y meta, dangling refs
+```
+
+Every `registry:ui` item carries `title`, `description`, `category`,
+`keywords`, and `meta.a11y` (five-state contract + keyboard pattern + WCAG +
+RTL). Editorial metadata lives in `src/registry/registryData.ts`; headless
+modules use the curated fallbacks in `scripts/build-registry.mjs`.

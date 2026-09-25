@@ -105,7 +105,22 @@
 
 ## ⏳ Phase 6 — انتشار رسمی، نسخه‌بندی و حاکمیت پروژه (Final Release) (گام بعدی)
 - [x] راه‌اندازی سیستم خودکار نسخه‌بندی Changesets (`.changeset/` + workflow CI موجود)
+- [x] بخش Changelog & Releases در داکس سایت (گاید ششم؛ نسخه از `KIT_VERSION` تولیدشده — بدون درفت با پکیج)
 - [ ] انتشار رسمی نسخه ۱.۰.۰ روی رجیستری عمومی npm (`@99/ui`) — نیازمند OTP/دسترسی `npm publish` با اکانت سازمانی
 - [x] نهایی‌سازی فایل‌های README، CONTRIBUTING و راهنمای مشارکت عمومی
 - [ ] تست نهایی E2E و ممیزی کیفی در محیط‌های مختلف
-- [ ] **قدم باقی‌مانده برای رقابت با shadcn/daisyUI:** پلی‌گراند All-Props برای ۲۵ کامپوننت باقی‌مانده (الگو: AllPropsPlayground)، صفحه تم زنده Porcelain↔Obsidian، بلوک‌های تمپلیت جدید
+
+## ⚡ Audit Sweep (External Audit Pass — P0→P4 DONE ✅)
+- [x] **P0.1** مانیفست publish-ready: `files` whitelist کامل، `exports` map (۸ مسیر شامل porcelain + tailwind)، `peerDependencies`، `sideEffects:["**/*.css"]`، ۲۸ runtime dep از منبع مشترک `scripts/kit-deps.mjs` + گیت CI `audit-package.mjs`
+- [x] **P0.2** رجیستری shadcn-grade v2.1: ۹۲ کامپوننت با `title/description/category/keywords` (از registryData.ts + fallbackهای کوری‌شده) و `meta.a11y` (پنج حالت + پترن کیبورد + WCAG + RTL)؛ گیت ضد-drift در build-registry
+- [x] **P0.3** CLI v2 پلاگ‌بل: زنجیره رزولوشن (flag → components.json → env → repo checkout → bundled snapshot → published URL)، `--registry/--force/--json/--dry-run`، `search`، `resolvedPaths` + remap ایمپورت به alias میزبان
+- [x] **P1.4** All-Props Playground: ۷ → ۳۱ کامپوننت سنگین با کنترل props زنده و JSX تولیدی کپی‌شدنی
+- [x] **P1.5** ماتریس ممیزی: ۲۰ پریمیتیو axe-clean + گیت disabled (۱۵ کامپوننت) + گیت focus-ui99 — ۳ فیکس a11y واقعی (TagInput aria، RangeSlider aria، Combobox aria-label، گارد disabled در Checkbox) — 122/122 تست سبز
+- [x] **P1.6** گیت CI: `registry:validate` (schema + catalog + meta.a11y + dangling refs + کف ۹۵ آیتم) و `audit-package.mjs`
+- [x] **P2.7** دروازه کلاس‌های semantic Tailwind v4: `@99/ui/tailwind.css` (ui-btn/ui-card/ui-input/ui-badge از توکن‌ها) در پکیج
+- [x] **P2.8** پروتکل دوگانه تم: `data-theme` روی ریشه کنار `.dark/.light` + سوییچر تم کاربر موجود
+- [x] **P3.9** SEO: title/description/keywords/canonical/robots/OG/Twitter کامل، JSON-LD SoftwareApplication، `robots.txt`، `sitemap.xml`
+- [x] **P3.10** ⌘K Command Palette در DocsView (پرش به ۹۹ سکشن با cmdk کیت خودمان)
+- [x] **P3.11** Live Theme Lab (Porcelain↔Obsidian) در FoundationsView با سویچ زنده توکن‌ها
+- [x] **P3.12** mobile drawer داکس (Sheet + جستجو) — موجود و تأییدشده
+- [x] **P4.13** گوورنس: قالب‌های issue (bug/component-proposal)، قالب PR با چک‌لیست §12، CONTRIBUTING (گیت‌ها + قرارداد متادیتای رجیستری + Changesets)، `docs/RELEASE.md`

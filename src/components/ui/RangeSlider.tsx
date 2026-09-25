@@ -60,6 +60,7 @@ export function RangeSlider({
           value={minVal}
           disabled={disabled}
           onChange={handleMinChange}
+          aria-label="Range minimum"
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer pointer-events-auto"
         />
         <input
@@ -70,6 +71,7 @@ export function RangeSlider({
           value={maxVal}
           disabled={disabled}
           onChange={handleMaxChange}
+          aria-label="Range maximum"
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer pointer-events-auto"
         />
 

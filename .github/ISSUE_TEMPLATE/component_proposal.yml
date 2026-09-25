@@ -1,0 +1,57 @@
+name: Component proposal
+about: Propose a new primitive or block for the registry
+labels: ['enhancement', 'registry']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        New primitives must clear the audit checklist in `docs/standards.md` §12:
+        five states, keyboard support, focus-ui99 rings, zero hard-coded hexes,
+        axe-clean, RTL-aware.
+  - type: input
+    id: name
+    attributes:
+      label: Proposed component name (kebab-case)
+      placeholder: e.g. heat-map-calendar
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Registry category
+      options:
+        - Actions
+        - Forms
+        - Selection
+        - Data Display
+        - Overlays
+        - Layout & Navigation
+        - Feedback
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem it solves
+      description: Why doesn't the existing roster cover it?
+    validations:
+      required: true
+  - type: textarea
+    id: api
+    attributes:
+      label: Proposed API (props + types)
+      placeholder: |
+        interface HeatMapCalendarProps {
+          data: Record<string, number>;
+          ...
+        }
+    validations:
+      required: true
+  - type: checkboxes
+    id: audit
+    attributes:
+      label: Audit readiness
+      options:
+        - label: I checked it doesn't duplicate an existing component
+        - label: I can propose the WAI-ARIA pattern it follows
+        - label: It can be built context-free (no app-context dependencies)
