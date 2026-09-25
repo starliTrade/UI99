@@ -56,6 +56,7 @@ import {
   Calendar,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
+import { useAuth } from '../../core/context/AuthContext';
 import { REGISTRY_COMPONENTS, ComponentRegistryItem } from '../../registry/registryData';
 import { KIT_COMPONENT_COUNT, KIT_VERSION } from '../../generated/kit-count';
 import {
@@ -245,6 +246,9 @@ import {
   TopHeader,
   TourGuide as TourGuidePrimitive,
 } from '../ui';
+import { NAV_ITEMS } from '../ui/navItems';
+import { DensitySwitcher } from '../ui/DensitySwitcher';
+import type { NavTab } from '../ui/navItems';
 
 type DocGuideSection =
   | 'intro'
@@ -274,7 +278,8 @@ const LIVE_PREVIEW_IDS = new Set<string>([
   'calendar-view', 'audio-player', 'dialog', 'alert-dialog', 'sheet', 'popover',
   'dropdown-menu', 'tooltip', 'hover-card', 'menubar', 'navigation-menu', 'command',
   'command-bar', 'keyboard-shortcuts-dialog', 'tour-guide', 'confetti', 'toast', 'banner',
-  'alert', 'empty-placeholder', 'card', 'separator', 'scroll-area', 'sidebar',
+  'tabs', 'accordion', 'breadcrumb', 'bottom-navigation', 'top-header', 'linear-issue-tracker',
+  'density-switcher',
   'tabs', 'accordion', 'breadcrumb', 'bottom-navigation', 'top-header', 'linear-issue-tracker',
   'terminal-emulator', 'activity-feed', 'ui99-wordmark', 'split-button', 'floating-action-button', 'link-button',
   'dropdown-button', 'pin-input', 'currency-input', 'date-range-picker', 'range-slider', 'checkbox-group',
@@ -282,7 +287,8 @@ const LIVE_PREVIEW_IDS = new Set<string>([
 ]);
 
 export function DocsView() {
-  const { themeMode, addToast, setCurrentTab } = useApp();
+  const { themeMode, addToast, setCurrentTab, setThemeMode, setIsSettingsOpen } = useApp();
+  const { isRTL, toggleRTL } = useAuth();
   const isDark = themeMode === 'dark';
 
   // Navigation State
@@ -325,6 +331,7 @@ export function DocsView() {
   const [demoProgressValue, setDemoProgressValue] = useState(85);
   const [demoCheckboxChecked, setDemoCheckboxChecked] = useState(true);
   const [demoSegValue, setDemoSegValue] = useState('ALL');
+  const [demoNavTab, setDemoNavTab] = useState<NavTab>('HOME');
 
   // Additional component playgrounds state
   const [demoColor, setDemoColor] = useState('#3B82F6');
@@ -1632,7 +1639,11 @@ export function DocsView() {
 
                         {activeComponent.id === 'bottom-navigation' && (
                           <div className="w-full max-w-sm">
-                            <BottomNavigation />
+                            <BottomNavigation
+                              currentTab={demoNavTab}
+                              onTabChange={setDemoNavTab}
+                              onOpenSearch={() => addToast('Search opens from the real dock (⌘K)', 'info')}
+                            />
                           </div>
                         )}
 
@@ -2212,12 +2223,29 @@ export function DocsView() {
                             <ToggleGroupItem value="month" aria-label="Month">Month</ToggleGroupItem>
                           </ToggleGroup>
                         )}
+                        {activeComponent.id === 'density-switcher' && (
+                          <div className="w-full max-w-sm">
+                            <DensitySwitcher fullWidth />
+                          </div>
+                        )}
 
                         {activeComponent.id === 'top-header' && (
                           <div className="w-full max-w-lg rounded-(--radius-control) overflow-hidden border border-white/[0.03]">
-                            <TopHeader />
+                            <TopHeader
+                              currentTab={demoNavTab}
+                              onNavigate={(tab) => {
+                                const match = NAV_ITEMS.find((i) => i.tab === tab);
+                                if (match) setDemoNavTab(match.tab);
+                              }}
+                              onThemeChange={setThemeMode}
+                              onOpenSettings={() => setIsSettingsOpen(true)}
+                              onToggleRTL={toggleRTL}
+                              isRTL={isRTL}
+                              version={KIT_VERSION}
+                            />
                           </div>
                         )}
+
 
                         {activeComponent.id === 'tour-guide' && (
                           <div className="w-full max-w-md">

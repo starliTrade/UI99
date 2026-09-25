@@ -12,6 +12,8 @@ import { ErrorBoundary } from './core/ErrorBoundary';
 import { TopHeader } from './components/ui/TopHeader';
 import { BottomNavigation } from './components/ui/BottomNavigation';
 import { ToastContainer } from './components/ui/Toast';
+import { NAV_ITEMS, type NavTab } from './components/ui/navItems';
+import { KIT_VERSION } from './generated/kit-count';
 import { HomeView } from './components/views/HomeView';
 import { UIKitView } from './components/views/UIKitView';
 import { DocsView } from './components/views/DocsView';
@@ -23,8 +25,24 @@ import { ObjectDetailModal } from './components/shells/ObjectDetailModal';
 import { SettingsModal } from './components/shells/SettingsModal';
 
 function MainShell() {
-  const { currentTab, themeMode, toasts, removeToast } = useApp();
-  const { isRTL } = useAuth();
+  const {
+    currentTab,
+    setCurrentTab,
+    themeMode,
+    setThemeMode,
+    toasts,
+    removeToast,
+    setIsSearchOpen,
+    setIsSettingsOpen,
+  } = useApp();
+  const { isRTL, toggleRTL } = useAuth();
+
+  // The shipped TopHeader/BottomNavigation are presentational (props-only) so a
+  // consumer can install them — the app shell owns the state and wires it in.
+  const navigateToTab = (tab: string) => {
+    const match = NAV_ITEMS.find((i) => i.tab === tab);
+    if (match) setCurrentTab(match.tab);
+  };
 
   const renderActiveView = () => {
     switch (currentTab) {
@@ -62,7 +80,16 @@ function MainShell() {
       </div>
 
       {/* Dedicated Universal Top Header */}
-      <TopHeader />
+      <TopHeader
+        currentTab={currentTab}
+        onNavigate={navigateToTab}
+        themeMode={themeMode}
+        onThemeChange={setThemeMode}
+        onOpenSettings={() => setIsSettingsOpen(true)}
+        onToggleRTL={toggleRTL}
+        isRTL={isRTL}
+        version={KIT_VERSION}
+      />
 
       {/* Main Content Area — Standardized vertical spacing from TopHeader across all views */}
       <main className="relative z-content flex-1 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-6 sm:pt-14 md:pt-16 pb-24 sm:pb-28">
@@ -70,7 +97,13 @@ function MainShell() {
       </main>
 
       {/* Floating Glass Navigation Dock */}
-      <BottomNavigation />
+      <BottomNavigation
+        currentTab={currentTab}
+        onTabChange={setCurrentTab}
+        onOpenSearch={() => setIsSearchOpen(true)}
+        themeMode={themeMode}
+        isRTL={isRTL}
+      />
 
       {/* Modals, Mobile Sheets & Toasts */}
       <UniversalCaptureModal />
