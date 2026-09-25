@@ -48,7 +48,7 @@ export function Banner({
     <div
       role={variant === 'amber' ? 'alert' : 'status'}
       className={cn(
-        'w-full flex items-center justify-between gap-3 px-4 py-3 rounded-(var(--radius-control)) border backdrop-blur-md shadow-sm',
+        'w-full flex items-center justify-between gap-3 px-4 py-3 rounded-(--radius-control) border backdrop-blur-md shadow-sm',
         variants[variant],
         className
       )}
@@ -88,7 +88,7 @@ export function Banner({
             onDismiss?.();
           }}
           aria-label="Dismiss banner"
-          className="p-1 rounded-(var(--radius-sm)) text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
+          className="p-1 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
         >
           <X className="w-3.5 h-3.5" />
         </button>

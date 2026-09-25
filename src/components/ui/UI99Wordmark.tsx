@@ -78,11 +78,11 @@ export function UI99Wordmark({
     >
       {/* Ultra-subtle, whisper-quiet diffuse aura highlight on hover */}
       <div
-        className="absolute inset-0 -m-1.5 rounded-(var(--radius-pill)) bg-emerald-500/[0.04] dark:bg-emerald-400/[0.06] blur-md opacity-40 group-hover:opacity-100 group-hover:bg-emerald-500/[0.12] dark:group-hover:bg-emerald-400/[0.15] transition-all duration-300 pointer-events-none"
+        className="absolute inset-0 -m-1.5 rounded-(--radius-pill) bg-emerald-500/[0.04] dark:bg-emerald-400/[0.06] blur-md opacity-40 group-hover:opacity-100 group-hover:bg-emerald-500/[0.12] dark:group-hover:bg-emerald-400/[0.15] transition-all duration-300 pointer-events-none"
       />
 
       <div
-        className={`relative z-10 flex items-center gap-1.5 font-bold tracking-tight leading-none rounded-(var(--radius-field)) transition-all duration-200 ${
+        className={`relative z-10 flex items-center gap-1.5 font-bold tracking-tight leading-none rounded-(--radius-field) transition-all duration-200 ${
           isDark
             ? 'group-hover:bg-white/[0.02]'
             : 'group-hover:bg-black/[0.02]'

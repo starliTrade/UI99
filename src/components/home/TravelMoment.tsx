@@ -22,10 +22,10 @@ export function TravelMoment({ tripObject, onSelectTrip, onAddTrip }: TravelMome
     return (
       <div
         onClick={onAddTrip}
-        className="group relative p-5 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(var(--rim-soft), var(--elevation-3)) flex items-center justify-between"
+        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-(var(--radius-control)) bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+          <div className="w-11 h-11 rounded-(--radius-control) bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
             <Plane className="w-5 h-5 stroke-[1.8]" />
           </div>
           <div>
@@ -53,15 +53,15 @@ export function TravelMoment({ tripObject, onSelectTrip, onAddTrip }: TravelMome
   return (
     <div
       onClick={() => onSelectTrip(tripObject)}
-      className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.06] select-none"
     >
       {/* Cyan/Teal Ambient Aura */}
-      <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-500/[0.05] rounded-(var(--radius-pill)) blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-500/[0.05] rounded-(--radius-pill) blur-3xl pointer-events-none" />
 
       {/* Header */}
       <div className="flex items-center justify-between mb-3 relative z-10">
         <div className="flex items-center gap-2">
-          <span className="flex items-center justify-center w-5 h-5 rounded-(var(--radius-pill)) bg-cyan-500/15 text-cyan-400">
+          <span className="flex items-center justify-center w-5 h-5 rounded-(--radius-pill) bg-cyan-500/15 text-cyan-400">
             <Plane className="w-3 h-3 stroke-[2.2]" />
           </span>
           <span className="text-[10.5px] uppercase font-bold tracking-widest text-cyan-300">
@@ -69,7 +69,7 @@ export function TravelMoment({ tripObject, onSelectTrip, onAddTrip }: TravelMome
           </span>
         </div>
 
-        <span className="text-[10px] px-2.5 py-0.5 rounded-(var(--radius-pill)) bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-medium">
+        <span className="text-[10px] px-2.5 py-0.5 rounded-(--radius-pill) bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 font-medium">
           {season}
         </span>
       </div>
@@ -91,7 +91,7 @@ export function TravelMoment({ tripObject, onSelectTrip, onAddTrip }: TravelMome
           {wishlist.map((item, idx) => (
             <span
               key={idx}
-              className="text-[10px] px-2.5 py-0.5 rounded-(var(--radius-pill)) bg-white/[0.04] text-[#EDEDEF] border border-white/[0.04]"
+              className="text-[10px] px-2.5 py-0.5 rounded-(--radius-pill) bg-white/[0.04] text-[#EDEDEF] border border-white/[0.04]"
             >
               ✦ {item}
             </span>

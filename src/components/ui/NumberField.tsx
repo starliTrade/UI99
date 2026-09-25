@@ -37,7 +37,7 @@ export function NumberField({
   const increment = () => onChange(clamp(value + step));
 
   const stepperCls = cn(
-    'inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-(var(--radius-sm)) transition-colors cursor-pointer',
+    'inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-(--radius-sm) transition-colors cursor-pointer',
     'text-zinc-500 hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:bg-white/[0.06]',
     'focus-visible:outline-none focus-ui99-inset',
     'disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent dark:disabled:hover:bg-transparent'
@@ -74,7 +74,7 @@ export function NumberField({
             if (!Number.isNaN(parsed)) onChange(clamp(parsed));
           }}
           className={cn(
-            'h-10 w-20 rounded-(var(--radius-field)) border border-black/[0.07] bg-white text-center text-sm font-semibold text-zinc-950',
+            'h-10 w-20 rounded-(--radius-field) border border-black/[0.07] bg-white text-center text-sm font-semibold text-zinc-950',
             'dark:border-white/[0.07] dark:bg-(--bg-elevated) dark:text-(--text-primary)',
             'focus-visible:outline-none focus-ui99-inset',
             'disabled:cursor-not-allowed disabled:opacity-45'

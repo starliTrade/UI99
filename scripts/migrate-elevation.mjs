@@ -126,6 +126,30 @@ function hasRim(normalized) {
   return /inset 0 1px 0 0 rgba\(255/.test(normalized);
 }
 
+/**
+ * `var(--x)` → `--x`. Tailwind v4's `(--token)` shorthand takes the bare
+ * property name; keeping the `var()` wrapper produces a class that parses as
+ * a value and then compiles to nothing.
+ */
+function stripVar(token) {
+  return String(token).replace(/^var\((--[a-z0-9-]+)\)$/, '$1');
+}
+
+/**
+ * Name a `rim + lift` value using the composites that ui99-elevation.css
+ * already defines. Returns null when no composite fits, so the caller can
+ * leave the value untouched instead of emitting an uncompilable class.
+ */
+function liftComposite(normalized) {
+  const lift = stripVar(elevationToken(normalized));
+  if (!hasRim(normalized)) return lift; // no rim → a plain single-token lift
+  if (lift === '--elevation-1' || lift === '--elevation-2') return '--shadow-card';
+  if (lift === '--elevation-3') return '--shadow-card-hover';
+  if (lift === '--elevation-4') return '--shadow-popover';
+  if (lift === '--elevation-5') return '--shadow-modal';
+  return null;
+}
+
 /** Radius values that have no token today → nearest named step. */
 const RADIUS_MAP = {
   '3px': 'var(--radius-xs)',
@@ -256,6 +280,14 @@ for (const file of files(ROOT)) {
   let edits = 0;
 
   // shadow-[…] → shadow-(--token)
+  //
+  // EMIT CONTRACT (do not regress this): Tailwind v4's `(--token)` shorthand
+  // accepts exactly ONE custom property. `shadow-(a, b)` compiles to no rule
+  // at all — which is precisely how 75 dead multi-token shadow utilities were
+  // once shipped. So a multi-layer value may only be emitted as a NAMED
+  // composite from ui99-elevation.css; anything we cannot name is left alone
+  // and reported for a human. A codemod must never silently emit a class that
+  // does not compile.
   out = out.replace(/shadow-\[([^\]]+)\]/g, (full, body) => {
     const normalized = body.replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
 
@@ -263,7 +295,7 @@ for (const file of files(ROOT)) {
       if (rule.to === null || rule.to === 'GLOW') continue;
       if (!rule.test.test(normalized)) continue;
       edits++;
-      return `shadow-(${rule.to})`;
+      return `shadow-(${stripVar(rule.to)})`;
     }
 
     // Glow is a resolver, not a regex: a value only counts as an aura when it
@@ -272,28 +304,30 @@ for (const file of files(ROOT)) {
     const glow = glowToken(normalized);
     if (glow) {
       edits++;
-      return `shadow-(${glow})`;
+      return `shadow-(${stripVar(glow)})`;
     }
-    // composite: decompose into a token list
+    // composite: decompose into a NAMED composite token
     for (const rule of COMPOSITE_RULES) {
       if (!rule.test.test(normalized)) continue;
 
       if (rule.to === 'LIFT') {
-        const parts = [];
-        if (hasRim(normalized)) parts.push('var(--rim-soft)');
-        parts.push(elevationToken(normalized));
-        edits++;
-        return `shadow-(${parts.join(', ')})`;
+        const composite = liftComposite(normalized);
+        if (composite) {
+          edits++;
+          return `shadow-(${composite})`;
+        }
+        unmapped.add(`lift-composite:${normalized.slice(0, 60)}`);
+        return full;
       }
 
       if (rule.to === 'ELEVATION_THEN_GLOW') {
-        const g = glowToken(normalized);
-        const lift = elevationToken(normalized);
-        if (g && lift) {
+        // The only named two-stage aura is the accent one.
+        if (/emerald|10B981|059669|34D399/i.test(normalized)) {
           edits++;
-          return `shadow-(${lift}, ${g})`;
+          return 'shadow-(--shadow-glow-accent)';
         }
-        continue;
+        unmapped.add(`elevation+glow:${normalized.slice(0, 60)}`);
+        return full;
       }
     }
 
@@ -306,7 +340,7 @@ for (const file of files(ROOT)) {
     const token = RADIUS_MAP[val];
     if (token) {
       edits++;
-      return `rounded-(${token})`;
+      return `rounded-(${stripVar(token)})`;
     }
     unmapped.add(`rounded:${val}`);
     return full;
@@ -317,7 +351,7 @@ for (const file of files(ROOT)) {
     const token = BLUR_MAP[val];
     if (token) {
       edits++;
-      return `blur-(${token})`;
+      return `blur-(${stripVar(token)})`;
     }
     unmapped.add(`blur:${val}`);
     return full;

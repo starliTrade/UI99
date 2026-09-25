@@ -41,7 +41,7 @@ export function DiffViewer({
   return (
     <div
       className={cn(
-        'rounded-(var(--radius-control)) bg-white dark:bg-(--bg-canvas) border border-zinc-200 dark:border-white/[0.06] overflow-hidden text-xs font-mono shadow-sm dark:shadow-lg',
+        'rounded-(--radius-control) bg-white dark:bg-(--bg-canvas) border border-zinc-200 dark:border-white/[0.06] overflow-hidden text-xs font-mono shadow-sm dark:shadow-lg',
         className
       )}
     >

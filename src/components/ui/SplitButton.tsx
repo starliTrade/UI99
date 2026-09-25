@@ -73,13 +73,13 @@ export function SplitButton({
   }[variant];
 
   return (
-    <div ref={containerRef} className={`relative inline-flex items-stretch rounded-(var(--radius-field)) shadow-xs ${className}`}>
+    <div ref={containerRef} className={`relative inline-flex items-stretch rounded-(--radius-field) shadow-xs ${className}`}>
       {/* Primary Action */}
       <button
         type="button"
         disabled={disabled}
         onClick={onClick}
-        className={`${sizeClasses} ${mainPadding} ${variantStyles} rounded-l-xl font-medium flex items-center justify-center transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]`}
+        className={`${sizeClasses} ${mainPadding} ${variantStyles} rounded-l-(--radius-control) font-medium flex items-center justify-center transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]`}
       >
         {label}
       </button>
@@ -100,14 +100,14 @@ export function SplitButton({
         onClick={() => setOpen(!open)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className={`${sizeClasses} ${triggerPadding} ${variantStyles} rounded-r-xl flex items-center justify-center transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
+        className={`${sizeClasses} ${triggerPadding} ${variantStyles} rounded-r-(--radius-control) flex items-center justify-center transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
       >
         <ChevronDown className={`w-3.5 h-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {/* Dropdown Menu */}
       {open && (
-        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-(var(--radius-field)) bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-100">
+        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-100">
           {items.map((item, idx) => (
             <button
               key={idx}

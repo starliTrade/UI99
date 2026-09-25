@@ -29,12 +29,12 @@ const sheetVariants = cva(
   {
     variants: {
       side: {
-        top: 'inset-x-0 top-0 border-b border-black/[0.08] dark:border-white/[0.06] data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top rounded-b-3xl',
+        top: 'inset-x-0 top-0 border-b border-black/[0.08] dark:border-white/[0.06] data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top rounded-b-(--radius-lg)',
         bottom:
-          'inset-x-0 bottom-0 border-t border-black/[0.08] dark:border-white/[0.06] data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom rounded-t-[28px] max-h-[92vh] overflow-y-auto pb-safe',
-        left: 'inset-y-0 left-0 h-full w-3/4 border-r border-black/[0.08] dark:border-white/[0.06] data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm rounded-r-3xl',
+          'inset-x-0 bottom-0 border-t border-black/[0.08] dark:border-white/[0.06] data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom rounded-t-(--radius-lg) max-h-[92vh] overflow-y-auto pb-safe',
+        left: 'inset-y-0 left-0 h-full w-3/4 border-r border-black/[0.08] dark:border-white/[0.06] data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm rounded-r-(--radius-lg)',
         right:
-          'inset-y-0 right-0 h-full w-3/4 border-l border-black/[0.08] dark:border-white/[0.06] data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm rounded-l-3xl',
+          'inset-y-0 right-0 h-full w-3/4 border-l border-black/[0.08] dark:border-white/[0.06] data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm rounded-l-(--radius-lg)',
       },
     },
     defaultVariants: {
@@ -62,12 +62,12 @@ const SheetContent = React.forwardRef<
     >
       {side === 'bottom' && (
         <div className="sm:hidden -mt-3 mb-3 flex justify-center cursor-grab">
-          <div className="w-10 h-1 rounded-(var(--radius-pill)) bg-zinc-300 dark:bg-white/15" />
+          <div className="w-10 h-1 rounded-(--radius-pill) bg-zinc-300 dark:bg-white/15" />
         </div>
       )}
       {children}
       {showClose && (
-        <SheetPrimitive.Close className="absolute right-4 top-4 rounded-(var(--radius-pill)) p-1.5 opacity-70 transition-opacity hover:opacity-100 hover:bg-(--state-hover) focus-visible:outline-none focus-ui99 cursor-pointer">
+        <SheetPrimitive.Close className="absolute right-4 top-4 rounded-(--radius-pill) p-1.5 opacity-70 transition-opacity hover:opacity-100 hover:bg-(--state-hover) focus-visible:outline-none focus-ui99 cursor-pointer">
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>

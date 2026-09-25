@@ -1,7 +1,7 @@
 /**
  * UI99 — Income Velocity Pillar Widget
  * Pixel-perfect implementation of IMG_7892.jpeg:
- * - Squircle container (rounded-(var(--radius-2xl))) with 3D glass specular rim
+ * - Squircle container (rounded-(--radius-2xl) with 3D glass specular rim
  * - Authentic emerald/cyan glass corner refraction along top-left curve
  * - Typography: "Income", "+ $6,593.00", "▲ 0.23%"
  * - Soft dark matte columns with rounded tops for inactive months
@@ -39,14 +39,14 @@ export function VelocityBarCard({
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ duration: 0.25 }}
-      className={`relative rounded-(var(--radius-xl)) p-6 overflow-hidden transition-all duration-300 select-none ${
+      className={`relative rounded-(--radius-xl) p-6 overflow-hidden transition-all duration-300 select-none ${
         isDark
-          ? 'bg-[#0B0C11] card-aura-emerald shadow-(var(--rim-soft), var(--elevation-4)) hover:shadow-(var(--rim-soft), var(--elevation-4))'
-          : 'bg-white card-aura-emerald shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.045] hover:shadow-(var(--elevation-3))'
+          ? 'bg-[#0B0C11] card-aura-emerald shadow-(--shadow-popover) shadow-(--shadow-popover)'
+          : 'bg-white card-aura-emerald shadow-(--shadow-card) border border-black/[0.045] hover:shadow-(--elevation-3)'
       }`}
     >
       {/* Dynamic Ambient Emerald Light Beam in Top Corner */}
-      <div className={`absolute -top-10 -left-10 w-44 h-44 rounded-(var(--radius-pill)) blur-2xl pointer-events-none ${isDark ? 'bg-emerald-500/15' : 'bg-emerald-500/10'}`} />
+      <div className={`absolute -top-10 -left-10 w-44 h-44 rounded-(--radius-pill) blur-2xl pointer-events-none ${isDark ? 'bg-emerald-500/15' : 'bg-emerald-500/10'}`} />
 
       {/* Top Header Section */}
       <div className="relative z-10">
@@ -60,7 +60,7 @@ export function VelocityBarCard({
         </div>
 
         {/* Trend Indicator Pill */}
-        <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(var(--radius-pill)) text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
           <span className="text-[10px]">▲</span>
           <span>{trend}</span>
         </div>
@@ -76,7 +76,7 @@ export function VelocityBarCard({
                   {bar.label}
                 </span>
                 <div
-                  className="w-full max-w-[44px] rounded-(var(--radius-control)) bg-gradient-to-t from-emerald-500 via-emerald-400 to-lime-200 shadow-(var(--glow-accent-lg), var(--glow-accent-sm)) transition-all duration-500 group-hover:brightness-110"
+                  className="w-full max-w-[44px] rounded-(--radius-control) bg-gradient-to-t from-emerald-500 via-emerald-400 to-lime-200 shadow-(--shadow-glow-accent) transition-all duration-500 group-hover:brightness-110"
                   style={{ height: `${bar.heightPercent}%` }}
                 />
               </div>
@@ -89,9 +89,9 @@ export function VelocityBarCard({
                 {bar.label}
               </span>
               <div
-                className={`w-full max-w-[44px] rounded-(var(--radius-control)) transition-all ${
+                className={`w-full max-w-[44px] rounded-(--radius-control) transition-all ${
                   isDark
-                    ? 'bg-white/[0.045] hover:bg-white/[0.08] shadow-(var(--elevation-1))'
+                    ? 'bg-white/[0.045] hover:bg-white/[0.08] shadow-(--elevation-1)'
                     : 'bg-black/[0.04] hover:bg-black/[0.07]'
                 }`}
                 style={{ height: `${bar.heightPercent}%` }}

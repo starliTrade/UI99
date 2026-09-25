@@ -63,12 +63,12 @@ export function MeterBar({
       )}
       <div
         className={cn(
-          'w-full rounded-(var(--radius-pill)) overflow-hidden bg-black/[0.08] dark:bg-white/[0.08]',
+          'w-full rounded-(--radius-pill) overflow-hidden bg-black/[0.08] dark:bg-white/[0.08]',
           size === 'sm' ? 'h-1.5' : 'h-2.5'
         )}
       >
         <div
-          className={cn('h-full rounded-(var(--radius-pill)) transition-all duration-300', zone)}
+          className={cn('h-full rounded-(--radius-pill) transition-all duration-300', zone)}
           style={{ width: `${pct}%` }}
         />
       </div>

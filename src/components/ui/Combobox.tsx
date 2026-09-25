@@ -66,7 +66,7 @@ export function Combobox({
           aria-label={placeholder}
           disabled={disabled}
           className={cn(
-            'inline-flex h-10 w-full items-center justify-between gap-2 rounded-(var(--radius-field)) border border-black/[0.07] bg-white px-3 text-sm',
+            'inline-flex h-10 w-full items-center justify-between gap-2 rounded-(--radius-field) border border-black/[0.07] bg-white px-3 text-sm',
             'dark:border-white/[0.07] dark:bg-(--bg-elevated)',
             'transition-colors hover:bg-(--state-hover)',
             'focus-visible:outline-none focus-ui99-inset cursor-pointer',
@@ -84,7 +84,7 @@ export function Combobox({
         <PopoverPrimitive.Content
           sideOffset={6}
           align="start"
-          className="z-50 w-[var(--radix-popover-trigger-width)] rounded-(var(--radius-control)) border border-black/[0.06] bg-white shadow-(var(--elevation-4)) dark:border-white/[0.06] dark:bg-(--bg-elevated)"
+          className="z-50 w-[var(--radix-popover-trigger-width)] rounded-(--radius-control) border border-black/[0.06] bg-white shadow-(--elevation-4) dark:border-white/[0.06] dark:bg-(--bg-elevated)"
         >
           <Command shouldFilter>
             <CommandInput placeholder={searchPlaceholder} onValueChange={setQuery} />

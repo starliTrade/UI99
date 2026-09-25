@@ -98,24 +98,51 @@
   --glass-opacity: 0.78;
 }
 
-/* ======================= RADIUS — complete 9-step scale ======================= */
-/* Nests mathematically (each step ≈ ×1.5 of the last) so a card inside a
-   sheet inside a modal always reads as concentric. `field` closes the gap that
-   forced ad-hoc 3–7px radii onto inputs. */
+/* ======================= RADIUS — the rounded standard ==================== */
+/*
+ * THE ONE LAW (iOS HIG · Material 3 shape · concentric nesting):
+ *
+ *     outer radius  =  inner radius  +  the padding between them
+ *
+ * A corner is never chosen by eye or by element width. It is a function of
+ * the container's PADDING. That is why this scale is banded by padding
+ * instead of by component name: pick the rung whose padding band your
+ * container sits in, and nesting stays concentric for free.
+ *
+ * Consequences that make the system feel deliberate:
+ *   · A 40px-tall button padded 0/16 gets 18 — a softened rectangle, NOT a
+ *     lozenge. A lozenge at that size is the "everything looks blobby" bug.
+ *   · A card padded 20/20 gets 22 — corners that hug the content.
+ *   · A card padded 24/24 gets 26 — one rung up, same rhythm.
+ *   · Pills/avatars/switches are the ONLY terminal 9999px. They are the one
+ *     case where a control is genuinely capsule-shaped by definition.
+ *
+ * These declarations deliberately OVERRIDE Tailwind v4's own --radius-* theme
+ * variables, so a stray `rounded-lg` lands on the same rung as
+ * `rounded-(--radius-lg)` instead of a foreign 0.5rem. 3xl/4xl exist only to
+ * keep that native ramp monotonic against our override (otherwise Tailwind's
+ * 3xl = 24px would sit *below* our 2xl = 36px).
+ *
+ * Authority: this block is the single source of truth. The former
+ * `--radius-card-*` family in ui99.css was a second, drifting scale and has
+ * been removed.
+ */
 .dark,
 .light,
 [data-theme] {
-  --radius-none: 0px;
-  --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-field: 14px;   /* inputs, chips, small controls */
-  --radius-control: 16px; /* buttons, toggles */
-  --radius-md: 18px;      /* cards (kept: pre-existing) */
-  --radius-lg: 24px;      /* large cards (kept: pre-existing) */
-  --radius-xl: 28px;      /* xl cards (kept: pre-existing) */
-  --radius-2xl: 34px;     /* sheets, large surfaces — replaces rounded-[34px] */
-  --radius-sheet: 32px;   /* bottom sheets (kept: pre-existing) */
-  --radius-pill: 9999px;  /* pills, avatars, badges (kept: pre-existing) */
+  --radius-none: 0px;    /* full-bleed: table rows, dividers, edge-to-edge media */
+  --radius-xs: 8px;      /* 1–4px pad · 16–24px micro controls, tags, status dots */
+  --radius-sm: 12px;     /* 6–8px pad · 28–32px controls, chips, small buttons */
+  --radius-field: 14px;  /* 10–12px pad · inputs, search fields, combobox triggers */
+  --radius-control: 18px;/* 14–16px pad · 40–44px controls: buttons, toggles, rows */
+  --radius-md: 22px;     /* 16–20px pad · cards — the default surface */
+  --radius-lg: 26px;     /* 20–24px pad · large cards, panels, popovers */
+  --radius-xl: 32px;     /* 24–32px pad · sheets, drawers, hero panels */
+  --radius-2xl: 36px;    /* 32–36px pad · modals, side panels */
+  --radius-sheet: 40px;  /* 36–44px pad · bottom sheets, mobile dialogs */
+  --radius-3xl: 48px;    /* 44–56px pad · full-screen sheets, hero surfaces */
+  --radius-4xl: 64px;    /* 56px+ pad · billboards and marketing canvases */
+  --radius-pill: 9999px; /* pills, avatars, badges, switches — terminal by definition */
 }
 
 /* ======================= SPACING — 4px base grid ======================= */

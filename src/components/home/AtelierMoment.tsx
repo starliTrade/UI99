@@ -28,11 +28,11 @@ export function AtelierMoment({
     return (
       <div
         onClick={onNewDesign}
-        className="group relative p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(var(--rim-soft), var(--elevation-3))"
+        className="group relative p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(--shadow-card-hover)"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-(var(--radius-control)) bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-(--radius-control) bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
               <Scissors className="w-5 h-5 stroke-[1.8]" />
             </div>
             <div>
@@ -44,7 +44,7 @@ export function AtelierMoment({
               </p>
             </div>
           </div>
-          <span className="p-2.5 rounded-(var(--radius-pill)) bg-white/[0.03] text-zinc-400 group-hover:text-white transition-colors">
+          <span className="p-2.5 rounded-(--radius-pill) bg-white/[0.03] text-zinc-400 group-hover:text-white transition-colors">
             <Plus className="w-4 h-4" />
           </span>
         </div>
@@ -60,15 +60,15 @@ export function AtelierMoment({
   return (
     <div
       onClick={() => onSelectObject(atelierProject)}
-      className="group relative p-5 sm:p-6 rounded-(var(--radius-2xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0E] border border-white/[0.03] shadow-(var(--rim-soft), var(--elevation-4)) hover:border-white/[0.07] select-none"
+      className="group relative p-5 sm:p-6 rounded-(--radius-2xl) cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0E] border border-white/[0.03] shadow-(--shadow-popover) hover:border-white/[0.07] select-none"
     >
       {/* Warm Ambient Amber/Bronze Aura */}
-      <div className="absolute top-0 right-0 w-60 h-60 bg-amber-600/[0.07] rounded-(var(--radius-pill)) blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-60 h-60 bg-amber-600/[0.07] rounded-(--radius-pill) blur-3xl pointer-events-none" />
 
       {/* Top Header */}
       <div className="flex items-center justify-between mb-3.5 relative z-10">
         <div className="flex items-center gap-2">
-          <span className="flex items-center justify-center w-5 h-5 rounded-(var(--radius-pill)) bg-amber-500/15 text-amber-400">
+          <span className="flex items-center justify-center w-5 h-5 rounded-(--radius-pill) bg-amber-500/15 text-amber-400">
             <Scissors className="w-3 h-3 stroke-[2.2]" />
           </span>
           <span className="text-[10.5px] uppercase font-bold tracking-widest text-amber-400">
@@ -76,7 +76,7 @@ export function AtelierMoment({
           </span>
         </div>
 
-        <span className="text-[10px] font-medium px-2.5 py-0.5 rounded-(var(--radius-pill)) bg-amber-500/10 text-amber-300 border border-amber-500/20">
+        <span className="text-[10px] font-medium px-2.5 py-0.5 rounded-(--radius-pill) bg-amber-500/10 text-amber-300 border border-amber-500/20">
           {stage}
         </span>
       </div>
@@ -103,7 +103,7 @@ export function AtelierMoment({
             {palette.map((color, idx) => (
               <div
                 key={idx}
-                className="w-4 h-4 rounded-(var(--radius-pill)) border border-white/[0.15] shadow-xs"
+                className="w-4 h-4 rounded-(--radius-pill) border border-white/[0.15] shadow-xs"
                 style={{ backgroundColor: color }}
                 title={color}
               />
@@ -115,7 +115,7 @@ export function AtelierMoment({
             {fabrics.slice(0, 2).map((fabric, idx) => (
               <span
                 key={idx}
-                className="text-[10px] px-2 py-0.5 rounded-(var(--radius-pill)) bg-white/[0.04] text-[#EDEDEF] border border-white/[0.04]"
+                className="text-[10px] px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.04] text-[#EDEDEF] border border-white/[0.04]"
               >
                 {fabric}
               </span>
@@ -130,10 +130,10 @@ export function AtelierMoment({
               e.stopPropagation();
               onSelectObject(sketchObject);
             }}
-            className="mt-2 p-3 rounded-(var(--radius-control)) bg-white/[0.02] border border-white/[0.03] hover:bg-white/[0.04] transition-colors flex items-center justify-between"
+            className="mt-2 p-3 rounded-(--radius-control) bg-white/[0.02] border border-white/[0.03] hover:bg-white/[0.04] transition-colors flex items-center justify-between"
           >
             <div className="flex items-center gap-2.5 min-w-0">
-              <span className="w-2 h-2 rounded-(var(--radius-pill)) bg-amber-400/70" />
+              <span className="w-2 h-2 rounded-(--radius-pill) bg-amber-400/70" />
               <span className="text-xs text-[#EDEDEF] truncate font-medium">
                 {sketchObject.title}
               </span>

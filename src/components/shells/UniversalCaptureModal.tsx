@@ -149,7 +149,7 @@ export function UniversalCaptureModal() {
                 ? 'چه فکری در ذهن دارید؟ (مثال: بررسی پارچه‌های ابریشمی برای کلکسیون فردا #طراحی)'
                 : "What's on your mind? (e.g. 'Review raw silk fabric swatches by tomorrow #design')"
             }
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(var(--radius-control)) p-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 resize-none transition-all shadow-inner"
+            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-control) p-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 resize-none transition-all shadow-inner"
           />
 
           {/* AI Understand Trigger inside textarea box */}
@@ -176,13 +176,13 @@ export function UniversalCaptureModal() {
 
         {/* AI Extraction Preview Card if parsed */}
         {aiResult && (
-          <div className="p-3.5 rounded-(var(--radius-control)) bg-purple-950/25 border border-purple-500/30 text-xs space-y-2">
+          <div className="p-3.5 rounded-(--radius-control) bg-purple-950/25 border border-purple-500/30 text-xs space-y-2">
             <div className="flex items-center justify-between text-purple-300 font-semibold">
               <span className="flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
                 {isRTL ? 'پیشنهاد هوشمند' : 'AI Suggested Classification'}
               </span>
-              <span className="text-[10px] bg-purple-900/50 px-2 py-0.5 rounded-(var(--radius-pill)) border border-purple-500/40 text-purple-200">
+              <span className="text-[10px] bg-purple-900/50 px-2 py-0.5 rounded-(--radius-pill) border border-purple-500/40 text-purple-200">
                 {Math.round(aiResult.confidence * 100)}%
               </span>
             </div>
@@ -210,9 +210,9 @@ export function UniversalCaptureModal() {
                   key={t.type}
                   type="button"
                   onClick={() => setSelectedType(t.type)}
-                  className={`px-3 py-1.5 rounded-(var(--radius-pill)) text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer select-none active:scale-95 ${
+                  className={`px-3 py-1.5 rounded-(--radius-pill) text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer select-none active:scale-95 ${
                     isSelected
-                      ? 'bg-white text-[#09090B] shadow-(var(--elevation-2))'
+                      ? 'bg-white text-[#09090B] shadow-(--elevation-2)'
                       : 'bg-[#18181D] text-zinc-400 border border-white/[0.08] hover:text-white'
                   }`}
                 >
@@ -240,7 +240,7 @@ export function UniversalCaptureModal() {
             onChange={(e) => setTagInput(e.target.value)}
             onKeyDown={handleAddTag}
             placeholder={isRTL ? 'برچسب را تایپ کنید و Enter بزنید...' : 'Type tag and press Enter...'}
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(var(--radius-field)) px-3 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white/30"
+            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-white/30"
           />
         </div>
 
@@ -251,7 +251,7 @@ export function UniversalCaptureModal() {
             <button
               type="button"
               onClick={() => setDestination(destination === 'INBOX' ? 'ACTIVE' : 'INBOX')}
-              className={`px-3 py-1 rounded-(var(--radius-pill)) text-xs font-semibold border transition-colors cursor-pointer ${
+              className={`px-3 py-1 rounded-(--radius-pill) text-xs font-semibold border transition-colors cursor-pointer ${
                 destination === 'INBOX'
                   ? 'bg-purple-950/40 text-purple-300 border-purple-500/30'
                   : 'bg-emerald-950/40 text-emerald-300 border-emerald-500/30'

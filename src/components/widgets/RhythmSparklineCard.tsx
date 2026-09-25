@@ -1,7 +1,7 @@
 /**
  * UI99 — Ethereum Sparkline Widget
  * Pixel-perfect implementation of IMG_7716.jpeg:
- * - Squircle container (rounded-(var(--radius-2xl))) with 3D glass specular rim
+ * - Squircle container (rounded-(--radius-2xl) with 3D glass specular rim
  * - Authentic sapphire/ice-blue glass reflection along top-right curve
  * - Ethereum diamond icon & typography
  * - Sparkline with vertical micro guides
@@ -36,21 +36,21 @@ export function RhythmSparklineCard({
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ duration: 0.25 }}
-      className={`relative rounded-(var(--radius-xl)) p-6 overflow-hidden transition-all duration-300 select-none ${
+      className={`relative rounded-(--radius-xl) p-6 overflow-hidden transition-all duration-300 select-none ${
         isDark
-          ? 'bg-[#0B0C11] card-aura-sapphire shadow-(var(--rim-soft), var(--elevation-4)) hover:shadow-(var(--rim-soft), var(--elevation-4))'
-          : 'bg-white card-aura-sapphire shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.045] hover:shadow-(var(--elevation-3))'
+          ? 'bg-[#0B0C11] card-aura-sapphire shadow-(--shadow-popover) shadow-(--shadow-popover)'
+          : 'bg-white card-aura-sapphire shadow-(--shadow-card) border border-black/[0.045] hover:shadow-(--elevation-3)'
       }`}
     >
       {/* Top-Right Sapphire Ambient Light Beam */}
-      <div className={`absolute -top-10 -right-10 w-48 h-48 rounded-(var(--radius-pill)) blur-2xl pointer-events-none ${isDark ? 'bg-blue-500/15' : 'bg-blue-500/10'}`} />
+      <div className={`absolute -top-10 -right-10 w-48 h-48 rounded-(--radius-pill) blur-2xl pointer-events-none ${isDark ? 'bg-blue-500/15' : 'bg-blue-500/10'}`} />
 
       {/* Top Header: Brand & Diamond Icon */}
       <div className="relative z-10 flex items-center gap-3">
         <div
-          className={`w-8 h-8 rounded-(var(--radius-pill)) flex items-center justify-center transition-colors ${
+          className={`w-8 h-8 rounded-(--radius-pill) flex items-center justify-center transition-colors ${
             isDark
-              ? 'bg-white/[0.08] shadow-(var(--elevation-1)) text-white'
+              ? 'bg-white/[0.08] shadow-(--elevation-1) text-white'
               : 'bg-black/[0.06] text-[#111116]'
           }`}
         >
@@ -75,7 +75,7 @@ export function RhythmSparklineCard({
         <h3 className={`text-2xl sm:text-3xl font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
           {value}
         </h3>
-        <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(var(--radius-pill)) text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
+        <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
           <span className="text-[10px]">▲</span>
           <span>{trend}</span>
         </div>
@@ -93,10 +93,10 @@ export function RhythmSparklineCard({
         {/* Floating Tooltip with Vertical Hairline & Subtle Dot on Peak */}
         <div className="absolute left-[50%] top-2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
           <div
-            className={`px-3.5 py-1.5 rounded-(var(--radius-field)) backdrop-blur-md text-center transition-all ${
+            className={`px-3.5 py-1.5 rounded-(--radius-field) backdrop-blur-md text-center transition-all ${
               isDark
-                ? 'bg-[#14151C]/95 shadow-(var(--rim-soft), var(--elevation-2)) text-white'
-                : 'bg-white/95 shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.04] text-[#111116]'
+                ? 'bg-[#14151C]/95 shadow-(--shadow-card) text-white'
+                : 'bg-white/95 shadow-(--shadow-card) border border-black/[0.04] text-[#111116]'
             }`}
           >
             <span className={`block text-[11px] font-mono font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#111116]'}`}>
@@ -107,7 +107,7 @@ export function RhythmSparklineCard({
             </span>
           </div>
           <div className={`w-[1px] h-4 ${isDark ? 'bg-gradient-to-b from-white/30 to-white/10' : 'bg-gradient-to-b from-black/20 to-black/5'}`} />
-          <div className={`w-2.5 h-2.5 rounded-(var(--radius-pill)) bg-cyan-400 shadow-(var(--glow-accent-md)) ring-2 ${isDark ? 'ring-[#0E0F14]' : 'ring-white'}`} />
+          <div className={`w-2.5 h-2.5 rounded-(--radius-pill) bg-cyan-400 shadow-(--glow-accent-md) ring-2 ${isDark ? 'ring-[#0E0F14]' : 'ring-white'}`} />
         </div>
 
         {/* Organic Sparkline SVG Curve with luminous gradient */}

@@ -40,7 +40,7 @@ export function AlertDialogOverlay({
   return (
     <AlertDialogPrimitive.Overlay
       className={cn(
-        'fixed inset-0 z-50 bg-black/40 backdrop-blur-(var(--blur-sm))',
+        'fixed inset-0 z-50 bg-black/40 backdrop-blur-(--blur-sm)',
         'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0',
         className
       )}
@@ -59,7 +59,7 @@ export function AlertDialogContent({
       <AlertDialogOverlay />
       <AlertDialogPrimitive.Content
         className={cn(
-          'fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-(var(--radius-lg)) border border-white/[0.03] bg-(--bg-elevated) p-6 shadow-(var(--elevation-4)) focus:outline-none',
+          'fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-(--radius-lg) border border-white/[0.03] bg-(--bg-elevated) p-6 shadow-(--elevation-4) focus:outline-none',
           'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
           className
         )}

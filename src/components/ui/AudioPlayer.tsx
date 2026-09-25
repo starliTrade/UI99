@@ -54,15 +54,15 @@ export function AudioPlayer({
       role="group"
       aria-label={`Audio player: ${title} by ${artist}`}
       className={cn(
-        'p-4 rounded-(var(--radius-lg)) bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04]',
-        'shadow-(var(--elevation-3)) flex flex-col gap-3 w-full max-w-md',
+        'p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04]',
+        'shadow-(--elevation-3) flex flex-col gap-3 w-full max-w-md',
         className
       )}
     >
       {/* Title & Info */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-(var(--radius-field)) bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
+          <div className="w-10 h-10 rounded-(--radius-field) bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
             <Music className="w-5 h-5" />
           </div>
           <div>
@@ -96,7 +96,7 @@ export function AudioPlayer({
             setCurrentTime((prev) => Math.min(durationSec, Math.max(0, prev + delta)));
           }
         }}
-        className="flex items-end justify-between h-10 gap-1 px-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 rounded-(var(--radius-sm))"
+        className="flex items-end justify-between h-10 gap-1 px-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60 rounded-(--radius-sm)"
         onClick={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
           const clickX = e.clientX - rect.left;
@@ -112,7 +112,7 @@ export function AudioPlayer({
             <div
               key={idx}
               className={cn(
-                'flex-1 rounded-(var(--radius-pill)) transition-all duration-150',
+                'flex-1 rounded-(--radius-pill) transition-all duration-150',
                 isPassed
                   ? 'bg-zinc-900 dark:bg-emerald-400'
                   : 'bg-zinc-200 dark:bg-white/[0.08]'
@@ -130,7 +130,7 @@ export function AudioPlayer({
             type="button"
             onClick={() => setCurrentTime((prev) => Math.max(0, prev - 10))}
             aria-label="Rewind 10 seconds"
-            className="p-1.5 rounded-(var(--radius-sm)) text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="p-1.5 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
           </button>
@@ -140,7 +140,7 @@ export function AudioPlayer({
             onClick={() => setPlaying(!playing)}
             aria-label={playing ? 'Pause' : 'Play'}
             aria-pressed={playing}
-            className="w-9 h-9 rounded-(var(--radius-pill)) bg-zinc-900 dark:bg-white text-white dark:text-black flex items-center justify-center shadow-md active:scale-95 transition-transform"
+            className="w-9 h-9 rounded-(--radius-pill) bg-zinc-900 dark:bg-white text-white dark:text-black flex items-center justify-center shadow-md active:scale-95 transition-transform"
           >
             {playing ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
           </button>
@@ -149,7 +149,7 @@ export function AudioPlayer({
             type="button"
             onClick={() => setCurrentTime((prev) => Math.min(durationSec, prev + 10))}
             aria-label="Forward 10 seconds"
-            className="p-1.5 rounded-(var(--radius-sm)) text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="p-1.5 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             <RotateCw className="w-3.5 h-3.5" />
           </button>
@@ -176,7 +176,7 @@ export function AudioPlayer({
               if (muted) setMuted(false);
             }}
             aria-label="Volume"
-            className="w-16 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-(var(--radius-sm)) appearance-none cursor-pointer accent-zinc-900 dark:accent-white"
+            className="w-16 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-(--radius-sm) appearance-none cursor-pointer accent-zinc-900 dark:accent-white"
           />
         </div>
       </div>

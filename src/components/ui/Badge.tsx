@@ -32,7 +32,7 @@ export type IssueStatus = 'backlog' | 'todo' | 'in_progress' | 'review' | 'done'
 // =====================================================================
 
 export const badgeVariants = cva(
-  'inline-flex items-center gap-1 rounded-(var(--radius-pill)) font-mono font-medium tracking-tight whitespace-nowrap select-none transition-colors',
+  'inline-flex items-center gap-1 rounded-(--radius-pill) font-mono font-medium tracking-tight whitespace-nowrap select-none transition-colors',
   {
     variants: {
       variant: {
@@ -132,7 +132,7 @@ export function PriorityBadge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-(var(--radius-pill)) border text-[11px] font-medium tracking-tight whitespace-nowrap transition-colors ${
+      className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-(--radius-pill) border text-[11px] font-medium tracking-tight whitespace-nowrap transition-colors ${
         size === 'md' ? 'px-2.5 py-1 text-xs' : ''
       } ${config.style} ${className}`}
       title={config.label}

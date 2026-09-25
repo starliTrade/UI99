@@ -69,7 +69,7 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
   return (
     <div
       className={cn(
-        'p-4 rounded-(var(--radius-lg)) bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04]',
+        'p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04]',
         'flex flex-col gap-4 shadow-sm w-full',
         className
       )}
@@ -112,7 +112,7 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
                 </div>
 
                 {evt.details && (
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-50 dark:bg-(--bg-elevated) p-2 rounded-(var(--radius-field)) border border-black/[0.03] dark:border-white/[0.03]">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-50 dark:bg-(--bg-elevated) p-2 rounded-(--radius-field) border border-black/[0.03] dark:border-white/[0.03]">
                     {evt.details}
                   </p>
                 )}

@@ -47,8 +47,8 @@ export function StatTile({
   return (
     <div
       className={cn(
-        'rounded-(var(--radius-control)) bg-(--bg-card) border border-(--border-hairline) p-4 sm:p-5',
-        'shadow-(var(--elevation-1)) dark:shadow-(var(--rim-soft), var(--elevation-2))',
+        'rounded-(--radius-control) bg-(--bg-card) border border-(--border-hairline) p-4 sm:p-5',
+        'shadow-(--elevation-1) shadow-(--shadow-card)',
         'space-y-1.5',
         className
       )}

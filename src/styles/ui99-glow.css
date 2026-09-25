@@ -30,6 +30,11 @@
   --glow-accent-md: 0 0 14px color-mix(in srgb, var(--intent-emerald) 24%, transparent);
   --glow-accent-lg: 0 0 28px color-mix(in srgb, var(--intent-emerald) 16%, transparent);
 
+  /* Two-stage aura: a wide bloom with a tight core. A multi-layer shadow is
+     NOT expressible as a Tailwind token shorthand — `shadow-(a, b)` compiles
+     to nothing — so the composite gets a name, exactly like --shadow-card. */
+  --shadow-glow-accent: var(--glow-accent-sm), var(--glow-accent-lg);
+
   --glow-rose-sm: 0 0 6px color-mix(in srgb, var(--intent-rose) 34%, transparent);
   --glow-rose-md: 0 0 14px color-mix(in srgb, var(--intent-rose) 26%, transparent);
   --glow-rose-lg: 0 0 28px color-mix(in srgb, var(--intent-rose) 18%, transparent);
@@ -64,6 +69,8 @@
   --glow-accent-sm: 0 2px 6px color-mix(in srgb, var(--intent-emerald) 14%, transparent);
   --glow-accent-md: 0 4px 12px color-mix(in srgb, var(--intent-emerald) 12%, transparent);
   --glow-accent-lg: 0 8px 22px color-mix(in srgb, var(--intent-emerald) 10%, transparent);
+
+  --shadow-glow-accent: var(--glow-accent-sm), var(--glow-accent-lg);
 
   --glow-rose-sm: 0 2px 6px color-mix(in srgb, var(--intent-rose) 15%, transparent);
   --glow-rose-md: 0 4px 12px color-mix(in srgb, var(--intent-rose) 13%, transparent);

@@ -10,10 +10,10 @@ import { Check, ChevronRight, Circle } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const menuContentClass =
-  'z-50 min-w-[12rem] overflow-hidden rounded-(var(--radius-control)) border border-black/[0.06] dark:border-white/[0.05] bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl p-1.5 text-(--text-primary) shadow-(var(--elevation-3)) dark:shadow-(var(--elevation-3)) data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95';
+  'z-50 min-w-[12rem] overflow-hidden rounded-(--radius-control) border border-black/[0.06] dark:border-white/[0.05] bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl p-1.5 text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3) data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95';
 
 const menuItemClass =
-  'relative flex cursor-pointer select-none items-center gap-2 rounded-(var(--radius-sm)) px-2 py-1.5 text-xs outline-none transition-colors focus:bg-black/[0.05] focus:text-zinc-950 data-[disabled]:pointer-events-none data-[disabled]:opacity-40 dark:focus:bg-white/[0.06] dark:focus:text-white [&_svg]:size-3.5 [&_svg]:shrink-0';
+  'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-sm) px-2 py-1.5 text-xs outline-none transition-colors focus:bg-black/[0.05] focus:text-zinc-950 data-[disabled]:pointer-events-none data-[disabled]:opacity-40 dark:focus:bg-white/[0.06] dark:focus:text-white [&_svg]:size-3.5 [&_svg]:shrink-0';
 
 export function Menubar({
   className = '',
@@ -22,7 +22,7 @@ export function Menubar({
   return (
     <MenubarPrimitive.Root
       className={cn(
-        'inline-flex h-10 items-center gap-1 rounded-(var(--radius-field)) bg-(--bg-sunken) border border-(--border-hairline) p-1',
+        'inline-flex h-10 items-center gap-1 rounded-(--radius-field) bg-(--bg-sunken) border border-(--border-hairline) p-1',
         className
       )}
       {...props}
@@ -43,7 +43,7 @@ export function MenubarTrigger({
   return (
     <MenubarPrimitive.Trigger
       className={cn(
-        'flex cursor-pointer select-none items-center rounded-(var(--radius-sm)) px-2.5 py-1.5 text-xs font-medium outline-none transition-colors focus-visible:outline-none focus-ui99-inset data-[state=open]:bg-white data-[state=open]:shadow-xs dark:data-[state=open]:bg-(--bg-elevated)',
+        'flex cursor-pointer select-none items-center rounded-(--radius-sm) px-2.5 py-1.5 text-xs font-medium outline-none transition-colors focus-visible:outline-none focus-ui99-inset data-[state=open]:bg-white data-[state=open]:shadow-xs dark:data-[state=open]:bg-(--bg-elevated)',
         className
       )}
       {...props}

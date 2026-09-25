@@ -53,21 +53,21 @@ export function TourGuide({
       aria-label={`Product tour, step ${currentStep + 1} of ${steps.length}: ${step.title}`}
       aria-live="polite"
       className={cn(
-        'w-full max-w-sm p-4 rounded-(var(--radius-control)) bg-white dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.06]',
-        'shadow-(var(--elevation-4)) backdrop-blur-xl animate-in fade-in zoom-in-95',
+        'w-full max-w-sm p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.06]',
+        'shadow-(--elevation-4) backdrop-blur-xl animate-in fade-in zoom-in-95',
         className
       )}
     >
       {/* Header with step pill & close */}
       <div className="flex items-center justify-between pb-3">
-        <span className="text-[11px] font-mono px-2 py-0.5 rounded-(var(--radius-pill)) bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-medium">
+        <span className="text-[11px] font-mono px-2 py-0.5 rounded-(--radius-pill) bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-medium">
           Step {currentStep + 1} of {steps.length}
         </span>
         <button
           type="button"
           onClick={onDismiss}
           aria-label="Dismiss tour"
-          className="p-1 rounded-(var(--radius-sm)) text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
+          className="p-1 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
         >
           <X className="w-3.5 h-3.5" />
         </button>
@@ -93,7 +93,7 @@ export function TourGuide({
               key={idx}
               aria-hidden="true"
               className={cn(
-                'h-1.5 rounded-(var(--radius-pill)) transition-all duration-300',
+                'h-1.5 rounded-(--radius-pill) transition-all duration-300',
                 idx === currentStep
                   ? 'w-4 bg-zinc-900 dark:bg-white'
                   : 'w-1.5 bg-zinc-300 dark:bg-white/20'

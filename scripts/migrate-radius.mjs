@@ -7,20 +7,26 @@
  * `rounded-2xl` / `rounded-3xl` / `rounded-full` — which slipped straight past
  * that rule and made the whole product read as over-rounded.
  *
- * This maps the named scale onto the token scale, with a deliberate DOWNWARD
- * bias on containers:
+ * This maps the named scale onto the token scale, rung for rung, so the
+ * migration is value-preserving rather than opinionated:
  *
- *   rounded-md   (6px)  → --radius-xs
- *   rounded-lg   (8px)  → --radius-sm
- *   rounded-xl   (12px) → --radius-field
- *   rounded-2xl  (16px) → --radius-control   (was over-used 222×)
- *   rounded-3xl  (24px) → --radius-lg
+ *   rounded-sm   (2px)  → --radius-xs      (8px)
+ *   rounded-md   (6px)  → --radius-xs      (8px)
+ *   rounded-lg   (8px)  → --radius-sm      (12px)
+ *   rounded-xl   (12px) → --radius-field   (14px)
+ *   rounded-2xl  (16px) → --radius-control (18px)
+ *   rounded-3xl  (24px) → --radius-lg      (26px)
+ *   rounded-4xl  (32px) → --radius-xl      (32px)
  *   rounded-full        → --radius-pill
  *
- * The important one is `rounded-2xl` → `--radius-control`. A control radius on
- * a card is what flattens hierarchy: when the container and its contents share
- * a radius, the nesting is invisible. Material's rule is outer = inner +
- * padding; giving cards `--radius-lg` instead of `--radius-control` restores it.
+ * Every value lands on the UI99 rung whose padding band matches what the
+ * class was already expressing, so a card keeps reading as a card and a chip
+ * keeps reading as a chip.
+ *
+ * EMIT CONTRACT (do not regress this): Tailwind v4's `(--token)` shorthand
+ * takes the BARE property name. `rounded-(var(--radius-sm))` is a different
+ * string that compiles to no rule — that bug shipped ~1,050 dead utilities
+ * across 114 files before it was caught. Enforced by scripts/tokens-gate.mjs.
  *
  * Dry-run by default. Pass --write to apply.
  */
@@ -31,21 +37,31 @@ import { join, extname, resolve } from 'node:path';
 const WRITE = process.argv.includes('--write');
 const ROOT = resolve(process.cwd(), 'src/components');
 
-/** Named Tailwind radius → UI99 token. Order matters: longest first. */
+/** Named Tailwind radius → UI99 token NAME (no `var()`; see emit contract). */
 const MAP = {
-  'rounded-full': 'var(--radius-pill)',
-  'rounded-4xl': 'var(--radius-sheet)',
-  'rounded-3xl': 'var(--radius-lg)',
-  'rounded-2xl': 'var(--radius-control)',
-  'rounded-xl': 'var(--radius-field)',
-  'rounded-lg': 'var(--radius-sm)',
-  'rounded-md': 'var(--radius-xs)',
-  'rounded-sm': 'var(--radius-xs)',
-  'rounded-none': 'var(--radius-none)',
+  'rounded-full': '--radius-pill',
+  'rounded-4xl': '--radius-xl',
+  'rounded-3xl': '--radius-lg',
+  'rounded-2xl': '--radius-control',
+  'rounded-xl': '--radius-field',
+  'rounded-lg': '--radius-sm',
+  'rounded-md': '--radius-xs',
+  'rounded-sm': '--radius-xs',
+  'rounded-none': '--radius-none',
 };
 
 /** Sizes that must not silently change meaning. */
 const NOTABLE = new Set(['rounded-4xl', 'rounded-none']);
+
+/**
+ * The two "notable" classes carry a *fixed* meaning that predates the token
+ * scale — flush edges and the top of the old ramp. They map to literal pixel
+ * values so a re-run cannot quietly redefine them.
+ */
+const RADIUS_MAP_PX = {
+  '--radius-xl': '32px',
+  '--radius-none': '0px',
+};
 
 function files(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
@@ -70,7 +86,7 @@ for (const file of files(ROOT)) {
     out = out.replace(re, () => {
       edits++;
       counts.set(cls, (counts.get(cls) ?? 0) + 1);
-      return NOTABLE.has(cls) ? token : `rounded-(${token})`;
+      return NOTABLE.has(cls) ? `rounded-[${RADIUS_MAP_PX[token]}]` : `rounded-(${token})`;
     });
   }
 

@@ -2,7 +2,7 @@
  * UI99 — Daily Spending Widget
  * Pixel-perfect implementation of IMG_7886.jpeg:
  * - Ambient illuminated segmented neon circle ring encircling the widget
- * - Squircle container (rounded-(var(--radius-2xl))) with 3D glass specular rim
+ * - Squircle container (rounded-(--radius-2xl) with 3D glass specular rim
  * - Monospace tracked uppercase header: "TODAY SPENDING"
  * - High-contrast amount: "$192.45" & "78%"
  * - 22-segment glowing rainbow equalizer barcode
@@ -44,23 +44,23 @@ export function SpendingSpectrumCard({
 
   // 22 Spectrum Bars with luminous, vibrant spectrum flow
   const spectrumColors = [
-    'bg-[#F97316] shadow-(var(--glow-warning-sm))',
-    'bg-[#FB923C] shadow-(var(--glow-warning-sm))',
-    'bg-[#F59E0B] shadow-(var(--glow-warning-sm))',
-    'bg-[#FBBF24] shadow-(var(--glow-warning-sm))',
-    'bg-[#F43F5E] shadow-(var(--glow-rose-sm))',
-    'bg-[#EC4899] shadow-(var(--glow-rose-sm))',
-    'bg-[#D946EF] shadow-(var(--glow-rose-sm))',
-    'bg-[#C084FC] shadow-(var(--glow-accent-sm))',
-    'bg-[#A855F7] shadow-(var(--glow-accent-sm))',
-    'bg-[#818CF8] shadow-(var(--glow-accent-sm))',
-    'bg-[#6366F1] shadow-(var(--glow-accent-sm))',
-    'bg-[#3B82F6] shadow-(var(--glow-accent-sm))',
-    'bg-[#38BDF8] shadow-(var(--glow-accent-sm))',
-    'bg-[#22D3EE] shadow-(var(--glow-accent-sm))',
-    'bg-[#2DD4BF] shadow-(var(--glow-accent-sm))',
-    'bg-[#34D399] shadow-(var(--glow-accent-sm))',
-    'bg-[#10B981] shadow-(var(--glow-accent-sm))',
+    'bg-[#F97316] shadow-(--glow-warning-sm)',
+    'bg-[#FB923C] shadow-(--glow-warning-sm)',
+    'bg-[#F59E0B] shadow-(--glow-warning-sm)',
+    'bg-[#FBBF24] shadow-(--glow-warning-sm)',
+    'bg-[#F43F5E] shadow-(--glow-rose-sm)',
+    'bg-[#EC4899] shadow-(--glow-rose-sm)',
+    'bg-[#D946EF] shadow-(--glow-rose-sm)',
+    'bg-[#C084FC] shadow-(--glow-accent-sm)',
+    'bg-[#A855F7] shadow-(--glow-accent-sm)',
+    'bg-[#818CF8] shadow-(--glow-accent-sm)',
+    'bg-[#6366F1] shadow-(--glow-accent-sm)',
+    'bg-[#3B82F6] shadow-(--glow-accent-sm)',
+    'bg-[#38BDF8] shadow-(--glow-accent-sm)',
+    'bg-[#22D3EE] shadow-(--glow-accent-sm)',
+    'bg-[#2DD4BF] shadow-(--glow-accent-sm)',
+    'bg-[#34D399] shadow-(--glow-accent-sm)',
+    'bg-[#10B981] shadow-(--glow-accent-sm)',
     isDark ? 'bg-white/[0.08]' : 'bg-black/[0.06]',
     isDark ? 'bg-white/[0.08]' : 'bg-black/[0.06]',
     isDark ? 'bg-white/[0.08]' : 'bg-black/[0.06]',
@@ -74,14 +74,14 @@ export function SpendingSpectrumCard({
       <motion.div
         whileHover={{ y: -3 }}
         transition={{ duration: 0.25 }}
-        className={`relative z-10 w-full rounded-(var(--radius-xl)) p-6 overflow-hidden select-none transition-all duration-300 ${
+        className={`relative z-10 w-full rounded-(--radius-xl) p-6 overflow-hidden select-none transition-all duration-300 ${
           isDark
-            ? 'bg-[#0B0C11] card-aura-sunset shadow-(var(--rim-soft), var(--elevation-4)) hover:shadow-(var(--rim-soft), var(--elevation-4))'
-            : 'bg-white card-aura-sunset shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.045] hover:shadow-(var(--elevation-3))'
+            ? 'bg-[#0B0C11] card-aura-sunset shadow-(--shadow-popover) shadow-(--shadow-popover)'
+            : 'bg-white card-aura-sunset shadow-(--shadow-card) border border-black/[0.045] hover:shadow-(--elevation-3)'
         }`}
       >
         {/* Subtle Ambient Sunset Glow at Top Center */}
-        <div className={`absolute -top-12 left-1/2 -translate-x-1/2 w-64 h-32 rounded-(var(--radius-pill)) blur-2xl pointer-events-none ${isDark ? 'bg-gradient-to-r from-orange-500/10 via-purple-500/10 to-pink-500/10' : 'bg-gradient-to-r from-orange-500/8 via-purple-500/8 to-pink-500/8'}`} />
+        <div className={`absolute -top-12 left-1/2 -translate-x-1/2 w-64 h-32 rounded-(--radius-pill) blur-2xl pointer-events-none ${isDark ? 'bg-gradient-to-r from-orange-500/10 via-purple-500/10 to-pink-500/10' : 'bg-gradient-to-r from-orange-500/8 via-purple-500/8 to-pink-500/8'}`} />
 
         {/* Monospace Tracked Header */}
         <span className={`block text-[11px] font-mono tracking-widest uppercase ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
@@ -109,7 +109,7 @@ export function SpendingSpectrumCard({
           {spectrumColors.map((colorClass, idx) => (
             <div
               key={idx}
-              className={`w-1.5 h-6 rounded-(var(--radius-pill)) ${colorClass} transition-all duration-300 hover:scale-110`}
+              className={`w-1.5 h-6 rounded-(--radius-pill) ${colorClass} transition-all duration-300 hover:scale-110`}
             />
           ))}
         </div>
@@ -119,7 +119,7 @@ export function SpendingSpectrumCard({
           {items.map((item, i) => (
             <div key={i} className="flex items-center justify-between text-xs sm:text-sm">
               <div className="flex items-center gap-2.5">
-                <span className={`w-2 h-3.5 rounded-(var(--radius-pill)) ${item.colorClass} shadow-(var(--glow-current-sm))`} />
+                <span className={`w-2 h-3.5 rounded-(--radius-pill) ${item.colorClass} shadow-(--glow-current-sm)`} />
                 <span className={`font-medium tracking-tight ${isDark ? 'text-[#90909A]' : 'text-[#6E6E78]'}`}>
                   {item.name}
                 </span>

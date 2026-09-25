@@ -141,11 +141,11 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
     <section className="relative w-full pt-2 pb-1 select-none">
       {/* 1. Subtle Celestial Ambient Halo */}
       <div
-        className={`absolute -top-10 left-1/2 -translate-x-1/2 w-full max-w-xl h-44 bg-gradient-to-b ${contextData.auraColor} rounded-(var(--radius-pill)) blur-3xl pointer-events-none opacity-80`}
+        className={`absolute -top-10 left-1/2 -translate-x-1/2 w-full max-w-xl h-44 bg-gradient-to-b ${contextData.auraColor} rounded-(--radius-pill) blur-3xl pointer-events-none opacity-80`}
       />
 
       {/* 2. Living Atmosphere Container */}
-      <div className="relative p-5 sm:p-6 rounded-(var(--radius-xl)) bg-[#0A0B10]/90 border border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-3)) backdrop-blur-xl overflow-hidden transition-all duration-300">
+      <div className="relative p-5 sm:p-6 rounded-(--radius-xl) bg-[#0A0B10]/90 border border-white/[0.025] shadow-(--shadow-card-hover) backdrop-blur-xl overflow-hidden transition-all duration-300">
         
         {/* Soft Background Silk Mesh */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/[0.02] via-transparent to-transparent pointer-events-none" />
@@ -156,14 +156,14 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
           <div className="space-y-1.5 min-w-0 flex-1">
             {/* Context Date Badge & Status */}
             <div className="flex items-center gap-2 text-xs text-[#92929B] font-medium">
-              <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-(var(--radius-pill)) bg-white/[0.03] border border-white/[0.035]">
+              <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.035]">
                 <TimeIcon className="w-3.5 h-3.5 text-rose-400" />
                 <span className="text-zinc-300">{dateFormatted}</span>
               </span>
               {isToday && (
                 <span className="relative flex h-2 w-2 shrink-0">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-(var(--radius-pill)) bg-rose-500 opacity-75" />
-                  <span className="relative inline-flex rounded-(var(--radius-pill)) h-2 w-2 bg-rose-500 shadow-(var(--glow-rose-sm))" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-(--radius-pill) bg-rose-500 opacity-75" />
+                  <span className="relative inline-flex rounded-(--radius-pill) h-2 w-2 bg-rose-500 shadow-(--glow-rose-sm)" />
                 </span>
               )}
             </div>
@@ -183,13 +183,13 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
           <div className="flex items-center gap-3.5 shrink-0 self-end md:self-center">
             
             {/* Jewelry-like Depth Orb Emblem */}
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-(var(--radius-pill)) bg-gradient-to-br from-[#1A1A24] via-[#0E0E14] to-[#07070A] border border-white/[0.06] shadow-(var(--elevation-2)) flex items-center justify-center overflow-hidden shrink-0 group">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-(--radius-pill) bg-gradient-to-br from-[#1A1A24] via-[#0E0E14] to-[#07070A] border border-white/[0.06] shadow-(--elevation-2) flex items-center justify-center overflow-hidden shrink-0 group">
               
               {/* Subtle orbital ring animation */}
               <motion.div
                 animate={prefersReducedMotion ? {} : { rotate: 360 }}
                 transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-1 rounded-(var(--radius-pill)) border border-dashed border-white/[0.08]"
+                className="absolute inset-1 rounded-(--radius-pill) border border-dashed border-white/[0.08]"
               />
 
               {/* Glowing diamond nuqta point */}
@@ -203,7 +203,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
                       }
                 }
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute w-2 h-2 rounded-(var(--radius-pill)) bg-rose-400/80 shadow-(var(--glow-rose-md))"
+                className="absolute w-2 h-2 rounded-(--radius-pill) bg-rose-400/80 shadow-(--glow-rose-md)"
               />
 
               {/* Inner satin glass highlight */}
@@ -216,7 +216,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
             <button
               type="button"
               onClick={onOpenCapture}
-              className="group flex items-center gap-2 px-4 py-2 rounded-(var(--radius-pill)) bg-gradient-to-r from-white/[0.06] to-white/[0.03] hover:from-white/[0.1] hover:to-white/[0.05] text-[#EDEDEF] border border-white/[0.05] hover:border-white/[0.1] shadow-(var(--rim-soft), var(--elevation-2)) backdrop-blur-xl transition-all active:scale-95 cursor-pointer shrink-0"
+              className="group flex items-center gap-2 px-4 py-2 rounded-(--radius-pill) bg-gradient-to-r from-white/[0.06] to-white/[0.03] hover:from-white/[0.1] hover:to-white/[0.05] text-[#EDEDEF] border border-white/[0.05] hover:border-white/[0.1] shadow-(--shadow-card) backdrop-blur-xl transition-all active:scale-95 cursor-pointer shrink-0"
               title={isRTL ? 'ثبت سریع ایده، یادداشت یا کار' : 'Quick Capture'}
               aria-label="Universal Capture"
             >

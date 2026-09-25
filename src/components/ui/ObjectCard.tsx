@@ -1,6 +1,6 @@
 /**
  * UI99 — Unified Velvet Object Card (Build 02.2)
- * Enhanced with iOS-squircle corners (rounded-(var(--radius-lg))), specular top edge (inset 0 1px 1px),
+ * Enhanced with iOS-squircle corners (rounded-(--radius-lg), specular top edge (inset 0 1px 1px),
  * luminous glowing progress / streaks and smooth spring micro-physics.
  */
 
@@ -95,13 +95,13 @@ export function ObjectCard({
         whileTap={{ scale: 0.985 }}
         transition={{ type: 'spring', stiffness: 400, damping: 28 }}
         onClick={onClick}
-        className={`group relative p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden select-none ${
+        className={`group relative p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden select-none ${
           isDark
-            ? 'bg-(--bg-card) shadow-(var(--rim-soft), var(--elevation-3)) hover:shadow-(var(--rim-soft), var(--elevation-4))'
-            : 'bg-white shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(var(--elevation-2))'
+            ? 'bg-(--bg-card) shadow-(--shadow-card-hover) shadow-(--shadow-popover)'
+            : 'bg-white shadow-(--shadow-card) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(--elevation-2)'
         }`}
       >
-        <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-(var(--radius-pill)) blur-2xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-(--radius-pill) blur-2xl pointer-events-none" />
 
         <div className="flex items-center justify-between mb-2 relative z-10">
           <Tag variant={badge.variant} size="sm">
@@ -149,13 +149,13 @@ export function ObjectCard({
         whileTap={{ scale: 0.985 }}
         transition={{ type: 'spring', stiffness: 400, damping: 28 }}
         onClick={onClick}
-        className={`group relative p-5 rounded-(var(--radius-xl)) cursor-pointer flex gap-4 overflow-hidden select-none ${
+        className={`group relative p-5 rounded-(--radius-xl) cursor-pointer flex gap-4 overflow-hidden select-none ${
           isDark
-            ? 'bg-(--bg-card) shadow-(var(--rim-soft), var(--elevation-3)) hover:shadow-(var(--rim-soft), var(--elevation-4))'
-            : 'bg-white shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(var(--elevation-2))'
+            ? 'bg-(--bg-card) shadow-(--shadow-card-hover) shadow-(--shadow-popover)'
+            : 'bg-white shadow-(--shadow-card) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(--elevation-2)'
         }`}
       >
-        <div className={`w-12 h-16 rounded-(var(--radius-control)) flex flex-col items-center justify-center shrink-0 ${isDark ? 'bg-white/[0.05] text-zinc-400 shadow-(var(--rim-soft), var(--elevation-1))' : 'bg-black/[0.04] text-zinc-600'}`}>
+        <div className={`w-12 h-16 rounded-(--radius-control) flex flex-col items-center justify-center shrink-0 ${isDark ? 'bg-white/[0.05] text-zinc-400 shadow-(--shadow-card)' : 'bg-black/[0.04] text-zinc-600'}`}>
           <BookOpen className="w-4 h-4 stroke-[1.8] text-amber-500" />
           <span className="text-[8px] font-mono mt-1 font-semibold opacity-60">BOOK</span>
         </div>
@@ -201,10 +201,10 @@ export function ObjectCard({
         whileTap={{ scale: 0.985 }}
         transition={{ type: 'spring', stiffness: 400, damping: 28 }}
         onClick={onClick}
-        className={`group relative p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden select-none ${
+        className={`group relative p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden select-none ${
           isDark
-            ? 'bg-(--bg-card) card-aura-emerald shadow-(var(--rim-soft), var(--elevation-3)) hover:shadow-(var(--rim-soft), var(--elevation-4))'
-            : 'bg-white shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(var(--elevation-2))'
+            ? 'bg-(--bg-card) card-aura-emerald shadow-(--shadow-card-hover) shadow-(--shadow-popover)'
+            : 'bg-white shadow-(--shadow-card) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(--elevation-2)'
         }`}
       >
         <div className="flex items-center justify-between gap-2 mb-2">
@@ -227,9 +227,9 @@ export function ObjectCard({
         )}
 
         {/* Capsule Progress Track */}
-        <div className={`mt-4 w-full h-2.5 rounded-(var(--radius-pill)) overflow-hidden p-0.5 shadow-inner ${isDark ? 'bg-black/50' : 'bg-black/[0.06]'}`}>
+        <div className={`mt-4 w-full h-2.5 rounded-(--radius-pill) overflow-hidden p-0.5 shadow-inner ${isDark ? 'bg-black/50' : 'bg-black/[0.06]'}`}>
           <div
-            className="h-full bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300 shadow-(var(--glow-accent-md)) rounded-(var(--radius-pill)) transition-all duration-500"
+            className="h-full bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300 shadow-(--glow-accent-md) rounded-(--radius-pill) transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -260,10 +260,10 @@ export function ObjectCard({
       whileTap={{ scale: 0.99 }}
       transition={{ type: 'spring', stiffness: 450, damping: 30 }}
       onClick={onClick}
-      className={`group relative p-4 rounded-(var(--radius-control)) cursor-pointer overflow-hidden select-none border transition-all ${
+      className={`group relative p-4 rounded-(--radius-control) cursor-pointer overflow-hidden select-none border transition-all ${
         isDark
-          ? 'bg-(--bg-card) border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-2)) hover:border-white/[0.06] hover:bg-(--bg-card-hover)'
-          : 'bg-white border-black/[0.04] shadow-(var(--elevation-1)) hover:border-black/[0.08]'
+          ? 'bg-(--bg-card) border-white/[0.025] shadow-(--shadow-card) hover:border-white/[0.06] hover:bg-(--bg-card-hover)'
+          : 'bg-white border-black/[0.04] shadow-(--elevation-1) hover:border-black/[0.08]'
       } ${isCompleted ? 'opacity-40' : ''}`}
     >
       <div className="flex items-start gap-3">
@@ -287,7 +287,7 @@ export function ObjectCard({
           <button
             type="button"
             onClick={handleIncrementStreak}
-            className="mt-0.5 w-6 h-6 rounded-(var(--radius-pill)) bg-orange-500/15 hover:bg-orange-500/25 text-orange-400 flex items-center justify-center shrink-0 transition-transform active:scale-95 border border-orange-500/20 shadow-(var(--glow-warning-sm))"
+            className="mt-0.5 w-6 h-6 rounded-(--radius-pill) bg-orange-500/15 hover:bg-orange-500/25 text-orange-400 flex items-center justify-center shrink-0 transition-transform active:scale-95 border border-orange-500/20 shadow-(--glow-warning-sm)"
             title="Check in habit ritual"
           >
             <Flame className="w-3.5 h-3.5 fill-current" />

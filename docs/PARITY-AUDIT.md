@@ -82,6 +82,89 @@ refactor.
 
 ---
 
+## UPDATE — the rounded standard landed, and the corners were broken far worse than "too rounded"
+
+While fixing the size maps above, the audit turned up the actual cause of
+"everything is sharp". **It was not a taste problem. The utilities were not
+compiling at all.**
+
+### The dead-utility incident
+
+Two classes were written in a form Tailwind v4 silently refuses to compile:
+
+```tsx
+rounded-(var(--radius-sm))                       // ✗ no rule emitted
+shadow-(var(--rim-soft), var(--elevation-2))     // ✗ no rule emitted
+```
+
+Tailwind's `(--token)` shorthand takes the **bare** property name. Both strings
+above are one character away from a working class, and neither throws. TypeScript
+was clean, `tsc` was clean, the token tests passed, and the codemods reported a
+triumphant "1053 values migrated". The browser rendered square corners and no
+elevation whatsoever.
+
+| Dead form | Count | Files |
+|---|---:|---:|
+| `rounded-(var(--x))` | 827 | 114 |
+| `shadow-(var(--x), var(--y))` | 75 | 30 |
+| `blur-[Npx]` never tokenised | 7 | — |
+| Stray `)` from an over-greedy fix (`shadow-(--shadow-card))`) | 78 | 30 |
+
+All are now `0`. The browser emits **57 / 57** referenced token utilities as real
+CSS rules.
+
+### Why the test suite never caught it
+
+`tokens-gate` rule C checked that every *referenced* token was *declared* — but it
+matched only the `var(--x)` spelling. The moment the kit moved to the `(--x)`
+shorthand, rule C was scanning a string that no longer existed in the codebase. It
+had been checking nothing at all, and reporting green.
+
+### What changed
+
+1. **Syntax fixed** across 114 files; both codemods (`migrate-radius.mjs`,
+   `migrate-elevation.mjs`) corrected so a re-run cannot reintroduce it.
+2. **Multi-layer shadows are now named composites.** `shadow-(--a, --b)` is not a
+   parseable value, so two-layer elevation is expressed as `--shadow-card`,
+   `--shadow-card-hover`, `--shadow-popover`, `--shadow-modal`,
+   `--shadow-glow-accent`. These are theme-aware, which also deleted 11 `dark:`
+   twins that were duplicating the same intent.
+3. **tokens-gate rule D** rejects the wrapped form, the multi-token form, and the
+   stray-paren form. Rule C now matches *both* reference spellings. Two further
+   holes were closed at the same time: `rounded-t-[28px]` and `rounded-b-3xl`
+   (directional radii) had been matching neither the bracket rule nor the named
+   scale rule — three real instances were live in `Modal`, `Sheet` and
+   `SplitButton`.
+4. **`src/test/tokens.test.ts` › "token utilities actually compile"** — five
+   regression tests so the failure mode can never again be silent.
+
+### The standard itself (docs/standards.md §5c)
+
+The scale was two drifting copies (`--radius-card-*` in `ui99.css` alongside
+`--radius-*` in `ui99-elevation.css`) with 3 duplicated values. There is now one,
+in one file, mirrored by `src/core/tokens/index.ts` → `rounded`, with a test
+asserting the two never diverge.
+
+**One law:** `outer radius = inner radius + the padding between them`. The corner
+is a function of padding, not of the element's name or width.
+
+The ladder was re-tuned into the iOS 26 band (rounder than iOS 17, and rounder
+than what was there before), banded by padding, strictly monotonic, with
+`3xl`/`4xl` added so that overriding Tailwind's own `--radius-*` variables cannot
+invert the native ramp.
+
+`Surface`/`Card` now **derive** the corner from the padding step; `rounded` is an
+escape hatch rather than the default. `Button` was the worst offender in the kit —
+all five sizes were `9999px`, so a 24px chip and a 48px CTA were the same
+lozenge. Sizes now scale with height, and `shape` is the explicit opt-in for a
+real capsule. `Dialog`, `Modal`, `Popover`, `CommandBar`, `Sheet` and `Input`
+were re-tuned to their own padding bands.
+
+**Status: the rounded standard is done.** Typography migration and
+spacing/z-index adoption remain open, as previously recorded.
+
+---
+
 ## 2. Honest parity scorecard
 
 Legend: ✅ real · ⚠️ partial · ❌ missing
@@ -91,7 +174,7 @@ Legend: ✅ real · ⚠️ partial · ❌ missing
 | Color roles | ✅ 40+ | ✅ semantic | ✅ | — | ⚠️ ~40, good |
 | Typography ramp | ✅ modular | ✅ Dynamic Type | ✅ | — | ⚠️ **9-step ramp declared; migration open** |
 | Elevation | ✅ 5 levels | ✅ 4 levels | ✅ | — | ✅ **5 + rim** |
-| Radius | ✅ 8 steps | ✅ continuous | ✅ | — | ✅ **9 steps** (unused) |
+| Radius | ✅ 8 steps | ✅ continuous | ✅ | — | ✅ **13 steps + padding law** (standards.md §5c) |
 | Spacing | ✅ 4dp grid | ✅ 8pt | ✅ | — | ❌ **tokens exist, 0 adoption** |
 | Motion | ✅ M3 set | ✅ spring set | ✅ | — | ⚠️ tokens exist, `duration-300` everywhere |
 | Z-index | ✅ layered | ✅ | ✅ | ✅ | ❌ **tokens exist, 0 adoption** |

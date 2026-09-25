@@ -135,13 +135,10 @@
   --font-mono: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --font-persian: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-  /* Radius scale (iOS 18+ smooth curves, mathematical nesting) */
-  --radius-pill: 9999px;
-  --radius-sheet: 32px;
-  --radius-card-xl: 28px;
-  --radius-card-lg: 24px;
-  --radius-card-md: 18px;
-  --radius-card-sm: 12px;
+  /* Radius deliberately NOT declared here. The rounded standard lives in one
+     place only — ui99-elevation.css §RADIUS — because a second, drifting copy
+     of the scale is exactly how the corners stopped agreeing with each other.
+     See `src/core/tokens/index.ts` → `rounded` for the machine-readable law. */
 }
 
 /* ======================= FOCUS UTILITIES (WCAG 2.4.13) ======================= */

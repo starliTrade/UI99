@@ -30,7 +30,7 @@ export function RadioGroupItem({
     <RadioGroupPrimitive.Item
       className={cn(
         'aspect-square h-4.5 w-4.5 text-zinc-900 dark:text-(--text-primary) shrink-0 cursor-pointer',
-        'rounded-(var(--radius-pill)) border border-black/[0.2] dark:border-white/[0.2] shadow-xs',
+        'rounded-(--radius-pill) border border-black/[0.2] dark:border-white/[0.2] shadow-xs',
         'focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed',
         'data-[state=checked]:border-current',
         className

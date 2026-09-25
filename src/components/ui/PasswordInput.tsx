@@ -87,7 +87,7 @@ export function PasswordInput({
             onChange?.(e);
           }}
           className={cn(
-            'w-full px-3.5 py-2.5 pr-10 text-sm rounded-(var(--radius-field)) transition-all duration-150',
+            'w-full px-3.5 py-2.5 pr-10 text-sm rounded-(--radius-field) transition-all duration-150',
             'bg-zinc-50 dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary) placeholder-zinc-400',
             'border border-black/[0.08] dark:border-white/[0.06] focus:border-zinc-500 dark:focus:border-white/20 focus:outline-none',
             error && 'border-rose-500',
@@ -108,9 +108,9 @@ export function PasswordInput({
       {/* Strength Bar */}
       {showStrength && val.length > 0 && (
         <div className="flex flex-col gap-2 pt-1">
-          <div className="w-full h-1 bg-zinc-200 dark:bg-white/[0.06] rounded-(var(--radius-pill)) overflow-hidden">
+          <div className="w-full h-1 bg-zinc-200 dark:bg-white/[0.06] rounded-(--radius-pill) overflow-hidden">
             <div
-              className={cn('h-full transition-all duration-300 rounded-(var(--radius-pill))', strengthMeta.color)}
+              className={cn('h-full transition-all duration-300 rounded-(--radius-pill)', strengthMeta.color)}
               style={{ width: strengthMeta.width }}
             />
           </div>
@@ -122,7 +122,7 @@ export function PasswordInput({
                 {rule.met ? (
                   <Check className="w-3 h-3 text-emerald-500 shrink-0" />
                 ) : (
-                  <div className="w-1.5 h-1.5 rounded-(var(--radius-pill)) bg-zinc-400 dark:bg-zinc-600 ml-1 mr-0.5 shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-(--radius-pill) bg-zinc-400 dark:bg-zinc-600 ml-1 mr-0.5 shrink-0" />
                 )}
                 <span className={cn(rule.met ? 'text-zinc-800 dark:text-zinc-200' : 'text-zinc-400 dark:text-zinc-500')}>
                   {rule.label}

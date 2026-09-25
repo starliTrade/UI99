@@ -23,9 +23,9 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const inputSizeStyles = {
-  sm: 'text-xs px-3 py-1.5 h-8 rounded-(var(--radius-sm))',
-  md: 'text-sm px-3.5 py-2.5 h-10 rounded-(var(--radius-field))',
-  lg: 'text-base px-4 py-3 h-12 rounded-(var(--radius-field))',
+  sm: 'text-xs px-3 py-1.5 h-8 rounded-(--radius-sm)',
+  md: 'text-sm px-3.5 py-2.5 h-10 rounded-(--radius-field)',
+  lg: 'text-base px-4 py-3 h-12 rounded-(--radius-control)',
 } as const;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -97,7 +97,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={error ? true : undefined}
           aria-describedby={helperId}
           className={cn(
-            'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-(var(--radius-field)) p-3.5 text-sm text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-ui99',
+            'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-(--radius-field) p-3.5 text-sm text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-ui99',
             error && 'border-rose-500/60 focus:border-rose-500',
             className
           )}
@@ -137,13 +137,13 @@ export function SearchBar({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         autoFocus={autoFocus}
-        className="w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-(var(--radius-pill)) pl-10 pr-10 py-2.5 text-sm text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] transition-all shadow-xs tracking-tight"
+        className="w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-(--radius-pill) pl-10 pr-10 py-2.5 text-sm text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] transition-all shadow-xs tracking-tight"
       />
       {value && onClear && (
         <button
           type="button"
           onClick={onClear}
-          className="absolute right-3.5 p-1 rounded-(var(--radius-pill)) text-zinc-400 hover:text-zinc-900 dark:text-(--text-muted) dark:hover:text-(--text-primary) transition-colors cursor-pointer"
+          className="absolute right-3.5 p-1 rounded-(--radius-pill) text-zinc-400 hover:text-zinc-900 dark:text-(--text-muted) dark:hover:text-(--text-primary) transition-colors cursor-pointer"
         >
           <X className="w-3.5 h-3.5" />
         </button>

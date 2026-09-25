@@ -34,7 +34,7 @@ export function BottomNavigation() {
     >
       <div className="pointer-events-auto flex items-center justify-center gap-1.5 w-full max-w-[380px] mx-auto">
         <div
-          className={`relative flex-1 flex items-center justify-between p-0.5 sm:p-1 rounded-(var(--radius-pill)) select-none transition-all duration-300 ${
+          className={`relative flex-1 flex items-center justify-between p-0.5 sm:p-1 rounded-(--radius-pill) select-none transition-all duration-300 ${
             isDark ? 'liquid-glass-dark-dock' : 'liquid-glass-light-dock'
           }`}
         >
@@ -47,7 +47,7 @@ export function BottomNavigation() {
                 key={item.tab}
                 type="button"
                 onClick={() => setCurrentTab(item.tab)}
-                className="group relative flex-1 min-h-[44px] py-1.5 px-1 rounded-(var(--radius-pill)) cursor-pointer flex flex-col items-center justify-center transition-all duration-150 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
+                className="group relative flex-1 min-h-[44px] py-1.5 px-1 rounded-(--radius-pill) cursor-pointer flex flex-col items-center justify-center transition-all duration-150 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
                 title={isRTL ? item.faIntent : item.intent}
                 aria-label={isRTL ? item.faLabel : item.label}
                 aria-current={isActive ? 'page' : undefined}
@@ -55,9 +55,9 @@ export function BottomNavigation() {
                 {isActive && (
                   <motion.div
                     layoutId={prefersReduced ? undefined : 'glassCushionActive'}
-                    className={`absolute inset-0.5 rounded-(var(--radius-pill)) ${
+                    className={`absolute inset-0.5 rounded-(--radius-pill) ${
                       isDark
-                        ? 'bg-white/[0.04] shadow-(var(--rim-soft), var(--elevation-1))'
+                        ? 'bg-white/[0.04] shadow-(--shadow-card)'
                         : 'liquid-glass-light-active-cushion'
                     }`}
                     transition={{ type: 'spring', stiffness: 460, damping: 38 }}
@@ -98,7 +98,7 @@ export function BottomNavigation() {
         <button
           type="button"
           onClick={() => setIsSearchOpen(true)}
-          className={`relative min-w-[44px] min-h-[44px] w-10 h-10 rounded-(var(--radius-pill)) active:scale-95 flex items-center justify-center transition-all duration-150 cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+          className={`relative min-w-[44px] min-h-[44px] w-10 h-10 rounded-(--radius-pill) active:scale-95 flex items-center justify-center transition-all duration-150 cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
             isDark
               ? 'liquid-glass-dark-dock hover:bg-(--bg-elevated)/70 text-(--text-muted) hover:text-(--text-primary)'
               : 'liquid-glass-light-dock hover:bg-white/60 text-zinc-600 hover:text-zinc-950'

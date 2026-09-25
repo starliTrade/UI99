@@ -33,7 +33,7 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
   const filtered = useMemo(() => slots.filter((t) => t.includes(query)), [slots, query]);
 
   return (
-    <div className={cn('rounded-(var(--radius-control)) border border-black/[0.06] bg-white p-3 dark:border-white/[0.06] dark:bg-(--bg-elevated)', className)}>
+    <div className={cn('rounded-(--radius-control) border border-black/[0.06] bg-white p-3 dark:border-white/[0.06] dark:bg-(--bg-elevated)', className)}>
       <input
         type="text"
         value={query}
@@ -41,7 +41,7 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
         placeholder="Filter times…"
         aria-label="Filter times"
         className={cn(
-          'mb-2 h-9 w-full rounded-(var(--radius-field)) border border-black/[0.07] bg-transparent px-3 text-sm text-zinc-950 placeholder:text-zinc-400',
+          'mb-2 h-9 w-full rounded-(--radius-field) border border-black/[0.07] bg-transparent px-3 text-sm text-zinc-950 placeholder:text-zinc-400',
           'dark:border-white/[0.07] dark:text-(--text-primary) dark:placeholder:text-(--text-muted)',
           'focus-visible:outline-none focus-ui99-inset'
         )}
@@ -55,7 +55,7 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
             aria-selected={t === value}
             onClick={() => onChange(t)}
             className={cn(
-              'flex min-h-[36px] w-full items-center justify-between rounded-(var(--radius-sm)) px-3 text-left text-xs font-mono transition-colors',
+              'flex min-h-[36px] w-full items-center justify-between rounded-(--radius-sm) px-3 text-left text-xs font-mono transition-colors',
               'hover:bg-(--state-hover)',
               'focus-visible:outline-none focus-ui99-inset cursor-pointer',
               t === value

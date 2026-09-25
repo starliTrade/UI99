@@ -23,7 +23,7 @@ export function InspirationRail({ items, onSelectItem, onAddInspiration }: Inspi
       {/* Header */}
       <div className="flex items-center justify-between px-1">
         <div className="flex items-center gap-2">
-          <span className="flex items-center justify-center w-4 h-4 rounded-(var(--radius-pill)) bg-emerald-500/15 text-emerald-400">
+          <span className="flex items-center justify-center w-4 h-4 rounded-(--radius-pill) bg-emerald-500/15 text-emerald-400">
             <Compass className="w-2.5 h-2.5 stroke-[2.2]" />
           </span>
           <h3 className="text-[11px] font-semibold uppercase tracking-wider text-[#92929B]">
@@ -46,10 +46,10 @@ export function InspirationRail({ items, onSelectItem, onAddInspiration }: Inspi
         {items.length === 0 ? (
           <div
             onClick={onAddInspiration}
-            className="w-full min-w-[280px] p-5 rounded-(var(--radius-lg)) bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] flex items-center justify-between cursor-pointer"
+            className="w-full min-w-[280px] p-5 rounded-(--radius-lg) bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] flex items-center justify-between cursor-pointer"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-(var(--radius-control)) bg-white/[0.03] flex items-center justify-center text-zinc-400">
+              <div className="w-10 h-10 rounded-(--radius-control) bg-white/[0.03] flex items-center justify-center text-zinc-400">
                 <Image className="w-4 h-4" />
               </div>
               <div>
@@ -74,13 +74,13 @@ export function InspirationRail({ items, onSelectItem, onAddInspiration }: Inspi
                 key={item.id}
                 onClick={() => onSelectItem(item)}
                 whileHover={{ y: -2 }}
-                className="w-56 sm:w-64 shrink-0 snap-start p-4 rounded-(var(--radius-lg)) cursor-pointer bg-[#0A0B10] border border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.06] transition-all flex flex-col justify-between"
+                className="w-56 sm:w-64 shrink-0 snap-start p-4 rounded-(--radius-lg) cursor-pointer bg-[#0A0B10] border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.06] transition-all flex flex-col justify-between"
               >
                 <div>
                   {/* Visual Mood Card Header with Abstract Gradient/Texture */}
-                  <div className="w-full h-24 rounded-(var(--radius-control)) bg-gradient-to-br from-[#1C1D26] via-[#101117] to-[#0A0B10] border border-white/[0.05] p-3 flex flex-col justify-between relative overflow-hidden mb-3">
+                  <div className="w-full h-24 rounded-(--radius-control) bg-gradient-to-br from-[#1C1D26] via-[#101117] to-[#0A0B10] border border-white/[0.05] p-3 flex flex-col justify-between relative overflow-hidden mb-3">
                     <div className="flex items-center justify-between relative z-10">
-                      <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-(var(--radius-pill)) bg-black/50 text-[#EDEDEF] border border-white/[0.05] backdrop-blur-md">
+                      <span className="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-(--radius-pill) bg-black/50 text-[#EDEDEF] border border-white/[0.05] backdrop-blur-md">
                         {category}
                       </span>
                       <Eye className="w-3.5 h-3.5 text-white/50" />
@@ -91,7 +91,7 @@ export function InspirationRail({ items, onSelectItem, onAddInspiration }: Inspi
                       {palette.map((c, i) => (
                         <div
                           key={i}
-                          className="w-2.5 h-2.5 rounded-(var(--radius-pill)) border border-white/20"
+                          className="w-2.5 h-2.5 rounded-(--radius-pill) border border-white/20"
                           style={{ backgroundColor: c }}
                         />
                       ))}

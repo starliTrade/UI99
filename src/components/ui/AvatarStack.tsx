@@ -35,7 +35,7 @@ export function AvatarStack({ names, max = 4, size = 'sm', className = '' }: Ava
         <div className="-ml-2" style={{ zIndex: 0 }}>
           <div
             className={cn(
-              'flex items-center justify-center rounded-(var(--radius-pill)) bg-zinc-100 dark:bg-(--bg-card-hover) font-mono font-semibold text-(--text-secondary) ring-2 ring-white dark:ring-(--bg-card)',
+              'flex items-center justify-center rounded-(--radius-pill) bg-zinc-100 dark:bg-(--bg-card-hover) font-mono font-semibold text-(--text-secondary) ring-2 ring-white dark:ring-(--bg-card)',
               size === 'xs' && 'w-6 h-6 text-[9px]',
               size === 'sm' && 'w-7 h-7 text-[10px]',
               size === 'md' && 'w-9 h-9 text-xs',

@@ -9,6 +9,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { rounded } from '../core/tokens';
 
 const read = (f: string) => readFileSync(resolve(process.cwd(), 'src/styles', f), 'utf8');
 
@@ -97,60 +98,225 @@ describe('elevation token scale', () => {
   });
 });
 
-describe('radius scale', () => {
-  it('is complete and monotonic', () => {
-    const names = [...SHARED.matchAll(/--radius-([a-z0-9]+)\s*:\s*(\d+)px/g)].map(
+describe('radius scale — the rounded standard', () => {
+  const LADDER = [
+    'none', 'xs', 'sm', 'field', 'control', 'md',
+    'lg', 'xl', '2xl', 'sheet', '3xl', '4xl', 'pill',
+  ] as const;
+
+  const cssPx = new Map(
+    [...SHARED.matchAll(/--radius-([a-z0-9]+)\s*:\s*(\d+)px/g)].map(
       (m) => [m[1], parseInt(m[2], 10)] as const,
-    );
-    const map = new Map<string, number>(names);
+    ),
+  );
 
-    for (const step of ['xs', 'sm', 'field', 'control', 'md', 'lg', 'xl', '2xl', 'sheet', 'pill']) {
-      expect(map.has(step), `radius-${step} must be declared`).toBe(true);
-    }
-
-    // Monotonic up to pill, which is deliberately the terminal value.
-    const ladder = ['xs', 'sm', 'field', 'control', 'md', 'lg', 'xl', '2xl'].map((s) => map.get(s)!);
-    for (let i = 1; i < ladder.length; i++) {
-      expect(ladder[i], `radius must increase at step ${i}`).toBeGreaterThan(ladder[i - 1]);
+  it('declares every rung of the ladder, in the CSS', () => {
+    for (const rung of LADDER) {
+      expect(cssPx.has(rung), `--radius-${rung} must be declared in ui99-elevation.css`).toBe(true);
     }
   });
 
-  it('never reuses a radius across two steps of the same size scale', () => {
+  it('is strictly monotonic — no two neighbours share a corner', () => {
+    // A flat step is invisible: the size prop stops meaning anything and the
+    // hierarchy between a chip and a card quietly disappears.
+    for (let i = 1; i < LADDER.length; i++) {
+      const prev = cssPx.get(LADDER[i - 1])!;
+      const cur = cssPx.get(LADDER[i])!;
+      expect(cur, `--radius-${LADDER[i]} must exceed --radius-${LADDER[i - 1]}`).toBeGreaterThan(prev);
+    }
+  });
+
+  it('mirrors the TypeScript law exactly — CSS and code cannot drift', () => {
+    // src/core/tokens/index.ts is what components read; the CSS block is what
+    // the browser reads. If they disagree, half the kit renders a corner the
+    // other half never asked for.
+    expect([...rounded.ladder]).toEqual([...LADDER]);
+    for (const rung of LADDER) {
+      expect(rounded.px[rung], `--radius-${rung} value must match tokens/index.ts`).toBe(cssPx.get(rung));
+    }
+  });
+
+  it('honours the law: a rung is never tighter than the padding it wraps', () => {
+    // outer = inner + padding means the radius must be at least as large as
+    // the padding inside it, or the corner "pinches" and the inset highlight
+    // has nowhere to sit.
+    for (const rung of LADDER) {
+      if (rung === 'none' || rung === 'pill') continue;
+      const [lo] = rounded.paddingBand[rung];
+      expect(cssPx.get(rung)!, `--radius-${rung} must be >= its own padding band`).toBeGreaterThanOrEqual(lo);
+    }
+  });
+
+  it('derives a card corner from its padding, not from its name', () => {
+    // The whole point of the standard: bigger padding => bigger corner, always.
+    const steps = Object.keys(rounded.byPadding) as (keyof typeof rounded.byPadding)[];
+    for (let i = 1; i < steps.length; i++) {
+      const prev = cssPx.get(rounded.byPadding[steps[i - 1]])!;
+      const cur = cssPx.get(rounded.byPadding[steps[i]])!;
+      expect(cur, `padding "${steps[i]}" must not get a tighter corner than "${steps[i - 1]}"`).toBeGreaterThan(prev);
+    }
+  });
+
+  it('keeps 3xl/4xl above our own 2xl so the native Tailwind ramp stays monotonic', () => {
+    // We override Tailwind's --radius-* variables on purpose, so a stray
+    // `rounded-3xl` lands on our scale. If 3xl/4xl were left at Tailwind's
+    // defaults, rounded-3xl (24px) would sit BELOW our 2xl (36px).
+    expect(cssPx.get('2xl')!).toBeLessThan(cssPx.get('3xl')!);
+    expect(cssPx.get('3xl')!).toBeLessThan(cssPx.get('4xl')!);
+    expect(cssPx.get('4xl')!).toBeLessThan(cssPx.get('pill')!);
+  });
+
+  it('declares the radius scale in exactly one place', () => {
+    // A second, drifting copy is how the corners stopped agreeing with each
+    // other in the first place. ui99.css must not re-declare --radius-*.
+    expect(base).not.toMatch(/^\s*--radius-[a-z0-9-]+\s*:/m);
+  });
+
+  it('gives each size step its own corner, and never inverts the scale', () => {
     // The bug behind "everything looks too rounded": a size map like
     // lg→control, xl→control, 2xl→xl makes the size prop meaningless and
-    // flattens the hierarchy, because siblings end up identical.
+    // flattens the hierarchy, because siblings end up identical. Button was
+    // the worst case — all five sizes at 9999px.
+    //
+    // TWO DELIBERATE EXCEPTIONS, both with a reason:
+    //   · the floor rungs (`none`, `xs`) may repeat, because they are the
+    //     floor precisely because elements under ~28px are too small to have
+    //     a corner of their own (a 18px <kbd> and a 22px <kbd> both want 8px;
+    //     forcing them apart only produces a lozenge);
+    //   · two steps of the SAME height may share a radius, because the law
+    //     keys off size — a 40px button and a 40px icon button are one size.
+    const FLOOR = new Set(['none', 'xs']);
     const kitDir = resolve(process.cwd(), 'src/components/ui');
     const offenders: string[] = [];
+    const HEIGHT = /(?:^|\s)h-(\d+(?:\.\d+)?)\b/;
 
     for (const file of readdirSync(kitDir)) {
       if (!file.endsWith('.tsx')) continue;
       const src = readFileSync(resolve(kitDir, file), 'utf8');
 
       // Find object literals that map size names to radius tokens.
-      const maps = src.matchAll(/\{[^{}]*?(?:sm|md|lg|xl)[^{}]*?rounded-\(--radius-[^{}]*?\}/g);
-      for (const map of maps) {
-        const tokens = [...map[0].matchAll(/rounded-\(--(radius-[a-z0-9-]+)\)/g)].map((m) => m[1]);
-        const seen = new Set<string>();
-        for (const t of tokens) {
-          if (seen.has(t)) offenders.push(`${file}: ${t} used twice in one size map`);
-          seen.add(t);
+      for (const map of src.matchAll(/\{[^{}]*?(?:sm|md|lg|xl)[^{}]*?rounded-\(--radius-[^{}]*?\}/g)) {
+        const entries = map[0]
+          .split(/[,\n]/)
+          .map((line) => {
+            const h = line.match(HEIGHT);
+            const r = line.match(/rounded-\(--radius-([a-z0-9-]+)\)/);
+            return h && r ? { h: parseFloat(h[1]), r: r[1], px: cssPx.get(r[1])! } : null;
+          })
+          .filter((e): e is { h: number; r: string; px: number } => e !== null)
+          .sort((a, b) => a.h - b.h);
+
+        for (let i = 1; i < entries.length; i++) {
+          const prev = entries[i - 1];
+          const cur = entries[i];
+          if (FLOOR.has(cur.r)) continue;
+          if (cur.h === prev.h) continue; // one size, one corner
+          if (cur.r === prev.r) {
+            offenders.push(`${file}: ${cur.r} shared by h-${prev.h} and h-${cur.h} — two sizes, one corner`);
+          }
+          if (cur.px < prev.px) {
+            offenders.push(
+              `${file}: h-${cur.h} (${cur.px}px) must not be tighter than h-${prev.h} (${prev.px}px)`,
+            );
+          }
         }
       }
     }
 
     expect(offenders, offenders.join('\n')).toHaveLength(0);
   });
+});
 
-  it('preserves the six pre-existing radius tokens (backward compatibility)', () => {
-    for (const token of [
-      '--radius-pill',
-      '--radius-sheet',
-      '--radius-card-xl',
-      '--radius-card-lg',
-      '--radius-card-md',
-      '--radius-card-sm',
-    ]) {
-      expect(base, `${token} must survive in the original file`).toContain(token);
+/* ═══════════════════════════════════════════════════════════════════════════
+ * THE REGRESSION THAT WAS MISSING
+ *
+ * ~1,050 utility classes once shipped in a form that Tailwind silently refused
+ * to compile: `rounded-(var(--radius-sm))` instead of `rounded-(--radius-sm)`,
+ * and `shadow-(var(--rim-soft), var(--elevation-2))` instead of a named
+ * composite. Nothing threw. TypeScript was clean. Every test passed. The
+ * browser simply rendered square corners and no shadows at all.
+ *
+ * These assertions exist so that failure mode can never be silent again.
+ * ═══════════════════════════════════════════════════════════════════════════ */
+describe('token utilities actually compile', () => {
+  const kitFiles = (() => {
+    const dir = resolve(process.cwd(), 'src/components');
+    const walk = (d: string): string[] =>
+      readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+        e.isDirectory()
+          ? walk(resolve(d, e.name))
+          : /\.tsx?$/.test(e.name)
+            ? [resolve(d, e.name)]
+            : [],
+      );
+    return walk(dir);
+  })();
+
+  const sources = kitFiles.map((f) => ({ f, src: readFileSync(f, 'utf8') }));
+
+  it('never wraps a token in var() inside a utility shorthand', () => {
+    // rounded-(var(--x)) is a different string to Tailwind than
+    // rounded-(--x). The first compiles to nothing, silently.
+    const offenders = sources
+      .filter(({ src }) => /(?<![\w-])[a-z-]+-\(var\(--[a-z0-9-]+\)\)/.test(src))
+      .map(({ f }) => f.replace(process.cwd(), '.'));
+    expect(offenders, offenders.join('\n')).toHaveLength(0);
+  });
+
+  it('never writes a multi-token utility — composites must be named', () => {
+    // shadow-(--a, --b) is not parseable as a value, so it emits no rule.
+    // Two-layer shadows are expressed as --shadow-card / --shadow-modal / etc.
+    const offenders = sources
+      .filter(({ src }) =>
+        /(?<![\w-])[a-z-]+-\((?:var\(--[a-z0-9-]+\)|--[a-z0-9-]+),\s*(?:var\(--[a-z0-9-]+\)|--[a-z0-9-]+)\)/.test(src),
+      )
+      .map(({ f }) => f.replace(process.cwd(), '.'));
+    expect(offenders, offenders.join('\n')).toHaveLength(0);
+  });
+
+  it('never leaves a stray paren inside a utility shorthand', () => {
+    // An over-greedy codemod once rewrote `shadow-(a, b)` as
+    // `shadow-(--shadow-card))`, leaving the second `)` behind. 78 classes
+    // looked migrated and rendered nothing. The lookahead keeps this from
+    // firing on a `)` that legitimately closes a surrounding expression.
+    const STRAY = /(?<![\w-])[a-z-]+-\([^()\n]*\)\)(?=[\s'"`}]|$)/;
+    const offenders = sources
+      .filter(({ src }) => STRAY.test(src))
+      .map(({ f }) => f.replace(process.cwd(), '.'));
+    expect(offenders, offenders.join('\n')).toHaveLength(0);
+  });
+
+  it('only references custom properties the stylesheet actually declares', () => {
+    const declared = new Set([
+      ...[elevation, glow, base, type]
+        .join('\n')
+        .matchAll(/^\s*(--[a-z0-9-]+)\s*:/gm),
+    ].map((m) => m[1]));
+
+    const missing = new Map<string, Set<string>>();
+    for (const { f, src } of sources) {
+      // Match BOTH reference forms — checking only one is how the original
+      // gap happened in the first place.
+      for (const m of src.matchAll(
+        /var\((--[a-z0-9-]+)\)|\(--([a-z0-9-]+)\)/g,
+      )) {
+        const token = m[1] ?? `--${m[2]}`;
+        if (/^(?:elevation|rim|shadow|glow|radius|space|blur|z|type|weight|icon)-/.test(token) && !declared.has(token)) {
+          if (!missing.has(token)) missing.set(token, new Set());
+          missing.get(token)!.add(f.replace(process.cwd(), '.'));
+        }
+      }
+    }
+
+    const report = [...missing].map(([t, w]) => `${t} — ${[...w].join(', ')}`);
+    expect(report, report.join('\n')).toHaveLength(0);
+  });
+
+  it('declares a named composite for every two-layer shadow the kit needs', () => {
+    // If this ever fails, the fix is to add a composite to ui99-elevation.css
+    // — never to write a multi-token utility, which renders as nothing.
+    for (const token of ['--shadow-card', '--shadow-card-hover', '--shadow-popover', '--shadow-modal', '--shadow-glow-accent']) {
+      expect(elevation + glow, `${token} must be declared`).toMatch(new RegExp(`${token}\\s*:`));
     }
   });
 });

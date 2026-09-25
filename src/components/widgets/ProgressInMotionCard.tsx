@@ -32,7 +32,7 @@ export function ProgressInMotionCard({
     <motion.div
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2 }}
-      className="relative rounded-(var(--radius-xl)) bg-[#12131A] border border-white/[0.045] p-6 overflow-hidden transition-all shadow-(var(--elevation-2)) hover:border-white/[0.07] select-none"
+      className="relative rounded-(--radius-xl) bg-[#12131A] border border-white/[0.045] p-6 overflow-hidden transition-all shadow-(--elevation-2) hover:border-white/[0.07] select-none"
     >
       {/* Top Row: Icon, Title & Status Pill */}
       <div className="flex items-start justify-between gap-3 mb-2">
@@ -46,7 +46,7 @@ export function ProgressInMotionCard({
         </div>
 
         {/* Percentage Capsule Pill */}
-        <span className="px-3 py-1 rounded-(var(--radius-pill)) text-xs font-medium bg-amber-400/[0.12] text-amber-300 border border-amber-400/20 tracking-tight shrink-0">
+        <span className="px-3 py-1 rounded-(--radius-pill) text-xs font-medium bg-amber-400/[0.12] text-amber-300 border border-amber-400/20 tracking-tight shrink-0">
           {percent}% complete
         </span>
       </div>
@@ -68,9 +68,9 @@ export function ProgressInMotionCard({
           return (
             <div
               key={idx}
-              className={`h-4.5 w-2 rounded-(var(--radius-pill)) transition-all duration-300 ${
+              className={`h-4.5 w-2 rounded-(--radius-pill) transition-all duration-300 ${
                 isFilled
-                  ? 'bg-emerald-400/90 shadow-(var(--glow-accent-sm))'
+                  ? 'bg-emerald-400/90 shadow-(--glow-accent-sm)'
                   : 'bg-white/[0.05]'
               }`}
             />

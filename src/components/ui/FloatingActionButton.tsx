@@ -32,11 +32,11 @@ export function FloatingActionButton({
 
   const variantClasses = {
     primary:
-      'bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 shadow-(var(--elevation-3)) dark:shadow-(var(--elevation-3)) border border-white/10 dark:border-white/20',
+      'bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 shadow-(--elevation-3) dark:shadow-(--elevation-3) border border-white/10 dark:border-white/20',
     emerald:
-      'bg-emerald-500 hover:bg-emerald-400 text-white shadow-(var(--elevation-3)) border border-emerald-400/30',
+      'bg-emerald-500 hover:bg-emerald-400 text-white shadow-(--elevation-3) border border-emerald-400/30',
     secondary:
-      'bg-zinc-100 dark:bg-(--bg-elevated) text-zinc-900 dark:text-white hover:bg-zinc-200 dark:hover:bg-(--bg-card-hover) shadow-(var(--elevation-3)) border border-zinc-200 dark:border-white/[0.06]',
+      'bg-zinc-100 dark:bg-(--bg-elevated) text-zinc-900 dark:text-white hover:bg-zinc-200 dark:hover:bg-(--bg-card-hover) shadow-(--elevation-3) border border-zinc-200 dark:border-white/[0.06]',
   }[variant];
 
   return (
@@ -44,7 +44,7 @@ export function FloatingActionButton({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`rounded-(var(--radius-pill)) inline-flex items-center justify-center gap-2 font-medium transition-all active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${sizeClasses} ${variantClasses} ${className}`}
+      className={`rounded-(--radius-pill) inline-flex items-center justify-center gap-2 font-medium transition-all active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${sizeClasses} ${variantClasses} ${className}`}
     >
       <span className="shrink-0">{icon}</span>
       {label && <span className="font-semibold whitespace-nowrap">{label}</span>}

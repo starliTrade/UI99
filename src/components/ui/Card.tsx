@@ -10,6 +10,8 @@
  */
 
 import React, { ReactNode, HTMLAttributes } from 'react';
+import { radiusClassForPadding } from '../../core/tokens';
+import type { RadiusRung, SurfacePaddingStep } from '../../core/tokens';
 
 export type SurfaceVariant =
   | 'surface'            // Primary container surface (--bg-surface / white)
@@ -20,11 +22,21 @@ export type SurfaceVariant =
   | 'flat'               // Clean minimal container without shadow
   | 'outline';           // Pure hairline container
 
+export type SurfacePadding = SurfacePaddingStep;
+export type SurfaceRadius = RadiusRung;
+
 export interface SurfaceProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   variant?: SurfaceVariant;
-  rounded?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full';
-  padding?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  padding?: SurfacePadding;
+  /**
+   * Escape hatch. Leave it undefined and the corner is DERIVED from `padding`
+   * via the rounded standard — that is the correct 99% of the time, because
+   * `outer radius = inner radius + padding` is what keeps nesting concentric.
+   * Set it only for a genuine shape decision (a pill-shaped card, a card that
+   * must match a fixed-height parent), never to "make it look nicer".
+   */
+  rounded?: SurfaceRadius;
   hoverable?: boolean;
   interactive?: boolean;
 }
@@ -32,25 +44,19 @@ export interface SurfaceProps extends HTMLAttributes<HTMLDivElement> {
 export function Surface({
   children,
   variant = 'surface',
-  rounded = '2xl',
+  rounded,
   padding = 'md',
   hoverable = false,
   interactive = false,
   className = '',
   ...props
 }: SurfaceProps) {
-  // Monotonic scale — each step must be visibly larger than the last, or the
-  // size prop lies. Material's rule: a container's radius is driven by its
-  // padding, so bigger surfaces get bigger corners, never the same one twice.
-  const roundMap = {
-    sm: 'rounded-(var(--radius-sm))',
-    md: 'rounded-(var(--radius-field))',
-    lg: 'rounded-(var(--radius-control))',
-    xl: 'rounded-(var(--radius-lg))',
-    '2xl': 'rounded-(var(--radius-xl))',
-    '3xl': 'rounded-(var(--radius-sheet))',
-    full: 'rounded-(var(--radius-pill))',
-  }[rounded];
+  // The rounded standard: the corner is a function of the padding, not of the
+  // component's name or its width. `md` padding lands on the `md` rung, `lg` on
+  // `lg`, so a card inside a card inside a sheet reads as concentric for free.
+  const roundClass = rounded
+    ? `rounded-(--radius-${rounded})`
+    : radiusClassForPadding(padding);
 
   const padMap = {
     none: 'p-0',
@@ -63,15 +69,15 @@ export function Surface({
 
   const variantMap = {
     surface:
-      'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-(var(--elevation-1)) dark:shadow-(var(--rim-soft), var(--elevation-3))',
+      'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-(--elevation-1) shadow-(--shadow-card-hover)',
     surfaceSecondary:
-      'bg-(--bg-sunken) dark:bg-(--bg-surface) border border-black/[0.035] dark:border-white/[0.02] shadow-(var(--rim-strong)) dark:shadow-(var(--rim-soft), var(--elevation-1))',
+      'bg-(--bg-sunken) dark:bg-(--bg-surface) border border-black/[0.035] dark:border-white/[0.02] shadow-(--rim-strong) shadow-(--shadow-card)',
     elevated:
-      'bg-(--bg-elevated) border border-(--border-hairline) shadow-(var(--elevation-2)) dark:shadow-(var(--rim-soft), var(--elevation-3))',
+      'bg-(--bg-elevated) border border-(--border-hairline) shadow-(--elevation-2) shadow-(--shadow-card-hover)',
     glass:
-      'bg-white/80 dark:bg-(--bg-card)/60 backdrop-blur-2xl border border-(--border-hairline) shadow-(var(--elevation-2)) dark:shadow-(var(--rim-soft), var(--elevation-3))',
+      'bg-white/80 dark:bg-(--bg-card)/60 backdrop-blur-2xl border border-(--border-hairline) shadow-(--elevation-2) shadow-(--shadow-card-hover)',
     compact:
-      'bg-white/90 dark:bg-(--bg-surface) border border-black/[0.03] dark:border-white/[0.02] shadow-xs',
+      'bg-white/90 dark:bg-(--bg-surface) border border-black/[0.03] dark:border-white/[0.02] shadow-(--elevation-1)',
     flat:
       'bg-zinc-100/80 dark:bg-(--bg-surface)/80 border-transparent',
     outline:
@@ -80,12 +86,12 @@ export function Surface({
 
   const hoverStyle =
     hoverable || interactive
-      ? 'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:hover:shadow-(var(--elevation-3)) cursor-pointer active:scale-[0.99]'
+      ? 'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-(--elevation-2) dark:hover:shadow-(--elevation-3) cursor-pointer active:scale-[0.99]'
       : '';
 
   return (
     <div
-      className={`relative ${roundMap} ${padMap} ${variantMap} ${hoverStyle} ${className}`}
+      className={`relative ${roundClass} ${padMap} ${variantMap} ${hoverStyle} ${className}`}
       {...props}
     >
       {children}
@@ -122,7 +128,7 @@ export function GlassSurface({
   ...props
 }: SurfaceProps) {
   return (
-    <Surface variant="glass" rounded="2xl" padding="md" className={className} {...props}>
+    <Surface variant="glass" padding="md" className={className} {...props}>
       {children}
     </Surface>
   );
@@ -136,7 +142,7 @@ export function ElevatedSurface({
   ...props
 }: SurfaceProps) {
   return (
-    <Surface variant="elevated" rounded="2xl" padding="md" className={className} {...props}>
+    <Surface variant="elevated" padding="md" className={className} {...props}>
       {children}
     </Surface>
   );

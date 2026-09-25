@@ -22,10 +22,10 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
     return (
       <div
         onClick={onCaptureMemory}
-        className="group relative p-5 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(var(--rim-soft), var(--elevation-3)) flex items-center justify-between"
+        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-(var(--radius-control)) bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
+          <div className="w-11 h-11 rounded-(--radius-control) bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
             <Heart className="w-5 h-5 stroke-[1.8]" />
           </div>
           <div>
@@ -55,15 +55,15 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
   return (
     <div
       onClick={() => onSelectMemory(memoryObject)}
-      className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.06] select-none"
     >
       {/* Violet Ambient Aura */}
-      <div className="absolute top-0 right-0 w-48 h-48 bg-violet-600/[0.06] rounded-(var(--radius-pill)) blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-48 h-48 bg-violet-600/[0.06] rounded-(--radius-pill) blur-3xl pointer-events-none" />
 
       {/* Header */}
       <div className="flex items-center justify-between mb-3 relative z-10">
         <div className="flex items-center gap-2">
-          <span className="flex items-center justify-center w-5 h-5 rounded-(var(--radius-pill)) bg-violet-500/15 text-violet-400">
+          <span className="flex items-center justify-center w-5 h-5 rounded-(--radius-pill) bg-violet-500/15 text-violet-400">
             <Heart className="w-3 h-3 stroke-[2.2]" />
           </span>
           <span className="text-[10.5px] uppercase font-bold tracking-widest text-violet-300">
@@ -72,7 +72,7 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
         </div>
 
         {hasSLO && (
-          <span className="text-[9.5px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-(var(--radius-pill)) bg-rose-500/10 text-rose-300 border border-rose-500/20">
+          <span className="text-[9.5px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-(--radius-pill) bg-rose-500/10 text-rose-300 border border-rose-500/20">
             SLO Shared
           </span>
         )}

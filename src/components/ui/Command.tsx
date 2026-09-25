@@ -11,7 +11,7 @@ const Command = React.forwardRef<
   <CommandPrimitive
     ref={ref}
     className={cn(
-      'flex h-full w-full flex-col overflow-hidden rounded-(var(--radius-lg)) bg-white dark:bg-(--bg-elevated) text-(--text-primary)',
+      'flex h-full w-full flex-col overflow-hidden rounded-(--radius-lg) bg-white dark:bg-(--bg-elevated) text-(--text-primary)',
       className
     )}
     {...props}
@@ -44,7 +44,7 @@ const CommandInput = React.forwardRef<
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
-        'flex h-12 w-full rounded-(var(--radius-xs)) bg-transparent py-3 text-sm outline-none placeholder:text-zinc-400 dark:placeholder:text-(--text-muted) disabled:cursor-not-allowed disabled:opacity-50 text-(--text-primary)',
+        'flex h-12 w-full rounded-(--radius-xs) bg-transparent py-3 text-sm outline-none placeholder:text-zinc-400 dark:placeholder:text-(--text-muted) disabled:cursor-not-allowed disabled:opacity-50 text-(--text-primary)',
         className
       )}
       {...props}
@@ -111,7 +111,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      'relative flex cursor-pointer select-none items-center gap-2 rounded-(var(--radius-field)) px-2.5 py-2 text-xs sm:text-sm font-medium outline-none transition-colors',
+      'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-field) px-2.5 py-2 text-xs sm:text-sm font-medium outline-none transition-colors',
       'aria-selected:bg-black/[0.05] aria-selected:text-zinc-950 dark:aria-selected:bg-white/[0.07] dark:aria-selected:text-white',
       'data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
       className

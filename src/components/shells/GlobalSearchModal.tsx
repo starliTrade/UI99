@@ -81,9 +81,9 @@ export function GlobalSearchModal() {
                 key={f.value}
                 type="button"
                 onClick={() => setSelectedType(f.value)}
-                className={`px-3 py-1 text-xs rounded-(var(--radius-pill)) transition-all whitespace-nowrap cursor-pointer select-none ${
+                className={`px-3 py-1 text-xs rounded-(--radius-pill) transition-all whitespace-nowrap cursor-pointer select-none ${
                   isSelected
-                    ? 'bg-white text-[#09090B] font-bold shadow-(var(--elevation-2))'
+                    ? 'bg-white text-[#09090B] font-bold shadow-(--elevation-2)'
                     : 'bg-[#18181D] text-zinc-400 border border-white/[0.08] hover:text-white'
                 }`}
               >
@@ -102,10 +102,10 @@ export function GlobalSearchModal() {
                 setIsSearchOpen(false);
                 setCurrentTab('UIKIT');
               }}
-              className="p-3 rounded-(var(--radius-field)) bg-gradient-to-r from-emerald-500/[0.08] to-transparent border border-emerald-500/20 hover:border-emerald-500/40 hover:bg-emerald-500/[0.12] transition-all cursor-pointer flex items-center justify-between gap-3 group"
+              className="p-3 rounded-(--radius-field) bg-gradient-to-r from-emerald-500/[0.08] to-transparent border border-emerald-500/20 hover:border-emerald-500/40 hover:bg-emerald-500/[0.12] transition-all cursor-pointer flex items-center justify-between gap-3 group"
             >
               <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-(var(--radius-sm)) bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <div className="w-7 h-7 rounded-(--radius-sm) bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                   <Layers className="w-3.5 h-3.5" />
                 </div>
                 <div>
@@ -133,7 +133,7 @@ export function GlobalSearchModal() {
               <div
                 key={obj.id}
                 onClick={() => handleSelectObject(obj)}
-                className="p-3.5 rounded-(var(--radius-field)) bg-[#18181D] border border-white/[0.08] hover:border-white/20 hover:bg-[#202026] transition-all cursor-pointer flex items-center justify-between gap-3 group"
+                className="p-3.5 rounded-(--radius-field) bg-[#18181D] border border-white/[0.08] hover:border-white/20 hover:bg-[#202026] transition-all cursor-pointer flex items-center justify-between gap-3 group"
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">

@@ -16,11 +16,11 @@ export function Skeleton({ className = '', rounded = 'md' }: SkeletonProps) {
   const isDark = useIsDark();
 
   const roundMap = {
-    sm: 'rounded-(var(--radius-xs))',
-    md: 'rounded-(var(--radius-field))',
-    lg: 'rounded-(var(--radius-control))',
-    xl: 'rounded-(var(--radius-lg))',
-    full: 'rounded-(var(--radius-pill))',
+    sm: 'rounded-(--radius-xs)',
+    md: 'rounded-(--radius-field)',
+    lg: 'rounded-(--radius-control)',
+    xl: 'rounded-(--radius-lg)',
+    full: 'rounded-(--radius-pill)',
   }[rounded];
 
   return (

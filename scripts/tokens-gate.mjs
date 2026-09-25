@@ -1,7 +1,7 @@
 /**
  * UI99 — Token Adherence Gate
  *
- * Three rules, all enforced in CI:
+ * Four rules, all enforced in CI:
  *
  *   A. NO surface/ink hexes in kit classes. These belong to the token system
  *      (src/styles/ui99.css); hardcoding them is what forced the `!important`
@@ -98,6 +98,15 @@ const structuralViolations = [];
 const STRUCTURAL = [
   { re: /shadow-\[[^\]]+\]/g, label: 'shadow', hint: 'shadow-(--elevation-3)' },
   { re: /rounded-\[[0-9.]+px\]/g, label: 'radius', hint: 'rounded-(--radius-md)' },
+  // Directional radii (rounded-t-, rounded-bl-, …) are the same decision and
+  // used to slip straight through: the bracket rule above only matched the
+  // bare `rounded-[…]` form. Modal.tsx carried an untokenised
+  // `rounded-t-[28px]` for exactly this reason.
+  {
+    re: /rounded-[trblexyse]{0,2}-\[[0-9.]+px\]/g,
+    label: 'radius (directional)',
+    hint: 'rounded-t-(--radius-lg)',
+  },
   { re: /blur-\[[0-9.]+px\]/g, label: 'blur', hint: 'blur-(--blur-md)' },
   // The audit's most important finding: the named Tailwind scale bypassed the
   // token system entirely — 787 `rounded-2xl/3xl/full` in the kit. A rule that
@@ -107,6 +116,13 @@ const STRUCTURAL = [
     re: /(?<![\w\-\[])rounded-(?:sm|md|lg|xl|2xl|3xl|4xl|full)(?![\w\-])/g,
     label: 'radius (named scale)',
     hint: 'rounded-(--radius-control) / rounded-(--radius-pill)',
+  },
+  // Directional variants of the named scale — `rounded-b-3xl` was sitting in
+  // Sheet.tsx and matched neither the bracket rule nor the bare named rule.
+  {
+    re: /(?<![\w\-\[])rounded-[trblexyse]{1,2}-(?:sm|md|lg|xl|2xl|3xl|4xl|full)(?![\w\-])/g,
+    label: 'radius (named scale, directional)',
+    hint: 'rounded-b-(--radius-lg)',
   },
   // Type: the raw scale bypasses --type-* just as radius did — but type is
   // deliberately NOT gated yet. Migrating ~900 sizes is a per-call-site
@@ -151,21 +167,37 @@ if (structuralViolations.length) {
  *
  * A typo'd var() resolves to nothing and silently drops the shadow. Cheap to
  * check, expensive to debug visually.
+ *
+ * CRITICAL: this must match BOTH reference forms.
+ *   var(--radius-md)  — plain CSS / multi-token contexts
+ *   (--radius-md)     — Tailwind v4's utility shorthand
+ * Rule C originally only matched the first, so the moment the kit moved to the
+ * shorthand this rule checked nothing at all — which is precisely how a
+ * misspelled token could have shipped unnoticed.
  */
-const tokenSources = ['ui99.css', 'ui99-elevation.css', 'ui99-glow.css', 'porcelain.css']
+const tokenSources = [
+  'ui99.css',
+  'ui99-elevation.css',
+  'ui99-glow.css',
+  'ui99-type.css',
+  'porcelain.css',
+]
   .map((f) => readFileSync(resolve(root, 'src/styles', f), 'utf8'))
   .join('\n');
 const declared = new Set(
   [...tokenSources.matchAll(/^\s*(--[a-z0-9-]+)\s*:/gm)].map((m) => m[1]),
 );
 
+const TOKEN_REF = /var\((--(?:elevation|rim|shadow|glow|radius|space|blur|z|type|weight|icon)-[a-z0-9-]+)\)|\(--((?:elevation|rim|shadow|glow|radius|space|blur|z|type|weight|icon)-[a-z0-9-]+)\)/g;
+
 const undeclared = new Map();
 for (const f of files) {
   const src = readFileSync(resolve(uiDir, f), 'utf8');
-  for (const m of src.matchAll(/var\((--(?:elevation|rim|shadow|glow|radius|space|blur|z)-[a-z0-9-]+)\)/g)) {
-    if (!declared.has(m[1])) {
-      if (!undeclared.has(m[1])) undeclared.set(m[1], new Set());
-      undeclared.get(m[1]).add(f);
+  for (const m of src.matchAll(TOKEN_REF)) {
+    const token = m[1] ?? `--${m[2]}`;
+    if (!declared.has(token)) {
+      if (!undeclared.has(token)) undeclared.set(token, new Set());
+      undeclared.get(token).add(f);
     }
   }
 }
@@ -179,6 +211,71 @@ if (undeclared.size) {
   process.exit(1);
 }
 
+/* ══════════════════ RULE D — utilities must actually compile ══════════════════
+ *
+ * THE rule that was missing, and the reason ~1,050 dead classes shipped once.
+ *
+ * Tailwind v4's `(--token)` shorthand takes the BARE property name. Both of
+ * the following look correct, pass a grep for "did we use the token?", and
+ * are completely different strings to Tailwind:
+ *
+ *     rounded-(--radius-sm)    ✓ compiles
+ *     rounded-(var(--radius-sm))  ✗ compiles to nothing at all
+ *
+ * Same for a multi-token shadow: `shadow-(--a, --b)` is not a value Tailwind
+ * can parse, so it emits no rule. A multi-layer shadow must be a NAMED
+ * composite (`shadow-(--shadow-card)`) from ui99-elevation.css.
+ *
+ * Neither mistake throws, fails typecheck, or fails a snapshot. The only way
+ * to catch it is to refuse to let the syntax into the repo.
+ */
+const deadUtilityViolations = [];
+const DEAD_UTILITY = [
+  {
+    re: /(?<![\w-])[a-z-]+-\(var\(--[a-z0-9-]+\)\)/g,
+    label: 'wrapped token (compiles to nothing)',
+    hint: 'rounded-(--radius-sm) — drop the var() wrapper',
+  },
+  {
+    re: /(?<![\w-])[a-z-]+-\((?:var\(--[a-z0-9-]+\)|--[a-z0-9-]+),\s*(?:var\(--[a-z0-9-]+\)|--[a-z0-9-]+)\)/g,
+    label: 'multi-token utility (compiles to nothing)',
+    hint: 'shadow-(--shadow-card) — name the composite in ui99-elevation.css',
+  },
+  {
+    // A stray `)` from an over-greedy codemod leaves `shadow-(--shadow-card))`.
+    // The lookahead keeps it from firing on a legitimate `)` that closes a
+    // surrounding expression.
+    re: /(?<![\w-])[a-z-]+-\([^()\n]*\)\)(?=[\s'"`}]|$)/g,
+    label: 'stray closing paren (compiles to nothing)',
+    hint: 'rounded-(--radius-lg) — drop the extra ")"',
+  },
+];
+
+for (const f of files) {
+  if (VALUE_ONLY_FILES.has(f)) continue;
+  const src = readFileSync(resolve(uiDir, f), 'utf8');
+  src.split('\n').forEach((line, i) => {
+    for (const rule of DEAD_UTILITY) {
+      for (const m of line.matchAll(rule.re)) {
+        deadUtilityViolations.push(
+          `${f}:${i + 1}: ${rule.label} — "${m[0].slice(0, 70)}" → ${rule.hint}`,
+        );
+      }
+    }
+  });
+}
+
+if (deadUtilityViolations.length) {
+  console.error(
+    `\n✗ tokens-gate: ${deadUtilityViolations.length} utility class(es) that Tailwind cannot compile:\n`,
+  );
+  for (const v of deadUtilityViolations) console.error('  ' + v);
+  console.error(
+    '\nThese render as NO border-radius / NO shadow. See §5c of docs/standards.md.\n',
+  );
+  process.exit(1);
+}
+
 console.log(
-  `✓ tokens-gate: ${files.length} kit files clean — zero hardcoded hexes, zero arbitrary elevation/radius/blur, all ${declared.size} tokens declared`,
+  `✓ tokens-gate: ${files.length} kit files clean — zero hardcoded hexes, zero arbitrary elevation/radius/blur, zero dead utilities, all ${declared.size} tokens declared`,
 );

@@ -378,7 +378,7 @@ export function LinearIssueTracker() {
   return (
     <div className="space-y-4">
       {/* 1. WORKFLOW TOOLBAR */}
-      <div className="rounded-(var(--radius-lg)) bg-(--bg-card) border border-(--border-hairline) shadow-xs overflow-hidden">
+      <div className="rounded-(--radius-lg) bg-(--bg-card) border border-(--border-hairline) shadow-xs overflow-hidden">
         {/* Top Segment Views & Action Button */}
         <div className="p-4 border-b border-black/[0.05] dark:border-white/[0.04] flex flex-col md:flex-row md:items-center justify-between gap-3 bg-zinc-50/50 dark:bg-white/[0.01]">
           {/* View Tabs */}
@@ -397,7 +397,7 @@ export function LinearIssueTracker() {
                   key={tab}
                   type="button"
                   onClick={() => setViewTab(tab)}
-                  className={`px-3 py-1.5 rounded-(var(--radius-pill)) text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer select-none ${
+                  className={`px-3 py-1.5 rounded-(--radius-pill) text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer select-none ${
                     isActive
                       ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-bold shadow-xs'
                       : 'text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white hover:bg-black/[0.03] dark:hover:bg-white/[0.04]'
@@ -405,7 +405,7 @@ export function LinearIssueTracker() {
                 >
                   <span>{tab === 'ALL' ? 'All Issues' : tab.charAt(0) + tab.slice(1).toLowerCase()}</span>
                   <span
-                    className={`text-[10px] font-mono px-1.5 py-0.2 rounded-(var(--radius-pill)) ${
+                    className={`text-[10px] font-mono px-1.5 py-0.2 rounded-(--radius-pill) ${
                       isActive
                         ? 'bg-white/20 dark:bg-black/10'
                         : 'bg-black/[0.05] dark:bg-white/[0.06]'
@@ -448,7 +448,7 @@ export function LinearIssueTracker() {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-(var(--radius-pill)) text-xs font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1.5 rounded-(--radius-pill) text-xs font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <Filter className="w-3 h-3 text-zinc-400" />
                   <span className="capitalize">
@@ -478,7 +478,7 @@ export function LinearIssueTracker() {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-(var(--radius-pill)) text-xs font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1.5 rounded-(--radius-pill) text-xs font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <span className="capitalize">
                     {priorityFilter === 'all' ? 'All Priorities' : priorityFilter}
@@ -521,7 +521,7 @@ export function LinearIssueTracker() {
                   <button
                     type="button"
                     onClick={() => setIsComposerOpen(false)}
-                    className="p-1 rounded-(var(--radius-pill)) text-zinc-400 hover:text-zinc-700 dark:hover:text-white cursor-pointer"
+                    className="p-1 rounded-(--radius-pill) text-zinc-400 hover:text-zinc-700 dark:hover:text-white cursor-pointer"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -538,7 +538,7 @@ export function LinearIssueTracker() {
                     }
                   }}
                   placeholder="Issue title (e.g. Calibrate specular rim reflection for cards)..."
-                  className="w-full px-3.5 py-2 rounded-(var(--radius-field)) text-sm font-medium bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-(--text-primary) placeholder:text-zinc-400"
+                  className="w-full px-3.5 py-2 rounded-(--radius-field) text-sm font-medium bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-(--text-primary) placeholder:text-zinc-400"
                 />
 
                 <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
@@ -548,7 +548,7 @@ export function LinearIssueTracker() {
                       <DropdownMenuTrigger asChild>
                         <button
                           type="button"
-                          className="px-2.5 py-1 rounded-(var(--radius-sm)) text-xs font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
+                          className="px-2.5 py-1 rounded-(--radius-sm) text-xs font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
                         >
                           <PriorityBadge priority={newPriority} showLabel={true} />
                         </button>
@@ -567,7 +567,7 @@ export function LinearIssueTracker() {
                       <DropdownMenuTrigger asChild>
                         <button
                           type="button"
-                          className="px-2.5 py-1 rounded-(var(--radius-sm)) text-xs font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
+                          className="px-2.5 py-1 rounded-(--radius-sm) text-xs font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
                         >
                           <StatusBadge status={newStatus} showLabel={true} />
                         </button>
@@ -587,7 +587,7 @@ export function LinearIssueTracker() {
                       value={newLabel}
                       onChange={(e) => setNewLabel(e.target.value)}
                       placeholder="Tag..."
-                      className="w-28 px-2.5 py-1 rounded-(var(--radius-sm)) text-xs bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] text-zinc-800 dark:text-zinc-200 outline-none"
+                      className="w-28 px-2.5 py-1 rounded-(--radius-sm) text-xs bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] text-zinc-800 dark:text-zinc-200 outline-none"
                     />
                   </div>
 
@@ -620,7 +620,7 @@ export function LinearIssueTracker() {
                 }}
                 className={`group relative px-4 py-3 sm:px-5 sm:py-3.5 flex items-center justify-between gap-3 transition-colors cursor-pointer select-none ${
                   isCursorActive
-                    ? 'bg-zinc-100/70 dark:bg-white/[0.035] shadow-(var(--accent-bar))'
+                    ? 'bg-zinc-100/70 dark:bg-white/[0.035] shadow-(--accent-bar)'
                     : issue.completed
                     ? 'bg-zinc-50/40 dark:bg-white/[0.008]'
                     : 'hover:bg-zinc-50 dark:hover:bg-white/[0.015]'
@@ -783,8 +783,8 @@ export function LinearIssueTracker() {
             transition={{ type: 'spring', stiffness: 450, damping: 30 }}
             className="fixed bottom-20 left-1/2 -translate-x-1/2 z-40"
           >
-            <div className="liquid-glass-dark-dock px-4 py-2 rounded-(var(--radius-pill)) flex items-center gap-2.5 shadow-2xl border border-white/[0.08] backdrop-blur-2xl">
-              <span className="text-xs font-mono font-bold text-white px-2 py-0.5 rounded-(var(--radius-pill)) bg-white/[0.1]">
+            <div className="liquid-glass-dark-dock px-4 py-2 rounded-(--radius-pill) flex items-center gap-2.5 shadow-2xl border border-white/[0.08] backdrop-blur-2xl">
+              <span className="text-xs font-mono font-bold text-white px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.1]">
                 {selectedIssueIds.length} Selected
               </span>
 
@@ -844,7 +844,7 @@ export function LinearIssueTracker() {
               <button
                 type="button"
                 onClick={handleBatchDelete}
-                className="p-1.5 rounded-(var(--radius-pill)) text-rose-400 hover:bg-rose-500/20 transition-colors cursor-pointer"
+                className="p-1.5 rounded-(--radius-pill) text-rose-400 hover:bg-rose-500/20 transition-colors cursor-pointer"
                 title="Delete Selected"
               >
                 <Trash2 className="w-4 h-4" />

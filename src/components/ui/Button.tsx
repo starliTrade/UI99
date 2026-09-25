@@ -21,9 +21,9 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-(--ink-fill) text-(--ink-on-fill) hover:bg-(--ink-fill) border border-black/10 shadow-xs dark:border-white/10 dark:shadow-(var(--elevation-2))',
+          'bg-(--ink-fill) text-(--ink-on-fill) hover:bg-(--ink-fill) border border-black/10 shadow-xs dark:border-white/10 dark:shadow-(--elevation-2)',
         secondary:
-          'bg-zinc-100 text-zinc-800 hover:bg-state-hover hover:text-black border border-black/[0.05] shadow-xs dark:bg-white/[0.045] dark:text-(--text-primary) dark:hover:text-white dark:border-white/[0.025] dark:shadow-(var(--rim-soft), var(--elevation-1))',
+          'bg-zinc-100 text-zinc-800 hover:bg-state-hover hover:text-black border border-black/[0.05] shadow-xs dark:bg-white/[0.045] dark:text-(--text-primary) dark:hover:text-white dark:border-white/[0.025] shadow-(--shadow-card)',
         outline:
           'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-(--text-primary) dark:border-white/[0.04]',
         ghost:
@@ -36,21 +36,26 @@ export const buttonVariants = cva(
         'white-pill':
           'bg-(--ink-fill) text-(--ink-on-fill) font-semibold shadow-xs border border-white/20 dark:border-white/10',
         'dark-pill':
-          'bg-(--bg-sunken) text-(--text-primary) hover:bg-(--bg-card-hover) hover:text-white border border-black/10 dark:bg-white/[0.045] dark:border-white/[0.03] dark:shadow-(var(--rim-soft), var(--elevation-1)) shadow-xs',
+          'bg-(--bg-sunken) text-(--text-primary) hover:bg-(--bg-card-hover) hover:text-white border border-black/10 dark:bg-white/[0.045] dark:border-white/[0.03] shadow-(--shadow-card) shadow-xs',
         rose:
           'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
       },
+      // Radius follows PADDING (the rounded standard), not the component name.
+      // Every button used to be `radius-pill` (9999px), which turned a 24px
+      // chip and a 48px CTA into the same lozenge. Now each size is a soft
+      // rectangle sized to its own height, and `shape` is the explicit opt-in
+      // for a real capsule.
       size: {
-        xs: 'text-[11px] px-2.5 py-1 rounded-(var(--radius-pill)) gap-1 h-6',
-        sm: 'text-xs px-3.5 py-1.5 rounded-(var(--radius-pill)) gap-1.5 h-8',
-        md: 'text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-(var(--radius-pill)) gap-2 h-10',
-        lg: 'text-base px-6 py-3 rounded-(var(--radius-pill)) gap-2.5 h-12',
-        icon: 'w-10 h-10 rounded-(var(--radius-pill)) p-0 [&_svg]:size-4',
+        xs: 'text-[11px] px-2.5 py-1 rounded-(--radius-xs) gap-1 h-6',
+        sm: 'text-xs px-3.5 py-1.5 rounded-(--radius-sm) gap-1.5 h-8',
+        md: 'text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-(--radius-control) gap-2 h-10',
+        lg: 'text-base px-6 py-3 rounded-(--radius-md) gap-2.5 h-12',
+        icon: 'w-10 h-10 rounded-(--radius-control) p-0 [&_svg]:size-4',
       },
       shape: {
-        pill: '',
-        rounded: 'rounded-(var(--radius-field))',
-        square: 'rounded-(var(--radius-sm))',
+        pill: 'rounded-(--radius-pill)',
+        rounded: 'rounded-(--radius-control)',
+        square: 'rounded-(--radius-sm)',
       },
       fullWidth: {
         true: 'w-full',
@@ -128,7 +133,7 @@ export function Button({
 }
 
 export const iconButtonVariants = cva(
-  'rounded-(var(--radius-pill)) inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed',
+  'rounded-(--radius-pill) inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed',
   {
     variants: {
       variant: {
@@ -241,7 +246,7 @@ export function Tag({
 
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-(var(--radius-pill)) tracking-tight whitespace-nowrap ${sizeStyle} ${variantStyle} ${className}`}
+      className={`inline-flex items-center gap-1 rounded-(--radius-pill) tracking-tight whitespace-nowrap ${sizeStyle} ${variantStyle} ${className}`}
     >
       <span>{children || label}</span>
       {onRemove && (
@@ -295,19 +300,19 @@ export function Avatar({
         <img
           src={src}
           alt={displayName}
-          className={`rounded-(var(--radius-pill)) object-cover ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
+          className={`rounded-(--radius-pill) object-cover ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
           referrerPolicy="no-referrer"
         />
       ) : (
         <div
-          className={`rounded-(var(--radius-pill)) bg-zinc-200 text-zinc-800 dark:bg-(--bg-card-hover) dark:text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
+          className={`rounded-(--radius-pill) bg-zinc-200 text-zinc-800 dark:bg-(--bg-card-hover) dark:text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
         >
           {initial}
         </div>
       )}
       {status && (
         <span
-          className={`absolute bottom-0 right-0 rounded-(var(--radius-pill)) ring-2 ring-white dark:ring-(--bg-sunken) ${
+          className={`absolute bottom-0 right-0 rounded-(--radius-pill) ring-2 ring-white dark:ring-(--bg-sunken) ${
             status === 'online' ? 'bg-emerald-400' : 'bg-zinc-400 dark:bg-zinc-500'
           } ${size === 'xs' || size === 'sm' ? 'w-2 h-2' : 'w-2.5 h-2.5'}`}
         />

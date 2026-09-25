@@ -25,11 +25,11 @@ export interface TimelineItemProps extends React.ComponentProps<'li'> {
 }
 
 const accentMap = {
-  emerald: 'bg-emerald-500 shadow-(var(--glow-accent-sm))',
-  amber: 'bg-amber-500 shadow-(var(--glow-warning-sm))',
-  rose: 'bg-rose-500 shadow-(var(--glow-rose-sm))',
-  blue: 'bg-blue-500 shadow-(var(--glow-accent-sm))',
-  purple: 'bg-purple-500 shadow-(var(--glow-accent-sm))',
+  emerald: 'bg-emerald-500 shadow-(--glow-accent-sm)',
+  amber: 'bg-amber-500 shadow-(--glow-warning-sm)',
+  rose: 'bg-rose-500 shadow-(--glow-rose-sm)',
+  blue: 'bg-blue-500 shadow-(--glow-accent-sm)',
+  purple: 'bg-purple-500 shadow-(--glow-accent-sm)',
   neutral: 'bg-zinc-400 dark:bg-zinc-600',
 };
 
@@ -45,7 +45,7 @@ export function TimelineItem({
       <span
         aria-hidden="true"
         className={cn(
-          'absolute left-0 top-1 h-[15px] w-[15px] rounded-(var(--radius-pill)) border-2 border-white dark:border-(--bg-card)',
+          'absolute left-0 top-1 h-[15px] w-[15px] rounded-(--radius-pill) border-2 border-white dark:border-(--bg-card)',
           accentMap[accent]
         )}
       />

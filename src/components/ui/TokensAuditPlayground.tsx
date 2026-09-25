@@ -187,14 +187,14 @@ export function TokensAuditPlayground() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-mono px-3 py-1 rounded-(var(--radius-pill)) bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold border border-emerald-500/20">
+          <span className="text-[11px] font-mono px-3 py-1 rounded-(--radius-pill) bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold border border-emerald-500/20">
             AUDIT: 100% COMPLIANT
           </span>
         </div>
       </div>
 
       {/* 1. CONCENTRIC RADII NESTING SIMULATOR */}
-      <div className="p-6 rounded-(var(--radius-lg)) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-6">
+      <div className="p-6 rounded-(--radius-lg) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <div className="flex items-center gap-2">
@@ -220,7 +220,7 @@ export function TokensAuditPlayground() {
         </div>
 
         {/* Sliders Control Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-(var(--radius-control)) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline)">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline)">
           {/* Outer Radius Slider */}
           <div className="space-y-1.5">
             <div className="flex justify-between text-xs font-semibold">
@@ -270,7 +270,7 @@ export function TokensAuditPlayground() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
           {/* Calculated Output & Formula Card */}
           <div className="space-y-4">
-            <div className="p-4 rounded-(var(--radius-control)) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-2.5">
+            <div className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-2.5">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-zinc-500">Calculated Inner Radius</span>
                 <span className="text-sm font-mono font-bold text-emerald-500">
@@ -313,7 +313,7 @@ export function TokensAuditPlayground() {
           </div>
 
           {/* Real-time Interactive Rendered Preview */}
-          <div className="p-6 rounded-(var(--radius-control)) bg-zinc-100 dark:bg-(--bg-canvas) border border-(--border-subtle) flex flex-col items-center justify-center">
+          <div className="p-6 rounded-(--radius-control) bg-zinc-100 dark:bg-(--bg-canvas) border border-(--border-subtle) flex flex-col items-center justify-center">
             {/* Outer Container Element */}
             <div
               style={{
@@ -358,7 +358,7 @@ export function TokensAuditPlayground() {
       {/* 2. ANTI-SLOP BRIGHTNESS LIMIT & LUMINANCE DELTA */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Dark Mode Brightness Audit */}
-        <div className="p-6 rounded-(var(--radius-lg)) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
+        <div className="p-6 rounded-(--radius-lg) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Moon className="w-4 h-4 text-zinc-400" />
@@ -366,7 +366,7 @@ export function TokensAuditPlayground() {
                 Dark Mode Brightness Delta Rule
               </h4>
             </div>
-            <span className="text-[11px] font-mono px-2 py-0.5 rounded-(var(--radius-pill)) bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+            <span className="text-[11px] font-mono px-2 py-0.5 rounded-(--radius-pill) bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
               {darkAudit.difference}% vs ≤ 12% Max
             </span>
           </div>
@@ -375,7 +375,7 @@ export function TokensAuditPlayground() {
             Anti-Slop rule: Container brightness difference from canvas must not exceed 12% in dark mode to prevent visual shock and jarring neon cards.
           </p>
 
-          <div className="p-4 rounded-(var(--radius-control)) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-3">
+          <div className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-3">
             <div className="flex justify-between text-xs">
               <span className="text-zinc-500">Root Canvas ({darkAudit.bgHex})</span>
               <span className="font-mono text-zinc-300 font-semibold">{darkAudit.bgBrightness}% Brightness</span>
@@ -384,9 +384,9 @@ export function TokensAuditPlayground() {
               <span className="text-zinc-500">Surface Layer 1 ({darkAudit.surfaceHex})</span>
               <span className="font-mono text-zinc-300 font-semibold">{darkAudit.surfaceBrightness}% Brightness</span>
             </div>
-            <div className="w-full bg-zinc-200 dark:bg-white/[0.06] rounded-(var(--radius-pill)) h-2 overflow-hidden">
+            <div className="w-full bg-zinc-200 dark:bg-white/[0.06] rounded-(--radius-pill) h-2 overflow-hidden">
               <div
-                className="bg-emerald-500 h-2 rounded-(var(--radius-pill)) transition-all"
+                className="bg-emerald-500 h-2 rounded-(--radius-pill) transition-all"
                 style={{ width: `${(darkAudit.difference / darkAudit.maxAllowed) * 100}%` }}
               />
             </div>
@@ -399,7 +399,7 @@ export function TokensAuditPlayground() {
         </div>
 
         {/* Light Mode Brightness Audit */}
-        <div className="p-6 rounded-(var(--radius-lg)) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
+        <div className="p-6 rounded-(--radius-lg) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Sun className="w-4 h-4 text-amber-500" />
@@ -407,7 +407,7 @@ export function TokensAuditPlayground() {
                 Light Mode Brightness Delta Rule
               </h4>
             </div>
-            <span className="text-[11px] font-mono px-2 py-0.5 rounded-(var(--radius-pill)) bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+            <span className="text-[11px] font-mono px-2 py-0.5 rounded-(--radius-pill) bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
               {lightAudit.difference}% vs ≤ 7% Max
             </span>
           </div>
@@ -416,7 +416,7 @@ export function TokensAuditPlayground() {
             Anti-Slop rule: Container brightness difference from canvas must not exceed 7% in light mode to maintain daylight matte calm without stark contrasts.
           </p>
 
-          <div className="p-4 rounded-(var(--radius-control)) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-3">
+          <div className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-3">
             <div className="flex justify-between text-xs">
               <span className="text-zinc-500">Matte Day Canvas ({lightAudit.bgHex})</span>
               <span className="font-mono text-zinc-300 font-semibold">{lightAudit.bgBrightness}% Brightness</span>
@@ -425,9 +425,9 @@ export function TokensAuditPlayground() {
               <span className="text-zinc-500">Day Surface Layer ({lightAudit.surfaceHex})</span>
               <span className="font-mono text-zinc-300 font-semibold">{lightAudit.surfaceBrightness}% Brightness</span>
             </div>
-            <div className="w-full bg-zinc-200 dark:bg-white/[0.06] rounded-(var(--radius-pill)) h-2 overflow-hidden">
+            <div className="w-full bg-zinc-200 dark:bg-white/[0.06] rounded-(--radius-pill) h-2 overflow-hidden">
               <div
-                className="bg-emerald-500 h-2 rounded-(var(--radius-pill)) transition-all"
+                className="bg-emerald-500 h-2 rounded-(--radius-pill) transition-all"
                 style={{ width: `${(lightAudit.difference / lightAudit.maxAllowed) * 100}%` }}
               />
             </div>
@@ -441,7 +441,7 @@ export function TokensAuditPlayground() {
       </div>
 
       {/* 3. WCAG AAA CONTRAST MATRIX */}
-      <div className="p-6 rounded-(var(--radius-lg)) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
+      <div className="p-6 rounded-(--radius-lg) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
         <div className="flex items-center justify-between">
           <div>
             <h4 className="text-sm font-bold text-(--text-primary)">
@@ -464,14 +464,14 @@ export function TokensAuditPlayground() {
             return (
               <div
                 key={idx}
-                className="p-3.5 rounded-(var(--radius-control)) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-2"
+                className="p-3.5 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-2"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 truncate">
                     {pair.label}
                   </span>
                   <span
-                    className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-(var(--radius-xs)) ${
+                    className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-(--radius-xs) ${
                       isAAA
                         ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
                         : isAA
@@ -486,7 +486,7 @@ export function TokensAuditPlayground() {
                 <div className="flex items-center justify-between pt-1">
                   <div className="flex items-center gap-2">
                     <span
-                      className="w-3.5 h-3.5 rounded-(var(--radius-pill)) border border-black/10 shadow-xs"
+                      className="w-3.5 h-3.5 rounded-(--radius-pill) border border-black/10 shadow-xs"
                       style={{ backgroundColor: pair.fg }}
                     />
                     <span className="text-xs font-mono text-zinc-500">{pair.fg}</span>
@@ -502,7 +502,7 @@ export function TokensAuditPlayground() {
       </div>
 
       {/* 4. BUTTON 2:1 PADDING & CONTAINER CONTAINMENT VALIDATOR */}
-      <div className="p-6 rounded-(var(--radius-lg)) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
+      <div className="p-6 rounded-(--radius-lg) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-4">
         <div className="flex items-center justify-between">
           <div>
             <h4 className="text-sm font-bold text-(--text-primary)">
@@ -521,7 +521,7 @@ export function TokensAuditPlayground() {
             return (
               <div
                 key={btn.name}
-                className="p-3.5 rounded-(var(--radius-control)) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-1.5"
+                className="p-3.5 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-1.5"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100">{btn.name}</span>

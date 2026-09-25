@@ -499,7 +499,7 @@ export function DocsView() {
             href="/registry.json"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(var(--radius-sm)) text-xs font-mono bg-zinc-100 hover:bg-zinc-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-zinc-700 dark:text-zinc-300 transition-colors border border-black/[0.04] dark:border-white/[0.03]"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) text-xs font-mono bg-zinc-100 hover:bg-zinc-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-zinc-700 dark:text-zinc-300 transition-colors border border-black/[0.04] dark:border-white/[0.03]"
           >
             <Code2 className="w-3.5 h-3.5" />
             <span>registry.json</span>
@@ -517,11 +517,11 @@ export function DocsView() {
             <SheetTrigger asChild>
               <button
                 type="button"
-                className="flex items-center gap-2 px-3 py-2.5 rounded-(var(--radius-control)) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.06] text-xs font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
+                className="flex items-center gap-2 px-3 py-2.5 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.06] text-xs font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
               >
                 <Menu className="w-4 h-4 text-emerald-400" />
                 <span className="hidden xs:inline">Menu</span>
-                <span className="px-1.5 py-0.5 rounded-(var(--radius-xs)) bg-emerald-500/10 text-emerald-400 text-[10px] font-bold">
+                <span className="px-1.5 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 text-emerald-400 text-[10px] font-bold">
                   {REGISTRY_COMPONENTS.length}
                 </span>
               </button>
@@ -545,7 +545,7 @@ export function DocsView() {
                     placeholder="Search components..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2 rounded-(var(--radius-field)) text-xs font-mono bg-white/[0.03] border border-white/[0.06] text-white placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50"
+                    className="w-full pl-9 pr-3 py-2 rounded-(--radius-field) text-xs font-mono bg-white/[0.03] border border-white/[0.06] text-white placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50"
                   />
                 </div>
 
@@ -573,7 +573,7 @@ export function DocsView() {
                           setMobileNavOpen(false);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-(var(--radius-field)) text-xs font-medium text-left transition-colors ${
+                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-(--radius-field) text-xs font-medium text-left transition-colors ${
                           isActive
                             ? 'bg-emerald-500/15 text-emerald-400 font-semibold'
                             : 'text-zinc-400 hover:text-white hover:bg-white/[0.03]'
@@ -603,14 +603,14 @@ export function DocsView() {
                             setMobileNavOpen(false);
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}
-                          className={`w-full flex items-center justify-between px-3 py-2 rounded-(var(--radius-field)) text-xs font-medium text-left transition-colors ${
+                          className={`w-full flex items-center justify-between px-3 py-2 rounded-(--radius-field) text-xs font-medium text-left transition-colors ${
                             isActive
                               ? 'bg-emerald-500/15 text-emerald-400 font-semibold'
                               : 'text-zinc-400 hover:text-white hover:bg-white/[0.03]'
                           }`}
                         >
                           <span>{item.title}</span>
-                          {isActive && <span className="w-1.5 h-1.5 rounded-(var(--radius-pill)) bg-emerald-400" />}
+                          {isActive && <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-emerald-400" />}
                         </button>
                       );
                     })}
@@ -628,7 +628,7 @@ export function DocsView() {
                 setActiveSection(e.target.value);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="w-full pl-3 pr-8 py-2.5 rounded-(var(--radius-control)) text-xs font-mono font-medium bg-white dark:bg-[#0A0B10] border border-zinc-200 dark:border-white/[0.08] text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
+              className="w-full pl-3 pr-8 py-2.5 rounded-(--radius-control) text-xs font-mono font-medium bg-white dark:bg-[#0A0B10] border border-zinc-200 dark:border-white/[0.08] text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
             >
               <optgroup label="Getting Started">
                 <option value="intro">Introduction</option>
@@ -657,7 +657,7 @@ export function DocsView() {
           <button
             type="button"
             onClick={() => setActiveSection('intro')}
-            className={`px-3 py-1.5 rounded-(var(--radius-pill)) whitespace-nowrap text-xs font-mono transition-colors shrink-0 ${
+            className={`px-3 py-1.5 rounded-(--radius-pill) whitespace-nowrap text-xs font-mono transition-colors shrink-0 ${
               isGuideSection
                 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-semibold'
                 : 'bg-white/[0.03] text-zinc-400 border border-white/[0.04]'
@@ -673,7 +673,7 @@ export function DocsView() {
                 setActiveSection(c.id);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`px-3 py-1.5 rounded-(var(--radius-pill)) whitespace-nowrap text-xs font-mono transition-colors shrink-0 ${
+              className={`px-3 py-1.5 rounded-(--radius-pill) whitespace-nowrap text-xs font-mono transition-colors shrink-0 ${
                 activeSection === c.id
                   ? 'bg-white text-zinc-950 font-bold shadow-xs'
                   : 'bg-white/[0.03] text-zinc-400 hover:text-zinc-200 border border-white/[0.04]'
@@ -696,7 +696,7 @@ export function DocsView() {
               placeholder="Search docs & components..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 rounded-(var(--radius-field)) text-xs font-mono bg-zinc-100 dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500/50 transition-colors"
+              className="w-full pl-9 pr-8 py-2 rounded-(--radius-field) text-xs font-mono bg-zinc-100 dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500/50 transition-colors"
             />
             {searchQuery && (
               <button
@@ -733,7 +733,7 @@ export function DocsView() {
                       setActiveSection(item.id);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-(var(--radius-field)) text-xs font-medium transition-all text-left cursor-pointer ${
+                    className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-(--radius-field) text-xs font-medium transition-all text-left cursor-pointer ${
                       isActive
                         ? 'bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white font-semibold shadow-xs'
                         : 'text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.03]'
@@ -774,7 +774,7 @@ export function DocsView() {
                           setActiveSection(item.id);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className={`w-full flex items-center justify-between px-3 py-1.5 rounded-(var(--radius-field)) text-xs font-medium transition-all text-left cursor-pointer ${
+                        className={`w-full flex items-center justify-between px-3 py-1.5 rounded-(--radius-field) text-xs font-medium transition-all text-left cursor-pointer ${
                           isActive
                             ? 'bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white font-semibold shadow-xs'
                             : 'text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.03]'
@@ -782,7 +782,7 @@ export function DocsView() {
                       >
                         <span className="truncate">{item.title}</span>
                         {isActive && (
-                          <span className="w-1.5 h-1.5 rounded-(var(--radius-pill)) bg-emerald-400 shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-emerald-400 shrink-0" />
                         )}
                       </button>
                     );
@@ -806,7 +806,7 @@ export function DocsView() {
                   <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
                     {activeComponent.title}
                   </h1>
-                  <span className="px-2 py-0.5 rounded-(var(--radius-xs)) text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="px-2 py-0.5 rounded-(--radius-xs) text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     v{activeComponent.version}
                   </span>
                 </div>
@@ -816,7 +816,7 @@ export function DocsView() {
 
                 {/* Quick Action Chips & CLI Copy Toolbar */}
                 <div className="flex flex-wrap items-center gap-2 pt-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-(var(--radius-field)) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/[0.03] text-xs font-mono text-zinc-700 dark:text-zinc-300">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/[0.03] text-xs font-mono text-zinc-700 dark:text-zinc-300">
                     <Terminal className="w-3.5 h-3.5 text-emerald-400" />
                     <span>{activeComponent.cliCommand}</span>
                     <button
@@ -833,7 +833,7 @@ export function DocsView() {
                     </button>
                   </div>
 
-                  <span className="text-xs font-mono text-zinc-400 border border-white/[0.04] bg-white/[0.02] px-2.5 py-1 rounded-(var(--radius-field))">
+                  <span className="text-xs font-mono text-zinc-400 border border-white/[0.04] bg-white/[0.02] px-2.5 py-1 rounded-(--radius-field)">
                     Primitive: {activeComponent.primitive || 'Native React'}
                   </span>
                 </div>
@@ -844,11 +844,11 @@ export function DocsView() {
                 {/* Tabs & Viewport Controls Toolbar */}
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   {/* Preview / Code Tab Buttons */}
-                  <div className="flex items-center gap-1 p-1 rounded-(var(--radius-control)) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.03]">
+                  <div className="flex items-center gap-1 p-1 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.03]">
                     <button
                       type="button"
                       onClick={() => setActiveTab('preview')}
-                      className={`px-3.5 py-1.5 rounded-(var(--radius-field)) text-xs font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
+                      className={`px-3.5 py-1.5 rounded-(--radius-field) text-xs font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
                         activeTab === 'preview'
                           ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                           : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
@@ -860,7 +860,7 @@ export function DocsView() {
                     <button
                       type="button"
                       onClick={() => setActiveTab('code')}
-                      className={`px-3.5 py-1.5 rounded-(var(--radius-field)) text-xs font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
+                      className={`px-3.5 py-1.5 rounded-(--radius-field) text-xs font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
                         activeTab === 'code'
                           ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                           : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
@@ -873,12 +873,12 @@ export function DocsView() {
 
                   {/* Viewport Width Switchers (Desktop / Tablet / Mobile) */}
                   {activeTab === 'preview' && (
-                    <div className="hidden sm:flex items-center gap-1 p-1 rounded-(var(--radius-field)) bg-zinc-100 dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.03]">
+                    <div className="hidden sm:flex items-center gap-1 p-1 rounded-(--radius-field) bg-zinc-100 dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.03]">
                       <button
                         type="button"
                         onClick={() => setViewportWidth('100%')}
                         title="Full width (100%)"
-                        className={`p-1.5 rounded-(var(--radius-sm)) text-xs transition-colors cursor-pointer ${
+                        className={`p-1.5 rounded-(--radius-sm) text-xs transition-colors cursor-pointer ${
                           viewportWidth === '100%'
                             ? 'bg-white text-zinc-900 dark:bg-white/[0.1] dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
@@ -890,7 +890,7 @@ export function DocsView() {
                         type="button"
                         onClick={() => setViewportWidth('768px')}
                         title="Tablet width (768px)"
-                        className={`p-1.5 rounded-(var(--radius-sm)) text-xs transition-colors cursor-pointer ${
+                        className={`p-1.5 rounded-(--radius-sm) text-xs transition-colors cursor-pointer ${
                           viewportWidth === '768px'
                             ? 'bg-white text-zinc-900 dark:bg-white/[0.1] dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
@@ -902,7 +902,7 @@ export function DocsView() {
                         type="button"
                         onClick={() => setViewportWidth('375px')}
                         title="Mobile width (375px)"
-                        className={`p-1.5 rounded-(var(--radius-sm)) text-xs transition-colors cursor-pointer ${
+                        className={`p-1.5 rounded-(--radius-sm) text-xs transition-colors cursor-pointer ${
                           viewportWidth === '375px'
                             ? 'bg-white text-zinc-900 dark:bg-white/[0.1] dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
@@ -919,7 +919,7 @@ export function DocsView() {
                   <div className="space-y-4">
                     {/* Live Playground Stage */}
                     <div
-                      className="mx-auto rounded-(var(--radius-control)) sm:rounded-(var(--radius-lg)) border border-black/[0.08] dark:border-white/[0.04] bg-zinc-50 dark:bg-[#07080C] p-4 sm:p-8 md:p-12 min-h-[260px] sm:min-h-[320px] flex items-center justify-center relative overflow-hidden transition-all duration-300 shadow-(var(--elevation-3))"
+                      className="mx-auto rounded-(--radius-control) sm:rounded-(--radius-lg) border border-black/[0.08] dark:border-white/[0.04] bg-zinc-50 dark:bg-[#07080C] p-4 sm:p-8 md:p-12 min-h-[260px] sm:min-h-[320px] flex items-center justify-center relative overflow-hidden transition-all duration-300 shadow-(--elevation-3)"
                       style={{ maxWidth: viewportWidth }}
                     >
                       {/* Sub-pixel top rim specular highlight */}
@@ -980,7 +980,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'switch' && (
-                          <div className="flex items-center gap-4 p-4 rounded-(var(--radius-control)) bg-white dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.03]">
+                          <div className="flex items-center gap-4 p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.03]">
                             <Switch checked={demoSwitchChecked} onCheckedChange={setDemoSwitchChecked} />
                             <span className="text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300">
                               {demoSwitchChecked ? 'Enabled · Active State' : 'Disabled · Inactive'}
@@ -1038,13 +1038,13 @@ export function DocsView() {
                                 <TabsTrigger value="analytics">Analytics</TabsTrigger>
                                 <TabsTrigger value="reports">Reports</TabsTrigger>
                               </TabsList>
-                              <TabsContent value="overview" className="p-4 rounded-(var(--radius-control)) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] text-xs text-zinc-400 mt-2">
+                              <TabsContent value="overview" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] text-xs text-zinc-400 mt-2">
                                 Overview content with spring tab transitions.
                               </TabsContent>
-                              <TabsContent value="analytics" className="p-4 rounded-(var(--radius-control)) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] text-xs text-zinc-400 mt-2">
+                              <TabsContent value="analytics" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] text-xs text-zinc-400 mt-2">
                                 Real-time analytics metrics streaming via edge nodes.
                               </TabsContent>
-                              <TabsContent value="reports" className="p-4 rounded-(var(--radius-control)) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] text-xs text-zinc-400 mt-2">
+                              <TabsContent value="reports" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] text-xs text-zinc-400 mt-2">
                                 Audit reports generated automatically.
                               </TabsContent>
                             </Tabs>
@@ -1100,7 +1100,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'checkbox' && (
-                          <div className="flex items-center gap-3 p-3.5 rounded-(var(--radius-control)) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03]">
+                          <div className="flex items-center gap-3 p-3.5 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03]">
                             <Checkbox checked={demoCheckboxChecked} onChange={setDemoCheckboxChecked} />
                             <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
                               Enable specular border highlights across registry
@@ -1246,7 +1246,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'tree-view' && (
-                          <div className="w-full max-w-sm p-3 rounded-(var(--radius-control)) bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.06] dark:border-white/[0.04]">
+                          <div className="w-full max-w-sm p-3 rounded-(--radius-control) bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.06] dark:border-white/[0.04]">
                             <TreeView
                               data={[
                                 {
@@ -1295,20 +1295,20 @@ export function DocsView() {
 
                         {activeComponent.id === 'icon-button' && (
                           <div className="flex items-center gap-3">
-                            <Button size="sm" className="p-2.5 rounded-(var(--radius-pill))" variant="primary">
+                            <Button size="sm" className="p-2.5 rounded-(--radius-pill)" variant="primary">
                               <Sparkles className="w-4 h-4" />
                             </Button>
-                            <Button size="sm" className="p-2.5 rounded-(var(--radius-control))" variant="secondary">
+                            <Button size="sm" className="p-2.5 rounded-(--radius-control)" variant="secondary">
                               <Search className="w-4 h-4" />
                             </Button>
-                            <Button size="sm" className="p-2.5 rounded-(var(--radius-field))" variant="outline">
+                            <Button size="sm" className="p-2.5 rounded-(--radius-field)" variant="outline">
                               <Terminal className="w-4 h-4" />
                             </Button>
                           </div>
                         )}
 
                         {activeComponent.id === 'copy-button' && (
-                          <div className="flex items-center gap-3 p-3 rounded-(var(--radius-control)) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03]">
+                          <div className="flex items-center gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03]">
                             <code className="text-xs font-mono text-emerald-400">npx @99/ui add all</code>
                             <Button
                               size="xs"
@@ -1333,20 +1333,20 @@ export function DocsView() {
 
                         {activeComponent.id === 'trend-delta' && (
                           <div className="flex items-center gap-3">
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(var(--radius-pill)) text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                               +24.8% ↑
                             </span>
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(var(--radius-pill)) text-xs font-mono font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) text-xs font-mono font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
                               -8.2% ↓
                             </span>
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(var(--radius-pill)) text-xs font-mono font-bold bg-zinc-500/10 text-zinc-400 border border-zinc-500/20">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) text-xs font-mono font-bold bg-zinc-500/10 text-zinc-400 border border-zinc-500/20">
                               0.0% —
                             </span>
                           </div>
                         )}
 
                         {activeComponent.id === 'sparkline' && (
-                          <div className="w-full max-w-xs p-4 rounded-(var(--radius-control)) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
+                          <div className="w-full max-w-xs p-4 rounded-(--radius-control) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
                             <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
                               <span>Throughput</span>
                               <span className="text-emerald-400 font-bold">+18.4%</span>
@@ -1398,7 +1398,7 @@ export function DocsView() {
                             {['Workspace', 'Tokens', 'Verification'].map((step, idx) => (
                               <div key={step} className="flex items-center gap-2">
                                 <div
-                                  className={`w-6 h-6 rounded-(var(--radius-pill)) flex items-center justify-center text-[10px] font-bold ${
+                                  className={`w-6 h-6 rounded-(--radius-pill) flex items-center justify-center text-[10px] font-bold ${
                                     idx <= 1 ? 'bg-emerald-500 text-black' : 'bg-zinc-800 text-zinc-400'
                                   }`}
                                 >
@@ -1413,7 +1413,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'banner' && (
-                          <div className="w-full max-w-lg p-3 rounded-(var(--radius-control)) bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 flex items-center justify-between text-xs">
+                          <div className="w-full max-w-lg p-3 rounded-(--radius-control) bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 flex items-center justify-between text-xs">
                             <div className="flex items-center gap-2">
                               <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
                               <span>UI \ [99] Registry is ready for production.</span>
@@ -1423,7 +1423,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'alert' && (
-                          <div className="w-full max-w-md p-4 rounded-(var(--radius-control)) bg-rose-500/10 border border-rose-500/20 text-rose-300 space-y-1 text-xs">
+                          <div className="w-full max-w-md p-4 rounded-(--radius-control) bg-rose-500/10 border border-rose-500/20 text-rose-300 space-y-1 text-xs">
                             <div className="font-bold flex items-center gap-1.5">
                               <ShieldCheck className="w-4 h-4 text-rose-400" />
                               Security Policy Notice
@@ -1512,7 +1512,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'range-slider' && (
-                          <div className="w-full max-w-sm p-4 rounded-(var(--radius-control)) bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03]">
+                          <div className="w-full max-w-sm p-4 rounded-(--radius-control) bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03]">
                             <RangeSlider value={[25, 75]} onChange={() => {}} min={0} max={100} />
                           </div>
                         )}
@@ -1605,7 +1605,7 @@ export function DocsView() {
                         {activeComponent.id === 'aspect-ratio' && (
                           <div className="w-full max-w-sm">
                             <AspectRatio ratio={16 / 9}>
-                              <div className="w-full h-full rounded-(var(--radius-control)) bg-gradient-to-br from-emerald-500/25 via-emerald-500/10 to-transparent border border-emerald-500/20 flex items-center justify-center">
+                              <div className="w-full h-full rounded-(--radius-control) bg-gradient-to-br from-emerald-500/25 via-emerald-500/10 to-transparent border border-emerald-500/20 flex items-center justify-center">
                                 <span className="text-xs font-mono text-emerald-300">16 : 9 · locked</span>
                               </div>
                             </AspectRatio>
@@ -1657,7 +1657,7 @@ export function DocsView() {
                               ].map((c) => (
                                 <div
                                   key={c.name}
-                                  className="h-40 rounded-(var(--radius-control)) border border-white/[0.06] flex flex-col items-center justify-center gap-2"
+                                  className="h-40 rounded-(--radius-control) border border-white/[0.06] flex flex-col items-center justify-center gap-2"
                                   style={{ background: `linear-gradient(160deg, ${c.hex} 0%, #0B0C11 130%)` }}
                                 >
                                   <span className="text-sm font-semibold text-white">{c.name}</span>
@@ -1686,7 +1686,7 @@ export function DocsView() {
                                 <Button variant="outline" size="sm">Design principles</Button>
                               </CollapsibleTrigger>
                               <CollapsibleContent>
-                                <div className="mt-3 p-4 rounded-(var(--radius-control)) bg-white/[0.02] border border-white/[0.04] text-xs text-zinc-400 leading-relaxed">
+                                <div className="mt-3 p-4 rounded-(--radius-control) bg-white/[0.02] border border-white/[0.04] text-xs text-zinc-400 leading-relaxed">
                                   Velvet surfaces over hard slabs · hairline borders · specular rim highlights ·
                                   every state derived from tokens, never hand-picked.
                                 </div>
@@ -2032,7 +2032,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'scroll-area' && (
-                          <ScrollArea className="h-44 w-full max-w-sm rounded-(var(--radius-control)) border border-white/[0.05] bg-white/[0.015]">
+                          <ScrollArea className="h-44 w-full max-w-sm rounded-(--radius-control) border border-white/[0.05] bg-white/[0.015]">
                             <div className="p-4 space-y-3 text-xs text-zinc-400 leading-relaxed">
                               {Array.from({ length: 12 }, (_, i) => (
                                 <p key={i}>Registry entry {i + 1} — velvet surface, hairline border, specular rim.</p>
@@ -2073,7 +2073,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'sidebar' && (
-                          <div className="w-full max-w-sm h-64 rounded-(var(--radius-lg)) border border-white/[0.04] overflow-hidden">
+                          <div className="w-full max-w-sm h-64 rounded-(--radius-lg) border border-white/[0.04] overflow-hidden">
                             <SidebarProvider>
                               <Sidebar>
                                 <SidebarHeader>
@@ -2093,7 +2093,7 @@ export function DocsView() {
                           <div className="w-full max-w-sm space-y-3">
                             <Skeleton className="h-4 w-3/4" />
                             <Skeleton className="h-4 w-full" />
-                            <Skeleton className="h-24 w-full rounded-(var(--radius-control))" />
+                            <Skeleton className="h-24 w-full rounded-(--radius-control)" />
                           </div>
                         )}
 
@@ -2107,7 +2107,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'table' && (
-                          <div className="w-full max-w-lg rounded-(var(--radius-control)) border border-white/[0.04] overflow-hidden">
+                          <div className="w-full max-w-lg rounded-(--radius-control) border border-white/[0.04] overflow-hidden">
                             <Table>
                               <TableHeader>
                                 <TableRow>
@@ -2214,7 +2214,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'top-header' && (
-                          <div className="w-full max-w-lg rounded-(var(--radius-control)) overflow-hidden border border-white/[0.03]">
+                          <div className="w-full max-w-lg rounded-(--radius-control) overflow-hidden border border-white/[0.03]">
                             <TopHeader />
                           </div>
                         )}
@@ -2234,8 +2234,8 @@ export function DocsView() {
                         {/* General showcase fallback — safety net for future registry additions.
                             Every one of the 99 standard elements ships a dedicated live preview above. */}
                         {!LIVE_PREVIEW_IDS.has(activeComponent.id) && (
-                          <div className="w-full max-w-md p-6 rounded-(var(--radius-lg)) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-4 text-center">
-                            <div className="w-12 h-12 rounded-(var(--radius-control)) bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mx-auto">
+                          <div className="w-full max-w-md p-6 rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-4 text-center">
+                            <div className="w-12 h-12 rounded-(--radius-control) bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mx-auto">
                               <Sparkles className="w-6 h-6" />
                             </div>
                             <div className="space-y-1">
@@ -2261,7 +2261,7 @@ export function DocsView() {
                     </div>
 
                     {/* LIVE INTERACTIVE CONTROLLERS (Props Tweaker) */}
-                    <div className="p-4 rounded-(var(--radius-control)) bg-zinc-100 dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center gap-4 text-xs font-mono">
+                    <div className="p-4 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center gap-4 text-xs font-mono">
                       <div className="flex items-center gap-1.5 text-zinc-500">
                         <SlidersHorizontal className="w-3.5 h-3.5 text-emerald-400" />
                         <span className="font-semibold">Live Props:</span>
@@ -2274,7 +2274,7 @@ export function DocsView() {
                             <select
                               value={demoBtnVariant}
                               onChange={(e) => setDemoBtnVariant(e.target.value as any)}
-                              className="px-2 py-1 rounded-(var(--radius-sm)) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono"
                             >
                               <option value="primary">primary</option>
                               <option value="secondary">secondary</option>
@@ -2289,7 +2289,7 @@ export function DocsView() {
                             <select
                               value={demoBtnSize}
                               onChange={(e) => setDemoBtnSize(e.target.value as any)}
-                              className="px-2 py-1 rounded-(var(--radius-sm)) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono"
                             >
                               <option value="xs">xs</option>
                               <option value="sm">sm</option>
@@ -2327,7 +2327,7 @@ export function DocsView() {
                             <select
                               value={demoBadgeVariant}
                               onChange={(e) => setDemoBadgeVariant(e.target.value as any)}
-                              className="px-2 py-1 rounded-(var(--radius-sm)) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono"
                             >
                               <option value="default">default</option>
                               <option value="secondary">secondary</option>
@@ -2370,7 +2370,7 @@ export function DocsView() {
                               key={c}
                               type="button"
                               onClick={() => setDemoColor(c)}
-                              className="w-4 h-4 rounded-(var(--radius-pill)) border border-white/20 transition-transform hover:scale-110 cursor-pointer"
+                              className="w-4 h-4 rounded-(--radius-pill) border border-white/20 transition-transform hover:scale-110 cursor-pointer"
                               style={{ backgroundColor: c }}
                             />
                           ))}
@@ -2427,7 +2427,7 @@ export function DocsView() {
                   <button
                     type="button"
                     onClick={() => setInstallMethod('cli')}
-                    className={`px-3 py-1 rounded-(var(--radius-sm)) text-xs font-mono font-medium transition-colors cursor-pointer ${
+                    className={`px-3 py-1 rounded-(--radius-sm) text-xs font-mono font-medium transition-colors cursor-pointer ${
                       installMethod === 'cli'
                         ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold'
                         : 'text-zinc-500 hover:text-white'
@@ -2438,7 +2438,7 @@ export function DocsView() {
                   <button
                     type="button"
                     onClick={() => setInstallMethod('manual')}
-                    className={`px-3 py-1 rounded-(var(--radius-sm)) text-xs font-mono font-medium transition-colors cursor-pointer ${
+                    className={`px-3 py-1 rounded-(--radius-sm) text-xs font-mono font-medium transition-colors cursor-pointer ${
                       installMethod === 'manual'
                         ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold'
                         : 'text-zinc-500 hover:text-white'
@@ -2457,7 +2457,7 @@ export function DocsView() {
                           key={pm}
                           type="button"
                           onClick={() => setPackageManager(pm)}
-                          className={`px-2.5 py-1 rounded-(var(--radius-sm)) text-xs font-mono cursor-pointer transition-colors ${
+                          className={`px-2.5 py-1 rounded-(--radius-sm) text-xs font-mono cursor-pointer transition-colors ${
                             packageManager === pm
                               ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
                               : 'text-zinc-400 hover:text-zinc-200 bg-white/[0.02]'
@@ -2530,7 +2530,7 @@ export function DocsView() {
                   TypeScript interfaces and runtime props for {activeComponent.title}.
                 </p>
 
-                <div className="overflow-x-auto rounded-(var(--radius-control)) border border-black/[0.06] dark:border-white/[0.04]">
+                <div className="overflow-x-auto rounded-(--radius-control) border border-black/[0.06] dark:border-white/[0.04]">
                   <table className="w-full text-left text-xs border-collapse">
                     <thead>
                       <tr className="border-b border-black/[0.06] dark:border-white/[0.04] bg-zinc-100/50 dark:bg-white/[0.02]">
@@ -2570,15 +2570,15 @@ export function DocsView() {
                   <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-white">
                     Accessibility & Keyboard Navigation
                   </h2>
-                  <span className="px-2 py-0.5 text-[10px] font-mono rounded-(var(--radius-pill)) bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="px-2 py-0.5 text-[10px] font-mono rounded-(--radius-pill) bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     WCAG 2.2 AAA
                   </span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-(var(--radius-control)) bg-zinc-100/60 dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
+                  <div className="p-4 rounded-(--radius-control) bg-zinc-100/60 dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
                     <h3 className="text-xs font-mono font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-(var(--radius-pill)) bg-emerald-400" />
+                      <span className="w-2 h-2 rounded-(--radius-pill) bg-emerald-400" />
                       Focus & State Management
                     </h3>
                     <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
@@ -2586,9 +2586,9 @@ export function DocsView() {
                     </p>
                   </div>
 
-                  <div className="p-4 rounded-(var(--radius-control)) bg-zinc-100/60 dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
+                  <div className="p-4 rounded-(--radius-control) bg-zinc-100/60 dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
                     <h3 className="text-xs font-mono font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-(var(--radius-pill)) bg-blue-400" />
+                      <span className="w-2 h-2 rounded-(--radius-pill) bg-blue-400" />
                       Keyboard Interaction
                     </h3>
                     <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
@@ -2607,7 +2607,7 @@ export function DocsView() {
                       setActiveSection(prevItem.id);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="flex flex-col items-start gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                    className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                   >
                     <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                       <ArrowLeft className="w-3 h-3" /> Previous
@@ -2627,7 +2627,7 @@ export function DocsView() {
                       setActiveSection(nextItem.id);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="flex flex-col items-end gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                    className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                   >
                     <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                       Next <ArrowRight className="w-3 h-3" />
@@ -2649,7 +2649,7 @@ export function DocsView() {
           {activeSection === 'intro' && (
             <article className="space-y-8">
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
-                <div className="inline-flex items-center h-7 px-3 rounded-(var(--radius-pill)) text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+                <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
                   v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 </div>
                 <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
@@ -2665,7 +2665,7 @@ export function DocsView() {
                   <strong className="text-zinc-900 dark:text-white font-semibold">UI \ [99]</strong> is <strong>NOT</strong> a component library in the traditional sense of an immutable npm package. It is a collection of re-usable components that you can copy and paste directly into your apps.
                 </p>
 
-                <div className="p-5 rounded-(var(--radius-lg)) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-3">
+                <div className="p-5 rounded-(--radius-lg) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-3">
                   <h3 className="text-sm font-bold text-zinc-950 dark:text-white flex items-center gap-2">
                     <Sparkles className="w-4 h-4 text-emerald-400" />
                     Core Architecture Principles
@@ -2702,7 +2702,7 @@ export function DocsView() {
                     setActiveSection('installation');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="w-3 h-3" />
@@ -2795,7 +2795,7 @@ export function cn(...inputs: ClassValue[]) {
                     setActiveSection('intro');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     <ArrowLeft className="w-3 h-3" /> Previous
@@ -2811,7 +2811,7 @@ export function cn(...inputs: ClassValue[]) {
                     setActiveSection('theming');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="w-3 h-3" />
@@ -2838,20 +2838,20 @@ export function cn(...inputs: ClassValue[]) {
 
               {/* Swatch Palette Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 rounded-(var(--radius-control)) bg-[#06070A] border border-white/[0.08] space-y-2">
-                  <div className="h-14 rounded-(var(--radius-field)) bg-[#06070A] border border-white/[0.04]" />
+                <div className="p-4 rounded-(--radius-control) bg-[#06070A] border border-white/[0.08] space-y-2">
+                  <div className="h-14 rounded-(--radius-field) bg-[#06070A] border border-white/[0.04]" />
                   <div className="text-xs font-mono font-bold text-white">#06070A</div>
                   <div className="text-[11px] font-mono text-zinc-400">Canvas Root</div>
                 </div>
 
-                <div className="p-4 rounded-(var(--radius-control)) bg-[#0B0C11] border border-white/[0.08] space-y-2">
-                  <div className="h-14 rounded-(var(--radius-field)) bg-[#0B0C11] border border-white/[0.04]" />
+                <div className="p-4 rounded-(--radius-control) bg-[#0B0C11] border border-white/[0.08] space-y-2">
+                  <div className="h-14 rounded-(--radius-field) bg-[#0B0C11] border border-white/[0.04]" />
                   <div className="text-xs font-mono font-bold text-white">#0B0C11</div>
                   <div className="text-[11px] font-mono text-zinc-400">Surface Layer 1</div>
                 </div>
 
-                <div className="p-4 rounded-(var(--radius-control)) bg-[#131318] border border-white/[0.08] space-y-2">
-                  <div className="h-14 rounded-(var(--radius-field)) bg-[#131318] border border-white/[0.04]" />
+                <div className="p-4 rounded-(--radius-control) bg-[#131318] border border-white/[0.08] space-y-2">
+                  <div className="h-14 rounded-(--radius-field) bg-[#131318] border border-white/[0.04]" />
                   <div className="text-xs font-mono font-bold text-white">#131318</div>
                   <div className="text-[11px] font-mono text-zinc-400">Elevated Modals</div>
                 </div>
@@ -2883,7 +2883,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('installation');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     <ArrowLeft className="w-3 h-3" /> Previous
@@ -2899,7 +2899,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('npm-guide');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="w-3 h-3" />
@@ -2925,7 +2925,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
               </header>
 
               <div className="space-y-6">
-                <div className="p-5 rounded-(var(--radius-lg)) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-3">
+                <div className="p-5 rounded-(--radius-lg) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-3">
                   <h3 className="text-sm font-bold text-zinc-950 dark:text-white flex items-center gap-2">
                     <FolderGit2 className="w-4 h-4 text-emerald-400" />
                     How It Works
@@ -2967,7 +2967,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('theming');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     <ArrowLeft className="w-3 h-3" /> Previous
@@ -2983,7 +2983,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('cli');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="w-3 h-3" />
@@ -3051,7 +3051,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('npm-guide');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     <ArrowLeft className="w-3 h-3" /> Previous
@@ -3067,7 +3067,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('changelog');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="w-3 h-3" />
@@ -3093,13 +3093,13 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
               </header>
 
               {/* Current release — version is GENERATED (src/generated/kit-count.ts), never hard-coded */}
-              <div className="p-5 sm:p-6 rounded-(var(--radius-lg)) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-4">
+              <div className="p-5 sm:p-6 rounded-(--radius-lg) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-4">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-(var(--radius-field)) bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white text-xs font-mono font-bold">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white text-xs font-mono font-bold">
                     <Rocket className="w-3.5 h-3.5 text-emerald-400" />
                     v{KIT_VERSION}
                   </span>
-                  <span className="px-2 py-0.5 rounded-(var(--radius-xs)) text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="px-2 py-0.5 rounded-(--radius-xs) text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     LATEST · STABLE
                   </span>
                   <span className="text-xs font-mono text-zinc-400">@99/ui — first stable, publish-ready</span>
@@ -3164,7 +3164,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                 />
               </div>
 
-              <div className="p-4 rounded-(var(--radius-control)) border border-black/[0.05] dark:border-white/[0.04] bg-white/[0.02] text-[11px] font-mono text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              <div className="p-4 rounded-(--radius-control) border border-black/[0.05] dark:border-white/[0.04] bg-white/[0.02] text-[11px] font-mono text-zinc-500 dark:text-zinc-400 leading-relaxed">
                 The version shown on this page, the header badge, and the registry envelope are all generated
                 from one source — <code className="text-emerald-400">src/generated/kit-count.ts</code> — so the site can never advertise a version the package is not.
               </div>
@@ -3177,7 +3177,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('cli');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     <ArrowLeft className="w-3 h-3" /> Previous
@@ -3193,7 +3193,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('button');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(var(--radius-control)) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
                   <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="w-3 h-3" />

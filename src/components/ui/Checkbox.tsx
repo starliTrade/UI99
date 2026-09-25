@@ -29,7 +29,7 @@ export function Checkbox({
 }: CheckboxProps) {
   const isDark = useIsDark();
 
-  const boxSize = size === 'sm' ? 'w-4 h-4 rounded-(var(--radius-xs))' : 'w-5 h-5 rounded-(var(--radius-xs))';
+  const boxSize = size === 'sm' ? 'w-4 h-4 rounded-(--radius-xs)' : 'w-5 h-5 rounded-(--radius-xs)';
   const iconSize = size === 'sm' ? 'w-3 h-3' : 'w-3.5 h-3.5';
 
   return (
@@ -55,7 +55,7 @@ export function Checkbox({
       <div
         className={`relative flex items-center justify-center shrink-0 mt-0.5 transition-all duration-150 peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500/55 ${boxSize} ${
           checked
-            ? 'bg-emerald-500 text-white shadow-(var(--glow-accent-md)) border border-emerald-400'
+            ? 'bg-emerald-500 text-white shadow-(--glow-accent-md) border border-emerald-400'
             : isDark
             ? 'bg-(--bg-elevated) border border-white/[0.1] peer-hover:border-white/[0.2]'
             : 'bg-zinc-100 border border-black/[0.12] peer-hover:border-black/[0.25]'
@@ -134,7 +134,7 @@ export function Radio({
         onChange={onChange}
       />
       <div
-        className={`w-4.5 h-4.5 rounded-(var(--radius-pill)) flex items-center justify-center shrink-0 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500/55 ${
+        className={`w-4.5 h-4.5 rounded-(--radius-pill) flex items-center justify-center shrink-0 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500/55 ${
           checked
             ? 'border-2 border-emerald-500'
             : isDark
@@ -147,7 +147,7 @@ export function Radio({
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            className="w-2 h-2 rounded-(var(--radius-pill)) bg-emerald-500 shadow-(var(--glow-accent-sm))"
+            className="w-2 h-2 rounded-(--radius-pill) bg-emerald-500 shadow-(--glow-accent-sm)"
           />
         )}
       </div>

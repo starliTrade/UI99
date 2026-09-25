@@ -104,8 +104,8 @@ export function DailyTimeline({
         {isToday && (
           <div className="flex items-center gap-1.5 text-[11px] font-medium text-rose-400">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-(var(--radius-pill)) bg-rose-500 opacity-75" />
-              <span className="relative inline-flex rounded-(var(--radius-pill)) h-2 w-2 bg-rose-500 shadow-(var(--glow-rose-sm))" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-(--radius-pill) bg-rose-500 opacity-75" />
+              <span className="relative inline-flex rounded-(--radius-pill) h-2 w-2 bg-rose-500 shadow-(--glow-rose-sm)" />
             </span>
             <span className="font-mono">{currentTimeFormatted}</span>
           </div>
@@ -117,10 +117,10 @@ export function DailyTimeline({
         /* Graceful Poetic Empty State */
         <div
           onClick={onOpenCapture}
-          className="group relative p-5 sm:p-6 rounded-(var(--radius-lg)) bg-[#0A0B10] border border-white/[0.025] hover:border-white/[0.05] shadow-(var(--rim-soft), var(--elevation-2)) transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left rtl:sm:text-right"
+          className="group relative p-5 sm:p-6 rounded-(--radius-lg) bg-[#0A0B10] border border-white/[0.025] hover:border-white/[0.05] shadow-(--shadow-card) transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left rtl:sm:text-right"
         >
           <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-(var(--radius-pill)) bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors shrink-0">
+            <div className="w-10 h-10 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors shrink-0">
               <Calendar className="w-4 h-4" />
             </div>
             <div>
@@ -139,7 +139,7 @@ export function DailyTimeline({
 
           <button
             type="button"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-(var(--radius-pill)) bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 border border-white/[0.04] text-xs font-medium shrink-0 transition-transform active:scale-95 cursor-pointer"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-(--radius-pill) bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 border border-white/[0.04] text-xs font-medium shrink-0 transition-transform active:scale-95 cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5 text-rose-400" />
             <span>{isRTL ? 'ثبت برنامه' : 'Add Event'}</span>
@@ -169,7 +169,7 @@ export function DailyTimeline({
                         NOW
                       </span>
                     </div>
-                    <div className="w-1.5 h-1.5 rounded-(var(--radius-pill)) bg-rose-500 shadow-(var(--glow-rose-sm)) shrink-0" />
+                    <div className="w-1.5 h-1.5 rounded-(--radius-pill) bg-rose-500 shadow-(--glow-rose-sm) shrink-0" />
                     <div className="flex-1 h-[1px] bg-gradient-to-r from-rose-500/30 via-rose-500/10 to-transparent rtl:bg-gradient-to-l" />
                   </div>
                 )}
@@ -191,12 +191,12 @@ export function DailyTimeline({
                   {/* Node icon */}
                   <div className="px-2 shrink-0">
                     {item.isCompleted ? (
-                      <div className="w-4 h-4 rounded-(var(--radius-pill)) bg-emerald-500/15 text-emerald-400 flex items-center justify-center border border-emerald-500/25">
+                      <div className="w-4 h-4 rounded-(--radius-pill) bg-emerald-500/15 text-emerald-400 flex items-center justify-center border border-emerald-500/25">
                         <Check className="w-2.5 h-2.5 stroke-[2.5]" />
                       </div>
                     ) : (
-                      <div className="w-4 h-4 rounded-(var(--radius-pill)) flex items-center justify-center border border-white/15 bg-white/[0.02]">
-                        <div className="w-1 h-1 rounded-(var(--radius-pill)) bg-white/40" />
+                      <div className="w-4 h-4 rounded-(--radius-pill) flex items-center justify-center border border-white/15 bg-white/[0.02]">
+                        <div className="w-1 h-1 rounded-(--radius-pill) bg-white/40" />
                       </div>
                     )}
                   </div>

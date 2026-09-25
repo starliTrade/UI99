@@ -33,11 +33,11 @@ export function Progress({
   const percentage = Math.min(100, Math.max(0, (value / max) * 100));
 
   const variantColors = {
-    emerald: 'bg-emerald-500 shadow-(var(--glow-accent-md))',
-    amber: 'bg-amber-500 shadow-(var(--glow-warning-md))',
-    rose: 'bg-rose-500 shadow-(var(--glow-rose-md))',
-    blue: 'bg-blue-500 shadow-(var(--glow-accent-md))',
-    purple: 'bg-purple-500 shadow-(var(--glow-accent-md))',
+    emerald: 'bg-emerald-500 shadow-(--glow-accent-md)',
+    amber: 'bg-amber-500 shadow-(--glow-warning-md)',
+    rose: 'bg-rose-500 shadow-(--glow-rose-md)',
+    blue: 'bg-blue-500 shadow-(--glow-accent-md)',
+    purple: 'bg-purple-500 shadow-(--glow-accent-md)',
   };
 
   const heights = {
@@ -70,7 +70,7 @@ export function Progress({
             return (
               <div
                 key={i}
-                className={`${heights[size]} rounded-(var(--radius-pill)) transition-all duration-200 ${
+                className={`${heights[size]} rounded-(--radius-pill) transition-all duration-200 ${
                   isFilled
                     ? variantColors[variant]
                     : isDark
@@ -102,12 +102,12 @@ export function Progress({
         </div>
       )}
       <div
-        className={`w-full ${heights[size]} rounded-(var(--radius-pill)) overflow-hidden ${
+        className={`w-full ${heights[size]} rounded-(--radius-pill) overflow-hidden ${
           isDark ? 'bg-white/[0.08]' : 'bg-black/[0.08]'
         }`}
       >
         <div
-          className={`h-full rounded-(var(--radius-pill)) transition-all duration-300 ${variantColors[variant]}`}
+          className={`h-full rounded-(--radius-pill) transition-all duration-300 ${variantColors[variant]}`}
           style={{ width: `${percentage}%` }}
         />
       </div>

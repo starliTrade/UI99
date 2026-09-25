@@ -119,7 +119,7 @@ export function TerminalEmulator({
   return (
     <div
       className={cn(
-        'rounded-(var(--radius-control)) bg-(--bg-canvas) border border-white/[0.06] text-xs font-mono flex flex-col shadow-xl overflow-hidden w-full',
+        'rounded-(--radius-control) bg-(--bg-canvas) border border-white/[0.06] text-xs font-mono flex flex-col shadow-xl overflow-hidden w-full',
         className
       )}
     >
@@ -127,9 +127,9 @@ export function TerminalEmulator({
       <div className="flex items-center justify-between px-3.5 py-2.5 bg-(--bg-card) border-b border-white/[0.04]">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-(var(--radius-pill)) bg-rose-500/80" />
-            <div className="w-2.5 h-2.5 rounded-(var(--radius-pill)) bg-amber-500/80" />
-            <div className="w-2.5 h-2.5 rounded-(var(--radius-pill)) bg-emerald-500/80" />
+            <div className="w-2.5 h-2.5 rounded-(--radius-pill) bg-rose-500/80" />
+            <div className="w-2.5 h-2.5 rounded-(--radius-pill) bg-amber-500/80" />
+            <div className="w-2.5 h-2.5 rounded-(--radius-pill) bg-emerald-500/80" />
           </div>
           <span className="text-zinc-400 font-medium ml-2 flex items-center gap-1.5">
             <Terminal className="w-3.5 h-3.5 text-zinc-400" />
