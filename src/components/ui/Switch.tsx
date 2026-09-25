@@ -76,7 +76,7 @@ export function Switch({
       >
         <SwitchPrimitive.Thumb
           className={cn(
-            'pointer-events-none block rounded-(--radius-pill) bg-white shadow-md ring-0 transition-transform duration-200 ease-in-out',
+            'pointer-events-none block rounded-(--radius-pill) bg-white shadow-md ring-0 transition-transform dur-base ease-in-out',
             thumbSizes
           )}
         />
@@ -87,7 +87,7 @@ export function Switch({
           {label && (
             <span
               className={cn(
-                'text-xs font-semibold tracking-tight',
+                'type-caption font-semibold tracking-tight',
                 isDark ? 'text-(--text-primary)' : 'text-zinc-900'
               )}
             >
@@ -97,7 +97,7 @@ export function Switch({
           {description && (
             <span
               className={cn(
-                'text-[11px] leading-tight',
+                'type-micro leading-tight',
                 isDark ? 'text-(--text-secondary)' : 'text-zinc-500'
               )}
             >

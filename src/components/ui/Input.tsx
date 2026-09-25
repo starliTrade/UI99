@@ -23,9 +23,9 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const inputSizeStyles = {
-  sm: 'text-xs px-3 py-1.5 h-8 rounded-(--radius-sm)',
-  md: 'text-sm px-3.5 py-2.5 h-10 rounded-(--radius-field)',
-  lg: 'text-base px-4 py-3 h-12 rounded-(--radius-control)',
+  sm: 'type-caption px-3 py-1.5 h-8 rounded-(--radius-sm)',
+  md: 'type-body px-3.5 py-2.5 h-10 rounded-(--radius-field)',
+  lg: 'type-body-lg px-4 py-3 h-12 rounded-(--radius-control)',
 } as const;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -35,7 +35,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label htmlFor={inputId} className="block text-xs font-semibold text-zinc-700 dark:text-(--text-secondary) tracking-tight">
+          <label htmlFor={inputId} className="block type-caption font-semibold text-zinc-700 dark:text-(--text-secondary) tracking-tight">
             {label}
           </label>
         )}
@@ -51,7 +51,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={error ? true : undefined}
             aria-describedby={helperId}
             className={cn(
-              'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-ui99',
+              'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover transition-all dur-quick focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] shadow-xs focus-ui99',
               inputSizeStyles[inputSize],
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',
@@ -62,11 +62,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           {(rightIcon || loading) && (
             <div className="absolute right-3.5 text-(--text-muted) flex items-center">
-              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : rightIcon}
+              {loading ? <Loader2 className="icon-md animate-spin" /> : rightIcon}
             </div>
           )}
         </div>
-        {error && <p id={helperId} className="text-xs text-rose-500 mt-1">{error}</p>}
+        {error && <p id={helperId} className="type-caption text-rose-500 mt-1">{error}</p>}
       </div>
     );
   }
@@ -86,7 +86,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label htmlFor={textareaId} className="block text-xs font-semibold text-zinc-700 dark:text-(--text-secondary) tracking-tight">
+          <label htmlFor={textareaId} className="block type-caption font-semibold text-zinc-700 dark:text-(--text-secondary) tracking-tight">
             {label}
           </label>
         )}
@@ -97,13 +97,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={error ? true : undefined}
           aria-describedby={helperId}
           className={cn(
-            'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-(--radius-field) p-3.5 text-sm text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover transition-all duration-150 focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-ui99',
+            'w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-(--radius-field) p-3.5 type-body text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover transition-all dur-quick focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-ui99',
             error && 'border-rose-500/60 focus:border-rose-500',
             className
           )}
           {...props}
         />
-        {error && <p id={helperId} className="text-xs text-rose-500 mt-1">{error}</p>}
+        {error && <p id={helperId} className="type-caption text-rose-500 mt-1">{error}</p>}
       </div>
     );
   }
@@ -130,22 +130,22 @@ export function SearchBar({
 }: SearchBarProps) {
   return (
     <div className={cn('relative w-full flex items-center', className)}>
-      <Search className="absolute left-3.5 w-4 h-4 text-(--text-muted) pointer-events-none" />
+      <Search className="icon-md absolute left-3.5 text-(--text-muted) pointer-events-none" />
       <input
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         autoFocus={autoFocus}
-        className="w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-(--radius-pill) pl-10 pr-10 py-2.5 text-sm text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] transition-all shadow-xs tracking-tight"
+        className="w-full bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.06] rounded-(--radius-pill) pl-10 pr-10 py-2.5 type-body text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover focus:border-black/30 dark:focus:border-white/[0.16] transition-all shadow-xs tracking-tight focus-ui99"
       />
       {value && onClear && (
         <button
           type="button"
           onClick={onClear}
-          className="absolute right-3.5 p-1 rounded-(--radius-pill) text-zinc-400 hover:text-zinc-900 dark:text-(--text-muted) dark:hover:text-(--text-primary) transition-colors cursor-pointer"
+          className="absolute right-3.5 p-1 rounded-(--radius-pill) text-(--text-secondary) hover:text-zinc-900 dark:text-(--text-muted) dark:hover:text-(--text-primary) transition-colors cursor-pointer"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="icon-sm" />
         </button>
       )}
     </div>

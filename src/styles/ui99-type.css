@@ -92,12 +92,29 @@
   --weight-semibold: 600;
   --weight-bold: 700;
 
-  /* ─── Icon scale — 4 optical sizes ───
+  /* ─── Icon scale — 5 optical sizes ───
      The audit found 7 different icon sizes in use, which reads as "not a
      system" faster than anything else. Icons need an OPTICAL size per context,
-     not a numeric one: a 14px glyph and a 16px glyph do not look 2px apart. */
-  --icon-xs: 0.75rem;   /* 12px — inline with caption text, status dots */
-  --icon-sm: 0.875rem;  /* 14px — inside buttons and dense rows (default) */
-  --icon-md: 1.125rem;  /* 18px — standalone controls, nav items */
-  --icon-lg: 1.5rem;    /* 24px — feature marks, empty-state art */
+     not a numeric one: a 14px glyph and a 16px glyph do not look 2px apart.
+
+     FIVE steps, not four. The original scale was `12 / 14 / 18 / 24` — which
+     skipped 16px, the single most common icon size in the kit (351 call sites,
+     narrowly beating 14px's 358 only because `w-3.5` is uglier to type). A
+     scale that omits its own default is not a scale: every one of those call
+     sites had to reach for a raw `w-4 h-4` and go unnamed, which is precisely
+     the "not a system" signal the token exists to remove. The ladder is now
+     built from the sizes actually in use, in strict ascending order.
+
+     20px was added for the same reason — 76 call sites, no home. */
+  --icon-xs: 0.75rem;   /* 12px — inline with caption text, dense table rows */
+  --icon-sm: 0.875rem;  /* 14px — inside buttons and dense controls */
+  --icon-md: 1rem;      /* 16px — the default: body, nav items, list rows */
+  --icon-lg: 1.25rem;   /* 20px — standalone controls, toolbars */
+  --icon-xl: 1.5rem;    /* 24px — feature marks, empty-state art */
+
+  /* Sub-12px marks are status dots, not icons: a filled circle signalling
+     presence, never a glyph. They get their own name so the distinction is
+     explicit rather than implied by an off-scale `w-2 h-2`. */
+  --icon-dot: 0.5rem;   /* 8px — presence dots, status bullets */
+  --icon-dot-lg: 0.625rem; /* 10px — the same signal, one step louder */
 }

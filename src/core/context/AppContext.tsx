@@ -21,12 +21,8 @@ export type ThemeMode = 'dark' | 'light';
 
 import type { NavTab } from '../../components/ui/navItems';
 
-export interface ToastItem {
-  id: string;
-  message: string;
-  type?: 'info' | 'success' | 'warning' | 'rose' | 'amber' | 'purple';
-  durationMs?: number;
-}
+export type { ToastItem } from '../../components/ui/Toast';
+import type { ToastItem } from '../../components/ui/Toast';
 
 interface AppContextType {
   currentTab: NavTab;

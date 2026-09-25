@@ -80,7 +80,7 @@ export function DonutRing({
               strokeLinecap="round"
               strokeDasharray={`${Math.max(dash - 2, 0)} ${circumference - Math.max(dash - 2, 0)}`}
               strokeDashoffset={-offsetAcc}
-              className="transition-all duration-300"
+              className="transition-all dur-slow"
             />
           );
           offsetAcc += dash;
@@ -90,9 +90,9 @@ export function DonutRing({
       {(children || showValue) && (
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           {children ?? (
-            <span className="text-sm font-bold font-mono text-zinc-950 dark:text-white">
+            <span className="type-body font-bold font-mono text-zinc-950 dark:text-white">
               {Math.round(((segments[0]?.value ?? 0) / total) * 100)}
-              <span className="text-[10px] text-zinc-400">{valueSuffix}</span>
+              <span className="type-micro text-(--text-secondary)">{valueSuffix}</span>
             </span>
           )}
         </div>

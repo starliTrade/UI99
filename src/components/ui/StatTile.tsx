@@ -39,9 +39,9 @@ export function StatTile({
     deltaTone === 'up' ? ArrowUpRight : deltaTone === 'down' ? ArrowDownRight : Minus;
 
   const valueSize = {
-    sm: 'text-lg',
-    md: 'text-2xl',
-    lg: 'text-3xl sm:text-4xl',
+    sm: 'type-body-lg',
+    md: 'type-heading',
+    lg: 'type-display sm:type-display',
   }[size];
 
   return (
@@ -54,7 +54,7 @@ export function StatTile({
       )}
     >
       <div className="flex items-center justify-between gap-2">
-        <span className="text-[11px] font-mono uppercase tracking-wider text-(--text-secondary)">
+        <span className="type-micro font-mono uppercase tracking-wider text-(--text-secondary)">
           {label}
         </span>
         {trend && <span className="shrink-0">{trend}</span>}
@@ -63,8 +63,8 @@ export function StatTile({
         {value}
       </div>
       {delta !== undefined && (
-        <div className={cn('flex items-center gap-1 text-[11px] font-mono font-semibold', toneStyle)}>
-          <DeltaIcon className="w-3 h-3" />
+        <div className={cn('flex items-center gap-1 type-micro font-mono font-semibold', toneStyle)}>
+          <DeltaIcon className="icon-xs" />
           {delta > 0 ? '+' : ''}
           {delta}
           {deltaSuffix}

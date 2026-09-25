@@ -53,7 +53,7 @@ export function Checkbox({
         }}
       />
       <div
-        className={`relative flex items-center justify-center shrink-0 mt-0.5 transition-all duration-150 peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500/55 ${boxSize} ${
+        className={`relative flex items-center justify-center shrink-0 mt-0.5 transition-all dur-quick peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500/55 ${boxSize} ${
           checked
             ? 'bg-emerald-500 text-white shadow-(--glow-accent-md) border border-emerald-400'
             : isDark
@@ -77,7 +77,7 @@ export function Checkbox({
         <div className="flex flex-col text-left rtl:text-right pt-0.5">
           {label && (
             <span
-              className={`text-xs font-semibold tracking-tight leading-none ${
+              className={`type-caption font-semibold tracking-tight leading-none ${
                 isDark ? 'text-(--text-primary)' : 'text-zinc-900'
               }`}
             >
@@ -86,7 +86,7 @@ export function Checkbox({
           )}
           {description && (
             <span
-              className={`text-[11px] leading-snug mt-1 ${
+              className={`type-micro leading-snug mt-1 ${
                 isDark ? 'text-(--text-secondary)' : 'text-zinc-500'
               }`}
             >
@@ -147,13 +147,13 @@ export function Radio({
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            className="w-2 h-2 rounded-(--radius-pill) bg-emerald-500 shadow-(--glow-accent-sm)"
+            className="icon-dot rounded-(--radius-pill) bg-emerald-500 shadow-(--glow-accent-sm)"
           />
         )}
       </div>
       {label && (
         <span
-          className={`text-xs font-medium tracking-tight ${
+          className={`type-caption font-medium tracking-tight ${
             isDark ? 'text-(--text-primary)' : 'text-zinc-900'
           }`}
         >

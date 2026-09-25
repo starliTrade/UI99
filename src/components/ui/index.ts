@@ -37,6 +37,8 @@ export type { SliderProps } from './Slider';
 // Navigation & Segments
 export { SegmentedControl } from './SegmentedControl';
 export type { SegmentedControlProps, SegmentOption } from './SegmentedControl';
+export { DensitySwitcher } from './DensitySwitcher';
+export type { DensitySwitcherProps, Density } from './DensitySwitcher';
 export { Breadcrumb } from './Breadcrumb';
 export type { BreadcrumbProps, BreadcrumbItem } from './Breadcrumb';
 

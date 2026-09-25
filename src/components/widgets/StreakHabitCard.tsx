@@ -51,7 +51,7 @@ export function StreakHabitCard({
       <div className={`absolute -top-10 -left-10 w-44 h-44 rounded-(--radius-pill) blur-2xl pointer-events-none ${isDark ? 'bg-rose-500/15' : 'bg-rose-500/10'}`} />
 
       {/* Header: Flame & Footprints */}
-      <div className="flex items-start justify-between relative z-10">
+      <div className="flex items-start justify-between relative z-content">
         <div className="flex items-center gap-3">
           {/* Radiant Flame Icon */}
           <div className="relative w-9 h-9 rounded-(--radius-pill) bg-gradient-to-tr from-rose-600 via-orange-500 to-amber-300 flex items-center justify-center shadow-(--glow-warning-lg)">
@@ -59,20 +59,20 @@ export function StreakHabitCard({
           </div>
 
           <div>
-            <span className={`block text-[10px] font-bold tracking-wider uppercase ${isDark ? 'text-white/60' : 'text-black/50'}`}>
+            <span className={`block type-micro font-bold tracking-wider uppercase ${isDark ? 'text-white/60' : 'text-black/50'}`}>
               STREAK
             </span>
-            <span className={`text-lg sm:text-xl font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
-              {streakDays} <span className={`text-xs font-semibold ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>DAYS</span>
+            <span className={`type-body-lg sm:type-title font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+              {streakDays} <span className={`type-caption font-semibold ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>DAYS</span>
             </span>
           </div>
         </div>
 
-        <Footprints className={`w-5 h-5 -rotate-12 ${isDark ? 'text-white/40' : 'text-black/30'}`} />
+        <Footprints className={`icon-lg -rotate-12 ${isDark ? 'text-white/40' : 'text-black/30'}`} />
       </div>
 
       {/* 7-Day Circular Streak Tokens */}
-      <div className="my-5 pt-1 relative z-10">
+      <div className="my-5 pt-1 relative z-content">
         <div className="flex items-center justify-between gap-1.5 sm:gap-2">
           {dayNames.map((day, idx) => {
             const isCompleted = completedDays.includes(idx);
@@ -92,12 +92,12 @@ export function StreakHabitCard({
                       : 'bg-black/[0.04] text-transparent'
                   }`}
                 >
-                  {isCompleted && <Check className="w-4 h-4 stroke-[3]" />}
+                  {isCompleted && <Check className="icon-md stroke-[3]" />}
                 </div>
 
                 {/* Day Label */}
                 <span
-                  className={`text-[11px] font-medium tracking-tight ${
+                  className={`type-micro font-medium tracking-tight ${
                     isToday ? (isDark ? 'text-white font-bold' : 'text-[#111116] font-bold') : (isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]')
                   }`}
                 >
@@ -110,23 +110,23 @@ export function StreakHabitCard({
       </div>
 
       {/* Goal Metric Section */}
-      <div className={`mt-4 pt-3 border-t relative z-10 ${isDark ? 'border-white/[0.05]' : 'border-black/[0.05]'}`}>
+      <div className={`mt-4 pt-3 border-t relative z-content ${isDark ? 'border-white/[0.05]' : 'border-black/[0.05]'}`}>
         <div className="flex items-baseline justify-between mb-1.5">
           <div>
-            <span className={`block text-[10px] font-bold tracking-wider uppercase mb-0.5 ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
+            <span className={`block type-micro font-bold tracking-wider uppercase mb-0.5 ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
               {metricLabel}
             </span>
             <div className="flex items-baseline gap-1">
-              <span className={`text-xl sm:text-2xl font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+              <span className={`type-title sm:type-heading font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
                 {currentValue.toLocaleString()}
               </span>
-              <span className={`text-xs sm:text-sm font-medium ${isDark ? 'text-white/30' : 'text-black/30'}`}>
+              <span className={`type-caption sm:type-body font-medium ${isDark ? 'text-white/30' : 'text-black/30'}`}>
                 /{targetValue.toLocaleString()}
               </span>
             </div>
           </div>
 
-          <span className="text-sm font-semibold text-emerald-500 tracking-tight">
+          <span className="type-body font-semibold text-emerald-500 tracking-tight">
             {percent}%
           </span>
         </div>
@@ -134,7 +134,7 @@ export function StreakHabitCard({
         {/* Luminous Progress Bar */}
         <div className={`w-full h-2 rounded-(--radius-pill) overflow-hidden p-0.5 ${isDark ? 'bg-white/[0.05]' : 'bg-black/[0.05]'}`}>
           <div
-            className="h-full rounded-(--radius-pill) bg-gradient-to-r from-emerald-400 to-teal-300 shadow-(--glow-accent-md) transition-all duration-700 ease-out"
+            className="h-full rounded-(--radius-pill) bg-gradient-to-r from-emerald-400 to-teal-300 shadow-(--glow-accent-md) transition-all dur-progress ease-out"
             style={{ width: `${percent}%` }}
           />
         </div>

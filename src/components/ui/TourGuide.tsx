@@ -60,26 +60,26 @@ export function TourGuide({
     >
       {/* Header with step pill & close */}
       <div className="flex items-center justify-between pb-3">
-        <span className="text-[11px] font-mono px-2 py-0.5 rounded-(--radius-pill) bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-medium">
+        <span className="type-micro font-mono px-2 py-0.5 rounded-(--radius-pill) bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-medium">
           Step {currentStep + 1} of {steps.length}
         </span>
         <button
           type="button"
           onClick={onDismiss}
           aria-label="Dismiss tour"
-          className="p-1 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
+          className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-700 dark:hover:text-white transition-colors"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="icon-sm" />
         </button>
       </div>
 
       {/* Step Content */}
       <div className="flex flex-col gap-1.5 pb-4">
-        <h5 className="text-sm font-semibold text-zinc-900 dark:text-white flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+        <h5 className="type-body font-semibold text-zinc-900 dark:text-white flex items-center gap-1.5">
+          <Sparkles className="icon-sm text-amber-500" />
           {step.title}
         </h5>
-        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+        <p className="type-caption text-(--text-muted) dark:text-zinc-400 leading-relaxed">
           {step.description}
         </p>
       </div>
@@ -93,7 +93,7 @@ export function TourGuide({
               key={idx}
               aria-hidden="true"
               className={cn(
-                'h-1.5 rounded-(--radius-pill) transition-all duration-300',
+                'h-1.5 rounded-(--radius-pill) transition-all dur-slow',
                 idx === currentStep
                   ? 'w-4 bg-zinc-900 dark:bg-white'
                   : 'w-1.5 bg-zinc-300 dark:bg-white/20'
@@ -106,7 +106,7 @@ export function TourGuide({
         <div className="flex items-center gap-1.5">
           {currentStep > 0 && (
             <Button size="xs" variant="ghost" onClick={prev} aria-label="Previous step">
-              <ChevronLeft className="w-3.5 h-3.5" />
+              <ChevronLeft className="icon-sm" />
             </Button>
           )}
           <Button
@@ -114,13 +114,13 @@ export function TourGuide({
             variant="primary"
             onClick={next}
             aria-label={isLast ? 'Finish tour' : 'Next step'}
-            className="text-xs px-3"
+            className="type-caption px-3"
           >
             <span>{isLast ? 'Finish' : 'Next'}</span>
             {isLast ? (
-              <Check className="w-3 h-3 ml-1" />
+              <Check className="icon-xs ml-1" />
             ) : (
-              <ChevronRight className="w-3 h-3 ml-1" />
+              <ChevronRight className="icon-xs ml-1" />
             )}
           </Button>
         </div>

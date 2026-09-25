@@ -86,7 +86,7 @@ export function RangeSlider({
         />
       </div>
 
-      <div className="flex justify-between text-[11px] font-mono text-zinc-500">
+      <div className="flex justify-between type-micro font-mono text-(--text-muted)">
         <span>Min: {minVal}</span>
         <span>Max: {maxVal}</span>
       </div>
@@ -139,7 +139,7 @@ export function CheckboxGroup({
             label={opt.label}
           />
           {opt.description && (
-            <span className="text-[11px] text-zinc-500 dark:text-zinc-400 ml-6">
+            <span className="type-micro text-(--text-muted) dark:text-zinc-400 ml-6">
               {opt.description}
             </span>
           )}

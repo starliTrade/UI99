@@ -29,9 +29,9 @@ export function DailyMoment() {
         <div className="flex-1 min-w-0 space-y-2">
           {/* Header & Category */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5 text-rose-400/90 text-xs font-medium">
-              <Feather className="w-3 h-3" />
-              <span className="text-[11px] font-semibold tracking-wide text-zinc-300">
+            <div className="flex items-center gap-1.5 text-rose-400/90 type-caption font-medium">
+              <Feather className="icon-xs" />
+              <span className="type-micro font-semibold tracking-wide text-zinc-300">
                 {isRTL ? 'نیت و نجوای امروز' : "Today's Intention"}
               </span>
             </div>
@@ -43,7 +43,7 @@ export function DailyMoment() {
               title={isRTL ? 'ورق زدن نیت' : 'Next intention'}
               aria-label="Next intention"
             >
-              <RefreshCw className="w-3 h-3 transition-transform group-hover:rotate-45" />
+              <RefreshCw className="icon-xs transition-transform group-hover:rotate-45" />
             </button>
           </div>
 
@@ -57,15 +57,15 @@ export function DailyMoment() {
               transition={{ duration: 0.25 }}
               className="space-y-1.5"
             >
-              <p className="text-[13.5px] sm:text-base text-[#EDEDEF] leading-relaxed font-serif tracking-wide italic">
+              <p className="type-body sm:type-body-lg text-[#EDEDEF] leading-relaxed font-serif tracking-wide italic">
                 «{isRTL ? current.textFa : current.textEn}»
               </p>
 
-              <div className="flex items-center justify-between text-[11px] text-[#92929B] pt-1">
+              <div className="flex items-center justify-between type-micro text-[#92929B] pt-1">
                 <span className="font-medium text-zinc-400">
                   {isRTL ? current.author : 'UI99 Sanctuary Reflection'}
                 </span>
-                <span className="text-[10px] text-zinc-600 font-mono">
+                <span className="type-micro text-zinc-600 font-mono">
                   {index + 1} / {DAILY_INTENTIONS.length}
                 </span>
               </div>

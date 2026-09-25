@@ -112,7 +112,7 @@ export function CodeBlock({
         'border border-zinc-200/80 dark:border-white/[0.045]',
         'bg-[#FBFBFC] dark:bg-(--bg-sunken)',
         'shadow-(--elevation-1) dark:shadow-(--elevation-4)',
-        'transition-all duration-200',
+        'transition-all dur-base',
         className
       )}
     >
@@ -123,17 +123,17 @@ export function CodeBlock({
           <div className="flex items-center gap-2 min-w-0 flex-1">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) bg-white dark:bg-white/[0.05] border border-zinc-200/80 dark:border-white/[0.06] shadow-xs min-w-0">
               {isBash ? (
-                <Terminal className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <Terminal className="icon-sm text-emerald-600 dark:text-emerald-400 shrink-0" />
               ) : (
-                <FileCode className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                <FileCode className="icon-sm text-indigo-600 dark:text-indigo-400 shrink-0" />
               )}
-              <span className="text-[11px] sm:text-xs font-mono font-medium text-zinc-900 dark:text-zinc-200 truncate">
+              <span className="type-micro sm:type-caption font-mono font-medium text-zinc-900 dark:text-zinc-200 truncate">
                 {filename || (isBash ? 'Terminal' : `${normalizedLang.toUpperCase()}`)}
               </span>
             </div>
 
             {/* Line Count Tag */}
-            <span className="hidden xs:inline-flex items-center text-[10px] font-mono text-zinc-500 dark:text-zinc-400 px-1.5 py-0.5 rounded bg-zinc-200/50 dark:bg-white/[0.03] shrink-0">
+            <span className="hidden xs:inline-flex items-center type-micro font-mono text-(--text-muted) dark:text-zinc-400 px-1.5 py-0.5 rounded bg-zinc-200/50 dark:bg-white/[0.03] shrink-0">
               {lineCount} lines
             </span>
           </div>
@@ -147,17 +147,17 @@ export function CodeBlock({
               title={wordWrap ? 'Disable wrap' : 'Enable word wrap'}
               aria-label="Toggle word wrap"
               className={cn(
-                'hidden sm:inline-flex items-center justify-center p-1.5 rounded-(--radius-sm) text-xs font-mono transition-colors cursor-pointer border',
+                'hidden sm:inline-flex items-center justify-center p-1.5 rounded-(--radius-sm) type-caption font-mono transition-colors cursor-pointer border',
                 wordWrap
                   ? 'bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border-emerald-500/30'
                   : 'bg-white dark:bg-white/[0.02] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-white/[0.06] border-zinc-200/70 dark:border-white/[0.03]'
               )}
             >
-              <WrapText className="w-3 h-3" />
+              <WrapText className="icon-xs" />
             </button>
 
             {/* Language Tag */}
-            <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 border border-emerald-500/20 shrink-0">
+            <span className="type-micro font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 border border-emerald-500/20 shrink-0">
               {normalizedLang}
             </span>
 
@@ -167,7 +167,7 @@ export function CodeBlock({
               onClick={copy}
               aria-label={copied ? 'Copied to clipboard' : 'Copy code'}
               className={cn(
-                'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) text-xs font-mono transition-all cursor-pointer border shrink-0',
+                'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer border shrink-0',
                 copied
                   ? 'bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 shadow-xs'
                   : 'bg-white dark:bg-white/[0.04] text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.08] border-zinc-200/80 dark:border-white/[0.05]'
@@ -175,13 +175,13 @@ export function CodeBlock({
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 hidden sm:inline">Copied</span>
+                  <Check className="icon-sm text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span className="type-micro font-medium text-emerald-600 dark:text-emerald-400 hidden sm:inline">Copied</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 shrink-0 text-zinc-500 dark:text-zinc-400" />
-                  <span className="text-[11px] hidden sm:inline">Copy</span>
+                  <Copy className="icon-sm shrink-0 text-(--text-muted) dark:text-zinc-400" />
+                  <span className="type-micro hidden sm:inline">Copy</span>
                 </>
               )}
             </button>
@@ -192,7 +192,7 @@ export function CodeBlock({
       {/* Code View Canvas */}
       <div
         className={cn(
-          'overflow-x-auto p-3.5 sm:p-4 font-mono text-[12px] sm:text-[13px] leading-relaxed text-zinc-800 dark:text-(--text-primary)',
+          'overflow-x-auto p-3.5 sm:p-4 font-mono type-caption sm:type-caption leading-relaxed text-zinc-800 dark:text-(--text-primary)',
           isCollapsed ? 'max-h-[160px] overflow-hidden' : ''
         )}
         style={{
@@ -215,7 +215,7 @@ export function CodeBlock({
                 >
                   {showLineNumbers && (
                     <span
-                      className="table-cell select-none text-right pr-3.5 sm:pr-4 text-[11px] text-zinc-400 dark:text-zinc-600 group-hover/line:text-zinc-600 dark:group-hover/line:text-zinc-400 font-mono w-7 sm:w-9 shrink-0 align-top transition-colors"
+                      className="table-cell select-none text-right pr-3.5 sm:pr-4 type-micro text-(--text-secondary) dark:text-zinc-600 group-hover/line:text-zinc-600 dark:group-hover/line:text-zinc-400 font-mono w-7 sm:w-9 shrink-0 align-top transition-colors"
                       aria-hidden="true"
                     >
                       {lineNum}
@@ -243,16 +243,16 @@ export function CodeBlock({
           <button
             type="button"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-(--radius-pill) text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white bg-white dark:bg-white/[0.04] hover:bg-zinc-100 dark:hover:bg-white/[0.08] border border-zinc-200/80 dark:border-white/[0.06] transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-(--radius-pill) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white bg-white dark:bg-white/[0.04] hover:bg-zinc-100 dark:hover:bg-white/[0.08] border border-zinc-200/80 dark:border-white/[0.06] transition-colors cursor-pointer"
           >
             {isCollapsed ? (
               <>
-                <ChevronDown className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <ChevronDown className="icon-sm text-emerald-600 dark:text-emerald-400" />
                 <span>Expand Full Code ({lineCount} lines)</span>
               </>
             ) : (
               <>
-                <ChevronUp className="w-3.5 h-3.5 text-zinc-400" />
+                <ChevronUp className="icon-sm text-(--text-secondary)" />
                 <span>Collapse Code</span>
               </>
             )}

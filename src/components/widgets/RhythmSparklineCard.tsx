@@ -36,7 +36,7 @@ export function RhythmSparklineCard({
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ duration: 0.25 }}
-      className={`relative rounded-(--radius-xl) p-6 overflow-hidden transition-all duration-300 select-none ${
+      className={`relative rounded-(--radius-xl) p-6 overflow-hidden transition-all dur-slow select-none ${
         isDark
           ? 'bg-[#0B0C11] card-aura-sapphire shadow-(--shadow-popover) shadow-(--shadow-popover)'
           : 'bg-white card-aura-sapphire shadow-(--shadow-card) border border-black/[0.045] hover:shadow-(--elevation-3)'
@@ -46,7 +46,7 @@ export function RhythmSparklineCard({
       <div className={`absolute -top-10 -right-10 w-48 h-48 rounded-(--radius-pill) blur-2xl pointer-events-none ${isDark ? 'bg-blue-500/15' : 'bg-blue-500/10'}`} />
 
       {/* Top Header: Brand & Diamond Icon */}
-      <div className="relative z-10 flex items-center gap-3">
+      <div className="relative z-content flex items-center gap-3">
         <div
           className={`w-8 h-8 rounded-(--radius-pill) flex items-center justify-center transition-colors ${
             isDark
@@ -61,28 +61,28 @@ export function RhythmSparklineCard({
         </div>
 
         <div>
-          <h4 className={`text-base font-semibold tracking-tight ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+          <h4 className={`type-body-lg font-semibold tracking-tight ${isDark ? 'text-white' : 'text-[#111116]'}`}>
             {title}
           </h4>
-          <span className={`text-[11px] font-mono tracking-wider uppercase ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
+          <span className={`type-micro font-mono tracking-wider uppercase ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
             {subtitle}
           </span>
         </div>
       </div>
 
       {/* Main Metric & Green Trend */}
-      <div className="mt-3 relative z-10">
-        <h3 className={`text-2xl sm:text-3xl font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+      <div className="mt-3 relative z-content">
+        <h3 className={`type-heading sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
           {value}
         </h3>
-        <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
-          <span className="text-[10px]">▲</span>
+        <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) type-caption font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
+          <span className="type-micro">▲</span>
           <span>{trend}</span>
         </div>
       </div>
 
       {/* Organic Crypto Chart with Vertical Micro Guidelines & Floating Tooltip */}
-      <div className="mt-6 relative h-32 w-full z-10">
+      <div className="mt-6 relative h-32 w-full z-content">
         {/* Subtle Vertical Guidelines */}
         <div className="absolute inset-0 flex justify-between pointer-events-none opacity-[0.05]">
           {[1, 2, 3, 4, 5, 6].map((idx) => (
@@ -91,7 +91,7 @@ export function RhythmSparklineCard({
         </div>
 
         {/* Floating Tooltip with Vertical Hairline & Subtle Dot on Peak */}
-        <div className="absolute left-[50%] top-2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
+        <div className="absolute left-[50%] top-2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-content">
           <div
             className={`px-3.5 py-1.5 rounded-(--radius-field) backdrop-blur-md text-center transition-all ${
               isDark
@@ -99,15 +99,15 @@ export function RhythmSparklineCard({
                 : 'bg-white/95 shadow-(--shadow-card) border border-black/[0.04] text-[#111116]'
             }`}
           >
-            <span className={`block text-[11px] font-mono font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+            <span className={`block type-micro font-mono font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#111116]'}`}>
               {tooltipValue}
             </span>
-            <span className={`block text-[9px] font-medium ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
+            <span className={`block type-micro font-medium ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
               {tooltipDate}
             </span>
           </div>
           <div className={`w-[1px] h-4 ${isDark ? 'bg-gradient-to-b from-white/30 to-white/10' : 'bg-gradient-to-b from-black/20 to-black/5'}`} />
-          <div className={`w-2.5 h-2.5 rounded-(--radius-pill) bg-cyan-400 shadow-(--glow-accent-md) ring-2 ${isDark ? 'ring-[#0E0F14]' : 'ring-white'}`} />
+          <div className={`icon-dot-lg rounded-(--radius-pill) bg-cyan-400 shadow-(--glow-accent-md) ring-2 ${isDark ? 'ring-[#0E0F14]' : 'ring-white'}`} />
         </div>
 
         {/* Organic Sparkline SVG Curve with luminous gradient */}

@@ -43,7 +43,7 @@ export function FormField({
             )}
           </Label>
           {hint && (
-            <span id={hintId} className="text-[10px] font-mono text-(--text-muted)">
+            <span id={hintId} className="type-micro font-mono text-(--text-muted)">
               {hint}
             </span>
           )}
@@ -51,7 +51,7 @@ export function FormField({
       )}
       {children}
       {error && (
-        <p id={errorId} className="text-xs text-rose-500" role="alert">
+        <p id={errorId} className="type-caption text-rose-500" role="alert">
           {error}
         </p>
       )}
@@ -62,7 +62,7 @@ export function FormField({
 export interface FormHintProps extends React.HTMLAttributes<HTMLParagraphElement> {}
 
 export function FormHint({ className = '', ...props }: FormHintProps) {
-  return <p className={cn('text-xs text-(--text-secondary)', className)} {...props} />;
+  return <p className={cn('type-caption text-(--text-secondary)', className)} {...props} />;
 }
 
 export interface FormErrorProps extends React.HTMLAttributes<HTMLParagraphElement> {}
@@ -70,7 +70,7 @@ export interface FormErrorProps extends React.HTMLAttributes<HTMLParagraphElemen
 export function FormError({ className = '', ...props }: FormErrorProps) {
   return (
     <p
-      className={cn('text-xs text-rose-500', className)}
+      className={cn('type-caption text-rose-500', className)}
       role="alert"
       {...props}
     />

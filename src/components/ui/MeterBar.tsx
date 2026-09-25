@@ -54,9 +54,9 @@ export function MeterBar({
       aria-label={label}
     >
       {showValue && (
-        <div className="flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between type-caption">
           <span className="font-semibold text-zinc-800 dark:text-(--text-primary)">{label}</span>
-          <span className="font-mono text-[11px] text-(--text-secondary)">
+          <span className="font-mono type-micro text-(--text-secondary)">
             {value}/{max}
           </span>
         </div>
@@ -68,7 +68,7 @@ export function MeterBar({
         )}
       >
         <div
-          className={cn('h-full rounded-(--radius-pill) transition-all duration-300', zone)}
+          className={cn('h-full rounded-(--radius-pill) transition-all dur-slow', zone)}
           style={{ width: `${pct}%` }}
         />
       </div>

@@ -154,14 +154,14 @@ describe('SegmentedControl', () => {
 // --- Toast (aria-live region + cap) ---
 describe('ToastContainer', () => {
   function ToastProbe() {
-    const { addToast } = useApp();
+    const { toasts, addToast, removeToast } = useApp();
     React.useEffect(() => {
       addToast('First saved', 'success');
       addToast('Second saved', 'success');
       addToast('Third saved', 'success');
       addToast('Fourth evicts oldest', 'info');
     }, [addToast]);
-    return <ToastContainer />;
+    return <ToastContainer toasts={toasts} onDismiss={removeToast} />;
   }
 
   it('caps concurrent toasts at 3 (newest win) and announces politely', () => {
@@ -177,7 +177,7 @@ describe('ToastContainer', () => {
   it('is axe-clean', async () => {
     const { container } = render(
       <Harness>
-        <ToastContainer />
+        <ToastContainer toasts={[]} onDismiss={() => {}} />
       </Harness>
     );
     expect(await axe(container)).toHaveNoViolations();

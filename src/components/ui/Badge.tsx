@@ -52,9 +52,9 @@ export const badgeVariants = cva(
         blue: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20',
       },
       size: {
-        sm: 'text-[10px] px-2 py-0.5 [&_svg]:size-3',
-        md: 'text-xs px-2.5 py-0.5 [&_svg]:size-3.5',
-        lg: 'text-sm px-3 py-1 [&_svg]:size-4',
+        sm: 'type-micro px-2 py-0.5 [&_svg]:size-3',
+        md: 'type-caption px-2.5 py-0.5 [&_svg]:size-3.5',
+        lg: 'type-body px-3 py-1 [&_svg]:size-4',
       },
     },
     defaultVariants: { variant: 'default', size: 'md' },
@@ -95,35 +95,35 @@ export function PriorityBadge({
   const config = {
     urgent: {
       label: 'Urgent',
-      icon: <AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0" />,
+      icon: <AlertCircle className="icon-sm text-rose-500 shrink-0" />,
       style: isDark
         ? 'bg-rose-500/[0.1] text-rose-300 border-rose-500/25'
         : 'bg-rose-50 text-rose-700 border-rose-200',
     },
     high: {
       label: 'High',
-      icon: <SignalHigh className="w-3.5 h-3.5 text-amber-500 shrink-0" />,
+      icon: <SignalHigh className="icon-sm text-amber-500 shrink-0" />,
       style: isDark
         ? 'bg-amber-500/[0.1] text-amber-300 border-amber-500/25'
         : 'bg-amber-50 text-amber-700 border-amber-200',
     },
     medium: {
       label: 'Medium',
-      icon: <SignalMedium className="w-3.5 h-3.5 text-blue-500 shrink-0" />,
+      icon: <SignalMedium className="icon-sm text-blue-500 shrink-0" />,
       style: isDark
         ? 'bg-blue-500/[0.1] text-blue-300 border-blue-500/25'
         : 'bg-blue-50 text-blue-700 border-blue-200',
     },
     low: {
       label: 'Low',
-      icon: <SignalLow className="w-3.5 h-3.5 text-zinc-400 shrink-0" />,
+      icon: <SignalLow className="icon-sm text-(--text-secondary) shrink-0" />,
       style: isDark
         ? 'bg-white/[0.04] text-zinc-400 border-white/[0.06]'
         : 'bg-zinc-100 text-zinc-600 border-black/[0.06]',
     },
     none: {
       label: 'No priority',
-      icon: <MinusCircle className="w-3.5 h-3.5 text-zinc-500 shrink-0" />,
+      icon: <MinusCircle className="icon-sm text-(--text-muted) shrink-0" />,
       style: isDark
         ? 'bg-white/[0.03] text-zinc-500 border-white/[0.04]'
         : 'bg-zinc-100/70 text-zinc-500 border-black/[0.04]',
@@ -132,8 +132,8 @@ export function PriorityBadge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-(--radius-pill) border text-[11px] font-medium tracking-tight whitespace-nowrap transition-colors ${
-        size === 'md' ? 'px-2.5 py-1 text-xs' : ''
+      className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-(--radius-pill) border type-micro font-medium tracking-tight whitespace-nowrap transition-colors ${
+        size === 'md' ? 'px-2.5 py-1 type-caption' : ''
       } ${config.style} ${className}`}
       title={config.label}
     >
@@ -165,40 +165,40 @@ export function StatusBadge({
   const config = {
     backlog: {
       label: 'Backlog',
-      icon: <Circle className="w-3.5 h-3.5 stroke-dashed text-zinc-400 shrink-0" />,
+      icon: <Circle className="icon-sm stroke-dashed text-(--text-secondary) shrink-0" />,
       style: isDark ? 'text-zinc-400' : 'text-zinc-600',
     },
     todo: {
       label: 'Todo',
-      icon: <Circle className="w-3.5 h-3.5 text-zinc-400 shrink-0" />,
+      icon: <Circle className="icon-sm text-(--text-secondary) shrink-0" />,
       style: isDark ? 'text-zinc-300' : 'text-zinc-700',
     },
     in_progress: {
       label: 'In Progress',
-      icon: <Clock className="w-3.5 h-3.5 text-amber-500 shrink-0" />,
+      icon: <Clock className="icon-sm text-amber-500 shrink-0" />,
       style: isDark ? 'text-amber-400' : 'text-amber-600',
     },
     review: {
       label: 'In Review',
-      icon: <Eye className="w-3.5 h-3.5 text-purple-500 shrink-0" />,
+      icon: <Eye className="icon-sm text-purple-500 shrink-0" />,
       style: isDark ? 'text-purple-400' : 'text-purple-600',
     },
     done: {
       label: 'Done',
-      icon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />,
+      icon: <CheckCircle2 className="icon-sm text-emerald-500 shrink-0" />,
       style: isDark ? 'text-emerald-400' : 'text-emerald-600',
     },
     canceled: {
       label: 'Canceled',
-      icon: <MinusCircle className="w-3.5 h-3.5 text-rose-500 shrink-0" />,
+      icon: <MinusCircle className="icon-sm text-rose-500 shrink-0" />,
       style: isDark ? 'text-rose-400' : 'text-rose-600',
     },
   }[status];
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 text-xs font-medium tracking-tight whitespace-nowrap ${
-        size === 'md' ? 'text-sm gap-2' : ''
+      className={`inline-flex items-center gap-1.5 type-caption font-medium tracking-tight whitespace-nowrap ${
+        size === 'md' ? 'type-body gap-2' : ''
       } ${config.style} ${className}`}
     >
       {config.icon}

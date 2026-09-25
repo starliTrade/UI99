@@ -17,7 +17,7 @@ export interface FloatingActionButtonProps {
 }
 
 export function FloatingActionButton({
-  icon = <Plus className="w-5 h-5" />,
+  icon = <Plus className="icon-lg" />,
   label,
   onClick,
   variant = 'primary',
@@ -26,8 +26,8 @@ export function FloatingActionButton({
   disabled = false,
 }: FloatingActionButtonProps) {
   const sizeClasses = {
-    md: label ? 'h-11 px-4 text-xs' : 'h-11 w-11',
-    lg: label ? 'h-13 px-5 text-sm' : 'h-13 w-13',
+    md: label ? 'h-11 px-4 type-caption' : 'h-11 w-11',
+    lg: label ? 'h-13 px-5 type-body' : 'h-13 w-13',
   }[size];
 
   const variantClasses = {

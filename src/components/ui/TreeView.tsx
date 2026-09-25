@@ -42,13 +42,13 @@ function getFileIcon(extension?: string) {
     case 'ts':
     case 'jsx':
     case 'js':
-      return <FileCode className="w-3.5 h-3.5 text-blue-400" />;
+      return <FileCode className="icon-sm text-blue-400" />;
     case 'json':
-      return <FileJson className="w-3.5 h-3.5 text-amber-400" />;
+      return <FileJson className="icon-sm text-amber-400" />;
     case 'css':
-      return <Hash className="w-3.5 h-3.5 text-emerald-400" />;
+      return <Hash className="icon-sm text-emerald-400" />;
     default:
-      return <FileText className="w-3.5 h-3.5 text-zinc-400" />;
+      return <FileText className="icon-sm text-(--text-secondary)" />;
   }
 }
 
@@ -120,7 +120,7 @@ function TreeItem({
         onKeyDown={handleKeyDown}
         style={{ paddingLeft: `${level * 16 + 8}px` }}
         className={cn(
-          'flex items-center gap-2 py-1.5 pr-2 rounded-(--radius-field) text-xs font-mono transition-colors cursor-pointer outline-none',
+          'flex items-center gap-2 py-1.5 pr-2 rounded-(--radius-field) type-caption font-mono transition-colors cursor-pointer outline-none',
           'focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent',
           isSelected
             ? 'bg-zinc-200 dark:bg-white/[0.08] text-zinc-950 dark:text-white font-semibold'
@@ -140,13 +140,13 @@ function TreeItem({
               className="p-0.5 hover:bg-black/5 dark:hover:bg-white/5 rounded"
             >
               <ChevronRight
-                className={cn('w-3.5 h-3.5 transition-transform duration-150', isOpen && 'rotate-90')}
+                className={cn('w-3.5 h-3.5 transition-transform dur-quick', isOpen && 'rotate-90')}
               />
             </button>
             {isOpen ? (
-              <FolderOpen className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+              <FolderOpen className="icon-sm text-amber-500 shrink-0" />
             ) : (
-              <Folder className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+              <Folder className="icon-sm text-amber-500 shrink-0" />
             )}
           </>
         ) : (

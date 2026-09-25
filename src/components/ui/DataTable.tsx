@@ -20,6 +20,15 @@ export interface DataTableProps<T> {
   pageSize?: number;
   searchable?: boolean;
   className?: string;
+  /**
+   * Scoped density for THIS table only, without touching the page around it.
+   * `'inherit'` (the default) defers to whatever `<html data-density>` says,
+   * so a consumer who already set the global attribute gets it for free.
+   *
+   * `compact` is a pointer affordance — at this size it is below the 44px touch
+   * floor. It belongs on a desktop table, not on a phone.
+   */
+  density?: 'inherit' | 'compact' | 'comfortable';
 }
 
 export function DataTable<T extends Record<string, any>>({
@@ -28,6 +37,7 @@ export function DataTable<T extends Record<string, any>>({
   pageSize = 5,
   searchable = true,
   className = '',
+  density = 'inherit',
 }: DataTableProps<T>) {
   const [search, setSearch] = useState('');
   const [sortKey, setSortKey] = useState<string | null>(null);
@@ -66,10 +76,14 @@ export function DataTable<T extends Record<string, any>>({
   };
 
   return (
-    <div className={`space-y-3 ${className}`}>
+    <div
+      className={`space-y-3 ${
+        density === 'compact' ? 'density-compact' : density === 'comfortable' ? 'density-comfortable' : ''
+      } ${className}`}
+    >
       {searchable && (
         <div className="relative w-full max-w-xs">
-          <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
+          <Search className="icon-sm absolute left-3 top-1/2 -translate-y-1/2 text-(--text-secondary)" />
           <input
             type="text"
             value={search}
@@ -79,7 +93,7 @@ export function DataTable<T extends Record<string, any>>({
             }}
             placeholder="Search records..."
             aria-label="Search records"
-            className="w-full pl-8 pr-3 py-1.5 rounded-(--radius-field) bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200 dark:border-white/[0.06] text-xs font-mono text-zinc-950 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20"
+            className="w-full pl-8 pr-3 py-1.5 rounded-(--radius-field) bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200 dark:border-white/[0.06] type-caption font-mono text-zinc-950 dark:text-white placeholder:text-zinc-400 focus:border-zinc-400 dark:focus:border-white/20 focus-ui99"
           />
         </div>
       )}
@@ -120,16 +134,16 @@ export function DataTable<T extends Record<string, any>>({
                     <div className="flex items-center gap-1.5">
                       <span>{col.header}</span>
                       {col.sortable && !isSorted && (
-                        <span aria-hidden="true" className="text-zinc-400">
-                          <ChevronDown className="w-3 h-3 opacity-0" />
+                        <span aria-hidden="true" className="text-(--text-secondary)">
+                          <ChevronDown className="icon-xs opacity-0" />
                         </span>
                       )}
                       {isSorted && (
                         <span aria-hidden="true">
                           {sortDir === 'asc' ? (
-                            <ChevronUp className="w-3 h-3 text-emerald-500" />
+                            <ChevronUp className="icon-xs text-emerald-500" />
                           ) : (
-                            <ChevronDown className="w-3 h-3 text-emerald-500" />
+                            <ChevronDown className="icon-xs text-emerald-500" />
                           )}
                         </span>
                       )}
@@ -152,7 +166,7 @@ export function DataTable<T extends Record<string, any>>({
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="text-center py-6 text-zinc-500">
+                <TableCell colSpan={columns.length} className="text-center py-6 text-(--text-muted)">
                   No matching records found.
                 </TableCell>
               </TableRow>
@@ -163,7 +177,7 @@ export function DataTable<T extends Record<string, any>>({
 
       {/* Pagination Bar */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between text-xs font-mono text-zinc-500 px-1">
+        <div className="flex items-center justify-between type-caption font-mono text-(--text-muted) px-1">
           <span>
             Page {page + 1} of {totalPages} ({sorted.length} total)
           </span>
@@ -175,7 +189,7 @@ export function DataTable<T extends Record<string, any>>({
               aria-label="Previous page"
               className="p-1 rounded-(--radius-sm) hover:bg-zinc-100 dark:hover:bg-white/[0.06] disabled:opacity-40"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="icon-md" />
             </button>
             <button
               type="button"
@@ -184,7 +198,7 @@ export function DataTable<T extends Record<string, any>>({
               aria-label="Next page"
               className="p-1 rounded-(--radius-sm) hover:bg-zinc-100 dark:hover:bg-white/[0.06] disabled:opacity-40"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="icon-md" />
             </button>
           </div>
         </div>

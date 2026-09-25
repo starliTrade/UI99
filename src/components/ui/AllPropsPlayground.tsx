@@ -145,37 +145,37 @@ type PlaygroundComponent =
   | 'menubar';
 
 const COMPONENTS: { value: PlaygroundComponent; label: string; icon: React.ReactNode }[] = [
-  { value: 'data-table', label: 'DataTable', icon: <Table2 className="w-4 h-4" /> },
-  { value: 'combobox', label: 'Combobox', icon: <Layers className="w-4 h-4" /> },
-  { value: 'slider', label: 'Slider', icon: <SlidersHorizontal className="w-4 h-4" /> },
-  { value: 'switch', label: 'Switch', icon: <ShieldCheck className="w-4 h-4" /> },
-  { value: 'password', label: 'PasswordInput', icon: <KeyRound className="w-4 h-4" /> },
-  { value: 'otp', label: 'OTPInput', icon: <KeyRound className="w-4 h-4" /> },
-  { value: 'date-picker', label: 'DatePicker', icon: <Calendar className="w-4 h-4" /> },
-  { value: 'time-picker', label: 'TimePicker', icon: <Clock className="w-4 h-4" /> },
-  { value: 'number-field', label: 'NumberField', icon: <Hash className="w-4 h-4" /> },
-  { value: 'checkbox', label: 'Checkbox', icon: <Check className="w-4 h-4" /> },
-  { value: 'checkbox-group', label: 'CheckboxGroup', icon: <ListChecks className="w-4 h-4" /> },
-  { value: 'radio-group', label: 'RadioGroup', icon: <CircleDot className="w-4 h-4" /> },
-  { value: 'toggle-group', label: 'ToggleGroup', icon: <ToggleLeft className="w-4 h-4" /> },
-  { value: 'segmented', label: 'SegmentedControl', icon: <Columns3 className="w-4 h-4" /> },
-  { value: 'dropdown', label: 'Dropdown', icon: <ChevronDown className="w-4 h-4" /> },
-  { value: 'tabs', label: 'Tabs', icon: <PanelTop className="w-4 h-4" /> },
-  { value: 'range-slider', label: 'RangeSlider', icon: <SlidersHorizontal className="w-4 h-4" /> },
-  { value: 'tag-input', label: 'TagInput', icon: <Tags className="w-4 h-4" /> },
-  { value: 'color-picker', label: 'ColorPicker', icon: <Palette className="w-4 h-4" /> },
-  { value: 'rating', label: 'Rating', icon: <Star className="w-4 h-4" /> },
-  { value: 'hover-card', label: 'HoverCard', icon: <MousePointerClick className="w-4 h-4" /> },
-  { value: 'popover', label: 'Popover', icon: <MessageSquare className="w-4 h-4" /> },
-  { value: 'dialog', label: 'Dialog', icon: <SquarePen className="w-4 h-4" /> },
-  { value: 'command', label: 'CommandDialog', icon: <TextCursorInput className="w-4 h-4" /> },
-  { value: 'tree-view', label: 'TreeView', icon: <FolderTree className="w-4 h-4" /> },
-  { value: 'stepper', label: 'Stepper', icon: <Route className="w-4 h-4" /> },
-  { value: 'timeline', label: 'Timeline', icon: <History className="w-4 h-4" /> },
-  { value: 'avatar-stack', label: 'AvatarStack', icon: <Users className="w-4 h-4" /> },
-  { value: 'textarea', label: 'Textarea', icon: <Type className="w-4 h-4" /> },
-  { value: 'icon-button', label: 'IconButton', icon: <MousePointerClick className="w-4 h-4" /> },
-  { value: 'menubar', label: 'Menubar', icon: <PanelLeft className="w-4 h-4" /> },
+  { value: 'data-table', label: 'DataTable', icon: <Table2 className="icon-md" /> },
+  { value: 'combobox', label: 'Combobox', icon: <Layers className="icon-md" /> },
+  { value: 'slider', label: 'Slider', icon: <SlidersHorizontal className="icon-md" /> },
+  { value: 'switch', label: 'Switch', icon: <ShieldCheck className="icon-md" /> },
+  { value: 'password', label: 'PasswordInput', icon: <KeyRound className="icon-md" /> },
+  { value: 'otp', label: 'OTPInput', icon: <KeyRound className="icon-md" /> },
+  { value: 'date-picker', label: 'DatePicker', icon: <Calendar className="icon-md" /> },
+  { value: 'time-picker', label: 'TimePicker', icon: <Clock className="icon-md" /> },
+  { value: 'number-field', label: 'NumberField', icon: <Hash className="icon-md" /> },
+  { value: 'checkbox', label: 'Checkbox', icon: <Check className="icon-md" /> },
+  { value: 'checkbox-group', label: 'CheckboxGroup', icon: <ListChecks className="icon-md" /> },
+  { value: 'radio-group', label: 'RadioGroup', icon: <CircleDot className="icon-md" /> },
+  { value: 'toggle-group', label: 'ToggleGroup', icon: <ToggleLeft className="icon-md" /> },
+  { value: 'segmented', label: 'SegmentedControl', icon: <Columns3 className="icon-md" /> },
+  { value: 'dropdown', label: 'Dropdown', icon: <ChevronDown className="icon-md" /> },
+  { value: 'tabs', label: 'Tabs', icon: <PanelTop className="icon-md" /> },
+  { value: 'range-slider', label: 'RangeSlider', icon: <SlidersHorizontal className="icon-md" /> },
+  { value: 'tag-input', label: 'TagInput', icon: <Tags className="icon-md" /> },
+  { value: 'color-picker', label: 'ColorPicker', icon: <Palette className="icon-md" /> },
+  { value: 'rating', label: 'Rating', icon: <Star className="icon-md" /> },
+  { value: 'hover-card', label: 'HoverCard', icon: <MousePointerClick className="icon-md" /> },
+  { value: 'popover', label: 'Popover', icon: <MessageSquare className="icon-md" /> },
+  { value: 'dialog', label: 'Dialog', icon: <SquarePen className="icon-md" /> },
+  { value: 'command', label: 'CommandDialog', icon: <TextCursorInput className="icon-md" /> },
+  { value: 'tree-view', label: 'TreeView', icon: <FolderTree className="icon-md" /> },
+  { value: 'stepper', label: 'Stepper', icon: <Route className="icon-md" /> },
+  { value: 'timeline', label: 'Timeline', icon: <History className="icon-md" /> },
+  { value: 'avatar-stack', label: 'AvatarStack', icon: <Users className="icon-md" /> },
+  { value: 'textarea', label: 'Textarea', icon: <Type className="icon-md" /> },
+  { value: 'icon-button', label: 'IconButton', icon: <MousePointerClick className="icon-md" /> },
+  { value: 'menubar', label: 'Menubar', icon: <PanelLeft className="icon-md" /> },
 ];
 
 interface TaskRow {
@@ -394,24 +394,24 @@ export function AllPropsPlayground() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.04] dark:border-white/[0.04] pb-4">
         <div className="flex items-center gap-2.5">
-          <Database className="w-5 h-5 text-emerald-500" />
+          <Database className="icon-lg text-emerald-500" />
           <div>
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-(--text-primary) tracking-tight">
+            <h3 className="type-body font-bold text-zinc-950 dark:text-(--text-primary) tracking-tight">
               All-Props Lab — 31 Heavy Primitives, Live
             </h3>
-            <p className="text-[11px] text-zinc-500 dark:text-(--text-secondary)">
+            <p className="type-micro text-(--text-muted) dark:text-(--text-secondary)">
               Every prop of the complex components, wired to real state. Copy the JSX when it looks right.
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="xs" icon={<RotateCcw className="w-3 h-3" />} onClick={resetDefaults}>
+          <Button variant="ghost" size="xs" icon={<RotateCcw className="icon-xs" />} onClick={resetDefaults}>
             Reset
           </Button>
           <Button
             variant="secondary"
             size="xs"
-            icon={copied ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
+            icon={copied ? <Check className="icon-xs text-emerald-500" /> : <Copy className="icon-xs" />}
             onClick={copyJSX}
           >
             {copied ? 'Copied!' : 'Copy JSX'}
@@ -428,7 +428,7 @@ export function AllPropsPlayground() {
             role="tab"
             aria-selected={component === c.value}
             onClick={() => setComponent(c.value)}
-            className={`inline-flex items-center gap-1.5 h-8 px-3 rounded-(--radius-pill) text-xs font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99 ${
+            className={`inline-flex items-center gap-1.5 h-8 px-3 rounded-(--radius-pill) type-caption font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99 ${
               component === c.value
                 ? 'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs'
                 : 'bg-zinc-100 dark:bg-white/[0.04] text-zinc-700 dark:text-(--text-secondary) hover:bg-state-hover'
@@ -447,7 +447,7 @@ export function AllPropsPlayground() {
             <>
               <Switch size="sm" checked={dtSearchable} onChange={setDtSearchable} label="Searchable" />
               <div>
-                <span className="text-xs font-semibold text-zinc-500 dark:text-(--text-secondary) block mb-1.5">Page size</span>
+                <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Page size</span>
                 <Segmented
                   value={dtPageSize}
                   onChange={setDtPageSize}
@@ -459,21 +459,21 @@ export function AllPropsPlayground() {
           {component === 'combobox' && (
             <>
               <Switch size="sm" checked={cbAllowCreate} onChange={setCbAllowCreate} label="Allow create option" />
-              <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed border-t border-black/[0.04] dark:border-white/[0.04] pt-3">
-                Type free text and press <kbd className="font-mono px-1 py-0.5 rounded bg-zinc-200 dark:bg-white/10 text-[10px]">Enter</kbd> with
+              <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed border-t border-black/[0.04] dark:border-white/[0.04] pt-3">
+                Type free text and press <kbd className="font-mono px-1 py-0.5 rounded bg-zinc-200 dark:bg-white/10 type-micro">Enter</kbd> with
                 create enabled — the option flows through the same <code className="font-mono">onChange</code>.
               </div>
             </>
           )}
           {component === 'slider' && (
             <div>
-              <span className="text-xs font-semibold text-zinc-500 dark:text-(--text-secondary) block mb-1.5">Unit</span>
+              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Unit</span>
               <Segmented value={slUnit} onChange={setSlUnit} options={[{ value: '%', label: '%' }, { value: 'px', label: 'px' }, { value: 'ms', label: 'ms' }]} />
             </div>
           )}
           {component === 'switch' && (
             <div>
-              <span className="text-xs font-semibold text-zinc-500 dark:text-(--text-secondary) block mb-1.5">Size</span>
+              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Size</span>
               <Segmented value={swSize} onChange={setSwSize} options={[{ value: 'sm', label: 'sm' }, { value: 'md', label: 'md' }, { value: 'lg', label: 'lg' }]} />
             </div>
           )}
@@ -482,77 +482,77 @@ export function AllPropsPlayground() {
           )}
           {component === 'otp' && (
             <div>
-              <span className="text-xs font-semibold text-zinc-500 dark:text-(--text-secondary) block mb-1.5">Length</span>
+              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Length</span>
               <Segmented value={otpLength} onChange={setOtpLength} options={[4, 5, 6].map((n) => ({ value: n, label: String(n) }))} />
             </div>
           )}
           {component === 'date-picker' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Open the picker, navigate months with the arrows or the keyboard, and select a day. The ISO value streams into the code panel.
             </div>
           )}
           {component === 'time-picker' && (
             <>
               <div>
-                <span className="text-xs font-semibold text-zinc-500 dark:text-(--text-secondary) block mb-1.5">Step (minutes)</span>
+                <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Step (minutes)</span>
                 <Segmented value={tpStep} onChange={setTpStep} options={[5, 15, 30, 60].map((n) => ({ value: n as 5 | 15 | 30 | 60, label: String(n) }))} />
               </div>
               <Button variant="outline" size="xs" onClick={() => setTpValue(null)}>Clear value</Button>
             </>
           )}
           {component === 'number-field' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Arrow keys step the value; the stepper buttons clamp to min/max. Fully keyboard-driven.
             </div>
           )}
           {component === 'checkbox' && (
             <div>
-              <span className="text-xs font-semibold text-zinc-500 dark:text-(--text-secondary) block mb-1.5">Size</span>
+              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Size</span>
               <Segmented value={ckSize} onChange={setCkSize} options={[{ value: 'sm' as const, label: 'sm' }, { value: 'md' as const, label: 'md' }]} />
             </div>
           )}
           {component === 'checkbox-group' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               The group owns an array — check/uncheck to watch the value stream into the code panel.
             </div>
           )}
           {component === 'radio-group' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Roving tabindex + arrow keys (RTL-aware), exactly per the WAI-ARIA radiogroup pattern.
             </div>
           )}
           {component === 'toggle-group' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Multiple mode — the value is an array. Arrows move focus, Space toggles.
             </div>
           )}
           {component === 'segmented' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Single-select capsule with a spring-analyzed thumb. Try the keyboard too.
             </div>
           )}
           {component === 'dropdown' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Listbox pattern with type-ahead. The selection badge mirrors the value.
             </div>
           )}
           {component === 'tabs' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Roving tabindex on the trigger list; arrow keys move between triggers, Tab enters the panel.
             </div>
           )}
           {component === 'range-slider' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Two-thumb range — each handle is an arrow-key-navigable slider handle with its own aria-valuenow.
             </div>
           )}
           {component === 'tag-input' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Type and press Enter to add, Backspace to remove the last tag. Tag chips are focusable and removable.
             </div>
           )}
           {component === 'color-picker' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Preset swatches + native input fallback. Values stay in the token-adjacent format (#rrggbb).
             </div>
           )}
@@ -560,19 +560,19 @@ export function AllPropsPlayground() {
             <Switch size="sm" checked={rtReadOnly} onChange={setRtReadOnly} label="Read-only" />
           )}
           {component === 'hover-card' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Focus + hover trigger (WCAG 1.4.13 dismissible, hoverable). Keyboard users tab into the trigger.
             </div>
           )}
           {component === 'popover' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Opens on click, traps focus, closes on Esc or outside interaction.
             </div>
           )}
           {component === 'dialog' && (
             <>
               <Button variant="primary" size="sm" onClick={() => setDlgOpen(true)}>Open dialog</Button>
-              <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+              <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
                 Focus trap + Esc + focus restore + aria-modal. Backdrop blur per the overlay spec.
               </div>
             </>
@@ -580,48 +580,48 @@ export function AllPropsPlayground() {
           {component === 'command' && (
             <>
               <Button variant="primary" size="sm" onClick={() => setCmdOpen(true)}>Open command palette</Button>
-              <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+              <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
                 cmdk under the hood: type-ahead, arrows, Enter, Esc — the ⌘K pattern.
               </div>
             </>
           )}
           {component === 'tree-view' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               aria-selected rows, arrows to navigate, Enter to expand folders.
             </div>
           )}
           {component === 'stepper' && (
             <div className="flex flex-col gap-2">
               <Segmented value={stCurrent} onChange={setStCurrent} options={[0, 1, 2, 3].map((n) => ({ value: n, label: String(n + 1) }))} />
-              <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary)">current step index</div>
+              <div className="type-micro text-(--text-muted) dark:text-(--text-secondary)">current step index</div>
             </div>
           )}
           {component === 'timeline' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Accent dots carry the semantic color; content is an ordered list for screen readers.
             </div>
           )}
           {component === 'avatar-stack' && (
             <>
               <div>
-                <span className="text-xs font-semibold text-zinc-500 dark:text-(--text-secondary) block mb-1.5">Max visible</span>
+                <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Max visible</span>
                 <Segmented value={asMax} onChange={setAsMax} options={[3, 4, 5].map((n) => ({ value: n, label: String(n) }))} />
               </div>
-              <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary)">+1 more → overflow counter</div>
+              <div className="type-micro text-(--text-muted) dark:text-(--text-secondary)">+1 more → overflow counter</div>
             </>
           )}
           {component === 'textarea' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Label wired via htmlFor, error slot via aria-describedby.
             </div>
           )}
           {component === 'icon-button' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Hit-area proxy keeps the 44px target even when the icon is 16px.
             </div>
           )}
           {component === 'menubar' && (
-            <div className="text-[11px] text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+            <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
               Radix menubar pattern: arrows across menus, roving focus inside.
             </div>
           )}
@@ -645,7 +645,7 @@ export function AllPropsPlayground() {
                       header: 'Priority',
                       sortable: true,
                       render: (row) => (
-                        <span className={`text-xs font-semibold font-mono ${PRIORITY_COLORS[row.priority]}`}>
+                        <span className={`type-caption font-semibold font-mono ${PRIORITY_COLORS[row.priority]}`}>
                           {row.priority}
                         </span>
                       ),
@@ -674,7 +674,7 @@ export function AllPropsPlayground() {
                   searchPlaceholder="Search themes…"
                 />
                 {cbValue && (
-                  <p className="mt-3 text-[11px] font-mono text-zinc-500 dark:text-(--text-secondary) text-center">
+                  <p className="mt-3 type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) text-center">
                     value = "{cbValue}"
                   </p>
                 )}
@@ -717,7 +717,7 @@ export function AllPropsPlayground() {
               <div className="w-full max-w-xs">
                 <DatePicker value={dpValue ?? undefined} onChange={(v) => setDpValue(v ?? null)} />
                 {dpValue && (
-                  <p className="mt-3 text-[11px] font-mono text-zinc-500 dark:text-(--text-secondary) text-center">
+                  <p className="mt-3 type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) text-center">
                     value = "{dpValue}"
                   </p>
                 )}
@@ -728,7 +728,7 @@ export function AllPropsPlayground() {
               <div className="w-full max-w-xs">
                 <TimePicker value={tpValue} onChange={(v) => setTpValue(v ?? null)} step={tpStep} />
                 {tpValue && (
-                  <p className="mt-3 text-[11px] font-mono text-zinc-500 dark:text-(--text-secondary) text-center">
+                  <p className="mt-3 type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) text-center">
                     value = "{tpValue}"
                   </p>
                 )}
@@ -772,7 +772,7 @@ export function AllPropsPlayground() {
                 ].map((opt) => (
                   <div key={opt.value} className="flex items-center gap-2.5">
                     <RadioGroupItem value={opt.value} id={`rg-${opt.value}`} />
-                    <Label htmlFor={`rg-${opt.value}`} className="text-sm cursor-pointer">{opt.label}</Label>
+                    <Label htmlFor={`rg-${opt.value}`} className="type-body cursor-pointer">{opt.label}</Label>
                   </div>
                 ))}
               </RadioGroup>
@@ -810,7 +810,7 @@ export function AllPropsPlayground() {
                   onChange={setDdValue}
                   label="Priority"
                 />
-                <p className="mt-3 text-[11px] font-mono text-zinc-500 dark:text-(--text-secondary) text-center">value = "{ddValue}"</p>
+                <p className="mt-3 type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) text-center">value = "{ddValue}"</p>
               </div>
             )}
 
@@ -823,17 +823,17 @@ export function AllPropsPlayground() {
                     <TabsTrigger value="logs">Logs</TabsTrigger>
                   </TabsList>
                   <TabsContent value="preview">
-                    <div className="p-4 rounded-(--radius-field) bg-(--bg-card) border border-(--border-hairline) text-xs text-(--text-secondary)">
+                    <div className="p-4 rounded-(--radius-field) bg-(--bg-card) border border-(--border-hairline) type-caption text-(--text-secondary)">
                       Preview panel — keyboard-roving triggers.
                     </div>
                   </TabsContent>
                   <TabsContent value="code">
-                    <div className="p-4 rounded-(--radius-field) bg-(--bg-card) border border-(--border-hairline) text-xs text-(--text-secondary)">
+                    <div className="p-4 rounded-(--radius-field) bg-(--bg-card) border border-(--border-hairline) type-caption text-(--text-secondary)">
                       Code panel.
                     </div>
                   </TabsContent>
                   <TabsContent value="logs">
-                    <div className="p-4 rounded-(--radius-field) bg-(--bg-card) border border-(--border-hairline) text-xs text-(--text-secondary)">
+                    <div className="p-4 rounded-(--radius-field) bg-(--bg-card) border border-(--border-hairline) type-caption text-(--text-secondary)">
                       Logs panel.
                     </div>
                   </TabsContent>
@@ -844,7 +844,7 @@ export function AllPropsPlayground() {
             {component === 'range-slider' && (
               <div className="w-full max-w-sm">
                 <RangeSlider value={rsValue} onChange={setRsValue} min={0} max={100} step={1} />
-                <p className="mt-3 text-[11px] font-mono text-zinc-500 dark:text-(--text-secondary) text-center">
+                <p className="mt-3 type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) text-center">
                   [{rsValue[0]}, {rsValue[1]}]
                 </p>
               </div>
@@ -859,14 +859,14 @@ export function AllPropsPlayground() {
             {component === 'color-picker' && (
               <div className="w-full max-w-sm">
                 <ColorPicker value={cpColor} onChange={setCpColor} label="Accent" />
-                <p className="mt-3 text-[11px] font-mono text-zinc-500 dark:text-(--text-secondary) text-center">value = "{cpColor}"</p>
+                <p className="mt-3 type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) text-center">value = "{cpColor}"</p>
               </div>
             )}
 
             {component === 'rating' && (
               <div className="w-full max-w-xs">
                 <Rating value={rtValue} onChange={rtReadOnly ? undefined : setRtValue} max={5} size="lg" readOnly={rtReadOnly} />
-                <p className="mt-3 text-[11px] font-mono text-zinc-500 dark:text-(--text-secondary) text-center">value = {rtValue}</p>
+                <p className="mt-3 type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) text-center">value = {rtValue}</p>
               </div>
             )}
 
@@ -875,7 +875,7 @@ export function AllPropsPlayground() {
                 <HoverCardTrigger asChild>
                   <button
                     type="button"
-                    className="h-10 px-4 rounded-(--radius-field) text-sm font-medium bg-zinc-100 dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.05] cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
+                    className="h-10 px-4 rounded-(--radius-field) type-body font-medium bg-zinc-100 dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.05] cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
                   >
                     Hover / focus me
                   </button>
@@ -884,9 +884,9 @@ export function AllPropsPlayground() {
                   <div className="space-y-1.5">
                     <div className="flex items-center gap-2">
                       <Badge>UI99</Badge>
-                      <span className="text-xs font-semibold text-zinc-950 dark:text-(--text-primary)">Velvet context</span>
+                      <span className="type-caption font-semibold text-zinc-950 dark:text-(--text-primary)">Velvet context</span>
                     </div>
-                    <p className="text-[11px] text-zinc-500 dark:text-(--text-secondary)">
+                    <p className="type-micro text-(--text-muted) dark:text-(--text-secondary)">
                       Dismissible, hoverable per WCAG 1.4.13 — pointer can travel into the card.
                     </p>
                   </div>
@@ -900,7 +900,7 @@ export function AllPropsPlayground() {
                   <Button variant="outline" size="sm">Open popover</Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-64">
-                  <p className="text-xs text-zinc-700 dark:text-(--text-secondary)">
+                  <p className="type-caption text-zinc-700 dark:text-(--text-secondary)">
                     Focus-trapped velvet popover. Esc or outside click dismisses.
                   </p>
                 </PopoverContent>
@@ -949,7 +949,7 @@ export function AllPropsPlayground() {
             )}
 
             {component === 'tree-view' && (
-              <div className="w-full max-w-sm text-sm">
+              <div className="w-full max-w-sm type-body">
                 <TreeView data={TREE_DATA} selectedId={tvSelected} onSelect={(node) => setTvSelected(node.id)} label="File tree" />
               </div>
             )}
@@ -961,7 +961,7 @@ export function AllPropsPlayground() {
             )}
 
             {component === 'timeline' && (
-              <div className="w-full max-w-sm text-sm">
+              <div className="w-full max-w-sm type-body">
                 <Timeline>
                   <TimelineItem timestamp="09:41" accent="emerald">
                     Deploy succeeded — 92 components
@@ -979,7 +979,7 @@ export function AllPropsPlayground() {
             {component === 'avatar-stack' && (
               <div>
                 <AvatarStack names={['Aria', 'Safa', 'Nova', 'Kian', 'Rana']} size="md" max={asMax} />
-                <p className="mt-3 text-[11px] font-mono text-zinc-500 dark:text-(--text-secondary) text-center">max = {asMax}</p>
+                <p className="mt-3 type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) text-center">max = {asMax}</p>
               </div>
             )}
 
@@ -997,10 +997,10 @@ export function AllPropsPlayground() {
 
             {component === 'icon-button' && (
               <div className="flex items-center gap-3">
-                <IconButton icon={<Check className="w-4 h-4" />} variant="primary" size="md" label="Confirm" />
-                <IconButton icon={<Copy className="w-4 h-4" />} variant="outline" size="md" label="Duplicate" />
-                <IconButton icon={<RotateCcw className="w-4 h-4" />} variant="ghost" size="md" label="Reset" />
-                <IconButton icon={<Check className="w-4 h-4" />} variant="ghost" size="md" label="Locked" disabled />
+                <IconButton icon={<Check className="icon-md" />} variant="primary" size="md" label="Confirm" />
+                <IconButton icon={<Copy className="icon-md" />} variant="outline" size="md" label="Duplicate" />
+                <IconButton icon={<RotateCcw className="icon-md" />} variant="ghost" size="md" label="Reset" />
+                <IconButton icon={<Check className="icon-md" />} variant="ghost" size="md" label="Locked" disabled />
               </div>
             )}
 
@@ -1051,7 +1051,7 @@ function Segmented<T extends string | number>({
           key={String(o.value)}
           type="button"
           onClick={() => onChange(o.value)}
-          className={`h-6 px-2.5 rounded-(--radius-pill) text-[11px] font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99-inset ${
+          className={`h-6 px-2.5 rounded-(--radius-pill) type-micro font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99-inset ${
             value === o.value
               ? 'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs'
               : 'text-zinc-600 dark:text-(--text-secondary) hover:text-zinc-900 dark:hover:text-(--text-primary)'
@@ -1071,10 +1071,10 @@ function CodePanel({ code }: { code: string }) {
     <div className="relative rounded-(--radius-control) bg-zinc-950 dark:bg-black/40 border border-black/[0.06] dark:border-white/[0.05] overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2 border-b border-white/[0.06]">
         <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-(--radius-pill) bg-rose-400/70" />
-          <span className="w-2 h-2 rounded-(--radius-pill) bg-amber-400/70" />
-          <span className="w-2 h-2 rounded-(--radius-pill) bg-emerald-400/70" />
-          <span className="ml-2 text-[10px] font-mono text-zinc-400">Playground.tsx</span>
+          <span className="icon-dot rounded-(--radius-pill) bg-rose-400/70" />
+          <span className="icon-dot rounded-(--radius-pill) bg-amber-400/70" />
+          <span className="icon-dot rounded-(--radius-pill) bg-emerald-400/70" />
+          <span className="ml-2 type-micro font-mono text-(--text-secondary)">Playground.tsx</span>
         </div>
         <button
           type="button"
@@ -1083,13 +1083,13 @@ function CodePanel({ code }: { code: string }) {
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
           }}
-          className="inline-flex items-center gap-1 text-[10px] font-mono text-zinc-400 hover:text-white transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1 type-micro font-mono text-(--text-secondary) hover:text-white transition-colors cursor-pointer"
         >
-          {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+          {copied ? <Check className="icon-xs text-emerald-400" /> : <Copy className="icon-xs" />}
           {copied ? 'Copied' : 'Copy'}
         </button>
       </div>
-      <pre className="px-4 py-3 text-[11px] leading-relaxed font-mono text-zinc-200 overflow-x-auto">
+      <pre className="px-4 py-3 type-micro leading-relaxed font-mono text-zinc-200 overflow-x-auto">
         <code>{code}</code>
       </pre>
     </div>

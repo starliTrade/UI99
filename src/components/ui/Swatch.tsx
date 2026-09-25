@@ -33,16 +33,16 @@ export function Swatch({ name, hex, contrastNote, className = '' }: SwatchProps)
     >
       <div className="flex h-16 items-end justify-between p-2.5" style={{ background: hex }}>
         <span
-          className={cn('font-mono text-[10px] font-semibold', light ? 'text-black/70' : 'text-white/80')}
+          className={cn('font-mono type-micro font-semibold', light ? 'text-black/70' : 'text-white/80')}
         >
           {hex}
         </span>
         <CopyButton text={hex} label="" size="sm" className={cn('opacity-0 group-hover:opacity-100 transition-opacity', light ? 'border-black/[0.12]' : 'border-white/[0.12]')} />
       </div>
       <div className="bg-white px-3 py-2.5 dark:bg-(--bg-card)">
-        <div className="text-xs font-semibold text-(--text-primary)">{name}</div>
+        <div className="type-caption font-semibold text-(--text-primary)">{name}</div>
         {contrastNote && (
-          <div className="mt-0.5 text-[10px] font-mono text-(--text-muted)">{contrastNote}</div>
+          <div className="mt-0.5 type-micro font-mono text-(--text-muted)">{contrastNote}</div>
         )}
       </div>
     </div>

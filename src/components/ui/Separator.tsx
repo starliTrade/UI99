@@ -32,7 +32,7 @@ export function Separator({
       {...props}
     >
       {label && (
-        <span className="px-2 text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+        <span className="px-2 type-micro font-mono uppercase tracking-wider text-(--text-secondary)">
           {label}
         </span>
       )}

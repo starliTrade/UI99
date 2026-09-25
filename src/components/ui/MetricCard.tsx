@@ -35,20 +35,20 @@ export function MetricCard({
       className={`p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-zinc-200/80 dark:border-white/[0.035] shadow-xs space-y-3 ${className}`}
     >
       <div className="flex items-center justify-between">
-        <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400 font-medium">
+        <span className="type-caption font-mono text-(--text-muted) dark:text-zinc-400 font-medium">
           {label}
         </span>
-        {icon && <span className="text-zinc-400 dark:text-zinc-600">{icon}</span>}
+        {icon && <span className="text-(--text-secondary) dark:text-zinc-600">{icon}</span>}
       </div>
 
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-2xl font-bold tracking-tight text-zinc-950 dark:text-white font-mono">
+        <span className="type-heading font-bold tracking-tight text-zinc-950 dark:text-white font-mono">
           {value}
         </span>
         {delta !== undefined && (
           <div className="flex items-center gap-1">
             <TrendDelta delta={delta} />
-            {deltaLabel && <span className="text-[10px] text-zinc-500 font-mono">{deltaLabel}</span>}
+            {deltaLabel && <span className="type-micro text-(--text-muted) font-mono">{deltaLabel}</span>}
           </div>
         )}
       </div>
@@ -91,7 +91,7 @@ export function Spinner({
   return (
     <div className={`inline-flex items-center gap-2 ${className}`}>
       <Loader2 className={`animate-spin ${sizeStyles} ${variantStyles}`} />
-      {label && <span className="text-xs font-mono text-zinc-500">{label}</span>}
+      {label && <span className="type-caption font-mono text-(--text-muted)">{label}</span>}
     </div>
   );
 }

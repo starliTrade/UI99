@@ -145,19 +145,19 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
       />
 
       {/* 2. Living Atmosphere Container */}
-      <div className="relative p-5 sm:p-6 rounded-(--radius-xl) bg-[#0A0B10]/90 border border-white/[0.025] shadow-(--shadow-card-hover) backdrop-blur-xl overflow-hidden transition-all duration-300">
+      <div className="relative p-5 sm:p-6 rounded-(--radius-xl) bg-[#0A0B10]/90 border border-white/[0.025] shadow-(--shadow-card-hover) backdrop-blur-xl overflow-hidden transition-all dur-slow">
         
         {/* Soft Background Silk Mesh */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/[0.02] via-transparent to-transparent pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="relative z-content flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           
           {/* Left: Typography & Context */}
           <div className="space-y-1.5 min-w-0 flex-1">
             {/* Context Date Badge & Status */}
-            <div className="flex items-center gap-2 text-xs text-[#92929B] font-medium">
+            <div className="flex items-center gap-2 type-caption text-[#92929B] font-medium">
               <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.035]">
-                <TimeIcon className="w-3.5 h-3.5 text-rose-400" />
+                <TimeIcon className="icon-sm text-rose-400" />
                 <span className="text-zinc-300">{dateFormatted}</span>
               </span>
               {isToday && (
@@ -169,12 +169,12 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
             </div>
 
             {/* Main Greeting */}
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-[#EDEDEF] leading-snug">
+            <h1 className="type-title sm:type-heading font-bold tracking-tight text-[#EDEDEF] leading-snug">
               {isRTL ? contextData.greeting.fa : contextData.greeting.en}
             </h1>
 
             {/* Contextual Editorial Microcopy */}
-            <p className="text-xs sm:text-sm text-[#92929B] leading-relaxed font-light line-clamp-2 max-w-xl">
+            <p className="type-caption sm:type-body text-[#92929B] leading-relaxed font-light line-clamp-2 max-w-xl">
               {isRTL ? contextData.microcopy.fa : contextData.microcopy.en}
             </p>
           </div>
@@ -203,13 +203,13 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
                       }
                 }
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute w-2 h-2 rounded-(--radius-pill) bg-rose-400/80 shadow-(--glow-rose-md)"
+                className="absolute icon-dot rounded-(--radius-pill) bg-rose-400/80 shadow-(--glow-rose-md)"
               />
 
               {/* Inner satin glass highlight */}
               <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.03] to-white/[0.08] pointer-events-none" />
               
-              <Sparkles className="w-3.5 h-3.5 text-white/40 group-hover:text-rose-300 transition-colors relative z-10" />
+              <Sparkles className="icon-sm text-white/40 group-hover:text-rose-300 transition-colors relative z-content" />
             </div>
 
             {/* Quick Capture Capsule */}
@@ -220,8 +220,8 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
               title={isRTL ? 'ثبت سریع ایده، یادداشت یا کار' : 'Quick Capture'}
               aria-label="Universal Capture"
             >
-              <Plus className="w-3.5 h-3.5 text-rose-400 group-hover:rotate-90 transition-transform duration-200" />
-              <span className="text-xs font-semibold tracking-wide">
+              <Plus className="icon-sm text-rose-400 group-hover:rotate-90 transition-transform dur-base" />
+              <span className="type-caption font-semibold tracking-wide">
                 {isRTL ? 'ثبت سریع' : 'Capture'}
               </span>
             </button>

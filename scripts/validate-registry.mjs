@@ -95,6 +95,36 @@ for (const item of items) {
       fail(`${label}: invalid category "${item.category}"`);
     }
 
+    // Every non-relative import must be a DECLARED dependency.
+    //
+    // This is the check that would have caught `CodeBlock`, which imports
+    // `prismjs` (six grammars, loaded via bare side-effect imports the
+    // original `from`-only scanner never saw). The item shipped, the
+    // validator passed, and `npx @99/ui add code-block` produced a file
+    // importing a package the consumer never had — a compile error in a
+    // project that did nothing wrong.
+    const declared = new Set(
+      (item.dependencies ?? []).map((d) => String(d).replace(/@[^@/]+$/, '').replace(/^(@[^/]+\/[^@/]+)@.*$/, '$1')),
+    );
+    for (const f of item.files ?? []) {
+      const content = typeof f.content === 'string' ? f.content : '';
+      const importRe = /(?:from\s+|import\s+|require\(\s*)['"]([^'"]+)['"]/g;
+      const missing = new Set();
+      let im;
+      while ((im = importRe.exec(content)) !== null) {
+        const spec = im[1];
+        if (spec.startsWith('.') || spec.startsWith('@/') || spec.startsWith('node:')) continue;
+        if (spec === 'react' || spec.startsWith('react/')) continue;
+        const pkgName = spec.startsWith('@')
+          ? spec.split('/').slice(0, 2).join('/')
+          : spec.split('/')[0];
+        if (!declared.has(pkgName)) missing.add(pkgName);
+      }
+      for (const pkgName of missing) {
+        fail(`${label}: imports "${pkgName}" but does not declare it in dependencies`);
+      }
+    }
+
     // a11y metadata with five-state contract
     const a11y = item.meta?.a11y;
     if (!a11y) {

@@ -36,12 +36,12 @@ export function LinkButton({
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
-      className={`inline-flex items-center gap-1.5 text-xs font-mono cursor-pointer ${variantStyles} ${className}`}
+      className={`inline-flex items-center gap-1.5 type-caption font-mono cursor-pointer ${variantStyles} ${className}`}
       {...props}
     >
       {icon && <span className="shrink-0">{icon}</span>}
       <span>{children}</span>
-      {external && <ExternalLink className="w-3 h-3 shrink-0 opacity-60" />}
+      {external && <ExternalLink className="icon-xs shrink-0 opacity-60" />}
     </a>
   );
 }
@@ -87,7 +87,7 @@ export function DropdownButton({
     return () => document.removeEventListener('mousedown', handleClick);
   }, [open]);
 
-  const sizeStyles = size === 'sm' ? 'h-8 px-2.5 text-xs' : 'h-9 px-3 text-xs';
+  const sizeStyles = size === 'sm' ? 'h-8 px-2.5 type-caption' : 'h-9 px-3 type-caption';
 
   const variantStyles = {
     primary:
@@ -109,11 +109,11 @@ export function DropdownButton({
         className={`rounded-(--radius-field) font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${sizeStyles} ${variantStyles}`}
       >
         <span>{currentLabel}</span>
-        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`icon-sm transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-1 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-100">
+        <div className="absolute top-full left-0 mt-1 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-popover animate-in fade-in zoom-in-95 dur-fast">
           {options.map((opt) => (
             <button
               key={opt.value}
@@ -123,7 +123,7 @@ export function DropdownButton({
                 onSelect(opt.value);
                 setOpen(false);
               }}
-              className={`w-full px-3 py-1.5 text-xs text-left font-mono flex items-center justify-between transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
+              className={`w-full px-3 py-1.5 type-caption text-left font-mono flex items-center justify-between transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
                 selected === opt.value
                   ? 'bg-zinc-100 dark:bg-white/[0.08] text-emerald-500 font-bold'
                   : 'text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04]'

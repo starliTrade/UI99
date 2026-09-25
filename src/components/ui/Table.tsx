@@ -11,7 +11,7 @@ export function Table({ className = '', ...props }: React.TableHTMLAttributes<HT
   return (
     <div className="relative w-full overflow-x-auto">
       <table
-        className={cn('w-full caption-bottom border-collapse text-xs', className)}
+        className={cn('w-full caption-bottom border-collapse type-caption', className)}
         {...props}
       />
     </div>
@@ -59,7 +59,7 @@ export function TableHead({ className = '', ...props }: React.ThHTMLAttributes<H
   return (
     <th
       className={cn(
-        'h-10 px-3 text-left align-middle text-[10px] font-mono font-bold uppercase tracking-wider text-(--text-secondary) [&:has([role=checkbox])]:pr-0',
+        'h-10 px-3 text-left align-middle type-micro font-mono font-bold uppercase tracking-wider text-(--text-secondary) [&:has([role=checkbox])]:pr-0',
         className
       )}
       {...props}
@@ -79,6 +79,6 @@ export function TableCell({ className = '', ...props }: React.TdHTMLAttributes<H
 TableCell.displayName = 'TableCell';
 
 export function TableCaption({ className = '', ...props }: React.HTMLAttributes<HTMLTableCaptionElement>) {
-  return <caption className={cn('mt-3 text-[11px] text-(--text-secondary)', className)} {...props} />;
+  return <caption className={cn('mt-3 type-micro text-(--text-secondary)', className)} {...props} />;
 }
 TableCaption.displayName = 'TableCaption';

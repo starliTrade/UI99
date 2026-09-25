@@ -71,7 +71,7 @@ export function CurrencyInput({
 
   return (
     <div className={`relative flex items-center rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-zinc-200 dark:border-white/[0.04] shadow-(--shadow-card) focus-within:border-emerald-500/50 focus-within:ring-2 focus-within:ring-emerald-500/10 transition-all ${className}`}>
-      <span className="pl-3 pr-1 text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500 select-none">
+      <span className="pl-3 pr-1 type-caption font-mono font-bold text-(--text-secondary) dark:text-zinc-500 select-none">
         {symbol}
       </span>
       <input
@@ -81,9 +81,9 @@ export function CurrencyInput({
         disabled={disabled}
         onChange={handleChange}
         placeholder="0.00"
-        className="w-full py-2 pr-3 bg-transparent text-xs font-mono text-zinc-950 dark:text-white placeholder:text-zinc-400 focus:outline-none disabled:opacity-50"
+        className="w-full py-2 pr-3 bg-transparent type-caption font-mono text-zinc-950 dark:text-white placeholder:text-zinc-400 disabled:opacity-50 focus-ui99"
       />
-      <span className="pr-3 text-[10px] font-mono text-zinc-400 dark:text-zinc-600 select-none">
+      <span className="pr-3 type-micro font-mono text-(--text-secondary) dark:text-zinc-600 select-none">
         {currency}
       </span>
     </div>

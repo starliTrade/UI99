@@ -60,8 +60,8 @@ export function CalendarView({
       {/* Month Navigation Header */}
       <div className="flex items-center justify-between pb-2 border-b border-black/[0.04] dark:border-white/[0.03]">
         <div className="flex items-center gap-2">
-          <CalendarIcon className="w-4 h-4 text-emerald-500" aria-hidden="true" />
-          <h4 className="text-sm font-semibold text-zinc-900 dark:text-white">
+          <CalendarIcon className="icon-md text-emerald-500" aria-hidden="true" />
+          <h4 className="type-body font-semibold text-zinc-900 dark:text-white">
             {month} {year}
           </h4>
         </div>
@@ -70,16 +70,16 @@ export function CalendarView({
           <button
             type="button"
             aria-label="Previous month"
-            className="p-1 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="icon-md" />
           </button>
           <button
             type="button"
             aria-label="Next month"
-            className="p-1 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="icon-md" />
           </button>
         </div>
       </div>
@@ -87,7 +87,7 @@ export function CalendarView({
       {/* Weekday Labels */}
       <div className="grid grid-cols-7 gap-1 text-center">
         {daysOfWeek.map((day) => (
-          <div key={day} className="text-[11px] font-mono font-medium text-zinc-400 py-1">
+          <div key={day} className="type-micro font-mono font-medium text-(--text-secondary) py-1">
             {day}
           </div>
         ))}
@@ -118,7 +118,7 @@ export function CalendarView({
                 onSelectDay?.(dayNum);
               }}
               className={cn(
-                'min-h-[44px] sm:min-h-[58px] p-1 sm:p-1.5 rounded-(--radius-sm) sm:rounded-(--radius-field) border flex flex-col items-start justify-between text-left transition-all duration-150',
+                'min-h-[44px] sm:min-h-[58px] p-1 sm:p-1.5 rounded-(--radius-sm) sm:rounded-(--radius-field) border flex flex-col items-start justify-between text-left transition-all dur-quick',
                 isSelected
                   ? 'bg-zinc-100 dark:bg-white/[0.08] border-black/20 dark:border-white/20 shadow-xs'
                   : 'bg-zinc-50/50 dark:bg-(--bg-elevated)/50 border-black/[0.04] dark:border-white/[0.02] hover:bg-zinc-100 dark:hover:bg-white/[0.04]'
@@ -126,7 +126,7 @@ export function CalendarView({
             >
               <span
                 className={cn(
-                  'text-[11px] font-mono font-medium w-5 h-5 flex items-center justify-center rounded-(--radius-pill)',
+                  'type-micro font-mono font-medium w-5 h-5 flex items-center justify-center rounded-(--radius-pill)',
                   isToday
                     ? 'bg-zinc-900 dark:bg-white text-white dark:text-black font-bold'
                     : 'text-zinc-600 dark:text-zinc-400'
@@ -141,7 +141,7 @@ export function CalendarView({
                   <span
                     key={evt.id}
                     className={cn(
-                      'text-[9px] px-1 py-0.2 rounded font-medium truncate w-full border',
+                      'type-micro px-1 py-0.2 rounded font-medium truncate w-full border',
                       eventVariantStyles[evt.variant || 'emerald']
                     )}
                   >

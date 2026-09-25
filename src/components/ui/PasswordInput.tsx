@@ -69,9 +69,9 @@ export function PasswordInput({
     <div className="flex flex-col gap-1.5 w-full">
       {label && (
         <div className="flex items-center justify-between">
-          <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">{label}</label>
+          <label className="type-caption font-medium text-zinc-700 dark:text-zinc-300">{label}</label>
           {val && showStrength && (
-            <span className={cn('text-[11px] font-mono font-medium', strengthMeta.text)}>
+            <span className={cn('type-micro font-mono font-medium', strengthMeta.text)}>
               {strengthMeta.label}
             </span>
           )}
@@ -87,7 +87,7 @@ export function PasswordInput({
             onChange?.(e);
           }}
           className={cn(
-            'w-full px-3.5 py-2.5 pr-10 text-sm rounded-(--radius-field) transition-all duration-150',
+            'w-full px-3.5 py-2.5 pr-10 type-body rounded-(--radius-field) transition-all dur-quick',
             'bg-zinc-50 dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary) placeholder-zinc-400',
             'border border-black/[0.08] dark:border-white/[0.06] focus:border-zinc-500 dark:focus:border-white/20 focus:outline-none',
             error && 'border-rose-500',
@@ -98,10 +98,10 @@ export function PasswordInput({
         <button
           type="button"
           onClick={() => setVisible(!visible)}
-          className="absolute right-3 p-1 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
+          className="absolute right-3 p-1 text-(--text-secondary) hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
           title={visible ? 'Hide password' : 'Show password'}
         >
-          {visible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+          {visible ? <EyeOff className="icon-md" /> : <Eye className="icon-md" />}
         </button>
       </div>
 
@@ -110,7 +110,7 @@ export function PasswordInput({
         <div className="flex flex-col gap-2 pt-1">
           <div className="w-full h-1 bg-zinc-200 dark:bg-white/[0.06] rounded-(--radius-pill) overflow-hidden">
             <div
-              className={cn('h-full transition-all duration-300 rounded-(--radius-pill)', strengthMeta.color)}
+              className={cn('h-full transition-all dur-slow rounded-(--radius-pill)', strengthMeta.color)}
               style={{ width: strengthMeta.width }}
             />
           </div>
@@ -118,9 +118,9 @@ export function PasswordInput({
           {/* Validation Checklist */}
           <div className="grid grid-cols-2 gap-1 pt-1">
             {rules.map((rule) => (
-              <div key={rule.id} className="flex items-center gap-1.5 text-[11px]">
+              <div key={rule.id} className="flex items-center gap-1.5 type-micro">
                 {rule.met ? (
-                  <Check className="w-3 h-3 text-emerald-500 shrink-0" />
+                  <Check className="icon-xs text-emerald-500 shrink-0" />
                 ) : (
                   <div className="w-1.5 h-1.5 rounded-(--radius-pill) bg-zinc-400 dark:bg-zinc-600 ml-1 mr-0.5 shrink-0" />
                 )}
@@ -133,7 +133,7 @@ export function PasswordInput({
         </div>
       )}
 
-      {error && <span className="text-[11px] text-rose-500">{error}</span>}
+      {error && <span className="type-micro text-rose-500">{error}</span>}
     </div>
   );
 }

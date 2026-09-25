@@ -36,10 +36,10 @@ export function AvatarStack({ names, max = 4, size = 'sm', className = '' }: Ava
           <div
             className={cn(
               'flex items-center justify-center rounded-(--radius-pill) bg-zinc-100 dark:bg-(--bg-card-hover) font-mono font-semibold text-(--text-secondary) ring-2 ring-white dark:ring-(--bg-card)',
-              size === 'xs' && 'w-6 h-6 text-[9px]',
-              size === 'sm' && 'w-7 h-7 text-[10px]',
-              size === 'md' && 'w-9 h-9 text-xs',
-              size === 'lg' && 'w-12 h-12 text-sm'
+              size === 'xs' && 'w-6 h-6 type-micro',
+              size === 'sm' && 'w-7 h-7 type-micro',
+              size === 'md' && 'w-9 h-9 type-caption',
+              size === 'lg' && 'w-12 h-12 type-body'
             )}
           >
             +{overflow}

@@ -51,14 +51,14 @@ export function Progress({
     return (
       <div className={`w-full space-y-1.5 ${className}`}>
         {(label || showValue) && (
-          <div className="flex items-center justify-between text-xs">
+          <div className="flex items-center justify-between type-caption">
             {label && (
               <span className={`font-semibold ${isDark ? 'text-(--text-primary)' : 'text-zinc-800'}`}>
                 {label}
               </span>
             )}
             {showValue && (
-              <span className="font-mono text-zinc-500 text-[11px]">
+              <span className="font-mono text-(--text-muted) type-micro">
                 {currentStep}/{segmented}
               </span>
             )}
@@ -70,7 +70,7 @@ export function Progress({
             return (
               <div
                 key={i}
-                className={`${heights[size]} rounded-(--radius-pill) transition-all duration-200 ${
+                className={`${heights[size]} rounded-(--radius-pill) transition-all dur-base ${
                   isFilled
                     ? variantColors[variant]
                     : isDark
@@ -88,14 +88,14 @@ export function Progress({
   return (
     <div className={`w-full space-y-1.5 ${className}`}>
       {(label || showValue) && (
-        <div className="flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between type-caption">
           {label && (
             <span className={`font-semibold ${isDark ? 'text-(--text-primary)' : 'text-zinc-800'}`}>
               {label}
             </span>
           )}
           {showValue && (
-            <span className="font-mono text-zinc-500 text-[11px]">
+            <span className="font-mono text-(--text-muted) type-micro">
               {Math.round(percentage)}%
             </span>
           )}
@@ -107,7 +107,7 @@ export function Progress({
         }`}
       >
         <div
-          className={`h-full rounded-(--radius-pill) transition-all duration-300 ${variantColors[variant]}`}
+          className={`h-full rounded-(--radius-pill) transition-all dur-slow ${variantColors[variant]}`}
           style={{ width: `${percentage}%` }}
         />
       </div>

@@ -55,19 +55,19 @@ export function Banner({
     >
       <div className="flex items-center gap-3 min-w-0">
         <div className="shrink-0">
-          {icon || <Sparkles className="w-4 h-4 text-emerald-400" />}
+          {icon || <Sparkles className="icon-md text-emerald-400" />}
         </div>
-        <div className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2 text-xs truncate">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2 type-caption truncate">
           <span className="font-semibold text-current truncate">{title}</span>
           {description && (
-            <span className="text-zinc-400 dark:text-zinc-400 hidden sm:inline truncate">
+            <span className="text-(--text-secondary) dark:text-zinc-400 hidden sm:inline truncate">
               {description}
             </span>
           )}
         </div>
       </div>
 
-      {children && <div className="min-w-0 text-xs opacity-90">{children}</div>}
+      {children && <div className="min-w-0 type-caption opacity-90">{children}</div>}
 
       <div className="flex items-center gap-2 shrink-0">
         {actionLabel && (
@@ -75,10 +75,10 @@ export function Banner({
             size="xs"
             variant="secondary"
             onClick={onAction}
-            className="text-xs h-7 px-2.5"
+            className="type-caption h-7 px-2.5"
           >
             <span>{actionLabel}</span>
-            <ArrowRight className="w-3 h-3 ml-1" />
+            <ArrowRight className="icon-xs ml-1" />
           </Button>
         )}
         <button
@@ -88,9 +88,9 @@ export function Banner({
             onDismiss?.();
           }}
           aria-label="Dismiss banner"
-          className="p-1 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
+          className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-700 dark:hover:text-white transition-colors"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="icon-sm" />
         </button>
       </div>
     </div>

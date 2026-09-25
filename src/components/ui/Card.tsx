@@ -10,8 +10,8 @@
  */
 
 import React, { ReactNode, HTMLAttributes } from 'react';
-import { radiusClassForPadding } from '../../core/tokens';
-import type { RadiusRung, SurfacePaddingStep } from '../../core/tokens';
+import { radiusClassForPadding } from '../../lib/utils';
+import type { RadiusRung, SurfacePaddingStep } from '../../lib/utils';
 
 export type SurfaceVariant =
   | 'surface'            // Primary container surface (--bg-surface / white)
@@ -86,7 +86,7 @@ export function Surface({
 
   const hoverStyle =
     hoverable || interactive
-      ? 'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-(--elevation-2) dark:hover:shadow-(--elevation-3) cursor-pointer active:scale-[0.99]'
+      ? 'transition-all dur-base hover:-translate-y-0.5 hover:shadow-(--elevation-2) dark:hover:shadow-(--elevation-3) cursor-pointer active:scale-[0.99]'
       : '';
 
   return (
@@ -107,11 +107,11 @@ export function CardHeader({ className = '', ...props }: HTMLAttributes<HTMLDivE
 }
 
 export function CardTitle({ className = '', ...props }: HTMLAttributes<HTMLHeadingElement>) {
-  return <h3 className={`text-base font-semibold tracking-tight text-zinc-950 dark:text-white ${className}`} {...props} />;
+  return <h3 className={`type-body-lg font-semibold tracking-tight text-zinc-950 dark:text-white ${className}`} {...props} />;
 }
 
 export function CardDescription({ className = '', ...props }: HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={`text-xs text-zinc-500 dark:text-zinc-400 ${className}`} {...props} />;
+  return <p className={`type-caption text-(--text-muted) dark:text-zinc-400 ${className}`} {...props} />;
 }
 
 export function CardContent({ className = '', ...props }: HTMLAttributes<HTMLDivElement>) {

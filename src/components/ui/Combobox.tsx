@@ -66,7 +66,7 @@ export function Combobox({
           aria-label={placeholder}
           disabled={disabled}
           className={cn(
-            'inline-flex h-10 w-full items-center justify-between gap-2 rounded-(--radius-field) border border-black/[0.07] bg-white px-3 text-sm',
+            'inline-flex h-10 w-full items-center justify-between gap-2 rounded-(--radius-field) border border-black/[0.07] bg-white px-3 type-body',
             'dark:border-white/[0.07] dark:bg-(--bg-elevated)',
             'transition-colors hover:bg-(--state-hover)',
             'focus-visible:outline-none focus-ui99-inset cursor-pointer',
@@ -77,14 +77,14 @@ export function Combobox({
           <span className={cn('truncate', !selected && 'text-zinc-400 dark:text-(--text-secondary)')}>
             {selected ? selected.label : placeholder}
           </span>
-          <ChevronsUpDown className="w-4 h-4 shrink-0 text-(--text-muted)" />
+          <ChevronsUpDown className="icon-md shrink-0 text-(--text-muted)" />
         </button>
       </PopoverPrimitive.Trigger>
       <PopoverPrimitive.Portal>
         <PopoverPrimitive.Content
           sideOffset={6}
           align="start"
-          className="z-50 w-[var(--radix-popover-trigger-width)] rounded-(--radius-control) border border-black/[0.06] bg-white shadow-(--elevation-4) dark:border-white/[0.06] dark:bg-(--bg-elevated)"
+          className="z-popover w-[var(--radix-popover-trigger-width)] rounded-(--radius-control) border border-black/[0.06] bg-white shadow-(--elevation-4) dark:border-white/[0.06] dark:bg-(--bg-elevated)"
         >
           <Command shouldFilter>
             <CommandInput placeholder={searchPlaceholder} onValueChange={setQuery} />
@@ -110,7 +110,7 @@ export function Combobox({
                     />
                     <span className="truncate">{option.label}</span>
                     {option.hint && (
-                      <span className="ml-auto pl-2 text-[10px] font-mono text-(--text-muted)">
+                      <span className="ml-auto pl-2 type-micro font-mono text-(--text-muted)">
                         {option.hint}
                       </span>
                     )}
@@ -120,7 +120,7 @@ export function Combobox({
               {allowCreate && query.trim() && !exactMatch && (
                 <CommandGroup>
                   <CommandItem onSelect={createOption} className="min-h-[44px]">
-                    <span className="mr-2 flex w-4 justify-center text-zinc-400">+</span>
+                    <span className="mr-2 flex w-4 justify-center text-(--text-secondary)">+</span>
                     Create “{query.trim()}”
                   </CommandItem>
                 </CommandGroup>

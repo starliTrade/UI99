@@ -1,3 +1,10 @@
+/* Layer order is declared HERE, before anything else, so it is settled once and
+   cannot be reshuffled by whichever file happens to be imported first.
+   `components` is where the type/weight/icon utilities live, so a component can
+   still say `type-body leading-relaxed` and have the leading win — see
+   ui99-type-utilities.css. */
+@layer theme, base, components, utilities;
+
 /* Token layers first — these are plain CSS custom properties and MUST land in
    the base layer. Importing after Tailwind would push them into the utilities
    layer, where a component's own utility could win the cascade. */

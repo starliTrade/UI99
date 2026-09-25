@@ -33,15 +33,15 @@ export function EmptyState({
           {icon}
         </div>
       )}
-      <h3 className="text-base font-semibold text-(--text-primary) tracking-tight">
+      <h3 className="type-body-lg font-semibold text-(--text-primary) tracking-tight">
         {title}
       </h3>
       {persianTitle && (
-        <p className="font-persian-luxury text-xs text-zinc-400 dark:text-(--text-muted) mt-0.5">
+        <p className="font-persian-luxury type-caption text-(--text-secondary) dark:text-(--text-muted) mt-0.5">
           {persianTitle}
         </p>
       )}
-      <p className="text-xs text-(--text-secondary) mt-1 max-w-xs leading-relaxed">
+      <p className="type-caption text-(--text-secondary) mt-1 max-w-xs leading-relaxed">
         {description}
       </p>
       {actionLabel && onAction && (
@@ -58,8 +58,8 @@ export function EmptyState({
 export function LoadingState({ message = 'Accessing UI99 Space...' }: { message?: string }) {
   return (
     <div role="status" aria-live="polite" className="flex flex-col items-center justify-center py-16 text-center">
-      <Loader2 className="w-6 h-6 text-(--text-secondary) animate-spin mb-3" />
-      <p className="text-xs text-(--text-secondary) tracking-tight">{message}</p>
+      <Loader2 className="icon-xl text-(--text-secondary) animate-spin mb-3" />
+      <p className="type-caption text-(--text-secondary) tracking-tight">{message}</p>
     </div>
   );
 }

@@ -74,10 +74,10 @@ export function KanbanBoard({
             <div className="flex items-center justify-between px-1">
               <div className="flex items-center gap-2">
                 <StatusBadge status={col.id} showLabel={false} />
-                <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-200">
+                <span className="type-caption font-semibold text-zinc-900 dark:text-zinc-200">
                   {col.label}
                 </span>
-                <span className="text-[10px] font-mono font-medium px-1.5 py-0.2 rounded-(--radius-pill) bg-zinc-200 dark:bg-white/[0.06] text-zinc-600 dark:text-zinc-400">
+                <span className="type-micro font-mono font-medium px-1.5 py-0.2 rounded-(--radius-pill) bg-zinc-200 dark:bg-white/[0.06] text-zinc-600 dark:text-zinc-400">
                   {colCards.length}
                 </span>
               </div>
@@ -85,9 +85,9 @@ export function KanbanBoard({
                 type="button"
                 onClick={() => onAddCard?.(col.id)}
                 aria-label={`Add card to ${col.label}`}
-                className="p-1 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
+                className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-700 dark:hover:text-white transition-colors"
               >
-                <Plus className="w-3.5 h-3.5" />
+                <Plus className="icon-sm" />
               </button>
             </div>
 
@@ -104,12 +104,12 @@ export function KanbanBoard({
                   <div className="flex items-center justify-between">
                     <PriorityBadge priority={card.priority} showLabel={false} />
                     {card.estimate && (
-                      <span className="text-[10px] font-mono text-zinc-400">
+                      <span className="type-micro font-mono text-(--text-secondary)">
                         {card.estimate} pts
                       </span>
                     )}
                   </div>
-                  <p className="text-xs font-medium text-zinc-900 dark:text-zinc-100 leading-snug">
+                  <p className="type-caption font-medium text-zinc-900 dark:text-zinc-100 leading-snug">
                     {card.title}
                   </p>
 
@@ -128,7 +128,7 @@ export function KanbanBoard({
                         aria-label={`Move ${card.title} to ${targetCol.label}`}
                         aria-pressed={card.status === targetCol.id}
                         className={cn(
-                          'text-[9px] px-1.5 py-0.5 rounded font-mono transition-colors',
+                          'type-micro px-1.5 py-0.5 rounded font-mono transition-colors',
                           card.status === targetCol.id
                             ? 'bg-zinc-200 dark:bg-white/10 text-zinc-900 dark:text-white font-bold'
                             : 'hover:bg-zinc-100 dark:hover:bg-white/5 text-zinc-500'

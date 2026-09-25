@@ -63,19 +63,19 @@ export function AudioPlayer({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-(--radius-field) bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
-            <Music className="w-5 h-5" />
+            <Music className="icon-lg" />
           </div>
           <div>
-            <h5 className="text-xs font-semibold text-zinc-900 dark:text-white truncate">
+            <h5 className="type-caption font-semibold text-zinc-900 dark:text-white truncate">
               {title}
             </h5>
-            <p className="text-[11px] text-zinc-500 dark:text-zinc-400 truncate">
+            <p className="type-micro text-(--text-muted) dark:text-zinc-400 truncate">
               {artist}
             </p>
           </div>
         </div>
 
-        <span className="text-[11px] font-mono text-zinc-400">
+        <span className="type-micro font-mono text-(--text-secondary)">
           {formatTime(currentTime)} / {formatTime(durationSec)}
         </span>
       </div>
@@ -112,7 +112,7 @@ export function AudioPlayer({
             <div
               key={idx}
               className={cn(
-                'flex-1 rounded-(--radius-pill) transition-all duration-150',
+                'flex-1 rounded-(--radius-pill) transition-all dur-quick',
                 isPassed
                   ? 'bg-zinc-900 dark:bg-emerald-400'
                   : 'bg-zinc-200 dark:bg-white/[0.08]'
@@ -130,9 +130,9 @@ export function AudioPlayer({
             type="button"
             onClick={() => setCurrentTime((prev) => Math.max(0, prev - 10))}
             aria-label="Rewind 10 seconds"
-            className="p-1.5 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="p-1.5 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="icon-sm" />
           </button>
 
           <button
@@ -142,16 +142,16 @@ export function AudioPlayer({
             aria-pressed={playing}
             className="w-9 h-9 rounded-(--radius-pill) bg-zinc-900 dark:bg-white text-white dark:text-black flex items-center justify-center shadow-md active:scale-95 transition-transform"
           >
-            {playing ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
+            {playing ? <Pause className="icon-md fill-current" /> : <Play className="icon-md fill-current ml-0.5" />}
           </button>
 
           <button
             type="button"
             onClick={() => setCurrentTime((prev) => Math.min(durationSec, prev + 10))}
             aria-label="Forward 10 seconds"
-            className="p-1.5 rounded-(--radius-sm) text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="p-1.5 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
-            <RotateCw className="w-3.5 h-3.5" />
+            <RotateCw className="icon-sm" />
           </button>
         </div>
 
@@ -162,9 +162,9 @@ export function AudioPlayer({
             onClick={() => setMuted(!muted)}
             aria-label={muted ? 'Unmute' : 'Mute'}
             aria-pressed={muted}
-            className="text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
-            {muted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+            {muted || volume === 0 ? <VolumeX className="icon-md" /> : <Volume2 className="icon-md" />}
           </button>
           <input
             type="range"

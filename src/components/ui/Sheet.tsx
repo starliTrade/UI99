@@ -1,3 +1,16 @@
+/**
+ * UI99 — Sheet
+ *
+ * ANATOMY   Sheet ▸ overlay ▸ [SheetContent] ▸ grabber ▸ [SheetTitle] ▸ close
+ * STATES    default · open · focus-visible (focus-ui99) · disabled
+ * TOKENS    --bg-elevated, --shadow-modal, --radius-sheet, --z-modal
+ * A11Y      Radix Dialog with the same trap/restore contract as Dialog; on
+ *            mobile the sheet is the primary surface, so the title is required.
+ * KEYBOARD  Escape closes · Tab cycles within · drag handle is decorative and
+ *            aria-hidden (the close button is the keyboard path).
+ * LAYER     --z-modal, above --z-header by design (docs §3.3).
+ */
+
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -15,7 +28,7 @@ const SheetOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
-      'fixed inset-0 z-50 bg-black/75 backdrop-blur-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      'fixed inset-0 z-overlay bg-black/75 backdrop-blur-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
       className
     )}
     {...props}
@@ -25,7 +38,7 @@ const SheetOverlay = React.forwardRef<
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 
 const sheetVariants = cva(
-  'fixed z-50 gap-4 bg-white dark:bg-(--bg-elevated) text-(--text-primary) p-6 shadow-2xl transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-200 data-[state=open]:duration-300',
+  'fixed z-modal gap-4 bg-white dark:bg-(--bg-elevated) text-(--text-primary) p-6 shadow-2xl transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:dur-base data-[state=open]:dur-slow',
   {
     variants: {
       side: {
@@ -68,7 +81,7 @@ const SheetContent = React.forwardRef<
       {children}
       {showClose && (
         <SheetPrimitive.Close className="absolute right-4 top-4 rounded-(--radius-pill) p-1.5 opacity-70 transition-opacity hover:opacity-100 hover:bg-(--state-hover) focus-visible:outline-none focus-ui99 cursor-pointer">
-          <X className="h-4 w-4" />
+          <X className="icon-md" />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>
       )}
@@ -112,7 +125,7 @@ const SheetTitle = React.forwardRef<
   <SheetPrimitive.Title
     ref={ref}
     className={cn(
-      'text-lg font-bold tracking-tight text-(--text-primary)',
+      'type-body-lg font-bold tracking-tight text-(--text-primary)',
       className
     )}
     {...props}
@@ -126,7 +139,7 @@ const SheetDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Description
     ref={ref}
-    className={cn('text-xs text-(--text-secondary)', className)}
+    className={cn('type-caption text-(--text-secondary)', className)}
     {...props}
   />
 ));

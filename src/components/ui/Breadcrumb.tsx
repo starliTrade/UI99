@@ -24,13 +24,13 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
   const isDark = useIsDark();
 
   return (
-    <nav aria-label="Breadcrumb" className={`flex items-center space-x-1.5 text-xs font-medium ${className}`}>
+    <nav aria-label="Breadcrumb" className={`flex items-center space-x-1.5 type-caption font-medium ${className}`}>
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
         return (
           <div key={index} className="flex items-center space-x-1.5">
             {index > 0 && (
-              <ChevronRight className="w-3.5 h-3.5 text-zinc-400 shrink-0 rtl:rotate-180" />
+              <ChevronRight className="icon-sm text-(--text-secondary) shrink-0 rtl:rotate-180" />
             )}
             {item.onClick || item.href ? (
               <button

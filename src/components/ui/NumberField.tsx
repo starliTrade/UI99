@@ -47,7 +47,7 @@ export function NumberField({
     <div className={cn('inline-flex items-center gap-0', className)}>
       {label && <span className="sr-only">{label}</span>}
       <button type="button" aria-label="Decrease" onClick={decrement} disabled={disabled || value <= min} className={stepperCls}>
-        <Minus className="w-4 h-4" />
+        <Minus className="icon-md" />
       </button>
       <div className="relative">
         <input
@@ -74,7 +74,7 @@ export function NumberField({
             if (!Number.isNaN(parsed)) onChange(clamp(parsed));
           }}
           className={cn(
-            'h-10 w-20 rounded-(--radius-field) border border-black/[0.07] bg-white text-center text-sm font-semibold text-zinc-950',
+            'h-10 w-20 rounded-(--radius-field) border border-black/[0.07] bg-white text-center type-body font-semibold text-zinc-950',
             'dark:border-white/[0.07] dark:bg-(--bg-elevated) dark:text-(--text-primary)',
             'focus-visible:outline-none focus-ui99-inset',
             'disabled:cursor-not-allowed disabled:opacity-45'
@@ -82,7 +82,7 @@ export function NumberField({
         />
       </div>
       <button type="button" aria-label="Increase" onClick={increment} disabled={disabled || value >= max} className={stepperCls}>
-        <Plus className="w-4 h-4" />
+        <Plus className="icon-md" />
       </button>
     </div>
   );

@@ -37,7 +37,7 @@ export function Tooltip({
             sideOffset={6}
             role="tooltip"
             className={cn(
-              'z-50 overflow-hidden rounded-(--radius-field) px-2.5 py-1 text-[11px] font-medium tracking-tight shadow-lg border select-none',
+              'z-popover overflow-hidden rounded-(--radius-field) px-2.5 py-1 type-micro font-medium tracking-tight shadow-lg border select-none',
               'bg-(--ink-fill) text-(--ink-on-fill) border-black/[0.1] shadow-(--elevation-2)',
               'dark:bg-(--bg-elevated) dark:text-(--text-primary) dark:border-white/[0.08] dark:shadow-(--elevation-2)',
               'animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1 data-[side=top]:slide-in-from-bottom-1'

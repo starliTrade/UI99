@@ -237,6 +237,7 @@ async function cmdAdd(names, flags, dryRun = false) {
   const paths = resolvePaths(cfg);
   const pm = detectPackageManager();
   const allDeps = new Set();
+  const allDevDeps = new Set();
 
   if (dryRun) {
     info(`--dry-run: would write ${ordered.length} item(s):`);
@@ -250,6 +251,7 @@ async function cmdAdd(names, flags, dryRun = false) {
   let written = 0;
   for (const item of ordered) {
     for (const dep of item.dependencies ?? []) allDeps.add(dep);
+    for (const dep of item.devDependencies ?? []) allDevDeps.add(dep);
     for (const file of item.files) {
       if (!dryRun) {
         const targetPath = resolve(process.cwd(), mapTarget(file, paths));
@@ -276,6 +278,22 @@ async function cmdAdd(names, flags, dryRun = false) {
     info(`--dry-run: would install ${[...allDeps].join(', ')}`);
   } else {
     info('--dry-run: nothing to install.');
+  }
+
+  // Type packages are build-time only, so they belong in devDependencies —
+  // installing them as runtime deps would ship types into production bundles.
+  if (allDevDeps.size > 0 && !dryRun) {
+    const devDeps = [...allDevDeps];
+    ok(`installing ${devDeps.length} type/dev dependencies via ${pm}…`);
+    const devCmd = {
+      bun: `bun add -d ${devDeps.join(' ')}`,
+      npm: `npm i -D ${devDeps.join(' ')}`,
+      pnpm: `pnpm add -D ${devDeps.join(' ')}`,
+      yarn: `yarn add -D ${devDeps.join(' ')}`,
+    }[pm];
+    execSync(devCmd, { stdio: 'inherit' });
+  } else if (allDevDeps.size > 0) {
+    info(`--dry-run: would install (dev) ${[...allDevDeps].join(', ')}`);
   }
 
   if (origin === 'bundled') {

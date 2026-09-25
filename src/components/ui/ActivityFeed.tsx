@@ -75,21 +75,21 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
       )}
     >
       <div className="flex items-center justify-between pb-2 border-b border-black/[0.04] dark:border-white/[0.03]">
-        <h4 className="text-xs font-semibold text-zinc-900 dark:text-white uppercase tracking-wider font-mono">
+        <h4 className="type-caption font-semibold text-zinc-900 dark:text-white uppercase tracking-wider font-mono">
           Live Activity Stream
         </h4>
-        <span className="text-[10px] font-mono text-zinc-400">Real-time sync</span>
+        <span className="type-micro font-mono text-(--text-secondary)">Real-time sync</span>
       </div>
 
       <div className="flex flex-col gap-4 relative">
-        <div className="absolute top-3 bottom-3 left-4 w-[1px] bg-zinc-200 dark:bg-white/[0.06] -z-0" />
+        <div className="absolute top-3 bottom-3 left-4 w-[1px] bg-zinc-200 dark:bg-white/[0.06] -z-base" />
 
         {events.map((evt) => {
           const meta = getActionMeta(evt.action);
           const Icon = meta.icon;
 
           return (
-            <div key={evt.id} className="flex items-start gap-3 relative z-10">
+            <div key={evt.id} className="flex items-start gap-3 relative z-content">
               <Avatar
                 src={evt.actor.avatar}
                 alt={evt.actor.name}
@@ -98,21 +98,21 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
               />
 
               <div className="flex-1 flex flex-col gap-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                <div className="flex flex-wrap items-center gap-1.5 type-caption">
                   <span className="font-semibold text-zinc-900 dark:text-white truncate">
                     {evt.actor.name}
                   </span>
-                  <span className="text-zinc-500 dark:text-zinc-400">{evt.action}</span>
+                  <span className="text-(--text-muted) dark:text-zinc-400">{evt.action}</span>
                   <span className="font-medium text-zinc-800 dark:text-zinc-200 truncate max-w-[200px] sm:max-w-none">
                     {evt.target}
                   </span>
-                  <span className="text-[10px] text-zinc-400 ml-auto font-mono">
+                  <span className="type-micro text-(--text-secondary) ml-auto font-mono">
                     {evt.timestamp}
                   </span>
                 </div>
 
                 {evt.details && (
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-50 dark:bg-(--bg-elevated) p-2 rounded-(--radius-field) border border-black/[0.03] dark:border-white/[0.03]">
+                  <p className="type-caption text-(--text-muted) dark:text-zinc-400 bg-zinc-50 dark:bg-(--bg-elevated) p-2 rounded-(--radius-field) border border-black/[0.03] dark:border-white/[0.03]">
                     {evt.details}
                   </p>
                 )}

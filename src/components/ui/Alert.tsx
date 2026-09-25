@@ -9,7 +9,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 
 export const alertVariants = cva(
-  'relative w-full flex gap-3 items-start rounded-(--radius-control) border p-4 text-sm tracking-tight',
+  'relative w-full flex gap-3 items-start rounded-(--radius-control) border p-4 type-body tracking-tight',
   {
     variants: {
       variant: {
@@ -45,7 +45,7 @@ export function Alert({ variant, icon, title, className, children, ...props }: A
       {icon && <span className="mt-0.5 shrink-0 [&_svg]:size-4">{icon}</span>}
       <div className="space-y-1 min-w-0">
         {title && <div className="font-semibold leading-snug">{title}</div>}
-        <div className="text-[13px] leading-relaxed opacity-90">{children}</div>
+        <div className="type-caption leading-relaxed opacity-90">{children}</div>
       </div>
     </div>
   );

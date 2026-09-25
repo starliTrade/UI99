@@ -46,9 +46,9 @@ export function SplitButton({
   }, [open]);
 
   const sizeClasses = {
-    sm: 'h-8 text-xs',
-    md: 'h-9 text-xs',
-    lg: 'h-10 text-sm',
+    sm: 'h-8 type-caption',
+    md: 'h-9 type-caption',
+    lg: 'h-10 type-body',
   }[size];
 
   const mainPadding = {
@@ -102,12 +102,12 @@ export function SplitButton({
         aria-expanded={open}
         className={`${sizeClasses} ${triggerPadding} ${variantStyles} rounded-r-(--radius-control) flex items-center justify-center transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
       >
-        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`icon-sm transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {/* Dropdown Menu */}
       {open && (
-        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-100">
+        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-popover animate-in fade-in zoom-in-95 dur-fast">
           {items.map((item, idx) => (
             <button
               key={idx}
@@ -117,7 +117,7 @@ export function SplitButton({
                 item.onClick();
                 setOpen(false);
               }}
-              className="w-full px-3 py-1.5 text-xs text-left font-mono flex items-center gap-2 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.06] transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full px-3 py-1.5 type-caption text-left font-mono flex items-center gap-2 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.06] transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {item.icon && <span className="w-3.5 h-3.5">{item.icon}</span>}
               <span>{item.label}</span>

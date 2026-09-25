@@ -23,7 +23,7 @@ export function CommandBar({ leading, className = '', children, ...props }: Comm
       )}
       {...props}
     >
-      {leading && <span className="mr-1 shrink-0 [&_svg]:size-4 text-zinc-400">{leading}</span>}
+      {leading && <span className="mr-1 shrink-0 [&_svg]:size-4 text-(--text-secondary)">{leading}</span>}
       <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">{children}</div>
     </div>
   );
@@ -40,7 +40,7 @@ export function CommandAction({ keys, active, className = '', children, ...props
     <button
       type="button"
       className={cn(
-        'inline-flex min-h-[36px] shrink-0 items-center gap-1.5 rounded-(--radius-pill) px-2.5 text-xs font-medium transition-colors cursor-pointer',
+        'inline-flex min-h-[36px] shrink-0 items-center gap-1.5 rounded-(--radius-pill) px-2.5 type-caption font-medium transition-colors cursor-pointer',
         'focus-visible:outline-none focus-ui99-inset active:scale-[0.97]',
         active
           ? 'bg-zinc-900 text-white dark:bg-(--text-primary) dark:text-(--text-on-fill)'

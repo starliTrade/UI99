@@ -74,7 +74,7 @@ export function SpendingSpectrumCard({
       <motion.div
         whileHover={{ y: -3 }}
         transition={{ duration: 0.25 }}
-        className={`relative z-10 w-full rounded-(--radius-xl) p-6 overflow-hidden select-none transition-all duration-300 ${
+        className={`relative z-content w-full rounded-(--radius-xl) p-6 overflow-hidden select-none transition-all dur-slow ${
           isDark
             ? 'bg-[#0B0C11] card-aura-sunset shadow-(--shadow-popover) shadow-(--shadow-popover)'
             : 'bg-white card-aura-sunset shadow-(--shadow-card) border border-black/[0.045] hover:shadow-(--elevation-3)'
@@ -84,22 +84,22 @@ export function SpendingSpectrumCard({
         <div className={`absolute -top-12 left-1/2 -translate-x-1/2 w-64 h-32 rounded-(--radius-pill) blur-2xl pointer-events-none ${isDark ? 'bg-gradient-to-r from-orange-500/10 via-purple-500/10 to-pink-500/10' : 'bg-gradient-to-r from-orange-500/8 via-purple-500/8 to-pink-500/8'}`} />
 
         {/* Monospace Tracked Header */}
-        <span className={`block text-[11px] font-mono tracking-widest uppercase ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
+        <span className={`block type-micro font-mono tracking-widest uppercase ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
           {title}
         </span>
 
         {/* Amount & Percentage Row */}
         <div className="mt-1 flex items-baseline justify-between">
           <div className="flex items-baseline">
-            <span className={`text-3xl sm:text-4xl font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+            <span className={`type-display sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
               {totalAmount}
             </span>
-            <span className={`text-xl sm:text-2xl font-medium ${isDark ? 'text-white/40' : 'text-black/35'}`}>
+            <span className={`type-title sm:type-heading font-medium ${isDark ? 'text-white/40' : 'text-black/35'}`}>
               {cents}
             </span>
           </div>
 
-          <span className={`text-sm font-semibold tracking-tight ${isDark ? 'text-white/70' : 'text-[#111116]/70'}`}>
+          <span className={`type-body font-semibold tracking-tight ${isDark ? 'text-white/70' : 'text-[#111116]/70'}`}>
             {percentage}
           </span>
         </div>
@@ -109,7 +109,7 @@ export function SpendingSpectrumCard({
           {spectrumColors.map((colorClass, idx) => (
             <div
               key={idx}
-              className={`w-1.5 h-6 rounded-(--radius-pill) ${colorClass} transition-all duration-300 hover:scale-110`}
+              className={`w-1.5 h-6 rounded-(--radius-pill) ${colorClass} transition-all dur-slow hover:scale-110`}
             />
           ))}
         </div>
@@ -117,7 +117,7 @@ export function SpendingSpectrumCard({
         {/* Category Breakdown */}
         <div className="space-y-2.5 pt-1">
           {items.map((item, i) => (
-            <div key={i} className="flex items-center justify-between text-xs sm:text-sm">
+            <div key={i} className="flex items-center justify-between type-caption sm:type-body">
               <div className="flex items-center gap-2.5">
                 <span className={`w-2 h-3.5 rounded-(--radius-pill) ${item.colorClass} shadow-(--glow-current-sm)`} />
                 <span className={`font-medium tracking-tight ${isDark ? 'text-[#90909A]' : 'text-[#6E6E78]'}`}>

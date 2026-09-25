@@ -42,7 +42,7 @@ export function HoverCardContent({
         align={align}
         sideOffset={sideOffset}
         className={cn(
-          'z-50 w-72 rounded-(--radius-control) border border-(--border-subtle) bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl p-4 text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3)',
+          'z-popover w-72 rounded-(--radius-control) border border-(--border-subtle) bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl p-4 text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3)',
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
           className
         )}

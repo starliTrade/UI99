@@ -37,16 +37,16 @@ export function EmptyPlaceholder({
         className
       )}
     >
-      <div className="w-12 h-12 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/5 dark:border-white/5 flex items-center justify-center text-zinc-400 dark:text-zinc-500 shadow-xs mb-4">
-        {icon || <Inbox className="w-6 h-6 stroke-[1.5]" />}
+      <div className="w-12 h-12 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/5 dark:border-white/5 flex items-center justify-center text-(--text-secondary) dark:text-zinc-500 shadow-xs mb-4">
+        {icon || <Inbox className="icon-xl stroke-[1.5]" />}
       </div>
 
-      <h4 className="text-base font-semibold text-zinc-900 dark:text-white tracking-tight mb-1">
+      <h4 className="type-body-lg font-semibold text-zinc-900 dark:text-white tracking-tight mb-1">
         {title}
       </h4>
 
       {description && (
-        <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 max-w-sm mb-6 leading-relaxed">
+        <p className="type-caption sm:type-body text-(--text-muted) dark:text-zinc-400 max-w-sm mb-6 leading-relaxed">
           {description}
         </p>
       )}
@@ -57,7 +57,7 @@ export function EmptyPlaceholder({
             size="sm"
             variant="primary"
             onClick={onAction}
-            icon={<Plus className="w-3.5 h-3.5" />}
+            icon={<Plus className="icon-sm" />}
           >
             <span>{actionLabel}</span>
             {shortcut && (

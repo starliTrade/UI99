@@ -1,3 +1,15 @@
+/**
+ * UI99 — Command Palette
+ *
+ * ANATOMY   Command ▸ [cmdk] ▸ [CommandInput] ▸ [CommandList] ▸ [CommandItem]
+ * STATES    default · focus-visible · empty-result · selected · disabled
+ * TOKENS    --bg-popover, --shadow-popover, --radius-xl, --text-muted
+ * A11Y      role="dialog" + aria-modal, combobox/listbox pattern from cmdk;
+ *            result count announced via aria-live.
+ * KEYBOARD  Cmd/Ctrl-K or "/" opens · arrows move the active item · Enter runs
+ *            · Escape closes and restores focus to the trigger.
+ */
+
 import * as React from 'react';
 import { Command as CommandPrimitive } from 'cmdk';
 import { Search } from 'lucide-react';
@@ -40,11 +52,11 @@ const CommandInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   <div className="flex items-center border-b border-black/[0.06] dark:border-white/[0.05] px-4">
-    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50 text-zinc-400 dark:text-(--text-secondary)" />
+    <Search className="icon-md mr-2 shrink-0 opacity-50 text-(--text-secondary) dark:text-(--text-secondary)" />
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
-        'flex h-12 w-full rounded-(--radius-xs) bg-transparent py-3 text-sm outline-none placeholder:text-zinc-400 dark:placeholder:text-(--text-muted) disabled:cursor-not-allowed disabled:opacity-50 text-(--text-primary)',
+        'flex h-12 w-full rounded-(--radius-xs) bg-transparent py-3 type-body outline-none placeholder:text-zinc-400 dark:placeholder:text-(--text-muted) disabled:cursor-not-allowed disabled:opacity-50 text-(--text-primary)',
         className
       )}
       {...props}
@@ -71,7 +83,7 @@ const CommandEmpty = React.forwardRef<
 >((props, ref) => (
   <CommandPrimitive.Empty
     ref={ref}
-    className="py-6 text-center text-xs text-(--text-secondary)"
+    className="py-6 text-center type-caption text-(--text-secondary)"
     {...props}
   />
 ));
@@ -84,7 +96,7 @@ const CommandGroup = React.forwardRef<
   <CommandPrimitive.Group
     ref={ref}
     className={cn(
-      'overflow-hidden p-1 text-zinc-700 dark:text-(--text-secondary) [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:uppercase',
+      'overflow-hidden p-1 text-zinc-700 dark:text-(--text-secondary) [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:type-micro [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:uppercase',
       className
     )}
     {...props}
@@ -111,7 +123,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-field) px-2.5 py-2 text-xs sm:text-sm font-medium outline-none transition-colors',
+      'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-field) px-2.5 py-2 type-caption sm:type-body font-medium outline-none transition-colors',
       'aria-selected:bg-black/[0.05] aria-selected:text-zinc-950 dark:aria-selected:bg-white/[0.07] dark:aria-selected:text-white',
       'data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
       className
@@ -128,7 +140,7 @@ const CommandShortcut = ({
   return (
     <span
       className={cn(
-        'ml-auto text-[10px] tracking-widest text-(--text-muted) font-mono px-1.5 py-0.5 rounded bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.04] dark:border-white/[0.06]',
+        'ml-auto type-micro tracking-widest text-(--text-muted) font-mono px-1.5 py-0.5 rounded bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.04] dark:border-white/[0.06]',
         className
       )}
       {...props}

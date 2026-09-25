@@ -119,12 +119,36 @@
 .dark,
 .light,
 [data-theme] {
-  /* Motion durations (Apple HIG 150–500ms band) */
+  /* Motion durations (Apple HIG 75–500ms band).
+   *
+   * The ramp is derived from the kit's MEASURED distribution, not from a
+   * textbook. The previous version declared 75/120/180/280/400 — and the code
+   * used 75, 100, 150, 200, 300 and 500. 150ms was the single most common
+   * transition in the kit (23 sites) and had no token at all, which is the same
+   * mistake the icon scale had: the scale had deleted its own default.
+   *
+   * Every step here is a value the code already used, so the migration is
+   * pixel- and millisecond-identical. The names carry WEIGHT, because that is
+   * the decision a component is actually making:
+   *   instant     a state layer acknowledging the press
+   *   fast        leaving quickly — hover-out, colour washes
+   *   quick       the workhorse: most state changes
+   *   base        something structural is moving
+   *   slow        large surfaces, accordions, sheets
+   *   deliberate  a journey the user should follow
+   *   lazy        ambient loops that must never compete for attention
+   */
   --duration-instant: 75ms;
-  --duration-fast: 120ms;
+  --duration-fast: 100ms;
+  --duration-quick: 150ms;
   --duration-base: 180ms;
   --duration-slow: 280ms;
   --duration-deliberate: 400ms;
+  --duration-lazy: 500ms;
+  /* Progress fills are outside the weight ramp on purpose: a bar sweeping from
+     0→100 has to be *seen* to be believed, so it earns its own 700ms. Naming it
+     is the point — "why is this one 700?" has an answer. */
+  --duration-progress: 700ms;
 
   /* Easing curves */
   --ease-ui99: cubic-bezier(0.16, 1, 0.3, 1);
@@ -141,17 +165,40 @@
      See `src/core/tokens/index.ts` → `rounded` for the machine-readable law. */
 }
 
-/* ======================= FOCUS UTILITIES (WCAG 2.4.13) ======================= */
-/* Plain-CSS class form: safe to consume from the npm stylesheet without Tailwind. */
+/* ======================= DURATION UTILITIES ======================= */
+/* Plain-CSS form: available to npm consumers who do not run Tailwind. */
+.dur-instant { transition-duration: var(--duration-instant); animation-duration: var(--duration-instant); }
+.dur-fast { transition-duration: var(--duration-fast); animation-duration: var(--duration-fast); }
+.dur-quick { transition-duration: var(--duration-quick); animation-duration: var(--duration-quick); }
+.dur-base { transition-duration: var(--duration-base); animation-duration: var(--duration-base); }
+.dur-slow { transition-duration: var(--duration-slow); animation-duration: var(--duration-slow); }
+.dur-deliberate { transition-duration: var(--duration-deliberate); animation-duration: var(--duration-deliberate); }
+.dur-lazy { transition-duration: var(--duration-lazy); animation-duration: var(--duration-lazy); }
+.dur-progress { transition-duration: var(--duration-progress); animation-duration: var(--duration-progress); }
 
-.focus-ui99:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--focus-ring);
+/* ======================= FOCUS UTILITIES (WCAG 2.4.11 / 2.4.13) ======================= */
+/* Plain-CSS class form: safe to consume from the npm stylesheet without Tailwind.
+ *
+ * Drawn with `outline`, not `box-shadow`. The previous box-shadow ring
+ * REPLACED any elevation shadow on the focused element, so a card went flat the
+ * instant it took focus — the focus indicator destroyed the very depth cue it
+ * was supposed to sit on. `outline` composites over the box and cannot.
+ *
+ * `outline-offset` supplies the canvas gap that makes the ring legible on both
+ * the light and the dark surface; 2px at 2px thick clears WCAG 2.4.13's
+ * perimeter-area requirement against both theme backgrounds.
+ */
+
+.focus-ui99:focus-visible,
+.focus-safa:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
-.focus-ui99-inset:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 0 2px var(--focus-ring);
+.focus-ui99-inset:focus-visible,
+.focus-safa-inset:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
 }
 
 /* ======================= REDUCED MOTION ======================= */

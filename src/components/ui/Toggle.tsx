@@ -10,7 +10,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 
 export const toggleVariants = cva(
-  'inline-flex items-center justify-center gap-2 rounded-(--radius-sm) font-medium tracking-tight cursor-pointer select-none transition-all duration-150 focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:pointer-events-none active:scale-[0.97]',
+  'inline-flex items-center justify-center gap-2 rounded-(--radius-sm) font-medium tracking-tight cursor-pointer select-none transition-all dur-quick focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:pointer-events-none active:scale-[0.97]',
   {
     variants: {
       variant: {
@@ -22,9 +22,9 @@ export const toggleVariants = cva(
           'bg-zinc-100 dark:bg-(--bg-card-hover) text-(--text-primary) hover:bg-zinc-200 dark:hover:bg-(--bg-card-hover) data-[state=on]:bg-zinc-900 data-[state=on]:text-white dark:data-[state=on]:bg-(--text-primary) dark:data-[state=on]:text-(--text-on-fill)',
       },
       size: {
-        sm: 'h-8 px-2.5 text-xs',
-        md: 'h-10 px-3 text-sm',
-        lg: 'h-12 px-4 text-base',
+        sm: 'h-8 px-2.5 type-caption',
+        md: 'h-10 px-3 type-body',
+        lg: 'h-12 px-4 type-body-lg',
       },
     },
     defaultVariants: { variant: 'default', size: 'md' },

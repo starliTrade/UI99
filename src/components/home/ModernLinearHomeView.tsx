@@ -259,17 +259,17 @@ export function ModernLinearHomeView() {
   const renderStatusIcon = (status: IssueStatus) => {
     switch (status) {
       case 'done':
-        return <CheckCircle2 className="w-4 h-4 text-emerald-500 fill-emerald-500/20" />;
+        return <CheckCircle2 className="icon-md text-emerald-500 fill-emerald-500/20" />;
       case 'in_progress':
-        return <Clock className="w-4 h-4 text-amber-500 animate-pulse" />;
+        return <Clock className="icon-md text-amber-500 animate-pulse" />;
       case 'todo':
-        return <Circle className="w-4 h-4 text-zinc-500 hover:text-zinc-300" />;
+        return <Circle className="icon-md text-zinc-500 hover:text-zinc-300" />;
       case 'backlog':
-        return <MinusCircle className="w-4 h-4 text-zinc-600" />;
+        return <MinusCircle className="icon-md text-zinc-600" />;
       case 'canceled':
-        return <XCircle className="w-4 h-4 text-rose-500" />;
+        return <XCircle className="icon-md text-rose-500" />;
       default:
-        return <Circle className="w-4 h-4 text-zinc-500" />;
+        return <Circle className="icon-md text-zinc-500" />;
     }
   };
 
@@ -278,30 +278,30 @@ export function ModernLinearHomeView() {
     switch (priority) {
       case 'urgent':
         return (
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30">
-            <SignalHigh className="w-3 h-3 text-rose-400" />
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded type-micro font-mono font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30">
+            <SignalHigh className="icon-xs text-rose-400" />
             <span>P0</span>
           </span>
         );
       case 'high':
         return (
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
-            <SignalHigh className="w-3 h-3 text-amber-400" />
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded type-micro font-mono font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
+            <SignalHigh className="icon-xs text-amber-400" />
             <span>P1</span>
           </span>
         );
       case 'medium':
         return (
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
-            <SignalMedium className="w-3 h-3 text-blue-400" />
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded type-micro font-mono font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+            <SignalMedium className="icon-xs text-blue-400" />
             <span>P2</span>
           </span>
         );
       case 'low':
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium text-zinc-500 border border-zinc-500/20">
-            <SignalLow className="w-3 h-3 text-zinc-500" />
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded type-micro font-mono font-medium text-zinc-500 border border-zinc-500/20">
+            <SignalLow className="icon-xs text-zinc-500" />
             <span>P3</span>
           </span>
         );
@@ -321,18 +321,18 @@ export function ModernLinearHomeView() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-(--radius-control) bg-zinc-900 dark:bg-white/10 flex items-center justify-center text-white shrink-0 border border-black/[0.08] dark:border-white/[0.08]">
-              <Zap className="w-4 h-4 text-emerald-400 fill-emerald-400/20" />
+              <Zap className="icon-md text-emerald-400 fill-emerald-400/20" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                <h1 className="type-body-lg sm:type-body-lg font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                   Sprint Cycle 24
                 </h1>
-                <span className="px-2 py-0.5 rounded-(--radius-pill) text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                <span className="px-2 py-0.5 rounded-(--radius-pill) type-micro font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                   ACTIVE • 4d left
                 </span>
               </div>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98] font-mono">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98] font-mono">
                 {donePoints} of {totalPoints} story points completed ({cycleCompletion}%)
               </p>
             </div>
@@ -346,9 +346,9 @@ export function ModernLinearHomeView() {
                 setIsComposerOpen(true);
                 setTimeout(() => composerInputRef.current?.focus(), 50);
               }}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) text-xs font-semibold bg-zinc-950 text-white dark:bg-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all active:scale-[0.97] cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) type-caption font-semibold bg-zinc-950 text-white dark:bg-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all active:scale-[0.97] cursor-pointer shadow-xs"
             >
-              <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
+              <Plus className="icon-sm stroke-[2.5]" />
               <span>New Issue</span>
               <Kbd size="xs" className="hidden sm:inline-block ml-1 opacity-70">C</Kbd>
             </button>
@@ -356,9 +356,9 @@ export function ModernLinearHomeView() {
             <button
               type="button"
               onClick={() => setCurrentTab('UIKIT')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) text-xs font-medium bg-zinc-100 hover:bg-zinc-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-zinc-700 dark:text-zinc-300 transition-all cursor-pointer border border-black/[0.04] dark:border-white/[0.03]"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) type-caption font-medium bg-zinc-100 hover:bg-zinc-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-zinc-700 dark:text-zinc-300 transition-all cursor-pointer border border-black/[0.04] dark:border-white/[0.03]"
             >
-              <Layers className="w-3.5 h-3.5" />
+              <Layers className="icon-sm" />
               <span className="hidden sm:inline">UI Kit</span>
             </button>
           </div>
@@ -368,15 +368,15 @@ export function ModernLinearHomeView() {
         <div className="space-y-1.5 pt-1">
           <div className="w-full h-2 rounded-(--radius-pill) bg-zinc-200 dark:bg-zinc-800/80 overflow-hidden flex">
             <div
-              className="h-full bg-emerald-500 transition-all duration-500"
+              className="h-full bg-emerald-500 transition-all dur-lazy"
               style={{ width: `${cycleCompletion}%` }}
             />
             <div
-              className="h-full bg-amber-500/70 transition-all duration-500"
+              className="h-full bg-amber-500/70 transition-all dur-lazy"
               style={{ width: `${Math.round((inProgressCount / issues.length) * 100)}%` }}
             />
           </div>
-          <div className="flex items-center justify-between text-[10px] font-mono text-zinc-400 dark:text-zinc-500 px-0.5">
+          <div className="flex items-center justify-between type-micro font-mono text-zinc-400 dark:text-zinc-500 px-0.5">
             <div className="flex items-center gap-3">
               <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
                 <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-emerald-500" />
@@ -408,8 +408,8 @@ export function ModernLinearHomeView() {
             className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.08] dark:border-white/[0.06] shadow-lg space-y-3"
           >
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400">
-                <Terminal className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-2 type-caption font-mono font-semibold text-emerald-600 dark:text-emerald-400">
+                <Terminal className="icon-sm" />
                 <span>Create New Linear Issue</span>
               </div>
               <button
@@ -417,7 +417,7 @@ export function ModernLinearHomeView() {
                 onClick={() => setIsComposerOpen(false)}
                 className="p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-white rounded-(--radius-sm) transition-colors cursor-pointer"
               >
-                <X className="w-4 h-4" />
+                <X className="icon-md" />
               </button>
             </div>
 
@@ -427,7 +427,7 @@ export function ModernLinearHomeView() {
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
               placeholder="Issue title or description..."
-              className="w-full bg-transparent text-sm font-medium text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
+              className="w-full bg-transparent type-body font-medium text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
             />
 
             <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.03]">
@@ -437,7 +437,7 @@ export function ModernLinearHomeView() {
                   value={newPriority}
                   onChange={(e) => setNewPriority(e.target.value as PriorityLevel)}
                   aria-label="Issue priority level"
-                  className="bg-zinc-100 dark:bg-white/[0.04] text-xs font-mono font-medium rounded-(--radius-sm) px-2.5 py-1 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04] focus:outline-none cursor-pointer"
+                  className="bg-zinc-100 dark:bg-white/[0.04] type-caption font-mono font-medium rounded-(--radius-sm) px-2.5 py-1 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04] focus:outline-none cursor-pointer"
                 >
                   <option value="urgent">P0 Urgent</option>
                   <option value="high">P1 High</option>
@@ -450,7 +450,7 @@ export function ModernLinearHomeView() {
                   value={newEstimate}
                   onChange={(e) => setNewEstimate(Number(e.target.value))}
                   aria-label="Story points estimate"
-                  className="bg-zinc-100 dark:bg-white/[0.04] text-xs font-mono font-medium rounded-(--radius-sm) px-2.5 py-1 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04] focus:outline-none cursor-pointer"
+                  className="bg-zinc-100 dark:bg-white/[0.04] type-caption font-mono font-medium rounded-(--radius-sm) px-2.5 py-1 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04] focus:outline-none cursor-pointer"
                 >
                   <option value={1}>1 pt</option>
                   <option value={2}>2 pts</option>
@@ -464,17 +464,17 @@ export function ModernLinearHomeView() {
                 <button
                   type="button"
                   onClick={() => setIsComposerOpen(false)}
-                  className="px-3 py-1 rounded-(--radius-field) text-xs text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer"
+                  className="px-3 py-1 rounded-(--radius-field) type-caption text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={!newTitle.trim()}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-40 disabled:pointer-events-none transition-all cursor-pointer shadow-xs"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) type-caption font-semibold bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-40 disabled:pointer-events-none transition-all cursor-pointer shadow-xs"
                 >
                   <span>Save Issue</span>
-                  <CornerDownLeft className="w-3 h-3" />
+                  <CornerDownLeft className="icon-xs" />
                 </button>
               </div>
             </div>
@@ -497,7 +497,7 @@ export function ModernLinearHomeView() {
               key={tab.id}
               type="button"
               onClick={() => setFilterStatus(tab.id)}
-              className={`px-3 py-1 rounded-(--radius-field) text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+              className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium whitespace-nowrap transition-all cursor-pointer ${
                 filterStatus === tab.id
                   ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                   : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
@@ -511,13 +511,13 @@ export function ModernLinearHomeView() {
         {/* Search & Priority filter */}
         <div className="flex items-center gap-2">
           <div className="relative flex-1 sm:w-56">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none" />
+            <Search className="icon-sm absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Filter issues..."
-              className="w-full bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] rounded-(--radius-field) pl-8 pr-3 py-1.5 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
+              className="w-full bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] rounded-(--radius-field) pl-8 pr-3 py-1.5 type-caption text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
             />
           </div>
 
@@ -525,7 +525,7 @@ export function ModernLinearHomeView() {
             value={filterPriority}
             onChange={(e) => setFilterPriority(e.target.value)}
             aria-label="Filter issues by priority"
-            className="bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] text-xs font-mono rounded-(--radius-field) px-2.5 py-1.5 text-zinc-600 dark:text-zinc-400 focus:outline-none cursor-pointer"
+            className="bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] type-caption font-mono rounded-(--radius-field) px-2.5 py-1.5 text-zinc-600 dark:text-zinc-400 focus:outline-none cursor-pointer"
           >
             <option value="ALL">All Priorities</option>
             <option value="urgent">P0 Urgent</option>
@@ -541,8 +541,8 @@ export function ModernLinearHomeView() {
         {filteredIssues.length === 0 ? (
           <div className="p-12 text-center space-y-2">
             <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto opacity-60" />
-            <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">All caught up</h3>
-            <p className="text-xs text-zinc-500">No issues match the selected filter criteria.</p>
+            <h3 className="type-body font-semibold text-zinc-900 dark:text-white">All caught up</h3>
+            <p className="type-caption text-zinc-500">No issues match the selected filter criteria.</p>
           </div>
         ) : (
           filteredIssues.map((iss, idx) => {
@@ -575,14 +575,14 @@ export function ModernLinearHomeView() {
                   </button>
 
                   {/* Identifier */}
-                  <span className="text-[11px] font-mono font-bold text-zinc-400 dark:text-zinc-500 shrink-0">
+                  <span className="type-micro font-mono font-bold text-zinc-400 dark:text-zinc-500 shrink-0">
                     {iss.key}
                   </span>
 
                   {/* Title */}
                   <div className="min-w-0 flex-1 flex items-center gap-2">
                     <span
-                      className={`text-xs sm:text-sm font-medium tracking-tight truncate ${
+                      className={`type-caption sm:type-body font-medium tracking-tight truncate ${
                         isDone
                           ? 'line-through text-zinc-400 dark:text-zinc-500'
                           : 'text-zinc-950 dark:text-[#EDEDEF]'
@@ -596,7 +596,7 @@ export function ModernLinearHomeView() {
                       {iss.labels.map((lbl) => (
                         <span
                           key={lbl}
-                          className="px-1.5 py-0.2 rounded text-[10px] font-mono text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-white/[0.03] border border-black/[0.04] dark:border-white/[0.02]"
+                          className="px-1.5 py-0.2 rounded type-micro font-mono text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-white/[0.03] border border-black/[0.04] dark:border-white/[0.02]"
                         >
                           {lbl}
                         </span>
@@ -612,7 +612,7 @@ export function ModernLinearHomeView() {
 
                   {/* Estimate */}
                   {iss.estimate && (
-                    <span className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-white/[0.03]">
+                    <span className="hidden sm:inline-block px-1.5 py-0.5 rounded type-micro font-mono font-semibold text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-white/[0.03]">
                       {iss.estimate}pt
                     </span>
                   )}
@@ -626,7 +626,7 @@ export function ModernLinearHomeView() {
                   />
 
                   {/* Relative timestamp */}
-                  <span className="hidden lg:inline-block text-[10px] font-mono text-zinc-400 dark:text-zinc-500 w-12 text-right">
+                  <span className="hidden lg:inline-block type-micro font-mono text-zinc-400 dark:text-zinc-500 w-12 text-right">
                     {iss.updatedAt}
                   </span>
                 </div>
@@ -637,7 +637,7 @@ export function ModernLinearHomeView() {
       </div>
 
       {/* 5. KEYBOARD SHORTCUTS REFERENCE BAR (Linear Pro Productivity Hint) */}
-      <div className="p-3.5 rounded-(--radius-control) bg-zinc-50 dark:bg-[#0B0C11] border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono text-zinc-500">
+      <div className="p-3.5 rounded-(--radius-control) bg-zinc-50 dark:bg-[#0B0C11] border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center justify-between gap-3 type-micro font-mono text-zinc-500">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
             <Kbd size="xs">J</Kbd>
@@ -660,7 +660,7 @@ export function ModernLinearHomeView() {
         </div>
 
         <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-          <ShieldCheck className="w-3.5 h-3.5" />
+          <ShieldCheck className="icon-sm" />
           <span>Linear Velocity Engine Active</span>
         </div>
       </div>

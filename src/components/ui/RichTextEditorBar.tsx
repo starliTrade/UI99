@@ -87,7 +87,7 @@ export function RichTextEditorBar({
                 : 'hover:bg-zinc-100 dark:hover:bg-white/[0.04]'
             )}
           >
-            <Icon className="w-4 h-4" />
+            <Icon className="icon-md" />
           </button>
         );
       })}

@@ -17,6 +17,8 @@ import {
   LogOut,
 } from 'lucide-react';
 
+import { DensitySwitcher } from '../ui/DensitySwitcher';
+
 export function SettingsModal() {
   const { user, updateProfile, logout, isRTL, language, setLanguage } = useAuth();
   const { isSettingsOpen, setIsSettingsOpen, addToast } = useApp();
@@ -82,15 +84,15 @@ export function SettingsModal() {
         {/* Sub-tabs */}
         <div className="flex items-center gap-1 border-b border-white/[0.06] pb-2 overflow-x-auto no-scrollbar">
           {[
-            { id: 'PROFILE', label: 'Profile & Look', icon: <User className="w-3.5 h-3.5" /> },
-            { id: 'SLO', label: 'SLO Connection', icon: <HeartHandshake className="w-3.5 h-3.5" /> },
-            { id: 'DATA', label: 'Data & Ownership', icon: <Download className="w-3.5 h-3.5" /> },
-            { id: 'AI', label: 'AI Intelligence', icon: <Sparkles className="w-3.5 h-3.5" /> },
+            { id: 'PROFILE', label: 'Profile & Look', icon: <User className="icon-sm" /> },
+            { id: 'SLO', label: 'SLO Connection', icon: <HeartHandshake className="icon-sm" /> },
+            { id: 'DATA', label: 'Data & Ownership', icon: <Download className="icon-sm" /> },
+            { id: 'AI', label: 'AI Intelligence', icon: <Sparkles className="icon-sm" /> },
           ].map((t) => (
             <button
               key={t.id}
               onClick={() => setActiveTab(t.id as any)}
-              className={`px-3 py-1.5 rounded-(--radius-pill) text-xs font-semibold flex items-center gap-1.5 transition-all whitespace-nowrap cursor-pointer select-none ${
+              className={`px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold flex items-center gap-1.5 transition-all whitespace-nowrap cursor-pointer select-none ${
                 activeTab === t.id
                   ? 'bg-white text-[#09090B] shadow-(--elevation-2)'
                   : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
@@ -104,14 +106,14 @@ export function SettingsModal() {
 
         {/* PROFILE TAB */}
         {activeTab === 'PROFILE' && (
-          <div className="space-y-3.5 text-xs">
+          <div className="space-y-3.5 type-caption">
             <div>
               <label className="block text-zinc-400 font-bold mb-1">Name</label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 text-sm text-white font-semibold focus:outline-none focus:border-white/30"
+                className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 type-body text-white font-semibold focus:outline-none focus:border-white/30"
               />
             </div>
 
@@ -122,7 +124,7 @@ export function SettingsModal() {
                 dir="rtl"
                 value={persianName}
                 onChange={(e) => setPersianName(e.target.value)}
-                className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 text-sm text-white font-persian-luxury focus:outline-none focus:border-white/30"
+                className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 type-body text-white font-persian-luxury focus:outline-none focus:border-white/30"
                 placeholder="نام نمایشی"
               />
             </div>
@@ -133,7 +135,7 @@ export function SettingsModal() {
                 rows={2}
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
-                className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) p-3 text-xs text-zinc-200 focus:outline-none focus:border-white/30"
+                className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) p-3 type-caption text-zinc-200 focus:outline-none focus:border-white/30"
               />
             </div>
 
@@ -141,13 +143,13 @@ export function SettingsModal() {
             <div className="p-3.5 bg-[#18181D] rounded-(--radius-field) border border-white/[0.08] flex items-center justify-between">
               <div>
                 <span className="font-bold text-white block">Layout Direction & Language</span>
-                <span className="text-zinc-400 text-[11px]">English LTR / فارسی راست‌به‌چپ</span>
+                <span className="text-zinc-400 type-micro">English LTR / فارسی راست‌به‌چپ</span>
               </div>
               <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setLanguage('en')}
-                  className={`px-3 py-1 rounded-(--radius-pill) text-xs font-semibold border transition-all cursor-pointer ${
+                  className={`px-3 py-1 rounded-(--radius-pill) type-caption font-semibold border transition-all cursor-pointer ${
                     language === 'en'
                       ? 'bg-white text-[#09090B] border-transparent shadow-xs'
                       : 'bg-[#222228] text-zinc-400 border-white/[0.06]'
@@ -158,7 +160,7 @@ export function SettingsModal() {
                 <button
                   type="button"
                   onClick={() => setLanguage('fa')}
-                  className={`px-3 py-1 rounded-(--radius-pill) text-xs font-semibold border transition-all cursor-pointer font-persian-luxury ${
+                  className={`px-3 py-1 rounded-(--radius-pill) type-caption font-semibold border transition-all cursor-pointer font-persian-luxury ${
                     language === 'fa'
                       ? 'bg-white text-[#09090B] border-transparent shadow-xs'
                       : 'bg-[#222228] text-zinc-400 border-white/[0.06]'
@@ -168,21 +170,34 @@ export function SettingsModal() {
                 </button>
               </div>
             </div>
+
+            {/* Density — compact is a pointer affordance, not a finger one. */}
+            <div className="p-3.5 bg-[#18181D] rounded-(--radius-field) border border-white/[0.08]">
+              <div className="flex items-center justify-between mb-2.5">
+                <div>
+                  <span className="font-bold text-white block">Interface Density</span>
+                  <span className="text-zinc-400 type-micro">
+                    Compact trades the 44px touch target for rows — desktop only
+                  </span>
+                </div>
+              </div>
+              <DensitySwitcher fullWidth />
+            </div>
           </div>
         )}
 
         {/* SLO TAB */}
         {activeTab === 'SLO' && (
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3 type-caption">
             <div className="p-4 bg-[#18181D] rounded-(--radius-control) border border-white/[0.08] space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-(--radius-pill) bg-purple-950/40 border border-purple-500/30 flex items-center justify-center text-purple-300">
-                    <HeartHandshake className="w-4 h-4" />
+                    <HeartHandshake className="icon-md" />
                   </div>
                   <div>
                     <h4 className="font-bold text-white">Special Connection (SLO)</h4>
-                    <p className="text-[11px] text-zinc-400">
+                    <p className="type-micro text-zinc-400">
                       Private by default. SLO has NO access unless you explicitly grant it per object.
                     </p>
                   </div>
@@ -194,7 +209,7 @@ export function SettingsModal() {
                 <button
                   type="button"
                   onClick={handleToggleSLOAccess}
-                  className={`px-3 py-1 rounded-(--radius-pill) font-bold text-xs transition-colors ${
+                  className={`px-3 py-1 rounded-(--radius-pill) font-bold type-caption transition-colors ${
                     sloConfig?.defaultAccess === 'NO_ACCESS'
                       ? 'bg-[#222228] text-zinc-300 border border-white/[0.08]'
                       : 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/30'
@@ -205,7 +220,7 @@ export function SettingsModal() {
               </div>
             </div>
 
-            <p className="text-zinc-400 leading-relaxed text-[11px]">
+            <p className="text-zinc-400 leading-relaxed type-micro">
               When viewing any Photo, Memory, or Project, you can toggle "Allow SLO Access" to share that specific moment with complete authorization control.
             </p>
           </div>
@@ -213,10 +228,10 @@ export function SettingsModal() {
 
         {/* DATA OWNERSHIP TAB */}
         {activeTab === 'DATA' && (
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3 type-caption">
             <div className="p-4 bg-[#18181D] rounded-(--radius-control) border border-white/[0.08] space-y-3">
               <div className="flex items-start gap-3">
-                <ShieldCheck className="w-5 h-5 text-emerald-400 mt-0.5" />
+                <ShieldCheck className="icon-lg text-emerald-400 mt-0.5" />
                 <div>
                   <h4 className="font-bold text-white">Total Data Sovereignty</h4>
                   <p className="text-zinc-400 mt-0.5 leading-relaxed">
@@ -229,7 +244,7 @@ export function SettingsModal() {
                 variant="white-pill"
                 size="sm"
                 onClick={handleExportData}
-                icon={<Download className="w-3.5 h-3.5" />}
+                icon={<Download className="icon-sm" />}
               >
                 Export Full UI99 Archive (.json)
               </Button>
@@ -239,10 +254,10 @@ export function SettingsModal() {
 
         {/* AI TAB */}
         {activeTab === 'AI' && (
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3 type-caption">
             <div className="p-4 bg-[#18181D] rounded-(--radius-control) border border-white/[0.08] space-y-2.5">
               <div className="flex items-center gap-2 font-bold text-white">
-                <Sparkles className="w-4 h-4 text-purple-400" />
+                <Sparkles className="icon-md text-purple-400" />
                 <span>UI99 Intelligence Architecture</span>
               </div>
               <p className="text-zinc-400 leading-relaxed">
@@ -257,7 +272,7 @@ export function SettingsModal() {
         {/* Footer Actions */}
         <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between">
           <Button variant="ghost" size="sm" onClick={logout} className="text-rose-400 hover:bg-rose-500/10">
-            <LogOut className="w-3.5 h-3.5 mr-1.5" />
+            <LogOut className="icon-sm mr-1.5" />
             Sign Out
           </Button>
 

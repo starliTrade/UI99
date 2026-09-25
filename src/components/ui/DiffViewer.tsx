@@ -41,14 +41,14 @@ export function DiffViewer({
   return (
     <div
       className={cn(
-        'rounded-(--radius-control) bg-white dark:bg-(--bg-canvas) border border-zinc-200 dark:border-white/[0.06] overflow-hidden text-xs font-mono shadow-sm dark:shadow-lg',
+        'rounded-(--radius-control) bg-white dark:bg-(--bg-canvas) border border-zinc-200 dark:border-white/[0.06] overflow-hidden type-caption font-mono shadow-sm dark:shadow-lg',
         className
       )}
     >
       {/* Diff Header */}
       <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-50 dark:bg-(--bg-card) border-b border-zinc-200 dark:border-white/[0.04]">
         <div className="flex items-center gap-2">
-          <GitCommit className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
+          <GitCommit className="icon-sm text-(--text-muted) dark:text-zinc-400" />
           <span className="text-zinc-900 dark:text-zinc-200 font-medium">{fileName}</span>
           <div className="flex items-center gap-1.5 ml-2">
             <span className="text-emerald-600 dark:text-emerald-400 font-semibold">+{additions}</span>
@@ -60,9 +60,9 @@ export function DiffViewer({
           type="button"
           onClick={copyDiff}
           aria-label="Copy diff"
-          className="p-1 rounded text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer"
+          className="p-1 rounded text-(--text-muted) hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer"
         >
-          {copied ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+          {copied ? <Check className="icon-sm text-emerald-600 dark:text-emerald-400" /> : <Copy className="icon-sm" />}
         </button>
       </div>
 
@@ -83,10 +83,10 @@ export function DiffViewer({
               )}
             >
               {/* Line Numbers */}
-              <div className="w-8 text-right pr-2 text-[10px] text-zinc-400 dark:text-zinc-600 select-none">
+              <div className="w-8 text-right pr-2 type-micro text-(--text-secondary) dark:text-zinc-600 select-none">
                 {line.oldLineNumber || ''}
               </div>
-              <div className="w-8 text-right pr-3 text-[10px] text-zinc-400 dark:text-zinc-600 select-none">
+              <div className="w-8 text-right pr-3 type-micro text-(--text-secondary) dark:text-zinc-600 select-none">
                 {line.newLineNumber || ''}
               </div>
 

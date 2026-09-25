@@ -16,7 +16,7 @@ import { X, Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export const buttonVariants = cva(
-  'inline-flex items-center justify-center font-medium tracking-tight transition-all duration-150 cursor-pointer select-none active:scale-[0.97] focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 disabled:pointer-events-none',
+  'inline-flex items-center justify-center font-medium tracking-tight transition-all dur-quick cursor-pointer select-none active:scale-[0.97] focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 disabled:pointer-events-none',
   {
     variants: {
       variant: {
@@ -46,10 +46,10 @@ export const buttonVariants = cva(
       // rectangle sized to its own height, and `shape` is the explicit opt-in
       // for a real capsule.
       size: {
-        xs: 'text-[11px] px-2.5 py-1 rounded-(--radius-xs) gap-1 h-6',
-        sm: 'text-xs px-3.5 py-1.5 rounded-(--radius-sm) gap-1.5 h-8',
-        md: 'text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-(--radius-control) gap-2 h-10',
-        lg: 'text-base px-6 py-3 rounded-(--radius-md) gap-2.5 h-12',
+        xs: 'type-micro px-2.5 py-1 rounded-(--radius-xs) gap-1 control-h-xs',
+        sm: 'type-caption px-3.5 py-1.5 rounded-(--radius-sm) gap-1.5 control-h-sm',
+        md: 'type-body px-4 sm:px-5 py-2 sm:py-2.5 rounded-(--radius-control) gap-2 control-h-md',
+        lg: 'type-body-lg px-6 py-3 rounded-(--radius-md) gap-2.5 control-h-lg',
         icon: 'w-10 h-10 rounded-(--radius-control) p-0 [&_svg]:size-4',
       },
       shape: {
@@ -125,7 +125,7 @@ export function Button({
       disabled={disabled || loading}
       {...props}
     >
-      {loading && <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0" />}
+      {loading && <Loader2 className="icon-sm animate-spin shrink-0" />}
       {icon && !loading && <span className="shrink-0 inline-flex">{icon}</span>}
       <span className="whitespace-nowrap">{children}</span>
     </button>
@@ -133,7 +133,7 @@ export function Button({
 }
 
 export const iconButtonVariants = cva(
-  'rounded-(--radius-pill) inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed',
+  'rounded-(--radius-pill) inline-flex items-center justify-center transition-all dur-quick cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed',
   {
     variants: {
       variant: {
@@ -154,11 +154,13 @@ export const iconButtonVariants = cva(
           'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
       },
       size: {
-        xs: 'w-7 h-7 text-xs',
-        sm: 'w-8 h-8 text-xs',
-        md: 'w-9 h-9 sm:w-10 sm:h-10 text-sm',
-        lg: 'w-11 h-11 text-base',
+        xs: 'w-7 h-7 type-caption',
+        sm: 'w-8 h-8 type-caption',
+        md: 'w-9 h-9 sm:w-10 sm:h-10 type-body',
+        lg: 'w-11 h-11 type-body-lg',
       },
+      // Density-scoped variant: the Avatar stack is the one place the kit
+      // shows density, because overlap is what density *means* here.
     },
     defaultVariants: {
       variant: 'ghost',
@@ -195,7 +197,7 @@ export function IconButton({
       disabled={disabled || loading}
       {...props}
     >
-      {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : icon}
+      {loading ? <Loader2 className="icon-sm animate-spin" /> : icon}
     </button>
   );
 }
@@ -221,7 +223,7 @@ export function Tag({
   className = '',
 }: TagProps) {
   const effectiveVariant = variant || color || 'neutral';
-  const sizeStyle = size === 'sm' ? 'text-[11px] px-2.5 py-0.5' : 'text-xs px-3 py-1';
+  const sizeStyle = size === 'sm' ? 'type-micro px-2.5 py-0.5' : 'type-caption px-3 py-1';
 
   const variantStyle = {
     neutral:
@@ -285,10 +287,10 @@ export function Avatar({
   className = '',
 }: AvatarProps) {
   const sizeStyle = {
-    xs: 'w-6 h-6 text-[10px]',
-    sm: 'w-7 h-7 text-xs',
-    md: 'w-9 h-9 text-sm',
-    lg: 'w-12 h-12 text-base font-semibold',
+    xs: 'w-6 h-6 type-micro',
+    sm: 'w-7 h-7 type-caption',
+    md: 'w-9 h-9 type-body',
+    lg: 'w-12 h-12 type-body-lg font-semibold',
   }[size];
 
   const displayName = alt || name;
@@ -314,7 +316,7 @@ export function Avatar({
         <span
           className={`absolute bottom-0 right-0 rounded-(--radius-pill) ring-2 ring-white dark:ring-(--bg-sunken) ${
             status === 'online' ? 'bg-emerald-400' : 'bg-zinc-400 dark:bg-zinc-500'
-          } ${size === 'xs' || size === 'sm' ? 'w-2 h-2' : 'w-2.5 h-2.5'}`}
+          } ${size === 'xs' || size === 'sm' ? 'icon-dot' : 'icon-dot-lg'}`}
         />
       )}
     </div>

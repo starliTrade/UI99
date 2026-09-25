@@ -44,7 +44,7 @@ export function Stepper({
           >
             <span
               className={cn(
-                'flex h-7 w-7 shrink-0 items-center justify-center rounded-(--radius-pill) border text-[11px] font-mono font-bold transition-all duration-200',
+                'flex h-7 w-7 shrink-0 items-center justify-center rounded-(--radius-pill) border type-micro font-mono font-bold transition-all dur-base',
                 isDone &&
                   'bg-emerald-500 text-white border-emerald-500 shadow-(--glow-accent-md)',
                 isCurrent &&
@@ -53,11 +53,11 @@ export function Stepper({
                   'bg-transparent text-zinc-400 border-(--border-strong)'
               )}
             >
-              {isDone ? <Check className="w-3.5 h-3.5" /> : i + 1}
+              {isDone ? <Check className="icon-sm" /> : i + 1}
             </span>
             <span
               className={cn(
-                'text-xs font-medium tracking-tight',
+                'type-caption font-medium tracking-tight',
                 orientation === 'horizontal' ? 'ml-2 hidden sm:block' : '',
                 isCurrent
                   ? 'text-zinc-950 dark:text-white font-semibold'
@@ -70,7 +70,7 @@ export function Stepper({
               <span
                 aria-hidden="true"
                 className={cn(
-                  'mx-3 h-px flex-1 transition-colors duration-200',
+                  'mx-3 h-px flex-1 transition-colors dur-base',
                   i < current ? 'bg-emerald-500/50' : 'bg-black/[0.08] dark:bg-white/[0.08]'
                 )}
               />

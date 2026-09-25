@@ -1,12 +1,12 @@
 /**
- * UI99 — Type Utilities (Tailwind v4 layer)
+ * UI99 — Type Utilities
  *
- * The type scale in ui99-type.css is a set of custom properties. These
- * utilities turn each step into a real class so a component writes
- * `text-title` instead of assembling font-size + line-height + tracking by hand.
+ * The ramp in ui99-type.css is a set of custom properties. These turn each step
+ * into a real utility so a component writes `type-title` instead of assembling
+ * font-size + line-height + tracking by hand.
  *
- *   .type-micro .type-caption .type-body .type-body-lg
- *   .type-title .type-heading .type-display .type-hero .type-billboard
+ *   type-micro · type-caption · type-body · type-body-lg
+ *   type-title · type-heading · type-display · type-hero · type-billboard
  *
  * Persian is automatic: when the app sets `data-script="fa"` on <html> (the
  * AuthContext language switch already toggles `lang`/`dir`), the ramp swaps to
@@ -14,20 +14,78 @@
  *
  * The pairing is the point — line-height and tracking travel WITH the size, so
  * a design system can actually own vertical rhythm.
+ *
+ * ── WHY @utility AND NOT A PLAIN .class ──────────────────────────────────────
+ *
+ * These used to be written as plain `.type-body { … }` rules, which silently
+ * broke responsive type. A plain class cannot take a Tailwind variant:
+ * `sm:type-body` is not a class that exists anywhere, so a codemod that
+ * faithfully preserved a breakpoint prefix would have written markup pointing
+ * at nothing — 91 call sites, no error, no styling.
+ *
+ * `@utility` registers them as first-class Tailwind utilities, so variants
+ * resolve (`sm:type-body`, `dark:type-caption`) and they land in the utilities
+ * layer, where a component's own `leading-relaxed` / `tracking-tight` /
+ * `font-semibold` still wins. A ramp you cannot override is a cage.
+ *
+ * Single definition on purpose. These tokens already had two drifting copies
+ * once (see the radius incident in docs/standards.md §5c) — a parallel
+ * framework-free block here would be the same mistake waiting to happen.
+ * Every UI99 component is Tailwind-based, so every consumer has Tailwind.
  */
 
 /* ─── Latin steps ─── */
-.type-micro { font-size: var(--type-micro-size); line-height: var(--type-micro-leading); letter-spacing: var(--type-micro-tracking); }
-.type-caption { font-size: var(--type-caption-size); line-height: var(--type-caption-leading); letter-spacing: var(--type-caption-tracking); }
-.type-body { font-size: var(--type-body-size); line-height: var(--type-body-leading); letter-spacing: var(--type-body-tracking); }
-.type-body-lg { font-size: var(--type-body-lg-size); line-height: var(--type-body-lg-leading); letter-spacing: var(--type-body-lg-tracking); }
-.type-title { font-size: var(--type-title-size); line-height: var(--type-title-leading); letter-spacing: var(--type-title-tracking); }
-.type-heading { font-size: var(--type-heading-size); line-height: var(--type-heading-leading); letter-spacing: var(--type-heading-tracking); }
-.type-display { font-size: var(--type-display-size); line-height: var(--type-display-leading); letter-spacing: var(--type-display-tracking); }
-.type-hero { font-size: var(--type-hero-size); line-height: var(--type-hero-leading); letter-spacing: var(--type-hero-tracking); }
-.type-billboard { font-size: var(--type-billboard-size); line-height: var(--type-billboard-leading); letter-spacing: var(--type-billboard-tracking); }
+@utility type-micro {
+  font-size: var(--type-micro-size);
+  line-height: var(--type-micro-leading);
+  letter-spacing: var(--type-micro-tracking);
+}
+@utility type-caption {
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-leading);
+  letter-spacing: var(--type-caption-tracking);
+}
+@utility type-body {
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  letter-spacing: var(--type-body-tracking);
+}
+@utility type-body-lg {
+  font-size: var(--type-body-lg-size);
+  line-height: var(--type-body-lg-leading);
+  letter-spacing: var(--type-body-lg-tracking);
+}
+@utility type-title {
+  font-size: var(--type-title-size);
+  line-height: var(--type-title-leading);
+  letter-spacing: var(--type-title-tracking);
+}
+@utility type-heading {
+  font-size: var(--type-heading-size);
+  line-height: var(--type-heading-leading);
+  letter-spacing: var(--type-heading-tracking);
+}
+@utility type-display {
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-leading);
+  letter-spacing: var(--type-display-tracking);
+}
+@utility type-hero {
+  font-size: var(--type-hero-size);
+  line-height: var(--type-hero-leading);
+  letter-spacing: var(--type-hero-tracking);
+}
+@utility type-billboard {
+  font-size: var(--type-billboard-size);
+  line-height: var(--type-billboard-leading);
+  letter-spacing: var(--type-billboard-tracking);
+}
 
-/* ─── Persian override: optical size +8%, looser leading, no negative tracking ─── */
+/* ─── Persian override: optical size, looser leading, no negative tracking ────
+ * The utilities themselves must not declare these properties, or Tailwind
+ * would emit a same-layer rule whose source order decides the winner. Keeping
+ * the script-specific values in a higher-specificity selector is what makes
+ * `data-script="fa"` authoritative rather than merely later. */
 [data-script='fa'] .type-micro { font-size: var(--type-fa-micro-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
 [data-script='fa'] .type-caption { font-size: var(--type-fa-caption-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
 [data-script='fa'] .type-body { font-size: var(--type-fa-body-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
@@ -39,13 +97,28 @@
 [data-script='fa'] .type-billboard { font-size: var(--type-fa-billboard-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
 
 /* ─── Weights ─── */
-.weight-regular { font-weight: var(--weight-regular); }
-.weight-medium { font-weight: var(--weight-medium); }
-.weight-semibold { font-weight: var(--weight-semibold); }
-.weight-bold { font-weight: var(--weight-bold); }
+@utility weight-regular { font-weight: var(--weight-regular); }
+@utility weight-medium { font-weight: var(--weight-medium); }
+@utility weight-semibold { font-weight: var(--weight-semibold); }
+@utility weight-bold { font-weight: var(--weight-bold); }
 
-/* ─── Icon scale — 4 optical sizes ─── */
-.icon-xs { width: var(--icon-xs); height: var(--icon-xs); }
-.icon-sm { width: var(--icon-sm); height: var(--icon-sm); }
-.icon-md { width: var(--icon-md); height: var(--icon-md); }
-.icon-lg { width: var(--icon-lg); height: var(--icon-lg); }
+/* ─── Icon scale — 5 optical sizes ───
+ * `icon-md` (16px) is the default and the most common by a wide margin. Note
+ * these set BOTH width and height: an icon sized on one axis only is a squashed
+ * glyph, and `w-4 h-4` is 22 characters of typing to say what `icon-md` says in
+ * 7. */
+@utility icon-xs { width: var(--icon-xs); height: var(--icon-xs); }
+@utility icon-sm { width: var(--icon-sm); height: var(--icon-sm); }
+@utility icon-md { width: var(--icon-md); height: var(--icon-md); }
+@utility icon-lg { width: var(--icon-lg); height: var(--icon-lg); }
+@utility icon-xl { width: var(--icon-xl); height: var(--icon-xl); }
+
+/* The default, so the common case needs no class at all. Anything rendering a
+ * bare <LucideIcon /> inside the kit already lands on the system size instead
+ * of whatever the browser or a parent happened to inherit. */
+@utility icon { width: var(--icon-md); height: var(--icon-md); }
+
+/* Status dots — a filled circle signalling presence, NOT a glyph. Named
+ * separately so `dot` never gets mistaken for an icon size. */
+@utility icon-dot { width: var(--icon-dot); height: var(--icon-dot); }
+@utility icon-dot-lg { width: var(--icon-dot-lg); height: var(--icon-dot-lg); }

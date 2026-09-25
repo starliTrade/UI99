@@ -39,7 +39,7 @@ export function TrendDelta({
     <span
       className={cn(
         'inline-flex items-center gap-0.5 rounded-(--radius-pill) border font-mono font-semibold whitespace-nowrap',
-        size === 'sm' ? 'px-1.5 py-0.5 text-[10px]' : 'px-2 py-1 text-xs',
+        size === 'sm' ? 'px-1.5 py-0.5 type-micro' : 'px-2 py-1 type-caption',
         toneStyle,
         className
       )}

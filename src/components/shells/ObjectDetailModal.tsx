@@ -100,34 +100,34 @@ export function ObjectDetailModal() {
       <div className="space-y-5">
         {/* Title input */}
         <div>
-          <label className="block text-xs font-bold text-zinc-400 mb-1">Title</label>
+          <label className="block type-caption font-bold text-zinc-400 mb-1">Title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3.5 py-2 text-sm text-white font-semibold focus:outline-none focus:border-white/30"
+            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3.5 py-2 type-body text-white font-semibold focus:outline-none focus:border-white/30"
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-xs font-bold text-zinc-400 mb-1">Description / Notes</label>
+          <label className="block type-caption font-bold text-zinc-400 mb-1">Description / Notes</label>
           <textarea
             rows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) p-3 text-sm text-zinc-200 focus:outline-none focus:border-white/30 resize-y"
+            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) p-3 type-body text-zinc-200 focus:outline-none focus:border-white/30 resize-y"
           />
         </div>
 
         {/* Status selector */}
         <div className="flex items-center gap-3">
           <div className="flex-1">
-            <label className="block text-xs font-bold text-zinc-400 mb-1">Status</label>
+            <label className="block type-caption font-bold text-zinc-400 mb-1">Status</label>
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as ObjectStatus)}
-              className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 text-xs text-white focus:outline-none focus:border-white/30"
+              className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 type-caption text-white focus:outline-none focus:border-white/30"
             >
               <option value={ObjectStatus.ACTIVE}>Active</option>
               <option value={ObjectStatus.INBOX}>Inbox</option>
@@ -139,17 +139,17 @@ export function ObjectDetailModal() {
           </div>
 
           <div className="flex-1">
-            <label className="block text-xs font-bold text-zinc-400 mb-1">Privacy & SLO</label>
+            <label className="block type-caption font-bold text-zinc-400 mb-1">Privacy & SLO</label>
             <button
               type="button"
               onClick={() => setAllowSLO(!allowSLO)}
-              className={`w-full py-2 px-3 rounded-(--radius-field) border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+              className={`w-full py-2 px-3 rounded-(--radius-field) border type-caption font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
                 allowSLO
                   ? 'bg-purple-950/40 text-purple-300 border-purple-500/30'
                   : 'bg-[#18181D] text-zinc-400 border-white/[0.08]'
               }`}
             >
-              <HeartHandshake className="w-3.5 h-3.5" />
+              <HeartHandshake className="icon-sm" />
               <span>{allowSLO ? 'SLO Access: Permitted' : 'Private (No Access)'}</span>
             </button>
           </div>
@@ -158,7 +158,7 @@ export function ObjectDetailModal() {
         {/* Tags */}
         {selectedObject.tags?.length > 0 && (
           <div>
-            <label className="block text-xs font-bold text-zinc-400 mb-1.5">Tags</label>
+            <label className="block type-caption font-bold text-zinc-400 mb-1.5">Tags</label>
             <div className="flex items-center gap-2 flex-wrap">
               {selectedObject.tags.map((t) => (
                 <Tag key={t} label={t} variant="neutral" />
@@ -170,24 +170,24 @@ export function ObjectDetailModal() {
         {/* Connected Graph Relationships */}
         <div className="p-4 rounded-(--radius-control) bg-[#18181D] border border-white/[0.08] space-y-3 shadow-inner">
           <div className="flex items-center justify-between">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5">
-              <Link2 className="w-3.5 h-3.5 text-amber-400" />
+            <h4 className="type-caption font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5">
+              <Link2 className="icon-sm text-amber-400" />
               Connected Graph Relations ({related.length})
             </h4>
             {!isLinking && (
               <button
                 type="button"
                 onClick={() => setIsLinking(true)}
-                className="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1 font-semibold cursor-pointer"
+                className="type-caption text-amber-400 hover:text-amber-300 flex items-center gap-1 font-semibold cursor-pointer"
               >
-                <Plus className="w-3 h-3" /> Connect to Object
+                <Plus className="icon-xs" /> Connect to Object
               </button>
             )}
           </div>
 
           {/* New Relationship Form */}
           {isLinking && (
-            <div className="p-3 bg-[#202026] rounded-(--radius-field) border border-white/[0.08] space-y-2 text-xs">
+            <div className="p-3 bg-[#202026] rounded-(--radius-field) border border-white/[0.08] space-y-2 type-caption">
               <div className="font-semibold text-white">Add Relationship</div>
               <div className="grid grid-cols-2 gap-2">
                 <select
@@ -234,7 +234,7 @@ export function ObjectDetailModal() {
 
           {/* Linked Objects List */}
           {related.length === 0 ? (
-            <p className="text-xs text-zinc-500 italic">
+            <p className="type-caption text-zinc-500 italic">
               No relationships connected yet. Link this to projects, notes, or inspirations.
             </p>
           ) : (
@@ -242,10 +242,10 @@ export function ObjectDetailModal() {
               {related.map(({ rel, object: relObj }) => (
                 <div
                   key={rel.id}
-                  className="p-2.5 rounded-(--radius-field) bg-[#202026] border border-white/[0.06] flex items-center justify-between text-xs group"
+                  className="p-2.5 rounded-(--radius-field) bg-[#202026] border border-white/[0.06] flex items-center justify-between type-caption group"
                 >
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-[10px] font-bold text-amber-300 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">
+                    <span className="type-micro font-bold text-amber-300 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">
                       {rel.type}
                     </span>
                     <span className="font-semibold text-white truncate">
@@ -255,7 +255,7 @@ export function ObjectDetailModal() {
                   <button
                     type="button"
                     onClick={() => unlinkObjects(rel.id)}
-                    className="text-zinc-500 hover:text-rose-400 cursor-pointer text-xs p-1"
+                    className="text-zinc-500 hover:text-rose-400 cursor-pointer type-caption p-1"
                     title="Unlink"
                   >
                     ×
@@ -269,7 +269,7 @@ export function ObjectDetailModal() {
         {/* Modal Actions */}
         <div className="pt-3 flex items-center justify-between border-t border-white/[0.06]">
           <Button variant="ghost" size="sm" onClick={handleDelete} className="text-rose-400 hover:bg-rose-500/10">
-            <Trash2 className="w-4 h-4 mr-1.5 text-rose-400" />
+            <Trash2 className="icon-md mr-1.5 text-rose-400" />
             Delete
           </Button>
 

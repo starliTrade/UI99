@@ -23,7 +23,7 @@ import { ObjectDetailModal } from './components/shells/ObjectDetailModal';
 import { SettingsModal } from './components/shells/SettingsModal';
 
 function MainShell() {
-  const { currentTab, themeMode } = useApp();
+  const { currentTab, themeMode, toasts, removeToast } = useApp();
   const { isRTL } = useAuth();
 
   const renderActiveView = () => {
@@ -47,13 +47,13 @@ function MainShell() {
 
   const content = (
     <div
-      className={`min-h-screen ${isDark ? 'dark bg-[#06070A] text-[#EDEDEF] studio-dark-canvas' : 'light bg-[#F4F4F6] text-[#111113]'} flex flex-col font-sans transition-colors duration-200 relative overflow-x-hidden ${
+      className={`min-h-screen ${isDark ? 'dark bg-[#06070A] text-[#EDEDEF] studio-dark-canvas' : 'light bg-[#F4F4F6] text-[#111113]'} flex flex-col font-sans transition-colors dur-base relative overflow-x-hidden ${
         isRTL ? 'font-persian-luxury' : ''
       }`}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       {/* Unified Calm Ambient Canvas Lighting — Soft, neutral, zero color blotches */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none z-base overflow-hidden">
         {isDark ? (
           <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[450px] rounded-full bg-white/[0.015] blur-[160px]" />
         ) : (
@@ -65,7 +65,7 @@ function MainShell() {
       <TopHeader />
 
       {/* Main Content Area — Standardized vertical spacing from TopHeader across all views */}
-      <main className="relative z-10 flex-1 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-6 sm:pt-14 md:pt-16 pb-24 sm:pb-28">
+      <main className="relative z-content flex-1 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-6 sm:pt-14 md:pt-16 pb-24 sm:pb-28">
         {renderActiveView()}
       </main>
 
@@ -77,7 +77,7 @@ function MainShell() {
       <GlobalSearchModal />
       <ObjectDetailModal />
       <SettingsModal />
-      <ToastContainer />
+      <ToastContainer toasts={toasts} onDismiss={removeToast} />
     </div>
   );
 

@@ -1,3 +1,16 @@
+/**
+ * UI99 — Tabs
+ *
+ * ANATOMY   Tabs ▸ [TabsList] ▸ [TabsTrigger] ▸ [TabsContent]
+ * STATES    default · hover · focus-visible (focus-ui99) · active · disabled
+ * TOKENS    --radius-control, --bg-sunken, --accent, --text-secondary
+ * A11Y      Radix Tabs: role="tablist"/"tab"/"tabpanel" with aria-controls and
+ *            aria-selected wired; the indicator is a layout effect, never the
+ *            only signal of the active tab.
+ * KEYBOARD  Arrows move and activate (automatic activation) · Home/End jump to
+ *            the first/last tab.
+ */
+
 import * as React from 'react';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { cn } from '../../lib/utils';
@@ -26,7 +39,7 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      'inline-flex items-center justify-center whitespace-nowrap rounded-(--radius-field) px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-all duration-150 cursor-pointer select-none outline-none focus-ui99-inset',
+      'inline-flex items-center justify-center whitespace-nowrap rounded-(--radius-field) px-3.5 py-1.5 type-caption sm:type-body font-medium transition-all dur-quick cursor-pointer select-none outline-none focus-ui99-inset',
       'disabled:pointer-events-none disabled:opacity-50',
       'data-[state=active]:bg-white data-[state=active]:text-zinc-950 data-[state=active]:shadow-xs',
       'dark:data-[state=active]:bg-(--bg-elevated) dark:data-[state=active]:text-white dark:data-[state=active]:shadow-(--shadow-card)',

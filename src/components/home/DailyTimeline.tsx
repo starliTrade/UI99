@@ -95,14 +95,14 @@ export function DailyTimeline({
       {/* Header */}
       <div className="flex items-center justify-between px-1">
         <div className="flex items-center gap-2">
-          <Clock className="w-3.5 h-3.5 text-zinc-400" />
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-[#92929B]">
+          <Clock className="icon-sm text-zinc-400" />
+          <h3 className="type-micro font-semibold uppercase tracking-wider text-[#92929B]">
             {isRTL ? 'جریان و برنامه روز' : 'Daily Schedule & Rhythm'}
           </h3>
         </div>
 
         {isToday && (
-          <div className="flex items-center gap-1.5 text-[11px] font-medium text-rose-400">
+          <div className="flex items-center gap-1.5 type-micro font-medium text-rose-400">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-(--radius-pill) bg-rose-500 opacity-75" />
               <span className="relative inline-flex rounded-(--radius-pill) h-2 w-2 bg-rose-500 shadow-(--glow-rose-sm)" />
@@ -121,15 +121,15 @@ export function DailyTimeline({
         >
           <div className="flex items-center gap-3.5">
             <div className="w-10 h-10 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors shrink-0">
-              <Calendar className="w-4 h-4" />
+              <Calendar className="icon-md" />
             </div>
             <div>
-              <p className="text-xs sm:text-sm font-medium text-[#EDEDEF] leading-relaxed">
+              <p className="type-caption sm:type-body font-medium text-[#EDEDEF] leading-relaxed">
                 {isRTL
                   ? 'امروز هنوز چیزی در برنامه‌ات ثبت نشده.'
                   : 'Nothing scheduled for this day yet.'}
               </p>
-              <p className="text-[11px] text-[#92929B] mt-0.5 font-light">
+              <p className="type-micro text-[#92929B] mt-0.5 font-light">
                 {isRTL
                   ? 'شاید وقت خوبیه برای اینکه روزت رو خودت بسازی ✦'
                   : 'A quiet, unhurried space to shape your day ✦'}
@@ -139,9 +139,9 @@ export function DailyTimeline({
 
           <button
             type="button"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-(--radius-pill) bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 border border-white/[0.04] text-xs font-medium shrink-0 transition-transform active:scale-95 cursor-pointer"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-(--radius-pill) bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 border border-white/[0.04] type-caption font-medium shrink-0 transition-transform active:scale-95 cursor-pointer"
           >
-            <Plus className="w-3.5 h-3.5 text-rose-400" />
+            <Plus className="icon-sm text-rose-400" />
             <span>{isRTL ? 'ثبت برنامه' : 'Add Event'}</span>
           </button>
         </div>
@@ -165,7 +165,7 @@ export function DailyTimeline({
                 {showNowBefore && (
                   <div className="relative flex items-center gap-3 px-4 py-1.5 bg-rose-500/[0.04] border-y border-rose-500/20">
                     <div className="w-12 text-right rtl:text-left shrink-0">
-                      <span className="text-[9px] font-mono font-bold text-rose-400 tracking-wider">
+                      <span className="type-micro font-mono font-bold text-rose-400 tracking-wider">
                         NOW
                       </span>
                     </div>
@@ -183,7 +183,7 @@ export function DailyTimeline({
                 >
                   {/* Time */}
                   <div className="w-12 text-right rtl:text-left shrink-0">
-                    <span className="text-[11px] font-mono font-medium text-[#8E8E98]">
+                    <span className="type-micro font-mono font-medium text-[#8E8E98]">
                       {item.time}
                     </span>
                   </div>
@@ -205,28 +205,28 @@ export function DailyTimeline({
                   <div className="flex-1 min-w-0 pr-2 rtl:pl-2 rtl:pr-0">
                     <div className="flex items-center gap-2">
                       <span
-                        className={`text-xs sm:text-[13px] font-medium tracking-tight text-[#EDEDEF] truncate ${
+                        className={`type-caption sm:type-caption font-medium tracking-tight text-[#EDEDEF] truncate ${
                           item.isCompleted ? 'line-through text-zinc-500' : ''
                         }`}
                       >
                         {item.title}
                       </span>
                       <span
-                        className={`text-[8.5px] uppercase font-mono font-semibold tracking-wider px-1.5 py-0.5 rounded border ${badge.className}`}
+                        className={`type-micro uppercase font-mono font-semibold tracking-wider px-1.5 py-0.5 rounded border ${badge.className}`}
                       >
                         {badge.label}
                       </span>
                     </div>
 
                     {item.description && (
-                      <p className="text-[11px] mt-0.5 leading-relaxed truncate text-[#8E8E98] font-light">
+                      <p className="type-micro mt-0.5 leading-relaxed truncate text-[#8E8E98] font-light">
                         {item.description}
                       </p>
                     )}
                   </div>
 
                   {item.objectId && (
-                    <ArrowUpRight className="w-3.5 h-3.5 text-zinc-600 group-hover:text-zinc-400 shrink-0" />
+                    <ArrowUpRight className="icon-sm text-zinc-600 group-hover:text-zinc-400 shrink-0" />
                   )}
                 </div>
               </React.Fragment>

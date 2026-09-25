@@ -102,7 +102,7 @@ export function Confetti({
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-50 w-full h-full"
+      className="fixed inset-0 pointer-events-none z-toast w-full h-full"
     />
   );
 }

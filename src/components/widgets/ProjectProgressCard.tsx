@@ -53,7 +53,7 @@ export function ProjectProgressCard({
       <div className={`absolute -top-10 -right-10 w-44 h-44 rounded-(--radius-pill) blur-2xl pointer-events-none ${isDark ? 'bg-emerald-500/15' : 'bg-emerald-500/10'}`} />
 
       {/* Top row: Sparkle icon */}
-      <div className="flex items-center gap-2 mb-2.5 relative z-10">
+      <div className="flex items-center gap-2 mb-2.5 relative z-content">
         <div
           className={`w-6 h-6 rounded-(--radius-pill) flex items-center justify-center transition-colors ${
             isDark ? 'bg-white/[0.08] text-white/90' : 'bg-black/[0.05] text-black/80'
@@ -80,43 +80,43 @@ export function ProjectProgressCard({
       </div>
 
       {/* Title & Category Capsule Tag */}
-      <div className="flex items-center gap-2.5 flex-wrap mb-1 relative z-10">
-        <h3 className={`text-base sm:text-lg font-semibold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+      <div className="flex items-center gap-2.5 flex-wrap mb-1 relative z-content">
+        <h3 className={`type-body-lg sm:type-body-lg font-semibold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
           {title}
         </h3>
-        <span className="px-2.5 py-0.5 rounded-(--radius-pill) text-xs font-medium text-emerald-500 bg-emerald-500/10 border border-emerald-500/20">
+        <span className="px-2.5 py-0.5 rounded-(--radius-pill) type-caption font-medium text-emerald-500 bg-emerald-500/10 border border-emerald-500/20">
           {category}
         </span>
       </div>
 
       {/* High-Contrast Percentage */}
-      <div className="my-2 flex items-baseline relative z-10">
-        <span className={`text-3xl sm:text-4xl font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+      <div className="my-2 flex items-baseline relative z-content">
+        <span className={`type-display sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
           {progress}
         </span>
-        <span className={`text-xl sm:text-2xl font-semibold ml-0.5 ${isDark ? 'text-white/40' : 'text-black/35'}`}>
+        <span className={`type-title sm:type-heading font-semibold ml-0.5 ${isDark ? 'text-white/40' : 'text-black/35'}`}>
           %
         </span>
       </div>
 
       {/* Luminous Capsule Progress Track with Embedded Due Date */}
-      <div className={`my-4 relative w-full h-11 rounded-(--radius-pill) overflow-hidden p-1 flex items-center shadow-(--elevation-2) relative z-10 ${isDark ? 'bg-black/40' : 'bg-black/[0.06]'}`}>
+      <div className={`my-4 relative w-full h-11 rounded-(--radius-pill) overflow-hidden p-1 flex items-center shadow-(--elevation-2) relative z-content ${isDark ? 'bg-black/40' : 'bg-black/[0.06]'}`}>
         {/* Harmonious Gradient Filled Pill */}
         <div
-          className="h-full rounded-(--radius-pill) bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300 shadow-(--glow-accent-lg) transition-all duration-700 ease-out"
+          className="h-full rounded-(--radius-pill) bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300 shadow-(--glow-accent-lg) transition-all dur-progress ease-out"
           style={{ width: `${progress}%` }}
         />
 
         {/* Embedded Deadline Label inside the track on the right */}
-        <div className={`absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-xs font-semibold tracking-tight ${progress > 75 ? 'text-zinc-950 font-bold' : isDark ? 'text-white drop-shadow-sm' : 'text-zinc-700'}`}>
+        <div className={`absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none type-caption font-semibold tracking-tight ${progress > 75 ? 'text-zinc-950 font-bold' : isDark ? 'text-white drop-shadow-sm' : 'text-zinc-700'}`}>
           {dueDate}
         </div>
       </div>
 
       {/* Bottom Row: Collaborators & Action Button */}
-      <div className="mt-4 pt-1 flex items-end justify-between gap-3 relative z-10">
+      <div className="mt-4 pt-1 flex items-end justify-between gap-3 relative z-content">
         <div>
-          <span className={`block text-xs font-medium mb-2 tracking-tight ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
+          <span className={`block type-caption font-medium mb-2 tracking-tight ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
             Collaborators {collaboratorsCount}
           </span>
           <div className="flex items-center gap-1.5">
@@ -135,14 +135,14 @@ export function ProjectProgressCard({
         <button
           type="button"
           onClick={onClick || (() => openCapture(ObjectType.PROJECT))}
-          className={`flex items-center gap-1.5 px-4 py-2 rounded-(--radius-pill) text-xs font-semibold cursor-pointer transition-all active:scale-95 ${
+          className={`flex items-center gap-1.5 px-4 py-2 rounded-(--radius-pill) type-caption font-semibold cursor-pointer transition-all active:scale-95 ${
             isDark
               ? 'bg-white/[0.08] hover:bg-white/[0.14] text-white shadow-(--shadow-card)'
               : 'bg-black/[0.05] hover:bg-black/[0.08] text-[#111116] shadow-(--elevation-1)'
           }`}
         >
           <span>More details</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="icon-sm" />
         </button>
       </div>
     </motion.div>

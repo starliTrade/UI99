@@ -85,7 +85,7 @@ export function DatePicker({
           type="button"
           disabled={disabled}
           className={cn(
-            'inline-flex h-10 min-w-[180px] items-center gap-2 rounded-(--radius-field) border border-black/[0.07] bg-white px-3 text-sm text-zinc-950',
+            'inline-flex h-10 min-w-[180px] items-center gap-2 rounded-(--radius-field) border border-black/[0.07] bg-white px-3 type-body text-zinc-950',
             'dark:border-white/[0.07] dark:bg-(--bg-elevated) dark:text-(--text-primary)',
             'transition-colors hover:bg-(--state-hover)',
             'focus-visible:outline-none focus-ui99-inset cursor-pointer',
@@ -93,7 +93,7 @@ export function DatePicker({
             className
           )}
         >
-          <CalendarDays className="w-4 h-4 text-zinc-400 dark:text-(--text-secondary)" />
+          <CalendarDays className="icon-md text-(--text-secondary) dark:text-(--text-secondary)" />
           <span className={cn(!parsed && 'text-zinc-400 dark:text-(--text-secondary)')}>
             {parsed ? value : placeholder}
           </span>
@@ -103,33 +103,33 @@ export function DatePicker({
         <PopoverPrimitive.Content
           sideOffset={8}
           align="start"
-          className="z-50 w-[280px] rounded-(--radius-control) border border-black/[0.06] bg-white p-3 shadow-(--elevation-4) dark:border-white/[0.06] dark:bg-(--bg-elevated)"
+          className="z-popover w-[280px] rounded-(--radius-control) border border-black/[0.06] bg-white p-3 shadow-(--elevation-4) dark:border-white/[0.06] dark:bg-(--bg-elevated)"
         >
           <div className="mb-2 flex items-center justify-between">
             <button
               type="button"
               onClick={() => shiftMonth(-1)}
               aria-label="Previous month"
-              className="rounded-(--radius-sm) p-1.5 text-zinc-500 hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
+              className="rounded-(--radius-sm) p-1.5 text-(--text-muted) hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="icon-md" />
             </button>
-            <span className="text-sm font-semibold text-(--text-primary)" aria-live="polite">
+            <span className="type-body font-semibold text-(--text-primary)" aria-live="polite">
               {MONTHS[view.m]} {view.y}
             </span>
             <button
               type="button"
               onClick={() => shiftMonth(1)}
               aria-label="Next month"
-              className="rounded-(--radius-sm) p-1.5 text-zinc-500 hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
+              className="rounded-(--radius-sm) p-1.5 text-(--text-muted) hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="icon-md" />
             </button>
           </div>
 
           <div className="grid grid-cols-7 gap-0.5" role="grid" aria-label={`${MONTHS[view.m]} ${view.y}`}>
             {WEEKDAYS.map((wd) => (
-              <div key={wd} role="columnheader" className="py-1 text-center text-[10px] font-mono uppercase text-(--text-muted)">
+              <div key={wd} role="columnheader" className="py-1 text-center type-micro font-mono uppercase text-(--text-muted)">
                 {wd}
               </div>
             ))}
@@ -145,7 +145,7 @@ export function DatePicker({
                   disabled={disabledDates?.(cell.iso)}
                   onClick={() => select(cell.iso)}
                   className={cn(
-                    'h-8 w-8 rounded-(--radius-sm) text-xs font-medium transition-colors focus-visible:outline-none focus-ui99-inset',
+                    'h-8 w-8 rounded-(--radius-sm) type-caption font-medium transition-colors focus-visible:outline-none focus-ui99-inset',
                     'hover:bg-(--state-hover)',
                     cell.iso === value
                       ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950'

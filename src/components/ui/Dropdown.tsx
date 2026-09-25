@@ -114,7 +114,7 @@ export function Dropdown<T extends string = string>({
     if (idx >= 0) setActiveIndex(idx);
   };
 
-  const sizeClass = size === 'sm' ? 'px-3 py-1.5 text-xs' : 'px-3.5 py-2 text-sm';
+  const sizeClass = size === 'sm' ? 'px-3 py-1.5 type-caption' : 'px-3.5 py-2 type-body';
   const listId = `dropdown-list-${label || 'default'}`.replace(/\s+/g, '-').toLowerCase();
 
   return (
@@ -122,7 +122,7 @@ export function Dropdown<T extends string = string>({
       {label && (
         <span
           id={`${listId}-label`}
-          className={`block text-xs font-semibold mb-1.5 ${
+          className={`block type-caption font-semibold mb-1.5 ${
             isDark ? 'text-(--text-secondary)' : 'text-zinc-700'
           }`}
         >
@@ -135,7 +135,7 @@ export function Dropdown<T extends string = string>({
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={handleTriggerKeyDown}
-        className={`w-full flex items-center justify-between rounded-(--radius-field) font-medium transition-all duration-150 cursor-pointer select-none focus-ui99 ${sizeClass} ${
+        className={`w-full flex items-center justify-between rounded-(--radius-field) font-medium transition-all dur-quick cursor-pointer select-none focus-ui99 ${sizeClass} ${
           isDark
             ? 'bg-(--bg-elevated) text-(--text-primary) border border-white/[0.06] hover:border-white/[0.14] shadow-xs'
             : 'bg-white text-zinc-900 border border-black/[0.08] hover:border-black/[0.18] shadow-xs'
@@ -150,9 +150,7 @@ export function Dropdown<T extends string = string>({
           <span className="truncate">{selectedOption ? selectedOption.label : placeholder}</span>
         </span>
         <ChevronDown
-          className={`w-4 h-4 shrink-0 transition-transform duration-200 ${
-            isOpen ? 'rotate-180' : ''
-          } ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}
+          className={`icon-md shrink-0 transition-transform dur-base ${ isOpen ? 'rotate-180' : '' } ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}
         />
       </button>
 
@@ -166,7 +164,7 @@ export function Dropdown<T extends string = string>({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.98 }}
             transition={{ duration: 0.14 }}
-            className={`absolute left-0 right-0 mt-1.5 p-1 rounded-(--radius-control) z-50 backdrop-blur-2xl shadow-xl overflow-hidden ${
+            className={`absolute left-0 right-0 mt-1.5 p-1 rounded-(--radius-control) z-popover backdrop-blur-2xl shadow-xl overflow-hidden ${
               isDark
                 ? 'bg-(--bg-elevated)/95 border border-white/[0.07] shadow-(--elevation-4)'
                 : 'bg-white/95 border border-black/[0.06] shadow-(--elevation-3)'
@@ -184,7 +182,7 @@ export function Dropdown<T extends string = string>({
                     aria-selected={isSelected}
                     onClick={() => commit(index)}
                     onMouseEnter={() => setActiveIndex(index)}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-(--radius-field) text-xs sm:text-sm font-medium cursor-pointer text-left rtl:text-right focus-ui99-inset ${
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-(--radius-field) type-caption sm:type-body font-medium cursor-pointer text-left rtl:text-right focus-ui99-inset ${
                       isActive
                         ? isDark
                           ? 'bg-white/[0.08] text-white'
@@ -200,7 +198,7 @@ export function Dropdown<T extends string = string>({
                         <div>{option.label}</div>
                         {option.description && (
                           <div
-                            className={`text-[10px] ${
+                            className={`type-micro ${
                               isDark ? 'text-zinc-500' : 'text-zinc-400'
                             }`}
                           >
@@ -210,7 +208,7 @@ export function Dropdown<T extends string = string>({
                       </div>
                     </div>
                     {isSelected && (
-                      <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 ml-2 pointer-events-none" />
+                      <Check className="icon-sm text-emerald-500 shrink-0 ml-2 pointer-events-none" />
                     )}
                   </li>
                 );

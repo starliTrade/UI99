@@ -119,7 +119,7 @@ export function TerminalEmulator({
   return (
     <div
       className={cn(
-        'rounded-(--radius-control) bg-(--bg-canvas) border border-white/[0.06] text-xs font-mono flex flex-col shadow-xl overflow-hidden w-full',
+        'rounded-(--radius-control) bg-(--bg-canvas) border border-white/[0.06] type-caption font-mono flex flex-col shadow-xl overflow-hidden w-full',
         className
       )}
     >
@@ -127,12 +127,12 @@ export function TerminalEmulator({
       <div className="flex items-center justify-between px-3.5 py-2.5 bg-(--bg-card) border-b border-white/[0.04]">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-(--radius-pill) bg-rose-500/80" />
-            <div className="w-2.5 h-2.5 rounded-(--radius-pill) bg-amber-500/80" />
-            <div className="w-2.5 h-2.5 rounded-(--radius-pill) bg-emerald-500/80" />
+            <div className="icon-dot-lg rounded-(--radius-pill) bg-rose-500/80" />
+            <div className="icon-dot-lg rounded-(--radius-pill) bg-amber-500/80" />
+            <div className="icon-dot-lg rounded-(--radius-pill) bg-emerald-500/80" />
           </div>
-          <span className="text-zinc-400 font-medium ml-2 flex items-center gap-1.5">
-            <Terminal className="w-3.5 h-3.5 text-zinc-400" />
+          <span className="text-(--text-secondary) font-medium ml-2 flex items-center gap-1.5">
+            <Terminal className="icon-sm text-(--text-secondary)" />
             ui99-cli ~ v1.0.0
           </span>
         </div>
@@ -141,18 +141,18 @@ export function TerminalEmulator({
           <button
             type="button"
             onClick={copyAll}
-            className="p-1 rounded text-zinc-400 hover:text-white transition-colors"
+            className="p-1 rounded text-(--text-secondary) hover:text-white transition-colors"
             title="Copy terminal session"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+            {copied ? <Check className="icon-sm text-emerald-400" /> : <Copy className="icon-sm" />}
           </button>
           <button
             type="button"
             onClick={() => setLogs([])}
-            className="p-1 rounded text-zinc-400 hover:text-rose-400 transition-colors"
+            className="p-1 rounded text-(--text-secondary) hover:text-rose-400 transition-colors"
             title="Clear"
           >
-            <Trash2 className="w-3.5 h-3.5" />
+            <Trash2 className="icon-sm" />
           </button>
         </div>
       </div>
@@ -167,12 +167,12 @@ export function TerminalEmulator({
             <div className="flex items-center gap-2 text-zinc-200 font-semibold">
               <span className="text-emerald-400 font-bold">$</span>
               <span>{log.command}</span>
-              <span className="text-[10px] text-zinc-600 ml-auto">{log.timestamp}</span>
+              <span className="type-micro text-zinc-600 ml-auto">{log.timestamp}</span>
             </div>
 
             {log.output && (
               <pre className={cn(
-                'whitespace-pre-wrap pl-4 text-xs font-mono',
+                'whitespace-pre-wrap pl-4 type-caption font-mono',
                 log.status === 'error' ? 'text-rose-400' : 'text-zinc-400'
               )}>
                 {log.output}
@@ -193,14 +193,14 @@ export function TerminalEmulator({
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           placeholder="Try 'add button' or 'help'..."
-          className="flex-1 bg-transparent text-zinc-100 placeholder-zinc-600 outline-none text-xs font-mono"
+          className="flex-1 bg-transparent text-zinc-100 placeholder-zinc-600 type-caption font-mono focus-ui99"
         />
         <button
           type="submit"
           disabled={!inputVal.trim() || loading}
-          className="p-1 rounded text-zinc-400 hover:text-white disabled:opacity-30 transition-colors"
+          className="p-1 rounded text-(--text-secondary) hover:text-white disabled:opacity-30 transition-colors"
         >
-          <CornerDownLeft className="w-3.5 h-3.5" />
+          <CornerDownLeft className="icon-sm" />
         </button>
       </form>
     </div>

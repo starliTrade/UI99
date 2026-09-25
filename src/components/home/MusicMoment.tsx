@@ -22,24 +22,24 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
     return (
       <div
         onClick={onCaptureMusic}
-        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(--shadow-card-hover) flex items-center justify-between"
+        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
           <div className="w-11 h-11 rounded-(--radius-control) bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors">
-            <Music className="w-5 h-5 stroke-[1.8]" />
+            <Music className="icon-lg stroke-[1.8]" />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-[#EDEDEF]">
+            <h4 className="type-body font-semibold text-[#EDEDEF]">
               {isRTL ? 'موسیقی و نوای آرامش' : 'Today in Music'}
             </h4>
-            <p className="text-xs text-[#92929B] mt-0.5">
+            <p className="type-caption text-[#92929B] mt-0.5">
               {isRTL ? 'هنوز موسیقی ثبت نشده — قطعه محبوبت را اضافه کن' : 'Nothing playing yet — save your mood soundtrack'}
             </p>
           </div>
         </div>
 
         <span className="p-2 rounded-(--radius-pill) bg-white/[0.03] text-zinc-400 group-hover:text-white transition-colors">
-          <Plus className="w-4 h-4" />
+          <Plus className="icon-md" />
         </span>
       </div>
     );
@@ -53,30 +53,30 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
   return (
     <div
       onClick={() => onSelectObject(songObject)}
-      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0F] border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#090A0F] border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.06] select-none"
     >
       {/* Ambient background disc aura */}
       <div className="absolute top-0 left-0 w-48 h-48 bg-rose-500/[0.05] rounded-(--radius-pill) blur-3xl pointer-events-none" />
 
       {/* Header */}
-      <div className="flex items-center justify-between mb-4 relative z-10">
+      <div className="flex items-center justify-between mb-4 relative z-content">
         <div className="flex items-center gap-2">
           <span className="flex items-center justify-center w-5 h-5 rounded-(--radius-pill) bg-rose-500/15 text-rose-400">
-            <Music className="w-3 h-3 stroke-[2.2]" />
+            <Music className="icon-xs stroke-[2.2]" />
           </span>
-          <span className="text-[10.5px] uppercase font-bold tracking-widest text-[#EDEDEF]">
+          <span className="type-micro uppercase font-bold tracking-widest text-[#EDEDEF]">
             {isRTL ? 'نوای امروز' : 'Today in Music'}
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) bg-white/[0.04] text-[10px] text-rose-300 border border-white/[0.04]">
+        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) bg-white/[0.04] type-micro text-rose-300 border border-white/[0.04]">
           <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-rose-500 animate-pulse" />
           <span>{mood}</span>
         </div>
       </div>
 
       {/* Media Player Showcase */}
-      <div className="flex items-center gap-4 relative z-10">
+      <div className="flex items-center gap-4 relative z-content">
         {/* Vinyl / Cover Art representation */}
         <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-(--radius-control) bg-gradient-to-br from-[#1E1C2E] via-[#12131C] to-[#0A0B10] border border-white/[0.08] shadow-(--shadow-card) flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
           <motion.div
@@ -84,16 +84,16 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
             transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
             className="w-8 h-8 rounded-(--radius-pill) border border-white/[0.1] flex items-center justify-center bg-black/40"
           >
-            <div className="w-2.5 h-2.5 rounded-(--radius-pill) bg-rose-500/80 shadow-(--glow-rose-sm)" />
+            <div className="icon-dot-lg rounded-(--radius-pill) bg-rose-500/80 shadow-(--glow-rose-sm)" />
           </motion.div>
         </div>
 
         {/* Track Metadata */}
         <div className="min-w-0 flex-1">
-          <h3 className="text-base font-bold text-[#EDEDEF] truncate leading-snug">
+          <h3 className="type-body-lg font-bold text-[#EDEDEF] truncate leading-snug">
             {songObject.title}
           </h3>
-          <p className="text-xs text-[#92929B] truncate mt-0.5">
+          <p className="type-caption text-[#92929B] truncate mt-0.5">
             {artist} <span className="text-zinc-600">•</span> {album}
           </p>
 
@@ -107,7 +107,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
                 className="w-1 bg-rose-500/70 rounded-(--radius-pill) h-3"
               />
             ))}
-            <span className="text-[10px] font-mono text-zinc-500 ml-2 rtl:mr-2 rtl:ml-0">{duration}</span>
+            <span className="type-micro font-mono text-zinc-500 ml-2 rtl:mr-2 rtl:ml-0">{duration}</span>
           </div>
         </div>
       </div>

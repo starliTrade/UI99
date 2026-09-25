@@ -68,29 +68,29 @@ export function Accordion({
                   <div className="min-w-0">
                     <h4
                       className={cn(
-                        'text-xs sm:text-sm font-semibold tracking-tight truncate',
+                        'type-caption sm:type-body font-semibold tracking-tight truncate',
                         isDark ? 'text-(--text-primary)' : 'text-zinc-900'
                       )}
                     >
                       {item.title}
                     </h4>
                     {item.subtitle && (
-                      <p className="text-[11px] text-zinc-500 truncate mt-0.5">
+                      <p className="type-micro text-(--text-muted) truncate mt-0.5">
                         {item.subtitle}
                       </p>
                     )}
                   </div>
                 </div>
 
-                <div className="shrink-0 text-zinc-400">
-                  <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                <div className="shrink-0 text-(--text-secondary)">
+                  <ChevronDown className="icon-md transition-transform dur-base" />
                 </div>
               </AccordionPrimitive.Trigger>
             </AccordionPrimitive.Header>
 
             <AccordionPrimitive.Content
               className={cn(
-                'overflow-hidden text-xs sm:text-sm transition-all',
+                'overflow-hidden type-caption sm:type-body transition-all',
                 'data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down'
               )}
             >
@@ -145,29 +145,29 @@ export function Accordion({
                 <div className="min-w-0">
                   <h4
                     className={cn(
-                      'text-xs sm:text-sm font-semibold tracking-tight truncate',
+                      'type-caption sm:type-body font-semibold tracking-tight truncate',
                       isDark ? 'text-(--text-primary)' : 'text-zinc-900'
                     )}
                   >
                     {item.title}
                   </h4>
                   {item.subtitle && (
-                    <p className="text-[11px] text-zinc-500 truncate mt-0.5">
+                    <p className="type-micro text-(--text-muted) truncate mt-0.5">
                       {item.subtitle}
                     </p>
                   )}
                 </div>
               </div>
 
-              <div className="shrink-0 text-zinc-400">
-                <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+              <div className="shrink-0 text-(--text-secondary)">
+                <ChevronDown className="icon-md transition-transform dur-base" />
               </div>
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
 
           <AccordionPrimitive.Content
             className={cn(
-              'overflow-hidden text-xs sm:text-sm transition-all',
+              'overflow-hidden type-caption sm:type-body transition-all',
               'data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down'
             )}
           >

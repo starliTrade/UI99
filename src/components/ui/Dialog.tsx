@@ -1,3 +1,17 @@
+/**
+ * UI99 — Dialog
+ *
+ * ANATOMY   Dialog ▸ overlay ▸ [DialogContent] ▸ [DialogTitle] ▸ [DialogDescription]
+ *            ▸ [DialogClose]
+ * STATES    default · open · focus-visible (focus-ui99) · disabled
+ * TOKENS    --bg-canvas, --bg-elevated, --shadow-modal, --radius-xl, --z-modal
+ * A11Y      Radix Dialog: role="dialog" aria-modal="true", focus trapped on
+ *            open and restored to the trigger on close, body scroll locked.
+ * KEYBOARD  Escape closes · Tab cycles within · arrows move within menus.
+ * LAYER     --z-modal, deliberately ABOVE --z-header: an overlay that paints
+ *            under the sticky header is a bug, not a style (see docs §3.3).
+ */
+
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
@@ -15,7 +29,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      'fixed inset-0 z-50 bg-black/75 backdrop-blur-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      'fixed inset-0 z-overlay bg-black/75 backdrop-blur-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
       className
     )}
     {...props}
@@ -34,7 +48,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 p-6 duration-200',
+        'fixed left-1/2 top-1/2 z-modal grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 p-6 dur-base',
         'bg-white dark:bg-(--bg-elevated) text-(--text-primary)',
         // p-6 = 24px → the `xl` padding band → `--radius-xl`. The corner
         // follows the padding (docs/standards.md §5c), not a remembered value.
@@ -48,7 +62,7 @@ const DialogContent = React.forwardRef<
       {children}
       {showClose && (
         <DialogPrimitive.Close className="absolute right-4 top-4 rounded-(--radius-pill) p-1.5 opacity-70 transition-opacity hover:opacity-100 hover:bg-(--state-hover) focus-visible:outline-none focus-ui99 cursor-pointer">
-          <X className="h-4 w-4" />
+          <X className="icon-md" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
       )}
@@ -92,7 +106,7 @@ const DialogTitle = React.forwardRef<
   <DialogPrimitive.Title
     ref={ref}
     className={cn(
-      'text-lg font-bold tracking-tight text-(--text-primary)',
+      'type-body-lg font-bold tracking-tight text-(--text-primary)',
       className
     )}
     {...props}
@@ -106,7 +120,7 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn('text-xs text-(--text-secondary)', className)}
+    className={cn('type-caption text-(--text-secondary)', className)}
     {...props}
   />
 ));

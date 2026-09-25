@@ -44,7 +44,7 @@ export function FileUpload({
     <div className={cn('w-full space-y-2', className)}>
       <label
         className={cn(
-          'relative flex min-h-[96px] cursor-pointer flex-col items-center justify-center gap-2 rounded-(--radius-control) border border-dashed p-6 text-center transition-all duration-150',
+          'relative flex min-h-[96px] cursor-pointer flex-col items-center justify-center gap-2 rounded-(--radius-control) border border-dashed p-6 text-center transition-all dur-quick',
           'border-(--border-strong) bg-zinc-50/60 dark:bg-(--bg-elevated)/60',
           'hover:border-emerald-500/40 hover:bg-emerald-500/[0.03] focus-visible:outline-none focus-ui99',
           isDragging && 'border-emerald-500 bg-emerald-500/[0.05] scale-[0.99]',
@@ -61,8 +61,8 @@ export function FileUpload({
           emit(e.dataTransfer.files);
         }}
       >
-        <UploadCloud className="w-5 h-5 text-(--text-muted)" />
-        <span className="text-xs font-medium text-(--text-secondary)">{label}</span>
+        <UploadCloud className="icon-lg text-(--text-muted)" />
+        <span className="type-caption font-medium text-(--text-secondary)">{label}</span>
         <input
           ref={inputRef}
           type="file"
@@ -85,7 +85,7 @@ export function FileUpload({
                 variant="neutral"
                 onRemove={() => setFiles((prev) => prev.filter((_, j) => j !== i))}
               >
-                <FileIcon className="w-3 h-3 mr-1 inline" aria-hidden="true" />
+                <FileIcon className="icon-xs mr-1 inline" aria-hidden="true" />
                 {f.name}
               </Tag>
             </li>

@@ -14,7 +14,7 @@ export function NavigationMenu({
 }: React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>) {
   return (
     <NavigationMenuPrimitive.Root
-      className={cn('relative z-10 flex max-w-max flex-1 items-center justify-center', className)}
+      className={cn('relative z-content flex max-w-max flex-1 items-center justify-center', className)}
       {...props}
     />
   );
@@ -50,7 +50,7 @@ export function NavigationMenuTrigger({
   return (
     <NavigationMenuPrimitive.Trigger
       className={cn(
-        'inline-flex h-9 items-center justify-center gap-1 rounded-(--radius-pill) px-3 text-xs font-medium transition-colors cursor-pointer',
+        'inline-flex h-9 items-center justify-center gap-1 rounded-(--radius-pill) px-3 type-caption font-medium transition-colors cursor-pointer',
         'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:text-(--text-primary) dark:hover:bg-white/[0.04]',
         'focus-visible:outline-none focus-ui99 data-[state=open]:bg-black/[0.05] dark:data-[state=open]:bg-white/[0.06]',
         className
@@ -70,7 +70,7 @@ export function NavigationMenuLink({
   return (
     <NavigationMenuPrimitive.Link
       className={cn(
-        'inline-flex h-9 items-center rounded-(--radius-pill) px-3 text-xs font-medium transition-colors',
+        'inline-flex h-9 items-center rounded-(--radius-pill) px-3 type-caption font-medium transition-colors',
         'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:text-(--text-primary) dark:hover:bg-white/[0.04]',
         'focus-visible:outline-none focus-ui99',
         className

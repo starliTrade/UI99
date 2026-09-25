@@ -38,25 +38,25 @@ export function ProgressInMotionCard({
       <div className="flex items-start justify-between gap-3 mb-2">
         <div className="flex items-center gap-2">
           <div className="w-5 h-5 flex items-center justify-center text-white/70">
-            <TrendingUp className="w-4 h-4 text-white/80" />
+            <TrendingUp className="icon-md text-white/80" />
           </div>
-          <h3 className="text-base font-semibold tracking-tight text-[#F2F2F5]">
+          <h3 className="type-body-lg font-semibold tracking-tight text-[#F2F2F5]">
             {title}
           </h3>
         </div>
 
         {/* Percentage Capsule Pill */}
-        <span className="px-3 py-1 rounded-(--radius-pill) text-xs font-medium bg-amber-400/[0.12] text-amber-300 border border-amber-400/20 tracking-tight shrink-0">
+        <span className="px-3 py-1 rounded-(--radius-pill) type-caption font-medium bg-amber-400/[0.12] text-amber-300 border border-amber-400/20 tracking-tight shrink-0">
           {percent}% complete
         </span>
       </div>
 
       {/* Momentum Text */}
       <div className="mb-4">
-        <span className="block text-[11px] font-medium text-[#8E8E98] tracking-tight">
+        <span className="block type-micro font-medium text-[#8E8E98] tracking-tight">
           {subtitle}
         </span>
-        <p className="text-xs text-[#8E8E98] font-medium tracking-tight mt-0.5">
+        <p className="type-caption text-[#8E8E98] font-medium tracking-tight mt-0.5">
           {momentumText}
         </p>
       </div>
@@ -68,7 +68,7 @@ export function ProgressInMotionCard({
           return (
             <div
               key={idx}
-              className={`h-4.5 w-2 rounded-(--radius-pill) transition-all duration-300 ${
+              className={`h-4.5 w-2 rounded-(--radius-pill) transition-all dur-slow ${
                 isFilled
                   ? 'bg-emerald-400/90 shadow-(--glow-accent-sm)'
                   : 'bg-white/[0.05]'

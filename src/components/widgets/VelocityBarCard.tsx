@@ -39,7 +39,7 @@ export function VelocityBarCard({
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ duration: 0.25 }}
-      className={`relative rounded-(--radius-xl) p-6 overflow-hidden transition-all duration-300 select-none ${
+      className={`relative rounded-(--radius-xl) p-6 overflow-hidden transition-all dur-slow select-none ${
         isDark
           ? 'bg-[#0B0C11] card-aura-emerald shadow-(--shadow-popover) shadow-(--shadow-popover)'
           : 'bg-white card-aura-emerald shadow-(--shadow-card) border border-black/[0.045] hover:shadow-(--elevation-3)'
@@ -49,34 +49,34 @@ export function VelocityBarCard({
       <div className={`absolute -top-10 -left-10 w-44 h-44 rounded-(--radius-pill) blur-2xl pointer-events-none ${isDark ? 'bg-emerald-500/15' : 'bg-emerald-500/10'}`} />
 
       {/* Top Header Section */}
-      <div className="relative z-10">
-        <span className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-[#8E8E98]' : 'text-zinc-600'}`}>
+      <div className="relative z-content">
+        <span className={`type-caption font-semibold uppercase tracking-wider ${isDark ? 'text-[#8E8E98]' : 'text-zinc-600'}`}>
           {title}
         </span>
         <div className="mt-1 flex items-baseline gap-2">
-          <h3 className={`text-2xl sm:text-3xl font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-zinc-950'}`}>
+          <h3 className={`type-heading sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-zinc-950'}`}>
             {metric}
           </h3>
         </div>
 
         {/* Trend Indicator Pill */}
-        <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
-          <span className="text-[10px]">▲</span>
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) type-caption font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
+          <span className="type-micro">▲</span>
           <span>{trend}</span>
         </div>
       </div>
 
       {/* Pillar Bar Columns */}
-      <div className="mt-8 pt-2 flex items-end justify-between gap-2.5 sm:gap-3 h-36 relative z-10">
+      <div className="mt-8 pt-2 flex items-end justify-between gap-2.5 sm:gap-3 h-36 relative z-content">
         {bars.map((bar, i) => {
           if (bar.isHighlighted) {
             return (
               <div key={i} className="flex flex-col items-center flex-1 h-full justify-end group">
-                <span className={`text-[11px] font-bold mb-2 tracking-tight ${isDark ? 'text-white' : 'text-zinc-950'}`}>
+                <span className={`type-micro font-bold mb-2 tracking-tight ${isDark ? 'text-white' : 'text-zinc-950'}`}>
                   {bar.label}
                 </span>
                 <div
-                  className="w-full max-w-[44px] rounded-(--radius-control) bg-gradient-to-t from-emerald-500 via-emerald-400 to-lime-200 shadow-(--shadow-glow-accent) transition-all duration-500 group-hover:brightness-110"
+                  className="w-full max-w-[44px] rounded-(--radius-control) bg-gradient-to-t from-emerald-500 via-emerald-400 to-lime-200 shadow-(--shadow-glow-accent) transition-all dur-lazy group-hover:brightness-110"
                   style={{ height: `${bar.heightPercent}%` }}
                 />
               </div>
@@ -85,7 +85,7 @@ export function VelocityBarCard({
 
           return (
             <div key={i} className="flex flex-col items-center flex-1 h-full justify-end">
-              <span className={`text-[11px] font-medium mb-2 tracking-tight ${isDark ? 'text-[#5C5C68]' : 'text-[#8E8E98]'}`}>
+              <span className={`type-micro font-medium mb-2 tracking-tight ${isDark ? 'text-[#5C5C68]' : 'text-[#8E8E98]'}`}>
                 {bar.label}
               </span>
               <div

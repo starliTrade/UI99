@@ -15,8 +15,18 @@ import {
   Info,
   X,
 } from 'lucide-react';
-import { useApp, ToastItem } from '../../core/context/AppContext';
 import { Button } from './Button';
+
+/**
+ * A single toast in the queue. Owned by this module so the container has no
+ * dependency on the host app's context — the app re-exports the type.
+ */
+export interface ToastItem {
+  id: string;
+  message: string;
+  type?: 'info' | 'success' | 'warning' | 'rose' | 'amber' | 'purple';
+  durationMs?: number;
+}
 
 const MAX_CONCURRENT_TOASTS = 3;
 const TOAST_DURATION_MS = 4500; // M3 guidance: 4–10s for toasts with actions; pause-on-hover applies
@@ -26,32 +36,32 @@ const toastVisuals: Record<
   { icon: ReactNode; accentClass: string; label: string }
 > = {
   success: {
-    icon: <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-emerald-500" />,
+    icon: <CheckCircle2 className="icon-sm shrink-0 text-emerald-500" />,
     accentClass: 'border-l-2 border-l-emerald-500/70',
     label: 'Success',
   },
   warning: {
-    icon: <AlertTriangle className="w-3.5 h-3.5 shrink-0 text-amber-500" />,
+    icon: <AlertTriangle className="icon-sm shrink-0 text-amber-500" />,
     accentClass: 'border-l-2 border-l-amber-500/70',
     label: 'Warning',
   },
   rose: {
-    icon: <AlertTriangle className="w-3.5 h-3.5 shrink-0 text-rose-500" />,
+    icon: <AlertTriangle className="icon-sm shrink-0 text-rose-500" />,
     accentClass: 'border-l-2 border-l-rose-500/70',
     label: 'Error',
   },
   amber: {
-    icon: <AlertTriangle className="w-3.5 h-3.5 shrink-0 text-amber-500" />,
+    icon: <AlertTriangle className="icon-sm shrink-0 text-amber-500" />,
     accentClass: 'border-l-2 border-l-amber-500/70',
     label: 'Notice',
   },
   purple: {
-    icon: <Sparkles className="w-3.5 h-3.5 shrink-0 text-purple-500" />,
+    icon: <Sparkles className="icon-sm shrink-0 text-purple-500" />,
     accentClass: 'border-l-2 border-l-purple-500/70',
     label: 'Insight',
   },
   info: {
-    icon: <Info className="w-3.5 h-3.5 shrink-0 text-blue-500" />,
+    icon: <Info className="icon-sm shrink-0 text-blue-500" />,
     accentClass: 'border-l-2 border-l-blue-500/70',
     label: 'Info',
   },
@@ -99,7 +109,7 @@ function ToastRow({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: stri
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -16, scale: 0.96 }}
       transition={{ type: 'spring', stiffness: 450, damping: 30 }}
-      className={`pointer-events-auto relative w-full flex items-center gap-2.5 px-4 py-2.5 rounded-(--radius-control) border border-black/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3) text-xs font-medium select-none ${visual.accentClass}`}
+      className={`pointer-events-auto relative w-full flex items-center gap-2.5 px-4 py-2.5 rounded-(--radius-control) border border-black/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3) type-caption font-medium select-none ${visual.accentClass}`}
     >
       {visual.icon}
       <span className="flex-1 leading-snug">{toast.message}</span>
@@ -107,30 +117,35 @@ function ToastRow({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: stri
         type="button"
         aria-label="Dismiss notification"
         onClick={() => onDismiss(toast.id)}
-        className="relative shrink-0 p-1 -m-1 rounded-(--radius-pill) text-zinc-400 hover:text-zinc-900 dark:text-(--text-muted) dark:hover:text-(--text-primary) transition-colors cursor-pointer after:absolute after:-inset-1.5 after:content-['']"
+        className="relative shrink-0 p-1 -m-1 rounded-(--radius-pill) text-(--text-secondary) hover:text-zinc-900 dark:text-(--text-muted) dark:hover:text-(--text-primary) transition-colors cursor-pointer after:absolute after:-inset-1.5 after:content-['']"
       >
-        <X className="w-3.5 h-3.5" />
+        <X className="icon-sm" />
       </button>
     </motion.div>
   );
 }
 
 // --- Toast Container ---
-export function ToastContainer() {
-  const { toasts, removeToast } = useApp();
+export interface ToastContainerProps {
+  /** Current queue, oldest first. The container is presentational. */
+  toasts: ToastItem[];
+  /** Dismiss handler. Receives the toast id. */
+  onDismiss: (id: string) => void;
+}
 
+export function ToastContainer({ toasts, onDismiss }: ToastContainerProps) {
   // Enforce concurrent cap: newest wins, oldest evicted (M3 snackbar guidance)
   const visibleToasts = toasts.slice(-MAX_CONCURRENT_TOASTS);
 
   return (
     <div
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none w-full max-w-sm px-4 pt-safe"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-toast flex flex-col items-center gap-2 pointer-events-none w-full max-w-sm px-4 pt-safe"
       role="region"
       aria-label="Notifications"
     >
       <AnimatePresence>
         {visibleToasts.map((t) => (
-          <ToastRow key={t.id} toast={t} onDismiss={removeToast} />
+          <ToastRow key={t.id} toast={t} onDismiss={onDismiss} />
         ))}
       </AnimatePresence>
     </div>
@@ -162,15 +177,15 @@ export function EmptyState({
           {icon}
         </div>
       )}
-      <h3 className="text-base font-semibold text-(--text-primary) tracking-tight">
+      <h3 className="type-body-lg font-semibold text-(--text-primary) tracking-tight">
         {title}
       </h3>
       {persianTitle && (
-        <p className="font-persian-luxury text-xs text-zinc-400 dark:text-(--text-muted) mt-0.5">
+        <p className="font-persian-luxury type-caption text-(--text-secondary) dark:text-(--text-muted) mt-0.5">
           {persianTitle}
         </p>
       )}
-      <p className="text-xs text-(--text-secondary) mt-1 max-w-xs leading-relaxed">
+      <p className="type-caption text-(--text-secondary) mt-1 max-w-xs leading-relaxed">
         {description}
       </p>
       {actionLabel && onAction && (
@@ -188,8 +203,8 @@ export function EmptyState({
 export function LoadingState({ message = 'Accessing UI99 Space...' }: { message?: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
-      <Loader2 className="w-6 h-6 text-(--text-secondary) animate-spin mb-3" />
-      <p className="text-xs text-(--text-secondary) tracking-tight">{message}</p>
+      <Loader2 className="icon-xl text-(--text-secondary) animate-spin mb-3" />
+      <p className="type-caption text-(--text-secondary) tracking-tight">{message}</p>
     </div>
   );
 }

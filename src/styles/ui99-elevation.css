@@ -145,33 +145,6 @@
   --radius-pill: 9999px; /* pills, avatars, badges, switches — terminal by definition */
 }
 
-/* ======================= SPACING — 4px base grid ======================= */
-/* Named so intent survives: `gap-gutter` is page rhythm, `gap-cluster` is
-   between related controls. Raw Tailwind numerals stay legal for one-offs,
-   but any *repeated* rhythm should pick a name from this ramp. */
-.dark,
-.light,
-[data-theme] {
-  --space-hairline: 2px;
-  --space-tight: 4px;
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 16px;
-  --space-lg: 20px;
-  --space-xl: 24px;
-  --space-2xl: 32px;
-  --space-3xl: 40px;
-  --space-4xl: 56px;
-  --space-5xl: 72px;
-  --space-6xl: 96px;
-
-  /* Intent aliases — the vocabulary product code should actually use. */
-  --space-cluster: 8px;   /* between related items in a group */
-  --space-gap: 12px;       /* between groups */
-  --space-gutter: 24px;    /* page-level horizontal rhythm */
-  --space-section: 56px;   /* vertical rhythm between page sections */
-}
-
 /* ======================= ACCENT BAR — the 2px status rail ======================= */
 /* A status marker on a row edge. It was hardcoded as
    `inset 2px 0 0 0 #10B981` in LinearIssueTracker and had no name, so it could
@@ -186,15 +159,153 @@
 }
 
 /* ======================= Z-INDEX — layering is a system, not a guess ======================= */
+/* Two real bugs lived here before the scale existed:
+ *
+ *  1. Every overlay (Dialog/Modal/Sheet/AlertDialog) sat at the SAME value as
+ *     `--z-header`, so an open modal could paint *under* the sticky header.
+ *  2. There was a hole where the portal band belongs. Radix portals menus to
+ *     document.body, so a dropdown opened *inside* a Dialog is not its
+ *     descendant and cannot inherit its stacking context — no amount of
+ *     z-index on the trigger can lift it. `--z-popover` closes that gap, and a
+ *     test locks the ordering `modal < popover < toast` so it cannot reopen.
+ *
+ * `--z-content` is the other half: 58 in-card elements lift their own content
+ * above their own decorative background. That is a repeated, named decision,
+ * not an accident, so it gets a name.
+ */
 .dark,
 .light,
 [data-theme] {
   --z-base: 0;
+  --z-content: 2;
   --z-sticky: 10;
+  --z-raised: 20;
+  --z-floating: 30;
   --z-dock: 40;
   --z-header: 50;
   --z-overlay: 60;
   --z-modal: 70;
+  --z-popover: 75;
   --z-toast: 80;
   --z-tooltip: 90;
 }
+
+@utility z-base { z-index: var(--z-base); }
+@utility z-content { z-index: var(--z-content); }
+@utility z-sticky { z-index: var(--z-sticky); }
+@utility z-raised { z-index: var(--z-raised); }
+@utility z-floating { z-index: var(--z-floating); }
+@utility z-dock { z-index: var(--z-dock); }
+@utility z-header { z-index: var(--z-header); }
+@utility z-overlay { z-index: var(--z-overlay); }
+@utility z-modal { z-index: var(--z-modal); }
+@utility z-popover { z-index: var(--z-popover); }
+@utility z-toast { z-index: var(--z-toast); }
+@utility z-tooltip { z-index: var(--z-tooltip); }
+
+/* ======================= SPACING — the 4px scale and its intent ======================= */
+/* READ THIS BEFORE MIGRATING SPACING.
+ *
+ * The numeric `--space-*` steps below are, with three exceptions, *numerically
+ * identical* to what Tailwind v4 already emits: Tailwind's spacing is a single
+ * `--spacing: .25rem` multiplier, so `p-4` is `calc(var(--spacing) * 4)` = 16px
+ * = `--space-md`. Of 12 declared numeric steps, 8 are byte-for-byte the same
+ * number Tailwind already produces, and the kit's spacing utilities all resolve
+ * through that one variable — the 4px grid is *already* enforced, structurally,
+ * by the framework.
+ *
+ * So the numeric ramp is close to a no-op layer: replacing `p-4` with
+ * `p-(--space-md)` would churn hundreds of call sites to change nothing. That is
+ * the same cargo-cult tokenization the token gate exists to prevent, run in the
+ * opposite direction.
+ *
+ * What genuinely earns its place is the four *intent* aliases, because a number
+ * cannot say what it is for. `gap-gutter` is page rhythm; `gap-cluster` is
+ * between two related controls. Those are decisions, and Tailwind has no way to
+ * express them.
+ */
+.dark,
+.light,
+[data-theme] {
+  /* Density multiplier. 1 = the kit's designed default. Every rhythm and
+     control height below is expressed against it, so a density change is one
+     attribute on <html>, not a re-layout of the product. */
+  --density-scale: 1;
+
+  --space-hairline: 2px;
+  --space-tight: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 40px;
+  --space-4xl: 56px;
+  --space-5xl: 72px;
+  --space-6xl: 96px;
+
+  /* Intent aliases — the vocabulary product code should actually use.
+     These four carry DENSITY, because they are the rhythm a reader actually
+     feels; the numeric steps above stay density-invariant so a data table can
+     be packed without its cells changing size. */
+  --space-cluster: calc(8px * var(--density-scale));   /* between related items in a group */
+  --space-gap: calc(12px * var(--density-scale));      /* between groups */
+  --space-gutter: calc(24px * var(--density-scale));   /* page-level horizontal rhythm */
+  --space-section: calc(56px * var(--density-scale));  /* vertical rhythm between page sections */
+
+  /* Control heights. The ladder a density change is actually felt through. */
+  --control-h-xs: calc(24px * var(--density-scale));
+  --control-h-sm: calc(32px * var(--density-scale));
+  --control-h-md: calc(40px * var(--density-scale));
+  --control-h-lg: calc(48px * var(--density-scale));
+}
+
+/* ─── Spacing utilities ───────────────────────────────────────────────────── */
+@utility space-hairline { padding: var(--space-hairline); gap: var(--space-hairline); }
+@utility space-tight { padding: var(--space-tight); gap: var(--space-tight); }
+@utility space-xs { padding: var(--space-xs); gap: var(--space-xs); }
+@utility space-sm { padding: var(--space-sm); gap: var(--space-sm); }
+@utility space-md { padding: var(--space-md); gap: var(--space-md); }
+@utility space-lg { padding: var(--space-lg); gap: var(--space-lg); }
+@utility space-xl { padding: var(--space-xl); gap: var(--space-xl); }
+@utility space-2xl { padding: var(--space-2xl); gap: var(--space-2xl); }
+@utility space-3xl { padding: var(--space-3xl); gap: var(--space-3xl); }
+@utility space-4xl { padding: var(--space-4xl); gap: var(--space-4xl); }
+@utility space-5xl { padding: var(--space-5xl); gap: var(--space-5xl); }
+@utility space-6xl { padding: var(--space-6xl); gap: var(--space-6xl); }
+
+/* The four that carry meaning. Prefer these in product code. */
+@utility space-cluster { gap: var(--space-cluster); }
+@utility space-gap { gap: var(--space-gap); }
+@utility space-gutter { padding-inline: var(--space-gutter); gap: var(--space-gutter); }
+@utility space-section { padding-block: var(--space-section); gap: var(--space-section); }
+
+/* ─── Density modes ──────────────────────────────────────────────────────────
+ * Material has compact/standard, iOS has three. Ours is the same three, set by
+ * one attribute so a consumer opts the WHOLE kit in or out.
+ *
+ *   <html data-density="compact">      denser tables, dashboards, IDEs
+ *   <html data-density="default">      the designed baseline
+ *   <html data-density="comfortable">  touch-first, generous
+ *
+ * The honest caveat, stated here because it is a constraint and not a detail:
+ * AGENTS.md §5 requires a 44px minimum touch target on mobile. `compact`
+ * deliberately goes below that at `md` (35px) and is therefore a **desktop
+ * affordance** — a pointer target, not a finger target. `comfortable` is the
+ * mobile-appropriate end. The scale is opt-in and the default is `default`, so
+ * the floor holds unless a consumer deliberately trades it for rows.
+ */
+[data-density='compact'] { --density-scale: 0.875; }
+[data-density='default'] { --density-scale: 1; }
+[data-density='comfortable'] { --density-scale: 1.125; }
+
+/* Scoped opt-in, for a dense panel inside an otherwise default page. */
+@utility density-compact { --density-scale: 0.875; }
+@utility density-default { --density-scale: 1; }
+@utility density-comfortable { --density-scale: 1.125; }
+
+@utility control-h-xs { height: var(--control-h-xs); }
+@utility control-h-sm { height: var(--control-h-sm); }
+@utility control-h-md { height: var(--control-h-md); }
+@utility control-h-lg { height: var(--control-h-lg); }

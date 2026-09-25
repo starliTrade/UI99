@@ -39,7 +39,7 @@ export function CopyButton({ text, label = 'Copy', size = 'sm', className = '' }
       aria-label={copied ? 'Copied' : label}
       aria-live="polite"
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-(--radius-sm) font-mono text-[11px] transition-colors cursor-pointer',
+        'inline-flex items-center gap-1.5 rounded-(--radius-sm) font-mono type-micro transition-colors cursor-pointer',
         'border border-black/[0.06] bg-white text-zinc-600 hover:bg-black/[0.03]',
         'dark:border-white/[0.06] dark:bg-(--bg-elevated) dark:text-(--text-secondary) dark:hover:bg-white/[0.05]',
         'focus-visible:outline-none focus-ui99-inset',
@@ -47,7 +47,7 @@ export function CopyButton({ text, label = 'Copy', size = 'sm', className = '' }
         className
       )}
     >
-      {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+      {copied ? <Check className="icon-sm text-emerald-500" /> : <Copy className="icon-sm" />}
       <span>{copied ? 'Copied' : label}</span>
     </button>
   );

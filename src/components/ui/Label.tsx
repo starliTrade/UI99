@@ -15,7 +15,7 @@ export function Label({ className = '', ...props }: LabelProps) {
   return (
     <LabelPrimitive.Root
       className={cn(
-        'text-xs font-semibold tracking-tight text-zinc-700 dark:text-(--text-secondary) select-none',
+        'type-caption font-semibold tracking-tight text-zinc-700 dark:text-(--text-secondary) select-none',
         'peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
         className
       )}

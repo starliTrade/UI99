@@ -91,7 +91,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
             >
               {/* Day Label (e.g. Fri, Sat, Sun / امروز) */}
               <span
-                className={`text-[10.5px] font-medium tracking-tight mb-1.5 transition-colors ${
+                className={`type-micro font-medium tracking-tight mb-1.5 transition-colors ${
                   selected
                     ? isDark ? 'text-[#EDEDEF] font-semibold' : 'text-zinc-950 font-bold'
                     : isDark ? 'text-[#8E8E98] group-hover:text-zinc-300' : 'text-zinc-500 group-hover:text-zinc-900'
@@ -102,7 +102,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
 
               {/* Circular Pill Token */}
               <div
-                className={`relative w-11 h-11 sm:w-12 sm:h-12 rounded-(--radius-pill) flex flex-col items-center justify-center transition-all duration-200 ${
+                className={`relative w-11 h-11 sm:w-12 sm:h-12 rounded-(--radius-pill) flex flex-col items-center justify-center transition-all dur-base ${
                   selected
                     ? isDark
                       ? 'bg-[#EDEDEF] text-[#09090C] shadow-(--elevation-1) font-bold'
@@ -113,7 +113,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
                 }`}
               >
                 <span
-                  className={`text-sm sm:text-base font-medium tracking-tight ${
+                  className={`type-body sm:type-body-lg font-medium tracking-tight ${
                     selected ? 'font-bold' : ''
                   }`}
                 >

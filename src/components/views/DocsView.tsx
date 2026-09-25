@@ -456,7 +456,7 @@ export function DocsView() {
                 onSelect={() => { setActiveSection(c.id); setPaletteOpen(false); }}
               >
                 {c.title}
-                <CommandShortcut className="ml-auto text-[10px] font-mono text-zinc-500">
+                <CommandShortcut className="ml-auto type-micro font-mono text-zinc-500">
                   {c.category}
                 </CommandShortcut>
               </CommandItem>
@@ -466,7 +466,7 @@ export function DocsView() {
       </CommandDialog>
 
       {/* ── 1. TOP STATUS BAR / BREADCRUMB / REGISTRY QUICK LINK ── */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 border-b border-black/[0.06] dark:border-white/[0.04] text-xs font-mono">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 border-b border-black/[0.06] dark:border-white/[0.04] type-caption font-mono">
         <div className="flex items-center gap-1.5 sm:gap-2 text-zinc-500 dark:text-zinc-400">
           <button
             type="button"
@@ -475,11 +475,11 @@ export function DocsView() {
           >
             Docs
           </button>
-          <ChevronRight className="w-3.5 h-3.5 opacity-60" />
+          <ChevronRight className="icon-sm opacity-60" />
           <span className="text-zinc-400">
             {activeComponent ? activeComponent.category : 'Getting Started'}
           </span>
-          <ChevronRight className="w-3.5 h-3.5 opacity-60" />
+          <ChevronRight className="icon-sm opacity-60" />
           <span className="text-zinc-950 dark:text-white font-semibold capitalize">
             {activeComponent ? activeComponent.title : activeSection.replace('-', ' ')}
           </span>
@@ -489,7 +489,7 @@ export function DocsView() {
           <Button
             variant="secondary"
             size="xs"
-            icon={<Layers className="w-3.5 h-3.5" />}
+            icon={<Layers className="icon-sm" />}
             onClick={() => setCurrentTab('UIKIT')}
           >
             Full UI Kit
@@ -499,11 +499,11 @@ export function DocsView() {
             href="/registry.json"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) text-xs font-mono bg-zinc-100 hover:bg-zinc-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-zinc-700 dark:text-zinc-300 transition-colors border border-black/[0.04] dark:border-white/[0.03]"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono bg-zinc-100 hover:bg-zinc-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-zinc-700 dark:text-zinc-300 transition-colors border border-black/[0.04] dark:border-white/[0.03]"
           >
-            <Code2 className="w-3.5 h-3.5" />
+            <Code2 className="icon-sm" />
             <span>registry.json</span>
-            <ExternalLink className="w-3 h-3 opacity-60" />
+            <ExternalLink className="icon-xs opacity-60" />
           </a>
         </div>
       </div>
@@ -517,21 +517,21 @@ export function DocsView() {
             <SheetTrigger asChild>
               <button
                 type="button"
-                className="flex items-center gap-2 px-3 py-2.5 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.06] text-xs font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
+                className="flex items-center gap-2 px-3 py-2.5 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.06] type-caption font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
               >
-                <Menu className="w-4 h-4 text-emerald-400" />
+                <Menu className="icon-md text-emerald-400" />
                 <span className="hidden xs:inline">Menu</span>
-                <span className="px-1.5 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 text-emerald-400 text-[10px] font-bold">
+                <span className="px-1.5 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 text-emerald-400 type-micro font-bold">
                   {REGISTRY_COMPONENTS.length}
                 </span>
               </button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] sm:w-[360px] p-0 bg-white dark:bg-[#07080C] border-r border-zinc-200 dark:border-white/[0.06] overflow-y-auto">
               <SheetHeader className="p-4 border-b border-zinc-200 dark:border-white/[0.06] text-left">
-                <SheetTitle className="text-sm font-mono font-bold text-zinc-950 dark:text-white flex items-center gap-2">
-                  <Package className="w-4 h-4 text-emerald-500 dark:text-emerald-400" /> UI99 Component Registry
+                <SheetTitle className="type-body font-mono font-bold text-zinc-950 dark:text-white flex items-center gap-2">
+                  <Package className="icon-md text-emerald-500 dark:text-emerald-400" /> UI99 Component Registry
                 </SheetTitle>
-                <SheetDescription className="text-xs text-zinc-500 dark:text-zinc-400">
+                <SheetDescription className="type-caption text-zinc-500 dark:text-zinc-400">
                   Select a guide or component
                 </SheetDescription>
               </SheetHeader>
@@ -539,19 +539,19 @@ export function DocsView() {
               <div className="p-4 space-y-6">
                 {/* Search */}
                 <div className="relative">
-                  <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
+                  <Search className="icon-sm absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
                   <input
                     type="text"
                     placeholder="Search components..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2 rounded-(--radius-field) text-xs font-mono bg-white/[0.03] border border-white/[0.06] text-white placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50"
+                    className="w-full pl-9 pr-3 py-2 rounded-(--radius-field) type-caption font-mono bg-white/[0.03] border border-white/[0.06] text-white placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50"
                   />
                 </div>
 
                 {/* Getting Started */}
                 <div className="space-y-1">
-                  <h4 className="text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-500">
+                  <h4 className="type-micro font-mono font-bold uppercase tracking-wider text-zinc-500">
                     Getting Started
                   </h4>
                   {[
@@ -573,13 +573,13 @@ export function DocsView() {
                           setMobileNavOpen(false);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-(--radius-field) text-xs font-medium text-left transition-colors ${
+                        className={`w-full flex items-center gap-2 px-3 py-2 rounded-(--radius-field) type-caption font-medium text-left transition-colors ${
                           isActive
                             ? 'bg-emerald-500/15 text-emerald-400 font-semibold'
                             : 'text-zinc-400 hover:text-white hover:bg-white/[0.03]'
                         }`}
                       >
-                        <Icon className="w-3.5 h-3.5" />
+                        <Icon className="icon-sm" />
                         <span>{item.label}</span>
                       </button>
                     );
@@ -589,7 +589,7 @@ export function DocsView() {
                 {/* Categories */}
                 {Object.entries(categories).map(([category, items]) => (
                   <div key={category} className="space-y-1">
-                    <div className="text-[10px] font-mono font-semibold uppercase tracking-wider text-zinc-500">
+                    <div className="type-micro font-mono font-semibold uppercase tracking-wider text-zinc-500">
                       {category}
                     </div>
                     {items.map((item) => {
@@ -603,7 +603,7 @@ export function DocsView() {
                             setMobileNavOpen(false);
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}
-                          className={`w-full flex items-center justify-between px-3 py-2 rounded-(--radius-field) text-xs font-medium text-left transition-colors ${
+                          className={`w-full flex items-center justify-between px-3 py-2 rounded-(--radius-field) type-caption font-medium text-left transition-colors ${
                             isActive
                               ? 'bg-emerald-500/15 text-emerald-400 font-semibold'
                               : 'text-zinc-400 hover:text-white hover:bg-white/[0.03]'
@@ -628,7 +628,7 @@ export function DocsView() {
                 setActiveSection(e.target.value);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="w-full pl-3 pr-8 py-2.5 rounded-(--radius-control) text-xs font-mono font-medium bg-white dark:bg-[#0A0B10] border border-zinc-200 dark:border-white/[0.08] text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
+              className="w-full pl-3 pr-8 py-2.5 rounded-(--radius-control) type-caption font-mono font-medium bg-white dark:bg-[#0A0B10] border border-zinc-200 dark:border-white/[0.08] text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
             >
               <optgroup label="Getting Started">
                 <option value="intro">Introduction</option>
@@ -648,16 +648,16 @@ export function DocsView() {
                 </optgroup>
               ))}
             </select>
-            <ChevronDown className="w-4 h-4 text-zinc-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="icon-md text-zinc-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         </div>
 
         {/* Fast horizontal category chips */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 text-xs">
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 type-caption">
           <button
             type="button"
             onClick={() => setActiveSection('intro')}
-            className={`px-3 py-1.5 rounded-(--radius-pill) whitespace-nowrap text-xs font-mono transition-colors shrink-0 ${
+            className={`px-3 py-1.5 rounded-(--radius-pill) whitespace-nowrap type-caption font-mono transition-colors shrink-0 ${
               isGuideSection
                 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-semibold'
                 : 'bg-white/[0.03] text-zinc-400 border border-white/[0.04]'
@@ -673,7 +673,7 @@ export function DocsView() {
                 setActiveSection(c.id);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`px-3 py-1.5 rounded-(--radius-pill) whitespace-nowrap text-xs font-mono transition-colors shrink-0 ${
+              className={`px-3 py-1.5 rounded-(--radius-pill) whitespace-nowrap type-caption font-mono transition-colors shrink-0 ${
                 activeSection === c.id
                   ? 'bg-white text-zinc-950 font-bold shadow-xs'
                   : 'bg-white/[0.03] text-zinc-400 hover:text-zinc-200 border border-white/[0.04]'
@@ -690,19 +690,19 @@ export function DocsView() {
         <aside className="hidden lg:block lg:col-span-3 space-y-6 lg:sticky lg:top-16 max-h-[calc(100vh-5rem)] overflow-y-auto no-scrollbar pr-2 select-none">
           {/* Search Input for Quick Component Filter */}
           <div className="relative">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
+            <Search className="icon-sm absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
             <input
               type="text"
               placeholder="Search docs & components..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 rounded-(--radius-field) text-xs font-mono bg-zinc-100 dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500/50 transition-colors"
+              className="w-full pl-9 pr-8 py-2 rounded-(--radius-field) type-caption font-mono bg-zinc-100 dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500/50 transition-colors"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-zinc-400 hover:text-zinc-100"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 type-micro font-mono text-zinc-400 hover:text-zinc-100"
               >
                 ✕
               </button>
@@ -711,7 +711,7 @@ export function DocsView() {
 
           {/* Getting Started Section */}
           <div className="space-y-1">
-            <h4 className="px-3 text-[11px] font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2">
+            <h4 className="px-3 type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2">
               Getting Started
             </h4>
             <div className="space-y-0.5">
@@ -733,13 +733,13 @@ export function DocsView() {
                       setActiveSection(item.id);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-(--radius-field) text-xs font-medium transition-all text-left cursor-pointer ${
+                    className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-(--radius-field) type-caption font-medium transition-all text-left cursor-pointer ${
                       isActive
                         ? 'bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white font-semibold shadow-xs'
                         : 'text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.03]'
                     }`}
                   >
-                    <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-400' : 'text-zinc-400'}`} />
+                    <Icon className={`icon-sm ${isActive ? 'text-emerald-400' : 'text-zinc-400'}`} />
                     <span>{item.label}</span>
                   </button>
                 );
@@ -750,17 +750,17 @@ export function DocsView() {
           {/* Component Catalog Grouped by Category */}
           <div className="space-y-5 pt-2 border-t border-black/[0.04] dark:border-white/[0.03]">
             <div className="flex items-center justify-between px-3">
-              <h4 className="text-[11px] font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              <h4 className="type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                 Components
               </h4>
-              <span className="text-[10px] font-mono text-emerald-500 font-semibold">
+              <span className="type-micro font-mono text-emerald-500 font-semibold">
                 {REGISTRY_COMPONENTS.length} items
               </span>
             </div>
 
             {Object.entries(categories).map(([category, items]) => (
               <div key={category} className="space-y-1">
-                <div className="px-3 text-[10px] font-mono font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-600">
+                <div className="px-3 type-micro font-mono font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-600">
                   {category}
                 </div>
                 <div className="space-y-0.5">
@@ -774,7 +774,7 @@ export function DocsView() {
                           setActiveSection(item.id);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className={`w-full flex items-center justify-between px-3 py-1.5 rounded-(--radius-field) text-xs font-medium transition-all text-left cursor-pointer ${
+                        className={`w-full flex items-center justify-between px-3 py-1.5 rounded-(--radius-field) type-caption font-medium transition-all text-left cursor-pointer ${
                           isActive
                             ? 'bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white font-semibold shadow-xs'
                             : 'text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.03]'
@@ -803,21 +803,21 @@ export function DocsView() {
               {/* PAGE HEADER */}
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                  <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                     {activeComponent.title}
                   </h1>
-                  <span className="px-2 py-0.5 rounded-(--radius-xs) text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="px-2 py-0.5 rounded-(--radius-xs) type-micro font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     v{activeComponent.version}
                   </span>
                 </div>
-                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
                   {activeComponent.description}
                 </p>
 
                 {/* Quick Action Chips & CLI Copy Toolbar */}
                 <div className="flex flex-wrap items-center gap-2 pt-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/[0.03] text-xs font-mono text-zinc-700 dark:text-zinc-300">
-                    <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/[0.03] type-caption font-mono text-zinc-700 dark:text-zinc-300">
+                    <Terminal className="icon-sm text-emerald-400" />
                     <span>{activeComponent.cliCommand}</span>
                     <button
                       type="button"
@@ -826,14 +826,14 @@ export function DocsView() {
                       title="Copy CLI command"
                     >
                       {copiedKey === 'header-cli' ? (
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <Check className="icon-sm text-emerald-400" />
                       ) : (
-                        <Copy className="w-3.5 h-3.5" />
+                        <Copy className="icon-sm" />
                       )}
                     </button>
                   </div>
 
-                  <span className="text-xs font-mono text-zinc-400 border border-white/[0.04] bg-white/[0.02] px-2.5 py-1 rounded-(--radius-field)">
+                  <span className="type-caption font-mono text-zinc-400 border border-white/[0.04] bg-white/[0.02] px-2.5 py-1 rounded-(--radius-field)">
                     Primitive: {activeComponent.primitive || 'Native React'}
                   </span>
                 </div>
@@ -848,25 +848,25 @@ export function DocsView() {
                     <button
                       type="button"
                       onClick={() => setActiveTab('preview')}
-                      className={`px-3.5 py-1.5 rounded-(--radius-field) text-xs font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
+                      className={`px-3.5 py-1.5 rounded-(--radius-field) type-caption font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
                         activeTab === 'preview'
                           ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                           : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
                       }`}
                     >
-                      <Eye className="w-3.5 h-3.5" />
+                      <Eye className="icon-sm" />
                       <span>Preview</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setActiveTab('code')}
-                      className={`px-3.5 py-1.5 rounded-(--radius-field) text-xs font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
+                      className={`px-3.5 py-1.5 rounded-(--radius-field) type-caption font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
                         activeTab === 'code'
                           ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                           : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
                       }`}
                     >
-                      <Code2 className="w-3.5 h-3.5" />
+                      <Code2 className="icon-sm" />
                       <span>Code</span>
                     </button>
                   </div>
@@ -878,37 +878,37 @@ export function DocsView() {
                         type="button"
                         onClick={() => setViewportWidth('100%')}
                         title="Full width (100%)"
-                        className={`p-1.5 rounded-(--radius-sm) text-xs transition-colors cursor-pointer ${
+                        className={`p-1.5 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
                           viewportWidth === '100%'
                             ? 'bg-white text-zinc-900 dark:bg-white/[0.1] dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
                         }`}
                       >
-                        <Monitor className="w-3.5 h-3.5" />
+                        <Monitor className="icon-sm" />
                       </button>
                       <button
                         type="button"
                         onClick={() => setViewportWidth('768px')}
                         title="Tablet width (768px)"
-                        className={`p-1.5 rounded-(--radius-sm) text-xs transition-colors cursor-pointer ${
+                        className={`p-1.5 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
                           viewportWidth === '768px'
                             ? 'bg-white text-zinc-900 dark:bg-white/[0.1] dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
                         }`}
                       >
-                        <Tablet className="w-3.5 h-3.5" />
+                        <Tablet className="icon-sm" />
                       </button>
                       <button
                         type="button"
                         onClick={() => setViewportWidth('375px')}
                         title="Mobile width (375px)"
-                        className={`p-1.5 rounded-(--radius-sm) text-xs transition-colors cursor-pointer ${
+                        className={`p-1.5 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
                           viewportWidth === '375px'
                             ? 'bg-white text-zinc-900 dark:bg-white/[0.1] dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
                         }`}
                       >
-                        <Smartphone className="w-3.5 h-3.5" />
+                        <Smartphone className="icon-sm" />
                       </button>
                     </div>
                   )}
@@ -919,7 +919,7 @@ export function DocsView() {
                   <div className="space-y-4">
                     {/* Live Playground Stage */}
                     <div
-                      className="mx-auto rounded-(--radius-control) sm:rounded-(--radius-lg) border border-black/[0.08] dark:border-white/[0.04] bg-zinc-50 dark:bg-[#07080C] p-4 sm:p-8 md:p-12 min-h-[260px] sm:min-h-[320px] flex items-center justify-center relative overflow-hidden transition-all duration-300 shadow-(--elevation-3)"
+                      className="mx-auto rounded-(--radius-control) sm:rounded-(--radius-lg) border border-black/[0.08] dark:border-white/[0.04] bg-zinc-50 dark:bg-[#07080C] p-4 sm:p-8 md:p-12 min-h-[260px] sm:min-h-[320px] flex items-center justify-center relative overflow-hidden transition-all dur-slow shadow-(--elevation-3)"
                       style={{ maxWidth: viewportWidth }}
                     >
                       {/* Sub-pixel top rim specular highlight */}
@@ -935,14 +935,14 @@ export function DocsView() {
                       />
 
                       {/* Component Live Render Switch */}
-                      <div className="relative z-10 w-full flex items-center justify-center">
+                      <div className="relative z-content w-full flex items-center justify-center">
                         {activeComponent.id === 'button' && (
                           <Button
                             variant={demoBtnVariant}
                             size={demoBtnSize}
                             loading={demoBtnLoading}
                             disabled={demoBtnDisabled}
-                            icon={<Sparkles className="w-4 h-4" />}
+                            icon={<Sparkles className="icon-md" />}
                           >
                             Button Component
                           </Button>
@@ -967,7 +967,7 @@ export function DocsView() {
                               </CardDescription>
                             </CardHeader>
                             <CardContent>
-                              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                              <p className="type-caption text-zinc-500 dark:text-zinc-400">
                                 Crafted for high-density interfaces and dark luxury dashboards.
                               </p>
                             </CardContent>
@@ -982,7 +982,7 @@ export function DocsView() {
                         {activeComponent.id === 'switch' && (
                           <div className="flex items-center gap-4 p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.03]">
                             <Switch checked={demoSwitchChecked} onCheckedChange={setDemoSwitchChecked} />
-                            <span className="text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300">
+                            <span className="type-caption font-mono font-medium text-zinc-700 dark:text-zinc-300">
                               {demoSwitchChecked ? 'Enabled · Active State' : 'Disabled · Inactive'}
                             </span>
                           </div>
@@ -996,7 +996,7 @@ export function DocsView() {
                               placeholder="Enter project name..."
                               disabled={demoInputDisabled}
                             />
-                            <p className="text-[11px] font-mono text-zinc-400">
+                            <p className="type-micro font-mono text-zinc-400">
                               Character count: {demoInputValue.length}
                             </p>
                           </div>
@@ -1038,13 +1038,13 @@ export function DocsView() {
                                 <TabsTrigger value="analytics">Analytics</TabsTrigger>
                                 <TabsTrigger value="reports">Reports</TabsTrigger>
                               </TabsList>
-                              <TabsContent value="overview" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] text-xs text-zinc-400 mt-2">
+                              <TabsContent value="overview" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
                                 Overview content with spring tab transitions.
                               </TabsContent>
-                              <TabsContent value="analytics" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] text-xs text-zinc-400 mt-2">
+                              <TabsContent value="analytics" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
                                 Real-time analytics metrics streaming via edge nodes.
                               </TabsContent>
-                              <TabsContent value="reports" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] text-xs text-zinc-400 mt-2">
+                              <TabsContent value="reports" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
                                 Audit reports generated automatically.
                               </TabsContent>
                             </Tabs>
@@ -1053,7 +1053,7 @@ export function DocsView() {
 
                         {activeComponent.id === 'slider' && (
                           <div className="w-full max-w-md space-y-3">
-                            <div className="flex justify-between text-xs font-mono text-zinc-400">
+                            <div className="flex justify-between type-caption font-mono text-zinc-400">
                               <span>Fluid Opacity</span>
                               <span className="text-emerald-400 font-bold">{demoSliderValue}%</span>
                             </div>
@@ -1063,7 +1063,7 @@ export function DocsView() {
 
                         {activeComponent.id === 'progress' && (
                           <div className="w-full max-w-md space-y-3">
-                            <div className="flex justify-between text-xs font-mono text-zinc-400">
+                            <div className="flex justify-between type-caption font-mono text-zinc-400">
                               <span>Build Compilation</span>
                               <span className="text-emerald-400 font-bold">{demoProgressValue}%</span>
                             </div>
@@ -1092,17 +1092,17 @@ export function DocsView() {
 
                         {activeComponent.id === 'kbd' && (
                           <div className="flex items-center gap-3">
-                            <span className="text-xs font-mono text-zinc-400">Press</span>
+                            <span className="type-caption font-mono text-zinc-400">Press</span>
                             <Kbd>⌘</Kbd>
                             <Kbd>K</Kbd>
-                            <span className="text-xs font-mono text-zinc-400">to open command palette</span>
+                            <span className="type-caption font-mono text-zinc-400">to open command palette</span>
                           </div>
                         )}
 
                         {activeComponent.id === 'checkbox' && (
                           <div className="flex items-center gap-3 p-3.5 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03]">
                             <Checkbox checked={demoCheckboxChecked} onChange={setDemoCheckboxChecked} />
-                            <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
+                            <span className="type-caption font-medium text-zinc-700 dark:text-zinc-300">
                               Enable specular border highlights across registry
                             </span>
                           </div>
@@ -1110,21 +1110,21 @@ export function DocsView() {
 
                         {activeComponent.id === 'linear-issue-tracker' && (
                           <div className="w-full max-w-lg">
-                            <LinearIssueTracker />
+                            <LinearIssueTracker notify={addToast} />
                           </div>
                         )}
 
                         {activeComponent.id === 'ui99-brand-logo' && (
                           <div className="flex flex-col items-center gap-4">
                             <UI99Wordmark size="lg" />
-                            <span className="text-xs font-mono text-zinc-400">Obsidian Velvet Luxury Brand Mark</span>
+                            <span className="type-caption font-mono text-zinc-400">Obsidian Velvet Luxury Brand Mark</span>
                           </div>
                         )}
 
                         {activeComponent.id === 'dropdown-menu' && (
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="secondary" icon={<ChevronDown className="w-4 h-4" />}>
+                              <Button variant="secondary" icon={<ChevronDown className="icon-md" />}>
                                 Options Menu
                               </Button>
                             </DropdownMenuTrigger>
@@ -1186,7 +1186,7 @@ export function DocsView() {
                               onChange={setDemoColor}
                               label="Accent Color"
                             />
-                            <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
+                            <div className="flex items-center gap-2 type-caption font-mono text-zinc-400">
                               <span>Selected:</span>
                               <span className="font-bold text-white px-2 py-0.5 rounded bg-white/[0.06]">{demoColor}</span>
                             </div>
@@ -1296,25 +1296,25 @@ export function DocsView() {
                         {activeComponent.id === 'icon-button' && (
                           <div className="flex items-center gap-3">
                             <Button size="sm" className="p-2.5 rounded-(--radius-pill)" variant="primary">
-                              <Sparkles className="w-4 h-4" />
+                              <Sparkles className="icon-md" />
                             </Button>
                             <Button size="sm" className="p-2.5 rounded-(--radius-control)" variant="secondary">
-                              <Search className="w-4 h-4" />
+                              <Search className="icon-md" />
                             </Button>
                             <Button size="sm" className="p-2.5 rounded-(--radius-field)" variant="outline">
-                              <Terminal className="w-4 h-4" />
+                              <Terminal className="icon-md" />
                             </Button>
                           </div>
                         )}
 
                         {activeComponent.id === 'copy-button' && (
                           <div className="flex items-center gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03]">
-                            <code className="text-xs font-mono text-emerald-400">npx @99/ui add all</code>
+                            <code className="type-caption font-mono text-emerald-400">npx @99/ui add all</code>
                             <Button
                               size="xs"
                               variant="secondary"
                               onClick={() => copyToClipboard('npx @99/ui add all', 'demo-cli')}
-                              icon={copiedKey === 'demo-cli' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                              icon={copiedKey === 'demo-cli' ? <Check className="icon-sm text-emerald-400" /> : <Copy className="icon-sm" />}
                             >
                               {copiedKey === 'demo-cli' ? 'Copied' : 'Copy'}
                             </Button>
@@ -1333,13 +1333,13 @@ export function DocsView() {
 
                         {activeComponent.id === 'trend-delta' && (
                           <div className="flex items-center gap-3">
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) type-caption font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                               +24.8% ↑
                             </span>
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) text-xs font-mono font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) type-caption font-mono font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
                               -8.2% ↓
                             </span>
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) text-xs font-mono font-bold bg-zinc-500/10 text-zinc-400 border border-zinc-500/20">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) type-caption font-mono font-bold bg-zinc-500/10 text-zinc-400 border border-zinc-500/20">
                               0.0% —
                             </span>
                           </div>
@@ -1347,7 +1347,7 @@ export function DocsView() {
 
                         {activeComponent.id === 'sparkline' && (
                           <div className="w-full max-w-xs p-4 rounded-(--radius-control) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
-                            <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
+                            <div className="flex items-center justify-between type-caption font-mono text-zinc-400">
                               <span>Throughput</span>
                               <span className="text-emerald-400 font-bold">+18.4%</span>
                             </div>
@@ -1384,9 +1384,9 @@ export function DocsView() {
                                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                                 />
                               </svg>
-                              <span className="absolute text-xs font-mono font-bold text-white">78%</span>
+                              <span className="absolute type-caption font-mono font-bold text-white">78%</span>
                             </div>
-                            <div className="space-y-1 text-xs">
+                            <div className="space-y-1 type-caption">
                               <div className="font-semibold text-zinc-200">Design System Audit</div>
                               <div className="text-zinc-400">78 / {KIT_COMPONENT_COUNT} criteria verified</div>
                             </div>
@@ -1398,13 +1398,13 @@ export function DocsView() {
                             {['Workspace', 'Tokens', 'Verification'].map((step, idx) => (
                               <div key={step} className="flex items-center gap-2">
                                 <div
-                                  className={`w-6 h-6 rounded-(--radius-pill) flex items-center justify-center text-[10px] font-bold ${
+                                  className={`w-6 h-6 rounded-(--radius-pill) flex items-center justify-center type-micro font-bold ${
                                     idx <= 1 ? 'bg-emerald-500 text-black' : 'bg-zinc-800 text-zinc-400'
                                   }`}
                                 >
                                   {idx + 1}
                                 </div>
-                                <span className={`text-xs font-medium ${idx <= 1 ? 'text-white' : 'text-zinc-500'}`}>
+                                <span className={`type-caption font-medium ${idx <= 1 ? 'text-white' : 'text-zinc-500'}`}>
                                   {step}
                                 </span>
                               </div>
@@ -1413,9 +1413,9 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'banner' && (
-                          <div className="w-full max-w-lg p-3 rounded-(--radius-control) bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 flex items-center justify-between text-xs">
+                          <div className="w-full max-w-lg p-3 rounded-(--radius-control) bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 flex items-center justify-between type-caption">
                             <div className="flex items-center gap-2">
-                              <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
+                              <Sparkles className="icon-md text-emerald-400 shrink-0" />
                               <span>UI \ [99] Registry is ready for production.</span>
                             </div>
                             <Button size="xs" variant="primary">Explore</Button>
@@ -1423,9 +1423,9 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'alert' && (
-                          <div className="w-full max-w-md p-4 rounded-(--radius-control) bg-rose-500/10 border border-rose-500/20 text-rose-300 space-y-1 text-xs">
+                          <div className="w-full max-w-md p-4 rounded-(--radius-control) bg-rose-500/10 border border-rose-500/20 text-rose-300 space-y-1 type-caption">
                             <div className="font-bold flex items-center gap-1.5">
-                              <ShieldCheck className="w-4 h-4 text-rose-400" />
+                              <ShieldCheck className="icon-md text-rose-400" />
                               Security Policy Notice
                             </div>
                             <p className="text-zinc-400">
@@ -1437,7 +1437,7 @@ export function DocsView() {
                         {activeComponent.id === 'ui99-wordmark' && (
                           <div className="flex flex-col items-center gap-4">
                             <UI99Wordmark size="lg" />
-                            <span className="text-xs font-mono text-zinc-400">Obsidian Velvet Official Wordmark</span>
+                            <span className="type-caption font-mono text-zinc-400">Obsidian Velvet Official Wordmark</span>
                           </div>
                         )}
 
@@ -1495,7 +1495,7 @@ export function DocsView() {
                         {activeComponent.id === 'pin-input' && (
                           <div className="flex flex-col items-center gap-2">
                             <PinInput length={6} value="994200" onChange={() => {}} />
-                            <span className="text-[11px] font-mono text-zinc-500">Auto-progression & Masking</span>
+                            <span className="type-micro font-mono text-zinc-500">Auto-progression & Masking</span>
                           </div>
                         )}
 
@@ -1606,7 +1606,7 @@ export function DocsView() {
                           <div className="w-full max-w-sm">
                             <AspectRatio ratio={16 / 9}>
                               <div className="w-full h-full rounded-(--radius-control) bg-gradient-to-br from-emerald-500/25 via-emerald-500/10 to-transparent border border-emerald-500/20 flex items-center justify-center">
-                                <span className="text-xs font-mono text-emerald-300">16 : 9 · locked</span>
+                                <span className="type-caption font-mono text-emerald-300">16 : 9 · locked</span>
                               </div>
                             </AspectRatio>
                           </div>
@@ -1619,7 +1619,7 @@ export function DocsView() {
                             <Avatar name="Nova" size="md" status="online" />
                             <Avatar name="Kian" size="lg" status="offline" />
                             <Avatar src="https://i.pravatar.cc/96?img=32" alt="Rana" size="md" />
-                            <span className="text-[11px] font-mono text-zinc-500">xs → lg · fallback initials · status dot</span>
+                            <span className="type-micro font-mono text-zinc-500">xs → lg · fallback initials · status dot</span>
                           </div>
                         )}
 
@@ -1660,8 +1660,8 @@ export function DocsView() {
                                   className="h-40 rounded-(--radius-control) border border-white/[0.06] flex flex-col items-center justify-center gap-2"
                                   style={{ background: `linear-gradient(160deg, ${c.hex} 0%, #0B0C11 130%)` }}
                                 >
-                                  <span className="text-sm font-semibold text-white">{c.name}</span>
-                                  <span className="text-xs font-mono text-white/45">{c.hex}</span>
+                                  <span className="type-body font-semibold text-white">{c.name}</span>
+                                  <span className="type-caption font-mono text-white/45">{c.hex}</span>
                                 </div>
                               ))}
                             </Carousel>
@@ -1686,7 +1686,7 @@ export function DocsView() {
                                 <Button variant="outline" size="sm">Design principles</Button>
                               </CollapsibleTrigger>
                               <CollapsibleContent>
-                                <div className="mt-3 p-4 rounded-(--radius-control) bg-white/[0.02] border border-white/[0.04] text-xs text-zinc-400 leading-relaxed">
+                                <div className="mt-3 p-4 rounded-(--radius-control) bg-white/[0.02] border border-white/[0.04] type-caption text-zinc-400 leading-relaxed">
                                   Velvet surfaces over hard slabs · hairline borders · specular rim highlights ·
                                   every state derived from tokens, never hand-picked.
                                 </div>
@@ -1716,7 +1716,7 @@ export function DocsView() {
                             <Button
                               variant="secondary"
                               onClick={() => setDemoCommandOpen(true)}
-                              icon={<Search className="w-4 h-4" />}
+                              icon={<Search className="icon-md" />}
                             >
                               Open command palette <Kbd>⌘K</Kbd>
                             </Button>
@@ -1726,13 +1726,13 @@ export function DocsView() {
                                 <CommandEmpty>No results found.</CommandEmpty>
                                 <CommandGroup heading="Suggestions">
                                   <CommandItem>
-                                    <Calendar className="mr-2 h-4 w-4" /> Calendar
+                                    <Calendar className="icon-md mr-2" /> Calendar
                                   </CommandItem>
                                   <CommandItem>
-                                    <Sparkles className="mr-2 h-4 w-4" /> Launch workflow
+                                    <Sparkles className="icon-md mr-2" /> Launch workflow
                                   </CommandItem>
                                   <CommandItem>
-                                    <Palette className="mr-2 h-4 w-4" /> Export tokens
+                                    <Palette className="icon-md mr-2" /> Export tokens
                                   </CommandItem>
                                 </CommandGroup>
                               </CommandList>
@@ -1742,7 +1742,7 @@ export function DocsView() {
 
                         {activeComponent.id === 'command-bar' && (
                           <div className="w-full max-w-md">
-                            <CommandBar leading={<Search className="w-4 h-4 text-zinc-500" />}>
+                            <CommandBar leading={<Search className="icon-md text-zinc-500" />}>
                               <CommandAction keys={['⌘', 'K']}>Command palette</CommandAction>
                               <CommandAction keys={['⌘', 'B']} active>Toggle sidebar</CommandAction>
                               <CommandAction keys={['G', 'D']}>Go to dashboard</CommandAction>
@@ -1754,7 +1754,7 @@ export function DocsView() {
                           <div className="flex flex-col items-center gap-4">
                             <ConfettiPrimitive active={demoConfettiActive} particleCount={90} durationMs={2200} onComplete={() => setDemoConfettiActive(false)} />
                             <Button variant="success" onClick={() => setDemoConfettiActive(true)}>
-                              <Sparkles className="w-4 h-4" /> Celebrate
+                              <Sparkles className="icon-md" /> Celebrate
                             </Button>
                           </div>
                         )}
@@ -1803,7 +1803,7 @@ export function DocsView() {
                         {activeComponent.id === 'empty-placeholder' && (
                           <div className="w-full max-w-md">
                             <EmptyPlaceholderPrimitive
-                              icon={<Compass className="w-6 h-6" />}
+                              icon={<Compass className="icon-xl" />}
                               title="No objects yet"
                               description="Capture your first thought, link or decision — UI99 will classify and file it automatically."
                               actionLabel="New object"
@@ -1859,8 +1859,8 @@ export function DocsView() {
                             </HoverCardTrigger>
                             <HoverCardContent>
                               <div className="space-y-1.5">
-                                <p className="text-sm font-semibold text-white">UI99 Design System</p>
-                                <p className="text-xs text-zinc-400">Velvet-obsidian React kit · WCAG 2.2 audited · RTL-first.</p>
+                                <p className="type-body font-semibold text-white">UI99 Design System</p>
+                                <p className="type-caption text-zinc-400">Velvet-obsidian React kit · WCAG 2.2 audited · RTL-first.</p>
                               </div>
                             </HoverCardContent>
                           </HoverCard>
@@ -1966,7 +1966,7 @@ export function DocsView() {
                         {activeComponent.id === 'otp-input' && (
                           <div className="flex flex-col items-center gap-4">
                             <OTPInputPrimitive value={demoOtpValue} onChange={setDemoOtpValue} length={6} />
-                            <p className="text-xs font-mono text-zinc-500">value: {demoOtpValue || '—'}</p>
+                            <p className="type-caption font-mono text-zinc-500">value: {demoOtpValue || '—'}</p>
                           </div>
                         )}
 
@@ -1993,9 +1993,9 @@ export function DocsView() {
                             </PopoverTrigger>
                             <PopoverContent>
                               <div className="space-y-2">
-                                <p className="text-sm font-semibold text-white">--bg-surface</p>
-                                <p className="text-xs font-mono text-emerald-300">rgba(14, 14, 19, 0.52)</p>
-                                <p className="text-xs text-zinc-400">Dock base · blur(18px) saturate(170%)</p>
+                                <p className="type-body font-semibold text-white">--bg-surface</p>
+                                <p className="type-caption font-mono text-emerald-300">rgba(14, 14, 19, 0.52)</p>
+                                <p className="type-caption text-zinc-400">Dock base · blur(18px) saturate(170%)</p>
                               </div>
                             </PopoverContent>
                           </PopoverRoot>
@@ -2021,7 +2021,7 @@ export function DocsView() {
                         {activeComponent.id === 'rating' && (
                           <div className="flex flex-col items-center gap-3">
                             <RatingPrimitive value={demoRatingValue} onChange={setDemoRatingValue} size="lg" />
-                            <p className="text-xs font-mono text-zinc-500">value: {demoRatingValue}</p>
+                            <p className="type-caption font-mono text-zinc-500">value: {demoRatingValue}</p>
                           </div>
                         )}
 
@@ -2033,7 +2033,7 @@ export function DocsView() {
 
                         {activeComponent.id === 'scroll-area' && (
                           <ScrollArea className="h-44 w-full max-w-sm rounded-(--radius-control) border border-white/[0.05] bg-white/[0.015]">
-                            <div className="p-4 space-y-3 text-xs text-zinc-400 leading-relaxed">
+                            <div className="p-4 space-y-3 type-caption text-zinc-400 leading-relaxed">
                               {Array.from({ length: 12 }, (_, i) => (
                                 <p key={i}>Registry entry {i + 1} — velvet surface, hairline border, specular rim.</p>
                               ))}
@@ -2049,9 +2049,9 @@ export function DocsView() {
 
                         {activeComponent.id === 'separator' && (
                           <div className="w-full max-w-sm space-y-4">
-                            <p className="text-xs text-zinc-400">Surfaces above</p>
+                            <p className="type-caption text-zinc-400">Surfaces above</p>
                             <Separator />
-                            <p className="text-xs text-zinc-400">Surfaces below</p>
+                            <p className="type-caption text-zinc-400">Surfaces below</p>
                           </div>
                         )}
 
@@ -2067,7 +2067,7 @@ export function DocsView() {
                                   Side sheet — mobile-first, backdrop blurred, velvet border.
                                 </SheetDemoDescription>
                               </SheetDemoHeader>
-                              <div className="p-4 text-xs text-zinc-400">Esc to dismiss · focus is trapped while open.</div>
+                              <div className="p-4 type-caption text-zinc-400">Esc to dismiss · focus is trapped while open.</div>
                             </SheetDemoContent>
                           </SheetDemoRoot>
                         )}
@@ -2077,12 +2077,12 @@ export function DocsView() {
                             <SidebarProvider>
                               <Sidebar>
                                 <SidebarHeader>
-                                  <span className="text-xs font-mono font-bold text-white px-2">UI99 · Workspace</span>
+                                  <span className="type-caption font-mono font-bold text-white px-2">UI99 · Workspace</span>
                                 </SidebarHeader>
                                 <SidebarBody>
-                                  <SidebarItem icon={<Layers className="w-4 h-4" />} label="Objects" isActive href="#" />
-                                  <SidebarItem icon={<Palette className="w-4 h-4" />} label="Tokens" href="#" />
-                                  <SidebarItem icon={<Package className="w-4 h-4" />} label="Registry" href="#" />
+                                  <SidebarItem icon={<Layers className="icon-md" />} label="Objects" isActive href="#" />
+                                  <SidebarItem icon={<Palette className="icon-md" />} label="Tokens" href="#" />
+                                  <SidebarItem icon={<Package className="icon-md" />} label="Registry" href="#" />
                                 </SidebarBody>
                               </Sidebar>
                             </SidebarProvider>
@@ -2193,7 +2193,7 @@ export function DocsView() {
                         {activeComponent.id === 'toggle' && (
                           <div className="flex items-center gap-3">
                             <Toggle pressed={demoToggleOn} onPressedChange={setDemoToggleOn} aria-label="Toggle bold">
-                              <Bold className="w-4 h-4" />
+                              <Bold className="icon-md" />
                             </Toggle>
                             <Toggle variant="outline" aria-label="Toggle italic">
                               <span className="italic font-serif">I</span>
@@ -2236,13 +2236,13 @@ export function DocsView() {
                         {!LIVE_PREVIEW_IDS.has(activeComponent.id) && (
                           <div className="w-full max-w-md p-6 rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-4 text-center">
                             <div className="w-12 h-12 rounded-(--radius-control) bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mx-auto">
-                              <Sparkles className="w-6 h-6" />
+                              <Sparkles className="icon-xl" />
                             </div>
                             <div className="space-y-1">
-                              <h3 className="text-base font-bold text-zinc-950 dark:text-white">
+                              <h3 className="type-body-lg font-bold text-zinc-950 dark:text-white">
                                 {activeComponent.title} Primitive
                               </h3>
-                              <p className="text-xs text-zinc-500 dark:text-zinc-400 max-w-xs mx-auto">
+                              <p className="type-caption text-zinc-500 dark:text-zinc-400 max-w-xs mx-auto">
                                 {activeComponent.description}
                               </p>
                             </div>
@@ -2261,9 +2261,9 @@ export function DocsView() {
                     </div>
 
                     {/* LIVE INTERACTIVE CONTROLLERS (Props Tweaker) */}
-                    <div className="p-4 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center gap-4 text-xs font-mono">
+                    <div className="p-4 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center gap-4 type-caption font-mono">
                       <div className="flex items-center gap-1.5 text-zinc-500">
-                        <SlidersHorizontal className="w-3.5 h-3.5 text-emerald-400" />
+                        <SlidersHorizontal className="icon-sm text-emerald-400" />
                         <span className="font-semibold">Live Props:</span>
                       </div>
 
@@ -2274,7 +2274,7 @@ export function DocsView() {
                             <select
                               value={demoBtnVariant}
                               onChange={(e) => setDemoBtnVariant(e.target.value as any)}
-                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] type-caption font-mono"
                             >
                               <option value="primary">primary</option>
                               <option value="secondary">secondary</option>
@@ -2289,7 +2289,7 @@ export function DocsView() {
                             <select
                               value={demoBtnSize}
                               onChange={(e) => setDemoBtnSize(e.target.value as any)}
-                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] type-caption font-mono"
                             >
                               <option value="xs">xs</option>
                               <option value="sm">sm</option>
@@ -2327,7 +2327,7 @@ export function DocsView() {
                             <select
                               value={demoBadgeVariant}
                               onChange={(e) => setDemoBadgeVariant(e.target.value as any)}
-                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] text-xs font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] type-caption font-mono"
                             >
                               <option value="default">default</option>
                               <option value="secondary">secondary</option>
@@ -2417,7 +2417,7 @@ export function DocsView() {
               {/* ── SECTION 2: INSTALLATION (SHADCN STEP-BY-STEP) ── */}
               <section id="installation" className="space-y-4 pt-4">
                 <div className="flex items-center gap-2">
-                  <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                  <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-white">
                     Installation
                   </h2>
                 </div>
@@ -2427,7 +2427,7 @@ export function DocsView() {
                   <button
                     type="button"
                     onClick={() => setInstallMethod('cli')}
-                    className={`px-3 py-1 rounded-(--radius-sm) text-xs font-mono font-medium transition-colors cursor-pointer ${
+                    className={`px-3 py-1 rounded-(--radius-sm) type-caption font-mono font-medium transition-colors cursor-pointer ${
                       installMethod === 'cli'
                         ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold'
                         : 'text-zinc-500 hover:text-white'
@@ -2438,7 +2438,7 @@ export function DocsView() {
                   <button
                     type="button"
                     onClick={() => setInstallMethod('manual')}
-                    className={`px-3 py-1 rounded-(--radius-sm) text-xs font-mono font-medium transition-colors cursor-pointer ${
+                    className={`px-3 py-1 rounded-(--radius-sm) type-caption font-mono font-medium transition-colors cursor-pointer ${
                       installMethod === 'manual'
                         ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold'
                         : 'text-zinc-500 hover:text-white'
@@ -2457,7 +2457,7 @@ export function DocsView() {
                           key={pm}
                           type="button"
                           onClick={() => setPackageManager(pm)}
-                          className={`px-2.5 py-1 rounded-(--radius-sm) text-xs font-mono cursor-pointer transition-colors ${
+                          className={`px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono cursor-pointer transition-colors ${
                             packageManager === pm
                               ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
                               : 'text-zinc-400 hover:text-zinc-200 bg-white/[0.02]'
@@ -2478,7 +2478,7 @@ export function DocsView() {
                   /* MANUAL INSTALLATION STEPS */
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+                      <span className="type-caption font-semibold text-zinc-700 dark:text-zinc-300">
                         1. Install required primitive packages:
                       </span>
                       <CodeBlock
@@ -2489,7 +2489,7 @@ export function DocsView() {
                     </div>
 
                     <div className="space-y-2">
-                      <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+                      <span className="type-caption font-semibold text-zinc-700 dark:text-zinc-300">
                         2. Copy component source code to{' '}
                         <code className="text-emerald-400">
                           src/components/ui/{activeComponent.name}.tsx
@@ -2510,7 +2510,7 @@ export function DocsView() {
 
               {/* ── SECTION 3: USAGE ── */}
               <section id="usage" className="space-y-3 pt-4">
-                <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-white">
                   Usage
                 </h2>
                 <CodeBlock
@@ -2523,15 +2523,15 @@ export function DocsView() {
 
               {/* ── SECTION 4: API REFERENCE (PROPS TABLE) ── */}
               <section id="props" className="space-y-3 pt-4">
-                <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-white">
                   API Reference
                 </h2>
-                <p className="text-xs font-mono text-zinc-500">
+                <p className="type-caption font-mono text-zinc-500">
                   TypeScript interfaces and runtime props for {activeComponent.title}.
                 </p>
 
                 <div className="overflow-x-auto rounded-(--radius-control) border border-black/[0.06] dark:border-white/[0.04]">
-                  <table className="w-full text-left text-xs border-collapse">
+                  <table className="w-full text-left type-caption border-collapse">
                     <thead>
                       <tr className="border-b border-black/[0.06] dark:border-white/[0.04] bg-zinc-100/50 dark:bg-white/[0.02]">
                         <th className="p-3 font-mono font-bold text-zinc-900 dark:text-zinc-200">Prop</th>
@@ -2567,32 +2567,32 @@ export function DocsView() {
               {/* ── SECTION 5: ACCESSIBILITY & KEYBOARD SPECS ── */}
               <section id="accessibility" className="space-y-4 pt-4">
                 <div className="flex items-center gap-2">
-                  <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                  <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-white">
                     Accessibility & Keyboard Navigation
                   </h2>
-                  <span className="px-2 py-0.5 text-[10px] font-mono rounded-(--radius-pill) bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="px-2 py-0.5 type-micro font-mono rounded-(--radius-pill) bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     WCAG 2.2 AAA
                   </span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 rounded-(--radius-control) bg-zinc-100/60 dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
-                    <h3 className="text-xs font-mono font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-(--radius-pill) bg-emerald-400" />
+                    <h3 className="type-caption font-mono font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
+                      <span className="icon-dot rounded-(--radius-pill) bg-emerald-400" />
                       Focus & State Management
                     </h3>
-                    <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <p className="type-caption text-zinc-600 dark:text-zinc-400 leading-relaxed">
                       Equipped with <code className="text-emerald-400 font-mono">focus-ui99</code> double-ring indicator (2px canvas gap + 2px emerald focus ring) meeting WCAG 2.4.11 / 2.4.13 focus appearance guidelines.
                     </p>
                   </div>
 
                   <div className="p-4 rounded-(--radius-control) bg-zinc-100/60 dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
-                    <h3 className="text-xs font-mono font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-(--radius-pill) bg-blue-400" />
+                    <h3 className="type-caption font-mono font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
+                      <span className="icon-dot rounded-(--radius-pill) bg-blue-400" />
                       Keyboard Interaction
                     </h3>
-                    <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                      Full keyboard operability with <kbd className="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-[10px] font-mono">Tab</kbd>, <kbd className="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-[10px] font-mono">Enter</kbd>, <kbd className="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-[10px] font-mono">Space</kbd>, and arrow key navigation in RTL & LTR modes.
+                    <p className="type-caption text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                      Full keyboard operability with <kbd className="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 type-micro font-mono">Tab</kbd>, <kbd className="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 type-micro font-mono">Enter</kbd>, <kbd className="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 type-micro font-mono">Space</kbd>, and arrow key navigation in RTL & LTR modes.
                     </p>
                   </div>
                 </div>
@@ -2609,10 +2609,10 @@ export function DocsView() {
                     }}
                     className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                   >
-                    <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                      <ArrowLeft className="w-3 h-3" /> Previous
+                    <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                      <ArrowLeft className="icon-xs" /> Previous
                     </span>
-                    <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                    <span className="type-body font-semibold text-zinc-900 dark:text-white">
                       {prevItem.title}
                     </span>
                   </button>
@@ -2629,10 +2629,10 @@ export function DocsView() {
                     }}
                     className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                   >
-                    <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                      Next <ArrowRight className="w-3 h-3" />
+                    <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                      Next <ArrowRight className="icon-xs" />
                     </span>
-                    <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                    <span className="type-body font-semibold text-zinc-900 dark:text-white">
                       {nextItem.title}
                     </span>
                   </button>
@@ -2649,28 +2649,28 @@ export function DocsView() {
           {activeSection === 'intro' && (
             <article className="space-y-8">
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
-                <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+                <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
                   v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 </div>
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Introduction.
                 </h1>
-                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
                   Re-usable components built using Radix UI primitives, Tailwind CSS, and Velvet Obsidian Dark design tokens.
                 </p>
               </header>
 
-              <div className="space-y-6 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              <div className="space-y-6 type-body text-zinc-600 dark:text-zinc-300 leading-relaxed">
                 <p>
                   <strong className="text-zinc-900 dark:text-white font-semibold">UI \ [99]</strong> is <strong>NOT</strong> a component library in the traditional sense of an immutable npm package. It is a collection of re-usable components that you can copy and paste directly into your apps.
                 </p>
 
                 <div className="p-5 rounded-(--radius-lg) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-3">
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-white flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-emerald-400" />
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-white flex items-center gap-2">
+                    <Sparkles className="icon-md text-emerald-400" />
                     Core Architecture Principles
                   </h3>
-                  <ul className="space-y-2 text-xs text-zinc-400 list-disc pl-4">
+                  <ul className="space-y-2 type-caption text-zinc-400 list-disc pl-4">
                     <li><strong>Ownership:</strong> You own the code. Customize components according to your application requirements.</li>
                     <li><strong>Velvet Obsidian Dark:</strong> Mathematical tokens locked to pure #06070A canvas and sub-pixel specular rim highlights.</li>
                     <li><strong>Linear Speed:</strong> Physics-based spring animations with motion/react for instant tactile response.</li>
@@ -2679,10 +2679,10 @@ export function DocsView() {
                 </div>
 
                 <div className="space-y-3 pt-4">
-                  <h2 className="text-xl font-bold text-zinc-950 dark:text-white">
+                  <h2 className="type-title font-bold text-zinc-950 dark:text-white">
                     Quick Start
                   </h2>
-                  <p className="text-xs text-zinc-400">
+                  <p className="type-caption text-zinc-400">
                     Run the init command to bootstrap the design tokens into your project:
                   </p>
                   <CodeBlock
@@ -2704,10 +2704,10 @@ export function DocsView() {
                   }}
                   className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    Next <ArrowRight className="w-3 h-3" />
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    Next <ArrowRight className="icon-xs" />
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     Installation
                   </span>
                 </button>
@@ -2719,17 +2719,17 @@ export function DocsView() {
           {activeSection === 'installation' && (
             <article className="space-y-8">
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Installation
                 </h1>
-                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
                   How to install dependencies and configure your project for UI \ [99].
                 </p>
               </header>
 
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-white">
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-white">
                     1. Create React + Vite Project
                   </h3>
                   <CodeBlock
@@ -2740,7 +2740,7 @@ export function DocsView() {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-white">
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-white">
                     2. Install Core Utility Packages
                   </h3>
                   <CodeBlock
@@ -2751,7 +2751,7 @@ export function DocsView() {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-white">
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-white">
                     3. Add cn() helper to src/lib/utils.ts
                   </h3>
                   <CodeBlock
@@ -2768,7 +2768,7 @@ export function cn(...inputs: ClassValue[]) {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-white">
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-white">
                     4. Configure Velvet Obsidian Dark in src/index.css
                   </h3>
                   <CodeBlock
@@ -2797,10 +2797,10 @@ export function cn(...inputs: ClassValue[]) {
                   }}
                   className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    <ArrowLeft className="w-3 h-3" /> Previous
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    <ArrowLeft className="icon-xs" /> Previous
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     Introduction
                   </span>
                 </button>
@@ -2813,10 +2813,10 @@ export function cn(...inputs: ClassValue[]) {
                   }}
                   className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    Next <ArrowRight className="w-3 h-3" />
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    Next <ArrowRight className="icon-xs" />
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     Theming & Tokens
                   </span>
                 </button>
@@ -2828,10 +2828,10 @@ export function cn(...inputs: ClassValue[]) {
           {activeSection === 'theming' && (
             <article className="space-y-8">
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Theming & Design Tokens
                 </h1>
-                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
                   Mathematical color tokens, specular rim highlights, and diffusion shadow profiles.
                 </p>
               </header>
@@ -2840,28 +2840,28 @@ export function cn(...inputs: ClassValue[]) {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="p-4 rounded-(--radius-control) bg-[#06070A] border border-white/[0.08] space-y-2">
                   <div className="h-14 rounded-(--radius-field) bg-[#06070A] border border-white/[0.04]" />
-                  <div className="text-xs font-mono font-bold text-white">#06070A</div>
-                  <div className="text-[11px] font-mono text-zinc-400">Canvas Root</div>
+                  <div className="type-caption font-mono font-bold text-white">#06070A</div>
+                  <div className="type-micro font-mono text-zinc-400">Canvas Root</div>
                 </div>
 
                 <div className="p-4 rounded-(--radius-control) bg-[#0B0C11] border border-white/[0.08] space-y-2">
                   <div className="h-14 rounded-(--radius-field) bg-[#0B0C11] border border-white/[0.04]" />
-                  <div className="text-xs font-mono font-bold text-white">#0B0C11</div>
-                  <div className="text-[11px] font-mono text-zinc-400">Surface Layer 1</div>
+                  <div className="type-caption font-mono font-bold text-white">#0B0C11</div>
+                  <div className="type-micro font-mono text-zinc-400">Surface Layer 1</div>
                 </div>
 
                 <div className="p-4 rounded-(--radius-control) bg-[#131318] border border-white/[0.08] space-y-2">
                   <div className="h-14 rounded-(--radius-field) bg-[#131318] border border-white/[0.04]" />
-                  <div className="text-xs font-mono font-bold text-white">#131318</div>
-                  <div className="text-[11px] font-mono text-zinc-400">Elevated Modals</div>
+                  <div className="type-caption font-mono font-bold text-white">#131318</div>
+                  <div className="type-micro font-mono text-zinc-400">Elevated Modals</div>
                 </div>
               </div>
 
               <div className="space-y-3 pt-4">
-                <h2 className="text-xl font-bold text-zinc-950 dark:text-white">
+                <h2 className="type-title font-bold text-zinc-950 dark:text-white">
                   Specular Rim Highlight System
                 </h2>
-                <p className="text-xs text-zinc-400 leading-relaxed">
+                <p className="type-caption text-zinc-400 leading-relaxed">
                   Every obsidian card utilizes an ultra-fine sub-pixel rim highlight on the top edge to create tactile material depth without bright solid borders:
                 </p>
                 <CodeBlock
@@ -2885,10 +2885,10 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   }}
                   className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    <ArrowLeft className="w-3 h-3" /> Previous
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    <ArrowLeft className="icon-xs" /> Previous
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     Installation
                   </span>
                 </button>
@@ -2901,10 +2901,10 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   }}
                   className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    Next <ArrowRight className="w-3 h-3" />
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    Next <ArrowRight className="icon-xs" />
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     Registry Architecture
                   </span>
                 </button>
@@ -2916,27 +2916,27 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
           {activeSection === 'npm-guide' && (
             <article className="space-y-8">
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Registry Architecture
                 </h1>
-                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
                   How UI \ [99] distributes zero-dependency copy-paste components via standard JSON registry schemas.
                 </p>
               </header>
 
               <div className="space-y-6">
                 <div className="p-5 rounded-(--radius-lg) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-3">
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-white flex items-center gap-2">
-                    <FolderGit2 className="w-4 h-4 text-emerald-400" />
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-white flex items-center gap-2">
+                    <FolderGit2 className="icon-md text-emerald-400" />
                     How It Works
                   </h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
+                  <p className="type-caption text-zinc-400 leading-relaxed">
                     When you run <code>npx @99/ui add button</code>, the CLI fetches the component recipe from <code>/registry.json</code>, resolves peer dependencies, and places the component file directly into your workspace.
                   </p>
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-white">
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-white">
                     Registry Schema Example (registry.json)
                   </h3>
                   <CodeBlock
@@ -2969,10 +2969,10 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   }}
                   className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    <ArrowLeft className="w-3 h-3" /> Previous
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    <ArrowLeft className="icon-xs" /> Previous
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     Theming & Tokens
                   </span>
                 </button>
@@ -2985,10 +2985,10 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   }}
                   className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    Next <ArrowRight className="w-3 h-3" />
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    Next <ArrowRight className="icon-xs" />
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     CLI Reference
                   </span>
                 </button>
@@ -3000,17 +3000,17 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
           {activeSection === 'cli' && (
             <article className="space-y-8">
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   CLI Reference
                 </h1>
-                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
                   Command-line interface commands for adding components and blocks.
                 </p>
               </header>
 
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-white">
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-white">
                     Initialize Configuration
                   </h3>
                   <CodeBlock
@@ -3021,7 +3021,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-white">
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-white">
                     Add Component
                   </h3>
                   <CodeBlock
@@ -3032,7 +3032,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-white">
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-white">
                     Add Block
                   </h3>
                   <CodeBlock
@@ -3053,10 +3053,10 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   }}
                   className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    <ArrowLeft className="w-3 h-3" /> Previous
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    <ArrowLeft className="icon-xs" /> Previous
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     Registry Architecture
                   </span>
                 </button>
@@ -3069,10 +3069,10 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   }}
                   className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    Next <ArrowRight className="w-3 h-3" />
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    Next <ArrowRight className="icon-xs" />
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     Changelog &amp; Releases
                   </span>
                 </button>
@@ -3084,10 +3084,10 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
           {activeSection === 'changelog' && (
             <article className="space-y-8">
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
-                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
+                <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Changelog &amp; Releases
                 </h1>
-                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
                   Every release of UI \ [99], versioned with Changesets and gated by the full quality pipeline.
                 </p>
               </header>
@@ -3095,47 +3095,47 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
               {/* Current release — version is GENERATED (src/generated/kit-count.ts), never hard-coded */}
               <div className="p-5 sm:p-6 rounded-(--radius-lg) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-4">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white text-xs font-mono font-bold">
-                    <Rocket className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white type-caption font-mono font-bold">
+                    <Rocket className="icon-sm text-emerald-400" />
                     v{KIT_VERSION}
                   </span>
-                  <span className="px-2 py-0.5 rounded-(--radius-xs) text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="px-2 py-0.5 rounded-(--radius-xs) type-micro font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     LATEST · STABLE
                   </span>
-                  <span className="text-xs font-mono text-zinc-400">@99/ui — first stable, publish-ready</span>
+                  <span className="type-caption font-mono text-zinc-400">@99/ui — first stable, publish-ready</span>
                 </div>
 
-                <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                <ul className="space-y-2 type-caption text-zinc-600 dark:text-zinc-300 leading-relaxed">
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="icon-sm text-emerald-400 shrink-0 mt-0.5" />
                     <span>
                       <strong className="text-zinc-950 dark:text-white">Registry v2.1 (shadcn-grade).</strong>{' '}
                       {KIT_COMPONENT_COUNT} components scanned from source with title/description/category/keywords and a verified meta.a11y contract — the docs and the registry can never drift again.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="icon-sm text-emerald-400 shrink-0 mt-0.5" />
                     <span>
                       <strong className="text-zinc-950 dark:text-white">CLI v2 (plug-able).</strong>{' '}
                       Multi-registry resolution (flag → components.json → env → repo → bundled snapshot → published URL), init with resolvedPaths, search, --dry-run.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="icon-sm text-emerald-400 shrink-0 mt-0.5" />
                     <span>
                       <strong className="text-zinc-950 dark:text-white">Publish-ready npm kit.</strong>{' '}
                       exports map (8 paths incl. porcelain + tailwind.css), files whitelist, peerDependencies react/react-dom, sideEffects CSS-only — audited by a CI gate.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="icon-sm text-emerald-400 shrink-0 mt-0.5" />
                     <span>
                       <strong className="text-zinc-950 dark:text-white">Audit matrix.</strong>{' '}
                       20 heavy primitives axe-clean + disabled + focus-ui99 gates; All-Props Lab covers 31 interactive primitives with live props and copy-ready JSX.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="icon-sm text-emerald-400 shrink-0 mt-0.5" />
                     <span>
                       <strong className="text-zinc-950 dark:text-white">daisyUI-class gateway.</strong>{' '}
                       @99/ui/tailwind.css semantic classes (ui-btn, ui-card, ui-input, ui-badge) generated from the same audited token layer.
@@ -3146,16 +3146,16 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
 
               {/* Release process — the flow docs/RELEASE.md prescribes */}
               <div className="space-y-3">
-                <h2 className="text-xl font-bold text-zinc-950 dark:text-white flex items-center gap-2">
-                  <History className="w-5 h-5 text-emerald-400" />
+                <h2 className="type-title font-bold text-zinc-950 dark:text-white flex items-center gap-2">
+                  <History className="icon-lg text-emerald-400" />
                   How releases are cut
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                <p className="type-caption text-zinc-500 dark:text-zinc-400 leading-relaxed">
                   Versions are minted by Changesets — never bumped by hand. A pull request carrying a changeset
                   file lands its notes in the generated CHANGELOG.md and GitHub Releases on the next{' '}
-                  <code className="mx-1 px-1 py-0.5 rounded bg-zinc-200/60 dark:bg-white/[0.06] font-mono text-[11px]">version-packages</code>{' '}
+                  <code className="mx-1 px-1 py-0.5 rounded bg-zinc-200/60 dark:bg-white/[0.06] font-mono type-micro">version-packages</code>{' '}
                   run. The full checklist lives in{' '}
-                  <code className="px-1 py-0.5 rounded bg-zinc-200/60 dark:bg-white/[0.06] font-mono text-[11px]">docs/RELEASE.md</code>.
+                  <code className="px-1 py-0.5 rounded bg-zinc-200/60 dark:bg-white/[0.06] font-mono type-micro">docs/RELEASE.md</code>.
                 </p>
                 <CodeBlock
                   code={`bun run changeset          # describe the change (semver intent)\nbun run version-packages   # bump version + generate CHANGELOG.md\nbun run lib:build          # rebuild the kit with the new version baked in\ncd dist-kit && npm publish`}
@@ -3164,7 +3164,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                 />
               </div>
 
-              <div className="p-4 rounded-(--radius-control) border border-black/[0.05] dark:border-white/[0.04] bg-white/[0.02] text-[11px] font-mono text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              <div className="p-4 rounded-(--radius-control) border border-black/[0.05] dark:border-white/[0.04] bg-white/[0.02] type-micro font-mono text-zinc-500 dark:text-zinc-400 leading-relaxed">
                 The version shown on this page, the header badge, and the registry envelope are all generated
                 from one source — <code className="text-emerald-400">src/generated/kit-count.ts</code> — so the site can never advertise a version the package is not.
               </div>
@@ -3179,10 +3179,10 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   }}
                   className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    <ArrowLeft className="w-3 h-3" /> Previous
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    <ArrowLeft className="icon-xs" /> Previous
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     CLI Reference
                   </span>
                 </button>
@@ -3195,10 +3195,10 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   }}
                   className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 flex items-center gap-1">
-                    Next <ArrowRight className="w-3 h-3" />
+                  <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
+                    Next <ArrowRight className="icon-xs" />
                   </span>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="type-body font-semibold text-zinc-900 dark:text-white">
                     Button Component
                   </span>
                 </button>
@@ -3209,12 +3209,12 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
 
         {/* ── RIGHT COLUMN: "ON THIS PAGE" TABLE OF CONTENTS (2 cols on xl) ── */}
         <aside className="hidden xl:block xl:col-span-2 space-y-4 sticky top-16 select-none pl-4 border-l border-black/[0.04] dark:border-white/[0.03]">
-          <div className="text-[11px] font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-1.5">
-            <Hash className="w-3 h-3 text-emerald-400" />
+          <div className="type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-1.5">
+            <Hash className="icon-xs text-emerald-400" />
             <span>On This Page</span>
           </div>
 
-          <div className="space-y-1 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          <div className="space-y-1 type-caption font-mono text-zinc-500 dark:text-zinc-400">
             {activeComponent ? (
               <>
                 <button
@@ -3262,9 +3262,9 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                 navigator.clipboard.writeText(window.location.href);
                 addToast('Page URL copied to clipboard', 'success');
               }}
-              className="flex items-center gap-1.5 text-[11px] font-mono text-zinc-500 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 type-micro font-mono text-zinc-500 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
             >
-              <Share2 className="w-3 h-3 text-emerald-400" />
+              <Share2 className="icon-xs text-emerald-400" />
               <span>Share Page</span>
             </button>
           </div>

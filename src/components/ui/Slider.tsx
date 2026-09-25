@@ -41,13 +41,13 @@ export function Slider({
       className={`w-full space-y-2 select-none ${disabled ? 'opacity-40 pointer-events-none' : ''} ${className}`}
     >
       {(label || unit) && (
-        <div className="flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between type-caption">
           {label && (
             <span className={`font-semibold tracking-tight ${isDark ? 'text-(--text-primary)' : 'text-zinc-800'}`}>
               {label}
             </span>
           )}
-          <span className="font-mono text-zinc-500 text-[11px]">
+          <span className="font-mono text-(--text-muted) type-micro">
             {value}
             {unit}
           </span>
@@ -64,7 +64,7 @@ export function Slider({
         >
           {/* Active filled track */}
           <div
-            className="h-full bg-emerald-500 rounded-(--radius-pill) transition-all duration-75 shadow-(--glow-accent-sm) slider-fill"
+            className="h-full bg-emerald-500 rounded-(--radius-pill) transition-all dur-instant shadow-(--glow-accent-sm) slider-fill"
             style={{ width: `${percentage}%` }}
           />
         </div>
@@ -85,7 +85,7 @@ export function Slider({
 
         {/* Visual tactile thumb */}
         <div
-          className={`absolute pointer-events-none w-4 h-4 rounded-(--radius-pill) -translate-x-1/2 shadow-md transition-transform duration-75 slider-thumb ${
+          className={`absolute pointer-events-none w-4 h-4 rounded-(--radius-pill) -translate-x-1/2 shadow-md transition-transform dur-instant slider-thumb ${
             isDark
               ? 'bg-white border-2 border-(--bg-elevated) shadow-(--elevation-1)'
               : 'bg-white border-2 border-emerald-500 shadow-(--elevation-1)'

@@ -35,7 +35,6 @@ import {
   Circle,
   CheckCircle,
 } from 'lucide-react';
-import { useApp } from '../../core/context/AppContext';
 import { useIsDark } from './theme';
 import { Button } from './Button';
 import { SearchBar } from './Input';
@@ -130,9 +129,18 @@ const DEFAULT_ISSUES: IssueItem[] = [
   },
 ];
 
-export function LinearIssueTracker() {
-  const { addToast } = useApp();
+export interface LinearIssueTrackerProps {
+  /**
+   * Feedback sink. The tracker is presentational about notifications: the host
+   * decides whether a status change becomes a toast, a live region, or nothing.
+   */
+  notify?: (message: string, type?: 'info' | 'success' | 'warning' | 'rose') => void;
+}
+
+export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
   const isDark = useIsDark();
+  // No sink provided → notifications are dropped, not crashed on.
+  const notifySafe = notify ?? (() => {});
 
   const [issues, setIssues] = useState<IssueItem[]>(DEFAULT_ISSUES);
   const [activeCursorIndex, setActiveCursorIndex] = useState<number>(0);
@@ -299,14 +307,14 @@ export function LinearIssueTracker() {
           : i
       )
     );
-    addToast(`Issue status changed to ${nextStatus}`, 'success');
+    notifySafe(`Issue status changed to ${nextStatus}`, 'success');
   };
 
   const updateIssuePriority = (id: string, nextPriority: PriorityLevel) => {
     setIssues((prev) =>
       prev.map((i) => (i.id === id ? { ...i, priority: nextPriority } : i))
     );
-    addToast(`Issue priority changed to ${nextPriority}`, 'info');
+    notifySafe(`Issue priority changed to ${nextPriority}`, 'info');
   };
 
   // Batch operations
@@ -316,7 +324,7 @@ export function LinearIssueTracker() {
         selectedIssueIds.includes(i.id) ? { ...i, status: 'done', completed: true } : i
       )
     );
-    addToast(`${selectedIssueIds.length} issues marked as Done`, 'success');
+    notifySafe(`${selectedIssueIds.length} issues marked as Done`, 'success');
     setSelectedIssueIds([]);
   };
 
@@ -326,7 +334,7 @@ export function LinearIssueTracker() {
         selectedIssueIds.includes(i.id) ? { ...i, priority } : i
       )
     );
-    addToast(`Updated priority to ${priority} for ${selectedIssueIds.length} issues`, 'info');
+    notifySafe(`Updated priority to ${priority} for ${selectedIssueIds.length} issues`, 'info');
     setSelectedIssueIds([]);
   };
 
@@ -338,20 +346,20 @@ export function LinearIssueTracker() {
           : i
       )
     );
-    addToast(`Updated status to ${status} for ${selectedIssueIds.length} issues`, 'success');
+    notifySafe(`Updated status to ${status} for ${selectedIssueIds.length} issues`, 'success');
     setSelectedIssueIds([]);
   };
 
   const handleBatchDelete = () => {
     setIssues((prev) => prev.filter((i) => !selectedIssueIds.includes(i.id)));
-    addToast(`Deleted ${selectedIssueIds.length} issues`, 'rose');
+    notifySafe(`Deleted ${selectedIssueIds.length} issues`, 'rose');
     setSelectedIssueIds([]);
   };
 
   // Quick Inline Creation
   const handleCreateIssue = () => {
     if (!newTitle.trim()) {
-      addToast('Please enter an issue title', 'warning');
+      notifySafe('Please enter an issue title', 'warning');
       return;
     }
 
@@ -372,7 +380,7 @@ export function LinearIssueTracker() {
     setIssues((prev) => [newIssue, ...prev]);
     setNewTitle('');
     setIsComposerOpen(false);
-    addToast(`Created ${nextCode}`, 'success');
+    notifySafe(`Created ${nextCode}`, 'success');
   };
 
   return (
@@ -397,7 +405,7 @@ export function LinearIssueTracker() {
                   key={tab}
                   type="button"
                   onClick={() => setViewTab(tab)}
-                  className={`px-3 py-1.5 rounded-(--radius-pill) text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer select-none ${
+                  className={`px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold flex items-center gap-1.5 transition-all cursor-pointer select-none ${
                     isActive
                       ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-bold shadow-xs'
                       : 'text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white hover:bg-black/[0.03] dark:hover:bg-white/[0.04]'
@@ -405,7 +413,7 @@ export function LinearIssueTracker() {
                 >
                   <span>{tab === 'ALL' ? 'All Issues' : tab.charAt(0) + tab.slice(1).toLowerCase()}</span>
                   <span
-                    className={`text-[10px] font-mono px-1.5 py-0.2 rounded-(--radius-pill) ${
+                    className={`type-micro font-mono px-1.5 py-0.2 rounded-(--radius-pill) ${
                       isActive
                         ? 'bg-white/20 dark:bg-black/10'
                         : 'bg-black/[0.05] dark:bg-white/[0.06]'
@@ -423,7 +431,7 @@ export function LinearIssueTracker() {
             <Button
               variant="primary"
               size="xs"
-              icon={<Plus className="w-3.5 h-3.5" />}
+              icon={<Plus className="icon-sm" />}
               onClick={() => setIsComposerOpen(true)}
             >
               New Issue <Kbd size="xs" className="ml-1">C</Kbd>
@@ -448,13 +456,13 @@ export function LinearIssueTracker() {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-(--radius-pill) text-xs font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
-                  <Filter className="w-3 h-3 text-zinc-400" />
+                  <Filter className="icon-xs text-(--text-secondary)" />
                   <span className="capitalize">
                     {statusFilter === 'all' ? 'All Statuses' : statusFilter.replace('_', ' ')}
                   </span>
-                  <ChevronDown className="w-3 h-3 opacity-60" />
+                  <ChevronDown className="icon-xs opacity-60" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -478,12 +486,12 @@ export function LinearIssueTracker() {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-(--radius-pill) text-xs font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <span className="capitalize">
                     {priorityFilter === 'all' ? 'All Priorities' : priorityFilter}
                   </span>
-                  <ChevronDown className="w-3 h-3 opacity-60" />
+                  <ChevronDown className="icon-xs opacity-60" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -514,16 +522,16 @@ export function LinearIssueTracker() {
             >
               <div className="p-4 space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">
-                    <Sparkles className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-1.5 type-caption font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                    <Sparkles className="icon-sm" />
                     <span>NEW HIGH-VELOCITY ISSUE</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setIsComposerOpen(false)}
-                    className="p-1 rounded-(--radius-pill) text-zinc-400 hover:text-zinc-700 dark:hover:text-white cursor-pointer"
+                    className="p-1 rounded-(--radius-pill) text-(--text-secondary) hover:text-zinc-700 dark:hover:text-white cursor-pointer"
                   >
-                    <X className="w-4 h-4" />
+                    <X className="icon-md" />
                   </button>
                 </div>
 
@@ -538,7 +546,7 @@ export function LinearIssueTracker() {
                     }
                   }}
                   placeholder="Issue title (e.g. Calibrate specular rim reflection for cards)..."
-                  className="w-full px-3.5 py-2 rounded-(--radius-field) text-sm font-medium bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-(--text-primary) placeholder:text-zinc-400"
+                  className="w-full px-3.5 py-2 rounded-(--radius-field) type-body font-medium bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-(--text-primary) placeholder:text-zinc-400"
                 />
 
                 <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
@@ -548,7 +556,7 @@ export function LinearIssueTracker() {
                       <DropdownMenuTrigger asChild>
                         <button
                           type="button"
-                          className="px-2.5 py-1 rounded-(--radius-sm) text-xs font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
+                          className="px-2.5 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
                         >
                           <PriorityBadge priority={newPriority} showLabel={true} />
                         </button>
@@ -567,7 +575,7 @@ export function LinearIssueTracker() {
                       <DropdownMenuTrigger asChild>
                         <button
                           type="button"
-                          className="px-2.5 py-1 rounded-(--radius-sm) text-xs font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
+                          className="px-2.5 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
                         >
                           <StatusBadge status={newStatus} showLabel={true} />
                         </button>
@@ -587,12 +595,12 @@ export function LinearIssueTracker() {
                       value={newLabel}
                       onChange={(e) => setNewLabel(e.target.value)}
                       placeholder="Tag..."
-                      className="w-28 px-2.5 py-1 rounded-(--radius-sm) text-xs bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] text-zinc-800 dark:text-zinc-200 outline-none"
+                      className="w-28 px-2.5 py-1 rounded-(--radius-sm) type-caption bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] text-zinc-800 dark:text-zinc-200 focus-ui99"
                     />
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-mono text-zinc-400 hidden sm:inline">
+                    <span className="type-micro font-mono text-(--text-secondary) hidden sm:inline">
                       Press <Kbd size="xs">⌘Enter</Kbd> to save
                     </span>
                     <Button variant="primary" size="xs" onClick={handleCreateIssue}>
@@ -671,17 +679,13 @@ export function LinearIssueTracker() {
                   </div>
 
                   {/* Issue Identifier Code */}
-                  <span className="text-xs font-mono font-semibold text-zinc-400 shrink-0">
+                  <span className="type-caption font-mono font-semibold text-(--text-secondary) shrink-0">
                     {issue.code}
                   </span>
 
                   {/* Issue Title */}
                   <span
-                    className={`text-xs sm:text-sm font-medium tracking-tight truncate ${
-                      issue.completed
-                        ? 'line-through text-zinc-400 dark:text-zinc-500'
-                        : 'text-(--text-primary)'
-                    }`}
+                    className={`type-caption sm:type-body font-medium tracking-tight truncate ${ issue.completed ? 'line-through text-(--text-secondary) dark:text-zinc-500' : 'text-(--text-primary)' }`}
                   >
                     {issue.title}
                   </span>
@@ -721,7 +725,7 @@ export function LinearIssueTracker() {
 
                   <Avatar name={issue.assignee} size="xs" />
 
-                  <span className="text-[11px] font-mono text-zinc-400 hidden sm:inline">
+                  <span className="type-micro font-mono text-(--text-secondary) hidden sm:inline">
                     {issue.date}
                   </span>
                 </div>
@@ -731,7 +735,7 @@ export function LinearIssueTracker() {
 
           {filteredIssues.length === 0 && (
             <div className="p-10 text-center space-y-2">
-              <p className="text-xs font-semibold text-zinc-400">
+              <p className="type-caption font-semibold text-(--text-secondary)">
                 No issues match your active filter criteria.
               </p>
               <Button
@@ -751,7 +755,7 @@ export function LinearIssueTracker() {
         </div>
 
         {/* 4. FOOTER WITH LINEAR KEYBOARD GUIDE */}
-        <div className="px-5 py-3 border-t border-(--border-hairline) flex flex-wrap items-center justify-between gap-3 text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-50/30 dark:bg-white/[0.01]">
+        <div className="px-5 py-3 border-t border-(--border-hairline) flex flex-wrap items-center justify-between gap-3 type-caption text-(--text-muted) dark:text-zinc-400 bg-zinc-50/30 dark:bg-white/[0.01]">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
               <Kbd size="xs">J</Kbd> / <Kbd size="xs">K</Kbd> Navigate
@@ -767,7 +771,7 @@ export function LinearIssueTracker() {
             </span>
           </div>
 
-          <span className="font-mono text-[11px]">
+          <span className="font-mono type-micro">
             {issues.filter((i) => i.completed).length} of {issues.length} completed
           </span>
         </div>
@@ -781,10 +785,10 @@ export function LinearIssueTracker() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 450, damping: 30 }}
-            className="fixed bottom-20 left-1/2 -translate-x-1/2 z-40"
+            className="fixed bottom-20 left-1/2 -translate-x-1/2 z-dock"
           >
             <div className="liquid-glass-dark-dock px-4 py-2 rounded-(--radius-pill) flex items-center gap-2.5 shadow-2xl border border-white/[0.08] backdrop-blur-2xl">
-              <span className="text-xs font-mono font-bold text-white px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.1]">
+              <span className="type-caption font-mono font-bold text-white px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.1]">
                 {selectedIssueIds.length} Selected
               </span>
 
@@ -792,7 +796,7 @@ export function LinearIssueTracker() {
               <Button
                 variant="primary"
                 size="xs"
-                icon={<CheckCircle className="w-3.5 h-3.5" />}
+                icon={<CheckCircle className="icon-sm" />}
                 onClick={handleBatchMarkDone}
               >
                 Done
@@ -802,7 +806,7 @@ export function LinearIssueTracker() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="secondary" size="xs">
-                    Priority <ChevronDown className="w-3 h-3 ml-0.5" />
+                    Priority <ChevronDown className="icon-xs ml-0.5" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="center">
@@ -823,7 +827,7 @@ export function LinearIssueTracker() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="secondary" size="xs">
-                    Status <ChevronDown className="w-3 h-3 ml-0.5" />
+                    Status <ChevronDown className="icon-xs ml-0.5" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="center">
@@ -847,7 +851,7 @@ export function LinearIssueTracker() {
                 className="p-1.5 rounded-(--radius-pill) text-rose-400 hover:bg-rose-500/20 transition-colors cursor-pointer"
                 title="Delete Selected"
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 className="icon-md" />
               </button>
 
               <div className="w-[1px] h-4 bg-white/20" />
@@ -856,9 +860,9 @@ export function LinearIssueTracker() {
               <button
                 type="button"
                 onClick={() => setSelectedIssueIds([])}
-                className="text-xs text-zinc-400 hover:text-white flex items-center gap-1 cursor-pointer font-medium"
+                className="type-caption text-(--text-secondary) hover:text-white flex items-center gap-1 cursor-pointer font-medium"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="icon-sm" />
                 <span>Esc</span>
               </button>
             </div>

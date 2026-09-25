@@ -380,19 +380,19 @@ export function UIKitView() {
 
   // Navigation tab options
   const sectionOptions = [
-    { value: 'ALL', label: isRTL ? 'تمام بخش‌ها' : 'All Overview', icon: <Layers className="w-3.5 h-3.5" /> },
-    { value: 'FOUNDATIONS', label: isRTL ? 'مبانی و روانشناسی رنگ' : 'Foundations & Colors', icon: <Palette className="w-3.5 h-3.5" /> },
-    { value: 'COMPONENTS', label: isRTL ? 'کامپوننت‌ها' : 'Component Suite', icon: <Sliders className="w-3.5 h-3.5" /> },
-    { value: 'LINEAR_PATTERNS', label: isRTL ? 'الگوهای لینیار' : 'Linear Workflows', icon: <Terminal className="w-3.5 h-3.5" /> },
-    { value: 'SURFACES', label: isRTL ? 'شیشه و متریال' : 'Materials & Glass', icon: <Sparkles className="w-3.5 h-3.5" /> },
-    { value: 'REGISTRY', label: isRTL ? 'راهنمای نصب و ایمپورت' : 'Registry & Usage', icon: <Package className="w-3.5 h-3.5" /> },
-    { value: 'SANDBOX', label: isRTL ? 'سندباکس کد' : 'Live Code Lab', icon: <Code className="w-3.5 h-3.5" /> },
+    { value: 'ALL', label: isRTL ? 'تمام بخش‌ها' : 'All Overview', icon: <Layers className="icon-sm" /> },
+    { value: 'FOUNDATIONS', label: isRTL ? 'مبانی و روانشناسی رنگ' : 'Foundations & Colors', icon: <Palette className="icon-sm" /> },
+    { value: 'COMPONENTS', label: isRTL ? 'کامپوننت‌ها' : 'Component Suite', icon: <Sliders className="icon-sm" /> },
+    { value: 'LINEAR_PATTERNS', label: isRTL ? 'الگوهای لینیار' : 'Linear Workflows', icon: <Terminal className="icon-sm" /> },
+    { value: 'SURFACES', label: isRTL ? 'شیشه و متریال' : 'Materials & Glass', icon: <Sparkles className="icon-sm" /> },
+    { value: 'REGISTRY', label: isRTL ? 'راهنمای نصب و ایمپورت' : 'Registry & Usage', icon: <Package className="icon-sm" /> },
+    { value: 'SANDBOX', label: isRTL ? 'سندباکس کد' : 'Live Code Lab', icon: <Code className="icon-sm" /> },
   ];
 
   // Generated code for Sandbox
   const sandboxJSXCode = useMemo(() => {
     if (sbComponent === 'button') {
-      const iconAttr = sbWithIcon ? ' icon={<Sparkles className="w-4 h-4" />}' : '';
+      const iconAttr = sbWithIcon ? ' icon={<Sparkles className="icon-md" />}' : '';
       const loadingAttr = sbLoading ? ' loading' : '';
       const disabledAttr = sbDisabled ? ' disabled' : '';
       return `import { Button } from '@/components/ui';\n\n<Button\n  variant="${sbVariant}"\n  size="${sbSize}"${iconAttr}${loadingAttr}${disabledAttr}\n>\n  ${sbLabel}\n</Button>`;
@@ -416,7 +416,7 @@ export function UIKitView() {
         {/* Soft emerald brand halo glow */}
         <div
           aria-hidden="true"
-          className="absolute -top-16 left-1/4 -translate-x-1/2 w-[320px] sm:w-[680px] h-[220px] sm:h-[340px] rounded-(--radius-pill) blur-(--blur-ambient) sm:blur-(--blur-ambient) pointer-events-none -z-10 opacity-70 dark:opacity-85 transition-opacity"
+          className="absolute -top-16 left-1/4 -translate-x-1/2 w-[320px] sm:w-[680px] h-[220px] sm:h-[340px] rounded-(--radius-pill) blur-(--blur-ambient) sm:blur-(--blur-ambient) pointer-events-none -z-content opacity-70 dark:opacity-85 transition-opacity"
           style={{
             background:
               'radial-gradient(ellipse at 50% 45%, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.03) 40%, transparent 75%)',
@@ -424,13 +424,13 @@ export function UIKitView() {
         />
 
         <div className="flex flex-col items-start gap-2.5">
-          <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+          <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
 v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           </div>
-          <h1 className="text-4xl sm:text-6xl font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.06] text-balance font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]">
+          <h1 className="type-display sm:type-billboard font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.06] text-balance font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]">
             The UI Kit.
           </h1>
-          <p className="text-sm sm:text-base text-zinc-600 dark:text-[#8E909D] max-w-2xl leading-relaxed tracking-[-0.01em]">
+          <p className="type-body sm:type-body-lg text-zinc-600 dark:text-[#8E909D] max-w-2xl leading-relaxed tracking-[-0.01em]">
             Every certified obsidian primitive and foundational token, live. Precision micro-interactions, WCAG 2.2 AAA certified specular highlights, and copy-ready production JSX.
           </p>
         </div>
@@ -438,27 +438,27 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         {/* 4-Pillar Quality Indicators */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
           <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card)">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Catalog</span>
-            <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">{KIT_COMPONENT_COUNT} Primitives</span>
+            <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Catalog</span>
+            <span className="type-body font-bold text-zinc-900 dark:text-zinc-100 font-mono">{KIT_COMPONENT_COUNT} Primitives</span>
           </div>
           <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card)">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Accessibility</span>
-            <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 font-mono">WCAG 2.2 AAA</span>
+            <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Accessibility</span>
+            <span className="type-body font-bold text-emerald-600 dark:text-emerald-400 font-mono">WCAG 2.2 AAA</span>
           </div>
           <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card)">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Radii Nested</span>
-            <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">R_in = R_out - P</span>
+            <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Radii Nested</span>
+            <span className="type-body font-bold text-zinc-900 dark:text-zinc-100 font-mono">R_in = R_out - P</span>
           </div>
           <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card)">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Engineering</span>
-            <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">Zero AI Slop</span>
+            <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Engineering</span>
+            <span className="type-body font-bold text-zinc-900 dark:text-zinc-100 font-mono">Zero AI Slop</span>
           </div>
         </div>
 
         {/* Hero Quick Action Bar */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
           {/* CLI Box */}
-          <div className="h-9 inline-flex items-center gap-2 pl-3 pr-1.5 rounded-(--radius-field) bg-zinc-100/80 dark:bg-[#0A0B10] border border-zinc-200/80 dark:border-white/[0.035] text-xs font-mono text-zinc-800 dark:text-zinc-200">
+          <div className="h-9 inline-flex items-center gap-2 pl-3 pr-1.5 rounded-(--radius-field) bg-zinc-100/80 dark:bg-[#0A0B10] border border-zinc-200/80 dark:border-white/[0.035] type-caption font-mono text-zinc-800 dark:text-zinc-200">
             <span className="text-emerald-500 font-bold select-none">&gt;_</span>
             <span className="font-medium">npx @99/ui add button</span>
             <button
@@ -467,34 +467,34 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               aria-label="Copy CLI"
               className="p-1 rounded-(--radius-sm) hover:bg-zinc-200 dark:hover:bg-white/[0.06] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer"
             >
-              {copiedCode === 'CLI Command' ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+              {copiedCode === 'CLI Command' ? <Check className="icon-sm text-emerald-500" /> : <Copy className="icon-sm" />}
             </button>
           </div>
 
-          <Button variant="outline" size="sm" icon={<Copy className="w-3.5 h-3.5" />} onClick={() => copyToClipboard(JSON.stringify(tokens, null, 2), 'Design Tokens JSON')}>
+          <Button variant="outline" size="sm" icon={<Copy className="icon-sm" />} onClick={() => copyToClipboard(JSON.stringify(tokens, null, 2), 'Design Tokens JSON')}>
             {copiedCode === 'Design Tokens JSON' ? 'Tokens Copied!' : 'Export Tokens JSON'}
           </Button>
-          <Button variant="secondary" size="sm" icon={<Command className="w-3.5 h-3.5" />} onClick={() => setIsCommandOpen(true)}>
+          <Button variant="secondary" size="sm" icon={<Command className="icon-sm" />} onClick={() => setIsCommandOpen(true)}>
             Command Palette <Kbd size="xs" className="ml-1">⌘K</Kbd>
           </Button>
-          <Button variant="ghost" size="sm" icon={<ShieldCheck className="w-3.5 h-3.5" />} onClick={() => setIsDemoModalOpen(true)}>
+          <Button variant="ghost" size="sm" icon={<ShieldCheck className="icon-sm" />} onClick={() => setIsDemoModalOpen(true)}>
             Preview Modal
           </Button>
         </div>
       </header>
 
       {/* 2. CATEGORY SELECTOR & INSTANT COMPONENT SEARCH (Linear-Style Sticky Filter Rail) */}
-      <div className="sticky top-14 z-30 py-2.5 backdrop-blur-xl bg-white/90 dark:bg-[#06070A]/90 border-b border-black/[0.04] dark:border-white/[0.02] space-y-2">
+      <div className="sticky top-14 z-sticky py-2.5 backdrop-blur-xl bg-white/90 dark:bg-[#06070A]/90 border-b border-black/[0.04] dark:border-white/[0.02] space-y-2">
         <div className="flex items-center gap-2">
           {/* Quick Search */}
           <div className="relative flex-1 max-w-sm">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
+            <Search className="icon-sm absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={isRTL ? `جستجو در ${KIT_COMPONENT_COUNT.toLocaleString('fa-IR')} کامپوننت و توکن...` : `Filter ${KIT_COMPONENT_COUNT} components...`}
-              className="w-full pl-8 pr-7 py-1.5 rounded-(--radius-field) text-xs font-mono bg-zinc-100 dark:bg-[#0E0E14] border border-zinc-200/80 dark:border-white/[0.04] text-zinc-900 dark:text-[#EDEDEF] placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-all"
+              className="w-full pl-8 pr-7 py-1.5 rounded-(--radius-field) type-caption font-mono bg-zinc-100 dark:bg-[#0E0E14] border border-zinc-200/80 dark:border-white/[0.04] text-zinc-900 dark:text-[#EDEDEF] placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-all"
             />
             {searchQuery && (
               <button
@@ -502,13 +502,13 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 onClick={() => setSearchQuery('')}
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 cursor-pointer"
               >
-                <X className="w-3 h-3" />
+                <X className="icon-xs" />
               </button>
             )}
           </div>
 
           {/* Search Status / Total */}
-          <span className="hidden sm:inline-block text-[11px] font-mono text-zinc-500 dark:text-zinc-400 px-2 py-1 rounded-(--radius-sm) bg-zinc-100/80 dark:bg-white/[0.03]">
+          <span className="hidden sm:inline-block type-micro font-mono text-zinc-500 dark:text-zinc-400 px-2 py-1 rounded-(--radius-sm) bg-zinc-100/80 dark:bg-white/[0.03]">
             {searchQuery ? `Searching: "${searchQuery}"` : `99 Elements Live`}
           </span>
         </div>
@@ -529,17 +529,17 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         <section className="space-y-8">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
-              <Palette className="w-5 h-5 text-emerald-500" />
+              <Palette className="icon-lg text-emerald-500" />
               <div>
-                <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                   01. Foundations & Color Science (60-30-10 Architecture)
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                   Mathematical color psychology, sub-pixel specular rim physics, and corner nesting geometry.
                 </p>
               </div>
             </div>
-            <span className="text-[11px] font-mono px-2.5 py-1 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-[#8E8E98]">
+            <span className="type-micro font-mono px-2.5 py-1 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-[#8E8E98]">
               RATIO 18.4:1
             </span>
           </div>
@@ -552,16 +552,16 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               className="group p-5 rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.035] shadow-xs cursor-pointer transition-all hover:border-black/[0.15] dark:hover:border-white/[0.09] active:scale-[0.98]"
             >
               <div className="h-20 rounded-(--radius-control) bg-[#06070A] border border-white/[0.06] flex items-end p-3 mb-3 shadow-inner">
-                <span className="text-[10px] font-mono text-zinc-400 font-bold">60% BASE CANVAS</span>
+                <span className="type-micro font-mono text-zinc-400 font-bold">60% BASE CANVAS</span>
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-semibold text-zinc-950 dark:text-[#EDEDEF]">Velvet Obsidian</h4>
-                  <p className="text-xs font-mono text-zinc-500 dark:text-[#8E8E98]">#06070A</p>
+                  <h4 className="type-body font-semibold text-zinc-950 dark:text-[#EDEDEF]">Velvet Obsidian</h4>
+                  <p className="type-caption font-mono text-zinc-500 dark:text-[#8E8E98]">#06070A</p>
                 </div>
-                <Copy className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
+                <Copy className="icon-md text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
               </div>
-              <p className="text-xs text-zinc-500 mt-2 leading-relaxed">
+              <p className="type-caption text-zinc-500 mt-2 leading-relaxed">
                 {tokens.psychology.obsidian.rationale}
               </p>
             </div>
@@ -572,16 +572,16 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               className="group p-5 rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.035] shadow-xs cursor-pointer transition-all hover:border-black/[0.15] dark:hover:border-white/[0.09] active:scale-[0.98]"
             >
               <div className="h-20 rounded-(--radius-control) bg-[#F5F5F8] border border-black/[0.06] flex items-end p-3 mb-3 shadow-inner">
-                <span className="text-[10px] font-mono text-zinc-600 font-bold">60% DAY CANVAS</span>
+                <span className="type-micro font-mono text-zinc-600 font-bold">60% DAY CANVAS</span>
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-semibold text-zinc-950 dark:text-[#EDEDEF]">Matte Porcelain</h4>
-                  <p className="text-xs font-mono text-zinc-500 dark:text-[#8E8E98]">#F5F5F8</p>
+                  <h4 className="type-body font-semibold text-zinc-950 dark:text-[#EDEDEF]">Matte Porcelain</h4>
+                  <p className="type-caption font-mono text-zinc-500 dark:text-[#8E8E98]">#F5F5F8</p>
                 </div>
-                <Copy className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
+                <Copy className="icon-md text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
               </div>
-              <p className="text-xs text-zinc-500 mt-2 leading-relaxed">
+              <p className="type-caption text-zinc-500 mt-2 leading-relaxed">
                 {tokens.psychology.porcelain.rationale}
               </p>
             </div>
@@ -598,18 +598,18 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                     : 'bg-white border-black/[0.06] shadow-(--rim-soft)'
                 }`}
               >
-                <span className="text-[10px] font-mono text-zinc-500 font-bold">30% CONTAINER L1</span>
+                <span className="type-micro font-mono text-zinc-500 font-bold">30% CONTAINER L1</span>
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-semibold text-zinc-950 dark:text-[#EDEDEF]">Surface Layer 1</h4>
-                  <p className="text-xs font-mono text-zinc-500 dark:text-[#8E8E98]">
+                  <h4 className="type-body font-semibold text-zinc-950 dark:text-[#EDEDEF]">Surface Layer 1</h4>
+                  <p className="type-caption font-mono text-zinc-500 dark:text-[#8E8E98]">
                     {isDark ? '#0E0E14' : '#FFFFFF'}
                   </p>
                 </div>
-                <Copy className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
+                <Copy className="icon-md text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
               </div>
-              <p className="text-xs text-zinc-500 mt-2 leading-relaxed">
+              <p className="type-caption text-zinc-500 mt-2 leading-relaxed">
                 Cards, object rows, and structured segmented controls.
               </p>
             </div>
@@ -626,18 +626,18 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                     : 'bg-white border-black/[0.08] shadow-(--elevation-1)'
                 }`}
               >
-                <span className="text-[10px] font-mono text-zinc-500 font-bold">ELEVATED L2 MODAL</span>
+                <span className="type-micro font-mono text-zinc-500 font-bold">ELEVATED L2 MODAL</span>
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-semibold text-zinc-950 dark:text-[#EDEDEF]">Elevated Layer 2</h4>
-                  <p className="text-xs font-mono text-zinc-500 dark:text-[#8E8E98]">
+                  <h4 className="type-body font-semibold text-zinc-950 dark:text-[#EDEDEF]">Elevated Layer 2</h4>
+                  <p className="type-caption font-mono text-zinc-500 dark:text-[#8E8E98]">
                     {isDark ? '#131318' : '#FFFFFF (Elevated)'}
                   </p>
                 </div>
-                <Copy className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
+                <Copy className="icon-md text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
               </div>
-              <p className="text-xs text-zinc-500 mt-2 leading-relaxed">
+              <p className="type-caption text-zinc-500 mt-2 leading-relaxed">
                 Floating popovers, command spotlights, and bottom sheets.
               </p>
             </div>
@@ -645,7 +645,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
           {/* 10% Semantic Functional Accents with Psychological Rationale */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
               10% Semantic Color Psychology (Functional Signals)
             </h3>
 
@@ -664,11 +664,11 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <span className="w-3.5 h-3.5 rounded-(--radius-pill) shadow-xs" style={{ backgroundColor: c.hex }} />
-                    <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100">{c.name}</span>
+                    <span className="type-caption font-bold text-zinc-900 dark:text-zinc-100">{c.name}</span>
                   </div>
-                  <p className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">{c.hex}</p>
-                  <p className="text-[11px] font-semibold text-zinc-800 dark:text-zinc-300 mt-1">{c.psych.role}</p>
-                  <p className="text-[10px] text-zinc-500 mt-1 leading-snug">{c.psych.rationale}</p>
+                  <p className="type-micro font-mono text-zinc-500 dark:text-zinc-400">{c.hex}</p>
+                  <p className="type-micro font-semibold text-zinc-800 dark:text-zinc-300 mt-1">{c.psych.role}</p>
+                  <p className="type-micro text-zinc-500 mt-1 leading-snug">{c.psych.rationale}</p>
                 </div>
               ))}
             </div>
@@ -678,27 +678,27 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-6">
             <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
               <div className="flex items-center gap-2">
-                <Type className="w-4 h-4 text-emerald-500" />
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
+                <Type className="icon-md text-emerald-500" />
+                <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
                   Bilingual Typographic Harmony (Vazirmatn & Plus Jakarta Sans)
                 </h3>
               </div>
-              <span className="text-[10px] font-mono text-zinc-400">RATIO 1.25 (MAJOR THIRD)</span>
+              <span className="type-micro font-mono text-zinc-400">RATIO 1.25 (MAJOR THIRD)</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Persian Luxury */}
               <div className="p-5 rounded-(--radius-control) bg-zinc-50 dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] space-y-3 text-right rtl">
-                <span className="text-[10px] font-mono font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                <span className="type-micro font-mono font-bold uppercase text-emerald-600 dark:text-emerald-400">
                   فارسی فاخر (وزیرمتن با اعداد فارسی)
                 </span>
-                <p className="text-2xl font-bold font-persian-luxury text-zinc-950 dark:text-[#EDEDEF]">
+                <p className="type-heading font-bold font-persian-luxury text-zinc-950 dark:text-[#EDEDEF]">
                   UI99 — سیستم طراحی و رجیستری کامپوننت
                 </p>
-                <p className="text-sm font-persian-luxury text-zinc-600 dark:text-[#92929B] leading-relaxed">
+                <p className="type-body font-persian-luxury text-zinc-600 dark:text-[#92929B] leading-relaxed">
                   تراز اپتیکال دقیق خطوط، خوانایی حداکثری، و قالب‌بندی ارقام فارسی: ۱۲۳،۴۵۶ ریال در کادرها.
                 </p>
-                <div className="pt-2 flex items-center justify-between text-xs font-mono text-zinc-400 border-t border-black/[0.04] dark:border-white/[0.04]">
+                <div className="pt-2 flex items-center justify-between type-caption font-mono text-zinc-400 border-t border-black/[0.04] dark:border-white/[0.04]">
                   <span>Vazirmatn Weights: 400 / 500 / 700</span>
                   <span>کنتراست AAA</span>
                 </div>
@@ -706,16 +706,16 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
               {/* Latin Display */}
               <div className="p-5 rounded-(--radius-control) bg-zinc-50 dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] space-y-3">
-                <span className="text-[10px] font-mono font-bold uppercase text-blue-600 dark:text-blue-400">
+                <span className="type-micro font-mono font-bold uppercase text-blue-600 dark:text-blue-400">
                   LATIN BODY & MONO TOKENS
                 </span>
-                <p className="text-2xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                <p className="type-heading font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                   Precision Velocity & Sub-Pixel Rims
                 </p>
-                <p className="text-sm text-zinc-600 dark:text-[#92929B] leading-relaxed">
-                  Calibrated 1.5–1.7 leading with zero clipping in pills, tags, and command bars: <code className="text-xs font-mono px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-white/10">⌘K Spotlight</code>
+                <p className="type-body text-zinc-600 dark:text-[#92929B] leading-relaxed">
+                  Calibrated 1.5–1.7 leading with zero clipping in pills, tags, and command bars: <code className="type-caption font-mono px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-white/10">⌘K Spotlight</code>
                 </p>
-                <div className="pt-2 flex items-center justify-between text-xs font-mono text-zinc-400 border-t border-black/[0.04] dark:border-white/[0.04]">
+                <div className="pt-2 flex items-center justify-between type-caption font-mono text-zinc-400 border-t border-black/[0.04] dark:border-white/[0.04]">
                   <span>Plus Jakarta Sans & JetBrains Mono</span>
                   <span>Step: 11 / 13 / 15 / 24 / 36px</span>
                 </div>
@@ -727,24 +727,24 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
               <div className="flex items-center gap-2">
-                <Maximize2 className="w-4 h-4 text-emerald-500" />
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
+                <Maximize2 className="icon-md text-emerald-500" />
+                <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
                   Mathematical Corner Radius Nesting (r_inner = r_outer - padding)
                 </h3>
               </div>
-              <span className="text-[10px] font-mono text-zinc-400">GEOMETRIC PURITY</span>
+              <span className="type-micro font-mono text-zinc-400">GEOMETRIC PURITY</span>
             </div>
 
-            <p className="text-xs text-zinc-500 dark:text-[#8E8E98] leading-relaxed">
+            <p className="type-caption text-zinc-500 dark:text-[#8E8E98] leading-relaxed">
               When rounded containers nest inside another rounded container, the inner radius must equal the outer radius minus the intervening padding. This prevents optical discordance and visual clashing.
             </p>
 
             <div className="p-6 rounded-(--radius-xl) bg-zinc-100 dark:bg-[#131318] border border-black/[0.06] dark:border-white/[0.05] flex flex-col items-center justify-center gap-3">
-              <div className="text-[11px] font-mono text-zinc-500">
+              <div className="type-micro font-mono text-zinc-500">
                 Outer Container: Radius 28px, Padding 16px
               </div>
               <div className="w-full max-w-sm p-4 rounded-(--radius-sm) bg-white dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.05] shadow-xs text-center">
-                <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 font-mono">
+                <span className="type-caption font-semibold text-emerald-600 dark:text-emerald-400 font-mono">
                   Inner Card: Calculated Radius = 28px - 16px = 12px (Perfect Concentricity)
                 </span>
               </div>
@@ -763,17 +763,17 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         <section className="space-y-8">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
-              <Sliders className="w-5 h-5 text-emerald-500" />
+              <Sliders className="icon-lg text-emerald-500" />
               <div>
-                <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                   02. Production Component Suite (Dual-Theme Adaptive)
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                   Buttons, sliders, progress bars, tooltips, accordions, switches, dropdowns, inputs, and modals.
                 </p>
               </div>
             </div>
-            <span className="text-[11px] font-mono px-2.5 py-1 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-[#8E8E98]">
+            <span className="type-micro font-mono px-2.5 py-1 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-[#8E8E98]">
               ATOMIC EXPORTS
             </span>
           </div>
@@ -783,8 +783,8 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             {/* Card 1: Buttons & IconButtons */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Buttons & IconButtons</h3>
-                <span className="text-[11px] font-mono text-zinc-400">Button, IconButton</span>
+                <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Buttons & IconButtons</h3>
+                <span className="type-micro font-mono text-zinc-400">Button, IconButton</span>
               </div>
               <div className="flex flex-wrap items-center gap-2.5">
                 {(
@@ -810,11 +810,11 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               {/* Size ladder — h-6 → h-12 + icon */}
               <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
                 {(['xs', 'sm', 'md', 'lg', 'icon'] as const).map((s) => (
-                  <Button key={s} size={s} variant="secondary" icon={s === 'icon' ? <Sparkles className="w-4 h-4" /> : undefined}>
+                  <Button key={s} size={s} variant="secondary" icon={s === 'icon' ? <Sparkles className="icon-md" /> : undefined}>
                     {s === 'icon' ? '' : s.toUpperCase()}
                   </Button>
                 ))}
-                <span className="text-[10px] font-mono text-zinc-400 ml-1">h-6→h-12 + icon</span>
+                <span className="type-micro font-mono text-zinc-400 ml-1">h-6→h-12 + icon</span>
               </div>
 
               {/* Shape prop — pill / rounded / square */}
@@ -828,7 +828,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 {(['primary', 'white', 'secondary', 'outline', 'ghost', 'link', 'destructive', 'rose'] as const).map((v) => (
                   <IconButton
                     key={v}
-                    icon={<Sparkles className="w-4 h-4" />}
+                    icon={<Sparkles className="icon-md" />}
                     variant={v}
                     label={`${v} icon button`}
                   />
@@ -839,8 +839,8 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             {/* Card 2: Switches & Checkboxes */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Tactile Toggles & Checkboxes</h3>
-                <span className="text-[11px] font-mono text-zinc-400">Switch, Checkbox, Radio</span>
+                <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Tactile Toggles & Checkboxes</h3>
+                <span className="type-micro font-mono text-zinc-400">Switch, Checkbox, Radio</span>
               </div>
               <div className="space-y-3">
                 <Switch
@@ -872,8 +872,8 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             {/* Card 3: Slider & Progress Meter */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Slider & Progress Indicators</h3>
-                <span className="text-[11px] font-mono text-zinc-400">Slider, Progress</span>
+                <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Slider & Progress Indicators</h3>
+                <span className="type-micro font-mono text-zinc-400">Slider, Progress</span>
               </div>
               <Slider
                 value={demoSliderVal}
@@ -899,8 +899,8 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             {/* Card 4: Tooltips, Breadcrumb & Badges */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Breadcrumbs, Tooltips & Kbd</h3>
-                <span className="text-[11px] font-mono text-zinc-400">Breadcrumb, Tooltip, Kbd</span>
+                <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Breadcrumbs, Tooltips & Kbd</h3>
+                <span className="type-micro font-mono text-zinc-400">Breadcrumb, Tooltip, Kbd</span>
               </div>
               <Breadcrumb
                 items={[
@@ -911,7 +911,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               />
               <div className="flex items-center gap-3 pt-2">
                 <Tooltip content="Instantly trigger universal command palette">
-                  <Button variant="secondary" size="sm" icon={<Command className="w-3.5 h-3.5" />}>
+                  <Button variant="secondary" size="sm" icon={<Command className="icon-sm" />}>
                     Hover For Tooltip
                   </Button>
                 </Tooltip>
@@ -931,15 +931,15 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             {/* Card 5: Inputs, SearchBar, Textarea & Dropdown */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Form Controls & Dropdowns</h3>
-                <span className="text-[11px] font-mono text-zinc-400">Input, SearchBar, Dropdown, Textarea</span>
+                <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Form Controls & Dropdowns</h3>
+                <span className="type-micro font-mono text-zinc-400">Input, SearchBar, Dropdown, Textarea</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Input
                   label="System Identifier"
                   value={demoInputVal}
                   onChange={(e) => setDemoInputVal(e.target.value)}
-                  leftIcon={<Terminal className="w-4 h-4" />}
+                  leftIcon={<Terminal className="icon-md" />}
                 />
                 <SearchBar
                   value={demoSearchVal}
@@ -963,8 +963,8 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             {/* Card 6: Accordion Collapsible */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Velvet Accordion Collapsible</h3>
-                <span className="text-[11px] font-mono text-zinc-400">Accordion</span>
+                <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Velvet Accordion Collapsible</h3>
+                <span className="type-micro font-mono text-zinc-400">Accordion</span>
               </div>
               <Accordion
                 defaultOpenId="item-1"
@@ -973,7 +973,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                     id: 'item-1',
                     title: 'How does dual-theme parity work in UI99?',
                     subtitle: 'Tailwind v4 custom variants & token cascading',
-                    icon: <Palette className="w-4 h-4" />,
+                    icon: <Palette className="icon-md" />,
                     children: (
                       <p>
                         The application manages dark and light states cleanly on the root document element. All components automatically inherit high-contrast obsidian velvet or matte porcelain styling without manual class branching.
@@ -984,7 +984,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                     id: 'item-2',
                     title: 'Can I copy these components into any React/Next.js app?',
                     subtitle: '100% modular, zero lock-in design tokens',
-                    icon: <Package className="w-4 h-4" />,
+                    icon: <Package className="icon-md" />,
                     children: (
                       <p>
                         Yes! Every component in <code>src/components/ui</code> is completely self-contained, typed with TypeScript, styled with Tailwind CSS, and animated with motion/react. You can copy-paste any file directly into your next project.
@@ -998,10 +998,10 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             {/* Card 7: Radix Dialog & Popover (shadcn standard) */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Radix Dialog & Popover</h3>
-                <span className="text-[11px] font-mono text-emerald-500 font-semibold">shadcn/ui spec</span>
+                <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Radix Dialog & Popover</h3>
+                <span className="type-micro font-mono text-emerald-500 font-semibold">shadcn/ui spec</span>
               </div>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 Accessible headless primitives with automated focus restoration, aria-modal semantics, and collision detection.
               </p>
               <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -1019,11 +1019,11 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                       </DialogDescription>
                     </DialogHeader>
                     <div className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-[#16161B] border border-black/[0.04] dark:border-white/[0.05] space-y-2">
-                      <div className="flex justify-between text-xs font-semibold">
+                      <div className="flex justify-between type-caption font-semibold">
                         <span className="text-zinc-600 dark:text-zinc-400">Primitive</span>
                         <span className="text-emerald-500">@radix-ui/react-dialog</span>
                       </div>
-                      <div className="flex justify-between text-xs font-semibold">
+                      <div className="flex justify-between type-caption font-semibold">
                         <span className="text-zinc-600 dark:text-zinc-400">Spec Status</span>
                         <span className="text-emerald-500">Compliant</span>
                       </div>
@@ -1054,8 +1054,8 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                   </PopoverTrigger>
                   <PopoverContent align="start">
                     <div className="space-y-2">
-                      <h4 className="text-xs font-bold text-zinc-900 dark:text-white">Radix Popover Content</h4>
-                      <p className="text-[11px] text-zinc-500 leading-relaxed">
+                      <h4 className="type-caption font-bold text-zinc-900 dark:text-white">Radix Popover Content</h4>
+                      <p className="type-micro text-zinc-500 leading-relaxed">
                         Floating card with auto-alignment, viewport edge collision detection, and zero z-index clipping.
                       </p>
                       <Button
@@ -1075,10 +1075,10 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             {/* Card 8: Radix Sheet & DropdownMenu */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Sheet Drawer & DropdownMenu</h3>
-                <span className="text-[11px] font-mono text-emerald-500 font-semibold">shadcn/ui spec</span>
+                <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Sheet Drawer & DropdownMenu</h3>
+                <span className="type-micro font-mono text-emerald-500 font-semibold">shadcn/ui spec</span>
               </div>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 Slide-out edge drawers (bottom/right) and multi-level accessible menu primitives with hotkeys.
               </p>
               <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -1096,7 +1096,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                       </SheetDescription>
                     </SheetHeader>
                     <div className="py-6 space-y-3">
-                      <div className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-[#16161B] border border-black/[0.04] dark:border-white/[0.05] text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
+                      <div className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-[#16161B] border border-black/[0.04] dark:border-white/[0.05] type-caption leading-relaxed text-zinc-600 dark:text-zinc-400">
                         Supports top, bottom, left, and right docking with responsive iPhone-first ergonomics.
                       </div>
                       <Button
@@ -1116,7 +1116,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="secondary" size="sm" icon={<MoreHorizontal className="w-3.5 h-3.5" />}>
+                    <Button variant="secondary" size="sm" icon={<MoreHorizontal className="icon-sm" />}>
                       Action Menu
                     </Button>
                   </DropdownMenuTrigger>
@@ -1147,15 +1147,15 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Radix Tabs & cmdk Command Palette</h3>
-                  <p className="text-xs text-zinc-500 dark:text-[#8E8E98] mt-0.5">
+                  <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Radix Tabs & cmdk Command Palette</h3>
+                  <p className="type-caption text-zinc-500 dark:text-[#8E8E98] mt-0.5">
                     Fast keyboard navigation benchmarked against Raycast & Linear.
                   </p>
                 </div>
                 <Button
                   variant="primary"
                   size="sm"
-                  icon={<Command className="w-3.5 h-3.5" />}
+                  icon={<Command className="icon-sm" />}
                   onClick={() => setIsCommandOpen(true)}
                 >
                   Open Command Palette (⌘K)
@@ -1169,17 +1169,17 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                   <TabsTrigger value="theme">Dual-Theme State</TabsTrigger>
                 </TabsList>
                 <TabsContent value="preview" className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-[#16161B] border border-black/[0.04] dark:border-white/[0.05]">
-                  <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-300">
+                  <p className="type-caption leading-relaxed text-zinc-600 dark:text-zinc-300">
                     Seamless Radix Tabs with automatic keyboard arrow navigation, ARIA tablist/tabpanel roles, and animated focus rings.
                   </p>
                 </TabsContent>
                 <TabsContent value="code" className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-[#16161B] border border-black/[0.04] dark:border-white/[0.05]">
-                  <pre className="text-[11px] font-mono text-emerald-400 overflow-x-auto">
+                  <pre className="type-micro font-mono text-emerald-400 overflow-x-auto">
                     {`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui';`}
                   </pre>
                 </TabsContent>
                 <TabsContent value="theme" className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-[#16161B] border border-black/[0.04] dark:border-white/[0.05]">
-                  <div className="flex items-center justify-between text-xs font-semibold">
+                  <div className="flex items-center justify-between type-caption font-semibold">
                     <span className="text-zinc-600 dark:text-zinc-400">Current Palette</span>
                     <span className="font-mono text-zinc-900 dark:text-white">
                       {isDark ? 'Obsidian #06070A Velvet Dark' : 'Matte Porcelain #F5F5F8 Light'}
@@ -1198,12 +1198,12 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <Sparkles className="w-5 h-5 text-emerald-500" />
+            <Sparkles className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 04. Wave A — Layout & Feedback Primitives
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 Separator · Label · Toggle · ToggleGroup · HoverCard · Collapsible · ScrollArea · AspectRatio · FormField · Alert
               </p>
             </div>
@@ -1214,10 +1214,10 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Toggle + ToggleGroup */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Toggle & Group</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Toggle & Group</h3>
             <div className="flex flex-wrap items-center gap-2">
               <Toggle defaultPressed aria-label="Bold">
-                <Bold className="w-4 h-4" />
+                <Bold className="icon-md" />
               </Toggle>
               <Toggle defaultPressed variant="outline" size="sm">Outline</Toggle>
               <Toggle variant="secondary" size="sm">Secondary</Toggle>
@@ -1231,7 +1231,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
           {/* Separator + Label + FormField */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Form Scaffolding</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Form Scaffolding</h3>
             <FormField label="Workspace name" htmlFor="wave-a-ws" required hint="max 32">
               <Input id="wave-a-ws" placeholder="ui99-prod" inputSize="sm" />
             </FormField>
@@ -1243,9 +1243,9 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
           {/* Alert matrix */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Alert Severity</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Alert Severity</h3>
             <Alert variant="success" title="Deployed">All 27 registry items validated.</Alert>
-            <Alert variant="warning" icon={<AlertTriangle className="w-4 h-4" />}>
+            <Alert variant="warning" icon={<AlertTriangle className="icon-md" />}>
               Two legacy hexes detected in MoreView.
             </Alert>
             <Alert variant="destructive" title="Build failed">Contrast gate rejected amber-600.</Alert>
@@ -1253,10 +1253,10 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
           {/* ScrollArea + HoverCard + Collapsible + AspectRatio */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 lg:col-span-2">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Overlay & Scroll Primitives</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Overlay & Scroll Primitives</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ScrollArea className="h-36 rounded-(--radius-control) border border-black/[0.05] dark:border-white/[0.04] p-4">
-                <div className="space-y-2 text-xs text-zinc-600 dark:text-zinc-300">
+                <div className="space-y-2 type-caption text-zinc-600 dark:text-zinc-300">
                   {Array.from({ length: 12 }).map((_, i) => (
                     <p key={i} className="leading-relaxed">Row {i + 1} — velvet scroll primitives keep the 3px thumb aesthetic cross-browser.</p>
                   ))}
@@ -1265,26 +1265,26 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               <div className="space-y-3">
                 <HoverCard>
                   <HoverCardTrigger>
-                    <span className="text-xs font-semibold underline decoration-dashed underline-offset-4 text-zinc-700 dark:text-[#92929B]">@ui99 hover me</span>
+                    <span className="type-caption font-semibold underline decoration-dashed underline-offset-4 text-zinc-700 dark:text-[#92929B]">@ui99 hover me</span>
                   </HoverCardTrigger>
                   <HoverCardContent>
                     <div className="space-y-1">
-                      <p className="text-sm font-semibold">UI99 Registry</p>
-                      <p className="text-xs text-zinc-500 dark:text-zinc-400">Copy-anywhere primitives with WCAG-computed tokens.</p>
+                      <p className="type-body font-semibold">UI99 Registry</p>
+                      <p className="type-caption text-zinc-500 dark:text-zinc-400">Copy-anywhere primitives with WCAG-computed tokens.</p>
                     </div>
                   </HoverCardContent>
                 </HoverCard>
                 <Collapsible>
-                  <CollapsibleTrigger className="flex items-center gap-1.5 text-xs font-semibold text-zinc-700 dark:text-[#92929B]">
-                    <ChevronDown className="w-3.5 h-3.5 transition-transform group-data-[state=open]:rotate-180" />
+                  <CollapsibleTrigger className="flex items-center gap-1.5 type-caption font-semibold text-zinc-700 dark:text-[#92929B]">
+                    <ChevronDown className="icon-sm transition-transform group-data-[state=open]:rotate-180" />
                     Show install steps
                   </CollapsibleTrigger>
                   <CollapsibleContent>
-                    <p className="pt-2 text-xs font-mono text-emerald-500">npx @99/ui add separator toggle alert</p>
+                    <p className="pt-2 type-caption font-mono text-emerald-500">npx @99/ui add separator toggle alert</p>
                   </CollapsibleContent>
                 </Collapsible>
                 <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-(--radius-field) bg-gradient-to-br from-emerald-500/10 to-blue-500/10 border border-black/[0.04] dark:border-white/[0.04] flex items-center justify-center">
-                  <span className="text-[10px] font-mono text-zinc-500">16:9 AspectRatio</span>
+                  <span className="type-micro font-mono text-zinc-500">16:9 AspectRatio</span>
                 </AspectRatio>
               </div>
             </div>
@@ -1298,12 +1298,12 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <ShieldCheck className="w-5 h-5 text-emerald-500" />
+            <ShieldCheck className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 05. Wave B — Flows & Data Display
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 AlertDialog · RadioGroup · Table · Pagination
               </p>
             </div>
@@ -1314,7 +1314,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* AlertDialog + RadioGroup */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Interruptive Flows</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Interruptive Flows</h3>
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button variant="destructive" size="sm">Delete workspace…</Button>
@@ -1336,19 +1336,19 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             <Separator />
 
             <fieldset className="space-y-2.5">
-              <legend className="text-xs font-semibold text-zinc-700 dark:text-[#92929B] mb-2">Visibility</legend>
+              <legend className="type-caption font-semibold text-zinc-700 dark:text-[#92929B] mb-2">Visibility</legend>
               <RadioGroup defaultValue="private">
                 <div className="flex items-center gap-2.5">
                   <RadioGroupItem value="private" id="rg-private" />
-                  <Label htmlFor="rg-private" className="font-normal text-xs cursor-pointer">Private — only me</Label>
+                  <Label htmlFor="rg-private" className="font-normal type-caption cursor-pointer">Private — only me</Label>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <RadioGroupItem value="team" id="rg-team" />
-                  <Label htmlFor="rg-team" className="font-normal text-xs cursor-pointer">Team — workspace members</Label>
+                  <Label htmlFor="rg-team" className="font-normal type-caption cursor-pointer">Team — workspace members</Label>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <RadioGroupItem value="public" id="rg-public" disabled />
-                  <Label htmlFor="rg-public" className="font-normal text-xs opacity-50">Public (soon)</Label>
+                  <Label htmlFor="rg-public" className="font-normal type-caption opacity-50">Public (soon)</Label>
                 </div>
               </RadioGroup>
             </fieldset>
@@ -1356,7 +1356,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
           {/* Table + Pagination */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Data Display</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Data Display</h3>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -1407,12 +1407,12 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <Compass className="w-5 h-5 text-emerald-500" />
+            <Compass className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 06. Wave C — Product Patterns
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 Stepper · Timeline · FileUpload
               </p>
             </div>
@@ -1422,13 +1422,13 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Stepper</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Stepper</h3>
             <Stepper steps={['Capture', 'Organize', 'Review']} current={1} />
             <Stepper steps={['Draft', 'Review', 'Ship']} current={3} orientation="vertical" className="pt-2" />
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Timeline</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Timeline</h3>
             <Timeline>
               <TimelineItem timestamp="09:41" accent="emerald">Morning pages synced to vault.</TimelineItem>
               <TimelineItem timestamp="12:15" accent="amber">Focus block started — 90m deep work.</TimelineItem>
@@ -1437,7 +1437,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">FileUpload</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">FileUpload</h3>
             <FileUpload label="Drop attachments or click to browse" multiple />
           </div>
         </div>
@@ -1449,12 +1449,12 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <SlidersHorizontal className="w-5 h-5 text-emerald-500" />
+            <SlidersHorizontal className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 07. Wave D — Micro-Data & Charts
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 Sparkline · DonutRing · HeatMapCalendar · StatTile · MeterBar · TrendDelta — zero chart deps, pure SVG
               </p>
             </div>
@@ -1471,7 +1471,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Sparkline modes</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Sparkline modes</h3>
             <div className="flex items-end gap-4 flex-wrap">
               <Sparkline data={[2,4,3,6,5,8,7,10]} label="Weekly momentum" />
               <Sparkline data={[8,6,7,5,6,4,5,3]} color="rose" fill={false} label="Distractions" />
@@ -1480,7 +1480,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 flex flex-col items-center">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] self-start">DonutRing</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF] self-start">DonutRing</h3>
             <DonutRing
               segments={[
                 { value: 62, color: 'emerald' },
@@ -1495,7 +1495,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">HeatMap + Delta</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">HeatMap + Delta</h3>
             <HeatMapCalendar
               weeks={14}
               color="emerald"
@@ -1518,12 +1518,12 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <LayoutGrid className="w-5 h-5 text-emerald-500" />
+            <LayoutGrid className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 08. Wave E — Advanced Navigation
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 Menubar · NavigationMenu · Sidebar · CommandBar
               </p>
             </div>
@@ -1533,7 +1533,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Menubar & NavigationMenu</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Menubar & NavigationMenu</h3>
             <Menubar>
               <MenubarMenu>
                 <MenubarTrigger>File</MenubarTrigger>
@@ -1574,24 +1574,24 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Sidebar rail & CommandBar</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Sidebar rail & CommandBar</h3>
             <SidebarProvider>
               <div className="flex h-56 overflow-hidden rounded-(--radius-control) border border-black/[0.05] dark:border-white/[0.04]">
                 <Sidebar width={180}>
                   <SidebarHeader>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Workspace</span>
+                    <span className="type-micro font-mono uppercase tracking-wider text-zinc-400">Workspace</span>
                   </SidebarHeader>
                   <SidebarBody>
-                    <SidebarItem label="Inbox" icon={<Inbox className="w-4 h-4" />} isActive />
-                    <SidebarItem label="Calendar" icon={<Calendar className="w-4 h-4" />} />
-                    <SidebarItem label="Media" icon={<Layers className="w-4 h-4" />} />
+                    <SidebarItem label="Inbox" icon={<Inbox className="icon-md" />} isActive />
+                    <SidebarItem label="Calendar" icon={<Calendar className="icon-md" />} />
+                    <SidebarItem label="Media" icon={<Layers className="icon-md" />} />
                   </SidebarBody>
                   <SidebarFooter>
-                    <span className="text-[10px] text-zinc-400">v1.0</span>
+                    <span className="type-micro text-zinc-400">v1.0</span>
                   </SidebarFooter>
                 </Sidebar>
                 <div className="flex-1 p-4">
-                  <CommandBar leading={<Terminal className="w-4 h-4" />}>
+                  <CommandBar leading={<Terminal className="icon-md" />}>
                     <CommandAction keys={["⌘", "K"]}>Palette</CommandAction>
                     <CommandAction>Capture</CommandAction>
                     <CommandAction active>Share</CommandAction>
@@ -1609,12 +1609,12 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <LayoutGrid className="w-5 h-5 text-emerald-500" />
+            <LayoutGrid className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 09. Wave G — Group, Code & Media Display
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 AvatarStack · CodeBlock · Carousel (scroll-snap, zero-dep)
               </p>
             </div>
@@ -1624,7 +1624,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">AvatarStack & CodeBlock</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">AvatarStack & CodeBlock</h3>
             <AvatarStack names={['Sara', 'Ali', 'Nima', 'Raha', 'Omid', 'Bahar']} max={4} size="md" />
             <CodeBlock
               language="tsx"
@@ -1643,7 +1643,7 @@ export default function App() {
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Carousel</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Carousel</h3>
             <Carousel label="Surface gallery" itemClassName="w-64">
               {['#0B0C11', '#131318', '#1A1A20', '#0E0E14', '#18181D'].map((token, i) => (
                 <div
@@ -1651,7 +1651,7 @@ export default function App() {
                   className="h-36 rounded-(--radius-control) border border-white/[0.05] flex items-end p-4"
                   style={{ background: token }}
                 >
-                  <span className="text-[10px] font-mono text-white/50">surface-{i + 1} · {token}</span>
+                  <span className="type-micro font-mono text-white/50">surface-{i + 1} · {token}</span>
                 </div>
               ))}
             </Carousel>
@@ -1664,12 +1664,12 @@ export default function App() {
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <Calendar className="w-5 h-5 text-emerald-500" />
+            <Calendar className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 10. Wave F — Interactive Heavyweights
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 DatePicker · Combobox · TimePicker — the shadcn "both worlds" trio
               </p>
             </div>
@@ -1679,14 +1679,14 @@ export default function App() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">DatePicker</h3>
-            <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">Popover month grid · today ring · disabledDates</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">DatePicker</h3>
+            <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">Popover month grid · today ring · disabledDates</p>
             <DatePicker placeholder="Pick a deadline" />
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Combobox</h3>
-            <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">cmdk filter · create-option · 44px rows</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Combobox</h3>
+            <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">cmdk filter · create-option · 44px rows</p>
             <Combobox
               options={[
                 { value: 'deep-work', label: 'Deep work', hint: '90m' },
@@ -1702,8 +1702,8 @@ export default function App() {
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">TimePicker</h3>
-            <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">Filterable HH:mm listbox · 30m step</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">TimePicker</h3>
+            <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">Filterable HH:mm listbox · 30m step</p>
             <TimePicker value={null} onChange={() => {}} step={30} />
           </div>
         </div>
@@ -1714,12 +1714,12 @@ export default function App() {
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <Star className="w-5 h-5 text-emerald-500" />
+            <Star className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 11. Wave H — Input & Polish Finals
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 Rating · OTPInput · CopyButton · Swatch · NumberField
               </p>
             </div>
@@ -1729,19 +1729,19 @@ export default function App() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Rating & NumberField</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Rating & NumberField</h3>
             <WaveHInputsDemo />
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">OTPInput</h3>
-            <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">Auto-advance · paste · arrows</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">OTPInput</h3>
+            <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">Auto-advance · paste · arrows</p>
             <OTPInput length={6} />
             <CopyButton text="npx @99/ui init" label="Copy install" />
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Swatch</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Swatch</h3>
             <div className="grid grid-cols-2 gap-3">
               <Swatch name="Root" hex="#06070A" />
               <Swatch name="Surface 1" hex="#0B0C11" />
@@ -1757,12 +1757,12 @@ export default function App() {
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <Sparkles className="w-5 h-5 text-emerald-500" />
+            <Sparkles className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 12. Wave I — Advanced Inputs & Overlays
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 ColorPicker · SignaturePad · PasswordInput · TagInput · RichTextEditorBar · Banner · TourGuide · Confetti
               </p>
             </div>
@@ -1781,7 +1781,7 @@ export default function App() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* ColorPicker & RichTextEditorBar */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">ColorPicker & Toolbar</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">ColorPicker & Toolbar</h3>
             <ColorPicker value={demoColor} onChange={setDemoColor} label="Brand Hex Accent" />
             <div className="pt-2">
               <RichTextEditorBar />
@@ -1790,7 +1790,7 @@ export default function App() {
 
           {/* PasswordInput & TagInput */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Password & Multi-Tag Input</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Password & Multi-Tag Input</h3>
             <PasswordInput defaultValue="Vault@2026!Secure" />
             <div className="pt-2">
               <TagInput tags={demoTags} onChange={setDemoTags} label="Framework Tags" />
@@ -1800,7 +1800,7 @@ export default function App() {
           {/* TourGuide & Confetti trigger */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">TourGuide & Confetti</h3>
+              <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">TourGuide & Confetti</h3>
               <Button
                 size="xs"
                 variant="primary"
@@ -1826,7 +1826,7 @@ export default function App() {
         {/* Signature Pad */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Vector SignaturePad</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Vector SignaturePad</h3>
             <SignaturePad />
           </div>
 
@@ -1847,12 +1847,12 @@ export default function App() {
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <Layers className="w-5 h-5 text-emerald-500" />
+            <Layers className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 13. Wave J — Visualizations & Heavyweight Workflows
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 TreeView · KanbanBoard · DiffViewer · CalendarView · AudioPlayer · TerminalEmulator · ActivityFeed
               </p>
             </div>
@@ -1863,12 +1863,12 @@ export default function App() {
         {/* Terminal & Audio Player */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Interactive CLI Terminal</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Interactive CLI Terminal</h3>
             <TerminalEmulator />
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4 flex flex-col justify-between">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Velvet Waveform AudioPlayer</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Velvet Waveform AudioPlayer</h3>
             <AudioPlayer />
             <div className="pt-2">
               <DiffViewer
@@ -1887,14 +1887,14 @@ export default function App() {
 
         {/* Kanban Board */}
         <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-          <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Sprint Kanban Board</h3>
+          <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Sprint Kanban Board</h3>
           <KanbanBoard />
         </div>
 
         {/* TreeView, CalendarView, ActivityFeed */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Hierarchical TreeView</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Hierarchical TreeView</h3>
             <TreeView
               data={[
                 {
@@ -1928,7 +1928,7 @@ export default function App() {
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Calendar Month View</h3>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Calendar Month View</h3>
             <CalendarView />
           </div>
 
@@ -1943,12 +1943,12 @@ export default function App() {
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
           <div className="flex items-center gap-2.5">
-            <Boxes className="w-5 h-5 text-emerald-500" />
+            <Boxes className="icon-lg text-emerald-500" />
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+              <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                 14. Wave K — 99 Standard Primitives & Actions
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+              <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                 SplitButton · FloatingActionButton · LinkButton · DropdownButton · PinInput · CurrencyInput · DateRangePicker · RangeSlider · CheckboxGroup · DataTable · MetricCard · Spinner
               </p>
             </div>
@@ -1959,8 +1959,8 @@ export default function App() {
         {/* Row 1: Actions & Advanced Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">SplitButton</h3>
-            <p className="text-xs text-zinc-500">Primary action + chevron menu</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">SplitButton</h3>
+            <p className="type-caption text-zinc-500">Primary action + chevron menu</p>
             <SplitButton
               label="Deploy Build"
               onClick={() => addToast('Deploy initiated', 'success')}
@@ -1972,8 +1972,8 @@ export default function App() {
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">FloatingActionButton (FAB)</h3>
-            <p className="text-xs text-zinc-500">Promoted circular action</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">FloatingActionButton (FAB)</h3>
+            <p className="type-caption text-zinc-500">Promoted circular action</p>
             <div className="flex items-center gap-3">
               <FloatingActionButton
                 label="New Issue"
@@ -1989,8 +1989,8 @@ export default function App() {
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">DropdownButton & Link</h3>
-            <p className="text-xs text-zinc-500">Selectable action trigger</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">DropdownButton & Link</h3>
+            <p className="type-caption text-zinc-500">Selectable action trigger</p>
             <div className="space-y-3">
               <DropdownButton
                 label="Target Cluster"
@@ -2014,8 +2014,8 @@ export default function App() {
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Spinners & Loaders</h3>
-            <p className="text-xs text-zinc-500">Sub-pixel SVG rotation</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Spinners & Loaders</h3>
+            <p className="type-caption text-zinc-500">Sub-pixel SVG rotation</p>
             <div className="flex items-center gap-3 pt-2">
               <Spinner size="xs" variant="emerald" />
               <Spinner size="sm" variant="emerald" />
@@ -2027,20 +2027,20 @@ export default function App() {
         {/* Row 2: Precision Form Inputs */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">PinInput (Security)</h3>
-            <p className="text-xs text-zinc-500">Masked bullet progression</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">PinInput (Security)</h3>
+            <p className="type-caption text-zinc-500">Masked bullet progression</p>
             <PinInput length={4} value={demoPin} onChange={setDemoPin} />
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">CurrencyInput</h3>
-            <p className="text-xs text-zinc-500">Formatted monetary input</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">CurrencyInput</h3>
+            <p className="type-caption text-zinc-500">Formatted monetary input</p>
             <CurrencyInput value={demoCurrency} onChange={setDemoCurrency} currency="USD" />
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">DateRangePicker</h3>
-            <p className="text-xs text-zinc-500">Start & end sprint selector</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">DateRangePicker</h3>
+            <p className="type-caption text-zinc-500">Start & end sprint selector</p>
             <DateRangePicker
               startDate={demoDateRange.start}
               endDate={demoDateRange.end}
@@ -2049,8 +2049,8 @@ export default function App() {
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">RangeSlider</h3>
-            <p className="text-xs text-zinc-500">Dual-thumb interval selector</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">RangeSlider</h3>
+            <p className="type-caption text-zinc-500">Dual-thumb interval selector</p>
             <RangeSlider value={demoRangeSlider} onChange={setDemoRangeSlider} min={0} max={100} />
           </div>
         </div>
@@ -2058,8 +2058,8 @@ export default function App() {
         {/* Row 3: DataTable, MetricCard, CheckboxGroup */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">Enterprise DataTable</h3>
-            <p className="text-xs text-zinc-500">Searchable, sortable, paginated high-velocity table</p>
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Enterprise DataTable</h3>
+            <p className="type-caption text-zinc-500">Searchable, sortable, paginated high-velocity table</p>
             <DataTable
               columns={[
                 { key: 'id', header: 'ID', sortable: true },
@@ -2092,7 +2092,7 @@ export default function App() {
               sparklineData={[12, 18, 14, 25, 30, 42, 58, 65]}
             />
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-3">
-              <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF]">CheckboxGroup</h3>
+              <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">CheckboxGroup</h3>
               <CheckboxGroup
                 options={[
                   { value: 'telemetry', label: 'Real-time Telemetry', description: 'Stream events to edge bus' },
@@ -2119,12 +2119,12 @@ export default function App() {
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
-              <Terminal className="w-5 h-5 text-emerald-500" />
+              <Terminal className="icon-lg text-emerald-500" />
               <div>
-                <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                   03. Linear-Grade Product Workflows & Issue Rows
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                   High-velocity task list with status transitions, priority badges, keyboard shortcuts, and batch selection.
                 </p>
               </div>
@@ -2136,7 +2136,7 @@ export default function App() {
           </div>
 
           {/* Linear-Grade Interactive Issue Tracker Engine */}
-          <LinearIssueTracker />
+          <LinearIssueTracker notify={addToast} />
         </section>
       )}
 
@@ -2147,17 +2147,17 @@ export default function App() {
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
-              <Sparkles className="w-5 h-5 text-emerald-500" />
+              <Sparkles className="icon-lg text-emerald-500" />
               <div>
-                <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                   04. Liquid Glass & Authentic Materials
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                   Sub-pixel rim highlights, frosted glass physics, and living auras.
                 </p>
               </div>
             </div>
-            <span className="text-[11px] font-mono px-2.5 py-1 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-[#8E8E98]">
+            <span className="type-micro font-mono px-2.5 py-1 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-[#8E8E98]">
               PHYSICS & BLUR
             </span>
           </div>
@@ -2166,26 +2166,26 @@ export default function App() {
             {/* Obsidian Liquid Glass Dock */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-[#06070A] border border-white/[0.06] shadow-2xl space-y-4">
               <div className="flex items-center justify-between text-white">
-                <span className="text-xs font-bold font-mono">OBSIDIAN LIQUID DOCK</span>
-                <span className="text-[10px] text-zinc-400">rgba(14,14,19,0.52) • blur(20px)</span>
+                <span className="type-caption font-bold font-mono">OBSIDIAN LIQUID DOCK</span>
+                <span className="type-micro text-zinc-400">rgba(14,14,19,0.52) • blur(20px)</span>
               </div>
               <div className="py-6 flex justify-center">
                 <div className="liquid-glass-dark-dock px-4 py-2.5 rounded-(--radius-pill) flex items-center gap-3">
                   <span className="p-2 rounded-(--radius-pill) bg-white/[0.06] text-white">
-                    <LayoutGrid className="w-4 h-4" />
+                    <LayoutGrid className="icon-md" />
                   </span>
                   <span className="p-2 rounded-(--radius-pill) text-zinc-400 hover:text-white transition-colors">
-                    <Compass className="w-4 h-4" />
+                    <Compass className="icon-md" />
                   </span>
                   <span className="p-2 rounded-(--radius-pill) text-zinc-400 hover:text-white transition-colors">
-                    <SquarePen className="w-4 h-4" />
+                    <SquarePen className="icon-md" />
                   </span>
                   <span className="p-2 rounded-(--radius-pill) text-zinc-400 hover:text-white transition-colors">
-                    <Waves className="w-4 h-4" />
+                    <Waves className="icon-md" />
                   </span>
                 </div>
               </div>
-              <p className="text-xs text-zinc-400 text-center">
+              <p className="type-caption text-zinc-400 text-center">
                 Deep obsidian diffusion with specular rim highlight.
               </p>
             </div>
@@ -2193,26 +2193,26 @@ export default function App() {
             {/* Matte Porcelain Liquid Dock */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-[#F5F5F8] border border-black/[0.08] shadow-md space-y-4">
               <div className="flex items-center justify-between text-zinc-900">
-                <span className="text-xs font-bold font-mono">PORCELAIN MATTE DOCK</span>
-                <span className="text-[10px] text-zinc-500">rgba(255,255,255,0.72) • blur(24px)</span>
+                <span className="type-caption font-bold font-mono">PORCELAIN MATTE DOCK</span>
+                <span className="type-micro text-zinc-500">rgba(255,255,255,0.72) • blur(24px)</span>
               </div>
               <div className="py-6 flex justify-center">
                 <div className="liquid-glass-light-dock px-4 py-2.5 rounded-(--radius-pill) flex items-center gap-3">
                   <span className="p-2 rounded-(--radius-pill) bg-zinc-950 text-white shadow-xs">
-                    <LayoutGrid className="w-4 h-4" />
+                    <LayoutGrid className="icon-md" />
                   </span>
                   <span className="p-2 rounded-(--radius-pill) text-zinc-500 hover:text-black transition-colors">
-                    <Compass className="w-4 h-4" />
+                    <Compass className="icon-md" />
                   </span>
                   <span className="p-2 rounded-(--radius-pill) text-zinc-500 hover:text-black transition-colors">
-                    <SquarePen className="w-4 h-4" />
+                    <SquarePen className="icon-md" />
                   </span>
                   <span className="p-2 rounded-(--radius-pill) text-zinc-500 hover:text-black transition-colors">
-                    <Waves className="w-4 h-4" />
+                    <Waves className="icon-md" />
                   </span>
                 </div>
               </div>
-              <p className="text-xs text-zinc-500 text-center">
+              <p className="type-caption text-zinc-500 text-center">
                 Frosted porcelain cushion with gentle specular rim.
               </p>
             </div>
@@ -2227,33 +2227,33 @@ export default function App() {
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
-              <Package className="w-5 h-5 text-emerald-500" />
+              <Package className="icon-lg text-emerald-500" />
               <div>
-                <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                   05. Component Registry & Installation Guide
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                   Clean 1-line imports, zero-bloat architecture, and copy-ready module definitions.
                 </p>
               </div>
             </div>
-            <span className="text-[11px] font-mono px-2.5 py-1 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-[#8E8E98]">
+            <span className="type-micro font-mono px-2.5 py-1 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-[#8E8E98]">
               UNIVERSAL REUSABILITY
             </span>
           </div>
 
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-6">
-            <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
+            <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
               Single Barrel Import (Just Like shadcn/ui)
             </h3>
 
-            <p className="text-xs text-zinc-500 dark:text-[#8E8E98] leading-relaxed">
+            <p className="type-caption text-zinc-500 dark:text-[#8E8E98] leading-relaxed">
               Every component is consolidated under <code>src/components/ui/index.ts</code>. You can import any piece of UI directly with one clean line:
             </p>
 
             <div className="p-4 rounded-(--radius-control) bg-zinc-900 text-zinc-100 dark:bg-[#06070A] border border-black/[0.08] dark:border-white/[0.04] relative">
               <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.08]">
-                <span className="text-[11px] font-mono text-zinc-400">TypeScript Usage Example</span>
+                <span className="type-micro font-mono text-zinc-400">TypeScript Usage Example</span>
                 <button
                   type="button"
                   onClick={() =>
@@ -2262,13 +2262,13 @@ export default function App() {
                       'Import Barrel'
                     )
                   }
-                  className="flex items-center gap-1 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                  className="flex items-center gap-1 type-caption font-mono text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
                 >
-                  <Copy className="w-3.5 h-3.5" />
+                  <Copy className="icon-sm" />
                   <span>{copiedCode === 'Import Barrel' ? 'Copied!' : 'Copy Import'}</span>
                 </button>
               </div>
-              <pre className="text-xs font-mono text-emerald-300 overflow-x-auto no-scrollbar whitespace-pre-wrap">
+              <pre className="type-caption font-mono text-emerald-300 overflow-x-auto no-scrollbar whitespace-pre-wrap">
 {`import {
   Button,
   IconButton,
@@ -2293,7 +2293,7 @@ export default function App() {
 
             {/* Component Inventory Table */}
             <div className="overflow-x-auto no-scrollbar">
-              <table className="w-full text-xs text-left">
+              <table className="w-full type-caption text-left">
                 <thead>
                   <tr className="border-b border-black/[0.05] dark:border-white/[0.04] text-zinc-400 font-mono">
                     <th className="py-2.5 px-3">Component</th>
@@ -2318,7 +2318,7 @@ export default function App() {
                       <td className="py-3 px-3 font-mono text-zinc-400">{row.path}</td>
                       <td className="py-3 px-3 font-mono text-zinc-500">{row.props}</td>
                       <td className="py-3 px-3">
-                        <span className="px-2 py-0.5 rounded-(--radius-pill) text-[10px] font-mono font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                        <span className="px-2 py-0.5 rounded-(--radius-pill) type-micro font-mono font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                           {row.status}
                         </span>
                       </td>
@@ -2338,17 +2338,17 @@ export default function App() {
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-black/[0.05] dark:border-white/[0.04] pb-3">
             <div className="flex items-center gap-2.5">
-              <Code className="w-5 h-5 text-emerald-500" />
+              <Code className="icon-lg text-emerald-500" />
               <div>
-                <h2 className="text-xl font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
                   06. Interactive Sandbox & Live JSX Exporter
                 </h2>
-                <p className="text-xs text-zinc-500 dark:text-[#8E8E98]">
+                <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">
                   Configure props in real-time, test tactile physics, and copy production code.
                 </p>
               </div>
             </div>
-            <span className="text-[11px] font-mono px-2.5 py-1 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-[#8E8E98]">
+            <span className="type-micro font-mono px-2.5 py-1 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-[#8E8E98]">
               LIVE GENERATOR
             </span>
           </div>
@@ -2356,7 +2356,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Controls */}
             <div className="lg:col-span-5 p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-4">
-              <h3 className="text-sm font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
+              <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
                 Configure Properties
               </h3>
 
@@ -2412,7 +2412,7 @@ export default function App() {
               )}
 
               <div className="space-y-1.5">
-                <span className="text-xs font-semibold text-zinc-500">Size</span>
+                <span className="type-caption font-semibold text-zinc-500">Size</span>
                 <SegmentedControl
                   size="sm"
                   value={sbSize}
@@ -2444,7 +2444,7 @@ export default function App() {
                 }}
               >
                 <div className="absolute top-3 left-4 flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
+                  <span className="type-micro font-mono text-zinc-400 dark:text-zinc-500">
                     TACTILE PREVIEW STAGE
                   </span>
                 </div>
@@ -2456,7 +2456,7 @@ export default function App() {
                         key={pm}
                         type="button"
                         onClick={() => setSbPackageManager(pm)}
-                        className={`px-1.5 py-0.5 rounded text-[10px] font-mono transition-all cursor-pointer ${
+                        className={`px-1.5 py-0.5 rounded type-micro font-mono transition-all cursor-pointer ${
                           sbPackageManager === pm
                             ? 'bg-white dark:bg-white text-zinc-950 font-bold shadow-xs'
                             : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
@@ -2472,7 +2472,7 @@ export default function App() {
                   <Button
                     variant={sbVariant}
                     size={sbSize}
-                    icon={sbWithIcon ? <Sparkles className="w-4 h-4" /> : undefined}
+                    icon={sbWithIcon ? <Sparkles className="icon-md" /> : undefined}
                     loading={sbLoading}
                     disabled={sbDisabled}
                     onClick={() => addToast('Triggered sandbox button!', 'success')}
@@ -2522,7 +2522,7 @@ export default function App() {
               </div>
 
               {/* Install CLI Pill */}
-              <div className="flex items-center justify-between px-3 py-2 rounded-(--radius-field) bg-zinc-100/70 dark:bg-[#07080B] border border-zinc-200/70 dark:border-white/[0.04] text-xs font-mono text-zinc-700 dark:text-zinc-300">
+              <div className="flex items-center justify-between px-3 py-2 rounded-(--radius-field) bg-zinc-100/70 dark:bg-[#07080B] border border-zinc-200/70 dark:border-white/[0.04] type-caption font-mono text-zinc-700 dark:text-zinc-300">
                 <span className="flex items-center gap-2 truncate">
                   <span className="text-emerald-500 font-bold">&gt;_</span>
                   <span className="truncate">{getSbCliCmd(sbComponent)}</span>
@@ -2534,9 +2534,9 @@ export default function App() {
                   title="Copy CLI command"
                 >
                   {copiedCode === 'CLI Install' ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-500" />
+                    <Check className="icon-sm text-emerald-500" />
                   ) : (
-                    <Copy className="w-3.5 h-3.5" />
+                    <Copy className="icon-sm" />
                   )}
                 </button>
               </div>
@@ -2568,14 +2568,14 @@ export default function App() {
         subtitle="Linear-grade elevation with backdrop blur and mobile bottom-sheet drag handle"
       >
         <div className="p-6 space-y-4">
-          <p className="text-xs text-zinc-600 dark:text-[#92929B] leading-relaxed">
+          <p className="type-caption text-zinc-600 dark:text-[#92929B] leading-relaxed">
             This modal responds natively to the active theme mode. In dark mode, it adopts deep #111114 obsidian depth with a 1px specular rim highlight. In light mode, it manifests as a crisp, shadow-diffused porcelain card.
           </p>
 
           <div className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-[#16161B] border border-black/[0.04] dark:border-white/[0.05] flex items-center justify-between">
             <div>
-              <h4 className="text-xs font-semibold text-zinc-900 dark:text-white">Live Status</h4>
-              <p className="text-[11px] text-zinc-500">WCAG AAA contrast verified</p>
+              <h4 className="type-caption font-semibold text-zinc-900 dark:text-white">Live Status</h4>
+              <p className="type-micro text-zinc-500">WCAG AAA contrast verified</p>
             </div>
             <StatusBadge status="done" />
           </div>
@@ -2611,7 +2611,7 @@ export default function App() {
                 addToast(`Theme switched to ${themeMode === 'dark' ? 'Light' : 'Dark'}`, 'info');
               }}
             >
-              <Palette className="mr-2 h-4 w-4" />
+              <Palette className="icon-md mr-2" />
               <span>Toggle Dark / Light Theme</span>
               <CmdkShortcut>⌘T</CmdkShortcut>
             </CommandItem>
@@ -2621,7 +2621,7 @@ export default function App() {
                 setIsCommandOpen(false);
               }}
             >
-              <Layers className="mr-2 h-4 w-4" />
+              <Layers className="icon-md mr-2" />
               <span>Open Radix Dialog</span>
               <CmdkShortcut>⌘D</CmdkShortcut>
             </CommandItem>
@@ -2631,7 +2631,7 @@ export default function App() {
                 setIsCommandOpen(false);
               }}
             >
-              <LayoutGrid className="mr-2 h-4 w-4" />
+              <LayoutGrid className="icon-md mr-2" />
               <span>Open Edge Sheet Drawer</span>
               <CmdkShortcut>⌘S</CmdkShortcut>
             </CommandItem>
@@ -2643,7 +2643,7 @@ export default function App() {
                 setIsCommandOpen(false);
               }}
             >
-              <Sparkles className="mr-2 h-4 w-4" />
+              <Sparkles className="icon-md mr-2" />
               <span>Foundations & Design Tokens</span>
             </CommandItem>
             <CommandItem
@@ -2652,7 +2652,7 @@ export default function App() {
                 setIsCommandOpen(false);
               }}
             >
-              <Package className="mr-2 h-4 w-4" />
+              <Package className="icon-md mr-2" />
               <span>UI Components & Primitives</span>
             </CommandItem>
             <CommandItem
@@ -2661,7 +2661,7 @@ export default function App() {
                 setIsCommandOpen(false);
               }}
             >
-              <Terminal className="mr-2 h-4 w-4" />
+              <Terminal className="icon-md mr-2" />
               <span>Linear Issue Tracker Workflow</span>
             </CommandItem>
           </CommandGroup>
@@ -2669,7 +2669,7 @@ export default function App() {
       </CommandDialog>
 
       {/* Floating Quick Action: Back to Top */}
-      <div className="fixed bottom-20 right-4 sm:right-6 z-30 pointer-events-auto">
+      <div className="fixed bottom-20 right-4 sm:right-6 z-dock pointer-events-auto">
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -2677,7 +2677,7 @@ export default function App() {
           title={isRTL ? 'بازگشت به بالا' : 'Back to top'}
           aria-label="Back to top"
         >
-          <ArrowUpRight className="w-4 h-4 -rotate-45" />
+          <ArrowUpRight className="icon-md -rotate-45" />
         </button>
       </div>
     </div>
@@ -2691,11 +2691,11 @@ function WaveHInputsDemo() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <span className="text-xs text-zinc-500 dark:text-[#8E8E98]">Rating</span>
+        <span className="type-caption text-zinc-500 dark:text-[#8E8E98]">Rating</span>
         <Rating value={rating} onChange={setRating} />
       </div>
       <div className="flex items-center justify-between">
-        <span className="text-xs text-zinc-500 dark:text-[#8E8E98]">Pomodoros</span>
+        <span className="type-caption text-zinc-500 dark:text-[#8E8E98]">Pomodoros</span>
         <NumberField value={count} onChange={setCount} min={1} max={12} suffix="×" label="Pomodoros" />
       </div>
     </div>

@@ -124,17 +124,110 @@ const STRUCTURAL = [
     label: 'radius (named scale, directional)',
     hint: 'rounded-b-(--radius-lg)',
   },
-  // Type: the raw scale bypasses --type-* just as radius did — but type is
-  // deliberately NOT gated yet. Migrating ~900 sizes is a per-call-site
-  // judgement (is this text-xs a caption, or genuinely micro?), and a blind
-  // codemod would silently restyle the entire kit. Tracked as P0-A in
-  // docs/PARITY-AUDIT.md. Enable this rule once the migration has landed.
+  // Type: the raw scale bypassed --type-* exactly as the radius scale did, so
+  // it is now gated too. The migration landed first (1,277 `type-*` call sites,
+  // zero raw sizes, zero arbitrary `text-[Npx]`), and this rule is what keeps
+  // it landed. It was deliberately left disabled while the migration was in
+  // flight — a rule you cannot pass yet only teaches people to bypass it.
+  {
+    re: /(?<![\w\-\[])(?:sm:|md:|lg:|xl:|2xl:)?text-(?:xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)(?![\w\-])/g,
+    label: 'type size (raw scale)',
+    hint: 'type-body / type-title / type-heading',
+  },
+  // Arbitrary type sizes are the same decision made by hand, and they bypass
+  // the ramp entirely — a size with no leading and no tracking.
+  {
+    re: /(?<![\w\-\[])text-\[[0-9.]+px\]/g,
+    label: 'type size (arbitrary)',
+    hint: 'type-caption / type-body',
+  },
+  // Icon size: the optical scale (12/14/16/20/24) plus the two dot sizes. The
+  // original 4-rung scale skipped 16px — the single most common icon size in
+  // the kit — so 351 call sites had no token to reach for and went raw. The
+  // scale was widened to five, the migration landed (472 icon sites + 15 dots
+  // across 74 files), and this rule is what keeps it landed.
   //
-  // {
-  //   re: /(?<![\w\-\[])(?:sm:|md:|lg:|xl:|2xl:)?text-(?:xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)(?![\w\-])/g,
-  //   label: 'type size (raw scale)',
-  //   hint: 'type-body / type-title / type-heading',
-  // },
+  // Scoped to the JSX-tag form `<Tag className="w-4 h-4">` so that a layout
+  // box — a 16px divider, an 18px checkbox, a 64px column — is never mistaken
+  // for an icon. An icon token on a non-icon is worse than a raw number,
+  // because it looks governed while silently changing meaning.
+  {
+    re: /<[A-Z][A-Za-z0-9]*\b[^>]*?className=(?:"[^"]*"|\{`[^`]*`\}|\{'[^']*'\})/g,
+    label: 'icon size (raw w/h pair on a component)',
+    hint: 'icon-xs/sm/md/lg/xl · icon-dot for status dots',
+    // Only fire when the element carries a *matched* w-N h-N pair, so single-
+    // axis sizing and non-icon boxes pass through untouched.
+    filter: (match) => {
+      // Pull the class LIST, not the whole `className="…"` attribute — the
+      // leading `className="` would defeat a `^\s` anchor and the rule would
+      // silently never fire.
+      const cls = /className=(?:"([^"]*)"|\{`([^`]*)`\}|\{'([^']*)'\})/.exec(match);
+      const list = cls?.[1] ?? cls?.[2] ?? cls?.[3] ?? '';
+      const w = /(?:^|\s)w-(3|3\.5|4|5|6)(?=\s|$)/.exec(list);
+      const h = /(?:^|\s)h-(3|3\.5|4|5|6)(?=\s|$)/.exec(list);
+      return Boolean(w && h && w[1] === h[1]);
+    },
+  },
+  // Status dots: the same reasoning, one scale down. A `rounded-pill` mark at
+  // 8/10px is a presence dot, not a glyph, and deserves its own name. Unlike
+  // icons, dots are usually a plain `<span>`/`<div>`, so the tag is not
+  // capitalised and cannot be the signal — `rounded-pill` at 8/10px is.
+  {
+    re: /<[A-Za-z][A-Za-z0-9]*\b[^>]*?className=(?:"[^"]*"|\{`[^`]*`\}|\{'[^']*'\})/g,
+    label: 'status dot (raw w/h pair)',
+    hint: 'icon-dot / icon-dot-lg',
+    filter: (match) => {
+      const cls = /className=(?:"([^"]*)"|\{`([^`]*)`\}|\{'([^']*)'\})/.exec(match);
+      const list = cls?.[1] ?? cls?.[2] ?? cls?.[3] ?? '';
+      if (!list.includes('rounded-(--radius-pill)')) return false;
+      return /(?:^|\s)w-2(\.5)?(\s)h-2(\.5)?(?=\s|$)/.test(list);
+    },
+  },
+  // Motion duration: the raw Tailwind scale bypassed --duration-* exactly as
+  // the radius and type scales did. The declared ramp had 75/120/180/280/400
+  // while the code used 75/100/150/200/300/500/700 — so 150ms, the single most
+  // common transition in the kit (23 sites), had no token to reach for. The
+  // ramp was rebuilt from the measured distribution (every step millisecond-
+  // identical, so the migration changed no timing) and this rule keeps it.
+  {
+    re: /(?<![\w\-\[])(?:sm:|md:|lg:|xl:|motion-safe:|motion-reduce:)?duration-(\d+)(?![\w\-\[])/g,
+    label: 'motion duration (raw scale)',
+    hint: 'dur-instant / dur-fast / dur-quick / dur-base / dur-slow / dur-deliberate / dur-progress',
+  },
+  // Focus visibility (WCAG 2.4.7 / 2.4.11). Suppressing the UA outline with no
+  // replacement is not a style choice, it is the removal of a keyboard user's
+  // only indication of where they are. 19 elements did exactly this; they now
+  // carry `focus-ui99`.
+  {
+    re: /className=(?:"[^"]*"|\{`[^`]*`\}|\{'[^']*'\})/g,
+    label: 'focus ring removed without replacement',
+    hint: 'focus-ui99 (or focus-ui99-inset)',
+    filter: (match) => {
+      const cls = /className=(?:"([^"]*)"|\{`([^`]*)`\}|\{'([^']*)'\})/.exec(match);
+      const list = cls?.[1] ?? cls?.[2] ?? cls?.[3] ?? '';
+      if (!/outline-none/.test(list)) return false;
+      // A ring counts as a replacement even when variant-prefixed
+      // (`focus-visible:ring-2`) — which is the form most of the kit uses.
+      return !/(?:^|\s)(?:[a-z-]+:)*ring-\d/.test(list) && !/focus-ui99|focus-safa/.test(list);
+    },
+  },
+  // Light-mode contrast (WCAG 1.4.3). Raw zinc is a DARK-theme idiom: measured
+  // against this kit's own surfaces, text-zinc-400 is 2.56:1 on white and
+  // 2.33:1 on the light canvas, where AA needs 4.5. A base (unprefixed) zinc
+  // text colour with no `dark:` companion is therefore invisible in one theme.
+  // The semantic tokens carry the right value per theme and are already covered
+  // by src/test/contrast.test.ts.
+  {
+    re: /className=(?:"[^"]*"|\{`[^`]*`\}|\{'[^']*'\})/g,
+    label: 'text colour legible only in one theme',
+    hint: 'text-(--text-secondary) / text-(--text-muted)',
+    filter: (match) => {
+      const cls = /className=(?:"([^"]*)"|\{`([^`]*)`\}|\{'([^']*)'\})/.exec(match);
+      const list = cls?.[1] ?? cls?.[2] ?? cls?.[3] ?? '';
+      if (/dark:/.test(list)) return false; // paired — the idiom is fine
+      return /(?:^|\s)text-zinc-(?:300|400|500)(?=\s|$)/.test(list);
+    },
+  },
 ];
 
 for (const f of files) {
@@ -144,6 +237,10 @@ for (const f of files) {
   lines.forEach((line, i) => {
     for (const rule of STRUCTURAL) {
       for (const m of line.matchAll(rule.re)) {
+        // Some rules match a whole JSX element and then narrow it — a matched
+        // w/h pair means an icon box, a lone w-4 means a layout box we leave
+        // alone. Without this, gating icons would flag every divider.
+        if (rule.filter && !rule.filter(m[0])) continue;
         structuralViolations.push(
           `${f}:${i + 1}: arbitrary ${rule.label} — "${m[0].slice(0, 60)}" → ${rule.hint}`,
         );
@@ -251,6 +348,35 @@ const DEAD_UTILITY = [
   },
 ];
 
+// ── CSS must actually parse ──────────────────────────────────────────────────
+// tsc, vitest and this gate all read the token files as TEXT, so an orphaned
+// declaration or a half-deleted rule passed every one of them and still broke
+// the production build with "Missing opening {". A gate that cannot tell
+// well-formed CSS from a fragment is not a gate.
+{
+  const cssFiles = readdirSync(resolve(root, 'src/styles')).filter((f) => f.endsWith('.css'));
+  const broken = [];
+  for (const f of cssFiles) {
+    const src = readFileSync(resolve(root, 'src/styles', f), 'utf8')
+      // Strip comments and string literals so braces inside them don't count.
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'/g, '""');
+    let depth = 0;
+    for (const ch of src) {
+      if (ch === '{') depth++;
+      else if (ch === '}') depth--;
+      if (depth < 0) break;
+    }
+    if (depth !== 0) {
+      broken.push(`${f}: ${depth > 0 ? `${depth} unclosed block(s)` : 'unbalanced close'}`);
+    }
+  }
+  if (broken.length) {
+    console.error(`\n✗ tokens-gate: malformed CSS — the production build will fail:\n  ${broken.join('\n  ')}\n`);
+    process.exit(1);
+  }
+}
+
 for (const f of files) {
   if (VALUE_ONLY_FILES.has(f)) continue;
   const src = readFileSync(resolve(uiDir, f), 'utf8');
@@ -277,5 +403,7 @@ if (deadUtilityViolations.length) {
 }
 
 console.log(
-  `✓ tokens-gate: ${files.length} kit files clean — zero hardcoded hexes, zero arbitrary elevation/radius/blur, zero dead utilities, all ${declared.size} tokens declared`,
+  `✓ tokens-gate: ${files.length} kit files clean — no hardcoded hexes, no arbitrary or raw-scale ` +
+    `elevation/radius/blur/type, no dead utilities, all ${declared.size} tokens declared ` +
+    `(4 rules: hex · structural · declared · compiles)`,
 );

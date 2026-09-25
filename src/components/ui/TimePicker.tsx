@@ -41,7 +41,7 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
         placeholder="Filter times…"
         aria-label="Filter times"
         className={cn(
-          'mb-2 h-9 w-full rounded-(--radius-field) border border-black/[0.07] bg-transparent px-3 text-sm text-zinc-950 placeholder:text-zinc-400',
+          'mb-2 h-9 w-full rounded-(--radius-field) border border-black/[0.07] bg-transparent px-3 type-body text-zinc-950 placeholder:text-zinc-400',
           'dark:border-white/[0.07] dark:text-(--text-primary) dark:placeholder:text-(--text-muted)',
           'focus-visible:outline-none focus-ui99-inset'
         )}
@@ -55,7 +55,7 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
             aria-selected={t === value}
             onClick={() => onChange(t)}
             className={cn(
-              'flex min-h-[36px] w-full items-center justify-between rounded-(--radius-sm) px-3 text-left text-xs font-mono transition-colors',
+              'flex min-h-[36px] w-full items-center justify-between rounded-(--radius-sm) px-3 text-left type-caption font-mono transition-colors',
               'hover:bg-(--state-hover)',
               'focus-visible:outline-none focus-ui99-inset cursor-pointer',
               t === value
@@ -67,7 +67,7 @@ export function TimePicker({ value, onChange, step = 30, className = '' }: TimeP
           </button>
         ))}
         {filtered.length === 0 && (
-          <div className="px-3 py-4 text-center text-xs text-(--text-muted)">No match</div>
+          <div className="px-3 py-4 text-center type-caption text-(--text-muted)">No match</div>
         )}
       </div>
     </div>

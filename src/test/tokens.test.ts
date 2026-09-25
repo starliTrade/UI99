@@ -433,12 +433,15 @@ describe('type scale', () => {
     expect(faTracking).toBe('0em');
   });
 
-  it('exposes a utility class per step, carrying all three properties', () => {
+  it('exposes a utility per step, carrying all three properties', () => {
+    // Must be an `@utility`, not a plain `.class`. A plain class cannot take a
+    // variant, so `sm:type-body` would silently resolve to nothing — which is
+    // exactly the bug the file header documents. Matching `@utility` also keeps
+    // the assertion off the illustrative `.type-body { … }` in the header comment,
+    // which a bare `\.type-body\s*\{` regex would happily match first.
     for (const step of STEPS) {
-      const rule = typeUtils.match(
-        new RegExp(`\\.type-${step.replace('body-lg', 'body-lg')}\\s*\\{([^}]+)\\}`),
-      );
-      expect(rule, `.type-${step} utility must exist`).not.toBeNull();
+      const rule = typeUtils.match(new RegExp(`@utility type-${step}\\s*\\{([^}]+)\\}`));
+      expect(rule, `@utility type-${step} must exist`).not.toBeNull();
       expect(rule![1]).toContain('font-size');
       expect(rule![1]).toContain('line-height');
       expect(rule![1]).toContain('letter-spacing');
@@ -447,7 +450,22 @@ describe('type scale', () => {
 
   it('wires the Persian override to data-script', () => {
     expect(typeUtils).toContain("[data-script='fa']");
-    expect(typeUtils).toContain('.type-body {');
+    // The override is a plain class rule on purpose: it must out-specify the
+    // same-layer `@utility` rule regardless of source order.
+    expect(typeUtils).toMatch(/\[data-script='fa'\]\s+\.type-body\s*\{/);
+  });
+
+  it('registers weights and icon sizes as utilities, not raw scale names', () => {
+    for (const w of ['regular', 'medium', 'semibold', 'bold']) {
+      expect(typeUtils, `weight-${w} must be a utility`).toMatch(
+        new RegExp(`@utility weight-${w}\\s*\\{[^}]*font-weight`),
+      );
+    }
+    for (const s of ['xs', 'sm', 'md', 'lg']) {
+      expect(typeUtils, `icon-${s} must be a utility`).toMatch(
+        new RegExp(`@utility icon-${s}\\s*\\{[^}]*width`),
+      );
+    }
   });
 
   it('declares exactly four weight tokens', () => {
@@ -455,10 +473,122 @@ describe('type scale', () => {
     expect(weights.sort()).toEqual(['bold', 'medium', 'regular', 'semibold']);
   });
 
-  it('declares four optical icon sizes', () => {
-    for (const size of ['xs', 'sm', 'md', 'lg']) {
+  it('declares five optical icon sizes plus two dot sizes', () => {
+    // Five, not four. The original scale was 12/14/18/24 and skipped 16px — the
+    // single most common icon size in the kit (351 call sites). A scale that
+    // omits its own default is not a scale, so 16px and 20px were added and the
+    // ladder rebuilt from the sizes actually in use.
+    for (const size of ['xs', 'sm', 'md', 'lg', 'xl']) {
       expect(type, `--icon-${size}`).toMatch(new RegExp(`--icon-${size}\\s*:`));
     }
+    for (const size of ['dot', 'dot-lg']) {
+      expect(type, `--icon-${size}`).toMatch(new RegExp(`--icon-${size}\\s*:`));
+    }
+  });
+
+  it('orders the icon scale strictly ascending', () => {
+    const px = (name: string) => {
+      const m = type.match(new RegExp(`--icon-${name}:\\s*([\\d.]+)rem`));
+      return m ? parseFloat(m[1]) * 16 : NaN;
+    };
+    const ladder = ['xs', 'sm', 'md', 'lg', 'xl'];
+    for (let i = 1; i < ladder.length; i++) {
+      expect(px(ladder[i]), `icon-${ladder[i]} must exceed icon-${ladder[i - 1]}`).toBeGreaterThan(
+        px(ladder[i - 1]),
+      );
+    }
+    // And 16px — the default — is really on the scale, not approximated.
+    expect(px('md'), 'icon-md is the 16px default').toBe(16);
+  });
+
+  it('keeps status dots below the icon scale', () => {
+    const px = (name: string) => {
+      const m = type.match(new RegExp(`--icon-${name}:\\s*([\\d.]+)rem`));
+      return m ? parseFloat(m[1]) * 16 : NaN;
+    };
+    // A dot is not a glyph. It must never be expressible as "a very small icon".
+    expect(px('dot')).toBeLessThan(px('xs'));
+    expect(px('dot-lg')).toBeLessThan(px('xs'));
+  });
+
+  it('exposes an icon utility per size', () => {
+    for (const size of ['xs', 'sm', 'md', 'lg', 'xl', 'dot', 'dot-lg']) {
+      expect(typeUtils, `icon-${size} must be a utility`).toMatch(
+        new RegExp(`@utility icon-${size}\\s*\\{[^}]*width`),
+      );
+    }
+    // The bare default, so a component can size an icon with no class at all.
+    expect(typeUtils).toMatch(/@utility icon\s*\{[^}]*width:\s*var\(--icon-md\)/);
+  });
+
+  it('leaves no raw w/h pair on a component element', () => {
+    // Icons, not layout boxes. A 16px divider or an 18px checkbox is not an
+    // icon, and naming it one would be worse than leaving it raw — so the rule
+    // only fires on a matched w-N h-N pair, and `tokens:gate` enforces it.
+    const offenders: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(resolve(process.cwd(), dir), { withFileTypes: true })) {
+        const p = `${dir}/${entry.name}`;
+        if (entry.isDirectory()) walk(p);
+        else if (entry.name.endsWith('.tsx')) {
+          const src = readFileSync(resolve(process.cwd(), p), 'utf8');
+          for (const m of src.matchAll(
+            /<[A-Z][A-Za-z0-9]*\b[^>]*?className=(?:"([^"]*)"|\{`([^`]*)`\}|\{'([^']*)'\})/g,
+          )) {
+            const list = m[1] ?? m[2] ?? m[3] ?? '';
+            const w = /(?:^|\s)w-(3|3\.5|4|5|6)(?=\s|$)/.exec(list);
+            const h = /(?:^|\s)h-(3|3\.5|4|5|6)(?=\s|$)/.exec(list);
+            if (w && h && w[1] === h[1]) offenders.push(`${p}: ${m[0].slice(0, 60)}`);
+          }
+        }
+      }
+    };
+    walk('src');
+    expect(offenders, `raw icon sizes:\n${offenders.join('\n')}`).toEqual([]);
+  });
+});
+
+describe('registry integrity', () => {
+  /**
+   * `Card` once imported `../../core/tokens` for the radius law. The npm bundle
+   * inlines that, so the bug was invisible to typecheck, tests and build — but
+   * `npx @99/ui add card` copied a file importing a path that does not exist in
+   * the consumer's project. `registry:validate` caught it; this keeps the class
+   * of bug from returning through a different door.
+   */
+  it('ships no component that imports app-internal modules', () => {
+    // Scoped to what the registry actually ships. Plenty of components in this
+    // directory are app-only (ObjectCard, TopHeader, BottomNavigation — they
+    // read App/Auth/Object context) and are *supposed* to be coupled to the
+    // app; only a component a consumer can copy has to stand alone.
+    const registry = JSON.parse(
+      readFileSync(resolve(process.cwd(), 'public/registry.json'), 'utf8'),
+    ) as { items: { name: string; files: { content: string }[] }[] };
+    const offenders: string[] = [];
+    for (const item of registry.items) {
+      if (item.name === 'utils') continue;
+      for (const file of item.files) {
+        for (const m of file.content.matchAll(/from\s+['"](\.\.?\/[^'"]+)['"]/g)) {
+          if (/(^|\/)(core|context|registry)\//.test(m[1])) {
+            offenders.push(`${item.name} → ${m[1]}`);
+          }
+        }
+      }
+    }
+    expect(
+      offenders,
+      `registry components must only import lib/ or their siblings:\n${offenders.join('\n')}`,
+    ).toEqual([]);
+  });
+
+  it('keeps the radius law defined exactly once, in the module the registry ships', () => {
+    const lib = readFileSync(resolve(process.cwd(), 'src/lib/utils.ts'), 'utf8');
+    const core = readFileSync(resolve(process.cwd(), 'src/core/tokens/index.ts'), 'utf8');
+    // One definition...
+    expect(lib).toContain('export const rounded = {');
+    // ...re-exported, not restated, so the two cannot drift.
+    expect(core).toContain("export { rounded, radiusClassForPadding } from '../../lib/utils'");
+    expect(core).not.toContain('export const rounded = {');
   });
 });
 
@@ -473,20 +603,360 @@ describe('spacing and z-index', () => {
   });
 
   it('names every z-index layer so stacking stops being guesswork', () => {
-    const layers = ['base', 'sticky', 'dock', 'header', 'overlay', 'modal', 'toast', 'tooltip'];
+    const layers = [
+      'base',
+      'content',
+      'sticky',
+      'raised',
+      'floating',
+      'dock',
+      'header',
+      'overlay',
+      'modal',
+      'popover',
+      'toast',
+      'tooltip',
+    ];
     for (const l of layers) {
       expect(SHARED, `--z-${l}`).toContain(`--z-${l}:`);
     }
+  });
+
+  it('exposes a z utility per layer', () => {
+    for (const l of [
+      'base',
+      'content',
+      'sticky',
+      'raised',
+      'floating',
+      'dock',
+      'header',
+      'overlay',
+      'modal',
+      'popover',
+      'toast',
+      'tooltip',
+    ]) {
+      expect(elevation, `z-${l} utility must exist`).toMatch(
+        new RegExp(`@utility z-${l}\\s*\\{[^}]*z-index`),
+      );
+    }
+  });
+
+  /**
+   * The portal band is not decoration. Radix renders every menu, listbox and
+   * popover surface into document.body, so a dropdown opened inside an open
+   * Dialog is no longer a descendant of that Dialog and cannot inherit its
+   * stacking context. At --z-modal it painted *under* the dialog that owns it.
+   */
+  it('puts the portal band above modal so a menu inside a dialog can win', () => {
+    const v = (l: string) => parseInt(SHARED.match(new RegExp(`--z-${l}:\\s*(\\d+)`))![1], 10);
+    expect(v('popover')).toBeGreaterThan(v('modal'));
+    expect(v('popover')).toBeLessThan(v('toast'));
   });
 
   it('keeps z-index ascending so later layers always win', () => {
     const values = [...SHARED.matchAll(/--z-([a-z]+):\s*(\d+);/g)].map(
       (m) => [m[1], parseInt(m[2], 10)] as const,
     );
-    const order = ['base', 'sticky', 'dock', 'header', 'overlay', 'modal', 'toast', 'tooltip'];
+    const order = [
+      'base',
+      'content',
+      'sticky',
+      'raised',
+      'floating',
+      'dock',
+      'header',
+      'overlay',
+      'modal',
+      'popover',
+      'toast',
+      'tooltip',
+    ];
     const map = new Map<string, number>(values);
     for (let i = 1; i < order.length; i++) {
       expect(map.get(order[i])!).toBeGreaterThan(map.get(order[i - 1])!);
     }
+  });
+
+  it('exposes a spacing utility per declared step', () => {
+    for (const step of [
+      'hairline',
+      'tight',
+      'xs',
+      'sm',
+      'md',
+      'lg',
+      'xl',
+      '2xl',
+      '3xl',
+      '4xl',
+      '5xl',
+      '6xl',
+      'cluster',
+      'gap',
+      'gutter',
+      'section',
+    ]) {
+      expect(elevation, `space-${step} utility must exist`).toMatch(
+        new RegExp(`@utility space-${step}\\s*\\{`),
+      );
+    }
+  });
+
+  it('keeps the whole spacing scale on the 4px grid', () => {
+    for (const m of SHARED.matchAll(/--space-([a-z0-9]+):\s*(\d+)px/g)) {
+      const px = parseInt(m[2], 10);
+      // 2px half-steps are deliberate (icon-to-text tight pairs) and are the
+      // only sanctioned exception; anything else off-grid is a drift.
+      if (px !== 2) expect(px % 4, `--space-${m[1]} must sit on the 4px grid`).toBe(0);
+    }
+  });
+
+  /**
+   * Recorded because the finding is counter-intuitive and was nearly acted on in
+   * reverse. Tailwind v4 spacing is a single `--spacing: .25rem` multiplier, so
+   * the 4px grid is ALREADY enforced by the framework. Eight of the twelve
+   * declared numeric steps are byte-for-byte the values Tailwind already emits.
+   * This test does not forbid them — it documents why nobody should mass-migrate
+   * `p-4` to `space-md`: 911 call sites, zero rendered pixels changed.
+   */
+  it('does not pretend the numeric steps add a grid Tailwind lacks', () => {
+    const numeric = [
+      ...SHARED.matchAll(/--space-(?!cluster|gap\b|gutter|section)([a-z0-9]+):\s*(\d+)px/g),
+    ].map((m) => parseInt(m[2], 10));
+    const tailwindSteps = [0, 2, 4, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32, 40, 48, 64];
+    const redundant = numeric.filter((px) => tailwindSteps.includes(px));
+    const additive = numeric.filter((px) => !tailwindSteps.includes(px));
+    // Of the twelve numeric steps, only 56/72/96 are genuinely additive; the
+    // other nine duplicate what Tailwind already emits. --space-section is 56px
+    // too, but it is an intent alias, not a step, so it is excluded above.
+    expect(additive, 'only 56/72/96 are genuinely additive').toEqual([56, 72, 96]);
+    expect(redundant.length, 'most numeric steps duplicate Tailwind').toBe(9);
+    // The intent aliases are the part that carries meaning.
+    for (const alias of ['cluster', 'gap', 'gutter', 'section']) {
+      expect(SHARED, `--space-${alias} is the load-bearing part`).toContain(
+        `--space-${alias}:`,
+      );
+    }
+  });
+
+  it('leaves no raw numeric z-index in the source', () => {
+    // The eight original tokens governed nothing: 90 hand-picked numbers across
+    // 19 files sat beside them. A regression here is silent — the page still
+    // renders, just in the wrong order — so it is asserted, not reviewed.
+    const named = [
+      'base',
+      'content',
+      'sticky',
+      'raised',
+      'floating',
+      'dock',
+      'header',
+      'overlay',
+      'modal',
+      'popover',
+      'toast',
+      'tooltip',
+    ];
+    const offenders: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(resolve(process.cwd(), dir), { withFileTypes: true })) {
+        const p = `${dir}/${entry.name}`;
+        if (entry.isDirectory()) walk(p);
+        else if (/\.tsx?$/.test(entry.name)) {
+          readFileSync(resolve(process.cwd(), p), 'utf8')
+            .split('\n')
+            .forEach((line, i) => {
+              const m = line.match(/(?<![\w-])-?z-\[?(\d+)\]?(?![\w-])/);
+              if (m && !named.includes(m[1])) offenders.push(`${p}:${i + 1} → ${m[0]}`);
+            });
+        }
+      }
+    };
+    walk('src');
+    expect(offenders, `raw z-index values:\n${offenders.join('\n')}`).toEqual([]);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Density, focus, motion and light-theme contrast.
+   Each of these axes was declared in the docs and either unenforced or wrong.
+   The tests below are the reason they now hold.
+   ═══════════════════════════════════════════════════════════════════════════ */
+describe('density axis', () => {
+  const css = readFileSync(resolve(process.cwd(), 'src/styles/ui99-elevation.css'), 'utf8');
+
+  it('defines a density multiplier that all three modes set', () => {
+    expect(css).toMatch(/--density-scale:\s*1;/);
+    expect(css).toMatch(/\[data-density='compact'\]\s*\{\s*--density-scale:\s*0\.875;\s*\}/);
+    expect(css).toMatch(/\[data-density='comfortable'\]\s*\{\s*--density-scale:\s*1\.125;\s*\}/);
+  });
+
+  it('exposes control heights that resolve against the multiplier', () => {
+    // The ladder has to be expressed against the scale, or a density change is
+    // a no-op — which is exactly what a decorative density mode looks like.
+    for (const step of ['xs', 'sm', 'md', 'lg']) {
+      expect(css).toMatch(new RegExp(`--control-h-${step}:\\s*calc\\([^)]*var\\(--density-scale\\)`));
+    }
+  });
+
+  it('scales the intent aliases but leaves the numeric steps density-invariant', () => {
+    // Numeric steps mirror what Tailwind already emits; scaling them would make
+    // a data cell change size when only the rhythm was meant to change.
+    expect(css).toMatch(/--space-md:\s*16px;/);
+    expect(css).toMatch(/--space-cluster:\s*calc\(8px \* var\(--density-scale\)\)/);
+  });
+
+  it('defaults to `default` density so the 44px touch floor holds unless traded away', () => {
+    const html = readFileSync(resolve(process.cwd(), 'index.html'), 'utf8');
+    // No data-density in the markup means the CSS `default` branch applies,
+    // which is scale 1 — the baseline the touch-target rule was written for.
+    expect(html).not.toMatch(/data-density="(compact|comfortable)"/);
+  });
+});
+
+describe('focus visibility (WCAG 2.4.7 / 2.4.11)', () => {
+  const ui = readFileSync(resolve(process.cwd(), 'src/styles/ui99.css'), 'utf8');
+
+  it('draws the focus ring with outline, not box-shadow', () => {
+    // A box-shadow ring REPLACES the element's elevation shadow, so a card
+    // lost its depth cue at exactly the moment a keyboard user needed it.
+    const block = /\.focus-ui99:focus-visible[^{]*\{[^}]*\}/.exec(ui)?.[0] ?? '';
+    expect(block).toMatch(/outline:\s*2px solid var\(--focus-ring\)/);
+    expect(block).not.toMatch(/box-shadow/);
+  });
+
+  it('supplies an offset so the ring is legible against both theme surfaces', () => {
+    const block = /\.focus-ui99:focus-visible[^{]*\{[^}]*\}/.exec(ui)?.[0] ?? '';
+    expect(block).toMatch(/outline-offset:\s*2px/);
+  });
+
+  it('offers the AGENTS.md-mandated `focus-safa` spelling as an alias', () => {
+    // AGENTS.md §6 and docs/standards.md §12 both name `focus-safa`. The
+    // constitution is the spec, so the alias exists rather than the doc being
+    // quietly rewritten to match the code.
+    expect(ui).toMatch(/\.focus-safa:focus-visible/);
+    expect(ui).toMatch(/\.focus-safa-inset:focus-visible/);
+  });
+
+  it('never removes the focus indicator without providing a replacement', () => {
+    const offenders: string[] = [];
+    for (const f of readdirSync(resolve(process.cwd(), 'src/components/ui'))) {
+      if (!f.endsWith('.tsx')) continue;
+      const src = readFileSync(resolve(process.cwd(), 'src/components/ui', f), 'utf8');
+      for (const m of src.matchAll(/className=(?:"([^"]*)"|\{`([^`]*)`\}|\{'([^']*)'\})/g)) {
+        const list = m[1] ?? m[2] ?? m[3] ?? '';
+        if (!/outline-none/.test(list)) continue;
+        if (/(?:^|\s)(?:[a-z-]+:)*ring-\d/.test(list)) continue;
+        if (/focus-ui99|focus-safa/.test(list)) continue;
+        offenders.push(`${f}: ${list.trim().slice(0, 70)}`);
+      }
+    }
+    expect(offenders, `focus removed with no replacement:\n${offenders.join('\n')}`).toEqual([]);
+  });
+});
+
+describe('reduced motion (WCAG 2.3.3)', () => {
+  it('honours prefers-reduced-motion for the springs, not just CSS transitions', () => {
+    // The CSS block reaches transition-duration. `motion` animates transforms
+    // through JS, so without a provider the setting simply did not apply to
+    // the ~90 spring-animated components.
+    const main = readFileSync(resolve(process.cwd(), 'src/main.tsx'), 'utf8');
+    expect(main).toMatch(/<MotionConfig reducedMotion="user">/);
+  });
+
+  it('still covers plain CSS transitions', () => {
+    const css = readFileSync(resolve(process.cwd(), 'src/styles/ui99.css'), 'utf8');
+    expect(css).toMatch(/@media \(prefers-reduced-motion: reduce\)/);
+  });
+});
+
+describe('motion duration ramp', () => {
+  const css = readFileSync(resolve(process.cwd(), 'src/styles/ui99.css'), 'utf8');
+
+  it('declares every duration the code actually uses', () => {
+    // 150ms was the most common transition in the kit (23 sites) and the
+    // original ramp — 75/120/180/280/400 — had no token for it. The ramp was
+    // rebuilt from the measured distribution; these are the measured values.
+    for (const [token, value] of [
+      ['instant', '75ms'],
+      ['fast', '100ms'],
+      ['quick', '150ms'],
+      ['base', '180ms'],
+      ['slow', '280ms'],
+      ['deliberate', '400ms'],
+      ['progress', '700ms'],
+    ] as const) {
+      expect(css, `--duration-${token}`).toMatch(new RegExp(`--duration-${token}:\\s*${value.replace('.', '\\.')}`));
+    }
+  });
+
+  it('uses a named duration at every migrated call site', () => {
+    const offenders: string[] = [];
+    const walk = (dir: string) => {
+      for (const e of readdirSync(resolve(process.cwd(), dir), { withFileTypes: true })) {
+        const p = `${dir}/${e.name}`;
+        if (e.isDirectory()) walk(p);
+        else if (/\.tsx?$/.test(e.name)) {
+          readFileSync(resolve(process.cwd(), p), 'utf8')
+            .split('\n')
+            .forEach((line, i) => {
+              if (/(?<![\w-])duration-\d/.test(line)) offenders.push(`${p}:${i + 1}`);
+            });
+        }
+      }
+    };
+    walk('src');
+    expect(offenders, `raw duration-N:\n${offenders.join('\n')}`).toEqual([]);
+  });
+});
+
+describe('light-theme legibility (WCAG 1.4.3)', () => {
+  const relLum = (hex: string) => {
+    const v = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map((c) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)));
+    return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+  };
+  const contrast = (a: string, b: string) => {
+    const [l1, l2] = [relLum(a), relLum(b)];
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  };
+
+  it('documents why raw zinc is banned as an unpaired text colour', () => {
+    // Measured against this kit's own surfaces, which is the whole point:
+    // zinc-400 is 2.56:1 on white and 7.62:1 on the dark card. A "neutral"
+    // value is not a neutral value — it is a dark-theme choice that vanishes
+    // in the light one.
+    expect(contrast('#a1a1aa', '#ffffff')).toBeLessThan(4.5);
+    expect(contrast('#a1a1aa', '#0B0C11')).toBeGreaterThan(4.5);
+  });
+
+  it('leaves no base zinc text colour unpaired with a dark: variant', () => {
+    const offenders: string[] = [];
+    for (const f of readdirSync(resolve(process.cwd(), 'src/components/ui'))) {
+      if (!f.endsWith('.tsx')) continue;
+      const src = readFileSync(resolve(process.cwd(), 'src/components/ui', f), 'utf8');
+      for (const m of src.matchAll(/className=(?:"([^"]*)"|\{`([^`]*)`\}|\{'([^']*)'\})/g)) {
+        const list = m[1] ?? m[2] ?? m[3] ?? '';
+        if (/dark:/.test(list)) continue;
+        if (/(?:^|\s)text-zinc-(?:300|400|500)(?=\s|$)/.test(list)) offenders.push(`${f}: ${list.trim().slice(0, 70)}`);
+      }
+    }
+    expect(offenders, `unpaired light-invisible text:\n${offenders.join('\n')}`).toEqual([]);
+  });
+});
+
+describe('component anatomy', () => {
+  it('documents every kit component', () => {
+    // AGENTS.md §6 requires the audit checklist per component. 7 files opened
+    // with no docblock at all, which is how "94/101 headers" was understated.
+    const undocumented: string[] = [];
+    for (const f of readdirSync(resolve(process.cwd(), 'src/components/ui'))) {
+      if (!f.endsWith('.tsx')) continue;
+      const src = readFileSync(resolve(process.cwd(), 'src/components/ui', f), 'utf8');
+      if (!/^\s*\/\*\*/.test(src)) undocumented.push(f);
+    }
+    expect(undocumented, `components with no header doc:\n${undocumented.join('\n')}`).toEqual([]);
   });
 });

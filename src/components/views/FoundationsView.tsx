@@ -60,13 +60,13 @@ export function FoundationsView() {
     <div className="w-full space-y-12 pb-20">
       {/* Header */}
       <div className="space-y-3">
-        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
           {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-white">
+        <h1 className="type-display sm:type-display font-extrabold tracking-tight text-zinc-950 dark:text-white">
           Foundations.
         </h1>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+        <p className="type-body text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
           The mathematical values, color tokens, optical refraction highlights, typographic scales, and anti-slop rules powering the UI \ [99] design system.
         </p>
       </div>
@@ -75,11 +75,11 @@ export function FoundationsView() {
       <section className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="space-y-1">
-            <h2 className="text-xl font-bold text-zinc-950 dark:text-white flex items-center gap-2">
-              <SunMoon className="w-5 h-5 text-emerald-500" />
+            <h2 className="type-title font-bold text-zinc-950 dark:text-white flex items-center gap-2">
+              <SunMoon className="icon-lg text-emerald-500" />
               <span>Obsidian Velvet Color Tokens</span>
             </h2>
-            <p className="text-xs text-zinc-500">
+            <p className="type-caption text-zinc-500">
               Click any token to copy its exact HEX or RGBA variable.
             </p>
           </div>
@@ -96,24 +96,24 @@ export function FoundationsView() {
                 style={{ backgroundColor: isDark ? t.dark : t.light }}
                 className="w-full h-16 rounded-(--radius-field) border border-black/[0.08] dark:border-white/[0.05] flex items-center justify-center relative overflow-hidden"
               >
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute inset-0 bg-black/40 flex items-center justify-center text-white text-xs font-mono gap-1">
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute inset-0 bg-black/40 flex items-center justify-center text-white type-caption font-mono gap-1">
                   {copiedToken === t.name ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <Check className="icon-sm text-emerald-400" />
                   ) : (
-                    <Copy className="w-3.5 h-3.5" />
+                    <Copy className="icon-sm" />
                   )}
                   <span>Copy</span>
                 </div>
               </div>
 
               <div className="space-y-0.5">
-                <div className="flex items-center justify-between text-xs font-semibold text-zinc-900 dark:text-white">
+                <div className="flex items-center justify-between type-caption font-semibold text-zinc-900 dark:text-white">
                   <span>{t.name}</span>
                 </div>
-                <div className="font-mono text-[11px] text-zinc-400">
+                <div className="font-mono type-micro text-zinc-400">
                   {isDark ? t.dark : t.light}
                 </div>
-                <div className="text-[11px] text-zinc-500 line-clamp-1">{t.desc}</div>
+                <div className="type-micro text-zinc-500 line-clamp-1">{t.desc}</div>
               </div>
             </div>
           ))}
@@ -123,11 +123,11 @@ export function FoundationsView() {
       {/* 2. Mathematical Radii Rule Simulator */}
       <section className="space-y-6">
         <div className="space-y-1">
-          <h2 className="text-xl font-bold text-zinc-950 dark:text-white flex items-center gap-2">
-            <Compass className="w-5 h-5 text-emerald-500" />
+          <h2 className="type-title font-bold text-zinc-950 dark:text-white flex items-center gap-2">
+            <Compass className="icon-lg text-emerald-500" />
             <span>Interactive Nested Radii Calculator</span>
           </h2>
-          <p className="text-xs text-zinc-500">
+          <p className="type-caption text-zinc-500">
             Based on the optical physics rule: Inside Corner Radius = Outside Corner Radius - Padding
           </p>
         </div>
@@ -135,7 +135,7 @@ export function FoundationsView() {
         <div className="p-6 rounded-(--radius-lg) bg-zinc-50 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <div className="flex justify-between text-xs font-mono text-zinc-400">
+              <div className="flex justify-between type-caption font-mono text-zinc-400">
                 <span>Outer Radius</span>
                 <span className="font-bold text-zinc-900 dark:text-white">{simOuterRadius}px</span>
               </div>
@@ -150,7 +150,7 @@ export function FoundationsView() {
             </div>
 
             <div className="space-y-2">
-              <div className="flex justify-between text-xs font-mono text-zinc-400">
+              <div className="flex justify-between type-caption font-mono text-zinc-400">
                 <span>Container Padding</span>
                 <span className="font-bold text-zinc-900 dark:text-white">{simPadding}px</span>
               </div>
@@ -172,24 +172,24 @@ export function FoundationsView() {
                 borderRadius: `${simOuterRadius}px`,
                 padding: `${simPadding}px`,
               }}
-              className="w-full max-w-md bg-white dark:bg-[#131318] border border-black/[0.08] dark:border-white/[0.04] shadow-md transition-all duration-150"
+              className="w-full max-w-md bg-white dark:bg-[#131318] border border-black/[0.08] dark:border-white/[0.04] shadow-md transition-all dur-quick"
             >
               <div
                 style={{
                   borderRadius: `${simInnerRadius}px`,
                 }}
-                className="p-6 bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.06] dark:border-white/[0.03] text-center space-y-1 transition-all duration-150"
+                className="p-6 bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.06] dark:border-white/[0.03] text-center space-y-1 transition-all dur-quick"
               >
-                <div className="text-xs font-bold text-zinc-900 dark:text-white">
+                <div className="type-caption font-bold text-zinc-900 dark:text-white">
                   Child Element Container
                 </div>
-                <div className="text-xs font-mono text-emerald-500">
+                <div className="type-caption font-mono text-emerald-500">
                   Inner Radius = {simInnerRadius}px
                 </div>
               </div>
             </div>
 
-            <div className="text-xs font-mono text-zinc-500">
+            <div className="type-caption font-mono text-zinc-500">
               Formula: {simOuterRadius}px - {simPadding}px = {simInnerRadius}px
             </div>
           </div>
@@ -199,22 +199,22 @@ export function FoundationsView() {
       {/* 3. Anti-Slop Certification Rules */}
       <section className="space-y-6">
         <div className="space-y-1">
-          <h2 className="text-xl font-bold text-zinc-950 dark:text-white flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-emerald-500" />
+          <h2 className="type-title font-bold text-zinc-950 dark:text-white flex items-center gap-2">
+            <ShieldCheck className="icon-lg text-emerald-500" />
             <span>Anti-Slop Design Certification</span>
           </h2>
-          <p className="text-xs text-zinc-500">
+          <p className="type-caption text-zinc-500">
             Systematic elimination of low-effort visual clichés in favor of world-class Linear & Apple standards.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-5 rounded-(--radius-control) bg-rose-500/5 border border-rose-500/20 space-y-3">
-            <div className="flex items-center gap-2 text-xs font-bold text-rose-500">
-              <ShieldAlert className="w-4 h-4" />
+            <div className="flex items-center gap-2 type-caption font-bold text-rose-500">
+              <ShieldAlert className="icon-md" />
               <span>Banned Anti-Patterns</span>
             </div>
-            <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-400">
+            <ul className="space-y-2 type-caption text-zinc-600 dark:text-zinc-400">
               <li>• Unjustified nested cards inside cards</li>
               <li>• Generic purple-to-blue marketing gradients</li>
               <li>• Thick colored side-tab borders on container edges</li>
@@ -224,13 +224,13 @@ export function FoundationsView() {
           </div>
 
           <div className="p-5 rounded-(--radius-control) bg-emerald-500/5 border border-emerald-500/20 space-y-3">
-            <div className="flex items-center gap-2 text-xs font-bold text-emerald-500">
-              <ShieldCheck className="w-4 h-4" />
+            <div className="flex items-center gap-2 type-caption font-bold text-emerald-500">
+              <ShieldCheck className="icon-md" />
               <span>Enforced Standards in UI \ [99]</span>
             </div>
-            <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-400">
-              <li>• True velvet obsidian black <code className="font-mono text-[11px]">#06070A</code> with 0% unwanted tint</li>
-              <li>• Sub-pixel specular top rim highlight: <code className="font-mono text-[11px]">inset 0 1px 0 0 rgba(255,255,255,0.05)</code></li>
+            <ul className="space-y-2 type-caption text-zinc-600 dark:text-zinc-400">
+              <li>• True velvet obsidian black <code className="font-mono type-micro">#06070A</code> with 0% unwanted tint</li>
+              <li>• Sub-pixel specular top rim highlight: <code className="font-mono type-micro">inset 0 1px 0 0 rgba(255,255,255,0.05)</code></li>
               <li>• Mathematical nested corner radius ratio: Inside = Outside - Padding</li>
               <li>• Keyboard-first ergonomics with J/K/C shortcuts</li>
               <li>• Copy-source modularity matching shadcn/ui</li>
@@ -242,11 +242,11 @@ export function FoundationsView() {
       {/* 5. LIVE THEME LAB — Porcelain ↔ Obsidian (audit P3.11) */}
       <section className="space-y-6">
         <div className="space-y-1">
-          <h2 className="text-xl font-bold text-zinc-950 dark:text-white flex items-center gap-2">
-            <Palette className="w-5 h-5 text-emerald-500" />
+          <h2 className="type-title font-bold text-zinc-950 dark:text-white flex items-center gap-2">
+            <Palette className="icon-lg text-emerald-500" />
             <span>Live Theme Lab — Porcelain ↔ Obsidian</span>
           </h2>
-          <p className="text-xs text-zinc-500">
+          <p className="type-caption text-zinc-500">
             Flip the whole canvas between the two audited themes and watch every token pair react in real time.
           </p>
         </div>
@@ -256,7 +256,7 @@ export function FoundationsView() {
             <Button
               variant={isDark ? 'outline' : 'primary'}
               size="sm"
-              icon={<SunMoon className="w-3.5 h-3.5" />}
+              icon={<SunMoon className="icon-sm" />}
               onClick={() => setThemeMode('light')}
             >
               Porcelain (Light)
@@ -264,12 +264,12 @@ export function FoundationsView() {
             <Button
               variant={isDark ? 'primary' : 'outline'}
               size="sm"
-              icon={<SunMoon className="w-3.5 h-3.5" />}
+              icon={<SunMoon className="icon-sm" />}
               onClick={() => setThemeMode('dark')}
             >
               Obsidian (Dark)
             </Button>
-            <span className="text-[11px] font-mono text-zinc-400">
+            <span className="type-micro font-mono text-zinc-400">
               active: {themeMode} · data-theme="{themeMode}"
             </span>
           </div>
@@ -291,17 +291,17 @@ export function FoundationsView() {
                   className="w-full h-12 rounded-(--radius-field) border border-black/[0.06] dark:border-white/[0.05]"
                   style={{ background: `var(${row.token})` }}
                 />
-                <div className="text-[11px] font-semibold text-zinc-900 dark:text-white">{row.label}</div>
-                <div className="font-mono text-[10px] text-zinc-400">{isDark ? row.dark : row.light}</div>
-                <div className="font-mono text-[10px] text-emerald-500/80">{row.token}</div>
+                <div className="type-micro font-semibold text-zinc-900 dark:text-white">{row.label}</div>
+                <div className="font-mono type-micro text-zinc-400">{isDark ? row.dark : row.light}</div>
+                <div className="font-mono type-micro text-emerald-500/80">{row.token}</div>
               </button>
             ))}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="p-4 rounded-(--radius-control) bg-(--bg-card) border border-(--border-hairline) space-y-1.5">
-              <div className="text-xs font-semibold text-(--text-primary)">ui-card sample</div>
-              <div className="text-[11px] text-(--text-secondary)">Tokens resolve live in both themes.</div>
+              <div className="type-caption font-semibold text-(--text-primary)">ui-card sample</div>
+              <div className="type-micro text-(--text-secondary)">Tokens resolve live in both themes.</div>
             </div>
             <div className="p-4 rounded-(--radius-control) bg-(--bg-card) border border-(--border-hairline) flex items-center justify-center">
               <Button variant="primary" size="sm">Primary</Button>
@@ -320,37 +320,37 @@ export function FoundationsView() {
         <Reveal index={1}>
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-6 rounded-(--radius-lg) bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
-          <div className="w-8 h-8 rounded-(--radius-field) bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-xs font-bold">
+          <div className="w-8 h-8 rounded-(--radius-field) bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono type-caption font-bold">
             #06
           </div>
-          <h3 className="text-base font-bold text-zinc-950 dark:text-white">
+          <h3 className="type-body-lg font-bold text-zinc-950 dark:text-white">
             Obsidian Velvet Palette
           </h3>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="type-caption text-zinc-500 dark:text-zinc-400 leading-relaxed">
             True obsidian black base (<code className="text-emerald-400 font-mono">#06070A</code>) with sub-pixel top rim highlights for zero visual fatigue during prolonged engineering workflows.
           </p>
         </div>
 
         <div className="p-6 rounded-(--radius-lg) bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
-          <div className="w-8 h-8 rounded-(--radius-field) bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-xs font-bold">
-            <Zap className="w-4 h-4" />
+          <div className="w-8 h-8 rounded-(--radius-field) bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono type-caption font-bold">
+            <Zap className="icon-md" />
           </div>
-          <h3 className="text-base font-bold text-zinc-950 dark:text-white">
+          <h3 className="type-body-lg font-bold text-zinc-950 dark:text-white">
             Linear Velocity Controls
           </h3>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="type-caption text-zinc-500 dark:text-zinc-400 leading-relaxed">
             Keyboard first navigation (<Kbd size="xs">J</Kbd> / <Kbd size="xs">K</Kbd> / <Kbd size="xs">C</Kbd>) paired with instant spring physics and haptic micro-interactions.
           </p>
         </div>
 
         <div className="p-6 rounded-(--radius-lg) bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
-          <div className="w-8 h-8 rounded-(--radius-field) bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono text-xs font-bold">
-            <Code2 className="w-4 h-4" />
+          <div className="w-8 h-8 rounded-(--radius-field) bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono type-caption font-bold">
+            <Code2 className="icon-md" />
           </div>
-          <h3 className="text-base font-bold text-zinc-950 dark:text-white">
+          <h3 className="type-body-lg font-bold text-zinc-950 dark:text-white">
             Copy-Paste Architecture
           </h3>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="type-caption text-zinc-500 dark:text-zinc-400 leading-relaxed">
             100% code ownership. Copy source code directly into your components folder with Tailwind v4 classes and zero external wrapper dependencies.
           </p>
         </div>

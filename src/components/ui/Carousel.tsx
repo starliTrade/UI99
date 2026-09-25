@@ -72,7 +72,7 @@ export function Carousel({ children, itemClassName = '', label = 'Carousel', cla
               aria-label={`Go to slide ${i + 1}`}
               onClick={() => scrollToIndex(i)}
               className={cn(
-                'h-2 rounded-(--radius-pill) transition-all duration-200 cursor-pointer focus-visible:outline-none focus-ui99',
+                'h-2 rounded-(--radius-pill) transition-all dur-base cursor-pointer focus-visible:outline-none focus-ui99',
                 i === activeIndex
                   ? 'w-5 bg-zinc-900 dark:bg-white'
                   : 'w-2 bg-black/[0.15] dark:bg-white/[0.15] hover:bg-black/[0.25] dark:hover:bg-white/[0.3]'
@@ -82,7 +82,7 @@ export function Carousel({ children, itemClassName = '', label = 'Carousel', cla
         </div>
         <div className="flex items-center gap-1.5">
           <IconButton
-            icon={<ChevronLeft className="w-4 h-4" />}
+            icon={<ChevronLeft className="icon-md" />}
             variant="outline"
             size="sm"
             label="Previous slide"
@@ -90,7 +90,7 @@ export function Carousel({ children, itemClassName = '', label = 'Carousel', cla
             disabled={activeIndex === 0}
           />
           <IconButton
-            icon={<ChevronRight className="w-4 h-4" />}
+            icon={<ChevronRight className="icon-md" />}
             variant="outline"
             size="sm"
             label="Next slide"

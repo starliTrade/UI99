@@ -67,7 +67,7 @@ PaginationLink.displayName = 'PaginationLink';
 export function PaginationPrevious({ className = '', ...props }: React.ComponentProps<typeof PaginationLink>) {
   return (
     <PaginationLink aria-label="Previous page" size="md" className={cn('gap-1 pl-2.5', className)} {...props}>
-      <ChevronLeft className="h-4 w-4" />
+      <ChevronLeft className="icon-md" />
       <span className="hidden sm:inline">Prev</span>
     </PaginationLink>
   );
@@ -78,7 +78,7 @@ export function PaginationNext({ className = '', ...props }: React.ComponentProp
   return (
     <PaginationLink aria-label="Next page" size="md" className={cn('gap-1 pr-2.5', className)} {...props}>
       <span className="hidden sm:inline">Next</span>
-      <ChevronRight className="h-4 w-4" />
+      <ChevronRight className="icon-md" />
     </PaginationLink>
   );
 }
@@ -91,7 +91,7 @@ export function PaginationEllipsis({ className = '', ...props }: React.Component
       className={cn('flex h-9 w-9 items-center justify-center text-zinc-400', className)}
       {...props}
     >
-      <MoreHorizontal className="h-4 w-4" />
+      <MoreHorizontal className="icon-md" />
     </span>
   );
 }

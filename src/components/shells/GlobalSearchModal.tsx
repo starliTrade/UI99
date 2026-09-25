@@ -81,7 +81,7 @@ export function GlobalSearchModal() {
                 key={f.value}
                 type="button"
                 onClick={() => setSelectedType(f.value)}
-                className={`px-3 py-1 text-xs rounded-(--radius-pill) transition-all whitespace-nowrap cursor-pointer select-none ${
+                className={`px-3 py-1 type-caption rounded-(--radius-pill) transition-all whitespace-nowrap cursor-pointer select-none ${
                   isSelected
                     ? 'bg-white text-[#09090B] font-bold shadow-(--elevation-2)'
                     : 'bg-[#18181D] text-zinc-400 border border-white/[0.08] hover:text-white'
@@ -106,26 +106,26 @@ export function GlobalSearchModal() {
             >
               <div className="flex items-center gap-2.5">
                 <div className="w-7 h-7 rounded-(--radius-sm) bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                  <Layers className="w-3.5 h-3.5" />
+                  <Layers className="icon-sm" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-white">UI99 UI KIT & Design System</span>
-                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-300">
+                    <span className="type-caption font-semibold text-white">UI99 UI KIT & Design System</span>
+                    <span className="type-micro font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-400/20 text-emerald-300">
                       LINEAR SPEC
                     </span>
                   </div>
-                  <p className="text-[11px] text-zinc-400">
+                  <p className="type-micro text-zinc-400">
                     Comprehensive design tokens, linear issues, surfaces, inputs & feedback
                   </p>
                 </div>
               </div>
-              <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform shrink-0" />
+              <ArrowRight className="icon-md text-emerald-400 group-hover:translate-x-1 transition-transform shrink-0" />
             </div>
           )}
 
           {filteredResults.length === 0 ? (
-            <div className="py-8 text-center text-xs text-zinc-500 font-mono">
+            <div className="py-8 text-center type-caption text-zinc-500 font-mono">
               No objects found matching "{query}"
             </div>
           ) : (
@@ -137,21 +137,21 @@ export function GlobalSearchModal() {
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400">
+                    <span className="type-micro font-bold uppercase tracking-wider text-amber-400">
                       {obj.type}
                     </span>
                     {obj.tags?.slice(0, 2).map((t) => (
-                      <span key={t} className="text-[10px] text-zinc-500 font-mono">
+                      <span key={t} className="type-micro text-zinc-500 font-mono">
                         #{t}
                       </span>
                     ))}
                   </div>
-                  <h4 className="text-sm font-semibold text-white truncate">{obj.title}</h4>
+                  <h4 className="type-body font-semibold text-white truncate">{obj.title}</h4>
                   {obj.description && (
-                    <p className="text-xs text-zinc-400 truncate mt-0.5">{obj.description}</p>
+                    <p className="type-caption text-zinc-400 truncate mt-0.5">{obj.description}</p>
                   )}
                 </div>
-                <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
+                <ArrowRight className="icon-md text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
               </div>
             ))
           )}

@@ -69,7 +69,7 @@ export function ColorPicker({
   return (
     <div className={cn('flex flex-col gap-3 p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.04] shadow-lg max-w-[280px]', className)}>
       {label && (
-        <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">{label}</span>
+        <span className="type-caption font-semibold text-zinc-700 dark:text-zinc-300">{label}</span>
       )}
 
       {/* Main Preview Swatch & Hex input */}
@@ -80,22 +80,22 @@ export function ColorPicker({
           style={{ backgroundColor: color }}
         />
         <div className="flex-1 flex items-center bg-zinc-100 dark:bg-(--bg-elevated) rounded-(--radius-field) px-2.5 py-1.5 border border-black/[0.04] dark:border-white/[0.03]">
-          <span className="text-xs font-mono text-zinc-500 mr-1">#</span>
+          <span className="type-caption font-mono text-(--text-muted) mr-1">#</span>
           <input
             type="text"
             value={color.replace('#', '')}
             onChange={(e) => handleColorChange(`#${e.target.value}`)}
             aria-label="Hex color value"
-            className="w-full bg-transparent text-xs font-mono text-zinc-900 dark:text-zinc-100 outline-none uppercase"
+            className="w-full bg-transparent type-caption font-mono text-zinc-900 dark:text-zinc-100 uppercase focus-ui99"
             maxLength={6}
           />
           <button
             type="button"
             onClick={copyHex}
             aria-label="Copy color hex"
-            className="p-1 rounded text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors"
+            className="p-1 rounded text-(--text-secondary) hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+            {copied ? <Check className="icon-sm text-emerald-500" /> : <Copy className="icon-sm" />}
           </button>
         </div>
       </div>
@@ -140,9 +140,9 @@ export function ColorPicker({
             type="button"
             onClick={handleEyeDropper}
             aria-label="Pick color from screen"
-            className="w-5 h-5 rounded-(--radius-sm) border border-black/10 dark:border-white/10 flex items-center justify-center bg-zinc-100 dark:bg-white/[0.04] text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="w-5 h-5 rounded-(--radius-sm) border border-black/10 dark:border-white/10 flex items-center justify-center bg-zinc-100 dark:bg-white/[0.04] text-(--text-muted) hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
-            <Pipette className="w-3 h-3" />
+            <Pipette className="icon-xs" />
           </button>
         )}
       </div>

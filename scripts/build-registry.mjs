@@ -14,7 +14,6 @@
 import { mkdirSync, readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { KIT_RUNTIME_DEPS } from './kit-deps.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const uiDir = resolve(root, 'src/components/ui');
@@ -29,52 +28,106 @@ function toKebab(name) {
 }
 
 /**
- * EXCLUDE POLICY — every exclusion is a documented product decision:
- * - `index` / `kit`             → barrel modules, not installable components
- * - `motion`                    → choreography module; nothing in the kit imports it
- *                                 (components import 'motion/react' from npm directly)
+ * EXCLUDE POLICY — every exclusion is a documented product decision.
+ *
+ * THE RULE: a module is excludable only if it is not *installable*, not merely
+ * if it is not a primitive. "This is app chrome" is not a reason — a header is
+ * exactly the kind of thing a consumer copies, and shipping 94 components while
+ * quietly withholding the ones people actually reach for is a credibility
+ * problem, not a packaging detail. The test applied to every entry below:
+ *
+ *     Would a consumer be surprised if `npx @99/ui add <this>` 404'd?
+ *
+ * Seven entries have been RE-INCLUDED after that question was asked:
+ *   · `UI99Wordmark` — its only import is `useIsDark` from `./theme`, and
+ *     `theme` already ships. It was always copy-pasteable.
+ *   · `motion`       — pure choreography (springs, stagger, Reveal). No app
+ *     state at all, and `docs/POLICY.md` §3.4 makes motion a governed axis, so
+ *     withholding its vocabulary from consumers is incoherent.
+ *   · `TopHeader` / `BottomNavigation` / `Toast` / `LinearIssueTracker` —
+ *     decoupled from app context; state arrives as props with sensible
+ *     defaults, so the common case still renders with zero configuration.
+ *   · `ObjectCard`   — the domain enum import became a local structural type
+ *     (`ObjectCardRecord`); relations and persistence became props.
+ *
+ * Every one of the seven is proven, not asserted: `npm run
+ * registry:audit-install` copies them into an empty project and runs a real
+ * `tsc` there. That is the only check able to see the class of failure this
+ * repo's own typecheck is structurally blind to — it has the dependencies and
+ * the `@/` aliases a consumer does not.
+ *
+ * What remains excluded, and why — all four are genuinely not installable:
+ * - `index` / `kit`             → barrel modules, not components
  * - `theme`                     → KEPT as an installable item: 16 primitives import
  *                                 `useIsDark` from './theme', so `add <x>` pulls it
  *                                 alongside the ui99-theme token layer
- * - `TopHeader`, `BottomNavigation`, `UI99Wordmark` → app chrome, not kit primitives
- * - `TokensAuditPlayground`     → internal QA tool for the audit checklist (docs §12)
- * - `Toast`                     → context-bound (AppContext); context-free siblings
- *                                 (EmptyState/LoadingState) live in the same file and are
- *                                 installed via the `feedback` item
- * - `LinearIssueTracker`        → context-bound domain composite (demo of Blocks, not a primitive)
- * - `ObjectCard`                → context-bound (imports ObjectContext/AuthContext); the kit ships
- *                                 context-free composites (MetricCard, StatTile, DataTable, …)
+ * - `TokensAuditPlayground`     → internal QA tool for the audit checklist (docs §12).
+ *                                 It imports the token layer *for maths*, which is the
+ *                                 opposite of a consumer's need.
+ * - `AllPropsPlayground`        → docs-side live lab; it *consumes* the kit to
+ *                                 document it, so shipping it would be circular.
  */
 const EXCLUDED_MODULES = new Set([
   'index',
   'kit',
-  'motion',
-  'TopHeader',
-  'BottomNavigation',
-  'UI99Wordmark',
   'TokensAuditPlayground',
-  'AllPropsPlayground', // docs-side live lab (consumes kit; not a primitive)
-  'Toast',
-  'LinearIssueTracker',
-  'ObjectCard',
+  'AllPropsPlayground',
 ]);
 
-/** npm deps the published package already carries at runtime (manifest mirror). */
-const PUBLISHED_DEPS = new Set(KIT_RUNTIME_DEPS);
-
 const pkg = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8'));
+
+/**
+ * Type packages a component needs at *build* time but never imports.
+ *
+ * `CodeBlock` imports `prismjs`, which ships no types. Without `@types/prismjs`
+ * the copied file fails to compile in a consumer's project with TS7016 — a
+ * runtime dependency alone is not enough to make a source-copied component
+ * usable. Detected automatically this would need a "does this package bundle
+ * types" probe; the list is one entry and is asserted by the consumer-install
+ * audit, so it is written out rather than inferred.
+ */
+const TYPE_COMPANION_DEPS = {
+  CodeBlock: ['@types/prismjs'],
+};
+
+/**
+ * Pin every declared dependency to the range this kit was authored and tested
+ * against (mirrored from the root manifest).
+ *
+ * This is not belt-and-braces. An unpinned name resolves to *latest*, and the
+ * kit is source-copied, not abstracted behind a compatibility layer: when
+ * lucide-react shipped v1 and removed its brand icons, `npx @99/ui add
+ * top-header` wrote a file importing `Github` from a version that no longer
+ * exports it. The consumer got a compile error from a package we shipped.
+ * A copied source file can only be safe if the version it was written against
+ * is the version it asks for.
+ */
+function pinDeps(names) {
+  const out = [];
+  for (const name of names) {
+    const range = pkg.dependencies?.[name] ?? pkg.devDependencies?.[name];
+    // Unknown to the root manifest → emit bare so the consumer's own choice wins,
+    // and let validate-registry surface it rather than inventing a version.
+    out.push(range ? `${name}@${range}` : name);
+  }
+  return out;
+}
 
 /** Real npm packages imported by a module (excluding relative + react). */
 function importedDeps(src) {
   const deps = new Set();
-  const re = /from\s+['"]([^'"]+)['"]/g;
+  // Both forms matter: `import x from 'p'` AND bare side-effect `import 'p'`.
+  // CodeBlock loads six Prism grammars that way, and missing them meant
+  // `add code-block` shipped a file importing a package nobody installed.
+  const re = /(?:from\s+|import\s+|require\(\s*)['"]([^'"]+)['"]/g;
   let m;
   while ((m = re.exec(src)) !== null) {
     const spec = m[1];
     if (spec.startsWith('.') || spec.startsWith('@/') || spec === 'react') continue;
+    if (spec.startsWith('node:') || spec.startsWith('react/')) continue;
     const scoped = spec.startsWith('@');
     const pkgName = scoped ? spec.split('/').slice(0, 2).join('/') : spec.split('/')[0];
-    if (PUBLISHED_DEPS.has(pkgName)) deps.add(pkgName);
+    deps.add(pkgName);
   }
   return [...deps].sort();
 }
@@ -300,7 +353,8 @@ for (const name of modules) {
     type: 'registry:ui',
     category,
     keywords,
-    dependencies: deps,
+    dependencies: pinDeps(deps),
+    devDependencies: pinDeps(TYPE_COMPANION_DEPS[name] ?? []),
     registryDependencies: regDeps,
     files: [
       {
@@ -320,7 +374,7 @@ const utilsSrc = readFileSync(resolve(root, 'src/lib/utils.ts'), 'utf8');
 items.push({
   name: 'utils',
   type: 'registry:lib',
-  dependencies: ['clsx', 'tailwind-merge'],
+  dependencies: pinDeps(['clsx', 'tailwind-merge']),
   registryDependencies: [],
   files: [
     {
