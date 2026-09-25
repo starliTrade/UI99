@@ -2,7 +2,7 @@
  * UI99 — Daily Spending Widget
  * Pixel-perfect implementation of IMG_7886.jpeg:
  * - Ambient illuminated segmented neon circle ring encircling the widget
- * - Squircle container (rounded-[34px]) with 3D glass specular rim
+ * - Squircle container (rounded-(var(--radius-2xl))) with 3D glass specular rim
  * - Monospace tracked uppercase header: "TODAY SPENDING"
  * - High-contrast amount: "$192.45" & "78%"
  * - 22-segment glowing rainbow equalizer barcode
@@ -44,23 +44,23 @@ export function SpendingSpectrumCard({
 
   // 22 Spectrum Bars with luminous, vibrant spectrum flow
   const spectrumColors = [
-    'bg-[#F97316] shadow-[0_0_8px_rgba(249,115,22,0.6)]',
-    'bg-[#FB923C] shadow-[0_0_8px_rgba(251,146,60,0.5)]',
-    'bg-[#F59E0B] shadow-[0_0_8px_rgba(245,158,11,0.5)]',
-    'bg-[#FBBF24] shadow-[0_0_8px_rgba(251,191,36,0.5)]',
-    'bg-[#F43F5E] shadow-[0_0_8px_rgba(244,63,94,0.5)]',
-    'bg-[#EC4899] shadow-[0_0_8px_rgba(236,72,153,0.5)]',
-    'bg-[#D946EF] shadow-[0_0_8px_rgba(217,70,239,0.5)]',
-    'bg-[#C084FC] shadow-[0_0_8px_rgba(192,132,252,0.5)]',
-    'bg-[#A855F7] shadow-[0_0_8px_rgba(168,85,247,0.5)]',
-    'bg-[#818CF8] shadow-[0_0_8px_rgba(129,140,248,0.5)]',
-    'bg-[#6366F1] shadow-[0_0_8px_rgba(99,102,241,0.5)]',
-    'bg-[#3B82F6] shadow-[0_0_8px_rgba(59,130,246,0.5)]',
-    'bg-[#38BDF8] shadow-[0_0_8px_rgba(56,189,248,0.5)]',
-    'bg-[#22D3EE] shadow-[0_0_8px_rgba(34,211,238,0.5)]',
-    'bg-[#2DD4BF] shadow-[0_0_8px_rgba(45,212,191,0.5)]',
-    'bg-[#34D399] shadow-[0_0_8px_rgba(52,211,153,0.5)]',
-    'bg-[#10B981] shadow-[0_0_8px_rgba(16,185,129,0.5)]',
+    'bg-[#F97316] shadow-(var(--glow-warning-sm))',
+    'bg-[#FB923C] shadow-(var(--glow-warning-sm))',
+    'bg-[#F59E0B] shadow-(var(--glow-warning-sm))',
+    'bg-[#FBBF24] shadow-(var(--glow-warning-sm))',
+    'bg-[#F43F5E] shadow-(var(--glow-rose-sm))',
+    'bg-[#EC4899] shadow-(var(--glow-rose-sm))',
+    'bg-[#D946EF] shadow-(var(--glow-rose-sm))',
+    'bg-[#C084FC] shadow-(var(--glow-accent-sm))',
+    'bg-[#A855F7] shadow-(var(--glow-accent-sm))',
+    'bg-[#818CF8] shadow-(var(--glow-accent-sm))',
+    'bg-[#6366F1] shadow-(var(--glow-accent-sm))',
+    'bg-[#3B82F6] shadow-(var(--glow-accent-sm))',
+    'bg-[#38BDF8] shadow-(var(--glow-accent-sm))',
+    'bg-[#22D3EE] shadow-(var(--glow-accent-sm))',
+    'bg-[#2DD4BF] shadow-(var(--glow-accent-sm))',
+    'bg-[#34D399] shadow-(var(--glow-accent-sm))',
+    'bg-[#10B981] shadow-(var(--glow-accent-sm))',
     isDark ? 'bg-white/[0.08]' : 'bg-black/[0.06]',
     isDark ? 'bg-white/[0.08]' : 'bg-black/[0.06]',
     isDark ? 'bg-white/[0.08]' : 'bg-black/[0.06]',
@@ -74,10 +74,10 @@ export function SpendingSpectrumCard({
       <motion.div
         whileHover={{ y: -3 }}
         transition={{ duration: 0.25 }}
-        className={`relative z-10 w-full rounded-[28px] p-6 overflow-hidden select-none transition-all duration-300 ${
+        className={`relative z-10 w-full rounded-(var(--radius-xl)) p-6 overflow-hidden select-none transition-all duration-300 ${
           isDark
-            ? 'bg-[#0B0C11] card-aura-sunset shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),inset_0_0_0_1px_rgba(255,255,255,0.03),0_20px_44px_-10px_rgba(0,0,0,0.7)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_24px_50px_-10px_rgba(0,0,0,0.85)]'
-            : 'bg-white card-aura-sunset shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_8px_24px_rgba(0,0,0,0.04)] border border-black/[0.045] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)]'
+            ? 'bg-[#0B0C11] card-aura-sunset shadow-(var(--rim-soft), var(--elevation-4)) hover:shadow-(var(--rim-soft), var(--elevation-4))'
+            : 'bg-white card-aura-sunset shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.045] hover:shadow-(var(--elevation-3))'
         }`}
       >
         {/* Subtle Ambient Sunset Glow at Top Center */}
@@ -119,7 +119,7 @@ export function SpendingSpectrumCard({
           {items.map((item, i) => (
             <div key={i} className="flex items-center justify-between text-xs sm:text-sm">
               <div className="flex items-center gap-2.5">
-                <span className={`w-2 h-3.5 rounded-full ${item.colorClass} shadow-[0_0_8px_currentColor]`} />
+                <span className={`w-2 h-3.5 rounded-full ${item.colorClass} shadow-(var(--glow-current-sm))`} />
                 <span className={`font-medium tracking-tight ${isDark ? 'text-[#90909A]' : 'text-[#6E6E78]'}`}>
                   {item.name}
                 </span>

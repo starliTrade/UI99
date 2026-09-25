@@ -12,9 +12,14 @@ import { safeGetItem, safeSetItem } from '../safeStorage';
  * Personal-OS tabs (LIFE/CREATE/MEDIA/MORE/INBOX) were removed from the
  * product site: they were unreachable from the dock and diluted the story.
  * See docs/PRODUCT-SITE-ROADMAP.md §1.
+ *
+ * The literal lives in components/ui/navItems.ts (the shipped kit); re-exported
+ * here so consumers of the context use the identical type.
  */
-export type NavTab = 'HOME' | 'UIKIT' | 'BLOCKS' | 'DOCS' | 'FOUNDATIONS';
+export type { NavTab } from '../../components/ui/navItems';
 export type ThemeMode = 'dark' | 'light';
+
+import type { NavTab } from '../../components/ui/navItems';
 
 export interface ToastItem {
   id: string;

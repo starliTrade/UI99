@@ -43,9 +43,9 @@ export function Surface({
     sm: 'rounded-lg',
     md: 'rounded-xl',
     lg: 'rounded-2xl',
-    xl: 'rounded-[22px]',
-    '2xl': 'rounded-[26px]',
-    '3xl': 'rounded-[32px]',
+    xl: 'rounded-(var(--radius-control))',
+    '2xl': 'rounded-(var(--radius-xl))',
+    '3xl': 'rounded-(var(--radius-sheet))',
     full: 'rounded-full',
   }[rounded];
 
@@ -60,13 +60,13 @@ export function Surface({
 
   const variantMap = {
     surface:
-      'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-[0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_12px_32px_-8px_rgba(0,0,0,0.6)]',
+      'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-(var(--elevation-1)) dark:shadow-(var(--rim-soft), var(--elevation-3))',
     surfaceSecondary:
-      'bg-(--bg-sunken) dark:bg-(--bg-surface) border border-black/[0.035] dark:border-white/[0.02] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.8)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.025)]',
+      'bg-(--bg-sunken) dark:bg-(--bg-surface) border border-black/[0.035] dark:border-white/[0.02] shadow-(var(--rim-strong)) dark:shadow-(var(--rim-soft), var(--elevation-1))',
     elevated:
-      'bg-(--bg-elevated) border border-(--border-hairline) shadow-[0_8px_28px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.045),0_16px_40px_-8px_rgba(0,0,0,0.65)]',
+      'bg-(--bg-elevated) border border-(--border-hairline) shadow-(var(--elevation-2)) dark:shadow-(var(--rim-soft), var(--elevation-3))',
     glass:
-      'bg-white/80 dark:bg-(--bg-card)/60 backdrop-blur-2xl border border-(--border-hairline) shadow-[0_8px_24px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_16px_40px_-10px_rgba(0,0,0,0.6)]',
+      'bg-white/80 dark:bg-(--bg-card)/60 backdrop-blur-2xl border border-(--border-hairline) shadow-(var(--elevation-2)) dark:shadow-(var(--rim-soft), var(--elevation-3))',
     compact:
       'bg-white/90 dark:bg-(--bg-surface) border border-black/[0.03] dark:border-white/[0.02] shadow-xs',
     flat:
@@ -77,7 +77,7 @@ export function Surface({
 
   const hoverStyle =
     hoverable || interactive
-      ? 'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.7)] cursor-pointer active:scale-[0.99]'
+      ? 'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:hover:shadow-(var(--elevation-3)) cursor-pointer active:scale-[0.99]'
       : '';
 
   return (

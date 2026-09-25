@@ -68,7 +68,7 @@ export function Switch({
           'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-ui99 disabled:cursor-not-allowed',
           rootSizes,
           checked
-            ? 'bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.35)]'
+            ? 'bg-emerald-500 shadow-(var(--glow-accent-md))'
             : isDark
             ? 'bg-(--bg-elevated) border-white/[0.08]'
             : 'bg-zinc-200 border-black/[0.06]'

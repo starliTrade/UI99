@@ -41,10 +41,10 @@ export function StreakHabitCard({
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ duration: 0.25 }}
-      className={`relative rounded-[28px] p-6 overflow-hidden transition-all select-none ${
+      className={`relative rounded-(var(--radius-xl)) p-6 overflow-hidden transition-all select-none ${
         isDark
-          ? 'bg-[#0B0C11] card-aura-ruby shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),inset_0_0_0_1px_rgba(255,255,255,0.03),0_20px_44px_-10px_rgba(0,0,0,0.7)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_24px_50px_-10px_rgba(0,0,0,0.85)]'
-          : 'bg-white card-aura-ruby shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_8px_24px_rgba(0,0,0,0.04)] border border-black/[0.045] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)]'
+          ? 'bg-[#0B0C11] card-aura-ruby shadow-(var(--rim-soft), var(--elevation-4)) hover:shadow-(var(--rim-soft), var(--elevation-4))'
+          : 'bg-white card-aura-ruby shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.045] hover:shadow-(var(--elevation-3))'
       }`}
     >
       {/* Dynamic Warm Ambient Light Beam in Corner */}
@@ -54,7 +54,7 @@ export function StreakHabitCard({
       <div className="flex items-start justify-between relative z-10">
         <div className="flex items-center gap-3">
           {/* Radiant Flame Icon */}
-          <div className="relative w-9 h-9 rounded-full bg-gradient-to-tr from-rose-600 via-orange-500 to-amber-300 flex items-center justify-center shadow-[0_0_16px_rgba(249,115,22,0.5)]">
+          <div className="relative w-9 h-9 rounded-full bg-gradient-to-tr from-rose-600 via-orange-500 to-amber-300 flex items-center justify-center shadow-(var(--glow-warning-lg))">
             <Flame className="w-4.5 h-4.5 text-white fill-white stroke-none" />
           </div>
 
@@ -84,9 +84,9 @@ export function StreakHabitCard({
                 <div
                   className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full flex items-center justify-center transition-all ${
                     isCompleted
-                      ? 'bg-gradient-to-tr from-emerald-500 to-lime-300 text-zinc-950 font-bold shadow-[0_0_12px_rgba(52,211,153,0.5)]'
+                      ? 'bg-gradient-to-tr from-emerald-500 to-lime-300 text-zinc-950 font-bold shadow-(var(--glow-accent-md))'
                       : isToday
-                      ? 'ring-2 ring-emerald-400 bg-emerald-500/10 text-transparent shadow-[0_0_10px_rgba(52,211,153,0.3)]'
+                      ? 'ring-2 ring-emerald-400 bg-emerald-500/10 text-transparent shadow-(var(--glow-accent-md))'
                       : isDark
                       ? 'bg-white/[0.05] text-transparent'
                       : 'bg-black/[0.04] text-transparent'
@@ -134,7 +134,7 @@ export function StreakHabitCard({
         {/* Luminous Progress Bar */}
         <div className={`w-full h-2 rounded-full overflow-hidden p-0.5 ${isDark ? 'bg-white/[0.05]' : 'bg-black/[0.05]'}`}>
           <div
-            className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-300 shadow-[0_0_10px_rgba(52,211,153,0.4)] transition-all duration-700 ease-out"
+            className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-300 shadow-(var(--glow-accent-md)) transition-all duration-700 ease-out"
             style={{ width: `${percent}%` }}
           />
         </div>

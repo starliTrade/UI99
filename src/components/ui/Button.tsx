@@ -21,9 +21,9 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-(--ink-fill) text-(--ink-on-fill) hover:bg-(--ink-fill) border border-black/10 shadow-xs dark:border-white/10 dark:shadow-[0_2px_10px_rgba(255,255,255,0.06)]',
+          'bg-(--ink-fill) text-(--ink-on-fill) hover:bg-(--ink-fill) border border-black/10 shadow-xs dark:border-white/10 dark:shadow-(var(--elevation-2))',
         secondary:
-          'bg-zinc-100 text-zinc-800 hover:bg-state-hover hover:text-black border border-black/[0.05] shadow-xs dark:bg-white/[0.045] dark:text-(--text-primary) dark:hover:text-white dark:border-white/[0.025] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)]',
+          'bg-zinc-100 text-zinc-800 hover:bg-state-hover hover:text-black border border-black/[0.05] shadow-xs dark:bg-white/[0.045] dark:text-(--text-primary) dark:hover:text-white dark:border-white/[0.025] dark:shadow-(var(--rim-soft), var(--elevation-1))',
         outline:
           'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-(--text-primary) dark:border-white/[0.04]',
         ghost:
@@ -36,7 +36,7 @@ export const buttonVariants = cva(
         'white-pill':
           'bg-(--ink-fill) text-(--ink-on-fill) font-semibold shadow-xs border border-white/20 dark:border-white/10',
         'dark-pill':
-          'bg-(--bg-sunken) text-(--text-primary) hover:bg-(--bg-card-hover) hover:text-white border border-black/10 dark:bg-white/[0.045] dark:border-white/[0.03] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035)] shadow-xs',
+          'bg-(--bg-sunken) text-(--text-primary) hover:bg-(--bg-card-hover) hover:text-white border border-black/10 dark:bg-white/[0.045] dark:border-white/[0.03] dark:shadow-(var(--rim-soft), var(--elevation-1)) shadow-xs',
         rose:
           'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
       },

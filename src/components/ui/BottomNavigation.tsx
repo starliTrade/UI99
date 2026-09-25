@@ -57,7 +57,7 @@ export function BottomNavigation() {
                     layoutId={prefersReduced ? undefined : 'glassCushionActive'}
                     className={`absolute inset-0.5 rounded-full ${
                       isDark
-                        ? 'bg-white/[0.04] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]'
+                        ? 'bg-white/[0.04] shadow-(var(--rim-soft), var(--elevation-1))'
                         : 'liquid-glass-light-active-cushion'
                     }`}
                     transition={{ type: 'spring', stiffness: 460, damping: 38 }}

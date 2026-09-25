@@ -22,7 +22,7 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
     return (
       <div
         onClick={onCaptureMemory}
-        className="group relative p-5 rounded-[26px] cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03),0_12px_32px_rgba(0,0,0,0.6)] flex items-center justify-between"
+        className="group relative p-5 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(var(--rim-soft), var(--elevation-3)) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
           <div className="w-11 h-11 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
@@ -55,7 +55,7 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
   return (
     <div
       onClick={() => onSelectMemory(memoryObject)}
-      className="group relative p-5 sm:p-6 rounded-[28px] cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.025] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_18px_40px_-10px_rgba(0,0,0,0.7)] hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.06] select-none"
     >
       {/* Violet Ambient Aura */}
       <div className="absolute top-0 right-0 w-48 h-48 bg-violet-600/[0.06] rounded-full blur-3xl pointer-events-none" />

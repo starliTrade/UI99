@@ -1,9 +1,21 @@
 /**
- * UI99 — Token Adherence Gate (Sprint 1 quality gate)
+ * UI99 — Token Adherence Gate
  *
- * FORBIDDEN: surface/ink hexes in kit classes. These values belong to the
- * token system (src/styles/ui99.css); hardcoding them in components is what
- * forced the `!important` light-mode hack and desyncs .obsidian/.porcelain.
+ * Three rules, all enforced in CI:
+ *
+ *   A. NO surface/ink hexes in kit classes. These belong to the token system
+ *      (src/styles/ui99.css); hardcoding them is what forced the `!important`
+ *      light-mode hack and desyncs .obsidian/.porcelain.
+ *
+ *   B. NO arbitrary structural utilities. `shadow-[…]`, `rounded-[Npx]` and
+ *      `blur-[Npx]` mean elevation/radius/blur were decided at the call site.
+ *      The elevation audit found 145 unique hand-written shadows across 64
+ *      files — elevation had been decided 145 times and never compared.
+ *      Now they must be tokens (`shadow-(--elevation-3)`, `rounded-(--radius-md)`).
+ *
+ *   C. Every token referenced by a component must actually be DECLARED in
+ *      src/styles/ui99*.css. A typo'd var() silently resolves to nothing and
+ *      drops the shadow entirely — invisible in review, obvious in production.
  *
  * ALLOWED: data palettes (charts, heatmaps, color pickers, confetti) and
  * documented accent tints — identity colors, not theme surfaces.
@@ -76,4 +88,77 @@ if (violations.length) {
   process.exit(1);
 }
 
-console.log(`✓ tokens-gate: ${files.length} kit files clean — zero hardcoded surface/ink hexes`);
+/* ══════════════════ RULE B — no arbitrary structural utilities ══════════════════
+ *
+ * `shadow-[…]` / `rounded-[Npx]` / `blur-[Npx]` place a design decision at the
+ * call site. The elevation audit found 266 of them. They are now tokens, and
+ * this rule stops them creeping back.
+ */
+const structuralViolations = [];
+const STRUCTURAL = [
+  { re: /shadow-\[[^\]]+\]/g, label: 'shadow', hint: 'shadow-(--elevation-3)' },
+  { re: /rounded-\[[0-9.]+px\]/g, label: 'radius', hint: 'rounded-(--radius-md)' },
+  { re: /blur-\[[0-9.]+px\]/g, label: 'blur', hint: 'blur-(--blur-md)' },
+];
+
+for (const f of files) {
+  if (VALUE_ONLY_FILES.has(f)) continue;
+  const src = readFileSync(resolve(uiDir, f), 'utf8');
+  const lines = src.split('\n');
+  lines.forEach((line, i) => {
+    for (const rule of STRUCTURAL) {
+      for (const m of line.matchAll(rule.re)) {
+        structuralViolations.push(
+          `${f}:${i + 1}: arbitrary ${rule.label} — "${m[0].slice(0, 60)}" → ${rule.hint}`,
+        );
+      }
+    }
+  });
+}
+
+if (structuralViolations.length) {
+  console.error(
+    `\n✗ tokens-gate: ${structuralViolations.length} arbitrary structural value(s) — elevation/radius/blur must be tokens:\n`,
+  );
+  for (const v of structuralViolations) console.error('  ' + v);
+  console.error(
+    '\nCodemod: node scripts/migrate-elevation.mjs --write\nScale: src/styles/ui99-elevation.css · src/styles/ui99-glow.css\n',
+  );
+  process.exit(1);
+}
+
+/* ══════════════════ RULE C — referenced tokens must exist ══════════════════
+ *
+ * A typo'd var() resolves to nothing and silently drops the shadow. Cheap to
+ * check, expensive to debug visually.
+ */
+const tokenSources = ['ui99.css', 'ui99-elevation.css', 'ui99-glow.css', 'porcelain.css']
+  .map((f) => readFileSync(resolve(root, 'src/styles', f), 'utf8'))
+  .join('\n');
+const declared = new Set(
+  [...tokenSources.matchAll(/^\s*(--[a-z0-9-]+)\s*:/gm)].map((m) => m[1]),
+);
+
+const undeclared = new Map();
+for (const f of files) {
+  const src = readFileSync(resolve(uiDir, f), 'utf8');
+  for (const m of src.matchAll(/var\((--(?:elevation|rim|shadow|glow|radius|space|blur|z)-[a-z0-9-]+)\)/g)) {
+    if (!declared.has(m[1])) {
+      if (!undeclared.has(m[1])) undeclared.set(m[1], new Set());
+      undeclared.get(m[1]).add(f);
+    }
+  }
+}
+
+if (undeclared.size) {
+  console.error(`\n✗ tokens-gate: ${undeclared.size} undeclared token reference(s):\n`);
+  for (const [token, where] of undeclared) {
+    console.error(`  ${token} — used in ${[...where].join(', ')}`);
+  }
+  console.error('\nDeclare it in src/styles/ui99-elevation.css or ui99-glow.css.\n');
+  process.exit(1);
+}
+
+console.log(
+  `✓ tokens-gate: ${files.length} kit files clean — zero hardcoded hexes, zero arbitrary elevation/radius/blur, all ${declared.size} tokens declared`,
+);

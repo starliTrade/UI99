@@ -105,8 +105,8 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
                 className={`relative w-11 h-11 sm:w-12 sm:h-12 rounded-full flex flex-col items-center justify-center transition-all duration-200 ${
                   selected
                     ? isDark
-                      ? 'bg-[#EDEDEF] text-[#09090C] shadow-[0_4px_20px_rgba(0,0,0,0.6)] font-bold'
-                      : 'bg-zinc-950 text-white shadow-[0_4px_16px_rgba(0,0,0,0.2)] font-bold'
+                      ? 'bg-[#EDEDEF] text-[#09090C] shadow-(var(--elevation-1)) font-bold'
+                      : 'bg-zinc-950 text-white shadow-(var(--elevation-1)) font-bold'
                     : isDark
                     ? 'bg-[#0E0E13] text-[#8E8E98] border border-white/[0.025] hover:bg-[#131318] hover:text-[#EDEDEF]'
                     : 'bg-white text-zinc-600 border border-black/[0.04] hover:bg-zinc-50 hover:text-zinc-950 shadow-xs'
@@ -137,7 +137,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
                 {today && !selected && (
                   <span
                     className={`absolute bottom-1 w-1 h-1 rounded-full ${
-                      isDark ? 'bg-rose-500 shadow-[0_0_6px_rgba(244,63,94,0.8)]' : 'bg-rose-500'
+                      isDark ? 'bg-rose-500 shadow-(var(--glow-rose-sm))' : 'bg-rose-500'
                     }`}
                   />
                 )}

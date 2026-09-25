@@ -1,7 +1,7 @@
 /**
  * UI99 — Ethereum Sparkline Widget
  * Pixel-perfect implementation of IMG_7716.jpeg:
- * - Squircle container (rounded-[34px]) with 3D glass specular rim
+ * - Squircle container (rounded-(var(--radius-2xl))) with 3D glass specular rim
  * - Authentic sapphire/ice-blue glass reflection along top-right curve
  * - Ethereum diamond icon & typography
  * - Sparkline with vertical micro guides
@@ -36,10 +36,10 @@ export function RhythmSparklineCard({
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ duration: 0.25 }}
-      className={`relative rounded-[28px] p-6 overflow-hidden transition-all duration-300 select-none ${
+      className={`relative rounded-(var(--radius-xl)) p-6 overflow-hidden transition-all duration-300 select-none ${
         isDark
-          ? 'bg-[#0B0C11] card-aura-sapphire shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),inset_0_0_0_1px_rgba(255,255,255,0.03),0_20px_44px_-10px_rgba(0,0,0,0.7)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_24px_50px_-10px_rgba(0,0,0,0.85)]'
-          : 'bg-white card-aura-sapphire shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_8px_24px_rgba(0,0,0,0.04)] border border-black/[0.045] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)]'
+          ? 'bg-[#0B0C11] card-aura-sapphire shadow-(var(--rim-soft), var(--elevation-4)) hover:shadow-(var(--rim-soft), var(--elevation-4))'
+          : 'bg-white card-aura-sapphire shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.045] hover:shadow-(var(--elevation-3))'
       }`}
     >
       {/* Top-Right Sapphire Ambient Light Beam */}
@@ -50,7 +50,7 @@ export function RhythmSparklineCard({
         <div
           className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
             isDark
-              ? 'bg-white/[0.08] shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] text-white'
+              ? 'bg-white/[0.08] shadow-(var(--elevation-1)) text-white'
               : 'bg-black/[0.06] text-[#111116]'
           }`}
         >
@@ -95,8 +95,8 @@ export function RhythmSparklineCard({
           <div
             className={`px-3.5 py-1.5 rounded-xl backdrop-blur-md text-center transition-all ${
               isDark
-                ? 'bg-[#14151C]/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_8px_20px_rgba(0,0,0,0.6)] text-white'
-                : 'bg-white/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_6px_16px_rgba(0,0,0,0.08)] border border-black/[0.04] text-[#111116]'
+                ? 'bg-[#14151C]/95 shadow-(var(--rim-soft), var(--elevation-2)) text-white'
+                : 'bg-white/95 shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.04] text-[#111116]'
             }`}
           >
             <span className={`block text-[11px] font-mono font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#111116]'}`}>
@@ -107,7 +107,7 @@ export function RhythmSparklineCard({
             </span>
           </div>
           <div className={`w-[1px] h-4 ${isDark ? 'bg-gradient-to-b from-white/30 to-white/10' : 'bg-gradient-to-b from-black/20 to-black/5'}`} />
-          <div className={`w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,1)] ring-2 ${isDark ? 'ring-[#0E0F14]' : 'ring-white'}`} />
+          <div className={`w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-(var(--glow-accent-md)) ring-2 ${isDark ? 'ring-[#0E0F14]' : 'ring-white'}`} />
         </div>
 
         {/* Organic Sparkline SVG Curve with luminous gradient */}

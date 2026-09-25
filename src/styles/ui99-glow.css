@@ -1,0 +1,86 @@
+/**
+ * UI99 — Glow Scale (accent aura, not elevation)
+ *
+ * Discovered by the elevation audit: 49 coloured `0 0 Npx rgba(…)` shadows
+ * across the kit, in 18 different hues and 6 different blur radii. These are
+ * not elevation — they are *accent aura*: the light a control casts to say
+ * "this is the live/active/important one".
+ *
+ * Two decisions make this a system instead of a habit:
+ *
+ *   1. THREE levels only. Restraint is what makes a glow read as crafted. A
+ *      component picks a level, never a radius — the radius belongs to the
+ *      token. (Before: 6 radii, no meaning attached to any of them.)
+ *   2. Glow is bound to a TOKEN-COLOUR, never a raw hex. Each token is defined
+ *      in one place so the same accent always emits the same aura.
+ *
+ * Usage: `shadow-(--glow-accent-md)`. Pair with an elevation token for a
+ * lifted look: `shadow-(--shadow-card), shadow-(--glow-accent-md)`.
+ *
+ * Alpha values are deliberately low — on the Obsidian canvas anything above
+ * ~0.4 starts to look like a neon sign rather than a lit edge.
+ */
+
+/* ======================= DARK — glows read best against near-black ======================= */
+.dark,
+[data-theme='dark'] {
+  /* Level = how far the aura reaches. Radius, not opacity, does the work here:
+     a wide low-alpha glow reads as light spill; a tight bright one as heat. */
+  --glow-accent-sm: 0 0 6px color-mix(in srgb, var(--intent-emerald) 32%, transparent);
+  --glow-accent-md: 0 0 14px color-mix(in srgb, var(--intent-emerald) 24%, transparent);
+  --glow-accent-lg: 0 0 28px color-mix(in srgb, var(--intent-emerald) 16%, transparent);
+
+  --glow-rose-sm: 0 0 6px color-mix(in srgb, var(--intent-rose) 34%, transparent);
+  --glow-rose-md: 0 0 14px color-mix(in srgb, var(--intent-rose) 26%, transparent);
+  --glow-rose-lg: 0 0 28px color-mix(in srgb, var(--intent-rose) 18%, transparent);
+
+  /* Status glows — used for live indicators, recording state, active capture. */
+  --glow-warning-sm: 0 0 6px color-mix(in srgb, var(--intent-warning) 32%, transparent);
+  --glow-warning-md: 0 0 14px color-mix(in srgb, var(--intent-warning) 24%, transparent);
+  --glow-warning-lg: 0 0 28px color-mix(in srgb, var(--intent-warning) 16%, transparent);
+
+  --glow-danger-sm: 0 0 6px color-mix(in srgb, var(--intent-rose) 40%, transparent);
+  --glow-danger-md: 0 0 14px color-mix(in srgb, var(--intent-rose) 30%, transparent);
+  --glow-danger-lg: 0 0 28px color-mix(in srgb, var(--intent-rose) 20%, transparent);
+
+  /* Focus-adjacent: the "you are here" cursor glow. Uses the focus ring hue so
+     keyboard and pointer never disagree about where attention is. */
+  --glow-focus-sm: 0 0 8px color-mix(in srgb, var(--focus-ring) 40%, transparent);
+  --glow-focus-md: 0 0 18px color-mix(in srgb, var(--focus-ring) 28%, transparent);
+
+  /* Self-tinting glow — the element's own currentColor spills. Used by chart
+     marks and status dots whose hue is data-driven, so a static token cannot
+     express them. Kept as a token so the radius is still a single decision. */
+  --glow-current-sm: 0 0 8px currentColor;
+  --glow-current-md: 0 0 14px currentColor;
+  --glow-current-lg: 0 0 24px currentColor;
+}
+
+/* ======================= LIGHT — glow becomes a tinted shadow, so keep it whisper-thin ======================= */
+[data-theme='light'],
+.light {
+  /* On a light page, a coloured aura is almost invisible as light — it only
+     works as a soft bloom *under* the element. Radius shrinks, alpha drops. */
+  --glow-accent-sm: 0 2px 6px color-mix(in srgb, var(--intent-emerald) 14%, transparent);
+  --glow-accent-md: 0 4px 12px color-mix(in srgb, var(--intent-emerald) 12%, transparent);
+  --glow-accent-lg: 0 8px 22px color-mix(in srgb, var(--intent-emerald) 10%, transparent);
+
+  --glow-rose-sm: 0 2px 6px color-mix(in srgb, var(--intent-rose) 15%, transparent);
+  --glow-rose-md: 0 4px 12px color-mix(in srgb, var(--intent-rose) 13%, transparent);
+  --glow-rose-lg: 0 8px 22px color-mix(in srgb, var(--intent-rose) 11%, transparent);
+
+  --glow-warning-sm: 0 2px 6px color-mix(in srgb, var(--intent-warning) 18%, transparent);
+  --glow-warning-md: 0 4px 12px color-mix(in srgb, var(--intent-warning) 15%, transparent);
+  --glow-warning-lg: 0 8px 22px color-mix(in srgb, var(--intent-warning) 12%, transparent);
+
+  --glow-danger-sm: 0 2px 6px color-mix(in srgb, var(--intent-rose) 16%, transparent);
+  --glow-danger-md: 0 4px 12px color-mix(in srgb, var(--intent-rose) 14%, transparent);
+  --glow-danger-lg: 0 8px 22px color-mix(in srgb, var(--intent-rose) 12%, transparent);
+
+  --glow-focus-sm: 0 1px 4px color-mix(in srgb, var(--focus-ring) 18%, transparent);
+  --glow-focus-md: 0 2px 8px color-mix(in srgb, var(--focus-ring) 14%, transparent);
+
+  --glow-current-sm: 0 1px 3px color-mix(in srgb, currentColor 22%, transparent);
+  --glow-current-md: 0 2px 8px color-mix(in srgb, currentColor 16%, transparent);
+  --glow-current-lg: 0 4px 14px color-mix(in srgb, currentColor 12%, transparent);
+}

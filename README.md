@@ -5,7 +5,7 @@
 **The velvet-obsidian React component kit.**
 shadcn-grade DX · WCAG 2.2-audited · axe-clean · RTL-first · Tailwind v4
 
-[![tests](https://img.shields.io/badge/tests-124%2F124-green)](#development) [![axe](https://img.shields.io/badge/axe--core-0%20violations-brightgreen)](#accessibility) [![contrast](https://img.shields.io/badge/contrast-WCAG%20AAA%20verified-blue)](#design-tokens) [![ci](https://img.shields.io/badge/CI-typecheck%20%C2%B7%20tests%20%C2%B7%20registry%20%C2%B7%20pack-blueviolet)](.github/workflows/ci.yml) [![license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
+[![tests](https://img.shields.io/badge/tests-144%2F144-green)](#development) [![axe](https://img.shields.io/badge/axe--core-0%20violations-brightgreen)](#accessibility) [![contrast](https://img.shields.io/badge/contrast-WCAG%20AAA%20verified-blue)](#design-tokens) [![ci](https://img.shields.io/badge/CI-typecheck%20%C2%B7%20tests%20%C2%B7%20registry%20%C2%B7%20pack-blueviolet)](.github/workflows/ci.yml) [![license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
 
 [Getting started](#getting-started) · [Components](#components) · [Theming](#theming) · [Accessibility](#accessibility) · [Releases](docs/RELEASE.md) · [Roadmap](docs/ROADMAP.md)
 
@@ -44,6 +44,29 @@ import { Button, Switch, SegmentedControl } from '@99/ui';
 import '@99/ui/styles.css'; // tokens — or '@99/ui/dark.css' for a no-JS default theme
 ```
 
+### Structural tokens — the part that makes it a *system*
+
+A design system is not a palette. It is the set of decisions made **once**.
+
+| Layer | Scale |
+|-------|-------|
+| Elevation | `--elevation-0…5` — five levels, plus six ready composites (`--shadow-card`, `--shadow-popover`, `--shadow-modal`, …) |
+| Rim | `--rim-subtle / soft / strong / crisp` — the 1px specular edge that separates glass from canvas |
+| Glow | `--glow-{accent,rose,warning,danger,focus,current}-{sm,md,lg}` — accent aura, deliberately **three** levels |
+| Radius | 9-step concentric scale (`--radius-xs…2xl`, `--radius-sheet`, `--radius-pill`) |
+| Spacing | 4px grid + intent aliases (`--space-cluster`, `--space-gutter`, `--space-section`) |
+| Blur | `--blur-sm/md/lg/ambient` |
+| Z-index | every layer named (`--z-dock`, `--z-modal`, `--z-toast`, …) |
+
+Dark and light are calibrated separately: dark is rim-led with deep diffuse
+shadows (a shadow is nearly invisible on near-black), light is short and
+**ink-tinted** rather than neutral grey.
+
+**This is enforced, not documented-and-hoped-for.** `tokens:gate` fails CI on a
+hardcoded hex, an arbitrary `shadow-[…]` / `rounded-[Npx]` / `blur-[Npx]`, or a
+reference to a token that was never declared. The audit that motivated it found
+266 hand-written values across 65 files — now zero.
+
 Theme protocol — toggle a class on `<html>` (default: dark):
 
 ```ts
@@ -63,7 +86,7 @@ document.documentElement.classList.replace('dark', 'light');
 
 ## Components
 
-**92 components** in the npm kit (95 registry items including `utils`, `theme` + both token themes). The count is generated — `KIT_COMPONENT_COUNT` in `src/generated/kit-count.ts` — and can never drift from the registry.
+**94 components** in the npm kit (97 registry items including `utils`, `theme` + both token themes). The count is generated — `KIT_COMPONENT_COUNT` in `src/generated/kit-count.ts` — and can never drift from the registry.
 
 **Actions** Button · IconButton · Tag · Avatar · Toggle · ToggleGroup · CopyButton
 **Inputs** Input · Textarea · SearchBar · Switch · Checkbox · RadioGroup · Dropdown · Slider · Pin/OTPInput · Rating · NumberField · DatePicker · TimePicker · Combobox · FileUpload
@@ -112,6 +135,7 @@ bun run test             # vitest + axe + contrast gates
 bun run lint             # typecheck
 bun run lib:build        # npm kit → dist-kit/ (ESM/CJS/d.ts/CSS/CLI/registry)
 bun run registry:build   # regenerate public/registry.json from source
+bun run tokens:gate      # CI: no hardcoded hex / arbitrary elevation / undeclared token
 ```
 
 ## License

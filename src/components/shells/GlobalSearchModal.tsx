@@ -83,7 +83,7 @@ export function GlobalSearchModal() {
                 onClick={() => setSelectedType(f.value)}
                 className={`px-3 py-1 text-xs rounded-full transition-all whitespace-nowrap cursor-pointer select-none ${
                   isSelected
-                    ? 'bg-white text-[#09090B] font-bold shadow-[0_2px_10px_rgba(255,255,255,0.25)]'
+                    ? 'bg-white text-[#09090B] font-bold shadow-(var(--elevation-2))'
                     : 'bg-[#18181D] text-zinc-400 border border-white/[0.08] hover:text-white'
                 }`}
               >

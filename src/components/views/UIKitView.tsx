@@ -416,7 +416,7 @@ export function UIKitView() {
         {/* Soft emerald brand halo glow */}
         <div
           aria-hidden="true"
-          className="absolute -top-16 left-1/4 -translate-x-1/2 w-[320px] sm:w-[680px] h-[220px] sm:h-[340px] rounded-full blur-[100px] sm:blur-[160px] pointer-events-none -z-10 opacity-70 dark:opacity-85 transition-opacity"
+          className="absolute -top-16 left-1/4 -translate-x-1/2 w-[320px] sm:w-[680px] h-[220px] sm:h-[340px] rounded-full blur-(var(--blur-ambient)) sm:blur-(var(--blur-ambient)) pointer-events-none -z-10 opacity-70 dark:opacity-85 transition-opacity"
           style={{
             background:
               'radial-gradient(ellipse at 50% 45%, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.03) 40%, transparent 75%)',
@@ -437,19 +437,19 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
         {/* 4-Pillar Quality Indicators */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
-          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
+          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-(var(--rim-soft), var(--elevation-1))">
             <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Catalog</span>
             <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">{KIT_COMPONENT_COUNT} Primitives</span>
           </div>
-          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
+          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-(var(--rim-soft), var(--elevation-1))">
             <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Accessibility</span>
             <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 font-mono">WCAG 2.2 AAA</span>
           </div>
-          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
+          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-(var(--rim-soft), var(--elevation-1))">
             <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Radii Nested</span>
             <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">R_in = R_out - P</span>
           </div>
-          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)]">
+          <div className="p-3 rounded-2xl bg-zinc-100/70 dark:bg-[#0B0C11] border border-zinc-200/80 dark:border-white/[0.035] shadow-(var(--rim-soft), var(--elevation-1))">
             <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Engineering</span>
             <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 font-mono">Zero AI Slop</span>
           </div>
@@ -594,8 +594,8 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               <div
                 className={`h-20 rounded-2xl flex items-end p-3 mb-3 border ${
                   isDark
-                    ? 'bg-[#0E0E14] border-white/[0.06] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]'
-                    : 'bg-white border-black/[0.06] shadow-[inset_0_1px_0_0_rgba(255,255,255,1)]'
+                    ? 'bg-[#0E0E14] border-white/[0.06] shadow-(var(--rim-soft))'
+                    : 'bg-white border-black/[0.06] shadow-(var(--rim-soft))'
                 }`}
               >
                 <span className="text-[10px] font-mono text-zinc-500 font-bold">30% CONTAINER L1</span>
@@ -622,8 +622,8 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               <div
                 className={`h-20 rounded-2xl flex items-end p-3 mb-3 border ${
                   isDark
-                    ? 'bg-[#131318] border-white/[0.07] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]'
-                    : 'bg-white border-black/[0.08] shadow-[0_4px_16px_rgba(0,0,0,0.06)]'
+                    ? 'bg-[#131318] border-white/[0.07] shadow-(var(--rim-soft), var(--elevation-1))'
+                    : 'bg-white border-black/[0.08] shadow-(var(--elevation-1))'
                 }`}
               >
                 <span className="text-[10px] font-mono text-zinc-500 font-bold">ELEVATED L2 MODAL</span>
@@ -739,11 +739,11 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               When rounded containers nest inside another rounded container, the inner radius must equal the outer radius minus the intervening padding. This prevents optical discordance and visual clashing.
             </p>
 
-            <div className="p-6 rounded-[28px] bg-zinc-100 dark:bg-[#131318] border border-black/[0.06] dark:border-white/[0.05] flex flex-col items-center justify-center gap-3">
+            <div className="p-6 rounded-(var(--radius-xl)) bg-zinc-100 dark:bg-[#131318] border border-black/[0.06] dark:border-white/[0.05] flex flex-col items-center justify-center gap-3">
               <div className="text-[11px] font-mono text-zinc-500">
                 Outer Container: Radius 28px, Padding 16px
               </div>
-              <div className="w-full max-w-sm p-4 rounded-[12px] bg-white dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.05] shadow-xs text-center">
+              <div className="w-full max-w-sm p-4 rounded-(var(--radius-sm)) bg-white dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.05] shadow-xs text-center">
                 <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 font-mono">
                   Inner Card: Calculated Radius = 28px - 16px = 12px (Perfect Concentricity)
                 </span>
@@ -2673,7 +2673,7 @@ export default function App() {
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="h-10 w-10 rounded-full flex items-center justify-center bg-white/90 dark:bg-[#0E0E14]/90 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200/80 dark:border-white/[0.06] shadow-[0_8px_20px_rgba(0,0,0,0.1)] dark:shadow-[0_12px_28px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all active:scale-95 cursor-pointer hover:border-emerald-500/40"
+          className="h-10 w-10 rounded-full flex items-center justify-center bg-white/90 dark:bg-[#0E0E14]/90 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200/80 dark:border-white/[0.06] shadow-(var(--elevation-2)) dark:shadow-(var(--elevation-3)) backdrop-blur-xl transition-all active:scale-95 cursor-pointer hover:border-emerald-500/40"
           title={isRTL ? 'بازگشت به بالا' : 'Back to top'}
           aria-label="Back to top"
         >

@@ -108,7 +108,7 @@ export function CodeBlock({
         'group relative overflow-hidden rounded-2xl sm:rounded-2xl',
         'border border-zinc-200/80 dark:border-white/[0.045]',
         'bg-[#FBFBFC] dark:bg-(--bg-sunken)',
-        'shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_48px_-12px_rgba(0,0,0,0.75)]',
+        'shadow-(var(--elevation-1)) dark:shadow-(var(--elevation-4))',
         'transition-all duration-200',
         className
       )}

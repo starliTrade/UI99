@@ -281,7 +281,7 @@ export function DesignSystemHomeView() {
         {/* Soft, faint emerald brand ambient glow */}
         <div
           aria-hidden="true"
-          className="absolute -top-12 left-1/3 -translate-x-1/2 w-[280px] sm:w-[700px] h-[220px] sm:h-[380px] rounded-full blur-[100px] sm:blur-[180px] pointer-events-none -z-10 opacity-70 dark:opacity-85 transition-opacity"
+          className="absolute -top-12 left-1/3 -translate-x-1/2 w-[280px] sm:w-[700px] h-[220px] sm:h-[380px] rounded-full blur-(var(--blur-ambient)) sm:blur-(var(--blur-ambient)) pointer-events-none -z-10 opacity-70 dark:opacity-85 transition-opacity"
           style={{
             background:
               'radial-gradient(ellipse at 50% 45%, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.035) 40%, rgba(255, 255, 255, 0.015) 60%, transparent 80%)',
@@ -291,7 +291,7 @@ export function DesignSystemHomeView() {
         {/* Secondary ambient specular feather */}
         <div
           aria-hidden="true"
-          className="absolute top-0 right-1/4 w-[200px] sm:w-[400px] h-[160px] sm:h-[260px] rounded-full blur-[90px] sm:blur-[150px] pointer-events-none -z-10 opacity-40 dark:opacity-50"
+          className="absolute top-0 right-1/4 w-[200px] sm:w-[400px] h-[160px] sm:h-[260px] rounded-full blur-(var(--blur-ambient)) sm:blur-(var(--blur-ambient)) pointer-events-none -z-10 opacity-40 dark:opacity-50"
           style={{
             background:
               'radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 70%)',
@@ -342,7 +342,7 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => setCurrentTab('DOCS')}
-            className="h-9 px-3.5 rounded-xl inline-flex items-center justify-center gap-1.5 text-xs font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-[#0E0E14] hover:bg-zinc-200/80 dark:hover:bg-[#15161E] text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200/80 dark:border-white/[0.04] hover:border-zinc-300 dark:hover:border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)] active:scale-[0.98] whitespace-nowrap"
+            className="h-9 px-3.5 rounded-xl inline-flex items-center justify-center gap-1.5 text-xs font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-[#0E0E14] hover:bg-zinc-200/80 dark:hover:bg-[#15161E] text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200/80 dark:border-white/[0.04] hover:border-zinc-300 dark:hover:border-white/[0.08] shadow-(var(--rim-soft), var(--elevation-1)) active:scale-[0.98] whitespace-nowrap"
           >
             <BookOpen className="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" />
             <span>Interactive Docs</span>
@@ -352,14 +352,14 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
-            className="h-9 px-3 rounded-xl inline-flex items-center justify-center gap-1.5 text-xs font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-[#0E0E14] hover:bg-zinc-200/80 dark:hover:bg-[#15161E] text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200/80 dark:border-white/[0.04] hover:border-zinc-300 dark:hover:border-white/[0.08] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)] active:scale-[0.98] whitespace-nowrap"
+            className="h-9 px-3 rounded-xl inline-flex items-center justify-center gap-1.5 text-xs font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-[#0E0E14] hover:bg-zinc-200/80 dark:hover:bg-[#15161E] text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200/80 dark:border-white/[0.04] hover:border-zinc-300 dark:hover:border-white/[0.08] shadow-(var(--rim-soft), var(--elevation-1)) active:scale-[0.98] whitespace-nowrap"
           >
             <Github className="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" />
             <span>GitHub</span>
           </button>
 
           {/* 4. Terminal Action: CLI Install Box */}
-          <div className="h-9 inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-xl bg-zinc-100 dark:bg-[#0A0B10] border border-zinc-200/80 dark:border-white/[0.035] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.02)] text-xs font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+          <div className="h-9 inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-xl bg-zinc-100 dark:bg-[#0A0B10] border border-zinc-200/80 dark:border-white/[0.035] shadow-(var(--rim-soft), var(--elevation-1)) text-xs font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
             <span className="flex items-center gap-1.5">
               <span className="text-emerald-500 dark:text-emerald-400 font-bold select-none text-xs tracking-tight">
                 &gt;_
@@ -388,7 +388,7 @@ export function DesignSystemHomeView() {
           2 · WORLD-CLASS 99-ELEMENT COMPONENT REGISTRY STUDIO
          ══════════════════════════════════════════════════════════════ */}
       <Reveal index={4}>
-        <div className="mt-4 sm:mt-8 rounded-2xl sm:rounded-3xl border border-zinc-200/60 dark:border-white/[0.03] bg-white dark:bg-[#0C0D12] shadow-[0_10px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.65)] overflow-hidden transition-all">
+        <div className="mt-4 sm:mt-8 rounded-2xl sm:rounded-3xl border border-zinc-200/60 dark:border-white/[0.03] bg-white dark:bg-[#0C0D12] shadow-(var(--elevation-3)) dark:shadow-(var(--elevation-4)) overflow-hidden transition-all">
           {/* 1. Studio Top Navigation & Control Bar */}
           <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-zinc-200/50 dark:border-white/[0.03] bg-zinc-50/70 dark:bg-[#090A0E] flex items-center justify-between gap-2 sm:gap-4 flex-nowrap min-w-0">
             {/* Left: Active Component Breadcrumb */}
@@ -988,7 +988,7 @@ export function DesignSystemHomeView() {
                       type="button"
                       onClick={() => copy(getCliCommand(currentComp.name), 'quick-add')}
                       aria-label="Copy CLI command"
-                      className="flex-1 lg:flex-initial inline-flex items-center justify-between gap-2 px-2.5 py-1 rounded-xl text-xs font-mono bg-white dark:bg-[#0E0F14] hover:bg-zinc-100 dark:hover:bg-[#151620] text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200 dark:border-white/[0.04] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)] transition-colors cursor-pointer min-h-[30px] min-w-0 overflow-hidden"
+                      className="flex-1 lg:flex-initial inline-flex items-center justify-between gap-2 px-2.5 py-1 rounded-xl text-xs font-mono bg-white dark:bg-[#0E0F14] hover:bg-zinc-100 dark:hover:bg-[#151620] text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200 dark:border-white/[0.04] shadow-(var(--rim-soft), var(--elevation-1)) transition-colors cursor-pointer min-h-[30px] min-w-0 overflow-hidden"
                     >
                       <span className="flex items-center gap-1.5 truncate min-w-0">
                         <span className="text-emerald-500 dark:text-emerald-400 font-bold text-xs select-none shrink-0">&gt;_</span>
@@ -1141,9 +1141,9 @@ export function DesignSystemHomeView() {
           </div>
 
           {/* Connected Pillar Card */}
-          <div className="rounded-2xl bg-white dark:bg-[#0A0B0E] border border-zinc-200/80 dark:border-white/[0.035] shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] divide-y divide-zinc-100 dark:divide-white/[0.035] sm:divide-y-0 sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:shadow-none sm:grid sm:grid-cols-3 sm:gap-3.5">
+          <div className="rounded-2xl bg-white dark:bg-[#0A0B0E] border border-zinc-200/80 dark:border-white/[0.035] shadow-(var(--elevation-1)) dark:shadow-(var(--elevation-1)) divide-y divide-zinc-100 dark:divide-white/[0.035] sm:divide-y-0 sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:shadow-none sm:grid sm:grid-cols-3 sm:gap-3.5">
             {/* Pillar 1: Keyboard Velocity */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-2xl sm:bg-white sm:dark:bg-[#0A0B0E] sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-[0_4px_20px_rgba(0,0,0,0.03)] sm:dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.08]">
+            <div className="p-3.5 sm:p-4.5 sm:rounded-2xl sm:bg-white sm:dark:bg-[#0A0B0E] sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(var(--elevation-1)) sm:dark:shadow-(var(--elevation-1)) flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.08]">
               <div className="w-8 h-8 rounded-xl bg-zinc-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-zinc-200/60 dark:border-emerald-500/20">
                 <Zap className="w-4 h-4" />
               </div>
@@ -1160,7 +1160,7 @@ export function DesignSystemHomeView() {
             </div>
 
             {/* Pillar 2: Specular Velvet Depth */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-2xl sm:bg-white sm:dark:bg-[#0A0B0E] sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-[0_4px_20px_rgba(0,0,0,0.03)] sm:dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.08]">
+            <div className="p-3.5 sm:p-4.5 sm:rounded-2xl sm:bg-white sm:dark:bg-[#0A0B0E] sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(var(--elevation-1)) sm:dark:shadow-(var(--elevation-1)) flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.08]">
               <div className="w-8 h-8 rounded-xl bg-zinc-100 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 border border-zinc-200/60 dark:border-indigo-500/20">
                 <Sparkles className="w-4 h-4" />
               </div>
@@ -1177,7 +1177,7 @@ export function DesignSystemHomeView() {
             </div>
 
             {/* Pillar 3: Zero Runtime Overhead */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-2xl sm:bg-white sm:dark:bg-[#0A0B0E] sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-[0_4px_20px_rgba(0,0,0,0.03)] sm:dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.08]">
+            <div className="p-3.5 sm:p-4.5 sm:rounded-2xl sm:bg-white sm:dark:bg-[#0A0B0E] sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(var(--elevation-1)) sm:dark:shadow-(var(--elevation-1)) flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.08]">
               <div className="w-8 h-8 rounded-xl bg-zinc-100 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 mt-0.5 border border-zinc-200/60 dark:border-amber-500/20">
                 <ShieldCheck className="w-4 h-4" />
               </div>

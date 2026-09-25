@@ -40,12 +40,28 @@ function extractBlock(css, scopeSelector) {
 }
 
 const ui99Css = readFileSync(resolve(root, 'src/styles/ui99.css'), 'utf8');
+const elevationCss = readFileSync(resolve(root, 'src/styles/ui99-elevation.css'), 'utf8');
+const glowCss = readFileSync(resolve(root, 'src/styles/ui99-glow.css'), 'utf8');
 
-// 1) Verbatim token stylesheet (single source of truth)
+// 1) Verbatim token stylesheets (single source of truth).
+// The structural and glow layers are part of the published token contract —
+// consumers get elevation/radius/spacing/blur/glow without importing app CSS.
 copyFileSync(resolve(root, 'src/styles/ui99.css'), resolve(outDir, 'ui99.css'));
+copyFileSync(
+  resolve(root, 'src/styles/ui99-elevation.css'),
+  resolve(outDir, 'ui99-elevation.css'),
+);
+copyFileSync(resolve(root, 'src/styles/ui99-glow.css'), resolve(outDir, 'ui99-glow.css'));
 copyFileSync(resolve(root, 'src/styles/porcelain.css'), resolve(outDir, 'porcelain.css'));
 // Tailwind v4 semantic-class layer (daisyUI-class gateway, audit P2.7)
 copyFileSync(resolve(root, 'src/tailwind/ui99-plugin.css'), resolve(outDir, 'tailwind.css'));
+
+// 1b) styles.css — the single entry consumers import. Must pull in every layer,
+// or `shadow-(--elevation-3)` silently resolves to nothing for npm users.
+writeFileSync(
+  resolve(outDir, 'styles.css'),
+  `${banner('public token entry point')}\n@import "./ui99.css";\n@import "./ui99-elevation.css";\n@import "./ui99-glow.css";\n\n/* No-JS default theme. Hosts that toggle .dark/.light ignore these. */\n${extractBlock(ui99Css, '.dark,')}\n`,
+);
 
 // 2) No-JS theme entries: re-emit the theme block under :root (generated, not hand-copied)
 // NOTE: ui99.css scopes themes via .dark/.light AND the data-theme attribute
@@ -59,13 +75,15 @@ const focusAndMotion = ui99Css
 
 writeFileSync(
   resolve(outDir, 'dark.css'),
-  `${banner('dark theme entry (no-JS default)')}\n@import "./ui99.css";\n\n/* Pre-activate obsidian dark tokens for hosts that never toggle a theme class. */\n:root {\n${darkBody}\n}\n\n${focusAndMotion}\n`,
+  `${banner('dark theme entry (no-JS default)')}\n@import "./styles.css";\n\n/* Pre-activate obsidian dark tokens for hosts that never toggle a theme class. */\n:root {\n${darkBody}\n}\n\n${focusAndMotion}\n`,
 );
 
 writeFileSync(
   resolve(outDir, 'light.css'),
-  `${banner('light theme entry (no-JS default)')}\n@import "./ui99.css";\n\n/* Pre-activate porcelain light tokens for hosts that never toggle a theme class. */\n:root {\n${lightBody}\n}\n\n${focusAndMotion}\n`,
+  `${banner('light theme entry (no-JS default)')}\n@import "./styles.css";\n\n/* Pre-activate porcelain light tokens for hosts that never toggle a theme class. */\n:root {\n${lightBody}\n}\n\n${focusAndMotion}\n`,
 );
 
-console.log('[kit-css] ui99.css + porcelain.css + dark.css + light.css generated in dist-kit/');
+console.log(
+  '[kit-css] styles.css + ui99.css + ui99-elevation.css + ui99-glow.css + porcelain.css + dark.css + light.css generated in dist-kit/',
+);
 console.log(`[kit-css] dark tokens: ${darkBody.split('\n').length} lines, shared: ${sharedBody.split('\n').length} lines`);

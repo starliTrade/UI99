@@ -84,7 +84,7 @@ export function Combobox({
         <PopoverPrimitive.Content
           sideOffset={6}
           align="start"
-          className="z-50 w-[var(--radix-popover-trigger-width)] rounded-2xl border border-black/[0.06] bg-white shadow-[0_20px_48px_-12px_rgba(0,0,0,0.7)] dark:border-white/[0.06] dark:bg-(--bg-elevated)"
+          className="z-50 w-[var(--radix-popover-trigger-width)] rounded-2xl border border-black/[0.06] bg-white shadow-(var(--elevation-4)) dark:border-white/[0.06] dark:bg-(--bg-elevated)"
         >
           <Command shouldFilter>
             <CommandInput placeholder={searchPlaceholder} onValueChange={setQuery} />

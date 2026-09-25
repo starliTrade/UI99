@@ -145,7 +145,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
       />
 
       {/* 2. Living Atmosphere Container */}
-      <div className="relative p-5 sm:p-6 rounded-[28px] bg-[#0A0B10]/90 border border-white/[0.025] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_18px_40px_-10px_rgba(0,0,0,0.7)] backdrop-blur-xl overflow-hidden transition-all duration-300">
+      <div className="relative p-5 sm:p-6 rounded-(var(--radius-xl)) bg-[#0A0B10]/90 border border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-3)) backdrop-blur-xl overflow-hidden transition-all duration-300">
         
         {/* Soft Background Silk Mesh */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/[0.02] via-transparent to-transparent pointer-events-none" />
@@ -163,7 +163,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
               {isToday && (
                 <span className="relative flex h-2 w-2 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.9)]" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500 shadow-(var(--glow-rose-sm))" />
                 </span>
               )}
             </div>
@@ -183,7 +183,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
           <div className="flex items-center gap-3.5 shrink-0 self-end md:self-center">
             
             {/* Jewelry-like Depth Orb Emblem */}
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#1A1A24] via-[#0E0E14] to-[#07070A] border border-white/[0.06] shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.15),0_8px_24px_rgba(0,0,0,0.8)] flex items-center justify-center overflow-hidden shrink-0 group">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#1A1A24] via-[#0E0E14] to-[#07070A] border border-white/[0.06] shadow-(var(--elevation-2)) flex items-center justify-center overflow-hidden shrink-0 group">
               
               {/* Subtle orbital ring animation */}
               <motion.div
@@ -203,7 +203,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
                       }
                 }
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute w-2 h-2 rounded-full bg-rose-400/80 shadow-[0_0_10px_rgba(244,63,94,0.9)]"
+                className="absolute w-2 h-2 rounded-full bg-rose-400/80 shadow-(var(--glow-rose-md))"
               />
 
               {/* Inner satin glass highlight */}
@@ -216,7 +216,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
             <button
               type="button"
               onClick={onOpenCapture}
-              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-white/[0.06] to-white/[0.03] hover:from-white/[0.1] hover:to-white/[0.05] text-[#EDEDEF] border border-white/[0.05] hover:border-white/[0.1] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_6px_20px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all active:scale-95 cursor-pointer shrink-0"
+              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-white/[0.06] to-white/[0.03] hover:from-white/[0.1] hover:to-white/[0.05] text-[#EDEDEF] border border-white/[0.05] hover:border-white/[0.1] shadow-(var(--rim-soft), var(--elevation-2)) backdrop-blur-xl transition-all active:scale-95 cursor-pointer shrink-0"
               title={isRTL ? 'ثبت سریع ایده، یادداشت یا کار' : 'Quick Capture'}
               aria-label="Universal Capture"
             >

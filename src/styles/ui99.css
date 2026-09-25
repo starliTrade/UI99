@@ -51,6 +51,11 @@
   --intent-emerald: #10B981;       /* emerald-500 */
   --intent-emerald-hover: #34D399; /* emerald-400 */
   --intent-emerald-on: #06251A;    /* deep pine ink on bright emerald */
+  /* Warning/caution — amber has no dark/light pair yet; declared here so glow
+     and accent bars resolve through a token rather than a raw hex. */
+  --intent-warning: #F59E0B;       /* amber-500 */
+  --intent-warning-hover: #FBBF24; /* amber-400 */
+  --intent-warning-on: #2A1A02;    /* deep amber ink */
 
   /* Soft rose affinity tint (surface lifted over --bg-card) */
   --rose-tint: #161216;
@@ -99,6 +104,10 @@
   --intent-emerald: #047857;       /* emerald-700 — AA with white */
   --intent-emerald-hover: #059669; /* emerald-600 */
   --intent-emerald-on: #FFFFFF;
+  /* Light theme: amber drops to 600 so a white label keeps AA. */
+  --intent-warning: #D97706;       /* amber-600 */
+  --intent-warning-hover: #F59E0B; /* amber-500 */
+  --intent-warning-on: #FFFFFF;
 
   /* Soft rose affinity tint */
   --rose-tint: #FFF1F2;            /* rose-50 */

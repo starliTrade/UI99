@@ -92,7 +92,7 @@ export function SettingsModal() {
               onClick={() => setActiveTab(t.id as any)}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all whitespace-nowrap cursor-pointer select-none ${
                 activeTab === t.id
-                  ? 'bg-white text-[#09090B] shadow-[0_2px_10px_rgba(255,255,255,0.25)]'
+                  ? 'bg-white text-[#09090B] shadow-(var(--elevation-2))'
                   : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
               }`}
             >

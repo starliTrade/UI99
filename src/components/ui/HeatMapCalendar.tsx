@@ -63,7 +63,7 @@ export function HeatMapCalendar({
         return (
           <span
             key={i}
-            className="rounded-[3px] transition-colors duration-150"
+            className="rounded-(var(--radius-xs)) transition-colors duration-150"
             style={{ width: cellSize, height: cellSize, backgroundColor: palette[level] }}
           />
         );

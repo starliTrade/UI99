@@ -33,11 +33,11 @@ export function Progress({
   const percentage = Math.min(100, Math.max(0, (value / max) * 100));
 
   const variantColors = {
-    emerald: 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.35)]',
-    amber: 'bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.35)]',
-    rose: 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.35)]',
-    blue: 'bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.35)]',
-    purple: 'bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.35)]',
+    emerald: 'bg-emerald-500 shadow-(var(--glow-accent-md))',
+    amber: 'bg-amber-500 shadow-(var(--glow-warning-md))',
+    rose: 'bg-rose-500 shadow-(var(--glow-rose-md))',
+    blue: 'bg-blue-500 shadow-(var(--glow-accent-md))',
+    purple: 'bg-purple-500 shadow-(var(--glow-accent-md))',
   };
 
   const heights = {

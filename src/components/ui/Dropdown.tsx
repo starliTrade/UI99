@@ -168,8 +168,8 @@ export function Dropdown<T extends string = string>({
             transition={{ duration: 0.14 }}
             className={`absolute left-0 right-0 mt-1.5 p-1 rounded-2xl z-50 backdrop-blur-2xl shadow-xl overflow-hidden ${
               isDark
-                ? 'bg-(--bg-elevated)/95 border border-white/[0.07] shadow-[0_20px_40px_rgba(0,0,0,0.8)]'
-                : 'bg-white/95 border border-black/[0.06] shadow-[0_16px_36px_rgba(0,0,0,0.08)]'
+                ? 'bg-(--bg-elevated)/95 border border-white/[0.07] shadow-(var(--elevation-4))'
+                : 'bg-white/95 border border-black/[0.06] shadow-(var(--elevation-3))'
             }`}
           >
             <div className="max-h-60 overflow-y-auto no-scrollbar space-y-0.5">

@@ -100,8 +100,8 @@ export function SegmentedControl<T extends string = string>({
         fullWidth ? 'w-full flex' : 'inline-flex'
       } items-center rounded-full transition-all overflow-x-auto no-scrollbar scroll-smooth ${
         isDark
-          ? 'bg-(--bg-elevated) shadow-[inset_0_1px_0_0_rgba(255,255,255,0.045),0_8px_20px_rgba(0,0,0,0.45)] border border-white/[0.025]'
-          : 'bg-zinc-100/90 shadow-[inset_0_1px_1px_0_rgba(0,0,0,0.04)] border border-black/[0.04]'
+          ? 'bg-(--bg-elevated) shadow-(var(--rim-soft), var(--elevation-2)) border border-white/[0.025]'
+          : 'bg-zinc-100/90 shadow-(var(--rim-subtle)) border border-black/[0.04]'
       } ${padMap} ${className}`}
     >
       <div className={`flex items-center gap-1 min-w-max sm:min-w-0 ${fullWidth ? 'w-full' : ''}`}>
@@ -134,8 +134,8 @@ export function SegmentedControl<T extends string = string>({
                   layoutId={`segmented-pill-${options.map((o) => o.value).join('-')}`}
                   className={`absolute inset-0 rounded-full ${
                     isDark
-                      ? 'bg-white shadow-[0_2px_10px_rgba(255,255,255,0.15),0_2px_6px_rgba(0,0,0,0.4)]'
-                      : 'bg-white shadow-[0_1px_3px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.04)] border border-black/[0.04]'
+                      ? 'bg-white shadow-(var(--elevation-2))'
+                      : 'bg-white shadow-(var(--elevation-1)) border border-black/[0.04]'
                   }`}
                   transition={{ type: 'spring', stiffness: 500, damping: 38 }}
                 />

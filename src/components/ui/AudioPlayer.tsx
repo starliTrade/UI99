@@ -55,7 +55,7 @@ export function AudioPlayer({
       aria-label={`Audio player: ${title} by ${artist}`}
       className={cn(
         'p-4 rounded-3xl bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04]',
-        'shadow-[0_16px_36px_-8px_rgba(0,0,0,0.5)] flex flex-col gap-3 w-full max-w-md',
+        'shadow-(var(--elevation-3)) flex flex-col gap-3 w-full max-w-md',
         className
       )}
     >

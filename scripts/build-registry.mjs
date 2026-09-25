@@ -186,6 +186,18 @@ const CATALOG_FALLBACKS = {
       'useIsDark — DOM-observed theme hook so pasted components read the host .dark/.light class without any app context.',
     category: undefined, // headless hook — exempt from the category gate
   },
+  'nav-items': {
+    title: 'Navigation Model',
+    description:
+      'NAV_ITEMS — the product site’s single source of truth for primary destinations, their bilingual labels, and their intent. Consumed by the dock and guarded by the navigation test.',
+    category: undefined, // data module, not a rendered primitive
+  },
+  'token-lattice-hero': {
+    title: 'Token Lattice Hero',
+    description:
+      'Dependency-free canvas hero that reads its colours live from CSS custom properties, honours prefers-reduced-motion, and pauses when off-screen. The site’s one 3D moment.',
+    category: undefined, // site chrome, not a kit primitive
+  },
 };
 
 /**

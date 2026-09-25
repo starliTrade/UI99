@@ -46,7 +46,7 @@ export function Stepper({
               className={cn(
                 'flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-[11px] font-mono font-bold transition-all duration-200',
                 isDone &&
-                  'bg-emerald-500 text-white border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.35)]',
+                  'bg-emerald-500 text-white border-emerald-500 shadow-(var(--glow-accent-md))',
                 isCurrent &&
                   'bg-zinc-900 text-white border-zinc-900 dark:bg-(--text-primary) dark:text-(--text-on-fill) dark:border-(--text-primary) ring-4 ring-black/[0.04] dark:ring-white/[0.06]',
                 !isDone && !isCurrent &&

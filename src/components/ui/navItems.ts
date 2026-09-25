@@ -10,7 +10,15 @@
  * (Guides) → trust (Design).
  */
 
-import { NavTab } from '../../core/context/AppContext';
+/**
+ * The five product-site destinations, declared here as a standalone literal.
+ *
+ * Deliberately does NOT import NavTab from core/context: this file ships in the
+ * npm kit, and the registry would then register a dangling dependency on an
+ * app-only module. `AppContext` re-exports this type instead, so the two can
+ * never drift without a type error.
+ */
+export type NavTab = 'HOME' | 'UIKIT' | 'BLOCKS' | 'DOCS' | 'FOUNDATIONS';
 
 /** Job-to-be-done per destination — drives the copy and the ordering. */
 export interface NavItemDefinition {

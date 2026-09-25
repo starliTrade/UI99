@@ -37,7 +37,7 @@ const DialogContent = React.forwardRef<
         'fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 p-6 duration-200',
         'bg-white dark:bg-(--bg-elevated) text-(--text-primary)',
         'border border-black/[0.08] dark:border-white/[0.06] rounded-3xl',
-        'shadow-[0_24px_50px_rgba(0,0,0,0.14)] dark:shadow-[0_24px_60px_-10px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.04)]',
+        'shadow-(var(--elevation-4)) dark:shadow-(var(--rim-soft), var(--elevation-4))',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         className
       )}

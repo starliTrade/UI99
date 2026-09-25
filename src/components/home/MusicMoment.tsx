@@ -22,7 +22,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
     return (
       <div
         onClick={onCaptureMusic}
-        className="group relative p-5 rounded-[26px] cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03),0_12px_32px_rgba(0,0,0,0.6)] flex items-center justify-between"
+        className="group relative p-5 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(var(--rim-soft), var(--elevation-3)) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
           <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors">
@@ -53,7 +53,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
   return (
     <div
       onClick={() => onSelectObject(songObject)}
-      className="group relative p-5 sm:p-6 rounded-[28px] cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0F] border border-white/[0.025] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_18px_40px_-10px_rgba(0,0,0,0.7)] hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0F] border border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.06] select-none"
     >
       {/* Ambient background disc aura */}
       <div className="absolute top-0 left-0 w-48 h-48 bg-rose-500/[0.05] rounded-full blur-3xl pointer-events-none" />
@@ -78,13 +78,13 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
       {/* Media Player Showcase */}
       <div className="flex items-center gap-4 relative z-10">
         {/* Vinyl / Cover Art representation */}
-        <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#1E1C2E] via-[#12131C] to-[#0A0B10] border border-white/[0.08] shadow-[0_8px_20px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.15)] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
+        <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#1E1C2E] via-[#12131C] to-[#0A0B10] border border-white/[0.08] shadow-(var(--rim-soft), var(--elevation-2)) flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
             className="w-8 h-8 rounded-full border border-white/[0.1] flex items-center justify-center bg-black/40"
           >
-            <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shadow-[0_0_6px_rgba(244,63,94,0.8)]" />
+            <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shadow-(var(--glow-rose-sm))" />
           </motion.div>
         </div>
 

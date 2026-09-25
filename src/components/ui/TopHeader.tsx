@@ -50,7 +50,7 @@ export function TopHeader() {
           className="group inline-flex items-center gap-2.5 cursor-pointer focus-visible:outline-none transition-transform active:scale-[0.98]"
         >
           {/* Obsidian Jewel Geometric Emblem */}
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-xl bg-zinc-900 dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_4px_12px_rgba(0,0,0,0.5)] overflow-hidden transition-all group-hover:border-emerald-500/40 dark:group-hover:border-emerald-400/40">
+          <div className="relative flex items-center justify-center w-8 h-8 rounded-xl bg-zinc-900 dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.06] shadow-(var(--elevation-1)) dark:shadow-(var(--rim-soft), var(--elevation-2)) overflow-hidden transition-all group-hover:border-emerald-500/40 dark:group-hover:border-emerald-400/40">
             {/* Subtle internal emerald specular reflection */}
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
             
@@ -151,7 +151,7 @@ export function TopHeader() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.96 }}
                   transition={{ type: 'spring', stiffness: 440, damping: 32 }}
-                  className="absolute end-0 mt-2 w-56 rounded-2xl p-2 z-50 backdrop-blur-2xl bg-white/95 dark:bg-(--bg-card)/95 text-zinc-900 dark:text-white shadow-[0_16px_36px_rgba(0,0,0,0.12)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_20px_48px_rgba(0,0,0,0.85)] border border-zinc-200 dark:border-white/[0.03]"
+                  className="absolute end-0 mt-2 w-56 rounded-2xl p-2 z-50 backdrop-blur-2xl bg-white/95 dark:bg-(--bg-card)/95 text-zinc-900 dark:text-white shadow-(var(--elevation-3)) dark:shadow-(var(--rim-soft), var(--elevation-4)) border border-zinc-200 dark:border-white/[0.03]"
                 >
                   <div className="p-1.5 mb-1">
                     <span className="block text-[10px] font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1.5 px-1">

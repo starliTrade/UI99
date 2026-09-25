@@ -212,7 +212,7 @@ export function UniversalCaptureModal() {
                   onClick={() => setSelectedType(t.type)}
                   className={`px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer select-none active:scale-95 ${
                     isSelected
-                      ? 'bg-white text-[#09090B] shadow-[0_2px_10px_rgba(255,255,255,0.25)]'
+                      ? 'bg-white text-[#09090B] shadow-(var(--elevation-2))'
                       : 'bg-[#18181D] text-zinc-400 border border-white/[0.08] hover:text-white'
                   }`}
                 >

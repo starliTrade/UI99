@@ -32,7 +32,7 @@ export function ProgressInMotionCard({
     <motion.div
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2 }}
-      className="relative rounded-[26px] bg-[#12131A] border border-white/[0.045] p-6 overflow-hidden transition-all shadow-[0_8px_32px_-4px_rgba(0,0,0,0.45)] hover:border-white/[0.07] select-none"
+      className="relative rounded-(var(--radius-xl)) bg-[#12131A] border border-white/[0.045] p-6 overflow-hidden transition-all shadow-(var(--elevation-2)) hover:border-white/[0.07] select-none"
     >
       {/* Top Row: Icon, Title & Status Pill */}
       <div className="flex items-start justify-between gap-3 mb-2">
@@ -70,7 +70,7 @@ export function ProgressInMotionCard({
               key={idx}
               className={`h-4.5 w-2 rounded-full transition-all duration-300 ${
                 isFilled
-                  ? 'bg-emerald-400/90 shadow-[0_0_8px_rgba(52,211,153,0.3)]'
+                  ? 'bg-emerald-400/90 shadow-(var(--glow-accent-sm))'
                   : 'bg-white/[0.05]'
               }`}
             />

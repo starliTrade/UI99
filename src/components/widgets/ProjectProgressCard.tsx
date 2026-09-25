@@ -43,10 +43,10 @@ export function ProjectProgressCard({
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ duration: 0.25 }}
-      className={`relative rounded-[28px] p-6 overflow-hidden transition-all select-none group ${
+      className={`relative rounded-(var(--radius-xl)) p-6 overflow-hidden transition-all select-none group ${
         isDark
-          ? 'bg-[#0B0C11] card-aura-emerald shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),inset_0_0_0_1px_rgba(255,255,255,0.03),0_20px_44px_-10px_rgba(0,0,0,0.7)] hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_24px_50px_-10px_rgba(0,0,0,0.85)]'
-          : 'bg-white card-aura-emerald shadow-[inset_0_1px_0_0_rgba(255,255,255,1),0_8px_24px_rgba(0,0,0,0.04)] border border-black/[0.045] hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)]'
+          ? 'bg-[#0B0C11] card-aura-emerald shadow-(var(--rim-soft), var(--elevation-4)) hover:shadow-(var(--rim-soft), var(--elevation-4))'
+          : 'bg-white card-aura-emerald shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.045] hover:shadow-(var(--elevation-3))'
       }`}
     >
       {/* Top-Right Emerald Light Beam */}
@@ -100,10 +100,10 @@ export function ProjectProgressCard({
       </div>
 
       {/* Luminous Capsule Progress Track with Embedded Due Date */}
-      <div className={`my-4 relative w-full h-11 rounded-full overflow-hidden p-1 flex items-center shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)] relative z-10 ${isDark ? 'bg-black/40' : 'bg-black/[0.06]'}`}>
+      <div className={`my-4 relative w-full h-11 rounded-full overflow-hidden p-1 flex items-center shadow-(var(--elevation-2)) relative z-10 ${isDark ? 'bg-black/40' : 'bg-black/[0.06]'}`}>
         {/* Harmonious Gradient Filled Pill */}
         <div
-          className="h-full rounded-full bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300 shadow-[0_0_18px_rgba(52,211,153,0.5)] transition-all duration-700 ease-out"
+          className="h-full rounded-full bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300 shadow-(var(--glow-accent-lg)) transition-all duration-700 ease-out"
           style={{ width: `${progress}%` }}
         />
 
@@ -125,7 +125,7 @@ export function ProjectProgressCard({
                 key={i}
                 src={src}
                 alt="Collaborator"
-                className={`w-8 h-8 rounded-[10px] object-cover ring-1 ${isDark ? 'ring-white/15' : 'ring-black/10'}`}
+                className={`w-8 h-8 rounded-(var(--radius-sm)) object-cover ring-1 ${isDark ? 'ring-white/15' : 'ring-black/10'}`}
               />
             ))}
           </div>
@@ -137,8 +137,8 @@ export function ProjectProgressCard({
           onClick={onClick || (() => openCapture(ObjectType.PROJECT))}
           className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold cursor-pointer transition-all active:scale-95 ${
             isDark
-              ? 'bg-white/[0.08] hover:bg-white/[0.14] text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]'
-              : 'bg-black/[0.05] hover:bg-black/[0.08] text-[#111116] shadow-[0_2px_8px_rgba(0,0,0,0.04)]'
+              ? 'bg-white/[0.08] hover:bg-white/[0.14] text-white shadow-(var(--rim-soft), var(--elevation-1))'
+              : 'bg-black/[0.05] hover:bg-black/[0.08] text-[#111116] shadow-(var(--elevation-1))'
           }`}
         >
           <span>More details</span>

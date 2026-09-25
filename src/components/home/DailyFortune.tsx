@@ -28,7 +28,7 @@ export function DailyFortune() {
   return (
     <div
       onClick={() => setIsRevealed(!isRevealed)}
-      className="group relative p-5 sm:p-6 rounded-[28px] cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0F] border border-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_18px_40px_-10px_rgba(0,0,0,0.7)] hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0F] border border-white/[0.03] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.06] select-none"
     >
       {/* Celestial Background Nebula Glow */}
       <div className="absolute top-0 right-0 w-44 h-44 bg-violet-600/[0.08] rounded-full blur-3xl pointer-events-none" />
@@ -72,7 +72,7 @@ export function DailyFortune() {
               exit={{ opacity: 0, scale: 0.96 }}
               className="w-full py-4 text-center flex flex-col items-center justify-center gap-2"
             >
-              <div className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.06] flex items-center justify-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] group-hover:scale-105 transition-transform text-violet-300">
+              <div className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.06] flex items-center justify-center shadow-(var(--rim-strong)) group-hover:scale-105 transition-transform text-violet-300">
                 <Sparkles className="w-4 h-4 fill-current" />
               </div>
               <p className="text-xs font-medium text-[#EDEDEF] tracking-wide">

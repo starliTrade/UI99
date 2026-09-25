@@ -919,7 +919,7 @@ export function DocsView() {
                   <div className="space-y-4">
                     {/* Live Playground Stage */}
                     <div
-                      className="mx-auto rounded-2xl sm:rounded-3xl border border-black/[0.08] dark:border-white/[0.04] bg-zinc-50 dark:bg-[#07080C] p-4 sm:p-8 md:p-12 min-h-[260px] sm:min-h-[320px] flex items-center justify-center relative overflow-hidden transition-all duration-300 shadow-[0_18px_40px_-10px_rgba(0,0,0,0.5)]"
+                      className="mx-auto rounded-2xl sm:rounded-3xl border border-black/[0.08] dark:border-white/[0.04] bg-zinc-50 dark:bg-[#07080C] p-4 sm:p-8 md:p-12 min-h-[260px] sm:min-h-[320px] flex items-center justify-center relative overflow-hidden transition-all duration-300 shadow-(var(--elevation-3))"
                       style={{ maxWidth: viewportWidth }}
                     >
                       {/* Sub-pixel top rim specular highlight */}

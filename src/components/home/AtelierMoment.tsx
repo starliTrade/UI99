@@ -28,7 +28,7 @@ export function AtelierMoment({
     return (
       <div
         onClick={onNewDesign}
-        className="group relative p-6 rounded-[28px] cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03),0_12px_32px_rgba(0,0,0,0.6)]"
+        className="group relative p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(var(--rim-soft), var(--elevation-3))"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3.5">
@@ -60,7 +60,7 @@ export function AtelierMoment({
   return (
     <div
       onClick={() => onSelectObject(atelierProject)}
-      className="group relative p-5 sm:p-6 rounded-[30px] cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0E] border border-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_20px_48px_-12px_rgba(0,0,0,0.75)] hover:border-white/[0.07] select-none"
+      className="group relative p-5 sm:p-6 rounded-(var(--radius-2xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0E] border border-white/[0.03] shadow-(var(--rim-soft), var(--elevation-4)) hover:border-white/[0.07] select-none"
     >
       {/* Warm Ambient Amber/Bronze Aura */}
       <div className="absolute top-0 right-0 w-60 h-60 bg-amber-600/[0.07] rounded-full blur-3xl pointer-events-none" />

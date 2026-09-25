@@ -22,7 +22,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
     return (
       <div
         onClick={onAddBook}
-        className="group relative p-5 rounded-[26px] cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03),0_12px_32px_rgba(0,0,0,0.6)] flex items-center justify-between"
+        className="group relative p-5 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(var(--rim-soft), var(--elevation-3)) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
           <div className="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
@@ -49,7 +49,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
   return (
     <div
       onClick={() => onSelectBook(bookObject)}
-      className="group relative p-5 sm:p-6 rounded-[28px] cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.025] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.035),0_18px_40px_-10px_rgba(0,0,0,0.7)] hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.06] select-none"
     >
       {/* Sapphire/Blue Ambient Aura */}
       <div className="absolute top-0 right-0 w-44 h-44 bg-blue-500/[0.05] rounded-full blur-3xl pointer-events-none" />
@@ -72,7 +72,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
 
       {/* Book Metadata */}
       <div className="flex items-start gap-4 relative z-10">
-        <div className="w-12 h-16 rounded-xl bg-gradient-to-br from-[#1E2235] via-[#10131F] to-[#0A0B10] border border-white/[0.08] shadow-[0_6px_16px_rgba(0,0,0,0.6)] flex items-center justify-center shrink-0">
+        <div className="w-12 h-16 rounded-xl bg-gradient-to-br from-[#1E2235] via-[#10131F] to-[#0A0B10] border border-white/[0.08] shadow-(var(--elevation-2)) flex items-center justify-center shrink-0">
           <Bookmark className="w-5 h-5 text-blue-300" />
         </div>
 

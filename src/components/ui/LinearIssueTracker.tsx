@@ -620,7 +620,7 @@ export function LinearIssueTracker() {
                 }}
                 className={`group relative px-4 py-3 sm:px-5 sm:py-3.5 flex items-center justify-between gap-3 transition-colors cursor-pointer select-none ${
                   isCursorActive
-                    ? 'bg-zinc-100/70 dark:bg-white/[0.035] shadow-[inset_2px_0_0_0_#10B981]'
+                    ? 'bg-zinc-100/70 dark:bg-white/[0.035] shadow-(var(--accent-bar))'
                     : issue.completed
                     ? 'bg-zinc-50/40 dark:bg-white/[0.008]'
                     : 'hover:bg-zinc-50 dark:hover:bg-white/[0.015]'

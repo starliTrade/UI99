@@ -79,7 +79,7 @@ export function ExecutionSection({
       {focusObject && (
         <div
           onClick={() => onSelectObject(focusObject)}
-          className="group relative p-5 sm:p-6 rounded-[28px] cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_18px_40px_-10px_rgba(0,0,0,0.7)] hover:border-white/[0.07]"
+          className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.03] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.07]"
         >
           {/* Subtle amber aura */}
           <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/[0.05] rounded-full blur-3xl pointer-events-none" />
@@ -115,7 +115,7 @@ export function ExecutionSection({
           {focusObject.metadata?.progress !== undefined && (
             <div className="w-full h-1.5 rounded-full overflow-hidden p-0.5 bg-black/50 mb-3.5">
               <div
-                className="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 rounded-full transition-all duration-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]"
+                className="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 rounded-full transition-all duration-500 shadow-(var(--glow-warning-md))"
                 style={{ width: `${focusObject.metadata.progress}%` }}
               />
             </div>
@@ -237,7 +237,7 @@ export function ExecutionSection({
                     <button
                       type="button"
                       onClick={(e) => onIncrementHabit(habit, e)}
-                      className="w-6 h-6 rounded-full bg-orange-500/15 hover:bg-orange-500/25 text-orange-400 flex items-center justify-center shrink-0 transition-transform active:scale-90 border border-orange-500/20 shadow-[0_0_6px_rgba(249,115,22,0.25)] cursor-pointer"
+                      className="w-6 h-6 rounded-full bg-orange-500/15 hover:bg-orange-500/25 text-orange-400 flex items-center justify-center shrink-0 transition-transform active:scale-90 border border-orange-500/20 shadow-(var(--glow-warning-sm)) cursor-pointer"
                       title="Check-in habit ritual"
                     >
                       <Flame className="w-3.5 h-3.5 fill-current" />

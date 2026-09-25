@@ -64,7 +64,7 @@ export function Slider({
         >
           {/* Active filled track */}
           <div
-            className="h-full bg-emerald-500 rounded-full transition-all duration-75 shadow-[0_0_8px_rgba(16,185,129,0.35)] slider-fill"
+            className="h-full bg-emerald-500 rounded-full transition-all duration-75 shadow-(var(--glow-accent-sm)) slider-fill"
             style={{ width: `${percentage}%` }}
           />
         </div>
@@ -87,8 +87,8 @@ export function Slider({
         <div
           className={`absolute pointer-events-none w-4 h-4 rounded-full -translate-x-1/2 shadow-md transition-transform duration-75 slider-thumb ${
             isDark
-              ? 'bg-white border-2 border-(--bg-elevated) shadow-[0_2px_8px_rgba(0,0,0,0.5)]'
-              : 'bg-white border-2 border-emerald-500 shadow-[0_2px_8px_rgba(0,0,0,0.15)]'
+              ? 'bg-white border-2 border-(--bg-elevated) shadow-(var(--elevation-1))'
+              : 'bg-white border-2 border-emerald-500 shadow-(var(--elevation-1))'
           }`}
           style={{ left: `${percentage}%`, ['--thumb-pos' as string]: `${100 - percentage}%` }}
         />

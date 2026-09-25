@@ -273,7 +273,7 @@ function PricingPlansBlock() {
             key={plan.name}
             className={`relative flex flex-col justify-between ${
               plan.highlight
-                ? 'border-emerald-500/30 bg-[#0E0E14] shadow-[0_20px_48px_-12px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/20'
+                ? 'border-emerald-500/30 bg-[#0E0E14] shadow-(var(--elevation-4)) ring-1 ring-emerald-500/20'
                 : 'bg-[#0B0C11]'
             }`}
           >
