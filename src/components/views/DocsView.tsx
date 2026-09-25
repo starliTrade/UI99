@@ -50,6 +50,8 @@ import {
   X,
   RefreshCw,
   Folder,
+  Bold,
+  Calendar,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
 import { REGISTRY_COMPONENTS, ComponentRegistryItem } from '../../registry/registryData';
@@ -132,6 +134,113 @@ import {
   DataTable,
   MetricCard,
   Spinner,
+  // Wave completions: live previews for every remaining registry element
+  ActivityFeed,
+  AlertDialog as AlertDialogRoot,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AspectRatio,
+  BottomNavigation,
+  Breadcrumb,
+  Carousel,
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+  Combobox as ComboboxPrimitive,
+  CommandBar,
+  CommandAction,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  Confetti as ConfettiPrimitive,
+  Dialog as DialogRoot,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  Dropdown,
+  EmptyPlaceholder as EmptyPlaceholderPrimitive,
+  FileUpload,
+  FormField,
+  FormHint,
+  FormError,
+  HeatMapCalendar,
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+  KeyboardShortcutsDialog,
+  Label,
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarShortcut,
+  MeterBar,
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  NumberField as NumberFieldPrimitive,
+  OTPInput as OTPInputPrimitive,
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  Popover as PopoverRoot,
+  PopoverTrigger,
+  PopoverContent,
+  RadioGroup,
+  RadioGroupItem,
+  Rating as RatingPrimitive,
+  RichTextEditorBar as RichTextEditorBarPrimitive,
+  ScrollArea,
+  SearchBar as SearchBarPrimitive,
+  Separator,
+  Sheet as SheetDemoRoot,
+  SheetTrigger as SheetDemoTrigger,
+  SheetContent as SheetDemoContent,
+  SheetHeader as SheetDemoHeader,
+  SheetTitle as SheetDemoTitle,
+  SheetDescription as SheetDemoDescription,
+  SidebarProvider,
+  Sidebar,
+  SidebarHeader,
+  SidebarBody,
+  SidebarItem,
+  Skeleton,
+  Swatch,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  TagInput as TagInputPrimitive,
+  Textarea,
+  TimePicker as TimePickerPrimitive,
+  Timeline,
+  TimelineItem,
+  Toggle,
+  ToggleGroup,
+  ToggleGroupItem,
+  TopHeader,
+  TourGuide as TourGuidePrimitive,
 } from '../ui';
 
 type DocGuideSection =
@@ -144,6 +253,29 @@ type DocGuideSection =
 
 type PackageManager = 'pnpm' | 'npm' | 'yarn' | 'bun';
 type ViewportSize = '100%' | '768px' | '375px';
+
+// Registry ids that ship a dedicated live preview in the DocsView stage above.
+// The generic fallback card renders for anything NOT in this set — keep this in
+// sync when adding registry element #100+ so it doesn't fall through silently.
+const LIVE_PREVIEW_IDS = new Set<string>([
+  'button', 'icon-button', 'copy-button', 'toggle', 'toggle-group', 'tag',
+  'kbd', 'avatar', 'avatar-stack', 'swatch', 'input', 'textarea',
+  'search-bar', 'password-input', 'number-field', 'otp-input', 'color-picker', 'date-picker',
+  'time-picker', 'combobox', 'dropdown', 'slider', 'file-upload', 'rich-text-editor-bar',
+  'signature-pad', 'rating', 'tag-input', 'label', 'form-field', 'field-error',
+  'switch', 'checkbox', 'radio-group', 'segmented-control', 'aspect-ratio', 'collapsible',
+  'badge', 'stat-tile', 'trend-delta', 'sparkline', 'donut-ring', 'heat-map-calendar',
+  'meter-bar', 'progress', 'skeleton', 'table', 'pagination', 'tree-view',
+  'timeline', 'stepper', 'code-block', 'carousel', 'diff-viewer', 'kanban-board',
+  'calendar-view', 'audio-player', 'dialog', 'alert-dialog', 'sheet', 'popover',
+  'dropdown-menu', 'tooltip', 'hover-card', 'menubar', 'navigation-menu', 'command',
+  'command-bar', 'keyboard-shortcuts-dialog', 'tour-guide', 'confetti', 'toast', 'banner',
+  'alert', 'empty-placeholder', 'card', 'separator', 'scroll-area', 'sidebar',
+  'tabs', 'accordion', 'breadcrumb', 'bottom-navigation', 'top-header', 'linear-issue-tracker',
+  'terminal-emulator', 'activity-feed', 'ui99-wordmark', 'split-button', 'floating-action-button', 'link-button',
+  'dropdown-button', 'pin-input', 'currency-input', 'date-range-picker', 'range-slider', 'checkbox-group',
+  'data-table', 'metric-card', 'spinner',
+]);
 
 export function DocsView() {
   const { themeMode, addToast, setCurrentTab } = useApp();
@@ -187,6 +319,14 @@ export function DocsView() {
   const [demoTimePickerValue, setDemoTimePickerValue] = useState('09:41');
   const [demoComboboxValue, setDemoComboboxValue] = useState('linear');
   const [demoNumberValue, setDemoNumberValue] = useState(42);
+  const [demoDropdownValue, setDemoDropdownValue] = useState<'dark' | 'light' | 'system'>('dark');
+  const [demoToggleOn, setDemoToggleOn] = useState(true);
+  const [demoToggleGroup, setDemoToggleGroup] = useState('day');
+  const [demoSearchValue, setDemoSearchValue] = useState('');
+  const [demoTextareaValue, setDemoTextareaValue] = useState('');
+  const [demoConfettiActive, setDemoConfettiActive] = useState(false);
+  const [demoShortcutsOpen, setDemoShortcutsOpen] = useState(false);
+  const [demoCommandOpen, setDemoCommandOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   // Copy helper with animated toast
@@ -1366,16 +1506,673 @@ export function DocsView() {
                           </div>
                         )}
 
-                        {/* General showcase fallback for any other registered element */}
-                        {![
-                          'button', 'badge', 'input', 'switch', 'card', 'dropdown', 'slider',
-                          'tabs', 'kbd', 'checkbox', 'linear-issue-tracker', 'ui99-brand-logo',
-                          'dropdown-menu', 'tooltip', 'accordion', 'segmented-control', 'color-picker',
-                          'password-input', 'terminal-emulator', 'kanban-board', 'diff-viewer',
-                          'tree-view', 'calendar-view', 'audio-player', 'icon-button', 'copy-button',
-                          'stat-tile', 'trend-delta', 'sparkline', 'donut-ring', 'stepper', 'banner',
-                          'alert', 'ui99-wordmark'
-                        ].includes(activeComponent.id) && (
+                        {/* ── Wave completions: live previews for every remaining registry element ── */}
+
+                        {activeComponent.id === 'activity-feed' && (
+                          <div className="w-full max-w-md">
+                            <ActivityFeed
+                              events={[
+                                { id: 'a1', actor: { name: 'Aria' }, action: 'committed', target: 'tokens/ui99.css', timestamp: '2m ago', details: 'feat: rose-intent token sweep' },
+                                { id: 'a2', actor: { name: 'Safa' }, action: 'resolved', target: 'UI-482', timestamp: '18m ago', details: 'Contrast gate: amber 600 → 700' },
+                                { id: 'a3', actor: { name: 'Nova' }, action: 'commented', target: 'PR #99', timestamp: '1h ago', details: 'Specular rim looks perfect now.' },
+                                { id: 'a4', actor: { name: 'Kian' }, action: 'created', target: 'Milestone v1.0', timestamp: '3h ago' },
+                              ]}
+                            />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'alert-dialog' && (
+                          <AlertDialogRoot>
+                            <AlertDialogTrigger asChild>
+                              <Button variant="destructive">Delete workspace</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Delete this workspace?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  All objects, relationships and token snapshots will be permanently removed. This action cannot be undone.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction variant="destructive">Delete forever</AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialogRoot>
+                        )}
+
+                        {activeComponent.id === 'aspect-ratio' && (
+                          <div className="w-full max-w-sm">
+                            <AspectRatio ratio={16 / 9}>
+                              <div className="w-full h-full rounded-2xl bg-gradient-to-br from-emerald-500/25 via-emerald-500/10 to-transparent border border-emerald-500/20 flex items-center justify-center">
+                                <span className="text-xs font-mono text-emerald-300">16 : 9 · locked</span>
+                              </div>
+                            </AspectRatio>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'avatar' && (
+                          <div className="flex flex-wrap items-center justify-center gap-5">
+                            <Avatar name="Aria" size="xs" />
+                            <Avatar name="Safa" size="sm" status="online" />
+                            <Avatar name="Nova" size="md" status="online" />
+                            <Avatar name="Kian" size="lg" status="offline" />
+                            <Avatar src="https://i.pravatar.cc/96?img=32" alt="Rana" size="md" />
+                            <span className="text-[11px] font-mono text-zinc-500">xs → lg · fallback initials · status dot</span>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'avatar-stack' && (
+                          <div className="flex flex-col items-center gap-4">
+                            <AvatarStack names={['Aria', 'Safa', 'Nova', 'Kian', 'Rana', 'Omid']} size="md" />
+                            <AvatarStack names={['Aria', 'Safa', 'Nova', 'Kian']} size="sm" max={3} />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'bottom-navigation' && (
+                          <div className="w-full max-w-sm">
+                            <BottomNavigation />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'breadcrumb' && (
+                          <Breadcrumb
+                            items={[
+                              { label: 'Design System', href: '#' },
+                              { label: 'Components', href: '#' },
+                              { label: 'Breadcrumb', href: '#', active: true },
+                            ]}
+                          />
+                        )}
+
+                        {activeComponent.id === 'carousel' && (
+                          <div className="w-full max-w-md">
+                            <Carousel label="Token highlights">
+                              {[
+                                { name: 'Obsidian', hex: '#06070A' },
+                                { name: 'Velvet', hex: '#0B0C11' },
+                                { name: 'Emerald', hex: '#10B981' },
+                                { name: 'Rose Intent', hex: '#F43F5E' },
+                              ].map((c) => (
+                                <div
+                                  key={c.name}
+                                  className="h-40 rounded-2xl border border-white/[0.06] flex flex-col items-center justify-center gap-2"
+                                  style={{ background: `linear-gradient(160deg, ${c.hex} 0%, #0B0C11 130%)` }}
+                                >
+                                  <span className="text-sm font-semibold text-white">{c.name}</span>
+                                  <span className="text-xs font-mono text-white/45">{c.hex}</span>
+                                </div>
+                              ))}
+                            </Carousel>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'code-block' && (
+                          <div className="w-full max-w-lg">
+                            <CodeBlock
+                              filename="tokens.ts"
+                              language="ts"
+                              code={`import { tokens } from '@99/ui';\n\nexport const surface = tokens.bg.surface;\n// → rgba(14, 14, 19, 0.52)`}
+                              showLineNumbers
+                            />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'collapsible' && (
+                          <div className="w-full max-w-md">
+                            <Collapsible>
+                              <CollapsibleTrigger asChild>
+                                <Button variant="outline" size="sm">Design principles</Button>
+                              </CollapsibleTrigger>
+                              <CollapsibleContent>
+                                <div className="mt-3 p-4 rounded-2xl bg-white/[0.02] border border-white/[0.04] text-xs text-zinc-400 leading-relaxed">
+                                  Velvet surfaces over hard slabs · hairline borders · specular rim highlights ·
+                                  every state derived from tokens, never hand-picked.
+                                </div>
+                              </CollapsibleContent>
+                            </Collapsible>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'combobox' && (
+                          <div className="w-full max-w-sm">
+                            <ComboboxPrimitive
+                              options={[
+                                { value: 'linear', label: 'Linear' },
+                                { value: 'shadcn', label: 'shadcn/ui' },
+                                { value: 'daisyui', label: 'daisyUI' },
+                                { value: 'ui99', label: 'UI99' },
+                              ]}
+                              value={demoComboboxValue}
+                              onChange={(v) => setDemoComboboxValue(v ?? 'linear')}
+                              placeholder="Pick a design system…"
+                            />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'command' && (
+                          <>
+                            <Button
+                              variant="secondary"
+                              onClick={() => setDemoCommandOpen(true)}
+                              icon={<Search className="w-4 h-4" />}
+                            >
+                              Open command palette <Kbd>⌘K</Kbd>
+                            </Button>
+                            <CommandDialog open={demoCommandOpen} onOpenChange={setDemoCommandOpen}>
+                              <CommandInput placeholder="Type a command or search…" />
+                              <CommandList>
+                                <CommandEmpty>No results found.</CommandEmpty>
+                                <CommandGroup heading="Suggestions">
+                                  <CommandItem>
+                                    <Calendar className="mr-2 h-4 w-4" /> Calendar
+                                  </CommandItem>
+                                  <CommandItem>
+                                    <Sparkles className="mr-2 h-4 w-4" /> Launch workflow
+                                  </CommandItem>
+                                  <CommandItem>
+                                    <Palette className="mr-2 h-4 w-4" /> Export tokens
+                                  </CommandItem>
+                                </CommandGroup>
+                              </CommandList>
+                            </CommandDialog>
+                          </>
+                        )}
+
+                        {activeComponent.id === 'command-bar' && (
+                          <div className="w-full max-w-md">
+                            <CommandBar leading={<Search className="w-4 h-4 text-zinc-500" />}>
+                              <CommandAction keys={['⌘', 'K']}>Command palette</CommandAction>
+                              <CommandAction keys={['⌘', 'B']} active>Toggle sidebar</CommandAction>
+                              <CommandAction keys={['G', 'D']}>Go to dashboard</CommandAction>
+                            </CommandBar>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'confetti' && (
+                          <div className="flex flex-col items-center gap-4">
+                            <ConfettiPrimitive active={demoConfettiActive} particleCount={90} durationMs={2200} onComplete={() => setDemoConfettiActive(false)} />
+                            <Button variant="success" onClick={() => setDemoConfettiActive(true)}>
+                              <Sparkles className="w-4 h-4" /> Celebrate
+                            </Button>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'date-picker' && (
+                          <div className="w-full max-w-sm">
+                            <DatePicker value={demoDatePickerValue} onChange={(iso) => setDemoDatePickerValue(iso ?? '2026-09-24')} />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'dialog' && (
+                          <DialogRoot>
+                            <DialogTrigger asChild>
+                              <Button variant="primary">Open dialog</Button>
+                            </DialogTrigger>
+                            <DialogContent>
+                              <DialogHeader>
+                                <DialogTitle>Velvet Obsidian Engine</DialogTitle>
+                                <DialogDescription>
+                                  Tokens, focus rings and state layers are the single source of truth. Edit once — every surface follows.
+                                </DialogDescription>
+                              </DialogHeader>
+                              <div className="flex justify-end gap-2 pt-2">
+                                <Button variant="secondary" size="sm">Later</Button>
+                                <Button variant="primary" size="sm">Adopt tokens</Button>
+                              </div>
+                            </DialogContent>
+                          </DialogRoot>
+                        )}
+
+                        {activeComponent.id === 'dropdown' && (
+                          <div className="w-full max-w-xs">
+                            <Dropdown
+                              options={[
+                                { value: 'dark', label: 'Obsidian Dark' },
+                                { value: 'light', label: 'Porcelain Light' },
+                                { value: 'system', label: 'Match system' },
+                              ]}
+                              value={demoDropdownValue}
+                              onChange={(v) => setDemoDropdownValue(v)}
+                              label="Theme"
+                            />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'empty-placeholder' && (
+                          <div className="w-full max-w-md">
+                            <EmptyPlaceholderPrimitive
+                              icon={<Compass className="w-6 h-6" />}
+                              title="No objects yet"
+                              description="Capture your first thought, link or decision — UI99 will classify and file it automatically."
+                              actionLabel="New object"
+                              onAction={() => addToast('Create object opened', 'info')}
+                              shortcut="⌘N"
+                            />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'file-upload' && (
+                          <div className="w-full max-w-md">
+                            <FileUpload
+                              label="Drop design tokens or click to browse"
+                              multiple
+                              onFilesSelected={(files) => addToast(`${files.length} file(s) selected`, 'success')}
+                            />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'field-error' && (
+                          <div className="w-full max-w-sm">
+                            <FormField label="Workspace name" htmlFor="demo-ws" required error="A workspace name is required.">
+                              <Input id="demo-ws" value="" placeholder="Required field" />
+                            </FormField>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'form-field' && (
+                          <div className="w-full max-w-sm">
+                            <FormField label="Display name" htmlFor="demo-ff" hint="Shown on your public profile. Max 32 characters.">
+                              <Input id="demo-ff" defaultValue="Aria Velvet" />
+                            </FormField>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'heat-map-calendar' && (
+                          <div className="w-full max-w-md">
+                            <HeatMapCalendar
+                              weeks={16}
+                              color="emerald"
+                              label="Design velocity"
+                              data={Array.from({ length: 16 * 7 }, (_, i) =>
+                                [0, 1, 2, 3, 5, 8, 11][i % 7] + (i % 13 === 0 ? 4 : 0)
+                              )}
+                            />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'hover-card' && (
+                          <HoverCard>
+                            <HoverCardTrigger asChild>
+                              <Button variant="ghost">@ui99</Button>
+                            </HoverCardTrigger>
+                            <HoverCardContent>
+                              <div className="space-y-1.5">
+                                <p className="text-sm font-semibold text-white">UI99 Design System</p>
+                                <p className="text-xs text-zinc-400">Velvet-obsidian React kit · WCAG 2.2 audited · RTL-first.</p>
+                              </div>
+                            </HoverCardContent>
+                          </HoverCard>
+                        )}
+
+                        {activeComponent.id === 'keyboard-shortcuts-dialog' && (
+                          <>
+                            <Button variant="secondary" onClick={() => setDemoShortcutsOpen(true)}>
+                              View shortcuts <Kbd>⌘/</Kbd>
+                            </Button>
+                            <KeyboardShortcutsDialog
+                              open={demoShortcutsOpen}
+                              onOpenChange={setDemoShortcutsOpen}
+                              groups={[
+                                {
+                                  category: 'Navigation',
+                                  shortcuts: [
+                                    { description: 'Command palette', keys: ['⌘', 'K'] },
+                                    { description: 'Toggle sidebar', keys: ['⌘', 'B'] },
+                                  ],
+                                },
+                                {
+                                  category: 'Objects',
+                                  shortcuts: [
+                                    { description: 'New object', keys: ['⌘', 'N'] },
+                                    { description: 'Quick search', keys: ['⌘', 'P'] },
+                                  ],
+                                },
+                              ]}
+                            />
+                          </>
+                        )}
+
+                        {activeComponent.id === 'label' && (
+                          <div className="flex flex-col gap-2 items-start">
+                            <Label htmlFor="demo-label-input">Email address</Label>
+                            <Input id="demo-label-input" placeholder="aria@ui99.dev" className="max-w-xs" />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'menubar' && (
+                          <Menubar>
+                            <MenubarMenu>
+                              <MenubarTrigger>File</MenubarTrigger>
+                              <MenubarContent>
+                                <MenubarItem>New object <MenubarShortcut>⌘N</MenubarShortcut></MenubarItem>
+                                <MenubarItem>Export <MenubarShortcut>⌘E</MenubarShortcut></MenubarItem>
+                                <MenubarSeparator />
+                                <MenubarItem className="text-rose-400">Delete…</MenubarItem>
+                              </MenubarContent>
+                            </MenubarMenu>
+                            <MenubarMenu>
+                              <MenubarTrigger>View</MenubarTrigger>
+                              <MenubarContent>
+                                <MenubarItem>Tokens</MenubarItem>
+                                <MenubarItem>Registry</MenubarItem>
+                              </MenubarContent>
+                            </MenubarMenu>
+                          </Menubar>
+                        )}
+
+                        {activeComponent.id === 'meter-bar' && (
+                          <div className="w-full max-w-md space-y-4">
+                            <MeterBar label="Contrast AAA" value={96} low={60} high={85} optimum={92} showValue />
+                            <MeterBar label="Bundle budget" value={71} low={50} high={80} optimum={65} showValue />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'navigation-menu' && (
+                          <NavigationMenu>
+                            <NavigationMenuList>
+                              <NavigationMenuItem>
+                                <NavigationMenuTrigger>Foundations</NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                  <div className="grid w-[320px] gap-2 p-4">
+                                    <NavigationMenuLink href="#">Color psychology</NavigationMenuLink>
+                                    <NavigationMenuLink href="#">Elevation & surfaces</NavigationMenuLink>
+                                    <NavigationMenuLink href="#">Motion system</NavigationMenuLink>
+                                  </div>
+                                </NavigationMenuContent>
+                              </NavigationMenuItem>
+                              <NavigationMenuItem>
+                                <NavigationMenuLink href="#">Registry</NavigationMenuLink>
+                              </NavigationMenuItem>
+                            </NavigationMenuList>
+                          </NavigationMenu>
+                        )}
+
+                        {activeComponent.id === 'number-field' && (
+                          <div className="w-full max-w-xs">
+                            <NumberFieldPrimitive
+                              value={demoNumberValue}
+                              onChange={setDemoNumberValue}
+                              min={0}
+                              max={99}
+                              step={1}
+                              label="Opacity"
+                              suffix="%"
+                            />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'otp-input' && (
+                          <div className="flex flex-col items-center gap-4">
+                            <OTPInputPrimitive value={demoOtpValue} onChange={setDemoOtpValue} length={6} />
+                            <p className="text-xs font-mono text-zinc-500">value: {demoOtpValue || '—'}</p>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'pagination' && (
+                          <Pagination>
+                            <PaginationContent>
+                              <PaginationItem>
+                                <PaginationPrevious href="#" />
+                              </PaginationItem>
+                              <PaginationItem><PaginationLink href="#" isActive>1</PaginationLink></PaginationItem>
+                              <PaginationItem><PaginationLink href="#">2</PaginationLink></PaginationItem>
+                              <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
+                              <PaginationItem>
+                                <PaginationNext href="#" />
+                              </PaginationItem>
+                            </PaginationContent>
+                          </Pagination>
+                        )}
+
+                        {activeComponent.id === 'popover' && (
+                          <PopoverRoot>
+                            <PopoverTrigger asChild>
+                              <Button variant="outline">Token details</Button>
+                            </PopoverTrigger>
+                            <PopoverContent>
+                              <div className="space-y-2">
+                                <p className="text-sm font-semibold text-white">--bg-surface</p>
+                                <p className="text-xs font-mono text-emerald-300">rgba(14, 14, 19, 0.52)</p>
+                                <p className="text-xs text-zinc-400">Dock base · blur(18px) saturate(170%)</p>
+                              </div>
+                            </PopoverContent>
+                          </PopoverRoot>
+                        )}
+
+                        {activeComponent.id === 'radio-group' && (
+                          <RadioGroup defaultValue="velvet" className="gap-3">
+                            <div className="flex items-center gap-2">
+                              <RadioGroupItem value="velvet" id="rg-velvet" />
+                              <Label htmlFor="rg-velvet">Velvet Obsidian</Label>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <RadioGroupItem value="porcelain" id="rg-porcelain" />
+                              <Label htmlFor="rg-porcelain">Porcelain Light</Label>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <RadioGroupItem value="system" id="rg-system" disabled />
+                              <Label htmlFor="rg-system">System (soon)</Label>
+                            </div>
+                          </RadioGroup>
+                        )}
+
+                        {activeComponent.id === 'rating' && (
+                          <div className="flex flex-col items-center gap-3">
+                            <RatingPrimitive value={demoRatingValue} onChange={setDemoRatingValue} size="lg" />
+                            <p className="text-xs font-mono text-zinc-500">value: {demoRatingValue}</p>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'rich-text-editor-bar' && (
+                          <div className="w-full max-w-md">
+                            <RichTextEditorBarPrimitive activeFormats={['bold', 'code']} />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'scroll-area' && (
+                          <ScrollArea className="h-44 w-full max-w-sm rounded-2xl border border-white/[0.05] bg-white/[0.015]">
+                            <div className="p-4 space-y-3 text-xs text-zinc-400 leading-relaxed">
+                              {Array.from({ length: 12 }, (_, i) => (
+                                <p key={i}>Registry entry {i + 1} — velvet surface, hairline border, specular rim.</p>
+                              ))}
+                            </div>
+                          </ScrollArea>
+                        )}
+
+                        {activeComponent.id === 'search-bar' && (
+                          <div className="w-full max-w-md">
+                            <SearchBarPrimitive value={demoSearchValue} onChange={setDemoSearchValue} />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'separator' && (
+                          <div className="w-full max-w-sm space-y-4">
+                            <p className="text-xs text-zinc-400">Surfaces above</p>
+                            <Separator />
+                            <p className="text-xs text-zinc-400">Surfaces below</p>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'sheet' && (
+                          <SheetDemoRoot>
+                            <SheetDemoTrigger asChild>
+                              <Button variant="secondary">Open sheet</Button>
+                            </SheetDemoTrigger>
+                            <SheetDemoContent side="right">
+                              <SheetDemoHeader>
+                                <SheetDemoTitle>Registry inspector</SheetDemoTitle>
+                                <SheetDemoDescription>
+                                  Side sheet — mobile-first, backdrop blurred, velvet border.
+                                </SheetDemoDescription>
+                              </SheetDemoHeader>
+                              <div className="p-4 text-xs text-zinc-400">Esc to dismiss · focus is trapped while open.</div>
+                            </SheetDemoContent>
+                          </SheetDemoRoot>
+                        )}
+
+                        {activeComponent.id === 'sidebar' && (
+                          <div className="w-full max-w-sm h-64 rounded-3xl border border-white/[0.04] overflow-hidden">
+                            <SidebarProvider>
+                              <Sidebar>
+                                <SidebarHeader>
+                                  <span className="text-xs font-mono font-bold text-white px-2">UI99 · Workspace</span>
+                                </SidebarHeader>
+                                <SidebarBody>
+                                  <SidebarItem icon={<Layers className="w-4 h-4" />} label="Objects" isActive href="#" />
+                                  <SidebarItem icon={<Palette className="w-4 h-4" />} label="Tokens" href="#" />
+                                  <SidebarItem icon={<Package className="w-4 h-4" />} label="Registry" href="#" />
+                                </SidebarBody>
+                              </Sidebar>
+                            </SidebarProvider>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'skeleton' && (
+                          <div className="w-full max-w-sm space-y-3">
+                            <Skeleton className="h-4 w-3/4" />
+                            <Skeleton className="h-4 w-full" />
+                            <Skeleton className="h-24 w-full rounded-2xl" />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'swatch' && (
+                          <div className="grid grid-cols-2 gap-3 max-w-md w-full">
+                            <Swatch name="Canvas" hex="#06070A" contrastNote="AAA · 16.9:1" />
+                            <Swatch name="Surface 1" hex="#0B0C11" contrastNote="AAA · 15.8:1" />
+                            <Swatch name="Emerald 500" hex="#10B981" contrastNote="AA · 4.9:1" />
+                            <Swatch name="Rose Intent" hex="#F43F5E" contrastNote="AA · 4.6:1" />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'table' && (
+                          <div className="w-full max-w-lg rounded-2xl border border-white/[0.04] overflow-hidden">
+                            <Table>
+                              <TableHeader>
+                                <TableRow>
+                                  <TableHead>Token</TableHead>
+                                  <TableHead>Value</TableHead>
+                                  <TableHead>Contrast</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                <TableRow>
+                                  <TableCell className="font-mono">--bg-canvas</TableCell>
+                                  <TableCell className="font-mono">#06070A</TableCell>
+                                  <TableCell>16.9:1</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                  <TableCell className="font-mono">--text-primary</TableCell>
+                                  <TableCell className="font-mono">#EDEDEF</TableCell>
+                                  <TableCell>AAA</TableCell>
+                                </TableRow>
+                              </TableBody>
+                            </Table>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'tag-input' && (
+                          <div className="w-full max-w-md">
+                            <TagInputPrimitive
+                              tags={demoTagList}
+                              onChange={setDemoTagList}
+                              suggestions={['Radix', 'Motion', 'a11y']}
+                              placeholder="Add tag…"
+                            />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'textarea' && (
+                          <div className="w-full max-w-md">
+                            <Textarea
+                              value={demoTextareaValue}
+                              onChange={(e) => setDemoTextareaValue(e.target.value)}
+                              placeholder="Describe the design intent…"
+                              rows={4}
+                            />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'time-picker' && (
+                          <div className="w-full max-w-xs">
+                            <TimePickerPrimitive value={demoTimePickerValue} onChange={(v) => setDemoTimePickerValue(v ?? '09:41')} step={15} />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'timeline' && (
+                          <div className="w-full max-w-md">
+                            <Timeline>
+                              <TimelineItem timestamp="09:41" accent="emerald">
+                                Tokens audit passed — 22/22 contrast pairs.
+                              </TimelineItem>
+                              <TimelineItem timestamp="10:15" accent="amber">
+                                Registry scan flagged 2 orphan demos.
+                              </TimelineItem>
+                              <TimelineItem timestamp="11:02" accent="rose">
+                                Rose-intent sweep merged to main.
+                              </TimelineItem>
+                            </Timeline>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'toast' && (
+                          <div className="flex flex-wrap items-center justify-center gap-2">
+                            <Button size="sm" variant="success" onClick={() => addToast('Object saved to space', 'success')}>
+                              Success toast
+                            </Button>
+                            <Button size="sm" variant="secondary" onClick={() => addToast('Sync running in background', 'info')}>
+                              Info toast
+                            </Button>
+                            <Button size="sm" variant="rose" onClick={() => addToast('Token gate failed — see logs', 'rose')}>
+                              Error toast
+                            </Button>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'toggle' && (
+                          <div className="flex items-center gap-3">
+                            <Toggle pressed={demoToggleOn} onPressedChange={setDemoToggleOn} aria-label="Toggle bold">
+                              <Bold className="w-4 h-4" />
+                            </Toggle>
+                            <Toggle variant="outline" aria-label="Toggle italic">
+                              <span className="italic font-serif">I</span>
+                            </Toggle>
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'toggle-group' && (
+                          <ToggleGroup
+                            type="single"
+                            value={demoToggleGroup}
+                            onValueChange={(v) => v && setDemoToggleGroup(v)}
+                          >
+                            <ToggleGroupItem value="day" aria-label="Day">Day</ToggleGroupItem>
+                            <ToggleGroupItem value="week" aria-label="Week">Week</ToggleGroupItem>
+                            <ToggleGroupItem value="month" aria-label="Month">Month</ToggleGroupItem>
+                          </ToggleGroup>
+                        )}
+
+                        {activeComponent.id === 'top-header' && (
+                          <div className="w-full max-w-lg rounded-2xl overflow-hidden border border-white/[0.03]">
+                            <TopHeader />
+                          </div>
+                        )}
+
+                        {activeComponent.id === 'tour-guide' && (
+                          <div className="w-full max-w-md">
+                            <TourGuidePrimitive
+                              steps={[
+                                { badge: '1 / 3', title: 'Welcome to UI99', description: 'A velvet-obsidian design system with a 99-element registry.' },
+                                { badge: '2 / 3', title: 'Tokens are law', description: 'Every color, border and shadow derives from src/styles/ui99.css.' },
+                                { badge: '3 / 3', title: 'Ship anywhere', description: 'Copy a primitive into any React app — theme follows the DOM.' },
+                              ]}
+                            />
+                          </div>
+                        )}
+
+                        {/* General showcase fallback — safety net for future registry additions.
+                            Every one of the 99 standard elements ships a dedicated live preview above. */}
+                        {!LIVE_PREVIEW_IDS.has(activeComponent.id) && (
                           <div className="w-full max-w-md p-6 rounded-3xl bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-4 text-center">
                             <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mx-auto">
                               <Sparkles className="w-6 h-6" />

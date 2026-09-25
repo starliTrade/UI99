@@ -32,6 +32,7 @@ async function startServer() {
       status: 'ok',
       product: 'UI99 Design System',
       version: '1.0.0-build01',
+      pid: process.pid,
       aiConfigured: AIService.isAvailable(),
       timestamp: new Date().toISOString(),
     });
@@ -276,20 +277,62 @@ async function startServer() {
     });
   }
 
-  // Port guard: if an instance of this server is already serving on PORT,
-  // exit cleanly instead of crashing with EADDRINUSE. This makes restarts
-  // race-safe (stale instance keeps serving; managed process exits 0).
-  const alreadyServing = await fetch(`http://127.0.0.1:${PORT}/api/health`)
-    .then((r) => r.ok)
-    .catch(() => false);
-  if (alreadyServing) {
-    console.log(`[UI99] Port ${PORT} already served by a healthy instance — exiting.`);
-    process.exit(0);
+  // Takeover guard: identify whatever is serving on PORT via /api/health.
+  // - A stale/orphan instance of THIS app is terminated, then the port is taken
+  //   over (last-started wins) — this keeps managed restarts race-safe without
+  //   ever letting a dead parent lock the port behind a "healthy" check.
+  // - An unrecognized process on the port is never killed; we exit(1) loudly.
+  type HealthInfo = { product?: string; pid?: number };
+  const probeInstance = async (): Promise<HealthInfo | null> => {
+    try {
+      const r = await fetch(`http://127.0.0.1:${PORT}/api/health`, {
+        signal: AbortSignal.timeout(2000),
+      });
+      if (!r.ok) return null;
+      return (await r.json()) as HealthInfo;
+    } catch {
+      return null;
+    }
+  };
+
+  const existing = await probeInstance();
+  if (existing) {
+    const isOurs = existing.product === 'UI99 Design System';
+    const stalePid = typeof existing.pid === 'number' ? existing.pid : undefined;
+    if (isOurs && stalePid && stalePid !== process.pid) {
+      console.log(`[UI99] Stale instance detected (pid ${stalePid}) — terminating and taking over port ${PORT}.`);
+      try {
+        process.kill(stalePid, 'SIGTERM');
+      } catch {}
+      const deadline = Date.now() + 8000;
+      while (Date.now() < deadline && (await probeInstance())) {
+        await new Promise((r) => setTimeout(r, 400));
+      }
+      if (await probeInstance()) {
+        try {
+          process.kill(stalePid, 'SIGKILL');
+        } catch {}
+        await new Promise((r) => setTimeout(r, 1000));
+      }
+    } else if (!isOurs) {
+      console.error(`[UI99] Port ${PORT} is served by an unrecognized process — refusing to start.`);
+      process.exit(1);
+    }
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`[UI99] Server running on http://0.0.0.0:${PORT}`);
-  });
+  try {
+    await new Promise<void>((resolve, reject) => {
+      const server = app.listen(PORT, '0.0.0.0', () => resolve());
+      server.once('error', (err) => reject(err));
+    });
+    console.log(`[UI99] Server running on http://0.0.0.0:${PORT} (pid ${process.pid})`);
+  } catch (err: any) {
+    if (err?.code === 'EADDRINUSE') {
+      console.error(`[UI99] Port ${PORT} still occupied after takeover attempt — exiting.`);
+      process.exit(1);
+    }
+    throw err;
+  }
 }
 
 startServer();
