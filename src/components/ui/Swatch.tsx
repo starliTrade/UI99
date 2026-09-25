@@ -27,7 +27,7 @@ export function Swatch({ name, hex, contrastNote, className = '' }: SwatchProps)
   return (
     <div
       className={cn(
-        'group overflow-hidden rounded-2xl border border-black/[0.05] dark:border-white/[0.04]',
+        'group overflow-hidden rounded-(var(--radius-control)) border border-black/[0.05] dark:border-white/[0.04]',
         className
       )}
     >

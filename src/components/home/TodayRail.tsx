@@ -102,7 +102,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
 
               {/* Circular Pill Token */}
               <div
-                className={`relative w-11 h-11 sm:w-12 sm:h-12 rounded-full flex flex-col items-center justify-center transition-all duration-200 ${
+                className={`relative w-11 h-11 sm:w-12 sm:h-12 rounded-(var(--radius-pill)) flex flex-col items-center justify-center transition-all duration-200 ${
                   selected
                     ? isDark
                       ? 'bg-[#EDEDEF] text-[#09090C] shadow-(var(--elevation-1)) font-bold'
@@ -123,7 +123,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
                 {/* Completed Checkmark Micro-badge for Past Days */}
                 {past && !selected && (
                   <span
-                    className={`absolute -bottom-0.5 w-3 h-3 rounded-full flex items-center justify-center shadow-xs ${
+                    className={`absolute -bottom-0.5 w-3 h-3 rounded-(var(--radius-pill)) flex items-center justify-center shadow-xs ${
                       isDark
                         ? 'bg-[#15151B] text-[#8E8E98] border border-white/[0.06]'
                         : 'bg-zinc-100 text-zinc-500 border border-black/[0.06]'
@@ -136,7 +136,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
                 {/* Today tiny indicator dot if not selected */}
                 {today && !selected && (
                   <span
-                    className={`absolute bottom-1 w-1 h-1 rounded-full ${
+                    className={`absolute bottom-1 w-1 h-1 rounded-(var(--radius-pill)) ${
                       isDark ? 'bg-rose-500 shadow-(var(--glow-rose-sm))' : 'bg-rose-500'
                     }`}
                   />

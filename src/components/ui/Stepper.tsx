@@ -44,7 +44,7 @@ export function Stepper({
           >
             <span
               className={cn(
-                'flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-[11px] font-mono font-bold transition-all duration-200',
+                'flex h-7 w-7 shrink-0 items-center justify-center rounded-(var(--radius-pill)) border text-[11px] font-mono font-bold transition-all duration-200',
                 isDone &&
                   'bg-emerald-500 text-white border-emerald-500 shadow-(var(--glow-accent-md))',
                 isCurrent &&

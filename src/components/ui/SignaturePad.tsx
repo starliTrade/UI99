@@ -138,7 +138,7 @@ export function SignaturePad({
   };
 
   return (
-    <div className={cn('flex flex-col gap-2.5 p-3.5 rounded-2xl bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04] shadow-md', className)}>
+    <div className={cn('flex flex-col gap-2.5 p-3.5 rounded-(var(--radius-control)) bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04] shadow-md', className)}>
       <div className="flex items-center justify-between pb-1">
         <span className="text-xs font-medium text-zinc-600 dark:text-zinc-400 flex items-center gap-1.5">
           <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
@@ -149,7 +149,7 @@ export function SignaturePad({
             type="button"
             onClick={undo}
             disabled={history.length === 0}
-            className="p-1.5 text-xs text-zinc-500 hover:text-zinc-900 dark:hover:text-white disabled:opacity-30 rounded-lg transition-colors"
+            className="p-1.5 text-xs text-zinc-500 hover:text-zinc-900 dark:hover:text-white disabled:opacity-30 rounded-(var(--radius-sm)) transition-colors"
             title="Undo"
           >
             <RotateCcw className="w-3.5 h-3.5" />
@@ -158,7 +158,7 @@ export function SignaturePad({
             type="button"
             onClick={clear}
             disabled={isEmpty}
-            className="p-1.5 text-xs text-rose-500 hover:bg-rose-500/10 disabled:opacity-30 rounded-lg transition-colors"
+            className="p-1.5 text-xs text-rose-500 hover:bg-rose-500/10 disabled:opacity-30 rounded-(var(--radius-sm)) transition-colors"
             title="Clear canvas"
           >
             <Trash2 className="w-3.5 h-3.5" />
@@ -166,7 +166,7 @@ export function SignaturePad({
         </div>
       </div>
 
-      <div className="relative rounded-xl overflow-hidden bg-zinc-50 dark:bg-(--bg-canvas) border border-dashed border-black/10 dark:border-white/10 touch-none">
+      <div className="relative rounded-(var(--radius-field)) overflow-hidden bg-zinc-50 dark:bg-(--bg-canvas) border border-dashed border-black/10 dark:border-white/10 touch-none">
         <canvas
           ref={canvasRef}
           width={width}

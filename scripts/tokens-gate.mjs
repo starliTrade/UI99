@@ -99,6 +99,26 @@ const STRUCTURAL = [
   { re: /shadow-\[[^\]]+\]/g, label: 'shadow', hint: 'shadow-(--elevation-3)' },
   { re: /rounded-\[[0-9.]+px\]/g, label: 'radius', hint: 'rounded-(--radius-md)' },
   { re: /blur-\[[0-9.]+px\]/g, label: 'blur', hint: 'blur-(--blur-md)' },
+  // The audit's most important finding: the named Tailwind scale bypassed the
+  // token system entirely — 787 `rounded-2xl/3xl/full` in the kit. A rule that
+  // only greps for brackets lets the whole named scale through, so it is
+  // matched explicitly here.
+  {
+    re: /(?<![\w\-\[])rounded-(?:sm|md|lg|xl|2xl|3xl|4xl|full)(?![\w\-])/g,
+    label: 'radius (named scale)',
+    hint: 'rounded-(--radius-control) / rounded-(--radius-pill)',
+  },
+  // Type: the raw scale bypasses --type-* just as radius did — but type is
+  // deliberately NOT gated yet. Migrating ~900 sizes is a per-call-site
+  // judgement (is this text-xs a caption, or genuinely micro?), and a blind
+  // codemod would silently restyle the entire kit. Tracked as P0-A in
+  // docs/PARITY-AUDIT.md. Enable this rule once the migration has landed.
+  //
+  // {
+  //   re: /(?<![\w\-\[])(?:sm:|md:|lg:|xl:|2xl:)?text-(?:xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)(?![\w\-])/g,
+  //   label: 'type size (raw scale)',
+  //   hint: 'type-body / type-title / type-heading',
+  // },
 ];
 
 for (const f of files) {
@@ -122,7 +142,7 @@ if (structuralViolations.length) {
   );
   for (const v of structuralViolations) console.error('  ' + v);
   console.error(
-    '\nCodemod: node scripts/migrate-elevation.mjs --write\nScale: src/styles/ui99-elevation.css · src/styles/ui99-glow.css\n',
+    '\nCodemods: node scripts/migrate-elevation.mjs --write · node scripts/migrate-radius.mjs --write\nScale: src/styles/ui99-elevation.css · ui99-glow.css · ui99-type.css\n',
   );
   process.exit(1);
 }

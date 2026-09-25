@@ -98,7 +98,7 @@ export function SegmentedControl<T extends string = string>({
       onKeyDown={handleKeyDown}
       className={`${
         fullWidth ? 'w-full flex' : 'inline-flex'
-      } items-center rounded-full transition-all overflow-x-auto no-scrollbar scroll-smooth ${
+      } items-center rounded-(var(--radius-pill)) transition-all overflow-x-auto no-scrollbar scroll-smooth ${
         isDark
           ? 'bg-(--bg-elevated) shadow-(var(--rim-soft), var(--elevation-2)) border border-white/[0.025]'
           : 'bg-zinc-100/90 shadow-(var(--rim-subtle)) border border-black/[0.04]'
@@ -117,7 +117,7 @@ export function SegmentedControl<T extends string = string>({
               aria-checked={isSelected}
               tabIndex={isFocusTarget ? 0 : -1}
               onClick={() => onChange(opt.value)}
-              className={`relative ${itemPad} rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer select-none whitespace-nowrap shrink-0 sm:shrink focus-ui99-inset ${
+              className={`relative ${itemPad} rounded-(var(--radius-pill)) font-medium transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer select-none whitespace-nowrap shrink-0 sm:shrink focus-ui99-inset ${
                 fullWidth ? 'flex-1' : ''
               } ${
                 isSelected
@@ -132,7 +132,7 @@ export function SegmentedControl<T extends string = string>({
               {isSelected && (
                 <motion.div
                   layoutId={`segmented-pill-${options.map((o) => o.value).join('-')}`}
-                  className={`absolute inset-0 rounded-full ${
+                  className={`absolute inset-0 rounded-(var(--radius-pill)) ${
                     isDark
                       ? 'bg-white shadow-(var(--elevation-2))'
                       : 'bg-white shadow-(var(--elevation-1)) border border-black/[0.04]'
@@ -145,7 +145,7 @@ export function SegmentedControl<T extends string = string>({
                 <span className="tracking-tight">{opt.label}</span>
                 {opt.badge !== undefined && (
                   <span
-                    className={`px-1.5 py-0.2 text-[10px] rounded-full font-semibold ${
+                    className={`px-1.5 py-0.2 text-[10px] rounded-(var(--radius-pill)) font-semibold ${
                       isSelected
                         ? isDark
                           ? 'bg-black text-white'

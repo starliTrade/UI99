@@ -39,14 +39,17 @@ export function Surface({
   className = '',
   ...props
 }: SurfaceProps) {
+  // Monotonic scale — each step must be visibly larger than the last, or the
+  // size prop lies. Material's rule: a container's radius is driven by its
+  // padding, so bigger surfaces get bigger corners, never the same one twice.
   const roundMap = {
-    sm: 'rounded-lg',
-    md: 'rounded-xl',
-    lg: 'rounded-2xl',
-    xl: 'rounded-(var(--radius-control))',
+    sm: 'rounded-(var(--radius-sm))',
+    md: 'rounded-(var(--radius-field))',
+    lg: 'rounded-(var(--radius-control))',
+    xl: 'rounded-(var(--radius-lg))',
     '2xl': 'rounded-(var(--radius-xl))',
     '3xl': 'rounded-(var(--radius-sheet))',
-    full: 'rounded-full',
+    full: 'rounded-(var(--radius-pill))',
   }[rounded];
 
   const padMap = {

@@ -135,7 +135,7 @@ export function Dropdown<T extends string = string>({
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={handleTriggerKeyDown}
-        className={`w-full flex items-center justify-between rounded-xl font-medium transition-all duration-150 cursor-pointer select-none focus-ui99 ${sizeClass} ${
+        className={`w-full flex items-center justify-between rounded-(var(--radius-field)) font-medium transition-all duration-150 cursor-pointer select-none focus-ui99 ${sizeClass} ${
           isDark
             ? 'bg-(--bg-elevated) text-(--text-primary) border border-white/[0.06] hover:border-white/[0.14] shadow-xs'
             : 'bg-white text-zinc-900 border border-black/[0.08] hover:border-black/[0.18] shadow-xs'
@@ -166,7 +166,7 @@ export function Dropdown<T extends string = string>({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.98 }}
             transition={{ duration: 0.14 }}
-            className={`absolute left-0 right-0 mt-1.5 p-1 rounded-2xl z-50 backdrop-blur-2xl shadow-xl overflow-hidden ${
+            className={`absolute left-0 right-0 mt-1.5 p-1 rounded-(var(--radius-control)) z-50 backdrop-blur-2xl shadow-xl overflow-hidden ${
               isDark
                 ? 'bg-(--bg-elevated)/95 border border-white/[0.07] shadow-(var(--elevation-4))'
                 : 'bg-white/95 border border-black/[0.06] shadow-(var(--elevation-3))'
@@ -184,7 +184,7 @@ export function Dropdown<T extends string = string>({
                     aria-selected={isSelected}
                     onClick={() => commit(index)}
                     onMouseEnter={() => setActiveIndex(index)}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-medium cursor-pointer text-left rtl:text-right focus-ui99-inset ${
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-(var(--radius-field)) text-xs sm:text-sm font-medium cursor-pointer text-left rtl:text-right focus-ui99-inset ${
                       isActive
                         ? isDark
                           ? 'bg-white/[0.08] text-white'

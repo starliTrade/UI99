@@ -68,7 +68,7 @@ export function KanbanBoard({
           <div
             key={col.id}
             aria-label={`${col.label} column`}
-            className="flex flex-col gap-3 rounded-2xl bg-zinc-100/60 dark:bg-(--bg-card) p-3 border border-black/[0.04] dark:border-white/[0.03] min-w-[240px]"
+            className="flex flex-col gap-3 rounded-(var(--radius-control)) bg-zinc-100/60 dark:bg-(--bg-card) p-3 border border-black/[0.04] dark:border-white/[0.03] min-w-[240px]"
           >
             {/* Column Header */}
             <div className="flex items-center justify-between px-1">
@@ -77,7 +77,7 @@ export function KanbanBoard({
                 <span className="text-xs font-semibold text-zinc-900 dark:text-zinc-200">
                   {col.label}
                 </span>
-                <span className="text-[10px] font-mono font-medium px-1.5 py-0.2 rounded-full bg-zinc-200 dark:bg-white/[0.06] text-zinc-600 dark:text-zinc-400">
+                <span className="text-[10px] font-mono font-medium px-1.5 py-0.2 rounded-(var(--radius-pill)) bg-zinc-200 dark:bg-white/[0.06] text-zinc-600 dark:text-zinc-400">
                   {colCards.length}
                 </span>
               </div>
@@ -85,7 +85,7 @@ export function KanbanBoard({
                 type="button"
                 onClick={() => onAddCard?.(col.id)}
                 aria-label={`Add card to ${col.label}`}
-                className="p-1 rounded-lg text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
+                className="p-1 rounded-(var(--radius-sm)) text-zinc-400 hover:text-zinc-700 dark:hover:text-white transition-colors"
               >
                 <Plus className="w-3.5 h-3.5" />
               </button>
@@ -99,7 +99,7 @@ export function KanbanBoard({
                   key={card.id}
                   role="listitem"
                   aria-label={`${card.title}, ${card.priority} priority, ${card.status}`}
-                  className="p-3 rounded-xl bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.04] shadow-xs hover:border-black/15 dark:hover:border-white/10 transition-all cursor-grab active:cursor-grabbing flex flex-col gap-2 group"
+                  className="p-3 rounded-(var(--radius-field)) bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.04] shadow-xs hover:border-black/15 dark:hover:border-white/10 transition-all cursor-grab active:cursor-grabbing flex flex-col gap-2 group"
                 >
                   <div className="flex items-center justify-between">
                     <PriorityBadge priority={card.priority} showLabel={false} />

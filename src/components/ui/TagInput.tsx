@@ -67,7 +67,7 @@ export function TagInput({
       <div
         onClick={() => inputRef.current?.focus()}
         className={cn(
-          'flex flex-wrap items-center gap-1.5 p-2 min-h-[42px] rounded-xl transition-all duration-150 cursor-text',
+          'flex flex-wrap items-center gap-1.5 p-2 min-h-[42px] rounded-(var(--radius-field)) transition-all duration-150 cursor-text',
           'bg-zinc-50 dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary)',
           'border border-black/[0.08] dark:border-white/[0.06] focus-within:border-zinc-500 dark:focus-within:border-white/20',
           className
@@ -76,7 +76,7 @@ export function TagInput({
         {tags.map((tag, idx) => (
           <span
             key={tag + idx}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-zinc-200/80 dark:bg-white/[0.06] text-zinc-800 dark:text-zinc-200 border border-black/[0.04] dark:border-white/[0.04] animate-in fade-in zoom-in-95"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(var(--radius-sm)) text-xs font-medium bg-zinc-200/80 dark:bg-white/[0.06] text-zinc-800 dark:text-zinc-200 border border-black/[0.04] dark:border-white/[0.04] animate-in fade-in zoom-in-95"
           >
             <TagIcon className="w-3 h-3 text-zinc-400 shrink-0" />
             <span>{tag}</span>
@@ -87,7 +87,7 @@ export function TagInput({
                 e.stopPropagation();
                 removeTag(idx);
               }}
-              className="p-0.5 hover:bg-black/10 dark:hover:bg-white/10 rounded-full transition-colors text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 focus-visible:outline-none focus-ui99-inset"
+              className="p-0.5 hover:bg-black/10 dark:hover:bg-white/10 rounded-(var(--radius-pill)) transition-colors text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 focus-visible:outline-none focus-ui99-inset"
             >
               <X className="w-3 h-3" />
             </button>
@@ -115,13 +115,13 @@ export function TagInput({
 
       {/* Autocomplete Dropdown */}
       {showSuggestions && inputVal && filteredSuggestions.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-1 z-30 p-1 rounded-xl bg-white dark:bg-(--bg-elevated) border border-black/10 dark:border-white/10 shadow-xl max-h-40 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1 z-30 p-1 rounded-(var(--radius-field)) bg-white dark:bg-(--bg-elevated) border border-black/10 dark:border-white/10 shadow-xl max-h-40 overflow-y-auto">
           {filteredSuggestions.map((s) => (
             <button
               key={s}
               type="button"
               onMouseDown={() => addTag(s)}
-              className="w-full text-left px-3 py-1.5 text-xs rounded-lg hover:bg-zinc-100 dark:hover:bg-white/[0.05] text-zinc-800 dark:text-zinc-200 flex items-center justify-between transition-colors"
+              className="w-full text-left px-3 py-1.5 text-xs rounded-(var(--radius-sm)) hover:bg-zinc-100 dark:hover:bg-white/[0.05] text-zinc-800 dark:text-zinc-200 flex items-center justify-between transition-colors"
             >
               <span>{s}</span>
               <Plus className="w-3 h-3 text-zinc-400" />

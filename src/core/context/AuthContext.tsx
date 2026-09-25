@@ -33,9 +33,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     async function initSession() {
       try {
-        // Enforce English LTR by default across all platforms and first load
-        document.documentElement.dir = 'ltr';
-        document.documentElement.lang = 'en';
+        // Enforce English LTR by default across all platforms and first load.
+        // data-script drives the type scale's optical correction (Vazirmatn
+        // needs +8% size and looser leading at the same nominal px).
+        const root = document.documentElement;
+        root.dir = 'ltr';
+        root.lang = 'en';
+        root.setAttribute('data-script', 'latin');
 
         const storedToken = safeGetItem('ui99_auth_token');
         if (storedToken) {
@@ -47,11 +51,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             setLanguageState('fa');
             document.documentElement.dir = 'rtl';
             document.documentElement.lang = 'fa';
+            document.documentElement.setAttribute('data-script', 'fa');
           } else {
             setIsRTL(false);
             setLanguageState('en');
             document.documentElement.dir = 'ltr';
             document.documentElement.lang = 'en';
+            document.documentElement.setAttribute('data-script', 'latin');
           }
         }
       } catch (err) {
@@ -72,6 +78,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (res.user.profile?.rtlEnabled !== undefined) {
         setIsRTL(res.user.profile.rtlEnabled);
         document.documentElement.dir = res.user.profile.rtlEnabled ? 'rtl' : 'ltr';
+      document.documentElement.setAttribute('data-script', res.user.profile.rtlEnabled ? 'fa' : 'latin');
       }
       if (res.user.profile?.preferredLanguage) {
         setLanguageState(res.user.profile.preferredLanguage);
@@ -103,6 +110,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const nextRTL = !isRTL;
     setIsRTL(nextRTL);
     document.documentElement.dir = nextRTL ? 'rtl' : 'ltr';
+    document.documentElement.setAttribute('data-script', nextRTL ? 'fa' : 'latin');
     if (user) {
       updateProfile({ rtlEnabled: nextRTL });
     }
@@ -113,6 +121,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const shouldRTL = lang === 'fa';
     setIsRTL(shouldRTL);
     document.documentElement.dir = shouldRTL ? 'rtl' : 'ltr';
+    document.documentElement.setAttribute('data-script', shouldRTL ? 'fa' : 'latin');
     if (user) {
       updateProfile({ preferredLanguage: lang, rtlEnabled: shouldRTL });
     }

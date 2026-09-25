@@ -50,7 +50,7 @@ export function NavigationMenuTrigger({
   return (
     <NavigationMenuPrimitive.Trigger
       className={cn(
-        'inline-flex h-9 items-center justify-center gap-1 rounded-full px-3 text-xs font-medium transition-colors cursor-pointer',
+        'inline-flex h-9 items-center justify-center gap-1 rounded-(var(--radius-pill)) px-3 text-xs font-medium transition-colors cursor-pointer',
         'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:text-(--text-primary) dark:hover:bg-white/[0.04]',
         'focus-visible:outline-none focus-ui99 data-[state=open]:bg-black/[0.05] dark:data-[state=open]:bg-white/[0.06]',
         className
@@ -70,7 +70,7 @@ export function NavigationMenuLink({
   return (
     <NavigationMenuPrimitive.Link
       className={cn(
-        'inline-flex h-9 items-center rounded-full px-3 text-xs font-medium transition-colors',
+        'inline-flex h-9 items-center rounded-(var(--radius-pill)) px-3 text-xs font-medium transition-colors',
         'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:text-(--text-primary) dark:hover:bg-white/[0.04]',
         'focus-visible:outline-none focus-ui99',
         className
@@ -88,7 +88,7 @@ export function NavigationMenuContent({
   return (
     <NavigationMenuPrimitive.Content
       className={cn(
-        'left-0 top-0 w-full rounded-3xl border border-(--border-subtle) bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl p-4 shadow-(var(--elevation-3)) data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out',
+        'left-0 top-0 w-full rounded-(var(--radius-lg)) border border-(--border-subtle) bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl p-4 shadow-(var(--elevation-3)) data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out',
         className
       )}
       {...props}
@@ -105,7 +105,7 @@ export function NavigationMenuViewport({
     <div className={cn('absolute left-0 top-full flex justify-center')}>
       <NavigationMenuPrimitive.Viewport
         className={cn(
-          'relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-3xl border border-(--border-subtle) bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl shadow-(var(--elevation-3)) origin-top-center',
+          'relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-(var(--radius-lg)) border border-(--border-subtle) bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl shadow-(var(--elevation-3)) origin-top-center',
           'data-[state=open]:animate-in data-[state=open]:zoom-in-90 data-[state=closed]:animate-out data-[state=closed]:zoom-out-90',
           className
         )}

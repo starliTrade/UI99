@@ -67,7 +67,7 @@ export function ColorPicker({
   };
 
   return (
-    <div className={cn('flex flex-col gap-3 p-3.5 rounded-2xl bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.04] shadow-lg max-w-[280px]', className)}>
+    <div className={cn('flex flex-col gap-3 p-3.5 rounded-(var(--radius-control)) bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.04] shadow-lg max-w-[280px]', className)}>
       {label && (
         <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">{label}</span>
       )}
@@ -76,10 +76,10 @@ export function ColorPicker({
       <div className="flex items-center gap-2.5">
         <div
           aria-hidden="true"
-          className="w-9 h-9 rounded-xl border border-black/10 dark:border-white/10 shrink-0 shadow-inner transition-transform active:scale-95"
+          className="w-9 h-9 rounded-(var(--radius-field)) border border-black/10 dark:border-white/10 shrink-0 shadow-inner transition-transform active:scale-95"
           style={{ backgroundColor: color }}
         />
-        <div className="flex-1 flex items-center bg-zinc-100 dark:bg-(--bg-elevated) rounded-xl px-2.5 py-1.5 border border-black/[0.04] dark:border-white/[0.03]">
+        <div className="flex-1 flex items-center bg-zinc-100 dark:bg-(--bg-elevated) rounded-(var(--radius-field)) px-2.5 py-1.5 border border-black/[0.04] dark:border-white/[0.03]">
           <span className="text-xs font-mono text-zinc-500 mr-1">#</span>
           <input
             type="text"
@@ -103,7 +103,7 @@ export function ColorPicker({
       {/* Interactive Sliders */}
       <div className="flex flex-col gap-2">
         {/* Native picker integration fallback */}
-        <div className="relative h-6 w-full rounded-lg overflow-hidden border border-black/5 dark:border-white/5">
+        <div className="relative h-6 w-full rounded-(var(--radius-sm)) overflow-hidden border border-black/5 dark:border-white/5">
           <input
             type="color"
             value={color.startsWith('#') && color.length === 7 ? color : '#3B82F6'}
@@ -112,7 +112,7 @@ export function ColorPicker({
             className="absolute -top-2 -left-2 w-[120%] h-12 cursor-pointer opacity-0"
           />
           <div
-            className="w-full h-full rounded-md"
+            className="w-full h-full rounded-(var(--radius-xs))"
             style={{
               background: 'linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
             }}
@@ -129,7 +129,7 @@ export function ColorPicker({
             onClick={() => handleColorChange(preset)}
             aria-label={`Select color ${preset}`}
             className={cn(
-              'w-5 h-5 rounded-lg border border-black/10 dark:border-white/10 transition-all hover:scale-110 active:scale-95',
+              'w-5 h-5 rounded-(var(--radius-sm)) border border-black/10 dark:border-white/10 transition-all hover:scale-110 active:scale-95',
               color.toLowerCase() === preset.toLowerCase() && 'ring-2 ring-emerald-500 ring-offset-1 dark:ring-offset-(--bg-canvas)'
             )}
             style={{ backgroundColor: preset }}
@@ -140,7 +140,7 @@ export function ColorPicker({
             type="button"
             onClick={handleEyeDropper}
             aria-label="Pick color from screen"
-            className="w-5 h-5 rounded-lg border border-black/10 dark:border-white/10 flex items-center justify-center bg-zinc-100 dark:bg-white/[0.04] text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="w-5 h-5 rounded-(var(--radius-sm)) border border-black/10 dark:border-white/10 flex items-center justify-center bg-zinc-100 dark:bg-white/[0.04] text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             <Pipette className="w-3 h-3" />
           </button>

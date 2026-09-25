@@ -105,7 +105,7 @@ export function ObjectDetailModal() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-xl px-3.5 py-2 text-sm text-white font-semibold focus:outline-none focus:border-white/30"
+            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(var(--radius-field)) px-3.5 py-2 text-sm text-white font-semibold focus:outline-none focus:border-white/30"
           />
         </div>
 
@@ -116,7 +116,7 @@ export function ObjectDetailModal() {
             rows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-xl p-3 text-sm text-zinc-200 focus:outline-none focus:border-white/30 resize-y"
+            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(var(--radius-field)) p-3 text-sm text-zinc-200 focus:outline-none focus:border-white/30 resize-y"
           />
         </div>
 
@@ -127,7 +127,7 @@ export function ObjectDetailModal() {
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as ObjectStatus)}
-              className="w-full bg-[#18181D] border border-white/[0.08] rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-white/30"
+              className="w-full bg-[#18181D] border border-white/[0.08] rounded-(var(--radius-field)) px-3 py-2 text-xs text-white focus:outline-none focus:border-white/30"
             >
               <option value={ObjectStatus.ACTIVE}>Active</option>
               <option value={ObjectStatus.INBOX}>Inbox</option>
@@ -143,7 +143,7 @@ export function ObjectDetailModal() {
             <button
               type="button"
               onClick={() => setAllowSLO(!allowSLO)}
-              className={`w-full py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+              className={`w-full py-2 px-3 rounded-(var(--radius-field)) border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
                 allowSLO
                   ? 'bg-purple-950/40 text-purple-300 border-purple-500/30'
                   : 'bg-[#18181D] text-zinc-400 border-white/[0.08]'
@@ -168,7 +168,7 @@ export function ObjectDetailModal() {
         )}
 
         {/* Connected Graph Relationships */}
-        <div className="p-4 rounded-2xl bg-[#18181D] border border-white/[0.08] space-y-3 shadow-inner">
+        <div className="p-4 rounded-(var(--radius-control)) bg-[#18181D] border border-white/[0.08] space-y-3 shadow-inner">
           <div className="flex items-center justify-between">
             <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5">
               <Link2 className="w-3.5 h-3.5 text-amber-400" />
@@ -187,13 +187,13 @@ export function ObjectDetailModal() {
 
           {/* New Relationship Form */}
           {isLinking && (
-            <div className="p-3 bg-[#202026] rounded-xl border border-white/[0.08] space-y-2 text-xs">
+            <div className="p-3 bg-[#202026] rounded-(var(--radius-field)) border border-white/[0.08] space-y-2 text-xs">
               <div className="font-semibold text-white">Add Relationship</div>
               <div className="grid grid-cols-2 gap-2">
                 <select
                   value={linkType}
                   onChange={(e) => setLinkType(e.target.value as RelationshipType)}
-                  className="bg-[#18181D] border border-white/[0.08] text-white rounded-lg p-1.5"
+                  className="bg-[#18181D] border border-white/[0.08] text-white rounded-(var(--radius-sm)) p-1.5"
                 >
                   <option value={RelationshipType.RELATED_TO}>RELATED_TO</option>
                   <option value={RelationshipType.PART_OF}>PART_OF</option>
@@ -206,7 +206,7 @@ export function ObjectDetailModal() {
                 <select
                   value={targetObjectId}
                   onChange={(e) => setTargetObjectId(e.target.value)}
-                  className="bg-[#18181D] border border-white/[0.08] text-white rounded-lg p-1.5"
+                  className="bg-[#18181D] border border-white/[0.08] text-white rounded-(var(--radius-sm)) p-1.5"
                 >
                   <option value="">Select target object...</option>
                   {availableTargets.map((t) => (
@@ -242,7 +242,7 @@ export function ObjectDetailModal() {
               {related.map(({ rel, object: relObj }) => (
                 <div
                   key={rel.id}
-                  className="p-2.5 rounded-xl bg-[#202026] border border-white/[0.06] flex items-center justify-between text-xs group"
+                  className="p-2.5 rounded-(var(--radius-field)) bg-[#202026] border border-white/[0.06] flex items-center justify-between text-xs group"
                 >
                   <div className="flex items-center gap-2 min-w-0">
                     <span className="text-[10px] font-bold text-amber-300 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">

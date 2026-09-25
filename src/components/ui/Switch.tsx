@@ -65,7 +65,7 @@ export function Switch({
         onCheckedChange={handleChange}
         disabled={disabled}
         className={cn(
-          'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-ui99 disabled:cursor-not-allowed',
+          'peer inline-flex shrink-0 cursor-pointer items-center rounded-(var(--radius-pill)) border-2 border-transparent transition-colors focus-visible:outline-none focus-ui99 disabled:cursor-not-allowed',
           rootSizes,
           checked
             ? 'bg-emerald-500 shadow-(var(--glow-accent-md))'
@@ -76,7 +76,7 @@ export function Switch({
       >
         <SwitchPrimitive.Thumb
           className={cn(
-            'pointer-events-none block rounded-full bg-white shadow-md ring-0 transition-transform duration-200 ease-in-out',
+            'pointer-events-none block rounded-(var(--radius-pill)) bg-white shadow-md ring-0 transition-transform duration-200 ease-in-out',
             thumbSizes
           )}
         />

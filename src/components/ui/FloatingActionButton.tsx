@@ -44,7 +44,7 @@ export function FloatingActionButton({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`rounded-full inline-flex items-center justify-center gap-2 font-medium transition-all active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${sizeClasses} ${variantClasses} ${className}`}
+      className={`rounded-(var(--radius-pill)) inline-flex items-center justify-center gap-2 font-medium transition-all active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${sizeClasses} ${variantClasses} ${className}`}
     >
       <span className="shrink-0">{icon}</span>
       {label && <span className="font-semibold whitespace-nowrap">{label}</span>}

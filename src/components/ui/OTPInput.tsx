@@ -97,7 +97,7 @@ export function OTPInput({ length = 6, value, onChange, onComplete, disabled = f
           onKeyDown={(e) => handleKeyDown(i, e)}
           onPaste={handlePaste}
           className={cn(
-            'h-12 w-10 rounded-xl border bg-white text-center text-lg font-semibold text-zinc-950 transition-colors',
+            'h-12 w-10 rounded-(var(--radius-field)) border bg-white text-center text-lg font-semibold text-zinc-950 transition-colors',
             'dark:bg-(--bg-elevated) dark:text-(--text-primary)',
             'border-(--border-strong)',
             'hover:border-black/[0.18] dark:hover:border-white/[0.2]',

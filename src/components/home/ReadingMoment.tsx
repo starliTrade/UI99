@@ -25,7 +25,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
         className="group relative p-5 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(var(--rim-soft), var(--elevation-3)) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+          <div className="w-11 h-11 rounded-(var(--radius-control)) bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
             <BookOpen className="w-5 h-5 stroke-[1.8]" />
           </div>
           <div>
@@ -52,12 +52,12 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
       className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.06] select-none"
     >
       {/* Sapphire/Blue Ambient Aura */}
-      <div className="absolute top-0 right-0 w-44 h-44 bg-blue-500/[0.05] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-44 h-44 bg-blue-500/[0.05] rounded-(var(--radius-pill)) blur-3xl pointer-events-none" />
 
       {/* Header */}
       <div className="flex items-center justify-between mb-3 relative z-10">
         <div className="flex items-center gap-2">
-          <span className="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500/15 text-blue-400">
+          <span className="flex items-center justify-center w-5 h-5 rounded-(var(--radius-pill)) bg-blue-500/15 text-blue-400">
             <BookOpen className="w-3 h-3 stroke-[2.2]" />
           </span>
           <span className="text-[10.5px] uppercase font-bold tracking-widest text-[#EDEDEF]">
@@ -65,14 +65,14 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
           </span>
         </div>
 
-        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/20">
+        <span className="text-[10px] font-mono px-2 py-0.5 rounded-(var(--radius-pill)) bg-blue-500/10 text-blue-300 border border-blue-500/20">
           p. {progressPages}
         </span>
       </div>
 
       {/* Book Metadata */}
       <div className="flex items-start gap-4 relative z-10">
-        <div className="w-12 h-16 rounded-xl bg-gradient-to-br from-[#1E2235] via-[#10131F] to-[#0A0B10] border border-white/[0.08] shadow-(var(--elevation-2)) flex items-center justify-center shrink-0">
+        <div className="w-12 h-16 rounded-(var(--radius-field)) bg-gradient-to-br from-[#1E2235] via-[#10131F] to-[#0A0B10] border border-white/[0.08] shadow-(var(--elevation-2)) flex items-center justify-center shrink-0">
           <Bookmark className="w-5 h-5 text-blue-300" />
         </div>
 

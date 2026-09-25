@@ -73,7 +73,7 @@ export function SplitButton({
   }[variant];
 
   return (
-    <div ref={containerRef} className={`relative inline-flex items-stretch rounded-xl shadow-xs ${className}`}>
+    <div ref={containerRef} className={`relative inline-flex items-stretch rounded-(var(--radius-field)) shadow-xs ${className}`}>
       {/* Primary Action */}
       <button
         type="button"
@@ -107,7 +107,7 @@ export function SplitButton({
 
       {/* Dropdown Menu */}
       {open && (
-        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-xl bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-100">
+        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-(var(--radius-field)) bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-100">
           {items.map((item, idx) => (
             <button
               key={idx}

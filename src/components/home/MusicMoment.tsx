@@ -25,7 +25,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
         className="group relative p-5 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(var(--rim-soft), var(--elevation-3)) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors">
+          <div className="w-11 h-11 rounded-(var(--radius-control)) bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors">
             <Music className="w-5 h-5 stroke-[1.8]" />
           </div>
           <div>
@@ -38,7 +38,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
           </div>
         </div>
 
-        <span className="p-2 rounded-full bg-white/[0.03] text-zinc-400 group-hover:text-white transition-colors">
+        <span className="p-2 rounded-(var(--radius-pill)) bg-white/[0.03] text-zinc-400 group-hover:text-white transition-colors">
           <Plus className="w-4 h-4" />
         </span>
       </div>
@@ -56,12 +56,12 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
       className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0F] border border-white/[0.025] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.06] select-none"
     >
       {/* Ambient background disc aura */}
-      <div className="absolute top-0 left-0 w-48 h-48 bg-rose-500/[0.05] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 w-48 h-48 bg-rose-500/[0.05] rounded-(var(--radius-pill)) blur-3xl pointer-events-none" />
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4 relative z-10">
         <div className="flex items-center gap-2">
-          <span className="flex items-center justify-center w-5 h-5 rounded-full bg-rose-500/15 text-rose-400">
+          <span className="flex items-center justify-center w-5 h-5 rounded-(var(--radius-pill)) bg-rose-500/15 text-rose-400">
             <Music className="w-3 h-3 stroke-[2.2]" />
           </span>
           <span className="text-[10.5px] uppercase font-bold tracking-widest text-[#EDEDEF]">
@@ -69,8 +69,8 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.04] text-[10px] text-rose-300 border border-white/[0.04]">
-          <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-(var(--radius-pill)) bg-white/[0.04] text-[10px] text-rose-300 border border-white/[0.04]">
+          <span className="w-1.5 h-1.5 rounded-(var(--radius-pill)) bg-rose-500 animate-pulse" />
           <span>{mood}</span>
         </div>
       </div>
@@ -78,13 +78,13 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
       {/* Media Player Showcase */}
       <div className="flex items-center gap-4 relative z-10">
         {/* Vinyl / Cover Art representation */}
-        <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-[#1E1C2E] via-[#12131C] to-[#0A0B10] border border-white/[0.08] shadow-(var(--rim-soft), var(--elevation-2)) flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
+        <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-(var(--radius-control)) bg-gradient-to-br from-[#1E1C2E] via-[#12131C] to-[#0A0B10] border border-white/[0.08] shadow-(var(--rim-soft), var(--elevation-2)) flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            className="w-8 h-8 rounded-full border border-white/[0.1] flex items-center justify-center bg-black/40"
+            className="w-8 h-8 rounded-(var(--radius-pill)) border border-white/[0.1] flex items-center justify-center bg-black/40"
           >
-            <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shadow-(var(--glow-rose-sm))" />
+            <div className="w-2.5 h-2.5 rounded-(var(--radius-pill)) bg-rose-500/80 shadow-(var(--glow-rose-sm))" />
           </motion.div>
         </div>
 
@@ -104,7 +104,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
                 key={i}
                 animate={{ height: [`${height * 0.4}%`, `${height}%`, `${height * 0.4}%`] }}
                 transition={{ duration: 1.2 + i * 0.2, repeat: Infinity, ease: 'easeInOut' }}
-                className="w-1 bg-rose-500/70 rounded-full h-3"
+                className="w-1 bg-rose-500/70 rounded-(var(--radius-pill)) h-3"
               />
             ))}
             <span className="text-[10px] font-mono text-zinc-500 ml-2 rtl:mr-2 rtl:ml-0">{duration}</span>

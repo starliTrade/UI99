@@ -43,12 +43,12 @@ export function RhythmSparklineCard({
       }`}
     >
       {/* Top-Right Sapphire Ambient Light Beam */}
-      <div className={`absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl pointer-events-none ${isDark ? 'bg-blue-500/15' : 'bg-blue-500/10'}`} />
+      <div className={`absolute -top-10 -right-10 w-48 h-48 rounded-(var(--radius-pill)) blur-2xl pointer-events-none ${isDark ? 'bg-blue-500/15' : 'bg-blue-500/10'}`} />
 
       {/* Top Header: Brand & Diamond Icon */}
       <div className="relative z-10 flex items-center gap-3">
         <div
-          className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+          className={`w-8 h-8 rounded-(var(--radius-pill)) flex items-center justify-center transition-colors ${
             isDark
               ? 'bg-white/[0.08] shadow-(var(--elevation-1)) text-white'
               : 'bg-black/[0.06] text-[#111116]'
@@ -75,7 +75,7 @@ export function RhythmSparklineCard({
         <h3 className={`text-2xl sm:text-3xl font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
           {value}
         </h3>
-        <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
+        <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(var(--radius-pill)) text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
           <span className="text-[10px]">▲</span>
           <span>{trend}</span>
         </div>
@@ -93,7 +93,7 @@ export function RhythmSparklineCard({
         {/* Floating Tooltip with Vertical Hairline & Subtle Dot on Peak */}
         <div className="absolute left-[50%] top-2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
           <div
-            className={`px-3.5 py-1.5 rounded-xl backdrop-blur-md text-center transition-all ${
+            className={`px-3.5 py-1.5 rounded-(var(--radius-field)) backdrop-blur-md text-center transition-all ${
               isDark
                 ? 'bg-[#14151C]/95 shadow-(var(--rim-soft), var(--elevation-2)) text-white'
                 : 'bg-white/95 shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.04] text-[#111116]'
@@ -107,7 +107,7 @@ export function RhythmSparklineCard({
             </span>
           </div>
           <div className={`w-[1px] h-4 ${isDark ? 'bg-gradient-to-b from-white/30 to-white/10' : 'bg-gradient-to-b from-black/20 to-black/5'}`} />
-          <div className={`w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-(var(--glow-accent-md)) ring-2 ${isDark ? 'ring-[#0E0F14]' : 'ring-white'}`} />
+          <div className={`w-2.5 h-2.5 rounded-(var(--radius-pill)) bg-cyan-400 shadow-(var(--glow-accent-md)) ring-2 ${isDark ? 'ring-[#0E0F14]' : 'ring-white'}`} />
         </div>
 
         {/* Organic Sparkline SVG Curve with luminous gradient */}

@@ -4,6 +4,8 @@
 @import "./styles/ui99.css";
 @import "./styles/ui99-elevation.css";
 @import "./styles/ui99-glow.css";
+@import "./styles/ui99-type.css";
+@import "./styles/ui99-type-utilities.css";
 
 @import "tailwindcss";
 @import "tw-animate-css";

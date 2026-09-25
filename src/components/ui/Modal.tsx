@@ -48,14 +48,14 @@ export function Modal({
               'pointer-events-auto relative w-full bg-white dark:bg-(--bg-elevated) text-(--text-primary)',
               'border border-black/[0.08] dark:border-white/[0.06]',
               'shadow-(var(--elevation-4)) dark:shadow-(var(--rim-soft), var(--elevation-4))',
-              'sm:rounded-3xl rounded-t-[28px] overflow-hidden max-h-[92vh] flex flex-col z-10 pb-safe outline-none',
+              'sm:rounded-(var(--radius-lg)) rounded-t-[28px] overflow-hidden max-h-[92vh] flex flex-col z-10 pb-safe outline-none',
               'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom sm:data-[state=closed]:zoom-out-95 sm:data-[state=open]:zoom-in-95',
               maxWClass
             )}
           >
             {/* Tactile Sheet Drag Handle for Mobile */}
             <div className="sm:hidden pt-3 pb-1 flex justify-center cursor-grab">
-              <div className="w-10 h-1 rounded-full bg-zinc-300 dark:bg-white/15" />
+              <div className="w-10 h-1 rounded-(var(--radius-pill)) bg-zinc-300 dark:bg-white/15" />
             </div>
 
             {/* Header */}

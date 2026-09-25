@@ -62,7 +62,7 @@ export function RichTextEditorBar({
   return (
     <div
       className={cn(
-        'inline-flex items-center gap-0.5 p-1 rounded-2xl bg-white/95 dark:bg-(--bg-elevated)/90 backdrop-blur-xl',
+        'inline-flex items-center gap-0.5 p-1 rounded-(var(--radius-control)) bg-white/95 dark:bg-(--bg-elevated)/90 backdrop-blur-xl',
         'border border-black/[0.06] dark:border-white/[0.04] shadow-(var(--elevation-3))',
         className
       )}
@@ -81,7 +81,7 @@ export function RichTextEditorBar({
             onClick={() => toggleFormat(btn.key!)}
             title={btn.label}
             className={cn(
-              'p-1.5 rounded-lg transition-all text-zinc-500 hover:text-zinc-900 dark:hover:text-white',
+              'p-1.5 rounded-(var(--radius-sm)) transition-all text-zinc-500 hover:text-zinc-900 dark:hover:text-white',
               isActive
                 ? 'bg-zinc-200 dark:bg-white/[0.1] text-zinc-900 dark:text-white shadow-xs font-semibold'
                 : 'hover:bg-zinc-100 dark:hover:bg-white/[0.04]'

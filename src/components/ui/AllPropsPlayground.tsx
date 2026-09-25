@@ -390,7 +390,7 @@ export function AllPropsPlayground() {
   };
 
   return (
-    <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
+    <div className="p-4 sm:p-6 rounded-(var(--radius-control)) sm:rounded-(var(--radius-lg)) bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.04] dark:border-white/[0.04] pb-4">
         <div className="flex items-center gap-2.5">
@@ -428,7 +428,7 @@ export function AllPropsPlayground() {
             role="tab"
             aria-selected={component === c.value}
             onClick={() => setComponent(c.value)}
-            className={`inline-flex items-center gap-1.5 h-8 px-3 rounded-full text-xs font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99 ${
+            className={`inline-flex items-center gap-1.5 h-8 px-3 rounded-(var(--radius-pill)) text-xs font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99 ${
               component === c.value
                 ? 'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs'
                 : 'bg-zinc-100 dark:bg-white/[0.04] text-zinc-700 dark:text-(--text-secondary) hover:bg-state-hover'
@@ -630,7 +630,7 @@ export function AllPropsPlayground() {
         {/* Live preview */}
         <div className="lg:col-span-8">
           <div
-            className={`rounded-2xl border border-black/[0.04] dark:border-white/[0.04] p-5 sm:p-7 flex items-center justify-center min-h-[300px] transition-colors ${
+            className={`rounded-(var(--radius-control)) border border-black/[0.04] dark:border-white/[0.04] p-5 sm:p-7 flex items-center justify-center min-h-[300px] transition-colors ${
               isDark ? 'bg-(--bg-sunken)' : 'bg-zinc-50'
             }`}
           >
@@ -823,17 +823,17 @@ export function AllPropsPlayground() {
                     <TabsTrigger value="logs">Logs</TabsTrigger>
                   </TabsList>
                   <TabsContent value="preview">
-                    <div className="p-4 rounded-xl bg-(--bg-card) border border-(--border-hairline) text-xs text-(--text-secondary)">
+                    <div className="p-4 rounded-(var(--radius-field)) bg-(--bg-card) border border-(--border-hairline) text-xs text-(--text-secondary)">
                       Preview panel — keyboard-roving triggers.
                     </div>
                   </TabsContent>
                   <TabsContent value="code">
-                    <div className="p-4 rounded-xl bg-(--bg-card) border border-(--border-hairline) text-xs text-(--text-secondary)">
+                    <div className="p-4 rounded-(var(--radius-field)) bg-(--bg-card) border border-(--border-hairline) text-xs text-(--text-secondary)">
                       Code panel.
                     </div>
                   </TabsContent>
                   <TabsContent value="logs">
-                    <div className="p-4 rounded-xl bg-(--bg-card) border border-(--border-hairline) text-xs text-(--text-secondary)">
+                    <div className="p-4 rounded-(var(--radius-field)) bg-(--bg-card) border border-(--border-hairline) text-xs text-(--text-secondary)">
                       Logs panel.
                     </div>
                   </TabsContent>
@@ -875,7 +875,7 @@ export function AllPropsPlayground() {
                 <HoverCardTrigger asChild>
                   <button
                     type="button"
-                    className="h-10 px-4 rounded-xl text-sm font-medium bg-zinc-100 dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.05] cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
+                    className="h-10 px-4 rounded-(var(--radius-field)) text-sm font-medium bg-zinc-100 dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.05] cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
                   >
                     Hover / focus me
                   </button>
@@ -1045,13 +1045,13 @@ function Segmented<T extends string | number>({
   options: { value: T; label: string }[];
 }) {
   return (
-    <div className="inline-flex p-0.5 rounded-full bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.04]">
+    <div className="inline-flex p-0.5 rounded-(var(--radius-pill)) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.04]">
       {options.map((o) => (
         <button
           key={String(o.value)}
           type="button"
           onClick={() => onChange(o.value)}
-          className={`h-6 px-2.5 rounded-full text-[11px] font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99-inset ${
+          className={`h-6 px-2.5 rounded-(var(--radius-pill)) text-[11px] font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99-inset ${
             value === o.value
               ? 'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs'
               : 'text-zinc-600 dark:text-(--text-secondary) hover:text-zinc-900 dark:hover:text-(--text-primary)'
@@ -1068,12 +1068,12 @@ function Segmented<T extends string | number>({
 function CodePanel({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
   return (
-    <div className="relative rounded-2xl bg-zinc-950 dark:bg-black/40 border border-black/[0.06] dark:border-white/[0.05] overflow-hidden">
+    <div className="relative rounded-(var(--radius-control)) bg-zinc-950 dark:bg-black/40 border border-black/[0.06] dark:border-white/[0.05] overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2 border-b border-white/[0.06]">
         <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-rose-400/70" />
-          <span className="w-2 h-2 rounded-full bg-amber-400/70" />
-          <span className="w-2 h-2 rounded-full bg-emerald-400/70" />
+          <span className="w-2 h-2 rounded-(var(--radius-pill)) bg-rose-400/70" />
+          <span className="w-2 h-2 rounded-(var(--radius-pill)) bg-amber-400/70" />
+          <span className="w-2 h-2 rounded-(var(--radius-pill)) bg-emerald-400/70" />
           <span className="ml-2 text-[10px] font-mono text-zinc-400">Playground.tsx</span>
         </div>
         <button

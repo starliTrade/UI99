@@ -47,7 +47,7 @@ export function Rating({ value, onChange, max = 5, readOnly = false, size = 'md'
             className={cn(
               'inline-flex items-center justify-center p-0.5 transition-transform',
               hitSizes[size],
-              !readOnly && 'hover:scale-110 focus-visible:outline-none focus-ui99-inset cursor-pointer rounded-md',
+              !readOnly && 'hover:scale-110 focus-visible:outline-none focus-ui99-inset cursor-pointer rounded-(var(--radius-xs))',
               readOnly && 'cursor-default'
             )}
           >

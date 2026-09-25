@@ -58,13 +58,13 @@ export function Slider({
       <div className="relative flex items-center h-5 slider-ui99" dir="ltr">
         {/* Track background */}
         <div
-          className={`w-full h-1.5 rounded-full overflow-hidden ${
+          className={`w-full h-1.5 rounded-(var(--radius-pill)) overflow-hidden ${
             isDark ? 'bg-white/[0.08]' : 'bg-black/[0.08]'
           }`}
         >
           {/* Active filled track */}
           <div
-            className="h-full bg-emerald-500 rounded-full transition-all duration-75 shadow-(var(--glow-accent-sm)) slider-fill"
+            className="h-full bg-emerald-500 rounded-(var(--radius-pill)) transition-all duration-75 shadow-(var(--glow-accent-sm)) slider-fill"
             style={{ width: `${percentage}%` }}
           />
         </div>
@@ -80,12 +80,12 @@ export function Slider({
           value={value}
           disabled={disabled}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer focus-visible:ring-2 focus-visible:ring-emerald-500/55 rounded-full"
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer focus-visible:ring-2 focus-visible:ring-emerald-500/55 rounded-(var(--radius-pill))"
         />
 
         {/* Visual tactile thumb */}
         <div
-          className={`absolute pointer-events-none w-4 h-4 rounded-full -translate-x-1/2 shadow-md transition-transform duration-75 slider-thumb ${
+          className={`absolute pointer-events-none w-4 h-4 rounded-(var(--radius-pill)) -translate-x-1/2 shadow-md transition-transform duration-75 slider-thumb ${
             isDark
               ? 'bg-white border-2 border-(--bg-elevated) shadow-(var(--elevation-1))'
               : 'bg-white border-2 border-emerald-500 shadow-(var(--elevation-1))'

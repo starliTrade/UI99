@@ -60,7 +60,7 @@ export function FoundationsView() {
     <div className="w-full space-y-12 pb-20">
       {/* Header */}
       <div className="space-y-3">
-        <div className="inline-flex items-center h-7 px-3 rounded-full text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+        <div className="inline-flex items-center h-7 px-3 rounded-(var(--radius-pill)) text-[11px] font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
           {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-white">
@@ -90,11 +90,11 @@ export function FoundationsView() {
             <div
               key={t.name}
               onClick={() => copyValue(isDark ? t.dark : t.light, t.name)}
-              className="p-4 rounded-2xl bg-zinc-50 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3 cursor-pointer hover:border-black/20 dark:hover:border-white/10 transition-colors shadow-xs group"
+              className="p-4 rounded-(var(--radius-control)) bg-zinc-50 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3 cursor-pointer hover:border-black/20 dark:hover:border-white/10 transition-colors shadow-xs group"
             >
               <div
                 style={{ backgroundColor: isDark ? t.dark : t.light }}
-                className="w-full h-16 rounded-xl border border-black/[0.08] dark:border-white/[0.05] flex items-center justify-center relative overflow-hidden"
+                className="w-full h-16 rounded-(var(--radius-field)) border border-black/[0.08] dark:border-white/[0.05] flex items-center justify-center relative overflow-hidden"
               >
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute inset-0 bg-black/40 flex items-center justify-center text-white text-xs font-mono gap-1">
                   {copiedToken === t.name ? (
@@ -132,7 +132,7 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-6 rounded-3xl bg-zinc-50 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-6">
+        <div className="p-6 rounded-(var(--radius-lg)) bg-zinc-50 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-mono text-zinc-400">
@@ -166,7 +166,7 @@ export function FoundationsView() {
           </div>
 
           {/* Visualization Area */}
-          <div className="p-8 rounded-2xl bg-zinc-200/50 dark:bg-[#06070A] flex flex-col items-center justify-center gap-4">
+          <div className="p-8 rounded-(var(--radius-control)) bg-zinc-200/50 dark:bg-[#06070A] flex flex-col items-center justify-center gap-4">
             <div
               style={{
                 borderRadius: `${simOuterRadius}px`,
@@ -209,7 +209,7 @@ export function FoundationsView() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-5 rounded-2xl bg-rose-500/5 border border-rose-500/20 space-y-3">
+          <div className="p-5 rounded-(var(--radius-control)) bg-rose-500/5 border border-rose-500/20 space-y-3">
             <div className="flex items-center gap-2 text-xs font-bold text-rose-500">
               <ShieldAlert className="w-4 h-4" />
               <span>Banned Anti-Patterns</span>
@@ -223,7 +223,7 @@ export function FoundationsView() {
             </ul>
           </div>
 
-          <div className="p-5 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 space-y-3">
+          <div className="p-5 rounded-(var(--radius-control)) bg-emerald-500/5 border border-emerald-500/20 space-y-3">
             <div className="flex items-center gap-2 text-xs font-bold text-emerald-500">
               <ShieldCheck className="w-4 h-4" />
               <span>Enforced Standards in UI \ [99]</span>
@@ -251,7 +251,7 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-5 sm:p-7 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-5">
+        <div className="p-5 sm:p-7 rounded-(var(--radius-lg)) bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-5">
           <div className="flex flex-wrap items-center gap-3">
             <Button
               variant={isDark ? 'outline' : 'primary'}
@@ -285,10 +285,10 @@ export function FoundationsView() {
                 key={row.token}
                 type="button"
                 onClick={() => copyValue(`var(${row.token})`, row.token)}
-                className="text-left p-3 rounded-2xl bg-zinc-100/70 dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
+                className="text-left p-3 rounded-(var(--radius-control)) bg-zinc-100/70 dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
               >
                 <div
-                  className="w-full h-12 rounded-xl border border-black/[0.06] dark:border-white/[0.05]"
+                  className="w-full h-12 rounded-(var(--radius-field)) border border-black/[0.06] dark:border-white/[0.05]"
                   style={{ background: `var(${row.token})` }}
                 />
                 <div className="text-[11px] font-semibold text-zinc-900 dark:text-white">{row.label}</div>
@@ -299,14 +299,14 @@ export function FoundationsView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="p-4 rounded-2xl bg-(--bg-card) border border-(--border-hairline) space-y-1.5">
+            <div className="p-4 rounded-(var(--radius-control)) bg-(--bg-card) border border-(--border-hairline) space-y-1.5">
               <div className="text-xs font-semibold text-(--text-primary)">ui-card sample</div>
               <div className="text-[11px] text-(--text-secondary)">Tokens resolve live in both themes.</div>
             </div>
-            <div className="p-4 rounded-2xl bg-(--bg-card) border border-(--border-hairline) flex items-center justify-center">
+            <div className="p-4 rounded-(var(--radius-control)) bg-(--bg-card) border border-(--border-hairline) flex items-center justify-center">
               <Button variant="primary" size="sm">Primary</Button>
             </div>
-            <div className="p-4 rounded-2xl bg-(--bg-card) border border-(--border-hairline) flex items-center justify-center">
+            <div className="p-4 rounded-(var(--radius-control)) bg-(--bg-card) border border-(--border-hairline) flex items-center justify-center">
               <span className="ui-badge ui-badge-success">contrast-verified</span>
             </div>
           </div>
@@ -319,8 +319,8 @@ export function FoundationsView() {
       {/* ========================================================================= */}
         <Reveal index={1}>
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="p-6 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-xs font-bold">
+        <div className="p-6 rounded-(var(--radius-lg)) bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+          <div className="w-8 h-8 rounded-(var(--radius-field)) bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-xs font-bold">
             #06
           </div>
           <h3 className="text-base font-bold text-zinc-950 dark:text-white">
@@ -331,8 +331,8 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-6 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-xs font-bold">
+        <div className="p-6 rounded-(var(--radius-lg)) bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+          <div className="w-8 h-8 rounded-(var(--radius-field)) bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-xs font-bold">
             <Zap className="w-4 h-4" />
           </div>
           <h3 className="text-base font-bold text-zinc-950 dark:text-white">
@@ -343,8 +343,8 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-6 rounded-3xl bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono text-xs font-bold">
+        <div className="p-6 rounded-(var(--radius-lg)) bg-zinc-50/70 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+          <div className="w-8 h-8 rounded-(var(--radius-field)) bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono text-xs font-bold">
             <Code2 className="w-4 h-4" />
           </div>
           <h3 className="text-base font-bold text-zinc-950 dark:text-white">

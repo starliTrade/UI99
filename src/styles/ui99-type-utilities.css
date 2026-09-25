@@ -1,0 +1,51 @@
+/**
+ * UI99 — Type Utilities (Tailwind v4 layer)
+ *
+ * The type scale in ui99-type.css is a set of custom properties. These
+ * utilities turn each step into a real class so a component writes
+ * `text-title` instead of assembling font-size + line-height + tracking by hand.
+ *
+ *   .type-micro .type-caption .type-body .type-body-lg
+ *   .type-title .type-heading .type-display .type-hero .type-billboard
+ *
+ * Persian is automatic: when the app sets `data-script="fa"` on <html> (the
+ * AuthContext language switch already toggles `lang`/`dir`), the ramp swaps to
+ * the optically-corrected Persian values. No component has to know.
+ *
+ * The pairing is the point — line-height and tracking travel WITH the size, so
+ * a design system can actually own vertical rhythm.
+ */
+
+/* ─── Latin steps ─── */
+.type-micro { font-size: var(--type-micro-size); line-height: var(--type-micro-leading); letter-spacing: var(--type-micro-tracking); }
+.type-caption { font-size: var(--type-caption-size); line-height: var(--type-caption-leading); letter-spacing: var(--type-caption-tracking); }
+.type-body { font-size: var(--type-body-size); line-height: var(--type-body-leading); letter-spacing: var(--type-body-tracking); }
+.type-body-lg { font-size: var(--type-body-lg-size); line-height: var(--type-body-lg-leading); letter-spacing: var(--type-body-lg-tracking); }
+.type-title { font-size: var(--type-title-size); line-height: var(--type-title-leading); letter-spacing: var(--type-title-tracking); }
+.type-heading { font-size: var(--type-heading-size); line-height: var(--type-heading-leading); letter-spacing: var(--type-heading-tracking); }
+.type-display { font-size: var(--type-display-size); line-height: var(--type-display-leading); letter-spacing: var(--type-display-tracking); }
+.type-hero { font-size: var(--type-hero-size); line-height: var(--type-hero-leading); letter-spacing: var(--type-hero-tracking); }
+.type-billboard { font-size: var(--type-billboard-size); line-height: var(--type-billboard-leading); letter-spacing: var(--type-billboard-tracking); }
+
+/* ─── Persian override: optical size +8%, looser leading, no negative tracking ─── */
+[data-script='fa'] .type-micro { font-size: var(--type-fa-micro-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-caption { font-size: var(--type-fa-caption-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-body { font-size: var(--type-fa-body-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-body-lg { font-size: var(--type-fa-body-lg-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-title { font-size: var(--type-fa-title-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-heading { font-size: var(--type-fa-heading-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-display { font-size: var(--type-fa-display-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-hero { font-size: var(--type-fa-hero-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-billboard { font-size: var(--type-fa-billboard-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
+
+/* ─── Weights ─── */
+.weight-regular { font-weight: var(--weight-regular); }
+.weight-medium { font-weight: var(--weight-medium); }
+.weight-semibold { font-weight: var(--weight-semibold); }
+.weight-bold { font-weight: var(--weight-bold); }
+
+/* ─── Icon scale — 4 optical sizes ─── */
+.icon-xs { width: var(--icon-xs); height: var(--icon-xs); }
+.icon-sm { width: var(--icon-sm); height: var(--icon-sm); }
+.icon-md { width: var(--icon-md); height: var(--icon-md); }
+.icon-lg { width: var(--icon-lg); height: var(--icon-lg); }

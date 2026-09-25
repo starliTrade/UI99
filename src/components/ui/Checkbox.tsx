@@ -29,7 +29,7 @@ export function Checkbox({
 }: CheckboxProps) {
   const isDark = useIsDark();
 
-  const boxSize = size === 'sm' ? 'w-4 h-4 rounded-md' : 'w-5 h-5 rounded-(var(--radius-xs))';
+  const boxSize = size === 'sm' ? 'w-4 h-4 rounded-(var(--radius-xs))' : 'w-5 h-5 rounded-(var(--radius-xs))';
   const iconSize = size === 'sm' ? 'w-3 h-3' : 'w-3.5 h-3.5';
 
   return (
@@ -134,7 +134,7 @@ export function Radio({
         onChange={onChange}
       />
       <div
-        className={`w-4.5 h-4.5 rounded-full flex items-center justify-center shrink-0 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500/55 ${
+        className={`w-4.5 h-4.5 rounded-(var(--radius-pill)) flex items-center justify-center shrink-0 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-emerald-500/55 ${
           checked
             ? 'border-2 border-emerald-500'
             : isDark
@@ -147,7 +147,7 @@ export function Radio({
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            className="w-2 h-2 rounded-full bg-emerald-500 shadow-(var(--glow-accent-sm))"
+            className="w-2 h-2 rounded-(var(--radius-pill)) bg-emerald-500 shadow-(var(--glow-accent-sm))"
           />
         )}
       </div>

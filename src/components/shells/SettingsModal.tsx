@@ -90,7 +90,7 @@ export function SettingsModal() {
             <button
               key={t.id}
               onClick={() => setActiveTab(t.id as any)}
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all whitespace-nowrap cursor-pointer select-none ${
+              className={`px-3 py-1.5 rounded-(var(--radius-pill)) text-xs font-semibold flex items-center gap-1.5 transition-all whitespace-nowrap cursor-pointer select-none ${
                 activeTab === t.id
                   ? 'bg-white text-[#09090B] shadow-(var(--elevation-2))'
                   : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
@@ -111,7 +111,7 @@ export function SettingsModal() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-[#18181D] border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-white font-semibold focus:outline-none focus:border-white/30"
+                className="w-full bg-[#18181D] border border-white/[0.08] rounded-(var(--radius-field)) px-3 py-2 text-sm text-white font-semibold focus:outline-none focus:border-white/30"
               />
             </div>
 
@@ -122,7 +122,7 @@ export function SettingsModal() {
                 dir="rtl"
                 value={persianName}
                 onChange={(e) => setPersianName(e.target.value)}
-                className="w-full bg-[#18181D] border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-white font-persian-luxury focus:outline-none focus:border-white/30"
+                className="w-full bg-[#18181D] border border-white/[0.08] rounded-(var(--radius-field)) px-3 py-2 text-sm text-white font-persian-luxury focus:outline-none focus:border-white/30"
                 placeholder="نام نمایشی"
               />
             </div>
@@ -133,12 +133,12 @@ export function SettingsModal() {
                 rows={2}
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
-                className="w-full bg-[#18181D] border border-white/[0.08] rounded-xl p-3 text-xs text-zinc-200 focus:outline-none focus:border-white/30"
+                className="w-full bg-[#18181D] border border-white/[0.08] rounded-(var(--radius-field)) p-3 text-xs text-zinc-200 focus:outline-none focus:border-white/30"
               />
             </div>
 
             {/* Language and RTL */}
-            <div className="p-3.5 bg-[#18181D] rounded-xl border border-white/[0.08] flex items-center justify-between">
+            <div className="p-3.5 bg-[#18181D] rounded-(var(--radius-field)) border border-white/[0.08] flex items-center justify-between">
               <div>
                 <span className="font-bold text-white block">Layout Direction & Language</span>
                 <span className="text-zinc-400 text-[11px]">English LTR / فارسی راست‌به‌چپ</span>
@@ -147,7 +147,7 @@ export function SettingsModal() {
                 <button
                   type="button"
                   onClick={() => setLanguage('en')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
+                  className={`px-3 py-1 rounded-(var(--radius-pill)) text-xs font-semibold border transition-all cursor-pointer ${
                     language === 'en'
                       ? 'bg-white text-[#09090B] border-transparent shadow-xs'
                       : 'bg-[#222228] text-zinc-400 border-white/[0.06]'
@@ -158,7 +158,7 @@ export function SettingsModal() {
                 <button
                   type="button"
                   onClick={() => setLanguage('fa')}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold border transition-all cursor-pointer font-persian-luxury ${
+                  className={`px-3 py-1 rounded-(var(--radius-pill)) text-xs font-semibold border transition-all cursor-pointer font-persian-luxury ${
                     language === 'fa'
                       ? 'bg-white text-[#09090B] border-transparent shadow-xs'
                       : 'bg-[#222228] text-zinc-400 border-white/[0.06]'
@@ -174,10 +174,10 @@ export function SettingsModal() {
         {/* SLO TAB */}
         {activeTab === 'SLO' && (
           <div className="space-y-3 text-xs">
-            <div className="p-4 bg-[#18181D] rounded-2xl border border-white/[0.08] space-y-3">
+            <div className="p-4 bg-[#18181D] rounded-(var(--radius-control)) border border-white/[0.08] space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-purple-950/40 border border-purple-500/30 flex items-center justify-center text-purple-300">
+                  <div className="w-8 h-8 rounded-(var(--radius-pill)) bg-purple-950/40 border border-purple-500/30 flex items-center justify-center text-purple-300">
                     <HeartHandshake className="w-4 h-4" />
                   </div>
                   <div>
@@ -194,7 +194,7 @@ export function SettingsModal() {
                 <button
                   type="button"
                   onClick={handleToggleSLOAccess}
-                  className={`px-3 py-1 rounded-full font-bold text-xs transition-colors ${
+                  className={`px-3 py-1 rounded-(var(--radius-pill)) font-bold text-xs transition-colors ${
                     sloConfig?.defaultAccess === 'NO_ACCESS'
                       ? 'bg-[#222228] text-zinc-300 border border-white/[0.08]'
                       : 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/30'
@@ -214,7 +214,7 @@ export function SettingsModal() {
         {/* DATA OWNERSHIP TAB */}
         {activeTab === 'DATA' && (
           <div className="space-y-3 text-xs">
-            <div className="p-4 bg-[#18181D] rounded-2xl border border-white/[0.08] space-y-3">
+            <div className="p-4 bg-[#18181D] rounded-(var(--radius-control)) border border-white/[0.08] space-y-3">
               <div className="flex items-start gap-3">
                 <ShieldCheck className="w-5 h-5 text-emerald-400 mt-0.5" />
                 <div>
@@ -240,7 +240,7 @@ export function SettingsModal() {
         {/* AI TAB */}
         {activeTab === 'AI' && (
           <div className="space-y-3 text-xs">
-            <div className="p-4 bg-[#18181D] rounded-2xl border border-white/[0.08] space-y-2.5">
+            <div className="p-4 bg-[#18181D] rounded-(var(--radius-control)) border border-white/[0.08] space-y-2.5">
               <div className="flex items-center gap-2 font-bold text-white">
                 <Sparkles className="w-4 h-4 text-purple-400" />
                 <span>UI99 Intelligence Architecture</span>

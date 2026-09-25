@@ -43,10 +43,10 @@ export function RangeSlider({
     <div className={`w-full space-y-2 select-none ${className}`}>
       <div className="relative w-full h-5 flex items-center">
         {/* Track */}
-        <div className="w-full h-1.5 rounded-full bg-zinc-200 dark:bg-white/[0.06] relative">
+        <div className="w-full h-1.5 rounded-(var(--radius-pill)) bg-zinc-200 dark:bg-white/[0.06] relative">
           {/* Highlight Range */}
           <div
-            className="absolute h-full rounded-full bg-emerald-500"
+            className="absolute h-full rounded-(var(--radius-pill)) bg-emerald-500"
             style={{ left: `${minPercent}%`, width: `${maxPercent - minPercent}%` }}
           />
         </div>
@@ -77,11 +77,11 @@ export function RangeSlider({
 
         {/* Custom Visible Thumbs */}
         <div
-          className="absolute w-4 h-4 rounded-full bg-white shadow-md border border-zinc-300 dark:border-white/20 pointer-events-none -translate-x-1/2"
+          className="absolute w-4 h-4 rounded-(var(--radius-pill)) bg-white shadow-md border border-zinc-300 dark:border-white/20 pointer-events-none -translate-x-1/2"
           style={{ left: `${minPercent}%` }}
         />
         <div
-          className="absolute w-4 h-4 rounded-full bg-white shadow-md border border-zinc-300 dark:border-white/20 pointer-events-none -translate-x-1/2"
+          className="absolute w-4 h-4 rounded-(var(--radius-pill)) bg-white shadow-md border border-zinc-300 dark:border-white/20 pointer-events-none -translate-x-1/2"
           style={{ left: `${maxPercent}%` }}
         />
       </div>

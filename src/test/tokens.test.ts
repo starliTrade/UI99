@@ -7,7 +7,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const read = (f: string) => readFileSync(resolve(process.cwd(), 'src/styles', f), 'utf8');
@@ -15,6 +15,8 @@ const read = (f: string) => readFileSync(resolve(process.cwd(), 'src/styles', f)
 const elevation = read('ui99-elevation.css');
 const glow = read('ui99-glow.css');
 const base = read('ui99.css');
+const type = read('ui99-type.css');
+const typeUtils = read('ui99-type-utilities.css');
 
 /**
  * Declarations inside a specific selector block. The file declares several
@@ -113,6 +115,32 @@ describe('radius scale', () => {
     }
   });
 
+  it('never reuses a radius across two steps of the same size scale', () => {
+    // The bug behind "everything looks too rounded": a size map like
+    // lg→control, xl→control, 2xl→xl makes the size prop meaningless and
+    // flattens the hierarchy, because siblings end up identical.
+    const kitDir = resolve(process.cwd(), 'src/components/ui');
+    const offenders: string[] = [];
+
+    for (const file of readdirSync(kitDir)) {
+      if (!file.endsWith('.tsx')) continue;
+      const src = readFileSync(resolve(kitDir, file), 'utf8');
+
+      // Find object literals that map size names to radius tokens.
+      const maps = src.matchAll(/\{[^{}]*?(?:sm|md|lg|xl)[^{}]*?rounded-\(--radius-[^{}]*?\}/g);
+      for (const map of maps) {
+        const tokens = [...map[0].matchAll(/rounded-\(--(radius-[a-z0-9-]+)\)/g)].map((m) => m[1]);
+        const seen = new Set<string>();
+        for (const t of tokens) {
+          if (seen.has(t)) offenders.push(`${file}: ${t} used twice in one size map`);
+          seen.add(t);
+        }
+      }
+    }
+
+    expect(offenders, offenders.join('\n')).toHaveLength(0);
+  });
+
   it('preserves the six pre-existing radius tokens (backward compatibility)', () => {
     for (const token of [
       '--radius-pill',
@@ -158,6 +186,113 @@ describe('glow scale', () => {
     expect(darkBlock).toContain('0 0 14px');
     // Light mode converts aura into a downward bloom under the element.
     expect(lightBlock).toContain('0 4px 12px');
+  });
+});
+
+describe('type scale', () => {
+  const STEPS = [
+    'micro',
+    'caption',
+    'body',
+    'body-lg',
+    'title',
+    'heading',
+    'display',
+    'hero',
+    'billboard',
+  ] as const;
+
+  it('declares all nine steps with a full size/leading/tracking triple', () => {
+    for (const step of STEPS) {
+      expect(type, `--type-${step}-size`).toMatch(new RegExp(`--type-${step}-size\\s*:`));
+      expect(type, `--type-${step}-leading`).toMatch(new RegExp(`--type-${step}-leading\\s*:`));
+      expect(type, `--type-${step}-tracking`).toMatch(new RegExp(`--type-${step}-tracking\\s*:`));
+    }
+  });
+
+  it('is monotonic — every step is larger than the one before it', () => {
+    const sizes = [...type.matchAll(/--type-([a-z-]+)-size:\s*([\d.]+)rem/g)].map(
+      (m) => [m[1], parseFloat(m[2])] as const,
+    );
+    const map = new Map<string, number>(sizes);
+
+    const ladder = STEPS.map((s) => map.get(s)!);
+    for (let i = 1; i < ladder.length; i++) {
+      expect(
+        ladder[i],
+        `type size must grow at step ${STEPS[i]} (got ${ladder[i]} vs ${ladder[i - 1]})`,
+      ).toBeGreaterThan(ladder[i - 1]);
+    }
+  });
+
+  it('pairs a tighter line-height as size grows', () => {
+    // Large text needs less leading; body text needs the most air. This is the
+    // pairing that stops a design system losing control of vertical rhythm.
+    const leads = new Map(
+      [...type.matchAll(/--type-([a-z-]+)-leading:\s*([\d.]+)/g)].map((m) => [
+        m[1],
+        parseFloat(m[2]),
+      ]),
+    );
+    expect(leads.get('body')!, 'body text needs the loosest leading').toBeGreaterThan(
+      leads.get('billboard')!,
+    );
+  });
+
+  it('declares the Persian optical-correction ramp', () => {
+    for (const step of STEPS) {
+      expect(type, `--type-fa-${step}-size`).toMatch(new RegExp(`--type-fa-${step}-size\\s*:`));
+    }
+    expect(type, '--type-fa-leading').toMatch(/--type-fa-leading\s*:/);
+    expect(type, '--type-fa-tracking').toMatch(/--type-fa-tracking\s*:/);
+  });
+
+  it('gives Persian a larger optical size than Latin', () => {
+    // Vazirmatn reads smaller at equal px; a smaller nominal size would make
+    // Persian body text visibly weaker than the Latin it sits beside.
+    const pairs: [string, string][] = [
+      ['fa-body-size', 'body-size'],
+      ['fa-title-size', 'title-size'],
+      ['fa-heading-size', 'heading-size'],
+    ];
+    for (const [fa, latin] of pairs) {
+      const faV = parseFloat(type.match(new RegExp(`--type-${fa}:\\s*([\\d.]+)rem`))![1]);
+      const latinV = parseFloat(type.match(new RegExp(`--type-${latin}:\\s*([\\d.]+)rem`))![1]);
+      expect(faV, `${fa} must exceed ${latin}`).toBeGreaterThan(latinV);
+    }
+  });
+
+  it('never applies negative tracking to Persian', () => {
+    const faTracking = type.match(/--type-fa-tracking:\s*([^;]+)/)![1].trim();
+    expect(faTracking).toBe('0em');
+  });
+
+  it('exposes a utility class per step, carrying all three properties', () => {
+    for (const step of STEPS) {
+      const rule = typeUtils.match(
+        new RegExp(`\\.type-${step.replace('body-lg', 'body-lg')}\\s*\\{([^}]+)\\}`),
+      );
+      expect(rule, `.type-${step} utility must exist`).not.toBeNull();
+      expect(rule![1]).toContain('font-size');
+      expect(rule![1]).toContain('line-height');
+      expect(rule![1]).toContain('letter-spacing');
+    }
+  });
+
+  it('wires the Persian override to data-script', () => {
+    expect(typeUtils).toContain("[data-script='fa']");
+    expect(typeUtils).toContain('.type-body {');
+  });
+
+  it('declares exactly four weight tokens', () => {
+    const weights = [...type.matchAll(/--weight-(\w+):/g)].map((m) => m[1]);
+    expect(weights.sort()).toEqual(['bold', 'medium', 'regular', 'semibold']);
+  });
+
+  it('declares four optical icon sizes', () => {
+    for (const size of ['xs', 'sm', 'md', 'lg']) {
+      expect(type, `--icon-${size}`).toMatch(new RegExp(`--icon-${size}\\s*:`));
+    }
   });
 });
 

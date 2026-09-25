@@ -53,7 +53,7 @@ export function CalendarView({
   return (
     <div
       className={cn(
-        'flex flex-col gap-3 p-4 rounded-3xl bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04] shadow-md w-full',
+        'flex flex-col gap-3 p-4 rounded-(var(--radius-lg)) bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04] shadow-md w-full',
         className
       )}
     >
@@ -70,14 +70,14 @@ export function CalendarView({
           <button
             type="button"
             aria-label="Previous month"
-            className="p-1 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded-(var(--radius-sm)) text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             type="button"
             aria-label="Next month"
-            className="p-1 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded-(var(--radius-sm)) text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -97,7 +97,7 @@ export function CalendarView({
       <div className="grid grid-cols-7 gap-1">
         {/* Leading blanks */}
         {Array.from({ length: startDayOffset }).map((_, idx) => (
-          <div key={`blank-${idx}`} className="h-14 rounded-xl opacity-0" />
+          <div key={`blank-${idx}`} className="h-14 rounded-(var(--radius-field)) opacity-0" />
         ))}
 
         {/* Days */}
@@ -118,7 +118,7 @@ export function CalendarView({
                 onSelectDay?.(dayNum);
               }}
               className={cn(
-                'min-h-[44px] sm:min-h-[58px] p-1 sm:p-1.5 rounded-lg sm:rounded-xl border flex flex-col items-start justify-between text-left transition-all duration-150',
+                'min-h-[44px] sm:min-h-[58px] p-1 sm:p-1.5 rounded-(var(--radius-sm)) sm:rounded-(var(--radius-field)) border flex flex-col items-start justify-between text-left transition-all duration-150',
                 isSelected
                   ? 'bg-zinc-100 dark:bg-white/[0.08] border-black/20 dark:border-white/20 shadow-xs'
                   : 'bg-zinc-50/50 dark:bg-(--bg-elevated)/50 border-black/[0.04] dark:border-white/[0.02] hover:bg-zinc-100 dark:hover:bg-white/[0.04]'
@@ -126,7 +126,7 @@ export function CalendarView({
             >
               <span
                 className={cn(
-                  'text-[11px] font-mono font-medium w-5 h-5 flex items-center justify-center rounded-full',
+                  'text-[11px] font-mono font-medium w-5 h-5 flex items-center justify-center rounded-(var(--radius-pill))',
                   isToday
                     ? 'bg-zinc-900 dark:bg-white text-white dark:text-black font-bold'
                     : 'text-zinc-600 dark:text-zinc-400'

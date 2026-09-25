@@ -106,14 +106,14 @@ export function DropdownButton({
         type="button"
         disabled={disabled}
         onClick={() => setOpen(!open)}
-        className={`rounded-xl font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${sizeStyles} ${variantStyles}`}
+        className={`rounded-(var(--radius-field)) font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${sizeStyles} ${variantStyles}`}
       >
         <span>{currentLabel}</span>
         <ChevronDown className={`w-3.5 h-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-1 min-w-[160px] py-1 rounded-xl bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-100">
+        <div className="absolute top-full left-0 mt-1 min-w-[160px] py-1 rounded-(var(--radius-field)) bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-xl z-50 animate-in fade-in zoom-in-95 duration-100">
           {options.map((opt) => (
             <button
               key={opt.value}
@@ -133,7 +133,7 @@ export function DropdownButton({
                 {opt.icon && <span className="w-3.5 h-3.5">{opt.icon}</span>}
                 <span>{opt.label}</span>
               </div>
-              {selected === opt.value && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />}
+              {selected === opt.value && <span className="w-1.5 h-1.5 rounded-(var(--radius-pill)) bg-emerald-500" />}
             </button>
           ))}
         </div>

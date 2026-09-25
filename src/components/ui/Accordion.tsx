@@ -38,7 +38,7 @@ export function Accordion({
         type="multiple"
         defaultValue={defaultOpenId ? [defaultOpenId] : undefined}
         className={cn(
-          'rounded-2xl border divide-y overflow-hidden transition-colors',
+          'rounded-(var(--radius-control)) border divide-y overflow-hidden transition-colors',
           isDark
             ? 'bg-(--bg-elevated) border-white/[0.04] divide-white/[0.04]'
             : 'bg-white border-black/[0.06] divide-black/[0.06]',
@@ -115,7 +115,7 @@ export function Accordion({
       defaultValue={defaultOpenId}
       collapsible
       className={cn(
-        'rounded-2xl border divide-y overflow-hidden transition-colors',
+        'rounded-(var(--radius-control)) border divide-y overflow-hidden transition-colors',
         isDark
           ? 'bg-(--bg-elevated) border-white/[0.04] divide-white/[0.04]'
           : 'bg-white border-black/[0.06] divide-black/[0.06]',

@@ -9,7 +9,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 
 export const alertVariants = cva(
-  'relative w-full flex gap-3 items-start rounded-2xl border p-4 text-sm tracking-tight',
+  'relative w-full flex gap-3 items-start rounded-(var(--radius-control)) border p-4 text-sm tracking-tight',
   {
     variants: {
       variant: {

@@ -31,13 +31,13 @@ export function DailyFortune() {
       className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#090A0F] border border-white/[0.03] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.06] select-none"
     >
       {/* Celestial Background Nebula Glow */}
-      <div className="absolute top-0 right-0 w-44 h-44 bg-violet-600/[0.08] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-36 h-36 bg-rose-500/[0.06] rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-44 h-44 bg-violet-600/[0.08] rounded-(var(--radius-pill)) blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-36 h-36 bg-rose-500/[0.06] rounded-(var(--radius-pill)) blur-2xl pointer-events-none" />
 
       {/* Top Header */}
       <div className="flex items-center justify-between mb-3 relative z-10">
         <div className="flex items-center gap-2">
-          <span className="flex items-center justify-center w-6 h-6 rounded-full bg-violet-500/15 text-violet-300 border border-violet-500/20 text-xs">
+          <span className="flex items-center justify-center w-6 h-6 rounded-(var(--radius-pill)) bg-violet-500/15 text-violet-300 border border-violet-500/20 text-xs">
             {fortune.symbol}
           </span>
           <span className="text-[10.5px] uppercase font-bold tracking-widest text-violet-300">
@@ -46,14 +46,14 @@ export function DailyFortune() {
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/[0.04] text-[#92929B] border border-white/[0.04]">
+          <span className="text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-(var(--radius-pill)) bg-white/[0.04] text-[#92929B] border border-white/[0.04]">
             {isRTL ? 'سرگرمی و دلگرمی' : 'Playful'}
           </span>
 
           <button
             type="button"
             onClick={handleNextFortune}
-            className="p-1 rounded-full text-zinc-500 hover:text-zinc-300 hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded-(var(--radius-pill)) text-zinc-500 hover:text-zinc-300 hover:bg-white/[0.04] transition-colors"
             title={isRTL ? 'فال دیگر' : 'Another fortune'}
           >
             <RefreshCw className="w-3.5 h-3.5" />
@@ -72,7 +72,7 @@ export function DailyFortune() {
               exit={{ opacity: 0, scale: 0.96 }}
               className="w-full py-4 text-center flex flex-col items-center justify-center gap-2"
             >
-              <div className="w-10 h-10 rounded-full bg-white/[0.03] border border-white/[0.06] flex items-center justify-center shadow-(var(--rim-strong)) group-hover:scale-105 transition-transform text-violet-300">
+              <div className="w-10 h-10 rounded-(var(--radius-pill)) bg-white/[0.03] border border-white/[0.06] flex items-center justify-center shadow-(var(--rim-strong)) group-hover:scale-105 transition-transform text-violet-300">
                 <Sparkles className="w-4 h-4 fill-current" />
               </div>
               <p className="text-xs font-medium text-[#EDEDEF] tracking-wide">

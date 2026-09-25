@@ -46,7 +46,7 @@ export function ProgressInMotionCard({
         </div>
 
         {/* Percentage Capsule Pill */}
-        <span className="px-3 py-1 rounded-full text-xs font-medium bg-amber-400/[0.12] text-amber-300 border border-amber-400/20 tracking-tight shrink-0">
+        <span className="px-3 py-1 rounded-(var(--radius-pill)) text-xs font-medium bg-amber-400/[0.12] text-amber-300 border border-amber-400/20 tracking-tight shrink-0">
           {percent}% complete
         </span>
       </div>
@@ -68,7 +68,7 @@ export function ProgressInMotionCard({
           return (
             <div
               key={idx}
-              className={`h-4.5 w-2 rounded-full transition-all duration-300 ${
+              className={`h-4.5 w-2 rounded-(var(--radius-pill)) transition-all duration-300 ${
                 isFilled
                   ? 'bg-emerald-400/90 shadow-(var(--glow-accent-sm))'
                   : 'bg-white/[0.05]'

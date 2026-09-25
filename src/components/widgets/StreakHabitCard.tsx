@@ -48,13 +48,13 @@ export function StreakHabitCard({
       }`}
     >
       {/* Dynamic Warm Ambient Light Beam in Corner */}
-      <div className={`absolute -top-10 -left-10 w-44 h-44 rounded-full blur-2xl pointer-events-none ${isDark ? 'bg-rose-500/15' : 'bg-rose-500/10'}`} />
+      <div className={`absolute -top-10 -left-10 w-44 h-44 rounded-(var(--radius-pill)) blur-2xl pointer-events-none ${isDark ? 'bg-rose-500/15' : 'bg-rose-500/10'}`} />
 
       {/* Header: Flame & Footprints */}
       <div className="flex items-start justify-between relative z-10">
         <div className="flex items-center gap-3">
           {/* Radiant Flame Icon */}
-          <div className="relative w-9 h-9 rounded-full bg-gradient-to-tr from-rose-600 via-orange-500 to-amber-300 flex items-center justify-center shadow-(var(--glow-warning-lg))">
+          <div className="relative w-9 h-9 rounded-(var(--radius-pill)) bg-gradient-to-tr from-rose-600 via-orange-500 to-amber-300 flex items-center justify-center shadow-(var(--glow-warning-lg))">
             <Flame className="w-4.5 h-4.5 text-white fill-white stroke-none" />
           </div>
 
@@ -82,7 +82,7 @@ export function StreakHabitCard({
               <div key={day} className="flex flex-col items-center gap-2">
                 {/* Circular Token */}
                 <div
-                  className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full flex items-center justify-center transition-all ${
+                  className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-(var(--radius-pill)) flex items-center justify-center transition-all ${
                     isCompleted
                       ? 'bg-gradient-to-tr from-emerald-500 to-lime-300 text-zinc-950 font-bold shadow-(var(--glow-accent-md))'
                       : isToday
@@ -132,9 +132,9 @@ export function StreakHabitCard({
         </div>
 
         {/* Luminous Progress Bar */}
-        <div className={`w-full h-2 rounded-full overflow-hidden p-0.5 ${isDark ? 'bg-white/[0.05]' : 'bg-black/[0.05]'}`}>
+        <div className={`w-full h-2 rounded-(var(--radius-pill)) overflow-hidden p-0.5 ${isDark ? 'bg-white/[0.05]' : 'bg-black/[0.05]'}`}>
           <div
-            className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-300 shadow-(var(--glow-accent-md)) transition-all duration-700 ease-out"
+            className="h-full rounded-(var(--radius-pill)) bg-gradient-to-r from-emerald-400 to-teal-300 shadow-(var(--glow-accent-md)) transition-all duration-700 ease-out"
             style={{ width: `${percent}%` }}
           />
         </div>

@@ -105,7 +105,7 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-        'group relative overflow-hidden rounded-2xl sm:rounded-2xl',
+        'group relative overflow-hidden rounded-(var(--radius-control)) sm:rounded-(var(--radius-control))',
         'border border-zinc-200/80 dark:border-white/[0.045]',
         'bg-[#FBFBFC] dark:bg-(--bg-sunken)',
         'shadow-(var(--elevation-1)) dark:shadow-(var(--elevation-4))',
@@ -118,7 +118,7 @@ export function CodeBlock({
         <div className="flex items-center justify-between border-b border-zinc-200/70 dark:border-white/[0.04] bg-zinc-100/70 dark:bg-(--bg-surface) px-3 sm:px-3.5 py-1.5 sm:py-2 select-none min-w-0">
           {/* Active File Tab */}
           <div className="flex items-center gap-2 min-w-0 flex-1">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white dark:bg-white/[0.05] border border-zinc-200/80 dark:border-white/[0.06] shadow-xs min-w-0">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(var(--radius-sm)) bg-white dark:bg-white/[0.05] border border-zinc-200/80 dark:border-white/[0.06] shadow-xs min-w-0">
               {isBash ? (
                 <Terminal className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
               ) : (
@@ -144,7 +144,7 @@ export function CodeBlock({
               title={wordWrap ? 'Disable wrap' : 'Enable word wrap'}
               aria-label="Toggle word wrap"
               className={cn(
-                'hidden sm:inline-flex items-center justify-center p-1.5 rounded-lg text-xs font-mono transition-colors cursor-pointer border',
+                'hidden sm:inline-flex items-center justify-center p-1.5 rounded-(var(--radius-sm)) text-xs font-mono transition-colors cursor-pointer border',
                 wordWrap
                   ? 'bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border-emerald-500/30'
                   : 'bg-white dark:bg-white/[0.02] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-white/[0.06] border-zinc-200/70 dark:border-white/[0.03]'
@@ -154,7 +154,7 @@ export function CodeBlock({
             </button>
 
             {/* Language Tag */}
-            <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 shrink-0">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-(var(--radius-xs)) bg-emerald-500/10 border border-emerald-500/20 shrink-0">
               {normalizedLang}
             </span>
 
@@ -164,7 +164,7 @@ export function CodeBlock({
               onClick={copy}
               aria-label={copied ? 'Copied to clipboard' : 'Copy code'}
               className={cn(
-                'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer border shrink-0',
+                'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(var(--radius-sm)) text-xs font-mono transition-all cursor-pointer border shrink-0',
                 copied
                   ? 'bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 shadow-xs'
                   : 'bg-white dark:bg-white/[0.04] text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.08] border-zinc-200/80 dark:border-white/[0.05]'
@@ -240,7 +240,7 @@ export function CodeBlock({
           <button
             type="button"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white bg-white dark:bg-white/[0.04] hover:bg-zinc-100 dark:hover:bg-white/[0.08] border border-zinc-200/80 dark:border-white/[0.06] transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-(var(--radius-pill)) text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white bg-white dark:bg-white/[0.04] hover:bg-zinc-100 dark:hover:bg-white/[0.08] border border-zinc-200/80 dark:border-white/[0.06] transition-colors cursor-pointer"
           >
             {isCollapsed ? (
               <>

@@ -1,0 +1,103 @@
+/**
+ * UI99 — Type Scale & Icon Scale
+ *
+ * The parity audit found typography was the largest missing primitive: 11 raw
+ * Tailwind sizes, no named ramp, no line-height pairing, and no hook for
+ * Persian/RTL (Vazirmatn needs a larger optical size at the same nominal px).
+ *
+ * A type scale is a MODULAR ramp, not a list. The ratio is 1.2 (minor third)
+ * — the Material/iOS convention: large enough to feel deliberate, small enough
+ * that a UI never needs a step that jumps a lot.
+ *
+ * Every step ships as a *triple*, never a lone size:
+ *   --type-<step>-size      font-size
+ *   --type-<step>-leading   line-height
+ *   --type-<step>-tracking  letter-spacing
+ *
+ * Pairing is why this matters: setting `text-xl` and letting the browser pick a
+ * 1.5 line-height is how a design system quietly loses control of rhythm. The
+ * scale here is 1.2 (minor third) — the Material/iOS convention: large enough
+ * to feel deliberate, small enough that a UI never needs a jump that reads as
+ * a mistake.
+ *
+ * A 9-step ramp covers body through display:
+ *   micro 10 · caption 12 · body 14 · body-lg 16 · title 20
+ *   heading 24 · display 32 · hero 44 · billboard 64
+ *
+ * `--type-fa-*` exists for Persian: Vazirmatn's x-height and descenders need
+ * ~8% more size and looser leading to breathe under a Latin line of the same
+ * weight. The app sets `data-script="fa"` and the theme flips the whole ramp.
+ */
+
+.dark,
+.light,
+[data-theme] {
+  /* ─── Latin ramp ─── */
+  --type-micro-size: 0.625rem;   /* 10px — timestamps, badges, legal */
+  --type-micro-leading: 1.4;
+  --type-micro-tracking: 0.04em;
+
+  --type-caption-size: 0.75rem;  /* 12px — labels, helper text */
+  --type-caption-leading: 1.5;
+  --type-caption-tracking: 0.01em;
+
+  --type-body-size: 0.875rem;    /* 14px — default UI text */
+  --type-body-leading: 1.6;
+  --type-body-tracking: 0em;
+
+  --type-body-lg-size: 1rem;      /* 16px — long-form reading */
+  --type-body-lg-leading: 1.65;
+  --type-body-lg-tracking: 0em;
+
+  --type-title-size: 1.25rem;    /* 20px — card titles, section heads */
+  --type-title-leading: 1.4;
+  --type-title-tracking: -0.01em;
+
+  --type-heading-size: 1.5rem;   /* 24px — page headings */
+  --type-heading-leading: 1.3;
+  --type-heading-tracking: -0.015em;
+
+  --type-display-size: 2rem;     /* 32px — hero subheads */
+  --type-display-leading: 1.2;
+  --type-display-tracking: -0.02em;
+
+  --type-hero-size: 2.75rem;     /* 44px — hero headline */
+  --type-hero-leading: 1.1;
+  --type-hero-tracking: -0.03em;
+
+  --type-billboard-size: 4rem;   /* 64px — marketing display */
+  --type-billboard-leading: 1.02;
+  --type-billboard-tracking: -0.04em;
+
+  /* ─── Persian ramp — same 9 steps, optically corrected ─── */
+  /* Vazirmatn reads smaller than Latin at equal px, so size steps up ~8% and
+     leading loosens. Tracking goes to normal: negative tracking damages
+     Arabic-script connections. */
+  --type-fa-micro-size: 0.6875rem;
+  --type-fa-caption-size: 0.8125rem;
+  --type-fa-body-size: 0.9375rem;
+  --type-fa-body-lg-size: 1.0625rem;
+  --type-fa-title-size: 1.3125rem;
+  --type-fa-heading-size: 1.5625rem;
+  --type-fa-display-size: 2.0625rem;
+  --type-fa-hero-size: 2.875rem;
+  --type-fa-billboard-size: 4.125rem;
+
+  --type-fa-leading: 1.85;
+  --type-fa-tracking: 0em;
+
+  /* Weight tokens — 4 steps, no more. */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ─── Icon scale — 4 optical sizes ───
+     The audit found 7 different icon sizes in use, which reads as "not a
+     system" faster than anything else. Icons need an OPTICAL size per context,
+     not a numeric one: a 14px glyph and a 16px glyph do not look 2px apart. */
+  --icon-xs: 0.75rem;   /* 12px — inline with caption text, status dots */
+  --icon-sm: 0.875rem;  /* 14px — inside buttons and dense rows (default) */
+  --icon-md: 1.125rem;  /* 18px — standalone controls, nav items */
+  --icon-lg: 1.5rem;    /* 24px — feature marks, empty-state art */
+}

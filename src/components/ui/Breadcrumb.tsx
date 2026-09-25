@@ -36,7 +36,7 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
               <button
                 type="button"
                 onClick={item.onClick}
-                className={`flex items-center gap-1.5 px-1.5 py-0.5 rounded-md transition-colors cursor-pointer ${
+                className={`flex items-center gap-1.5 px-1.5 py-0.5 rounded-(var(--radius-xs)) transition-colors cursor-pointer ${
                   isLast || item.active
                     ? isDark
                       ? 'text-(--text-primary) font-semibold'

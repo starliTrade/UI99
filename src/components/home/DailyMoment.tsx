@@ -24,7 +24,7 @@ export function DailyMoment() {
       {/* Soft Editorial Left/Right Border Accent */}
       <div className="flex items-start gap-3.5 sm:gap-4">
         {/* Subtle Vertical Rose-Gold Pillar */}
-        <div className="w-[2px] self-stretch rounded-full bg-gradient-to-b from-rose-500/50 via-rose-500/20 to-transparent shrink-0 mt-1" />
+        <div className="w-[2px] self-stretch rounded-(var(--radius-pill)) bg-gradient-to-b from-rose-500/50 via-rose-500/20 to-transparent shrink-0 mt-1" />
 
         <div className="flex-1 min-w-0 space-y-2">
           {/* Header & Category */}
@@ -39,7 +39,7 @@ export function DailyMoment() {
             <button
               type="button"
               onClick={handleNext}
-              className="p-1 rounded-full text-zinc-500 hover:text-zinc-300 hover:bg-white/[0.04] transition-colors cursor-pointer"
+              className="p-1 rounded-(var(--radius-pill)) text-zinc-500 hover:text-zinc-300 hover:bg-white/[0.04] transition-colors cursor-pointer"
               title={isRTL ? 'ورق زدن نیت' : 'Next intention'}
               aria-label="Next intention"
             >

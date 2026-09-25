@@ -101,7 +101,7 @@ export function ObjectCard({
             : 'bg-white shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(var(--elevation-2))'
         }`}
       >
-        <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-(var(--radius-pill)) blur-2xl pointer-events-none" />
 
         <div className="flex items-center justify-between mb-2 relative z-10">
           <Tag variant={badge.variant} size="sm">
@@ -155,7 +155,7 @@ export function ObjectCard({
             : 'bg-white shadow-(var(--rim-soft), var(--elevation-2)) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(var(--elevation-2))'
         }`}
       >
-        <div className={`w-12 h-16 rounded-2xl flex flex-col items-center justify-center shrink-0 ${isDark ? 'bg-white/[0.05] text-zinc-400 shadow-(var(--rim-soft), var(--elevation-1))' : 'bg-black/[0.04] text-zinc-600'}`}>
+        <div className={`w-12 h-16 rounded-(var(--radius-control)) flex flex-col items-center justify-center shrink-0 ${isDark ? 'bg-white/[0.05] text-zinc-400 shadow-(var(--rim-soft), var(--elevation-1))' : 'bg-black/[0.04] text-zinc-600'}`}>
           <BookOpen className="w-4 h-4 stroke-[1.8] text-amber-500" />
           <span className="text-[8px] font-mono mt-1 font-semibold opacity-60">BOOK</span>
         </div>
@@ -227,9 +227,9 @@ export function ObjectCard({
         )}
 
         {/* Capsule Progress Track */}
-        <div className={`mt-4 w-full h-2.5 rounded-full overflow-hidden p-0.5 shadow-inner ${isDark ? 'bg-black/50' : 'bg-black/[0.06]'}`}>
+        <div className={`mt-4 w-full h-2.5 rounded-(var(--radius-pill)) overflow-hidden p-0.5 shadow-inner ${isDark ? 'bg-black/50' : 'bg-black/[0.06]'}`}>
           <div
-            className="h-full bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300 shadow-(var(--glow-accent-md)) rounded-full transition-all duration-500"
+            className="h-full bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300 shadow-(var(--glow-accent-md)) rounded-(var(--radius-pill)) transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -287,7 +287,7 @@ export function ObjectCard({
           <button
             type="button"
             onClick={handleIncrementStreak}
-            className="mt-0.5 w-6 h-6 rounded-full bg-orange-500/15 hover:bg-orange-500/25 text-orange-400 flex items-center justify-center shrink-0 transition-transform active:scale-95 border border-orange-500/20 shadow-(var(--glow-warning-sm))"
+            className="mt-0.5 w-6 h-6 rounded-(var(--radius-pill)) bg-orange-500/15 hover:bg-orange-500/25 text-orange-400 flex items-center justify-center shrink-0 transition-transform active:scale-95 border border-orange-500/20 shadow-(var(--glow-warning-sm))"
             title="Check in habit ritual"
           >
             <Flame className="w-3.5 h-3.5 fill-current" />

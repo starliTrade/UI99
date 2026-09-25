@@ -50,12 +50,12 @@ export function ProjectProgressCard({
       }`}
     >
       {/* Top-Right Emerald Light Beam */}
-      <div className={`absolute -top-10 -right-10 w-44 h-44 rounded-full blur-2xl pointer-events-none ${isDark ? 'bg-emerald-500/15' : 'bg-emerald-500/10'}`} />
+      <div className={`absolute -top-10 -right-10 w-44 h-44 rounded-(var(--radius-pill)) blur-2xl pointer-events-none ${isDark ? 'bg-emerald-500/15' : 'bg-emerald-500/10'}`} />
 
       {/* Top row: Sparkle icon */}
       <div className="flex items-center gap-2 mb-2.5 relative z-10">
         <div
-          className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors ${
+          className={`w-6 h-6 rounded-(var(--radius-pill)) flex items-center justify-center transition-colors ${
             isDark ? 'bg-white/[0.08] text-white/90' : 'bg-black/[0.05] text-black/80'
           }`}
         >
@@ -84,7 +84,7 @@ export function ProjectProgressCard({
         <h3 className={`text-base sm:text-lg font-semibold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
           {title}
         </h3>
-        <span className="px-2.5 py-0.5 rounded-full text-xs font-medium text-emerald-500 bg-emerald-500/10 border border-emerald-500/20">
+        <span className="px-2.5 py-0.5 rounded-(var(--radius-pill)) text-xs font-medium text-emerald-500 bg-emerald-500/10 border border-emerald-500/20">
           {category}
         </span>
       </div>
@@ -100,10 +100,10 @@ export function ProjectProgressCard({
       </div>
 
       {/* Luminous Capsule Progress Track with Embedded Due Date */}
-      <div className={`my-4 relative w-full h-11 rounded-full overflow-hidden p-1 flex items-center shadow-(var(--elevation-2)) relative z-10 ${isDark ? 'bg-black/40' : 'bg-black/[0.06]'}`}>
+      <div className={`my-4 relative w-full h-11 rounded-(var(--radius-pill)) overflow-hidden p-1 flex items-center shadow-(var(--elevation-2)) relative z-10 ${isDark ? 'bg-black/40' : 'bg-black/[0.06]'}`}>
         {/* Harmonious Gradient Filled Pill */}
         <div
-          className="h-full rounded-full bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300 shadow-(var(--glow-accent-lg)) transition-all duration-700 ease-out"
+          className="h-full rounded-(var(--radius-pill)) bg-gradient-to-r from-lime-400 via-emerald-400 to-teal-300 shadow-(var(--glow-accent-lg)) transition-all duration-700 ease-out"
           style={{ width: `${progress}%` }}
         />
 
@@ -135,7 +135,7 @@ export function ProjectProgressCard({
         <button
           type="button"
           onClick={onClick || (() => openCapture(ObjectType.PROJECT))}
-          className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold cursor-pointer transition-all active:scale-95 ${
+          className={`flex items-center gap-1.5 px-4 py-2 rounded-(var(--radius-pill)) text-xs font-semibold cursor-pointer transition-all active:scale-95 ${
             isDark
               ? 'bg-white/[0.08] hover:bg-white/[0.14] text-white shadow-(var(--rim-soft), var(--elevation-1))'
               : 'bg-black/[0.05] hover:bg-black/[0.08] text-[#111116] shadow-(var(--elevation-1))'

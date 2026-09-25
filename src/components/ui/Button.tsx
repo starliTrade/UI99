@@ -41,16 +41,16 @@ export const buttonVariants = cva(
           'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
       },
       size: {
-        xs: 'text-[11px] px-2.5 py-1 rounded-full gap-1 h-6',
-        sm: 'text-xs px-3.5 py-1.5 rounded-full gap-1.5 h-8',
-        md: 'text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full gap-2 h-10',
-        lg: 'text-base px-6 py-3 rounded-full gap-2.5 h-12',
-        icon: 'w-10 h-10 rounded-full p-0 [&_svg]:size-4',
+        xs: 'text-[11px] px-2.5 py-1 rounded-(var(--radius-pill)) gap-1 h-6',
+        sm: 'text-xs px-3.5 py-1.5 rounded-(var(--radius-pill)) gap-1.5 h-8',
+        md: 'text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-(var(--radius-pill)) gap-2 h-10',
+        lg: 'text-base px-6 py-3 rounded-(var(--radius-pill)) gap-2.5 h-12',
+        icon: 'w-10 h-10 rounded-(var(--radius-pill)) p-0 [&_svg]:size-4',
       },
       shape: {
         pill: '',
-        rounded: 'rounded-xl',
-        square: 'rounded-lg',
+        rounded: 'rounded-(var(--radius-field))',
+        square: 'rounded-(var(--radius-sm))',
       },
       fullWidth: {
         true: 'w-full',
@@ -128,7 +128,7 @@ export function Button({
 }
 
 export const iconButtonVariants = cva(
-  'rounded-full inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed',
+  'rounded-(var(--radius-pill)) inline-flex items-center justify-center transition-all duration-150 cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed',
   {
     variants: {
       variant: {
@@ -241,7 +241,7 @@ export function Tag({
 
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full tracking-tight whitespace-nowrap ${sizeStyle} ${variantStyle} ${className}`}
+      className={`inline-flex items-center gap-1 rounded-(var(--radius-pill)) tracking-tight whitespace-nowrap ${sizeStyle} ${variantStyle} ${className}`}
     >
       <span>{children || label}</span>
       {onRemove && (
@@ -295,19 +295,19 @@ export function Avatar({
         <img
           src={src}
           alt={displayName}
-          className={`rounded-full object-cover ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
+          className={`rounded-(var(--radius-pill)) object-cover ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
           referrerPolicy="no-referrer"
         />
       ) : (
         <div
-          className={`rounded-full bg-zinc-200 text-zinc-800 dark:bg-(--bg-card-hover) dark:text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
+          className={`rounded-(var(--radius-pill)) bg-zinc-200 text-zinc-800 dark:bg-(--bg-card-hover) dark:text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
         >
           {initial}
         </div>
       )}
       {status && (
         <span
-          className={`absolute bottom-0 right-0 rounded-full ring-2 ring-white dark:ring-(--bg-sunken) ${
+          className={`absolute bottom-0 right-0 rounded-(var(--radius-pill)) ring-2 ring-white dark:ring-(--bg-sunken) ${
             status === 'online' ? 'bg-emerald-400' : 'bg-zinc-400 dark:bg-zinc-500'
           } ${size === 'xs' || size === 'sm' ? 'w-2 h-2' : 'w-2.5 h-2.5'}`}
         />

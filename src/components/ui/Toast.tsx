@@ -99,7 +99,7 @@ function ToastRow({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: stri
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -16, scale: 0.96 }}
       transition={{ type: 'spring', stiffness: 450, damping: 30 }}
-      className={`pointer-events-auto relative w-full flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl text-(--text-primary) shadow-(var(--elevation-3)) dark:shadow-(var(--elevation-3)) text-xs font-medium select-none ${visual.accentClass}`}
+      className={`pointer-events-auto relative w-full flex items-center gap-2.5 px-4 py-2.5 rounded-(var(--radius-control)) border border-black/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl text-(--text-primary) shadow-(var(--elevation-3)) dark:shadow-(var(--elevation-3)) text-xs font-medium select-none ${visual.accentClass}`}
     >
       {visual.icon}
       <span className="flex-1 leading-snug">{toast.message}</span>
@@ -107,7 +107,7 @@ function ToastRow({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: stri
         type="button"
         aria-label="Dismiss notification"
         onClick={() => onDismiss(toast.id)}
-        className="relative shrink-0 p-1 -m-1 rounded-full text-zinc-400 hover:text-zinc-900 dark:text-(--text-muted) dark:hover:text-(--text-primary) transition-colors cursor-pointer after:absolute after:-inset-1.5 after:content-['']"
+        className="relative shrink-0 p-1 -m-1 rounded-(var(--radius-pill)) text-zinc-400 hover:text-zinc-900 dark:text-(--text-muted) dark:hover:text-(--text-primary) transition-colors cursor-pointer after:absolute after:-inset-1.5 after:content-['']"
       >
         <X className="w-3.5 h-3.5" />
       </button>
@@ -156,9 +156,9 @@ export function EmptyState({
   persianTitle,
 }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-2xl bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.055] shadow-(var(--elevation-2)) dark:shadow-(var(--elevation-2))">
+    <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-(var(--radius-control)) bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.055] shadow-(var(--elevation-2)) dark:shadow-(var(--elevation-2))">
       {icon && (
-        <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-(--bg-card-hover) border border-black/[0.06] dark:border-white/[0.06] text-(--text-secondary) flex items-center justify-center mb-3">
+        <div className="w-12 h-12 rounded-(var(--radius-pill)) bg-zinc-100 dark:bg-(--bg-card-hover) border border-black/[0.06] dark:border-white/[0.06] text-(--text-secondary) flex items-center justify-center mb-3">
           {icon}
         </div>
       )}

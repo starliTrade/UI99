@@ -46,7 +46,7 @@ export function VelocityBarCard({
       }`}
     >
       {/* Dynamic Ambient Emerald Light Beam in Top Corner */}
-      <div className={`absolute -top-10 -left-10 w-44 h-44 rounded-full blur-2xl pointer-events-none ${isDark ? 'bg-emerald-500/15' : 'bg-emerald-500/10'}`} />
+      <div className={`absolute -top-10 -left-10 w-44 h-44 rounded-(var(--radius-pill)) blur-2xl pointer-events-none ${isDark ? 'bg-emerald-500/15' : 'bg-emerald-500/10'}`} />
 
       {/* Top Header Section */}
       <div className="relative z-10">
@@ -60,7 +60,7 @@ export function VelocityBarCard({
         </div>
 
         {/* Trend Indicator Pill */}
-        <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
+        <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(var(--radius-pill)) text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
           <span className="text-[10px]">▲</span>
           <span>{trend}</span>
         </div>
@@ -76,7 +76,7 @@ export function VelocityBarCard({
                   {bar.label}
                 </span>
                 <div
-                  className="w-full max-w-[44px] rounded-2xl bg-gradient-to-t from-emerald-500 via-emerald-400 to-lime-200 shadow-(var(--glow-accent-lg), var(--glow-accent-sm)) transition-all duration-500 group-hover:brightness-110"
+                  className="w-full max-w-[44px] rounded-(var(--radius-control)) bg-gradient-to-t from-emerald-500 via-emerald-400 to-lime-200 shadow-(var(--glow-accent-lg), var(--glow-accent-sm)) transition-all duration-500 group-hover:brightness-110"
                   style={{ height: `${bar.heightPercent}%` }}
                 />
               </div>
@@ -89,7 +89,7 @@ export function VelocityBarCard({
                 {bar.label}
               </span>
               <div
-                className={`w-full max-w-[44px] rounded-2xl transition-all ${
+                className={`w-full max-w-[44px] rounded-(var(--radius-control)) transition-all ${
                   isDark
                     ? 'bg-white/[0.045] hover:bg-white/[0.08] shadow-(var(--elevation-1))'
                     : 'bg-black/[0.04] hover:bg-black/[0.07]'

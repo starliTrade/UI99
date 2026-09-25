@@ -59,7 +59,7 @@ export function ExecutionSection({
       {/* Section Title */}
       <div className="flex items-center justify-between px-1">
         <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+          <span className="w-1.5 h-1.5 rounded-(var(--radius-pill)) bg-rose-500" />
           <h3 className="text-[11px] font-semibold uppercase tracking-wider text-[#92929B]">
             {isRTL ? 'جریان کارهای امروز و آیین‌ها' : 'Today’s Focus & Flow'}
           </h3>
@@ -82,11 +82,11 @@ export function ExecutionSection({
           className="group relative p-5 sm:p-6 rounded-(var(--radius-xl)) cursor-pointer overflow-hidden transition-all duration-300 bg-[#0A0B10] border border-white/[0.03] shadow-(var(--rim-soft), var(--elevation-3)) hover:border-white/[0.07]"
         >
           {/* Subtle amber aura */}
-          <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/[0.05] rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/[0.05] rounded-(var(--radius-pill)) blur-3xl pointer-events-none" />
 
           <div className="flex items-center justify-between mb-2.5 relative z-10">
             <div className="flex items-center gap-2">
-              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/15 text-amber-400">
+              <span className="flex items-center justify-center w-5 h-5 rounded-(var(--radius-pill)) bg-amber-500/15 text-amber-400">
                 <Target className="w-3 h-3 stroke-[2.2]" />
               </span>
               <span className="text-[10.5px] uppercase font-bold tracking-widest text-amber-400">
@@ -113,9 +113,9 @@ export function ExecutionSection({
 
           {/* Progress bar if project */}
           {focusObject.metadata?.progress !== undefined && (
-            <div className="w-full h-1.5 rounded-full overflow-hidden p-0.5 bg-black/50 mb-3.5">
+            <div className="w-full h-1.5 rounded-(var(--radius-pill)) overflow-hidden p-0.5 bg-black/50 mb-3.5">
               <div
-                className="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 rounded-full transition-all duration-500 shadow-(var(--glow-warning-md))"
+                className="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 rounded-(var(--radius-pill)) transition-all duration-500 shadow-(var(--glow-warning-md))"
                 style={{ width: `${focusObject.metadata.progress}%` }}
               />
             </div>
@@ -126,7 +126,7 @@ export function ExecutionSection({
               {focusObject.tags?.slice(0, 2).map((t) => (
                 <span
                   key={t}
-                  className="px-2 py-0.5 rounded-full text-[9.5px] font-medium bg-white/[0.04] text-zinc-300 border border-white/[0.04]"
+                  className="px-2 py-0.5 rounded-(var(--radius-pill)) text-[9.5px] font-medium bg-white/[0.04] text-zinc-300 border border-white/[0.04]"
                 >
                   #{t}
                 </span>
@@ -237,7 +237,7 @@ export function ExecutionSection({
                     <button
                       type="button"
                       onClick={(e) => onIncrementHabit(habit, e)}
-                      className="w-6 h-6 rounded-full bg-orange-500/15 hover:bg-orange-500/25 text-orange-400 flex items-center justify-center shrink-0 transition-transform active:scale-90 border border-orange-500/20 shadow-(var(--glow-warning-sm)) cursor-pointer"
+                      className="w-6 h-6 rounded-(var(--radius-pill)) bg-orange-500/15 hover:bg-orange-500/25 text-orange-400 flex items-center justify-center shrink-0 transition-transform active:scale-90 border border-orange-500/20 shadow-(var(--glow-warning-sm)) cursor-pointer"
                       title="Check-in habit ritual"
                     >
                       <Flame className="w-3.5 h-3.5 fill-current" />

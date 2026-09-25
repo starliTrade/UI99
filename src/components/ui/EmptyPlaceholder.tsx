@@ -31,13 +31,13 @@ export function EmptyPlaceholder({
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center text-center p-8 sm:p-12 rounded-3xl',
+        'flex flex-col items-center justify-center text-center p-8 sm:p-12 rounded-(var(--radius-lg))',
         'border border-dashed border-black/10 dark:border-white/[0.06] bg-zinc-50/50 dark:bg-(--bg-card)/50',
         'w-full max-w-lg mx-auto',
         className
       )}
     >
-      <div className="w-12 h-12 rounded-2xl bg-white dark:bg-(--bg-elevated) border border-black/5 dark:border-white/5 flex items-center justify-center text-zinc-400 dark:text-zinc-500 shadow-xs mb-4">
+      <div className="w-12 h-12 rounded-(var(--radius-control)) bg-white dark:bg-(--bg-elevated) border border-black/5 dark:border-white/5 flex items-center justify-center text-zinc-400 dark:text-zinc-500 shadow-xs mb-4">
         {icon || <Inbox className="w-6 h-6 stroke-[1.5]" />}
       </div>
 

@@ -81,7 +81,7 @@ export function SpendingSpectrumCard({
         }`}
       >
         {/* Subtle Ambient Sunset Glow at Top Center */}
-        <div className={`absolute -top-12 left-1/2 -translate-x-1/2 w-64 h-32 rounded-full blur-2xl pointer-events-none ${isDark ? 'bg-gradient-to-r from-orange-500/10 via-purple-500/10 to-pink-500/10' : 'bg-gradient-to-r from-orange-500/8 via-purple-500/8 to-pink-500/8'}`} />
+        <div className={`absolute -top-12 left-1/2 -translate-x-1/2 w-64 h-32 rounded-(var(--radius-pill)) blur-2xl pointer-events-none ${isDark ? 'bg-gradient-to-r from-orange-500/10 via-purple-500/10 to-pink-500/10' : 'bg-gradient-to-r from-orange-500/8 via-purple-500/8 to-pink-500/8'}`} />
 
         {/* Monospace Tracked Header */}
         <span className={`block text-[11px] font-mono tracking-widest uppercase ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
@@ -109,7 +109,7 @@ export function SpendingSpectrumCard({
           {spectrumColors.map((colorClass, idx) => (
             <div
               key={idx}
-              className={`w-1.5 h-6 rounded-full ${colorClass} transition-all duration-300 hover:scale-110`}
+              className={`w-1.5 h-6 rounded-(var(--radius-pill)) ${colorClass} transition-all duration-300 hover:scale-110`}
             />
           ))}
         </div>
@@ -119,7 +119,7 @@ export function SpendingSpectrumCard({
           {items.map((item, i) => (
             <div key={i} className="flex items-center justify-between text-xs sm:text-sm">
               <div className="flex items-center gap-2.5">
-                <span className={`w-2 h-3.5 rounded-full ${item.colorClass} shadow-(var(--glow-current-sm))`} />
+                <span className={`w-2 h-3.5 rounded-(var(--radius-pill)) ${item.colorClass} shadow-(var(--glow-current-sm))`} />
                 <span className={`font-medium tracking-tight ${isDark ? 'text-[#90909A]' : 'text-[#6E6E78]'}`}>
                   {item.name}
                 </span>

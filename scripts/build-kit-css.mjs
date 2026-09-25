@@ -42,6 +42,8 @@ function extractBlock(css, scopeSelector) {
 const ui99Css = readFileSync(resolve(root, 'src/styles/ui99.css'), 'utf8');
 const elevationCss = readFileSync(resolve(root, 'src/styles/ui99-elevation.css'), 'utf8');
 const glowCss = readFileSync(resolve(root, 'src/styles/ui99-glow.css'), 'utf8');
+const typeCss = readFileSync(resolve(root, 'src/styles/ui99-type.css'), 'utf8');
+const typeUtilsCss = readFileSync(resolve(root, 'src/styles/ui99-type-utilities.css'), 'utf8');
 
 // 1) Verbatim token stylesheets (single source of truth).
 // The structural and glow layers are part of the published token contract —
@@ -52,6 +54,11 @@ copyFileSync(
   resolve(outDir, 'ui99-elevation.css'),
 );
 copyFileSync(resolve(root, 'src/styles/ui99-glow.css'), resolve(outDir, 'ui99-glow.css'));
+copyFileSync(resolve(root, 'src/styles/ui99-type.css'), resolve(outDir, 'ui99-type.css'));
+copyFileSync(
+  resolve(root, 'src/styles/ui99-type-utilities.css'),
+  resolve(outDir, 'ui99-type-utilities.css'),
+);
 copyFileSync(resolve(root, 'src/styles/porcelain.css'), resolve(outDir, 'porcelain.css'));
 // Tailwind v4 semantic-class layer (daisyUI-class gateway, audit P2.7)
 copyFileSync(resolve(root, 'src/tailwind/ui99-plugin.css'), resolve(outDir, 'tailwind.css'));
@@ -60,7 +67,7 @@ copyFileSync(resolve(root, 'src/tailwind/ui99-plugin.css'), resolve(outDir, 'tai
 // or `shadow-(--elevation-3)` silently resolves to nothing for npm users.
 writeFileSync(
   resolve(outDir, 'styles.css'),
-  `${banner('public token entry point')}\n@import "./ui99.css";\n@import "./ui99-elevation.css";\n@import "./ui99-glow.css";\n\n/* No-JS default theme. Hosts that toggle .dark/.light ignore these. */\n${extractBlock(ui99Css, '.dark,')}\n`,
+  `${banner('public token entry point')}\n@import "./ui99.css";\n@import "./ui99-elevation.css";\n@import "./ui99-glow.css";\n@import "./ui99-type.css";\n\n/* No-JS default theme. Hosts that toggle .dark/.light ignore these. */\n${extractBlock(ui99Css, '.dark,')}\n\n/* The .type-* / .icon-* utility classes live in a separate file so consumers\n   who only want tokens (no utilities) can skip them. */\n@import "./ui99-type-utilities.css";\n`,
 );
 
 // 2) No-JS theme entries: re-emit the theme block under :root (generated, not hand-copied)
@@ -84,6 +91,6 @@ writeFileSync(
 );
 
 console.log(
-  '[kit-css] styles.css + ui99.css + ui99-elevation.css + ui99-glow.css + porcelain.css + dark.css + light.css generated in dist-kit/',
+  '[kit-css] styles.css + ui99.css + ui99-elevation.css + ui99-glow.css + ui99-type.css + ui99-type-utilities.css + porcelain.css + dark.css + light.css generated in dist-kit/',
 );
 console.log(`[kit-css] dark tokens: ${darkBody.split('\n').length} lines, shared: ${sharedBody.split('\n').length} lines`);
