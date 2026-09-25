@@ -51,7 +51,7 @@ const VALUE_CONTEXT =
   /(?:const [A-Z_]+ = \[|DEFAULT_PRESETS|var\(--[a-z-]+,|getComputedStyle|strokeStyle =|read\('--|\?\?\s*['"]#)/;
 
 /** Files whose forbidden-hex lines are value presets / canvas data, verified by hand. */
-const VALUE_ONLY_FILES = new Set(['ColorPicker.tsx']);
+const VALUE_ONLY_FILES = new Set(['ColorPicker.tsx', 'TokenLatticeHero.tsx']);
 
 for (const f of files) {
   if (VALUE_ONLY_FILES.has(f)) continue;

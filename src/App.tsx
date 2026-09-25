@@ -13,11 +13,6 @@ import { TopHeader } from './components/ui/TopHeader';
 import { BottomNavigation } from './components/ui/BottomNavigation';
 import { ToastContainer } from './components/ui/Toast';
 import { HomeView } from './components/views/HomeView';
-import { LifeView } from './components/views/LifeView';
-import { CreateView } from './components/views/CreateView';
-import { MediaView } from './components/views/MediaView';
-import { MoreView } from './components/views/MoreView';
-import { InboxView } from './components/views/InboxView';
 import { UIKitView } from './components/views/UIKitView';
 import { DocsView } from './components/views/DocsView';
 import { FoundationsView } from './components/views/FoundationsView';
@@ -35,24 +30,14 @@ function MainShell() {
     switch (currentTab) {
       case 'HOME':
         return <HomeView />;
-      case 'LIFE':
-        return <LifeView />;
-      case 'CREATE':
-        return <CreateView />;
-      case 'MEDIA':
-        return <MediaView />;
-      case 'MORE':
-        return <MoreView />;
-      case 'INBOX':
-        return <InboxView />;
       case 'UIKIT':
         return <UIKitView />;
+      case 'BLOCKS':
+        return <BlocksView />;
       case 'DOCS':
         return <DocsView />;
       case 'FOUNDATIONS':
         return <FoundationsView />;
-      case 'BLOCKS':
-        return <BlocksView />;
       default:
         return <HomeView />;
     }

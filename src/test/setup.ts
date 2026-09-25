@@ -37,3 +37,7 @@ Element.prototype.scrollIntoView = Element.prototype.scrollIntoView ?? (() => {}
 afterEach(() => {
   cleanup();
 });
+
+// jsdom has no canvas backend; TokenLatticeHero degrades gracefully when
+// getContext() returns null, so a no-op stub keeps test output clean.
+HTMLCanvasElement.prototype.getContext = (() => null) as unknown as HTMLCanvasElement['getContext'];

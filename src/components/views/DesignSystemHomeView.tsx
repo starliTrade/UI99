@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
 import { useChoreography, Reveal } from '../ui/motion';
+import { TokenLatticeHero } from '../ui/TokenLatticeHero';
 import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 import {
   Button,
@@ -271,6 +272,12 @@ export function DesignSystemHomeView() {
           1 · HERO SECTION (Obsidian Velvet + Soft Emerald Brand Halo)
          ══════════════════════════════════════════════════════════════ */}
       <section className="relative flex flex-col items-start pb-6 sm:pb-10 overflow-visible">
+        {/* Token Lattice — the one 3D moment on the site. Colours are read
+            live from CSS custom properties, so it re-themes with the product
+            and proves the token layer in motion. Decorative, aria-hidden,
+            reduced-motion aware, and pauses when off-screen. */}
+        <TokenLatticeHero className="absolute -top-6 sm:-top-10 right-0 hidden sm:block w-[46%] max-w-[560px] h-[300px] lg:h-[380px] -z-10 pointer-events-none opacity-90" />
+
         {/* Soft, faint emerald brand ambient glow */}
         <div
           aria-hidden="true"
@@ -296,7 +303,9 @@ export function DesignSystemHomeView() {
           {...reveal(0)}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.08] sm:leading-[1.03] text-left font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]"
         >
-          The Design System.
+          Stop rebuilding
+          <br />
+          what already works.
         </motion.h1>
 
         {/* Subtitle */}
@@ -304,8 +313,9 @@ export function DesignSystemHomeView() {
           {...reveal(2)}
           className="mt-3.5 sm:mt-5 text-xs sm:text-sm md:text-[15px] text-zinc-600 dark:text-[#8E909D] leading-relaxed text-left max-w-xl font-normal tracking-[-0.01em] font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]"
         >
-          An obsidian-dark design system with {KIT_COMPONENT_COUNT} precision-tested tactile primitives, animated micro-interactions, <br className="hidden sm:inline" />
-          and sub-pixel specular tokens engineered for React &amp; Next.js.
+          {KIT_COMPONENT_COUNT} accessible primitives, each one already WCAG 2.2
+          audited, axe-core clean, and contrast-verified. Own the source, drop it
+          into any React app, and ship in an afternoon.
         </motion.p>
 
         {/* Hero Actions: Unified Horizontal Action Row */}
@@ -1199,14 +1209,14 @@ export function DesignSystemHomeView() {
           </div>
 
           <nav className="flex items-center gap-3 sm:gap-4 text-xs font-mono text-zinc-500 dark:text-zinc-400" aria-label="Footer Navigation">
-            {(['UIKIT', 'DOCS', 'FOUNDATIONS', 'BLOCKS'] as const).map((tab) => (
+            {(['UIKIT', 'BLOCKS', 'DOCS', 'FOUNDATIONS'] as const).map((tab) => (
               <button
                 key={tab}
                 type="button"
                 onClick={() => setCurrentTab(tab)}
                 className="hover:text-zinc-950 dark:hover:text-white transition-colors cursor-pointer"
               >
-                {tab === 'UIKIT' ? `${KIT_COMPONENT_COUNT} Components` : tab === 'DOCS' ? 'API Docs' : tab === 'FOUNDATIONS' ? 'Foundations' : 'Blocks'}
+                {tab === 'UIKIT' ? `${KIT_COMPONENT_COUNT} Components` : tab === 'BLOCKS' ? 'Patterns' : tab === 'DOCS' ? 'Guides' : 'Design Tokens'}
               </button>
             ))}
           </nav>

@@ -7,12 +7,14 @@ import React, { createContext, useContext, useState, useEffect, useCallback, Rea
 import { ObjectType } from '../types/objects';
 import { safeGetItem, safeSetItem } from '../safeStorage';
 
-export type NavTab = 'HOME' | 'UIKIT' | 'DOCS' | 'FOUNDATIONS' | 'BLOCKS' | 'LIFE' | 'CREATE' | 'MEDIA' | 'MORE' | 'INBOX';
-export type LifeSubview = 'TASKS' | 'CALENDAR' | 'REMINDERS' | 'GOALS' | 'HABITS' | 'PROJECTS';
-export type CreateSubview = 'NOTES' | 'IDEAS' | 'WRITING' | 'DRAWING' | 'STUDIO';
-export type MediaSubview = 'PHOTOS' | 'VIDEOS' | 'MUSIC' | 'BOOKS' | 'MOVIES';
+/**
+ * Product-site destinations — exactly five, one per job-to-be-done.
+ * Personal-OS tabs (LIFE/CREATE/MEDIA/MORE/INBOX) were removed from the
+ * product site: they were unreachable from the dock and diluted the story.
+ * See docs/PRODUCT-SITE-ROADMAP.md §1.
+ */
+export type NavTab = 'HOME' | 'UIKIT' | 'BLOCKS' | 'DOCS' | 'FOUNDATIONS';
 export type ThemeMode = 'dark' | 'light';
-export type QuickChip = 'ALL' | 'DASHBOARD' | 'REMINDERS' | 'PROGRESS';
 
 export interface ToastItem {
   id: string;
@@ -27,12 +29,6 @@ interface AppContextType {
   /** Component selected from home explorer → UIKit opens focused on it. */
   focusComponent: string | null;
   setFocusComponent: (slug: string | null) => void;
-  lifeSubview: LifeSubview;
-  setLifeSubview: (subview: LifeSubview) => void;
-  createSubview: CreateSubview;
-  setCreateSubview: (subview: CreateSubview) => void;
-  mediaSubview: MediaSubview;
-  setMediaSubview: (subview: MediaSubview) => void;
   isCaptureOpen: boolean;
   setIsCaptureOpen: (open: boolean) => void;
   captureDefaultType: ObjectType | null;
@@ -46,10 +42,6 @@ interface AppContextType {
   themeMode: ThemeMode;
   setThemeMode: (mode: ThemeMode) => void;
   toggleTheme: () => void;
-  activeChip: QuickChip;
-  setActiveChip: (chip: QuickChip) => void;
-  prioritySearch: string;
-  setPrioritySearch: (val: string) => void;
   toasts: ToastItem[];
   addToast: (message: string, type?: 'info' | 'success' | 'warning' | 'rose' | 'amber' | 'purple') => void;
   removeToast: (id: string) => void;
@@ -60,9 +52,6 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export function AppProvider({ children }: { children: ReactNode }) {
   const [currentTab, setCurrentTab] = useState<NavTab>('HOME');
   const [focusComponent, setFocusComponent] = useState<string | null>(null);
-  const [lifeSubview, setLifeSubview] = useState<LifeSubview>('TASKS');
-  const [createSubview, setCreateSubview] = useState<CreateSubview>('NOTES');
-  const [mediaSubview, setMediaSubview] = useState<MediaSubview>('PHOTOS');
   const [isCaptureOpen, setIsCaptureOpen] = useState<boolean>(false);
   const [captureDefaultType, setCaptureDefaultType] = useState<ObjectType | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
@@ -95,9 +84,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       body.classList.remove('bg-[#06070A]', 'text-[#EDEDEF]');
     }
   }, [themeMode]);
-
-  const [activeChip, setActiveChip] = useState<QuickChip>('ALL');
-  const [prioritySearch, setPrioritySearch] = useState<string>('');
 
   // All context functions are memoized: consumers rely on stable identities
   // in effect dependency arrays (an unstable addToast causes infinite update
@@ -145,12 +131,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setCurrentTab,
         focusComponent,
         setFocusComponent,
-        lifeSubview,
-        setLifeSubview,
-        createSubview,
-        setCreateSubview,
-        mediaSubview,
-        setMediaSubview,
         isCaptureOpen,
         setIsCaptureOpen,
         captureDefaultType,
@@ -164,10 +144,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
         themeMode,
         setThemeMode,
         toggleTheme,
-        activeChip,
-        setActiveChip,
-        prioritySearch,
-        setPrioritySearch,
         toasts,
         addToast,
         removeToast,
