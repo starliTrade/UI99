@@ -8,6 +8,7 @@ import React from 'react';
 import { AuthProvider, useAuth } from './core/context/AuthContext';
 import { ObjectProvider } from './core/context/ObjectContext';
 import { AppProvider, useApp } from './core/context/AppContext';
+import { ErrorBoundary } from './core/ErrorBoundary';
 import { TopHeader } from './components/ui/TopHeader';
 import { BottomNavigation } from './components/ui/BottomNavigation';
 import { ToastContainer } from './components/ui/Toast';
@@ -100,13 +101,15 @@ function MainShell() {
 
 export function App() {
   return (
-    <AuthProvider>
-      <ObjectProvider>
-        <AppProvider>
-          <MainShell />
-        </AppProvider>
-      </ObjectProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <ObjectProvider>
+          <AppProvider>
+            <MainShell />
+          </AppProvider>
+        </ObjectProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

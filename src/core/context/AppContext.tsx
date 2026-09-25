@@ -5,6 +5,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { ObjectType } from '../types/objects';
+import { safeGetItem, safeSetItem } from '../safeStorage';
 
 export type NavTab = 'HOME' | 'UIKIT' | 'DOCS' | 'FOUNDATIONS' | 'BLOCKS' | 'LIFE' | 'CREATE' | 'MEDIA' | 'MORE' | 'INBOX';
 export type LifeSubview = 'TASKS' | 'CALENDAR' | 'REMINDERS' | 'GOALS' | 'HABITS' | 'PROJECTS';
@@ -69,9 +70,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [viewMode, setViewMode] = useState<'fluid' | 'iphone-frame'>('fluid');
   const [toasts, setToasts] = useState<ToastItem[]>([]);
   
-  // Default to Obsidian Dark permanently locked across the platform
+  // Default to Obsidian Dark permanently locked across the platform.
+  // safeGetItem: storage access can throw in blocked contexts (preview iframes,
+  // private browsing) — an exception inside the initializer blanks the app.
   const [themeMode, setThemeModeState] = useState<ThemeMode>(() => {
-    const saved = localStorage.getItem('ui99_theme_mode');
+    const saved = safeGetItem('ui99_theme_mode');
     return saved === 'light' ? 'light' : 'dark';
   });
 
@@ -101,13 +104,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // loops in any consumer syncing state inside useEffect).
   const setThemeMode = useCallback((mode: ThemeMode) => {
     setThemeModeState(mode);
-    localStorage.setItem('ui99_theme_mode', mode);
+    safeSetItem('ui99_theme_mode', mode);
   }, []);
 
   const toggleTheme = useCallback(() => {
     setThemeModeState((prev) => {
       const next = prev === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('ui99_theme_mode', next);
+      safeSetItem('ui99_theme_mode', next);
       return next;
     });
   }, []);

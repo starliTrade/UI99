@@ -13,8 +13,23 @@ vi.mock('motion/react', () => {
       get: (_t, _prop) =>
         React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & Record<string, unknown>>(
           ({ children, ...rest }, ref) => {
-            const { initial, animate, exit, transition, whileHover, whileTap, layoutId, ...html } =
-              rest as Record<string, unknown> & { children?: React.ReactNode };
+            const {
+              initial,
+              animate,
+              exit,
+              transition,
+              whileHover,
+              whileTap,
+              whileInView,
+              whileFocus,
+              whileDrag,
+              viewport,
+              variants,
+              layout,
+              layoutId,
+              drag,
+              ...html
+            } = rest as Record<string, unknown> & { children?: React.ReactNode };
             return React.createElement('div', { ...html, ref }, children as React.ReactNode);
           }
         ),

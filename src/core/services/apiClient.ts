@@ -8,20 +8,23 @@ import { Relationship, CreateRelationshipInput } from '../types/relationships';
 import { User, UserProfile } from '../types/auth';
 import { AIExtractResult } from '../types/ai';
 import { SearchResponse } from '../types/storage';
+import { safeGetItem, safeSetItem, safeRemoveItem } from '../safeStorage';
 
 class ApiClient {
   private token: string | null = null;
 
   constructor() {
-    this.token = typeof window !== 'undefined' ? localStorage.getItem('ui99_auth_token') : null;
+    // Module-scope storage access MUST be exception-safe: embedded preview
+    // iframes / private browsing throw SecurityError here, killing app boot.
+    this.token = safeGetItem('ui99_auth_token');
   }
 
   setToken(token: string | null) {
     this.token = token;
     if (token) {
-      localStorage.setItem('ui99_auth_token', token);
+      safeSetItem('ui99_auth_token', token);
     } else {
-      localStorage.removeItem('ui99_auth_token');
+      safeRemoveItem('ui99_auth_token');
     }
   }
 

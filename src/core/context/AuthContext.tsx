@@ -6,6 +6,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, UserProfile } from '../types/auth';
 import { api } from '../services/apiClient';
+import { safeGetItem } from '../safeStorage';
 
 interface AuthContextType {
   user: User | null;
@@ -36,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         document.documentElement.dir = 'ltr';
         document.documentElement.lang = 'en';
 
-        const storedToken = localStorage.getItem('ui99_auth_token');
+        const storedToken = safeGetItem('ui99_auth_token');
         if (storedToken) {
           const res = await api.getMe();
           setUser(res.user);
