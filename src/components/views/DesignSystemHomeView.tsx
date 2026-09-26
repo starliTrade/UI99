@@ -329,8 +329,10 @@ export function DesignSystemHomeView() {
           )}
         </motion.h1>
 
-        {/* Subtitle — three technical-minimal lines. Numbers and nouns carry
-            the credibility; no adjectives. Persian is its own copy. */}
+        {/* Subtitle — two staccato lines. Line 1 proves WHAT it is (substance),
+            line 2 proves WHO owns it (freedom). Both mirror the headline's
+            "system, not dependency" claim; each stays ≤ ~45 chars so the two
+            lines never wrap past two visual lines on a 360px phone. */}
         <motion.p
           {...reveal(2)}
           dir={isRTL ? 'rtl' : 'ltr'}
@@ -340,17 +342,13 @@ export function DesignSystemHomeView() {
             <>
               ۱۰۲ پریمیتیو ممیزی‌شده. یک هسته‌ی توکن.
               <br />
-              از CLI در ریپوی تو سبز می‌شود، در ریپوی تو می‌ماند.
-              <br />
-              بدون اکانت، بدون قفل برند — برای همیشه.
+              از CLI تو. در ریپوی تو. برای همیشه.
             </>
           ) : (
             <>
               102 audited primitives. One token core.
               <br />
-              Born from your CLI, owned in your repo.
-              <br />
-              No accounts, no brand locks — ever.
+              From your CLI. Owned in your repo. Forever.
             </>
           )}
         </motion.p>
