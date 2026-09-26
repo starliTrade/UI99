@@ -60,6 +60,47 @@ const VIEWS: ReadonlyArray<{ id: StudioView; label: string; icon: typeof Eye }> 
   { id: 'tokens', label: 'Tokens', icon: Palette },
 ];
 
+/**
+ * The view switcher. It sits on the workbench surface, directly above the
+ * canvas it controls — not in the browser zone with the filters. Mixing the
+ * two meant the browser needed three stacked rows on a phone: tabs, then
+ * search, then categories, before a single component was visible.
+ */
+function ViewTabs({
+  view, onChange, isRTL,
+}: {
+  view: StudioView;
+  onChange: (v: StudioView) => void;
+  isRTL: boolean;
+}) {
+  return (
+    <div
+      role="tablist"
+      aria-label={isRTL ? 'نمای استودیو' : 'Studio view'}
+      className="flex items-center gap-0.5 p-0.5 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft)"
+    >
+      {VIEWS.map((v) => (
+        <button
+          key={v.id}
+          type="button"
+          role="tab"
+          aria-selected={view === v.id}
+          onClick={() => onChange(v.id)}
+          className={`relative flex-1 sm:flex-none flex items-center justify-center gap-1 sm:gap-1.5 h-8 px-2 rounded-(--radius-xs) type-caption font-mono transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
+            view === v.id
+              ? 'bg-white dark:bg-white text-zinc-950 font-bold'
+              : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white'
+          }`}
+        >
+          <v.icon className="w-3 h-3 shrink-0" />
+          <span className="type-micro sm:type-caption">{v.label}</span>
+        </button>
+      ))}
+
+    </div>
+  );
+}
+
 export function RegistryStudio() {
   const { setCurrentTab, addToast, setFocusComponent } = useApp();
   const { isRTL } = useAuth();
@@ -194,7 +235,7 @@ export function RegistryStudio() {
   const showSpecimen = Boolean(specimen) && !HAND_BUILT_STAGES.has(activeComponentId);
 
   return (
-    <div className="mt-4 sm:mt-8 rounded-(--radius-lg) border border-(--border-subtle) bg-white dark:bg-(--bg-card) shadow-(--shadow-card) overflow-hidden">
+    <div className="rounded-(--radius-lg) border border-(--border-subtle) bg-white dark:bg-(--bg-card) shadow-(--shadow-card) overflow-hidden">
       {/* 1 · IDENTITY — which component, and where you are in the registry */}
       <div className="px-3 sm:px-4 py-2 sm:py-3 border-b border-(--border-subtle) bg-(--bg-surface) flex items-center gap-2 sm:gap-3 min-w-0">
         <span className="flex h-2 w-2 relative shrink-0">
@@ -250,33 +291,9 @@ export function RegistryStudio() {
         </button>
       </div>
 
-      {/* 2 · BROWSER — views, categories, search, ribbon. One scroll strip. */}
-      <div className="px-3 sm:px-4 py-2 border-b border-(--border-subtle) bg-(--bg-surface) flex flex-col sm:flex-row sm:items-center gap-2 min-w-0">
-        <div
-          role="tablist"
-          aria-label={isRTL ? 'نمای استودیو' : 'Studio view'}
-          className="flex items-center gap-0.5 p-0.5 shrink-0 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft)"
-        >
-          {VIEWS.map((v) => (
-            <button
-              key={v.id}
-              type="button"
-              role="tab"
-              aria-selected={studioView === v.id}
-              onClick={() => setStudioView(v.id)}
-              className={`relative flex-1 sm:flex-none flex items-center justify-center gap-1 sm:gap-1.5 h-8 px-2 rounded-(--radius-xs) type-caption font-mono transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
-                studioView === v.id
-                  ? 'bg-white dark:bg-white text-zinc-950 font-bold'
-                  : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white'
-              }`}
-            >
-              <v.icon className="w-3 h-3 shrink-0" />
-              <span className="type-micro sm:type-caption">{v.label}</span>
-            </button>
-          ))}
-        </div>
-
-        <div className="relative min-w-0 sm:w-44 sm:shrink-0 order-first sm:order-none">
+      {/* 2 · BROWSER — search and categories, one scroll strip. */}
+      <div className="px-3 sm:px-4 py-2 border-b border-(--border-subtle) bg-(--bg-surface) flex items-center gap-2 min-w-0">
+        <div className="relative w-28 sm:w-44 shrink-0">
           <Search className="icon-xs absolute left-2 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 pointer-events-none" />
           <input
             type="search"
@@ -288,7 +305,7 @@ export function RegistryStudio() {
           />
         </div>
 
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x min-w-0">
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x min-w-0 flex-1">
           {categories.map((cat) => (
             <button
               key={cat.id}
@@ -309,8 +326,10 @@ export function RegistryStudio() {
         </div>
       </div>
 
-      {/* 3 · RIBBON — all 103, one tab stop. Desktop discovery only. */}
-      <div className="hidden sm:flex px-3 sm:px-4 py-2 border-b border-(--border-subtle) bg-(--bg-sunken) items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x">
+      {/* 3 · RIBBON — the filtered registry, one tab stop, every screen.
+          A category that cannot show its own components is a filter with
+          no answer, so this row is not desktop-only. */}
+      <div className="flex px-3 sm:px-4 py-2 border-b border-(--border-subtle) bg-(--bg-sunken) items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x">
         {filteredComponents.length === 0 ? (
           <p className="type-caption font-mono text-zinc-500 dark:text-zinc-400">
             {isRTL ? 'کامپوننتی یافت نشد' : 'No components match this filter'}
@@ -341,10 +360,13 @@ export function RegistryStudio() {
 
       {/* 4 · WORKBENCH — canvas, and from lg the inspector rail beside it */}
       <div className="flex flex-col lg:flex-row min-w-0">
-        <div className="flex-1 min-w-0 p-3 sm:p-5 md:p-6 bg-white dark:bg-(--bg-card)">
+        <div className="flex-1 min-w-0 p-3 sm:p-4 md:p-6 bg-white dark:bg-(--bg-card)">
           {studioView === 'stage' && (
-            <div className="flex flex-col gap-4">
-              <div className="relative min-h-[160px] sm:min-h-[290px] rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) p-4 sm:p-6 flex items-center justify-center overflow-x-auto overflow-y-hidden">
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-end">
+                <ViewTabs view={studioView} onChange={setStudioView} isRTL={isRTL} />
+              </div>
+              <div className="relative min-h-[140px] sm:min-h-[290px] rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) p-4 sm:p-6 flex items-center justify-center overflow-x-auto overflow-y-hidden">
                 <div
                   aria-hidden="true"
                   className="absolute inset-0 opacity-20 dark:opacity-15 pointer-events-none"
@@ -700,7 +722,7 @@ export function RegistryStudio() {
               </div>
 
               {/* Micro-controls for the stateful demos */}
-              <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 pt-3 border-t border-(--border-subtle)">
+              <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 pt-2 border-t border-(--border-subtle)">
                 <div className="flex flex-col gap-1.5 min-w-0">
                     {activeComponentId === 'button' && (
                       <>
@@ -750,6 +772,21 @@ export function RegistryStudio() {
                   </div>
                 </div>
                 <div className="flex flex-wrap items-center gap-1.5 min-w-0 w-full lg:w-auto">
+                    {/* Inspector disclosure — an action, not a second bar. It
+                        cost a full 40px row on a phone; here it sits with the
+                        other actions and the panel opens below the card. */}
+                    <button
+                      type="button"
+                      onClick={() => setInspectorOpen((v) => !v)}
+                      aria-expanded={inspectorOpen}
+                      className="relative order-last flex items-center gap-1.5 h-8 px-2 rounded-(--radius-sm) type-micro font-mono text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                    >
+                      <Zap className="icon-xs text-emerald-500 shrink-0" />
+                      {isRTL ? 'مشخصات' : 'Spec'}
+                      <span className="opacity-55">{currentComp.props.length}</span>
+                      <ChevronDown className={`icon-xs transition-transform shrink-0 ${inspectorOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
                     {/* PM Quick Pills */}
                     <div className="flex items-center p-0.5 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) shrink-0">
                       {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((pm) => (
@@ -791,17 +828,26 @@ export function RegistryStudio() {
           )}
 
           {studioView === 'code' && (
-            <CodeBlock
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-end">
+                <ViewTabs view={studioView} onChange={setStudioView} isRTL={isRTL} />
+              </div>
+              <CodeBlock
               code={currentComp.codeSnippet}
               language="tsx"
               filename={`src/components/ui/${currentComp.name}.tsx`}
-              showLineNumbers
-              maxHeight="420px"
-            />
+                showLineNumbers
+                maxHeight="420px"
+              />
+            </div>
           )}
 
           {studioView === 'cli' && (
-            <div className="space-y-4">
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-end">
+                <ViewTabs view={studioView} onChange={setStudioView} isRTL={isRTL} />
+              </div>
+              <div className="space-y-4">
               <div className="p-4 rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) space-y-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="type-caption font-mono text-zinc-600 dark:text-zinc-400 font-semibold truncate">
@@ -859,11 +905,16 @@ export function RegistryStudio() {
                   import &#123; {currentComp.title.replace(/[\s-]+/g, '')} &#125; from '@/components/ui/{currentComp.name}';
                 </div>
               </div>
+              </div>
             </div>
           )}
 
           {studioView === 'tokens' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-end">
+                <ViewTabs view={studioView} onChange={setStudioView} isRTL={isRTL} />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 ['--bg-canvas', isRTL ? 'بوم' : 'Canvas'],
                 ['--bg-card', isRTL ? 'کارت' : 'Surface card'],
@@ -880,6 +931,7 @@ export function RegistryStudio() {
                   <span className="text-emerald-600 dark:text-emerald-400 break-all">{liveTokenValue(token)}</span>
                 </div>
               ))}
+              </div>
             </div>
           )}
         </div>
@@ -990,44 +1042,28 @@ export function RegistryStudio() {
         </aside>
       </div>
 
-      {/* Mobile inspector disclosure — under the workbench, one tap */}
-      <div className="lg:hidden border-t border-(--border-subtle) bg-(--bg-surface)">
-        <button
-          type="button"
-          onClick={() => setInspectorOpen((v) => !v)}
-          aria-expanded={inspectorOpen}
-          className="relative w-full flex items-center justify-between gap-2 px-3 sm:px-4 h-11 type-caption font-mono text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors cursor-pointer focus-ui99-inset"
-        >
-          <span className="inline-flex items-center gap-1.5">
-            <Zap className="icon-xs text-emerald-500" />
-            {isRTL ? 'مشخصات و پروپس‌ها' : 'Spec & props'}
-            <span className="opacity-55">{currentComp.props.length}</span>
-          </span>
-          <ChevronDown className={`icon-xs transition-transform ${inspectorOpen ? 'rotate-180' : ''}`} />
-        </button>
-        <AnimatePresence initial={false}>
-          {inspectorOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden"
-            >
-              <div className="px-3 sm:px-4 pb-4">
-                <MobileInspector
-                  comp={currentComp}
-                  isRTL={isRTL}
-                  deps={realDeps}
-                  onOpenDocs={() => { setFocusComponent(currentComp.name); setCurrentTab('DOCS'); }}
-                  onCopy={() => copy(getCliCommand(currentComp.name), 'mobile-add')}
-                  copied={copiedKey === 'mobile-add'}
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+      <AnimatePresence initial={false}>
+            {inspectorOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden border-t border-(--border-subtle) bg-(--bg-surface)"
+              >
+                <div className="px-3 sm:px-4 pb-4">
+                  <MobileInspector
+                    comp={currentComp}
+                    isRTL={isRTL}
+                    deps={realDeps}
+                    onOpenDocs={() => { setFocusComponent(currentComp.name); setCurrentTab('DOCS'); }}
+                    onCopy={() => copy(getCliCommand(currentComp.name), 'mobile-add')}
+                    copied={copiedKey === 'mobile-add'}
+                  />
+                </div>
+              </motion.div>
+            )}
+      </AnimatePresence>
     </div>
   );
 }
