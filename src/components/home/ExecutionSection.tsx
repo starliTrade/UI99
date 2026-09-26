@@ -79,7 +79,7 @@ export function ExecutionSection({
       {focusObject && (
         <div
           onClick={() => onSelectObject(focusObject)}
-          className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#0A0B10] border border-white/[0.03] shadow-(--shadow-card-hover) hover:border-white/[0.07]"
+          className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-surface) border border-white/[0.03] shadow-(--shadow-card-hover) hover:border-white/[0.04]"
         >
           {/* Subtle amber aura */}
           <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/[0.05] rounded-(--radius-pill) blur-3xl pointer-events-none" />

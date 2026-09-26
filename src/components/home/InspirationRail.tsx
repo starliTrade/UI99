@@ -46,7 +46,7 @@ export function InspirationRail({ items, onSelectItem, onAddInspiration }: Inspi
         {items.length === 0 ? (
           <div
             onClick={onAddInspiration}
-            className="w-full min-w-[280px] p-5 rounded-(--radius-lg) bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] flex items-center justify-between cursor-pointer"
+            className="w-full min-w-[280px] p-5 rounded-(--radius-lg) bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] flex items-center justify-between cursor-pointer"
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-(--radius-control) bg-white/[0.03] flex items-center justify-center text-zinc-400">
@@ -74,7 +74,7 @@ export function InspirationRail({ items, onSelectItem, onAddInspiration }: Inspi
                 key={item.id}
                 onClick={() => onSelectItem(item)}
                 whileHover={{ y: -2 }}
-                className="w-56 sm:w-64 shrink-0 snap-start p-4 rounded-(--radius-lg) cursor-pointer bg-[#0A0B10] border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.06] transition-all flex flex-col justify-between"
+                className="w-56 sm:w-64 shrink-0 snap-start p-4 rounded-(--radius-lg) cursor-pointer bg-(--bg-surface) border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.04] transition-all flex flex-col justify-between"
               >
                 <div>
                   {/* Visual Mood Card Header with Abstract Gradient/Texture */}

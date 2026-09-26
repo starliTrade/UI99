@@ -145,7 +145,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
       />
 
       {/* 2. Living Atmosphere Container */}
-      <div className="relative p-5 sm:p-6 rounded-(--radius-xl) bg-[#0A0B10]/90 border border-white/[0.025] shadow-(--shadow-card-hover) backdrop-blur-xl overflow-hidden transition-all dur-slow">
+      <div className="relative p-5 sm:p-6 rounded-(--radius-xl) bg-(--bg-card)/90 border border-white/[0.025] shadow-(--shadow-card) hover:shadow-(--shadow-card-hover) backdrop-blur-xl overflow-hidden transition-all dur-slow">
         
         {/* Soft Background Silk Mesh */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/[0.02] via-transparent to-transparent pointer-events-none" />
@@ -183,13 +183,13 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
           <div className="flex items-center gap-3.5 shrink-0 self-end md:self-center">
             
             {/* Jewelry-like Depth Orb Emblem */}
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-(--radius-pill) bg-gradient-to-br from-[#1A1A24] via-[#0E0E14] to-[#07070A] border border-white/[0.06] shadow-(--elevation-2) flex items-center justify-center overflow-hidden shrink-0 group">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-(--radius-pill) bg-gradient-to-br from-[#1A1A24] via-[#0E0E14] to-[#07070A] border border-white/[0.04] shadow-(--elevation-2) flex items-center justify-center overflow-hidden shrink-0 group">
               
               {/* Subtle orbital ring animation */}
               <motion.div
                 animate={prefersReducedMotion ? {} : { rotate: 360 }}
                 transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-1 rounded-(--radius-pill) border border-dashed border-white/[0.08]"
+                className="absolute inset-1 rounded-(--radius-pill) border border-dashed border-white/[0.04]"
               />
 
               {/* Glowing diamond nuqta point */}

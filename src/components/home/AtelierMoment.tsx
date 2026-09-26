@@ -28,7 +28,7 @@ export function AtelierMoment({
     return (
       <div
         onClick={onNewDesign}
-        className="group relative p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(--shadow-card-hover)"
+        className="group relative p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card-hover)"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3.5">
@@ -60,7 +60,7 @@ export function AtelierMoment({
   return (
     <div
       onClick={() => onSelectObject(atelierProject)}
-      className="group relative p-5 sm:p-6 rounded-(--radius-2xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#090A0E] border border-white/[0.03] shadow-(--shadow-popover) hover:border-white/[0.07] select-none"
+      className="group relative p-5 sm:p-6 rounded-(--radius-2xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-surface) border border-white/[0.03] shadow-(--shadow-popover) hover:border-white/[0.04] select-none"
     >
       {/* Warm Ambient Amber/Bronze Aura */}
       <div className="absolute top-0 right-0 w-60 h-60 bg-amber-600/[0.07] rounded-(--radius-pill) blur-3xl pointer-events-none" />

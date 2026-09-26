@@ -22,7 +22,7 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
     return (
       <div
         onClick={onCaptureMemory}
-        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(--shadow-card-hover) flex items-center justify-between"
+        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
           <div className="w-11 h-11 rounded-(--radius-control) bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
@@ -55,7 +55,7 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
   return (
     <div
       onClick={() => onSelectMemory(memoryObject)}
-      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#0A0B10] border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-surface) border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.04] select-none"
     >
       {/* Violet Ambient Aura */}
       <div className="absolute top-0 right-0 w-48 h-48 bg-violet-600/[0.06] rounded-(--radius-pill) blur-3xl pointer-events-none" />

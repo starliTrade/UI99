@@ -45,7 +45,7 @@ export function ProjectProgressCard({
       transition={{ duration: 0.25 }}
       className={`relative rounded-(--radius-xl) p-6 overflow-hidden transition-all select-none group ${
         isDark
-          ? 'bg-[#0B0C11] card-aura-emerald shadow-(--shadow-popover) shadow-(--shadow-popover)'
+          ? 'bg-(--bg-card) card-aura-emerald shadow-(--shadow-popover) shadow-(--shadow-popover)'
           : 'bg-white card-aura-emerald shadow-(--shadow-card) border border-black/[0.045] hover:shadow-(--elevation-3)'
       }`}
     >

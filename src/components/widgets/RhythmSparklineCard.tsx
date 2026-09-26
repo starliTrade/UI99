@@ -38,7 +38,7 @@ export function RhythmSparklineCard({
       transition={{ duration: 0.25 }}
       className={`relative rounded-(--radius-xl) p-6 overflow-hidden transition-all dur-slow select-none ${
         isDark
-          ? 'bg-[#0B0C11] card-aura-sapphire shadow-(--shadow-popover) shadow-(--shadow-popover)'
+          ? 'bg-(--bg-card) card-aura-sapphire shadow-(--shadow-popover) shadow-(--shadow-popover)'
           : 'bg-white card-aura-sapphire shadow-(--shadow-card) border border-black/[0.045] hover:shadow-(--elevation-3)'
       }`}
     >

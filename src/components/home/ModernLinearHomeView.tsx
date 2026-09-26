@@ -317,10 +317,10 @@ export function ModernLinearHomeView() {
   return (
     <div className="w-full max-w-4xl mx-auto px-3 sm:px-6 pb-28 pt-1 select-none space-y-6">
       {/* 1. LINEAR HEADER BAR: Active Cycle, Velocity & Actions */}
-      <div className="p-4 sm:p-5 rounded-(--radius-lg) bg-zinc-50/80 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.035] shadow-xs space-y-4">
+      <div className="p-4 sm:p-5 rounded-(--radius-lg) bg-zinc-50/80 dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.035] shadow-xs space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-(--radius-control) bg-zinc-900 dark:bg-white/10 flex items-center justify-center text-white shrink-0 border border-black/[0.08] dark:border-white/[0.08]">
+            <div className="w-9 h-9 rounded-(--radius-control) bg-zinc-900 dark:bg-white/10 flex items-center justify-center text-white shrink-0 border border-black/[0.08] dark:border-white/[0.04]">
               <Zap className="icon-md text-emerald-400 fill-emerald-400/20" />
             </div>
             <div>
@@ -405,7 +405,7 @@ export function ModernLinearHomeView() {
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 450, damping: 35 }}
             onSubmit={handleCreateIssue}
-            className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.08] dark:border-white/[0.06] shadow-lg space-y-3"
+            className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.08] dark:border-white/[0.04] shadow-lg space-y-3"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 type-caption font-mono font-semibold text-emerald-600 dark:text-emerald-400">
@@ -485,7 +485,7 @@ export function ModernLinearHomeView() {
       {/* 3. FILTER AND SEARCH TOOLBAR */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         {/* Status filters */}
-        <div className="flex items-center gap-1 bg-zinc-100/80 dark:bg-[#0B0C11] p-1 rounded-(--radius-control) border border-black/[0.04] dark:border-white/[0.03] overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-1 bg-zinc-100/80 dark:bg-(--bg-card) p-1 rounded-(--radius-control) border border-black/[0.04] dark:border-white/[0.03] overflow-x-auto no-scrollbar">
           {[
             { id: 'ALL', label: 'All' },
             { id: 'ACTIVE', label: 'In Flight' },
@@ -517,7 +517,7 @@ export function ModernLinearHomeView() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Filter issues..."
-              className="w-full bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] rounded-(--radius-field) pl-8 pr-3 py-1.5 type-caption text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
+              className="w-full bg-zinc-100 dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] rounded-(--radius-field) pl-8 pr-3 py-1.5 type-caption text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
             />
           </div>
 
@@ -525,7 +525,7 @@ export function ModernLinearHomeView() {
             value={filterPriority}
             onChange={(e) => setFilterPriority(e.target.value)}
             aria-label="Filter issues by priority"
-            className="bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] type-caption font-mono rounded-(--radius-field) px-2.5 py-1.5 text-zinc-600 dark:text-zinc-400 focus:outline-none cursor-pointer"
+            className="bg-zinc-100 dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] type-caption font-mono rounded-(--radius-field) px-2.5 py-1.5 text-zinc-600 dark:text-zinc-400 focus:outline-none cursor-pointer"
           >
             <option value="ALL">All Priorities</option>
             <option value="urgent">P0 Urgent</option>
@@ -537,7 +537,7 @@ export function ModernLinearHomeView() {
       </div>
 
       {/* 4. LINEAR ISSUE STREAM (J/K Navigable Table) */}
-      <div className="rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] shadow-xs overflow-hidden divide-y divide-black/[0.04] dark:divide-white/[0.03]">
+      <div className="rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] shadow-xs overflow-hidden divide-y divide-black/[0.04] dark:divide-white/[0.03]">
         {filteredIssues.length === 0 ? (
           <div className="p-12 text-center space-y-2">
             <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto opacity-60" />
@@ -621,7 +621,7 @@ export function ModernLinearHomeView() {
                   <img
                     src={iss.assignee.avatar}
                     alt={iss.assignee.name}
-                    className="w-5 h-5 rounded-(--radius-pill) object-cover border border-black/[0.08] dark:border-white/[0.08]"
+                    className="w-5 h-5 rounded-(--radius-pill) object-cover border border-black/[0.08] dark:border-white/[0.04]"
                     title={iss.assignee.name}
                   />
 
@@ -637,7 +637,7 @@ export function ModernLinearHomeView() {
       </div>
 
       {/* 5. KEYBOARD SHORTCUTS REFERENCE BAR (Linear Pro Productivity Hint) */}
-      <div className="p-3.5 rounded-(--radius-control) bg-zinc-50 dark:bg-[#0B0C11] border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center justify-between gap-3 type-micro font-mono text-zinc-500">
+      <div className="p-3.5 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-card) border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center justify-between gap-3 type-micro font-mono text-zinc-500">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
             <Kbd size="xs">J</Kbd>

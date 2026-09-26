@@ -22,7 +22,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
     return (
       <div
         onClick={onCaptureMusic}
-        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(--shadow-card-hover) flex items-center justify-between"
+        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
           <div className="w-11 h-11 rounded-(--radius-control) bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors">
@@ -53,7 +53,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
   return (
     <div
       onClick={() => onSelectObject(songObject)}
-      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#090A0F] border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-surface) border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.04] select-none"
     >
       {/* Ambient background disc aura */}
       <div className="absolute top-0 left-0 w-48 h-48 bg-rose-500/[0.05] rounded-(--radius-pill) blur-3xl pointer-events-none" />
@@ -78,7 +78,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
       {/* Media Player Showcase */}
       <div className="flex items-center gap-4 relative z-content">
         {/* Vinyl / Cover Art representation */}
-        <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-(--radius-control) bg-gradient-to-br from-[#1E1C2E] via-[#12131C] to-[#0A0B10] border border-white/[0.08] shadow-(--shadow-card) flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
+        <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-(--radius-control) bg-gradient-to-br from-[#1E1C2E] via-[#12131C] to-[#0A0B10] border border-white/[0.04] shadow-(--shadow-card) flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}

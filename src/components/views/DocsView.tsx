@@ -524,7 +524,7 @@ export function DocsView() {
             <SheetTrigger asChild>
               <button
                 type="button"
-                className="flex items-center gap-2 px-3 py-2.5 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.06] type-caption font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
+                className="flex items-center gap-2 px-3 py-2.5 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.04] type-caption font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
               >
                 <Menu className="icon-md text-emerald-400" />
                 <span className="hidden xs:inline">Menu</span>
@@ -533,8 +533,8 @@ export function DocsView() {
                 </span>
               </button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[360px] p-0 bg-white dark:bg-[#07080C] border-r border-zinc-200 dark:border-white/[0.06] overflow-y-auto">
-              <SheetHeader className="p-4 border-b border-zinc-200 dark:border-white/[0.06] text-left">
+            <SheetContent side="left" className="w-[300px] sm:w-[360px] p-0 bg-white dark:bg-(--bg-sunken) border-r border-zinc-200 dark:border-white/[0.04] overflow-y-auto">
+              <SheetHeader className="p-4 border-b border-zinc-200 dark:border-white/[0.04] text-left">
                 <SheetTitle className="type-body font-mono font-bold text-zinc-950 dark:text-white flex items-center gap-2">
                   <Package className="icon-md text-emerald-500 dark:text-emerald-400" /> UI99 Component Registry
                 </SheetTitle>
@@ -552,7 +552,7 @@ export function DocsView() {
                     placeholder="Search components..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2 rounded-(--radius-field) type-caption font-mono bg-white/[0.03] border border-white/[0.06] text-white placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50"
+                    className="w-full pl-9 pr-3 py-2 rounded-(--radius-field) type-caption font-mono bg-white/[0.03] border border-white/[0.04] text-white placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50"
                   />
                 </div>
 
@@ -635,7 +635,7 @@ export function DocsView() {
                 setActiveSection(e.target.value);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="w-full pl-3 pr-8 py-2.5 rounded-(--radius-control) type-caption font-mono font-medium bg-white dark:bg-[#0A0B10] border border-zinc-200 dark:border-white/[0.08] text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
+              className="w-full pl-3 pr-8 py-2.5 rounded-(--radius-control) type-caption font-mono font-medium bg-white dark:bg-(--bg-surface) border border-zinc-200 dark:border-white/[0.04] text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
             >
               <optgroup label="Getting Started">
                 <option value="intro">Introduction</option>
@@ -926,7 +926,7 @@ export function DocsView() {
                   <div className="space-y-4">
                     {/* Live Playground Stage */}
                     <div
-                      className="mx-auto rounded-(--radius-control) sm:rounded-(--radius-lg) border border-black/[0.08] dark:border-white/[0.04] bg-zinc-50 dark:bg-[#07080C] p-4 sm:p-8 md:p-12 min-h-[260px] sm:min-h-[320px] flex items-center justify-center relative overflow-hidden transition-all dur-slow shadow-(--elevation-3)"
+                      className="mx-auto rounded-(--radius-control) sm:rounded-(--radius-lg) border border-black/[0.08] dark:border-white/[0.04] bg-zinc-50 dark:bg-(--bg-sunken) p-4 sm:p-8 md:p-12 min-h-[260px] sm:min-h-[320px] flex items-center justify-center relative overflow-hidden transition-all dur-slow shadow-(--elevation-3)"
                       style={{ maxWidth: viewportWidth }}
                     >
                       {/* Sub-pixel top rim specular highlight */}
@@ -987,7 +987,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'switch' && (
-                          <div className="flex items-center gap-4 p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.03]">
+                          <div className="flex items-center gap-4 p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.05] dark:border-white/[0.03]">
                             <Switch checked={demoSwitchChecked} onCheckedChange={setDemoSwitchChecked} />
                             <span className="type-caption font-mono font-medium text-zinc-700 dark:text-zinc-300">
                               {demoSwitchChecked ? 'Enabled · Active State' : 'Disabled · Inactive'}
@@ -1045,13 +1045,13 @@ export function DocsView() {
                                 <TabsTrigger value="analytics">Analytics</TabsTrigger>
                                 <TabsTrigger value="reports">Reports</TabsTrigger>
                               </TabsList>
-                              <TabsContent value="overview" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
+                              <TabsContent value="overview" className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
                                 Overview content with spring tab transitions.
                               </TabsContent>
-                              <TabsContent value="analytics" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
+                              <TabsContent value="analytics" className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
                                 Real-time analytics metrics streaming via edge nodes.
                               </TabsContent>
-                              <TabsContent value="reports" className="p-4 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
+                              <TabsContent value="reports" className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
                                 Audit reports generated automatically.
                               </TabsContent>
                             </Tabs>
@@ -1107,7 +1107,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'checkbox' && (
-                          <div className="flex items-center gap-3 p-3.5 rounded-(--radius-control) bg-white dark:bg-[#0E0E14] border border-black/[0.04] dark:border-white/[0.03]">
+                          <div className="flex items-center gap-3 p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.04] dark:border-white/[0.03]">
                             <Checkbox checked={demoCheckboxChecked} onChange={setDemoCheckboxChecked} />
                             <span className="type-caption font-medium text-zinc-700 dark:text-zinc-300">
                               Enable specular border highlights across registry
@@ -1253,7 +1253,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'tree-view' && (
-                          <div className="w-full max-w-sm p-3 rounded-(--radius-control) bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.06] dark:border-white/[0.04]">
+                          <div className="w-full max-w-sm p-3 rounded-(--radius-control) bg-zinc-100 dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04]">
                             <TreeView
                               data={[
                                 {
@@ -1315,7 +1315,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'copy-button' && (
-                          <div className="flex items-center gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03]">
+                          <div className="flex items-center gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03]">
                             <code className="type-caption font-mono text-emerald-400">npx @99/ui add all</code>
                             <Button
                               size="xs"
@@ -1353,7 +1353,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'sparkline' && (
-                          <div className="w-full max-w-xs p-4 rounded-(--radius-control) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
+                          <div className="w-full max-w-xs p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-2">
                             <div className="flex items-center justify-between type-caption font-mono text-zinc-400">
                               <span>Throughput</span>
                               <span className="text-emerald-400 font-bold">+18.4%</span>
@@ -1519,7 +1519,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'range-slider' && (
-                          <div className="w-full max-w-sm p-4 rounded-(--radius-control) bg-zinc-100 dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03]">
+                          <div className="w-full max-w-sm p-4 rounded-(--radius-control) bg-zinc-100 dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03]">
                             <RangeSlider value={[25, 75]} onChange={() => {}} min={0} max={100} />
                           </div>
                         )}
@@ -1668,7 +1668,7 @@ export function DocsView() {
                               ].map((c) => (
                                 <div
                                   key={c.name}
-                                  className="h-40 rounded-(--radius-control) border border-white/[0.06] flex flex-col items-center justify-center gap-2"
+                                  className="h-40 rounded-(--radius-control) border border-white/[0.04] flex flex-col items-center justify-center gap-2"
                                   style={{ background: `linear-gradient(160deg, ${c.hex} 0%, #0B0C11 130%)` }}
                                 >
                                   <span className="type-body font-semibold text-white">{c.name}</span>
@@ -2262,7 +2262,7 @@ export function DocsView() {
                         {/* General showcase fallback — safety net for future registry additions.
                             Every one of the 99 standard elements ships a dedicated live preview above. */}
                         {!LIVE_PREVIEW_IDS.has(activeComponent.id) && (
-                          <div className="w-full max-w-md p-6 rounded-(--radius-lg) bg-white dark:bg-[#0B0C11] border border-black/[0.05] dark:border-white/[0.03] space-y-4 text-center">
+                          <div className="w-full max-w-md p-6 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-4 text-center">
                             <div className="w-12 h-12 rounded-(--radius-control) bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mx-auto">
                               <Sparkles className="icon-xl" />
                             </div>
@@ -2302,7 +2302,7 @@ export function DocsView() {
                             <select
                               value={demoBtnVariant}
                               onChange={(e) => setDemoBtnVariant(e.target.value as any)}
-                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] type-caption font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.04] type-caption font-mono"
                             >
                               <option value="primary">primary</option>
                               <option value="secondary">secondary</option>
@@ -2317,7 +2317,7 @@ export function DocsView() {
                             <select
                               value={demoBtnSize}
                               onChange={(e) => setDemoBtnSize(e.target.value as any)}
-                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] type-caption font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.04] type-caption font-mono"
                             >
                               <option value="xs">xs</option>
                               <option value="sm">sm</option>
@@ -2355,7 +2355,7 @@ export function DocsView() {
                             <select
                               value={demoBadgeVariant}
                               onChange={(e) => setDemoBadgeVariant(e.target.value as any)}
-                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.08] type-caption font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.04] type-caption font-mono"
                             >
                               <option value="default">default</option>
                               <option value="secondary">secondary</option>
@@ -2677,7 +2677,7 @@ export function DocsView() {
           {activeSection === 'intro' && (
             <article className="space-y-8">
               <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
-                <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+                <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-zinc-100 dark:bg-(--bg-card-hover) text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
                   v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 </div>
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
@@ -2693,7 +2693,7 @@ export function DocsView() {
                   <strong className="text-zinc-900 dark:text-white font-semibold">UI \ [99]</strong> is <strong>NOT</strong> a component library in the traditional sense of an immutable npm package. It is a collection of re-usable components that you can copy and paste directly into your apps.
                 </p>
 
-                <div className="p-5 rounded-(--radius-lg) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-3">
+                <div className="p-5 rounded-(--radius-lg) bg-zinc-100 dark:bg-(--bg-card-hover) border border-black/[0.05] dark:border-white/[0.04] space-y-3">
                   <h3 className="type-body font-bold text-zinc-950 dark:text-white flex items-center gap-2">
                     <Sparkles className="icon-md text-emerald-400" />
                     Core Architecture Principles
@@ -2866,20 +2866,20 @@ export function cn(...inputs: ClassValue[]) {
 
               {/* Swatch Palette Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 rounded-(--radius-control) bg-[#06070A] border border-white/[0.08] space-y-2">
+                <div className="p-4 rounded-(--radius-control) bg-[#06070A] border border-white/[0.04] space-y-2">
                   <div className="h-14 rounded-(--radius-field) bg-[#06070A] border border-white/[0.04]" />
                   <div className="type-caption font-mono font-bold text-white">#06070A</div>
                   <div className="type-micro font-mono text-zinc-400">Canvas Root</div>
                 </div>
 
-                <div className="p-4 rounded-(--radius-control) bg-[#0B0C11] border border-white/[0.08] space-y-2">
-                  <div className="h-14 rounded-(--radius-field) bg-[#0B0C11] border border-white/[0.04]" />
+                <div className="p-4 rounded-(--radius-control) bg-(--bg-card) border border-white/[0.04] space-y-2">
+                  <div className="h-14 rounded-(--radius-field) bg-(--bg-card) border border-white/[0.04]" />
                   <div className="type-caption font-mono font-bold text-white">#0B0C11</div>
                   <div className="type-micro font-mono text-zinc-400">Surface Layer 1</div>
                 </div>
 
-                <div className="p-4 rounded-(--radius-control) bg-[#131318] border border-white/[0.08] space-y-2">
-                  <div className="h-14 rounded-(--radius-field) bg-[#131318] border border-white/[0.04]" />
+                <div className="p-4 rounded-(--radius-control) bg-(--bg-elevated) border border-white/[0.04] space-y-2">
+                  <div className="h-14 rounded-(--radius-field) bg-(--bg-elevated) border border-white/[0.04]" />
                   <div className="type-caption font-mono font-bold text-white">#131318</div>
                   <div className="type-micro font-mono text-zinc-400">Elevated Modals</div>
                 </div>
@@ -2953,7 +2953,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
               </header>
 
               <div className="space-y-6">
-                <div className="p-5 rounded-(--radius-lg) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-3">
+                <div className="p-5 rounded-(--radius-lg) bg-zinc-100 dark:bg-(--bg-card-hover) border border-black/[0.05] dark:border-white/[0.04] space-y-3">
                   <h3 className="type-body font-bold text-zinc-950 dark:text-white flex items-center gap-2">
                     <FolderGit2 className="icon-md text-emerald-400" />
                     How It Works
@@ -3121,7 +3121,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
               </header>
 
               {/* Current release — version is GENERATED (src/generated/kit-count.ts), never hard-coded */}
-              <div className="p-5 sm:p-6 rounded-(--radius-lg) bg-zinc-100 dark:bg-[#0E0E14] border border-black/[0.05] dark:border-white/[0.04] space-y-4">
+              <div className="p-5 sm:p-6 rounded-(--radius-lg) bg-zinc-100 dark:bg-(--bg-card-hover) border border-black/[0.05] dark:border-white/[0.04] space-y-4">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white type-caption font-mono font-bold">
                     <Rocket className="icon-sm text-emerald-400" />

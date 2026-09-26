@@ -22,7 +22,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
     return (
       <div
         onClick={onAddBook}
-        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(--shadow-card-hover) flex items-center justify-between"
+        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
           <div className="w-11 h-11 rounded-(--radius-control) bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
@@ -49,7 +49,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
   return (
     <div
       onClick={() => onSelectBook(bookObject)}
-      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#0A0B10] border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-surface) border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.04] select-none"
     >
       {/* Sapphire/Blue Ambient Aura */}
       <div className="absolute top-0 right-0 w-44 h-44 bg-blue-500/[0.05] rounded-(--radius-pill) blur-3xl pointer-events-none" />
@@ -72,7 +72,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
 
       {/* Book Metadata */}
       <div className="flex items-start gap-4 relative z-content">
-        <div className="w-12 h-16 rounded-(--radius-field) bg-gradient-to-br from-[#1E2235] via-[#10131F] to-[#0A0B10] border border-white/[0.08] shadow-(--elevation-2) flex items-center justify-center shrink-0">
+        <div className="w-12 h-16 rounded-(--radius-field) bg-gradient-to-br from-[#1E2235] via-[#10131F] to-[#0A0B10] border border-white/[0.04] shadow-(--elevation-2) flex items-center justify-center shrink-0">
           <Bookmark className="icon-lg text-blue-300" />
         </div>
 

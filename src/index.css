@@ -317,8 +317,11 @@
 
 /* Studio Canvas - Deep Charcoal Jet Black */
 .studio-dark-canvas {
-  background-color: #050507;
-  background-image: radial-gradient(80% 60% at 50% 0%, #0E0E14 0%, #050507 70%);
+  /* Seam-free velvet canvas: the token canvas (never a darker hex), with an
+     ambient key-light veil fading to nothing — a lit canvas, not a slab.
+     (A #0E0E14 top gradient previously merged with elevated card surfaces.) */
+  background-color: var(--bg-canvas);
+  background-image: radial-gradient(80% 60% at 50% 0%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
 }
 
 .material-obsidian-pill {

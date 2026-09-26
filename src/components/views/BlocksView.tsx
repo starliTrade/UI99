@@ -97,7 +97,7 @@ function LinearIssueTrackerBlock() {
         {issues.map((issue) => (
           <div
             key={issue.id}
-            className="p-3.5 rounded-(--radius-control) bg-white dark:bg-[#131318] border border-black/[0.05] dark:border-white/[0.035] flex items-center justify-between gap-4 hover:border-black/20 dark:hover:border-white/10 transition-colors cursor-pointer shadow-xs"
+            className="p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.035] flex items-center justify-between gap-4 hover:border-black/20 dark:hover:border-white/10 transition-colors cursor-pointer shadow-xs"
           >
             <div className="flex items-center gap-3 min-w-0">
               <PriorityBadge priority={issue.priority} size="sm" showLabel={false} />
@@ -129,7 +129,7 @@ function AuthCardBlock() {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <Card className="shadow-2xl border-white/[0.06] bg-[#0B0C11]">
+      <Card className="shadow-2xl border-white/[0.04] bg-(--bg-card)">
         <CardHeader className="space-y-1">
           <div className="w-10 h-10 rounded-(--radius-control) bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-2">
             <Lock className="icon-lg" />
@@ -147,7 +147,7 @@ function AuthCardBlock() {
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-black/[0.06] dark:border-white/[0.05]" />
             </div>
-            <span className="relative px-3 bg-white dark:bg-[#0B0C11] type-micro font-mono text-zinc-400">
+            <span className="relative px-3 bg-white dark:bg-(--bg-card) type-micro font-mono text-zinc-400">
               OR EMAIL
             </span>
           </div>
@@ -273,8 +273,8 @@ function PricingPlansBlock() {
             key={plan.name}
             className={`relative flex flex-col justify-between ${
               plan.highlight
-                ? 'border-emerald-500/30 bg-[#0E0E14] shadow-(--elevation-4) ring-1 ring-emerald-500/20'
-                : 'bg-[#0B0C11]'
+                ? 'border-emerald-500/30 bg-(--bg-card-hover) shadow-(--elevation-4) ring-1 ring-emerald-500/20'
+                : 'bg-(--bg-card)'
             }`}
           >
             {plan.badge && (
@@ -352,7 +352,7 @@ export function LinearIssueTrackerBlock() {
       </div>
       <div className="space-y-2">
         {issues.map((issue) => (
-          <div key={issue.id} className="p-3.5 rounded-(--radius-control) bg-[#131318] border border-white/[0.035] flex items-center justify-between gap-4">
+          <div key={issue.id} className="p-3.5 rounded-(--radius-control) bg-(--bg-elevated) border border-white/[0.035] flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <PriorityBadge priority={issue.priority as any} size="sm" showLabel={false} />
               <span className="type-caption font-mono text-zinc-400">{issue.id}</span>
@@ -377,7 +377,7 @@ export function AuthCardBlock() {
   const [password, setPassword] = useState('');
 
   return (
-    <Card className="w-full max-w-md mx-auto shadow-2xl border-white/[0.06] bg-[#0B0C11]">
+    <Card className="w-full max-w-md mx-auto shadow-2xl border-white/[0.04] bg-(--bg-card)">
       <CardHeader>
         <CardTitle className="type-title font-bold">Sign in to Workspace</CardTitle>
         <CardDescription>Enter your credentials to continue</CardDescription>
@@ -513,7 +513,7 @@ export function SecuritySettingsBlock() {
     <div className="w-full space-y-8 pb-16">
       {/* PAGE HEADER */}
       <header className="pb-2 space-y-3">
-        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-zinc-100 dark:bg-[#0E0E14] text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
+        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-zinc-100 dark:bg-(--bg-card-hover) text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="type-display sm:type-hero font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.05] text-balance">
           Production Blocks.
@@ -634,7 +634,7 @@ export function SecuritySettingsBlock() {
                   <span>Interactive Workflow Module</span>
                 </span>
               </div>
-              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-zinc-50 dark:bg-[#0B0C11] p-6 shadow-sm">
+              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-zinc-50 dark:bg-(--bg-card) p-6 shadow-sm">
                 <LinearIssueTrackerBlock />
               </div>
             </div>

@@ -342,7 +342,7 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => setCurrentTab('DOCS')}
-            className="h-9 px-3.5 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-[#0E0E14] hover:bg-zinc-200/80 dark:hover:bg-[#15161E] text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200/80 dark:border-white/[0.04] hover:border-zinc-300 dark:hover:border-white/[0.08] shadow-(--shadow-card) active:scale-[0.98] whitespace-nowrap"
+            className="h-9 px-3.5 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-(--bg-card-hover) hover:bg-zinc-200/80 dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200/80 dark:border-white/[0.04] hover:border-zinc-300 dark:hover:border-white/[0.04] shadow-(--shadow-card) active:scale-[0.98] whitespace-nowrap"
           >
             <BookOpen className="icon-sm text-zinc-700 dark:text-zinc-300" />
             <span>Interactive Docs</span>
@@ -352,14 +352,14 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
-            className="h-9 px-3 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-[#0E0E14] hover:bg-zinc-200/80 dark:hover:bg-[#15161E] text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200/80 dark:border-white/[0.04] hover:border-zinc-300 dark:hover:border-white/[0.08] shadow-(--shadow-card) active:scale-[0.98] whitespace-nowrap"
+            className="h-9 px-3 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-(--bg-card-hover) hover:bg-zinc-200/80 dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200/80 dark:border-white/[0.04] hover:border-zinc-300 dark:hover:border-white/[0.04] shadow-(--shadow-card) active:scale-[0.98] whitespace-nowrap"
           >
             <Github className="icon-sm text-zinc-700 dark:text-zinc-300" />
             <span>GitHub</span>
           </button>
 
           {/* 4. Terminal Action: CLI Install Box */}
-          <div className="h-9 inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-zinc-100 dark:bg-[#0A0B10] border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card) type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+          <div className="h-9 inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-zinc-100 dark:bg-(--bg-surface) border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card) type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
             <span className="flex items-center gap-1.5">
               <span className="text-emerald-500 dark:text-emerald-400 font-bold select-none type-caption tracking-tight">
                 &gt;_
@@ -388,9 +388,9 @@ export function DesignSystemHomeView() {
           2 · WORLD-CLASS 99-ELEMENT COMPONENT REGISTRY STUDIO
          ══════════════════════════════════════════════════════════════ */}
       <Reveal index={4}>
-        <div className="mt-4 sm:mt-8 rounded-(--radius-control) sm:rounded-(--radius-lg) border border-zinc-200/60 dark:border-white/[0.03] bg-white dark:bg-[#0C0D12] shadow-(--elevation-3) dark:shadow-(--elevation-4) overflow-hidden transition-all">
+        <div className="mt-4 sm:mt-8 rounded-(--radius-control) sm:rounded-(--radius-lg) border border-zinc-200/60 dark:border-white/[0.03] bg-white dark:bg-(--bg-card) shadow-(--shadow-card) dark:shadow-(--shadow-card-hover) hover:shadow-(--shadow-card-hover) overflow-hidden transition-all">
           {/* 1. Studio Top Navigation & Control Bar */}
-          <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-zinc-200/50 dark:border-white/[0.03] bg-zinc-50/70 dark:bg-[#090A0E] flex items-center justify-between gap-2 sm:gap-4 flex-nowrap min-w-0">
+          <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-zinc-200/50 dark:border-white/[0.03] bg-zinc-50/70 dark:bg-(--bg-surface) flex items-center justify-between gap-2 sm:gap-4 flex-nowrap min-w-0">
             {/* Left: Active Component Breadcrumb */}
             <div className="flex items-center gap-2 min-w-0 flex-1">
               <span className="flex h-2 w-2 relative shrink-0">
@@ -462,7 +462,7 @@ export function DesignSystemHomeView() {
                   onClick={() => setActiveCategory(cat.id)}
                   className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-all cursor-pointer ${
                     activeCategory === cat.id
-                      ? 'bg-zinc-900 dark:bg-white/[0.08] text-white dark:text-[#EDEDEF] font-semibold border border-transparent dark:border-white/[0.08]'
+                      ? 'bg-zinc-900 dark:bg-white/[0.08] text-white dark:text-[#EDEDEF] font-semibold border border-transparent dark:border-white/[0.04]'
                       : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-white/[0.03]'
                   }`}
                 >
@@ -509,7 +509,7 @@ export function DesignSystemHomeView() {
           </div>
 
           {/* 3. Spacious Interactive Stage Canvas */}
-          <div className="p-3 sm:p-6 md:p-8 bg-white dark:bg-[#0C0D12]">
+          <div className="p-3 sm:p-6 md:p-8 bg-white dark:bg-(--bg-card)">
             {/* ─── STAGE (PREVIEW) ─── */}
             {studioView === 'stage' && (
               <div className="flex-1 flex flex-col justify-between gap-3 sm:gap-4">
@@ -551,7 +551,7 @@ export function DesignSystemHomeView() {
                     )}
 
                     {activeComponentId === 'copy-button' && (
-                      <div className="flex items-center gap-3 p-3 rounded-(--radius-field) bg-zinc-100 dark:bg-[#0A0B10] border border-zinc-200 dark:border-white/[0.04]">
+                      <div className="flex items-center gap-3 p-3 rounded-(--radius-field) bg-zinc-100 dark:bg-(--bg-surface) border border-zinc-200 dark:border-white/[0.04]">
                         <code className="type-caption font-mono text-emerald-500">npx @99/ui add button</code>
                         <CopyButton text="npx @99/ui add button" />
                       </div>
@@ -751,7 +751,7 @@ export function DesignSystemHomeView() {
                     )}
 
                     {activeComponentId === 'sparkline' && (
-                      <div className="w-full p-4 rounded-(--radius-control) bg-zinc-100 dark:bg-[#090A0E] border border-zinc-200 dark:border-white/[0.04] space-y-2">
+                      <div className="w-full p-4 rounded-(--radius-control) bg-zinc-100 dark:bg-(--bg-surface) border border-zinc-200 dark:border-white/[0.04] space-y-2">
                         <div className="flex justify-between type-caption font-mono">
                           <span className="text-zinc-500">Real-time Telemetry</span>
                           <span className="text-emerald-500 font-bold">+14.2%</span>
@@ -1021,7 +1021,7 @@ export function DesignSystemHomeView() {
             {/* ─── CLI (NPX / PNPM / BUN / YARN) ─── */}
             {studioView === 'cli' && (
               <div className="space-y-3">
-                <div className="p-3 sm:p-4 rounded-(--radius-control) bg-zinc-50/70 dark:bg-[#06070A] border border-zinc-200/50 dark:border-white/[0.06] space-y-2.5">
+                <div className="p-3 sm:p-4 rounded-(--radius-control) bg-zinc-50/70 dark:bg-[#06070A] border border-zinc-200/50 dark:border-white/[0.04] space-y-2.5">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="type-caption font-mono text-zinc-600 dark:text-zinc-400 font-semibold truncate">
                       Add component to your project
@@ -1046,7 +1046,7 @@ export function DesignSystemHomeView() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between gap-2 p-2.5 sm:p-3 rounded-(--radius-field) bg-zinc-900 dark:bg-[#090A0F] font-mono type-caption text-emerald-400 border border-zinc-800 dark:border-white/[0.04] min-w-0 overflow-hidden">
+                  <div className="flex items-center justify-between gap-2 p-2.5 sm:p-3 rounded-(--radius-field) bg-zinc-900 dark:bg-(--bg-surface) font-mono type-caption text-emerald-400 border border-zinc-800 dark:border-white/[0.04] min-w-0 overflow-hidden">
                     <div className="flex items-center gap-2 truncate min-w-0">
                       <span className="select-none text-zinc-600 dark:text-zinc-500 shrink-0">&gt;_</span>
                       <span className="truncate type-micro sm:type-caption">{getCliCommand(currentComp.name)}</span>
@@ -1066,7 +1066,7 @@ export function DesignSystemHomeView() {
                   </div>
                 </div>
 
-                <div className="p-3 sm:p-4 rounded-(--radius-control) bg-zinc-50/70 dark:bg-[#06070A] border border-zinc-200/50 dark:border-white/[0.06] space-y-2">
+                <div className="p-3 sm:p-4 rounded-(--radius-control) bg-zinc-50/70 dark:bg-[#06070A] border border-zinc-200/50 dark:border-white/[0.04] space-y-2">
                   <div className="flex items-center justify-between gap-2">
                     <span className="type-caption font-mono text-zinc-600 dark:text-zinc-400 font-semibold truncate">
                       Import statement
@@ -1083,7 +1083,7 @@ export function DesignSystemHomeView() {
                       )}
                     </button>
                   </div>
-                  <div className="p-2.5 sm:p-3 rounded-(--radius-field) bg-zinc-900 dark:bg-[#090A0F] font-mono type-micro sm:type-caption text-zinc-200 border border-zinc-800 dark:border-white/[0.04] overflow-x-auto no-scrollbar whitespace-nowrap">
+                  <div className="p-2.5 sm:p-3 rounded-(--radius-field) bg-zinc-900 dark:bg-(--bg-surface) font-mono type-micro sm:type-caption text-zinc-200 border border-zinc-800 dark:border-white/[0.04] overflow-x-auto no-scrollbar whitespace-nowrap">
                     import &#123; {currentComp.title.replace(/[\s-]+/g, '')} &#125; from '@/components/ui/{currentComp.name}';
                   </div>
                 </div>
@@ -1099,16 +1099,16 @@ export function DesignSystemHomeView() {
                     <span className="type-micro font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">Active</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 type-caption font-mono">
-                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-[#0D0E14] border border-zinc-200/60 dark:border-white/[0.03]">
+                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-zinc-200/60 dark:border-white/[0.03]">
                       <span className="text-zinc-500">Surface Base:</span> <span className="text-emerald-500">#06070A</span>
                     </div>
-                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-[#0D0E14] border border-zinc-200/60 dark:border-white/[0.03]">
+                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-zinc-200/60 dark:border-white/[0.03]">
                       <span className="text-zinc-500">Surface Card:</span> <span className="text-emerald-500">#0B0C11</span>
                     </div>
-                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-[#0D0E14] border border-zinc-200/60 dark:border-white/[0.03]">
+                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-zinc-200/60 dark:border-white/[0.03]">
                       <span className="text-zinc-500">Hairline Border:</span> <span className="text-emerald-500">rgba(255,255,255,0.025)</span>
                     </div>
-                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-[#0D0E14] border border-zinc-200/60 dark:border-white/[0.03]">
+                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-zinc-200/60 dark:border-white/[0.03]">
                       <span className="text-zinc-500">Focus Ring:</span> <span className="text-emerald-500">var(--focus-ui99)</span>
                     </div>
                   </div>
@@ -1141,9 +1141,9 @@ export function DesignSystemHomeView() {
           </div>
 
           {/* Connected Pillar Card */}
-          <div className="rounded-(--radius-control) bg-white dark:bg-[#0A0B0E] border border-zinc-200/80 dark:border-white/[0.035] shadow-(--elevation-1) dark:shadow-(--elevation-1) divide-y divide-zinc-100 dark:divide-white/[0.035] sm:divide-y-0 sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:shadow-none sm:grid sm:grid-cols-3 sm:gap-3.5">
+          <div className="rounded-(--radius-control) bg-white dark:bg-(--bg-surface) border border-zinc-200/80 dark:border-white/[0.035] shadow-(--elevation-1) dark:shadow-(--elevation-1) divide-y divide-zinc-100 dark:divide-white/[0.035] sm:divide-y-0 sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:shadow-none sm:grid sm:grid-cols-3 sm:gap-3.5">
             {/* Pillar 1: Keyboard Velocity */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-[#0A0B0E] sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.08]">
+            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.04]">
               <div className="w-8 h-8 rounded-(--radius-field) bg-zinc-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-zinc-200/60 dark:border-emerald-500/20">
                 <Zap className="icon-md" />
               </div>
@@ -1160,7 +1160,7 @@ export function DesignSystemHomeView() {
             </div>
 
             {/* Pillar 2: Specular Velvet Depth */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-[#0A0B0E] sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.08]">
+            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.04]">
               <div className="w-8 h-8 rounded-(--radius-field) bg-zinc-100 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 border border-zinc-200/60 dark:border-indigo-500/20">
                 <Sparkles className="icon-md" />
               </div>
@@ -1177,7 +1177,7 @@ export function DesignSystemHomeView() {
             </div>
 
             {/* Pillar 3: Zero Runtime Overhead */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-[#0A0B0E] sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.08]">
+            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-zinc-300 dark:hover:border-white/[0.04]">
               <div className="w-8 h-8 rounded-(--radius-field) bg-zinc-100 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 mt-0.5 border border-zinc-200/60 dark:border-amber-500/20">
                 <ShieldCheck className="icon-md" />
               </div>

@@ -28,7 +28,7 @@ export function DailyFortune() {
   return (
     <div
       onClick={() => setIsRevealed(!isRevealed)}
-      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#090A0F] border border-white/[0.03] shadow-(--shadow-card-hover) hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-surface) border border-white/[0.03] shadow-(--shadow-card-hover) hover:border-white/[0.04] select-none"
     >
       {/* Celestial Background Nebula Glow */}
       <div className="absolute top-0 right-0 w-44 h-44 bg-violet-600/[0.08] rounded-(--radius-pill) blur-3xl pointer-events-none" />
@@ -72,7 +72,7 @@ export function DailyFortune() {
               exit={{ opacity: 0, scale: 0.96 }}
               className="w-full py-4 text-center flex flex-col items-center justify-center gap-2"
             >
-              <div className="w-10 h-10 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.06] flex items-center justify-center shadow-(--rim-strong) group-hover:scale-105 transition-transform text-violet-300">
+              <div className="w-10 h-10 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.04] flex items-center justify-center shadow-(--rim-strong) group-hover:scale-105 transition-transform text-violet-300">
                 <Sparkles className="icon-md fill-current" />
               </div>
               <p className="type-caption font-medium text-[#EDEDEF] tracking-wide">

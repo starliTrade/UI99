@@ -22,7 +22,7 @@ export function TravelMoment({ tripObject, onSelectTrip, onAddTrip }: TravelMome
     return (
       <div
         onClick={onAddTrip}
-        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#0B0C11] border border-white/[0.025] hover:border-white/[0.06] shadow-(--shadow-card-hover) flex items-center justify-between"
+        className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
         <div className="flex items-center gap-3.5">
           <div className="w-11 h-11 rounded-(--radius-control) bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
@@ -53,7 +53,7 @@ export function TravelMoment({ tripObject, onSelectTrip, onAddTrip }: TravelMome
   return (
     <div
       onClick={() => onSelectTrip(tripObject)}
-      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-[#0A0B10] border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.06] select-none"
+      className="group relative p-5 sm:p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-surface) border border-white/[0.025] shadow-(--shadow-card-hover) hover:border-white/[0.04] select-none"
     >
       {/* Cyan/Teal Ambient Aura */}
       <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-500/[0.05] rounded-(--radius-pill) blur-3xl pointer-events-none" />

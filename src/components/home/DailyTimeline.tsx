@@ -77,7 +77,7 @@ export function DailyTimeline({
       default:
         return {
           label: isRTL ? 'روزمره' : 'Life',
-          className: 'bg-white/[0.04] text-zinc-300 border-white/[0.06]',
+          className: 'bg-white/[0.04] text-zinc-300 border-white/[0.04]',
         };
     }
   };
@@ -117,7 +117,7 @@ export function DailyTimeline({
         /* Graceful Poetic Empty State */
         <div
           onClick={onOpenCapture}
-          className="group relative p-5 sm:p-6 rounded-(--radius-lg) bg-[#0A0B10] border border-white/[0.025] hover:border-white/[0.05] shadow-(--shadow-card) transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left rtl:sm:text-right"
+          className="group relative p-5 sm:p-6 rounded-(--radius-lg) bg-(--bg-surface) border border-white/[0.025] hover:border-white/[0.05] shadow-(--shadow-card) transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left rtl:sm:text-right"
         >
           <div className="flex items-center gap-3.5">
             <div className="w-10 h-10 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors shrink-0">
