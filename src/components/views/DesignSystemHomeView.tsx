@@ -498,7 +498,9 @@ export function DesignSystemHomeView() {
         <div className="mt-4 sm:mt-8 rounded-(--radius-control) sm:rounded-(--radius-lg) border border-(--border-soft) dark:border-white/[0.025] bg-white dark:bg-(--bg-card) shadow-(--shadow-card) hover:shadow-(--shadow-card-hover) overflow-hidden transition-all">
           {/* 1. Studio Top Navigation & Control Bar */}
           <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-(--border-subtle) dark:border-white/[0.03] bg-(--bg-wash) dark:bg-(--bg-surface) flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 min-w-0">
-            {/* Left: Active Component Breadcrumb + registry stepper */}
+            {/* Row 1 — identity and position. The title truncates, the
+                stepper never does: which component, and where you are in the
+                registry, is one question — so they share a row. */}
             <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 sm:flex-1">
               <span className="flex h-2 w-2 relative shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-(--radius-pill) bg-emerald-400 opacity-75" />
@@ -517,18 +519,19 @@ export function DesignSystemHomeView() {
                   WCAG 2.2 AA
                 </span>
               </div>
+              <div className="flex-1" />
             </div>
 
             {/* Registry stepper — the whole 103-item registry is browsable
                 without touching the ribbon. Two 44px targets, the same
                 affordance the docs pagination uses. */}
-            <div className="flex items-center gap-0.5 p-0.5 shrink-0 rounded-(--radius-field) bg-(--bg-raised) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.04]">
+            <div className="flex items-center gap-0.5 p-0.5 w-fit shrink-0 rounded-(--radius-field) bg-(--bg-raised) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.04]">
               <button
                 type="button"
                 onClick={() => stepComponent(-1)}
                 disabled={registryIndex <= 0}
                 aria-label={isRTL ? 'کامپوننت قبلی' : 'Previous component'}
-                className="relative flex items-center justify-center h-8 w-8 rounded-(--radius-field) border border-(--border-soft) dark:border-white/[0.04] bg-(--bg-wash) dark:bg-white/[0.025] hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                className="relative flex items-center justify-center h-7 w-7 rounded-(--radius-sm) hover:bg-white/[0.07] dark:hover:bg-white/[0.07] text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               >
                 {isRTL ? <ChevronRight className="icon-xs" /> : <ChevronLeft className="icon-xs" />}
               </button>
@@ -540,7 +543,7 @@ export function DesignSystemHomeView() {
                 onClick={() => stepComponent(1)}
                 disabled={registryIndex >= REGISTRY_COMPONENTS.length - 1}
                 aria-label={isRTL ? 'کامپوننت بعدی' : 'Next component'}
-                className="relative flex items-center justify-center h-8 w-8 rounded-(--radius-field) border border-(--border-soft) dark:border-white/[0.04] bg-(--bg-wash) dark:bg-white/[0.025] hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                className="relative flex items-center justify-center h-7 w-7 rounded-(--radius-sm) hover:bg-white/[0.07] dark:hover:bg-white/[0.07] text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               >
                 {isRTL ? <ChevronLeft className="icon-xs" /> : <ChevronRight className="icon-xs" />}
               </button>
@@ -584,7 +587,7 @@ export function DesignSystemHomeView() {
                   setCurrentTab('DOCS');
                 }}
                 aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
-                className="relative flex items-center gap-1.5 h-8 px-2.5 sm:px-3 rounded-(--radius-field) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] transition-colors cursor-pointer shrink-0 focus-ui99 col-start-2 row-start-1 justify-self-end sm:col-auto sm:row-auto sm:justify-self-auto after:absolute after:-inset-1.5 after:content-['']"
+                className="relative flex items-center gap-1.5 h-8 px-2.5 sm:px-3 rounded-(--radius-field) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] transition-colors cursor-pointer shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               >
                 <BookOpen className="icon-xs shrink-0" />
                 <span>{isRTL ? 'مستندات' : 'Full API'}</span>
@@ -603,7 +606,7 @@ export function DesignSystemHomeView() {
                   type="button"
                   onClick={() => setActiveCategory(cat.id)}
                   aria-pressed={activeCategory === cat.id}
-                  className={`relative inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
+                  className={`relative inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-field) type-caption font-mono whitespace-nowrap transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
                     activeCategory === cat.id
                       ? 'bg-(--ink-fill) dark:bg-white/[0.08] text-white dark:text-[#EDEDEF] font-semibold border border-transparent dark:border-white/[0.04]'
                       : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.03]'
@@ -627,7 +630,7 @@ export function DesignSystemHomeView() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={isRTL ? 'جستجوی کامپوننت…' : 'Search components…'}
                   aria-label={isRTL ? 'جستجوی کامپوننت' : 'Search components'}
-                  className="w-full h-8 pl-7 pr-2.5 rounded-(--radius-sm) bg-white dark:bg-white/[0.03] border border-(--border-soft) dark:border-white/[0.04] type-caption text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 focus-ui99-inset font-mono"
+                  className="w-full h-8 pl-7 pr-2.5 rounded-(--radius-field) bg-white dark:bg-white/[0.03] border border-(--border-soft) dark:border-white/[0.04] type-caption text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 focus-ui99-inset font-mono"
                 />
               </div>
 
@@ -1043,7 +1046,7 @@ export function DesignSystemHomeView() {
                 </div>
 
                 {/* Micro-Controls & CLI Installation Footer */}
-                <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 pt-3 border-t border-(--border-subtle) dark:border-white/[0.03]">
+                <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 pt-3">
                   {/* Left: Interactive Micro Controls */}
                   <div className="flex flex-col gap-1.5 min-w-0">
                     {activeComponentId === 'button' && (
@@ -1111,7 +1114,7 @@ export function DesignSystemHomeView() {
                   {/* Right: Quick Install CLI Capsule */}
                   <div className="flex items-center gap-1.5 min-w-0 w-full lg:w-auto shrink-0">
                     {/* PM Quick Pills */}
-                    <div className="flex items-center p-0.5 rounded-(--radius-sm) bg-(--bg-raised) dark:bg-white/[0.04] border border-(--border-strong) dark:border-white/[0.03] shrink-0">
+                    <div className="flex items-center p-0.5 rounded-(--radius-field) bg-(--bg-raised) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.04] shrink-0">
                       {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((pm) => (
                         <button
                           key={pm}
@@ -1134,7 +1137,7 @@ export function DesignSystemHomeView() {
                       type="button"
                       onClick={() => copy(getCliCommand(currentComp.name), 'quick-add')}
                       aria-label={isRTL ? 'کپی دستور نصب' : 'Copy CLI command'}
-                      className="relative flex-1 lg:flex-initial inline-flex items-center justify-between gap-2 px-2.5 h-8 rounded-(--radius-field) type-caption font-mono bg-white dark:bg-[#0E0F14] hover:bg-(--bg-subtle) dark:hover:bg-[#151620] text-zinc-800 dark:text-[#EDEDEF] border border-(--border-soft) dark:border-white/[0.04] transition-colors cursor-pointer min-w-0 overflow-hidden focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                      className="relative flex-1 basis-[200px] inline-flex items-center justify-between gap-2 px-2.5 h-8 rounded-(--radius-field) type-caption font-mono bg-white dark:bg-white/[0.04] hover:bg-(--bg-subtle) dark:hover:bg-white/[0.07] text-zinc-800 dark:text-[#EDEDEF] border border-(--border-soft) dark:border-white/[0.04] transition-colors cursor-pointer min-w-0 overflow-hidden focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
                     >
                       <span className="flex items-center gap-1.5 truncate min-w-0">
                         <span className="text-emerald-500 dark:text-emerald-400 font-bold type-caption select-none shrink-0">&gt;_</span>
