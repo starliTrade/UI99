@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowRight,
+  ArrowLeft,
   Copy,
   Check,
   Search,
@@ -36,8 +37,8 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
+import { useAuth } from '../../core/context/AuthContext';
 import { useChoreography, Reveal } from '../ui/motion';
-import { TokenLatticeHero } from '../ui/TokenLatticeHero';
 import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 import {
   Button,
@@ -139,6 +140,7 @@ import { REGISTRY_COMPONENTS, ComponentRegistryItem } from '../../registry/regis
 
 export function DesignSystemHomeView() {
   const { setCurrentTab, addToast, setFocusComponent } = useApp();
+  const { isRTL } = useAuth();
   const { reveal } = useChoreography();
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -271,12 +273,11 @@ export function DesignSystemHomeView() {
       {/* ══════════════════════════════════════════════════════════════
           1 · HERO SECTION (Obsidian Velvet + Soft Emerald Brand Halo)
          ══════════════════════════════════════════════════════════════ */}
-      <section className="relative flex flex-col items-start pb-6 sm:pb-10 overflow-visible">
-        {/* Token Lattice — the one 3D moment on the site. Colours are read
-            live from CSS custom properties, so it re-themes with the product
-            and proves the token layer in motion. Decorative, aria-hidden,
-            reduced-motion aware, and pauses when off-screen. */}
-        <TokenLatticeHero className="absolute -top-6 sm:-top-10 right-0 hidden sm:block w-[46%] max-w-[560px] h-[300px] lg:h-[380px] -z-content pointer-events-none opacity-90" />
+      <section dir={isRTL ? 'rtl' : 'ltr'} className="relative flex flex-col items-start pb-6 sm:pb-10 overflow-visible">
+        {/* The Token Lattice 3D panel was removed from the hero by audit
+            decision: a hero must show the product, and the product is type +
+            the registry studio directly below — not an abstract lattice. The
+            component itself stays in the registry (102 = installable kit). */}
 
         {/* Soft, faint emerald brand ambient glow */}
         <div
@@ -298,80 +299,118 @@ export function DesignSystemHomeView() {
           }}
         />
 
-        {/* Main Display Headline — minimal, dotted, per house style */}
+        {/* Main Display Headline — bilingual. Under data-script='fa' the type
+            ramp swaps itself to the Persian optical steps (display 33px /
+            billboard 66px), so no component-side mirroring is needed. The
+            break point is a real sentence break in both scripts, so a plain
+            <br> is correct in both directions — no mirrored markup. */}
         <motion.h1
           {...reveal(0)}
-          className="type-display sm:type-billboard md:type-billboard lg:type-billboard font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.08] sm:leading-[1.03] text-left font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]"
+          dir={isRTL ? 'rtl' : 'ltr'}
+          className="type-display sm:type-billboard font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.08] sm:leading-[1.03] text-start"
         >
-          Stop rebuilding
-          <br />
-          what already works.
+          {isRTL ? (
+            <>
+              بازسازی نکن
+              <br />
+              چیزی را که از قبل کار می‌کند.
+            </>
+          ) : (
+            <>
+              Stop rebuilding
+              <br />
+              what already works.
+            </>
+          )}
         </motion.h1>
 
-        {/* Subtitle */}
+        {/* Subtitle — 12px was a hero subhead at caption size; the floor for
+            hero copy is body. Arabic-script joins break under negative
+            tracking, so tracking only applies to the Latin run. */}
         <motion.p
           {...reveal(2)}
-          className="mt-3.5 sm:mt-5 type-caption sm:type-body md:type-body text-zinc-600 dark:text-[#8E909D] leading-relaxed text-left max-w-xl font-normal tracking-[-0.01em] font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]"
+          dir={isRTL ? 'rtl' : 'ltr'}
+          className="mt-3.5 sm:mt-5 type-body sm:type-body-lg text-zinc-600 dark:text-[#8E909D] leading-relaxed text-start max-w-xl font-normal"
         >
-          {KIT_COMPONENT_COUNT} accessible primitives, each one already WCAG 2.2
-          audited, axe-core clean, and contrast-verified. Own the source, drop it
-          into any React app, and ship in an afternoon.
+          {isRTL ? (
+            <>
+              {Number(KIT_COMPONENT_COUNT).toLocaleString('fa-IR')} پریمیتیو دسترس‌پذیر، هرکدام از قبل ممیزی‌شده‌ی
+              WCAG 2.2، تمیز در axe-core و تأییدشده از نظر کنتراست. سورس را مال خودت کن، در هر اپ React بیندازش، و
+              یک بعدازظهر به نتیجه برسان.
+            </>
+          ) : (
+            <>
+              {KIT_COMPONENT_COUNT} accessible primitives, each one already WCAG 2.2
+              audited, axe-core clean, and contrast-verified. Own the source, drop it
+              into any React app, and ship in an afternoon.
+            </>
+          )}
         </motion.p>
 
-        {/* Hero Actions: Unified Horizontal Action Row */}
+        {/* Hero Actions — every target is a 44px floor (AGENTS §5 touch rule;
+            h-9/36px was a pointer-only affordance on the primary CTA). The CLI
+            box matches the row height so the wrap never produces two elevations. */}
         <motion.div
           {...reveal(3)}
-          className="relative mt-5 sm:mt-7 flex flex-wrap items-center gap-2.5 w-full sm:w-auto"
+          dir={isRTL ? 'rtl' : 'ltr'}
+          className="relative mt-5 sm:mt-7 flex flex-wrap items-center gap-2.5 w-full"
         >
           <div
             aria-hidden="true"
             className="absolute -inset-2 rounded-(--radius-control) bg-emerald-500/[0.03] dark:bg-emerald-400/[0.03] blur-xl pointer-events-none -z-content"
           />
 
-          {/* 1. Primary Action: Browse 99 Components */}
+          {/* 1. Primary Action: Browse the registry */}
           <button
             type="button"
             onClick={() => setCurrentTab('UIKIT')}
-            className="h-9 px-3.5 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-semibold cursor-pointer transition-all bg-(--ink-fill) dark:bg-[#EDEDEF] hover:bg-zinc-800 dark:hover:bg-white text-white dark:text-zinc-950 shadow-xs active:scale-[0.98] whitespace-nowrap"
+            className="min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-semibold cursor-pointer transition-all bg-(--ink-fill) dark:bg-[#EDEDEF] hover:bg-zinc-800 dark:hover:bg-white text-white dark:text-zinc-950 shadow-xs active:scale-[0.98] whitespace-nowrap"
           >
-            <span>Explore {KIT_COMPONENT_COUNT} Components</span>
-            <ArrowRight className="icon-sm" />
+            <span>
+              {isRTL
+                ? `مرور ${Number(KIT_COMPONENT_COUNT).toLocaleString('fa-IR')} کامپوننت`
+                : `Explore ${KIT_COMPONENT_COUNT} Components`}
+            </span>
+            {/* Forward = the reading direction: flipped in RTL. */}
+            {isRTL ? <ArrowLeft className="icon-sm" /> : <ArrowRight className="icon-sm" />}
           </button>
 
           {/* 2. Secondary Action: Documentation */}
           <button
             type="button"
             onClick={() => setCurrentTab('DOCS')}
-            className="h-9 px-3.5 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-card-hover) hover:bg-(--bg-raised) dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-white/[0.025] hover:border-(--border-strong) dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
+            className="min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-card-hover) hover:bg-(--bg-raised) dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-white/[0.025] hover:border-(--border-strong) dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
           >
             <BookOpen className="icon-sm text-zinc-700 dark:text-zinc-300" />
-            <span>Interactive Docs</span>
+            <span>{isRTL ? 'مستندات تعاملی' : 'Interactive Docs'}</span>
           </button>
 
           {/* 3. GitHub Action */}
           <button
             type="button"
             onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
-            className="h-9 px-3 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-card-hover) hover:bg-(--bg-raised) dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-white/[0.025] hover:border-(--border-strong) dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
+            className="min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-card-hover) hover:bg-(--bg-raised) dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-white/[0.025] hover:border-(--border-strong) dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
           >
             <Github className="icon-sm text-zinc-700 dark:text-zinc-300" />
             <span>GitHub</span>
           </button>
 
-          {/* 4. Terminal Action: CLI Install Box */}
-          <div className="h-9 inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.025] type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
-            <span className="flex items-center gap-1.5">
-              <span className="text-emerald-500 dark:text-emerald-400 font-bold select-none type-caption tracking-tight">
+          {/* 4. Terminal Action: CLI Install Box — the command itself stays
+              LTR even in Persian: code is code, and mixing bidi into a shell
+              command corrupts it. */}
+          <div className="min-h-[44px] inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.025] type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+            <span dir="ltr" className="flex items-center gap-1.5">
+              <span className="text-emerald-500 dark:text-emerald-400 font-bold select-none tracking-tight">
                 &gt;_
               </span>
-              <span className="font-medium text-zinc-800 dark:text-[#EDEDEF] type-caption">
+              <span className="font-medium text-zinc-800 dark:text-[#EDEDEF]">
                 npx @99/ui init
               </span>
             </span>
             <button
               type="button"
               onClick={() => copy('npx @99/ui init', 'cli-init')}
-              aria-label="Copy CLI command"
+              aria-label={isRTL ? 'کپی دستور' : 'Copy CLI command'}
               className="p-1 rounded-(--radius-sm) hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer shrink-0 ml-1"
             >
               {copiedKey === 'cli-init' ? (
