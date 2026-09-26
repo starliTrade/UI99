@@ -69,13 +69,13 @@ export function Surface({
 
   const variantMap = {
     surface:
-      'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-(--elevation-1) shadow-(--shadow-card-hover)',
+      'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-(--shadow-card)',
     surfaceSecondary:
-      'bg-(--bg-sunken) dark:bg-(--bg-surface) border border-black/[0.035] dark:border-white/[0.02] shadow-(--rim-strong) shadow-(--shadow-card)',
+      'bg-(--bg-sunken) dark:bg-(--bg-surface) border border-black/[0.035] dark:border-white/[0.02] shadow-(--shadow-card)',
     elevated:
-      'bg-(--bg-elevated) border border-(--border-hairline) shadow-(--elevation-2) shadow-(--shadow-card-hover)',
+      'bg-(--bg-elevated) border border-(--border-hairline) shadow-(--shadow-card-hover)',
     glass:
-      'bg-white/80 dark:bg-(--bg-card)/60 backdrop-blur-2xl border border-(--border-hairline) shadow-(--elevation-2) shadow-(--shadow-card-hover)',
+      'bg-white/80 dark:bg-(--bg-card)/60 backdrop-blur-2xl border border-(--border-hairline) shadow-(--shadow-card-hover)',
     compact:
       'bg-white/90 dark:bg-(--bg-surface) border border-black/[0.03] dark:border-white/[0.02] shadow-(--elevation-1)',
     flat:
@@ -86,7 +86,7 @@ export function Surface({
 
   const hoverStyle =
     hoverable || interactive
-      ? 'transition-all dur-base hover:-translate-y-0.5 hover:shadow-(--elevation-2) dark:hover:shadow-(--elevation-3) cursor-pointer active:scale-[0.99]'
+      ? 'transition-all dur-base hover:-translate-y-0.5 hover:shadow-(--shadow-card-hover) cursor-pointer active:scale-[0.99]'
       : '';
 
   return (

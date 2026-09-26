@@ -76,7 +76,7 @@ export function SpendingSpectrumCard({
         transition={{ duration: 0.25 }}
         className={`relative z-content w-full rounded-(--radius-xl) p-6 overflow-hidden select-none transition-all dur-slow ${
           isDark
-            ? 'bg-(--bg-card) card-aura-sunset shadow-(--shadow-popover) shadow-(--shadow-popover)'
+            ? 'bg-(--bg-card) card-aura-sunset shadow-(--shadow-card)'
             : 'bg-white card-aura-sunset shadow-(--shadow-card) border border-black/[0.045] hover:shadow-(--elevation-3)'
         }`}
       >

@@ -388,7 +388,7 @@ export function DesignSystemHomeView() {
           2 · WORLD-CLASS 99-ELEMENT COMPONENT REGISTRY STUDIO
          ══════════════════════════════════════════════════════════════ */}
       <Reveal index={4}>
-        <div className="mt-4 sm:mt-8 rounded-(--radius-control) sm:rounded-(--radius-lg) border border-zinc-200/60 dark:border-white/[0.03] bg-white dark:bg-(--bg-card) shadow-(--shadow-card) dark:shadow-(--shadow-card-hover) hover:shadow-(--shadow-card-hover) overflow-hidden transition-all">
+        <div className="mt-4 sm:mt-8 rounded-(--radius-control) sm:rounded-(--radius-lg) border border-zinc-200/60 dark:border-white/[0.025] bg-white dark:bg-(--bg-card) shadow-(--shadow-card) hover:shadow-(--shadow-card-hover) overflow-hidden transition-all">
           {/* 1. Studio Top Navigation & Control Bar */}
           <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-zinc-200/50 dark:border-white/[0.03] bg-zinc-50/70 dark:bg-(--bg-surface) flex items-center justify-between gap-2 sm:gap-4 flex-nowrap min-w-0">
             {/* Left: Active Component Breadcrumb */}

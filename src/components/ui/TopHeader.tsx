@@ -74,7 +74,7 @@ export function TopHeader({
           className="group inline-flex items-center gap-2.5 cursor-pointer transition-transform active:scale-[0.98] focus-ui99"
         >
           {/* Obsidian Jewel Geometric Emblem */}
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-(--radius-field) bg-zinc-900 dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.06] shadow-(--elevation-1) shadow-(--shadow-card) overflow-hidden transition-all group-hover:border-emerald-500/40 dark:group-hover:border-emerald-400/40">
+          <div className="relative flex items-center justify-center w-8 h-8 rounded-(--radius-field) bg-zinc-900 dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.06] shadow-(--shadow-card) overflow-hidden transition-all group-hover:border-emerald-500/40 dark:group-hover:border-emerald-400/40">
             {/* Subtle internal emerald specular reflection */}
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
             

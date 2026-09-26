@@ -437,19 +437,19 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
         {/* 4-Pillar Quality Indicators */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
-          <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-(--bg-card) border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card)">
+          <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-(--bg-card) border border-zinc-200/80 dark:border-white/[0.025] shadow-(--shadow-card)">
             <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Catalog</span>
             <span className="type-body font-bold text-zinc-900 dark:text-zinc-100 font-mono">{KIT_COMPONENT_COUNT} Primitives</span>
           </div>
-          <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-(--bg-card) border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card)">
+          <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-(--bg-card) border border-zinc-200/80 dark:border-white/[0.025] shadow-(--shadow-card)">
             <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Accessibility</span>
             <span className="type-body font-bold text-emerald-600 dark:text-emerald-400 font-mono">WCAG 2.2 AAA</span>
           </div>
-          <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-(--bg-card) border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card)">
+          <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-(--bg-card) border border-zinc-200/80 dark:border-white/[0.025] shadow-(--shadow-card)">
             <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Radii Nested</span>
             <span className="type-body font-bold text-zinc-900 dark:text-zinc-100 font-mono">R_in = R_out - P</span>
           </div>
-          <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-(--bg-card) border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card)">
+          <div className="p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-(--bg-card) border border-zinc-200/80 dark:border-white/[0.025] shadow-(--shadow-card)">
             <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block">Engineering</span>
             <span className="type-body font-bold text-zinc-900 dark:text-zinc-100 font-mono">Zero AI Slop</span>
           </div>
@@ -458,7 +458,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         {/* Hero Quick Action Bar */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
           {/* CLI Box */}
-          <div className="h-9 inline-flex items-center gap-2 pl-3 pr-1.5 rounded-(--radius-field) bg-zinc-100/80 dark:bg-(--bg-surface) border border-zinc-200/80 dark:border-white/[0.035] type-caption font-mono text-zinc-800 dark:text-zinc-200">
+          <div className="h-9 inline-flex items-center gap-2 pl-3 pr-1.5 rounded-(--radius-field) bg-zinc-100/80 dark:bg-(--bg-surface) border border-zinc-200/80 dark:border-white/[0.025] type-caption font-mono text-zinc-800 dark:text-zinc-200">
             <span className="text-emerald-500 font-bold select-none">&gt;_</span>
             <span className="font-medium">npx @99/ui add button</span>
             <button

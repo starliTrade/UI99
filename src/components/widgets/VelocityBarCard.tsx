@@ -41,7 +41,7 @@ export function VelocityBarCard({
       transition={{ duration: 0.25 }}
       className={`relative rounded-(--radius-xl) p-6 overflow-hidden transition-all dur-slow select-none ${
         isDark
-          ? 'bg-(--bg-card) card-aura-emerald shadow-(--shadow-popover) shadow-(--shadow-popover)'
+          ? 'bg-(--bg-card) card-aura-emerald shadow-(--shadow-card)'
           : 'bg-white card-aura-emerald shadow-(--shadow-card) border border-black/[0.045] hover:shadow-(--elevation-3)'
       }`}
     >

@@ -130,7 +130,7 @@ export function ObjectCard({
         onClick={onClick}
         className={`group relative p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden select-none ${
           isDark
-            ? 'bg-(--bg-card) shadow-(--shadow-card-hover) shadow-(--shadow-popover)'
+            ? 'bg-(--bg-card) shadow-(--shadow-card)'
             : 'bg-white shadow-(--shadow-card) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(--elevation-2)'
         }`}
       >
@@ -184,7 +184,7 @@ export function ObjectCard({
         onClick={onClick}
         className={`group relative p-5 rounded-(--radius-xl) cursor-pointer flex gap-4 overflow-hidden select-none ${
           isDark
-            ? 'bg-(--bg-card) shadow-(--shadow-card-hover) shadow-(--shadow-popover)'
+            ? 'bg-(--bg-card) shadow-(--shadow-card)'
             : 'bg-white shadow-(--shadow-card) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(--elevation-2)'
         }`}
       >
@@ -236,7 +236,7 @@ export function ObjectCard({
         onClick={onClick}
         className={`group relative p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden select-none ${
           isDark
-            ? 'bg-(--bg-card) card-aura-emerald shadow-(--shadow-card-hover) shadow-(--shadow-popover)'
+            ? 'bg-(--bg-card) card-aura-emerald shadow-(--shadow-card)'
             : 'bg-white shadow-(--shadow-card) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(--elevation-2)'
         }`}
       >
