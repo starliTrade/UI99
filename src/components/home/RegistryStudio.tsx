@@ -77,7 +77,7 @@ function ViewTabs({
     <div
       role="tablist"
       aria-label={isRTL ? 'نمای استودیو' : 'Studio view'}
-      className="flex items-center gap-0.5 p-0.5 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft)"
+      className="w-full sm:w-auto flex items-center gap-0.5 p-0.5 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft)"
     >
       {VIEWS.map((v) => (
         <button
@@ -301,7 +301,7 @@ export function RegistryStudio() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={isRTL ? 'جستجو…' : 'Search…'}
             aria-label={isRTL ? 'جستجوی کامپوننت' : 'Search components'}
-            className="w-full h-8 pl-6 pr-2 rounded-(--radius-field) bg-white dark:bg-white/[0.03] border border-(--border-soft) type-caption text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 focus-ui99-inset font-mono"
+            className="w-full h-11 sm:h-8 pl-6 pr-2 rounded-(--radius-field) bg-white dark:bg-white/[0.03] border border-(--border-soft) type-caption text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 focus-ui99-inset font-mono"
           />
         </div>
 
@@ -363,7 +363,7 @@ export function RegistryStudio() {
         <div className="flex-1 min-w-0 p-3 sm:p-4 md:p-6 bg-white dark:bg-(--bg-card)">
           {studioView === 'stage' && (
             <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-end">
+              <div className="w-full flex items-center justify-center">
                 <ViewTabs view={studioView} onChange={setStudioView} isRTL={isRTL} />
               </div>
               <div className="relative min-h-[140px] sm:min-h-[290px] rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) p-4 sm:p-6 flex items-center justify-center overflow-x-auto overflow-y-hidden">
@@ -829,7 +829,7 @@ export function RegistryStudio() {
 
           {studioView === 'code' && (
             <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-end">
+              <div className="w-full flex items-center justify-center">
                 <ViewTabs view={studioView} onChange={setStudioView} isRTL={isRTL} />
               </div>
               <CodeBlock
@@ -844,11 +844,11 @@ export function RegistryStudio() {
 
           {studioView === 'cli' && (
             <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-end">
+              <div className="w-full flex items-center justify-center">
                 <ViewTabs view={studioView} onChange={setStudioView} isRTL={isRTL} />
               </div>
               <div className="space-y-4">
-              <div className="p-4 rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) space-y-3">
+              <div className="p-3 rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) space-y-2">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="type-caption font-mono text-zinc-600 dark:text-zinc-400 font-semibold truncate">
                     {isRTL ? 'افزودن به پروژه' : 'Add component to your project'}
@@ -871,7 +871,7 @@ export function RegistryStudio() {
                     ))}
                   </div>
                 </div>
-                <div className="flex items-center justify-between gap-2 p-3 rounded-(--radius-sm) bg-(--ink-fill) dark:bg-(--bg-surface) font-mono type-caption text-emerald-400 border border-(--border-soft) min-w-0 overflow-hidden">
+                <div className="flex items-center justify-between gap-2 px-3 h-9 rounded-(--radius-sm) bg-(--ink-fill) dark:bg-(--bg-surface) font-mono type-caption text-emerald-400 border border-(--border-soft) min-w-0 overflow-hidden">
                   <div className="flex items-center gap-2 truncate min-w-0">
                     <span className="select-none text-zinc-600 dark:text-zinc-500 shrink-0">&gt;_</span>
                     <span className="truncate type-micro sm:type-caption">{getCliCommand(currentComp.name)}</span>
@@ -887,7 +887,7 @@ export function RegistryStudio() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) space-y-2">
+              <div className="p-3 rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) space-y-1.5">
                 <div className="flex items-center justify-between gap-2">
                   <span className="type-caption font-mono text-zinc-600 dark:text-zinc-400 font-semibold truncate">
                     {isRTL ? 'دستور ایمپورت' : 'Import statement'}
@@ -901,7 +901,7 @@ export function RegistryStudio() {
                     {copiedKey === 'import-code' ? <Check className="icon-sm text-emerald-500 dark:text-emerald-400" /> : <Copy className="icon-sm" />}
                   </button>
                 </div>
-                <div className="p-3 rounded-(--radius-sm) bg-(--ink-fill) dark:bg-(--bg-surface) font-mono type-micro sm:type-caption text-zinc-200 border border-(--border-soft) overflow-x-auto no-scrollbar whitespace-nowrap" dir="ltr">
+                <div className="px-3 py-2 rounded-(--radius-sm) bg-(--ink-fill) dark:bg-(--bg-surface) font-mono type-micro sm:type-caption text-zinc-200 border border-(--border-soft) overflow-x-auto no-scrollbar whitespace-nowrap" dir="ltr">
                   import &#123; {currentComp.title.replace(/[\s-]+/g, '')} &#125; from '@/components/ui/{currentComp.name}';
                 </div>
               </div>
@@ -911,7 +911,7 @@ export function RegistryStudio() {
 
           {studioView === 'tokens' && (
             <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-end">
+              <div className="w-full flex items-center justify-center">
                 <ViewTabs view={studioView} onChange={setStudioView} isRTL={isRTL} />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
