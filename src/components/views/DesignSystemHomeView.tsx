@@ -510,7 +510,7 @@ export function DesignSystemHomeView() {
                 <span className="font-semibold text-zinc-950 dark:text-white truncate">
                   {currentComp.title}
                 </span>
-                <span className="px-1.5 py-0.5 rounded type-micro bg-(--bg-raised) dark:bg-white/[0.04] text-zinc-600 dark:text-zinc-400 border border-(--border-soft) dark:border-white/[0.03] shrink-0">
+                <span className="px-1.5 py-0.5 rounded type-micro bg-(--bg-raised) dark:bg-white/[0.04] text-zinc-600 dark:text-zinc-400 shrink-0">
                   {currentComp.primitive || 'Native'}
                 </span>
                 <span className="hidden md:inline-block px-1.5 py-0.5 rounded type-micro bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
@@ -522,7 +522,7 @@ export function DesignSystemHomeView() {
             {/* Registry stepper — the whole 103-item registry is browsable
                 without touching the ribbon. Two 44px targets, the same
                 affordance the docs pagination uses. */}
-            <div className="flex items-center gap-1 shrink-0">
+            <div className="flex items-center gap-0.5 p-0.5 shrink-0 rounded-(--radius-field) bg-(--bg-raised) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.04]">
               <button
                 type="button"
                 onClick={() => stepComponent(-1)}
@@ -567,7 +567,7 @@ export function DesignSystemHomeView() {
                     onClick={() => setStudioView(v.id)}
                     className={`relative flex-1 sm:flex-none flex items-center justify-center gap-1 sm:gap-1.5 h-8 px-2 sm:px-2.5 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
                       studioView === v.id
-                        ? 'bg-white dark:bg-white text-zinc-950 font-bold shadow-xs'
+                        ? 'bg-white dark:bg-white text-zinc-950 font-bold'
                         : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white'
                     }`}
                   >
@@ -584,7 +584,7 @@ export function DesignSystemHomeView() {
                   setCurrentTab('DOCS');
                 }}
                 aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
-                className="relative flex items-center gap-1.5 h-8 px-2.5 sm:px-3 rounded-(--radius-field) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] border border-(--border-soft) dark:border-white/[0.05] transition-colors cursor-pointer shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                className="relative flex items-center gap-1.5 h-8 px-2.5 sm:px-3 rounded-(--radius-field) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] transition-colors cursor-pointer shrink-0 focus-ui99 col-start-2 row-start-1 justify-self-end sm:col-auto sm:row-auto sm:justify-self-auto after:absolute after:-inset-1.5 after:content-['']"
               >
                 <BookOpen className="icon-xs shrink-0" />
                 <span>{isRTL ? 'مستندات' : 'Full API'}</span>
@@ -1043,7 +1043,7 @@ export function DesignSystemHomeView() {
                 </div>
 
                 {/* Micro-Controls & CLI Installation Footer */}
-                <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 p-2.5 sm:p-3 rounded-(--radius-control) bg-zinc-50/90 dark:bg-[#08090D] border border-(--border-soft) dark:border-white/[0.03]">
+                <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 pt-3 border-t border-(--border-subtle) dark:border-white/[0.03]">
                   {/* Left: Interactive Micro Controls */}
                   <div className="flex flex-col gap-1.5 min-w-0">
                     {activeComponentId === 'button' && (
@@ -1109,7 +1109,7 @@ export function DesignSystemHomeView() {
                   </div>
 
                   {/* Right: Quick Install CLI Capsule */}
-                  <div className="flex items-center gap-1.5 min-w-0 w-full lg:w-auto shrink-0 pt-2.5 lg:pt-0 border-t lg:border-t-0 border-(--border-soft) dark:border-white/[0.03]">
+                  <div className="flex items-center gap-1.5 min-w-0 w-full lg:w-auto shrink-0">
                     {/* PM Quick Pills */}
                     <div className="flex items-center p-0.5 rounded-(--radius-sm) bg-(--bg-raised) dark:bg-white/[0.04] border border-(--border-strong) dark:border-white/[0.03] shrink-0">
                       {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((pm) => (
@@ -1134,7 +1134,7 @@ export function DesignSystemHomeView() {
                       type="button"
                       onClick={() => copy(getCliCommand(currentComp.name), 'quick-add')}
                       aria-label={isRTL ? 'کپی دستور نصب' : 'Copy CLI command'}
-                      className="relative flex-1 lg:flex-initial inline-flex items-center justify-between gap-2 px-2.5 h-8 rounded-(--radius-field) type-caption font-mono bg-white dark:bg-[#0E0F14] hover:bg-(--bg-subtle) dark:hover:bg-[#151620] text-zinc-800 dark:text-[#EDEDEF] border border-(--border-soft) dark:border-white/[0.04] shadow-(--shadow-card) transition-colors cursor-pointer min-w-0 overflow-hidden focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                      className="relative flex-1 lg:flex-initial inline-flex items-center justify-between gap-2 px-2.5 h-8 rounded-(--radius-field) type-caption font-mono bg-white dark:bg-[#0E0F14] hover:bg-(--bg-subtle) dark:hover:bg-[#151620] text-zinc-800 dark:text-[#EDEDEF] border border-(--border-soft) dark:border-white/[0.04] transition-colors cursor-pointer min-w-0 overflow-hidden focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
                     >
                       <span className="flex items-center gap-1.5 truncate min-w-0">
                         <span className="text-emerald-500 dark:text-emerald-400 font-bold type-caption select-none shrink-0">&gt;_</span>

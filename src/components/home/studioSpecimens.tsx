@@ -681,11 +681,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
     </div>
   ),
 
-  'ui99-wordmark': () => (
-    <div className="p-6 rounded-(--radius-control) bg-(--bg-canvas) border border-(--border-subtle) flex items-center justify-center">
-      <UI99Wordmark />
-    </div>
-  ),
+  'ui99-wordmark': () => <UI99Wordmark />,
 
   toast: () => (
     <div className="w-full max-w-sm p-4 rounded-(--radius-control) bg-(--bg-surface) border border-(--border-subtle) shadow-(--shadow-card) flex items-center gap-2.5">
