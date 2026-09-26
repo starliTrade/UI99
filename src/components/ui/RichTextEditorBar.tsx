@@ -69,7 +69,7 @@ export function RichTextEditorBar({
     >
       {buttons.map((btn, idx) => {
         if (btn.type === 'separator') {
-          return <div key={idx} className="w-[1px] h-4 bg-zinc-200 dark:bg-white/[0.06] mx-1" />;
+          return <div key={idx} className="w-[1px] h-4 bg-(--bg-raised) dark:bg-white/[0.06] mx-1" />;
         }
         const Icon = btn.icon!;
         const isActive = activeList.includes(btn.key!);
@@ -83,8 +83,8 @@ export function RichTextEditorBar({
             className={cn(
               'p-1.5 rounded-(--radius-sm) transition-all text-zinc-500 hover:text-zinc-900 dark:hover:text-white',
               isActive
-                ? 'bg-zinc-200 dark:bg-white/[0.1] text-zinc-900 dark:text-white shadow-xs font-semibold'
-                : 'hover:bg-zinc-100 dark:hover:bg-white/[0.04]'
+                ? 'bg-(--bg-raised) dark:bg-white/[0.1] text-zinc-900 dark:text-white shadow-xs font-semibold'
+                : 'hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04]'
             )}
           >
             <Icon className="icon-md" />

@@ -82,7 +82,7 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
       </div>
 
       <div className="flex flex-col gap-4 relative">
-        <div className="absolute top-3 bottom-3 left-4 w-[1px] bg-zinc-200 dark:bg-white/[0.06] -z-base" />
+        <div className="absolute top-3 bottom-3 left-4 w-[1px] bg-(--bg-raised) dark:bg-white/[0.06] -z-base" />
 
         {events.map((evt) => {
           const meta = getActionMeta(evt.action);
@@ -112,7 +112,7 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
                 </div>
 
                 {evt.details && (
-                  <p className="type-caption text-(--text-muted) dark:text-zinc-400 bg-zinc-50 dark:bg-(--bg-elevated) p-2 rounded-(--radius-field) border border-black/[0.03] dark:border-white/[0.03]">
+                  <p className="type-caption text-(--text-muted) dark:text-zinc-400 bg-(--bg-subtle) dark:bg-(--bg-elevated) p-2 rounded-(--radius-field) border border-black/[0.03] dark:border-white/[0.03]">
                     {evt.details}
                   </p>
                 )}

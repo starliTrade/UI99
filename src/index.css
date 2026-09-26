@@ -182,14 +182,14 @@
 .light .linear-group-container {
   background: #FFFFFF;
   border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.045);
+  border: 1px solid var(--border-subtle);
   box-shadow: 
     inset 0 1px 0 0 rgba(255, 255, 255, 1),
-    0 8px 24px -4px rgba(0, 0, 0, 0.03);
+    0 8px 24px -8px rgba(0, 0, 0, 0.03);
 }
 
 .light .linear-group-row:not(:last-child)::after {
-  background: rgba(0, 0, 0, 0.045);
+  background: var(--border-subtle);
 }
 
 .light .linear-group-row:hover {
@@ -202,20 +202,20 @@
 
 .light .material-obsidian-card {
   background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-subtle);
   box-shadow: 
     inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
-    0 10px 30px -6px rgba(0, 0, 0, 0.04),
-    0 0 0 1px rgba(0, 0, 0, 0.035);
+    0 10px 30px -12px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
 }
 
 .light .material-obsidian-card:hover {
   background: #FFFFFF;
-  border-color: rgba(0, 0, 0, 0.06);
+  border-color: var(--border-soft);
   box-shadow: 
     inset 0 1px 0 0 rgba(255, 255, 255, 1),
-    0 16px 40px -8px rgba(0, 0, 0, 0.06),
-    0 0 0 1px rgba(0, 0, 0, 0.045);
+    0 16px 40px -14px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.028);
 }
 
 .light .studio-dark-canvas {
@@ -225,8 +225,8 @@
 
 .light .material-insight-glow {
   background: linear-gradient(145deg, #FFFFFF 0%, #F9F9FB 100%);
-  border: 1px solid rgba(0, 0, 0, 0.045);
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 1);
 }
 
 .light .progress-led-block.active {
@@ -239,19 +239,19 @@
 }
 
 .light .shadow-e1 {
-  box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 8px -4px rgba(0, 0, 0, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 1);
 }
 
 .light .shadow-e2 {
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 1);
 }
 
 .light .shadow-e3 {
-  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.07), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+  box-shadow: 0 16px 36px -14px rgba(0, 0, 0, 0.07), inset 0 1px 0 0 rgba(255, 255, 255, 1);
 }
 
 .light .shadow-e4 {
-  box-shadow: 0 24px 56px -10px rgba(0, 0, 0, 0.09), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+  box-shadow: 0 24px 56px -18px rgba(0, 0, 0, 0.09), inset 0 1px 0 0 rgba(255, 255, 255, 1);
 }
 
 /* Light mode overrides for legacy dark-hardcoded utility patterns without breaking explicit dark variants */
@@ -269,8 +269,8 @@
 .light [class*="bg-[#202026]"]:not([class*="dark:"]):not([class*="light:"]),
 .light [class*="bg-[#222228]"]:not([class*="dark:"]):not([class*="light:"]) {
   background-color: #FFFFFF !important;
-  border-color: rgba(0, 0, 0, 0.045) !important;
-  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.03), inset 0 1px 0 0 rgba(255, 255, 255, 0.95) !important;
+  border-color: var(--border-subtle) !important;
+  box-shadow: 0 4px 16px -8px rgba(0, 0, 0, 0.03), inset 0 1px 0 0 rgba(255, 255, 255, 0.95) !important;
 }
 
 .light [class*="text-[#EDEDEF]"]:not([class*="dark:"]):not([class*="light:"]) {
@@ -290,7 +290,7 @@
 }
 
 .light [class*="border-white/"]:not([class*="dark:"]):not([class*="light:"]) {
-  border-color: rgba(0, 0, 0, 0.05) !important;
+  border-color: var(--border-subtle) !important;
 }
 
 /* Vibrant Living Aura Accents for Cards */

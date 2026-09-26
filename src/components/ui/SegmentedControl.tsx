@@ -101,7 +101,7 @@ export function SegmentedControl<T extends string = string>({
       } items-center rounded-(--radius-pill) transition-all overflow-x-auto no-scrollbar scroll-smooth ${
         isDark
           ? 'bg-(--bg-elevated) shadow-(--shadow-card) border border-white/[0.025]'
-          : 'bg-zinc-100/90 shadow-(--rim-subtle) border border-black/[0.04]'
+          : 'bg-(--bg-raised) shadow-(--rim-subtle) border border-(--border-subtle)'
       } ${padMap} ${className}`}
     >
       <div className={`flex items-center gap-1 min-w-max sm:min-w-0 ${fullWidth ? 'w-full' : ''}`}>
@@ -149,7 +149,7 @@ export function SegmentedControl<T extends string = string>({
                       isSelected
                         ? isDark
                           ? 'bg-black text-white'
-                          : 'bg-zinc-100 text-zinc-900 border border-black/[0.06]'
+                          : 'bg-(--bg-raised) text-zinc-900 border border-(--border-soft)'
                         : isDark
                         ? 'bg-white/[0.08] text-(--text-secondary)'
                         : 'bg-black/[0.06] text-zinc-600'

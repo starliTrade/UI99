@@ -68,7 +68,7 @@ export function TagInput({
         onClick={() => inputRef.current?.focus()}
         className={cn(
           'flex flex-wrap items-center gap-1.5 p-2 min-h-[42px] rounded-(--radius-field) transition-all dur-quick cursor-text',
-          'bg-zinc-50 dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary)',
+          'bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary)',
           'border border-black/[0.08] dark:border-white/[0.06] focus-within:border-zinc-500 dark:focus-within:border-white/20',
           className
         )}
@@ -76,7 +76,7 @@ export function TagInput({
         {tags.map((tag, idx) => (
           <span
             key={tag + idx}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-medium bg-zinc-200/80 dark:bg-white/[0.06] text-zinc-800 dark:text-zinc-200 border border-black/[0.04] dark:border-white/[0.04] animate-in fade-in zoom-in-95"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-raised) dark:bg-white/[0.06] text-zinc-800 dark:text-zinc-200 border border-black/[0.04] dark:border-white/[0.04] animate-in fade-in zoom-in-95"
           >
             <TagIcon className="icon-xs text-(--text-secondary) shrink-0" />
             <span>{tag}</span>
@@ -121,7 +121,7 @@ export function TagInput({
               key={s}
               type="button"
               onMouseDown={() => addTag(s)}
-              className="w-full text-left px-3 py-1.5 type-caption rounded-(--radius-sm) hover:bg-zinc-100 dark:hover:bg-white/[0.05] text-zinc-800 dark:text-zinc-200 flex items-center justify-between transition-colors"
+              className="w-full text-left px-3 py-1.5 type-caption rounded-(--radius-sm) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.05] text-zinc-800 dark:text-zinc-200 flex items-center justify-between transition-colors"
             >
               <span>{s}</span>
               <Plus className="icon-xs text-(--text-secondary)" />

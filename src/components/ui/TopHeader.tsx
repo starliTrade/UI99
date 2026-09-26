@@ -74,7 +74,7 @@ export function TopHeader({
           className="group inline-flex items-center gap-2.5 cursor-pointer transition-transform active:scale-[0.98] focus-ui99"
         >
           {/* Obsidian Jewel Geometric Emblem */}
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-(--radius-field) bg-zinc-900 dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.06] shadow-(--shadow-card) overflow-hidden transition-all group-hover:border-emerald-500/40 dark:group-hover:border-emerald-400/40">
+          <div className="relative flex items-center justify-center w-8 h-8 rounded-(--radius-field) bg-(--ink-fill) dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.06] shadow-(--shadow-card) overflow-hidden transition-all group-hover:border-emerald-500/40 dark:group-hover:border-emerald-400/40">
             {/* Subtle internal emerald specular reflection */}
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
             
@@ -125,7 +125,7 @@ export function TopHeader({
                 `../../generated/kit-count` would have broken the install the same
                 way the contexts did. */}
             {version && (
-              <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-(--radius-xs) bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200/80 dark:border-white/[0.03] type-micro font-mono text-(--text-muted) dark:text-zinc-400 leading-none">
+              <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-(--radius-xs) bg-(--bg-subtle) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.03] type-micro font-mono text-(--text-muted) dark:text-zinc-400 leading-none">
                 <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-emerald-500 shrink-0" />
                 <span>v{version}</span>
               </div>
@@ -143,7 +143,7 @@ export function TopHeader({
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Repository"
-            className="hidden sm:inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-field) border border-zinc-200/80 dark:border-white/[0.04] bg-zinc-100/60 dark:bg-white/[0.025] hover:bg-zinc-200/70 dark:hover:bg-white/[0.06] type-caption font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+            className="hidden sm:inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-field) border border-(--border-soft) dark:border-white/[0.04] bg-(--bg-wash) dark:bg-white/[0.025] hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] type-caption font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             <SquareArrowOutUpRight className="icon-sm" />
             <span>GitHub</span>
@@ -155,7 +155,7 @@ export function TopHeader({
             onClick={() => onToggleRTL?.()}
             aria-label="Toggle language direction"
             title={isRTL ? 'Switch to English' : 'تغییر به فارسی'}
-            className="relative h-8 px-2.5 rounded-(--radius-field) flex items-center justify-center gap-1 border border-zinc-200/80 dark:border-white/[0.04] bg-zinc-100/60 dark:bg-white/[0.025] hover:bg-zinc-200/70 dark:hover:bg-white/[0.06] type-caption font-mono font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+            className="relative h-8 px-2.5 rounded-(--radius-field) flex items-center justify-center gap-1 border border-(--border-soft) dark:border-white/[0.04] bg-(--bg-wash) dark:bg-white/[0.025] hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] type-caption font-mono font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             <Globe className="icon-sm text-(--text-secondary) dark:text-zinc-500" />
             <span className="type-micro">{isRTL ? 'FA' : 'EN'}</span>
@@ -166,7 +166,7 @@ export function TopHeader({
             <button
               type="button"
               onClick={() => setIsDropdownOpen((v) => !v)}
-              className="relative h-8 w-8 rounded-(--radius-field) flex items-center justify-center border border-zinc-200/80 dark:border-white/[0.04] bg-zinc-100/60 dark:bg-white/[0.025] hover:bg-zinc-200/70 dark:hover:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 group focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+              className="relative h-8 w-8 rounded-(--radius-field) flex items-center justify-center border border-(--border-soft) dark:border-white/[0.04] bg-(--bg-wash) dark:bg-white/[0.025] hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 group focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               aria-label="Studio Preferences"
               title="Studio Preferences"
             >
@@ -180,13 +180,13 @@ export function TopHeader({
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -6, scale: 0.96 }}
                   transition={{ type: 'spring', stiffness: 440, damping: 32 }}
-                  className="absolute end-0 mt-2 w-56 rounded-(--radius-control) p-2 z-popover backdrop-blur-2xl bg-white/95 dark:bg-(--bg-card)/95 text-zinc-900 dark:text-white shadow-(--elevation-3) shadow-(--shadow-popover) border border-zinc-200 dark:border-white/[0.03]"
+                  className="absolute end-0 mt-2 w-56 rounded-(--radius-control) p-2 z-popover backdrop-blur-2xl bg-white/95 dark:bg-(--bg-card)/95 text-zinc-900 dark:text-white shadow-(--elevation-3) shadow-(--shadow-popover) border border-(--border-soft) dark:border-white/[0.03]"
                 >
                   <div className="p-1.5 mb-1">
                     <span className="block type-micro font-bold font-mono uppercase tracking-wider text-(--text-secondary) dark:text-zinc-500 mb-1.5 px-1">
                       Quick Switch
                     </span>
-                    <div className="grid grid-cols-2 p-0.5 rounded-(--radius-field) bg-zinc-100 dark:bg-(--bg-sunken) border border-zinc-200/60 dark:border-white/[0.03]">
+                    <div className="grid grid-cols-2 p-0.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-sunken) border border-(--border-soft) dark:border-white/[0.03]">
                       <button
                         type="button"
                         onClick={() => onThemeChange?.('dark')}
@@ -212,7 +212,7 @@ export function TopHeader({
                     </div>
                   </div>
 
-                  <div className="h-[1px] my-1 bg-zinc-200/70 dark:bg-white/[0.03]" />
+                  <div className="h-[1px] my-1 bg-(--bg-raised) dark:bg-white/[0.03]" />
 
                   {/* Studio Tokens Modal Trigger */}
                   <button
@@ -221,7 +221,7 @@ export function TopHeader({
                       onOpenSettings?.();
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full flex items-center gap-2 px-2.5 py-2 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors hover:bg-zinc-100 dark:hover:bg-white/[0.04] text-zinc-800 dark:text-zinc-200 focus-ui99-inset"
+                    className="w-full flex items-center gap-2 px-2.5 py-2 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] text-zinc-800 dark:text-zinc-200 focus-ui99-inset"
                   >
                     <SlidersHorizontal className="icon-sm text-(--text-muted) dark:text-zinc-400" />
                     <span>Design Tokens Inspector</span>

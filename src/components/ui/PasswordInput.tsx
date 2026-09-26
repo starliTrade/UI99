@@ -88,7 +88,7 @@ export function PasswordInput({
           }}
           className={cn(
             'w-full px-3.5 py-2.5 pr-10 type-body rounded-(--radius-field) transition-all dur-quick',
-            'bg-zinc-50 dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary) placeholder-zinc-400',
+            'bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary) placeholder-zinc-400',
             'border border-black/[0.08] dark:border-white/[0.06] focus:border-zinc-500 dark:focus:border-white/20 focus:outline-none',
             error && 'border-rose-500',
             className
@@ -108,7 +108,7 @@ export function PasswordInput({
       {/* Strength Bar */}
       {showStrength && val.length > 0 && (
         <div className="flex flex-col gap-2 pt-1">
-          <div className="w-full h-1 bg-zinc-200 dark:bg-white/[0.06] rounded-(--radius-pill) overflow-hidden">
+          <div className="w-full h-1 bg-(--bg-raised) dark:bg-white/[0.06] rounded-(--radius-pill) overflow-hidden">
             <div
               className={cn('h-full transition-all dur-slow rounded-(--radius-pill)', strengthMeta.color)}
               style={{ width: strengthMeta.width }}

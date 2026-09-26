@@ -32,7 +32,7 @@ export function EmptyPlaceholder({
     <div
       className={cn(
         'flex flex-col items-center justify-center text-center p-8 sm:p-12 rounded-(--radius-lg)',
-        'border border-dashed border-black/10 dark:border-white/[0.06] bg-zinc-50/50 dark:bg-(--bg-card)/50',
+        'border border-dashed border-black/10 dark:border-white/[0.06] bg-(--bg-subtle) dark:bg-(--bg-card)/50',
         'w-full max-w-lg mx-auto',
         className
       )}

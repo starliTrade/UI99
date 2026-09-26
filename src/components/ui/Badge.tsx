@@ -38,9 +38,9 @@ export const badgeVariants = cva(
       variant: {
         default: 'bg-zinc-900 text-white shadow-xs dark:bg-white dark:text-black',
         secondary:
-          'bg-zinc-100 dark:bg-white/[0.05] text-zinc-700 dark:text-zinc-300 border border-(--border-hairline)',
+          'bg-(--bg-subtle) dark:bg-white/[0.05] text-zinc-700 dark:text-zinc-300 border border-(--border-hairline)',
         outline:
-          'border border-zinc-300 dark:border-white/[0.08] text-zinc-800 dark:text-zinc-200',
+          'border border-(--border-strong) dark:border-white/[0.08] text-zinc-800 dark:text-zinc-200',
         destructive: 'bg-(--intent-rose) text-(--intent-rose-on) shadow-xs hover:bg-(--intent-rose-hover)',
         green:
           'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20',
@@ -119,14 +119,14 @@ export function PriorityBadge({
       icon: <SignalLow className="icon-sm text-(--text-secondary) shrink-0" />,
       style: isDark
         ? 'bg-white/[0.04] text-zinc-400 border-white/[0.06]'
-        : 'bg-zinc-100 text-zinc-600 border-black/[0.06]',
+        : 'bg-(--bg-raised) text-zinc-600 border-(--border-soft)',
     },
     none: {
       label: 'No priority',
       icon: <MinusCircle className="icon-sm text-(--text-muted) shrink-0" />,
       style: isDark
         ? 'bg-white/[0.03] text-zinc-500 border-white/[0.04]'
-        : 'bg-zinc-100/70 text-zinc-500 border-black/[0.04]',
+        : 'bg-(--bg-wash) text-zinc-500 border-(--border-subtle)',
     },
   }[priority];
 

@@ -388,7 +388,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
       {/* 1. WORKFLOW TOOLBAR */}
       <div className="rounded-(--radius-lg) bg-(--bg-card) border border-(--border-hairline) shadow-xs overflow-hidden">
         {/* Top Segment Views & Action Button */}
-        <div className="p-4 border-b border-black/[0.05] dark:border-white/[0.04] flex flex-col md:flex-row md:items-center justify-between gap-3 bg-zinc-50/50 dark:bg-white/[0.01]">
+        <div className="p-4 border-b border-black/[0.05] dark:border-white/[0.04] flex flex-col md:flex-row md:items-center justify-between gap-3 bg-(--bg-subtle) dark:bg-white/[0.01]">
           {/* View Tabs */}
           <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
             {(['ALL', 'ACTIVE', 'DONE', 'URGENT'] as const).map((tab) => {
@@ -456,7 +456,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <Filter className="icon-xs text-(--text-secondary)" />
                   <span className="capitalize">
@@ -486,7 +486,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold bg-zinc-100 dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <span className="capitalize">
                     {priorityFilter === 'all' ? 'All Priorities' : priorityFilter}
@@ -628,10 +628,10 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                 }}
                 className={`group relative px-4 py-3 sm:px-5 sm:py-3.5 flex items-center justify-between gap-3 transition-colors cursor-pointer select-none ${
                   isCursorActive
-                    ? 'bg-zinc-100/70 dark:bg-white/[0.035] shadow-(--accent-bar)'
+                    ? 'bg-(--bg-wash) dark:bg-white/[0.035] shadow-(--accent-bar)'
                     : issue.completed
                     ? 'bg-zinc-50/40 dark:bg-white/[0.008]'
-                    : 'hover:bg-zinc-50 dark:hover:bg-white/[0.015]'
+                    : 'hover:bg-(--bg-subtle) dark:hover:bg-white/[0.015]'
                 }`}
               >
                 {/* Left Side: Checkbox, Status Trigger Dropdown, Code, Title */}

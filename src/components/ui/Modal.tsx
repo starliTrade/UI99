@@ -59,7 +59,7 @@ export function Modal({
           >
             {/* Tactile Sheet Drag Handle for Mobile */}
             <div className="sm:hidden pt-3 pb-1 flex justify-center cursor-grab">
-              <div className="w-10 h-1 rounded-(--radius-pill) bg-zinc-300 dark:bg-white/15" />
+              <div className="w-10 h-1 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-white/15" />
             </div>
 
             {/* Header */}

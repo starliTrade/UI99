@@ -60,7 +60,7 @@ export function FoundationsView() {
     <div className="w-full space-y-12 pb-20">
       {/* Header */}
       <div className="space-y-3">
-        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-zinc-100 dark:bg-(--bg-card-hover) text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card-hover) text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
           {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="type-display sm:type-display font-extrabold tracking-tight text-zinc-950 dark:text-white">
@@ -90,7 +90,7 @@ export function FoundationsView() {
             <div
               key={t.name}
               onClick={() => copyValue(isDark ? t.dark : t.light, t.name)}
-              className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3 cursor-pointer hover:border-black/20 dark:hover:border-white/10 transition-colors shadow-xs group"
+              className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3 cursor-pointer hover:border-black/20 dark:hover:border-white/10 transition-colors shadow-xs group"
             >
               <div
                 style={{ backgroundColor: isDark ? t.dark : t.light }}
@@ -132,7 +132,7 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-6 rounded-(--radius-lg) bg-zinc-50 dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-6">
+        <div className="p-6 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <div className="flex justify-between type-caption font-mono text-zinc-400">
@@ -166,7 +166,7 @@ export function FoundationsView() {
           </div>
 
           {/* Visualization Area */}
-          <div className="p-8 rounded-(--radius-control) bg-zinc-200/50 dark:bg-[#06070A] flex flex-col items-center justify-center gap-4">
+          <div className="p-8 rounded-(--radius-control) bg-(--bg-raised) dark:bg-[#06070A] flex flex-col items-center justify-center gap-4">
             <div
               style={{
                 borderRadius: `${simOuterRadius}px`,
@@ -178,7 +178,7 @@ export function FoundationsView() {
                 style={{
                   borderRadius: `${simInnerRadius}px`,
                 }}
-                className="p-6 bg-zinc-100 dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.03] text-center space-y-1 transition-all dur-quick"
+                className="p-6 bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.03] text-center space-y-1 transition-all dur-quick"
               >
                 <div className="type-caption font-bold text-zinc-900 dark:text-white">
                   Child Element Container
@@ -251,7 +251,7 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-5 sm:p-7 rounded-(--radius-lg) bg-zinc-50/70 dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-5">
+        <div className="p-5 sm:p-7 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-5">
           <div className="flex flex-wrap items-center gap-3">
             <Button
               variant={isDark ? 'outline' : 'primary'}
@@ -285,7 +285,7 @@ export function FoundationsView() {
                 key={row.token}
                 type="button"
                 onClick={() => copyValue(`var(${row.token})`, row.token)}
-                className="text-left p-3 rounded-(--radius-control) bg-zinc-100/70 dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
+                className="text-left p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
               >
                 <div
                   className="w-full h-12 rounded-(--radius-field) border border-black/[0.06] dark:border-white/[0.05]"
@@ -319,7 +319,7 @@ export function FoundationsView() {
       {/* ========================================================================= */}
         <Reveal index={1}>
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="p-6 rounded-(--radius-lg) bg-zinc-50/70 dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+        <div className="p-6 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3">
           <div className="w-8 h-8 rounded-(--radius-field) bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono type-caption font-bold">
             #06
           </div>
@@ -331,7 +331,7 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-6 rounded-(--radius-lg) bg-zinc-50/70 dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+        <div className="p-6 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3">
           <div className="w-8 h-8 rounded-(--radius-field) bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono type-caption font-bold">
             <Zap className="icon-md" />
           </div>
@@ -343,7 +343,7 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-6 rounded-(--radius-lg) bg-zinc-50/70 dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+        <div className="p-6 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3">
           <div className="w-8 h-8 rounded-(--radius-field) bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono type-caption font-bold">
             <Code2 className="icon-md" />
           </div>

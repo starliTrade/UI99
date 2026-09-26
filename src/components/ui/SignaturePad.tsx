@@ -166,7 +166,7 @@ export function SignaturePad({
         </div>
       </div>
 
-      <div className="relative rounded-(--radius-field) overflow-hidden bg-zinc-50 dark:bg-(--bg-canvas) border border-dashed border-black/10 dark:border-white/10 touch-none">
+      <div className="relative rounded-(--radius-field) overflow-hidden bg-(--bg-subtle) dark:bg-(--bg-canvas) border border-dashed border-black/10 dark:border-white/10 touch-none">
         <canvas
           ref={canvasRef}
           width={width}
@@ -186,7 +186,7 @@ export function SignaturePad({
             Sign on the line below
           </div>
         )}
-        <div className="absolute bottom-6 left-6 right-6 border-b border-zinc-200 dark:border-zinc-800/80 pointer-events-none" />
+        <div className="absolute bottom-6 left-6 right-6 border-b border-(--border-soft) dark:border-zinc-800/80 pointer-events-none" />
       </div>
 
       <div className="flex items-center justify-between pt-1">

@@ -71,7 +71,7 @@ export function Switch({
             ? 'bg-emerald-500 shadow-(--glow-accent-md)'
             : isDark
             ? 'bg-(--bg-elevated) border-white/[0.08]'
-            : 'bg-zinc-200 border-black/[0.06]'
+            : 'bg-(--bg-raised) border-(--border-subtle)'
         )}
       >
         <SwitchPrimitive.Thumb

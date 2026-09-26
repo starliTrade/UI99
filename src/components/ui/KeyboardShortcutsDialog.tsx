@@ -63,7 +63,7 @@ export function KeyboardShortcutsDialog({
       <DialogContent className="max-w-xl max-h-[80vh] overflow-y-auto p-6 rounded-(--radius-lg) bg-white dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.04]">
         <DialogHeader className="pb-4 border-b border-black/[0.04] dark:border-white/[0.03]">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-(--radius-field) bg-zinc-100 dark:bg-white/[0.06] flex items-center justify-center text-zinc-800 dark:text-zinc-200">
+            <div className="w-7 h-7 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-white/[0.06] flex items-center justify-center text-zinc-800 dark:text-zinc-200">
               <Command className="icon-md" />
             </div>
             <div>

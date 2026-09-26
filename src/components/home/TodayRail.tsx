@@ -109,7 +109,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
                       : 'bg-zinc-950 text-white shadow-(--elevation-1) font-bold'
                     : isDark
                     ? 'bg-[#0E0E13] text-[#8E8E98] border border-white/[0.025] hover:bg-(--bg-elevated) hover:text-[#EDEDEF]'
-                    : 'bg-white text-zinc-600 border border-black/[0.04] hover:bg-zinc-50 hover:text-zinc-950 shadow-xs'
+                    : 'bg-(--bg-surface) text-zinc-600 border border-(--border-hairline) hover:bg-(--bg-subtle) hover:text-zinc-950 shadow-xs'
                 }`}
               >
                 <span
@@ -126,7 +126,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
                     className={`absolute -bottom-0.5 w-3 h-3 rounded-(--radius-pill) flex items-center justify-center shadow-xs ${
                       isDark
                         ? 'bg-[#15151B] text-[#8E8E98] border border-white/[0.04]'
-                        : 'bg-zinc-100 text-zinc-500 border border-black/[0.06]'
+                        : 'bg-(--bg-raised) text-zinc-500 border border-(--border-subtle)'
                     }`}
                   >
                     <Check className="w-2 h-2 stroke-[3]" />

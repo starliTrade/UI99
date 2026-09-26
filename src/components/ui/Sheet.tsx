@@ -75,7 +75,7 @@ const SheetContent = React.forwardRef<
     >
       {side === 'bottom' && (
         <div className="sm:hidden -mt-3 mb-3 flex justify-center cursor-grab">
-          <div className="w-10 h-1 rounded-(--radius-pill) bg-zinc-300 dark:bg-white/15" />
+          <div className="w-10 h-1 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-white/15" />
         </div>
       )}
       {children}

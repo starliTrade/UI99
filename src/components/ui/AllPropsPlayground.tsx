@@ -431,7 +431,7 @@ export function AllPropsPlayground() {
             className={`inline-flex items-center gap-1.5 h-8 px-3 rounded-(--radius-pill) type-caption font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99 ${
               component === c.value
                 ? 'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs'
-                : 'bg-zinc-100 dark:bg-white/[0.04] text-zinc-700 dark:text-(--text-secondary) hover:bg-state-hover'
+                : 'bg-(--bg-subtle) dark:bg-white/[0.04] text-zinc-700 dark:text-(--text-secondary) hover:bg-state-hover'
             }`}
           >
             {c.icon}
@@ -460,7 +460,7 @@ export function AllPropsPlayground() {
             <>
               <Switch size="sm" checked={cbAllowCreate} onChange={setCbAllowCreate} label="Allow create option" />
               <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed border-t border-black/[0.04] dark:border-white/[0.04] pt-3">
-                Type free text and press <kbd className="font-mono px-1 py-0.5 rounded bg-zinc-200 dark:bg-white/10 type-micro">Enter</kbd> with
+                Type free text and press <kbd className="font-mono px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-white/10 type-micro">Enter</kbd> with
                 create enabled — the option flows through the same <code className="font-mono">onChange</code>.
               </div>
             </>
@@ -630,9 +630,7 @@ export function AllPropsPlayground() {
         {/* Live preview */}
         <div className="lg:col-span-8">
           <div
-            className={`rounded-(--radius-control) border border-black/[0.04] dark:border-white/[0.04] p-5 sm:p-7 flex items-center justify-center min-h-[300px] transition-colors ${
-              isDark ? 'bg-(--bg-sunken)' : 'bg-zinc-50'
-            }`}
+            className="rounded-(--radius-control) border border-(--border-subtle) p-5 sm:p-7 flex items-center justify-center min-h-[300px] transition-colors bg-(--bg-sunken)"
           >
             {component === 'data-table' && (
               <div className="w-full">
@@ -875,7 +873,7 @@ export function AllPropsPlayground() {
                 <HoverCardTrigger asChild>
                   <button
                     type="button"
-                    className="h-10 px-4 rounded-(--radius-field) type-body font-medium bg-zinc-100 dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.05] cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
+                    className="h-10 px-4 rounded-(--radius-field) type-body font-medium bg-(--bg-subtle) dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.05] cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
                   >
                     Hover / focus me
                   </button>
@@ -1045,7 +1043,7 @@ function Segmented<T extends string | number>({
   options: { value: T; label: string }[];
 }) {
   return (
-    <div className="inline-flex p-0.5 rounded-(--radius-pill) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.04]">
+    <div className="inline-flex p-0.5 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.04]">
       {options.map((o) => (
         <button
           key={String(o.value)}

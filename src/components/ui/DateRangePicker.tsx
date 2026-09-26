@@ -41,7 +41,7 @@ export function DateRangePicker({
         type="button"
         disabled={disabled}
         onClick={() => setOpen(!open)}
-        className="h-9 px-3 rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-zinc-200 dark:border-white/[0.04] type-caption font-mono text-zinc-900 dark:text-white inline-flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-(--bg-elevated) transition-colors cursor-pointer disabled:opacity-50"
+        className="h-9 px-3 rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.04] type-caption font-mono text-zinc-900 dark:text-white inline-flex items-center gap-2 hover:bg-(--bg-subtle) dark:hover:bg-(--bg-elevated) transition-colors cursor-pointer disabled:opacity-50"
       >
         <Calendar className="icon-sm text-(--text-secondary)" />
         <span>{start}</span>
@@ -50,7 +50,7 @@ export function DateRangePicker({
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-1.5 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-zinc-200 dark:border-white/[0.06] shadow-2xl z-popover animate-in fade-in dur-fast space-y-3 min-w-[280px]">
+        <div className="absolute top-full left-0 mt-1.5 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-(--border-soft) dark:border-white/[0.06] shadow-2xl z-popover animate-in fade-in dur-fast space-y-3 min-w-[280px]">
           <div className="flex items-center justify-between type-caption font-mono font-bold text-zinc-950 dark:text-white">
             <span>Select Date Range</span>
             <span className="type-micro text-emerald-500 font-normal">Active Sprint</span>
@@ -66,7 +66,7 @@ export function DateRangePicker({
                   setStart(e.target.value);
                   onChange?.({ start: e.target.value, end });
                 }}
-                className="w-full px-2 py-1.5 rounded-(--radius-sm) bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200 dark:border-white/[0.06] text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
+                className="w-full px-2 py-1.5 rounded-(--radius-sm) bg-(--bg-subtle) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.06] text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
               />
             </div>
             <div>
@@ -78,7 +78,7 @@ export function DateRangePicker({
                   setEnd(e.target.value);
                   onChange?.({ start, end: e.target.value });
                 }}
-                className="w-full px-2 py-1.5 rounded-(--radius-sm) bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200 dark:border-white/[0.06] text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
+                className="w-full px-2 py-1.5 rounded-(--radius-sm) bg-(--bg-subtle) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.06] text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
               />
             </div>
           </div>
@@ -87,7 +87,7 @@ export function DateRangePicker({
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="px-2.5 py-1 rounded-(--radius-sm) bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 type-caption font-mono font-bold hover:opacity-90"
+              className="px-2.5 py-1 rounded-(--radius-sm) bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 type-caption font-mono font-bold hover:opacity-90"
             >
               Apply Range
             </button>

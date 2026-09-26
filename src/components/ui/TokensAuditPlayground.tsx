@@ -220,7 +220,7 @@ export function TokensAuditPlayground() {
         </div>
 
         {/* Sliders Control Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline)">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-elevated) border border-(--border-hairline)">
           {/* Outer Radius Slider */}
           <div className="space-y-1.5">
             <div className="flex justify-between type-caption font-semibold">
@@ -270,7 +270,7 @@ export function TokensAuditPlayground() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
           {/* Calculated Output & Formula Card */}
           <div className="space-y-4">
-            <div className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-2.5">
+            <div className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-2.5">
               <div className="flex items-center justify-between">
                 <span className="type-caption font-semibold text-(--text-muted)">Calculated Inner Radius</span>
                 <span className="type-body font-mono font-bold text-emerald-500">
@@ -313,7 +313,7 @@ export function TokensAuditPlayground() {
           </div>
 
           {/* Real-time Interactive Rendered Preview */}
-          <div className="p-6 rounded-(--radius-control) bg-zinc-100 dark:bg-(--bg-canvas) border border-(--border-subtle) flex flex-col items-center justify-center">
+          <div className="p-6 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-canvas) border border-(--border-subtle) flex flex-col items-center justify-center">
             {/* Outer Container Element */}
             <div
               style={{
@@ -336,7 +336,7 @@ export function TokensAuditPlayground() {
                 className={`w-full p-4 border transition-all dur-quick text-center ${
                   showBadComparison
                     ? 'bg-rose-500/10 border-rose-500/30 text-rose-400'
-                    : 'bg-zinc-50 dark:bg-(--bg-card) border-black/[0.06] dark:border-white/[0.05] text-(--text-primary)'
+                    : 'bg-(--bg-subtle) dark:bg-(--bg-card) border-black/[0.06] dark:border-white/[0.05] text-(--text-primary)'
                 }`}
               >
                 <div className="type-caption font-bold font-mono">
@@ -375,7 +375,7 @@ export function TokensAuditPlayground() {
             Anti-Slop rule: Container brightness difference from canvas must not exceed 12% in dark mode to prevent visual shock and jarring neon cards.
           </p>
 
-          <div className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-3">
+          <div className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-3">
             <div className="flex justify-between type-caption">
               <span className="text-(--text-muted)">Root Canvas ({darkAudit.bgHex})</span>
               <span className="font-mono text-(--text-muted) font-semibold">{darkAudit.bgBrightness}% Brightness</span>
@@ -384,7 +384,7 @@ export function TokensAuditPlayground() {
               <span className="text-(--text-muted)">Surface Layer 1 ({darkAudit.surfaceHex})</span>
               <span className="font-mono text-(--text-muted) font-semibold">{darkAudit.surfaceBrightness}% Brightness</span>
             </div>
-            <div className="w-full bg-zinc-200 dark:bg-white/[0.06] rounded-(--radius-pill) h-2 overflow-hidden">
+            <div className="w-full bg-(--bg-raised) dark:bg-white/[0.06] rounded-(--radius-pill) h-2 overflow-hidden">
               <div
                 className="bg-emerald-500 h-2 rounded-(--radius-pill) transition-all"
                 style={{ width: `${(darkAudit.difference / darkAudit.maxAllowed) * 100}%` }}
@@ -416,7 +416,7 @@ export function TokensAuditPlayground() {
             Anti-Slop rule: Container brightness difference from canvas must not exceed 7% in light mode to maintain daylight matte calm without stark contrasts.
           </p>
 
-          <div className="p-4 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-3">
+          <div className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-3">
             <div className="flex justify-between type-caption">
               <span className="text-(--text-muted)">Matte Day Canvas ({lightAudit.bgHex})</span>
               <span className="font-mono text-(--text-muted) font-semibold">{lightAudit.bgBrightness}% Brightness</span>
@@ -425,7 +425,7 @@ export function TokensAuditPlayground() {
               <span className="text-(--text-muted)">Day Surface Layer ({lightAudit.surfaceHex})</span>
               <span className="font-mono text-(--text-muted) font-semibold">{lightAudit.surfaceBrightness}% Brightness</span>
             </div>
-            <div className="w-full bg-zinc-200 dark:bg-white/[0.06] rounded-(--radius-pill) h-2 overflow-hidden">
+            <div className="w-full bg-(--bg-raised) dark:bg-white/[0.06] rounded-(--radius-pill) h-2 overflow-hidden">
               <div
                 className="bg-emerald-500 h-2 rounded-(--radius-pill) transition-all"
                 style={{ width: `${(lightAudit.difference / lightAudit.maxAllowed) * 100}%` }}
@@ -464,7 +464,7 @@ export function TokensAuditPlayground() {
             return (
               <div
                 key={idx}
-                className="p-3.5 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-2"
+                className="p-3.5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-2"
               >
                 <div className="flex items-center justify-between">
                   <span className="type-caption font-semibold text-zinc-800 dark:text-zinc-200 truncate">
@@ -521,7 +521,7 @@ export function TokensAuditPlayground() {
             return (
               <div
                 key={btn.name}
-                className="p-3.5 rounded-(--radius-control) bg-zinc-50 dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-1.5"
+                className="p-3.5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-elevated) border border-(--border-hairline) space-y-1.5"
               >
                 <div className="flex items-center justify-between">
                   <span className="type-caption font-bold text-zinc-900 dark:text-zinc-100">{btn.name}</span>

@@ -32,11 +32,11 @@ export function FloatingActionButton({
 
   const variantClasses = {
     primary:
-      'bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 shadow-(--elevation-3) dark:shadow-(--elevation-3) border border-white/10 dark:border-white/20',
+      'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 shadow-(--elevation-3) dark:shadow-(--elevation-3) border border-white/10 dark:border-white/20',
     emerald:
       'bg-emerald-500 hover:bg-emerald-400 text-white shadow-(--elevation-3) border border-emerald-400/30',
     secondary:
-      'bg-zinc-100 dark:bg-(--bg-elevated) text-zinc-900 dark:text-white hover:bg-zinc-200 dark:hover:bg-(--bg-card-hover) shadow-(--elevation-3) border border-zinc-200 dark:border-white/[0.06]',
+      'bg-(--bg-subtle) dark:bg-(--bg-elevated) text-zinc-900 dark:text-white hover:bg-(--bg-raised) dark:hover:bg-(--bg-card-hover) shadow-(--elevation-3) border border-(--border-soft) dark:border-white/[0.06]',
   }[variant];
 
   return (

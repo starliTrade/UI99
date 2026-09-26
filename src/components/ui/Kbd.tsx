@@ -26,7 +26,7 @@ export function Kbd({ children, size = 'sm', className = '' }: KbdProps) {
       className={`inline-flex items-center justify-center font-mono font-medium select-none shadow-xs border transition-colors ${sizeStyles} ${
         isDark
           ? 'bg-(--bg-elevated) text-(--text-secondary) border-white/[0.08] shadow-(--shadow-card)'
-          : 'bg-zinc-100 text-zinc-700 border-black/[0.08] shadow-(--shadow-card)'
+          : 'bg-(--bg-raised) text-zinc-700 border-(--border-soft) shadow-(--shadow-card)'
       } ${className}`}
     >
       {children}

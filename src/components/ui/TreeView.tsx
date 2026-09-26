@@ -123,8 +123,8 @@ function TreeItem({
           'flex items-center gap-2 py-1.5 pr-2 rounded-(--radius-field) type-caption font-mono transition-colors cursor-pointer outline-none',
           'focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent',
           isSelected
-            ? 'bg-zinc-200 dark:bg-white/[0.08] text-zinc-950 dark:text-white font-semibold'
-            : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/[0.03] hover:text-zinc-900 dark:hover:text-zinc-200'
+            ? 'bg-(--bg-raised) dark:bg-white/[0.08] text-zinc-950 dark:text-white font-semibold'
+            : 'text-zinc-600 dark:text-zinc-400 hover:bg-(--bg-subtle) dark:hover:bg-white/[0.03] hover:text-zinc-900 dark:hover:text-zinc-200'
         )}
       >
         {isFolder ? (

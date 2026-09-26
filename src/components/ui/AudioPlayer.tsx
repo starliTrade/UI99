@@ -114,8 +114,8 @@ export function AudioPlayer({
               className={cn(
                 'flex-1 rounded-(--radius-pill) transition-all dur-quick',
                 isPassed
-                  ? 'bg-zinc-900 dark:bg-emerald-400'
-                  : 'bg-zinc-200 dark:bg-white/[0.08]'
+                  ? 'bg-(--ink-fill) dark:bg-emerald-400'
+                  : 'bg-(--bg-raised) dark:bg-white/[0.08]'
               )}
               style={{ height: `${barHeight}%` }}
             />
@@ -140,7 +140,7 @@ export function AudioPlayer({
             onClick={() => setPlaying(!playing)}
             aria-label={playing ? 'Pause' : 'Play'}
             aria-pressed={playing}
-            className="w-9 h-9 rounded-(--radius-pill) bg-zinc-900 dark:bg-white text-white dark:text-black flex items-center justify-center shadow-md active:scale-95 transition-transform"
+            className="w-9 h-9 rounded-(--radius-pill) bg-(--ink-fill) dark:bg-white text-white dark:text-black flex items-center justify-center shadow-md active:scale-95 transition-transform"
           >
             {playing ? <Pause className="icon-md fill-current" /> : <Play className="icon-md fill-current ml-0.5" />}
           </button>
@@ -176,7 +176,7 @@ export function AudioPlayer({
               if (muted) setMuted(false);
             }}
             aria-label="Volume"
-            className="w-16 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-(--radius-sm) appearance-none cursor-pointer accent-zinc-900 dark:accent-white"
+            className="w-16 h-1 bg-(--bg-raised) dark:bg-zinc-800 rounded-(--radius-sm) appearance-none cursor-pointer accent-zinc-900 dark:accent-white"
           />
         </div>
       </div>

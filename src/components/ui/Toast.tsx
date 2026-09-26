@@ -173,7 +173,7 @@ export function EmptyState({
   return (
     <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.055] shadow-(--elevation-2) dark:shadow-(--elevation-2)">
       {icon && (
-        <div className="w-12 h-12 rounded-(--radius-pill) bg-zinc-100 dark:bg-(--bg-card-hover) border border-black/[0.06] dark:border-white/[0.06] text-(--text-secondary) flex items-center justify-center mb-3">
+        <div className="w-12 h-12 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-card-hover) border border-black/[0.06] dark:border-white/[0.06] text-(--text-secondary) flex items-center justify-center mb-3">
           {icon}
         </div>
       )}

@@ -110,7 +110,7 @@ function LinearIssueTrackerBlock() {
             <div className="flex items-center gap-3 shrink-0">
               <Tag variant="neutral">{issue.tag}</Tag>
               <StatusBadge status={issue.status} showLabel={true} />
-              <div className="w-5 h-5 rounded-(--radius-pill) bg-zinc-200 dark:bg-zinc-800 type-micro font-bold flex items-center justify-center text-zinc-700 dark:text-zinc-300">
+              <div className="w-5 h-5 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-zinc-800 type-micro font-bold flex items-center justify-center text-zinc-700 dark:text-zinc-300">
                 {issue.assignee[0]}
               </div>
             </div>
@@ -513,7 +513,7 @@ export function SecuritySettingsBlock() {
     <div className="w-full space-y-8 pb-16">
       {/* PAGE HEADER */}
       <header className="pb-2 space-y-3">
-        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-zinc-100 dark:bg-(--bg-card-hover) text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
+        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card-hover) text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="type-display sm:type-hero font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.05] text-balance">
           Production Blocks.
@@ -525,7 +525,7 @@ export function SecuritySettingsBlock() {
 
       {/* Block Category Navigation & Preview/Code Switcher */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-black/[0.06] dark:border-white/[0.04]">
-        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.03]">
+        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.03]">
           <button
             type="button"
             onClick={() => setActiveBlock('linear')}
@@ -584,7 +584,7 @@ export function SecuritySettingsBlock() {
         </div>
 
         {/* Preview / Code Tab Toggle */}
-        <div className="flex items-center gap-1.5 p-1 rounded-(--radius-control) bg-zinc-100 dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.03]">
+        <div className="flex items-center gap-1.5 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.03]">
           <button
             type="button"
             onClick={() => setBlockTab('preview')}
@@ -634,7 +634,7 @@ export function SecuritySettingsBlock() {
                   <span>Interactive Workflow Module</span>
                 </span>
               </div>
-              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-zinc-50 dark:bg-(--bg-card) p-6 shadow-sm">
+              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-(--bg-subtle) dark:bg-(--bg-card) p-6 shadow-sm">
                 <LinearIssueTrackerBlock />
               </div>
             </div>
@@ -649,7 +649,7 @@ export function SecuritySettingsBlock() {
                   <span>SSO & Credentials Card</span>
                 </span>
               </div>
-              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-zinc-50 dark:bg-[#06070A] p-6 sm:p-12 shadow-sm">
+              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-(--bg-subtle) dark:bg-[#06070A] p-6 sm:p-12 shadow-sm">
                 <AuthCardBlock />
               </div>
             </div>
@@ -664,7 +664,7 @@ export function SecuritySettingsBlock() {
                   <span>Tiered Pricing Table</span>
                 </span>
               </div>
-              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-zinc-50 dark:bg-[#06070A] p-6 sm:p-8 shadow-sm">
+              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-(--bg-subtle) dark:bg-[#06070A] p-6 sm:p-8 shadow-sm">
                 <PricingPlansBlock />
               </div>
             </div>

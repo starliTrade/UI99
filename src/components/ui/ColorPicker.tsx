@@ -79,7 +79,7 @@ export function ColorPicker({
           className="w-9 h-9 rounded-(--radius-field) border border-black/10 dark:border-white/10 shrink-0 shadow-inner transition-transform active:scale-95"
           style={{ backgroundColor: color }}
         />
-        <div className="flex-1 flex items-center bg-zinc-100 dark:bg-(--bg-elevated) rounded-(--radius-field) px-2.5 py-1.5 border border-black/[0.04] dark:border-white/[0.03]">
+        <div className="flex-1 flex items-center bg-(--bg-subtle) dark:bg-(--bg-elevated) rounded-(--radius-field) px-2.5 py-1.5 border border-black/[0.04] dark:border-white/[0.03]">
           <span className="type-caption font-mono text-(--text-muted) mr-1">#</span>
           <input
             type="text"
@@ -140,7 +140,7 @@ export function ColorPicker({
             type="button"
             onClick={handleEyeDropper}
             aria-label="Pick color from screen"
-            className="w-5 h-5 rounded-(--radius-sm) border border-black/10 dark:border-white/10 flex items-center justify-center bg-zinc-100 dark:bg-white/[0.04] text-(--text-muted) hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="w-5 h-5 rounded-(--radius-sm) border border-black/10 dark:border-white/10 flex items-center justify-center bg-(--bg-subtle) dark:bg-white/[0.04] text-(--text-muted) hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             <Pipette className="icon-xs" />
           </button>

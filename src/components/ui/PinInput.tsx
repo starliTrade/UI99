@@ -70,7 +70,7 @@ export function CurrencyInput({
   };
 
   return (
-    <div className={`relative flex items-center rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-zinc-200 dark:border-white/[0.04] shadow-(--shadow-card) focus-within:border-emerald-500/50 focus-within:ring-2 focus-within:ring-emerald-500/10 transition-all ${className}`}>
+    <div className={`relative flex items-center rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.04] shadow-(--shadow-card) focus-within:border-emerald-500/50 focus-within:ring-2 focus-within:ring-emerald-500/10 transition-all ${className}`}>
       <span className="pl-3 pr-1 type-caption font-mono font-bold text-(--text-secondary) dark:text-zinc-500 select-none">
         {symbol}
       </span>

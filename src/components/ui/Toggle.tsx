@@ -19,7 +19,7 @@ export const toggleVariants = cva(
         outline:
           'bg-transparent border border-black/[0.1] dark:border-white/[0.08] text-(--text-primary) hover:bg-black/[0.03] dark:hover:bg-white/[0.04] shadow-xs data-[state=on]:border-black/20 dark:data-[state=on]:border-white/25 data-[state=on]:bg-black/[0.05] dark:data-[state=on]:bg-white/[0.06]',
         secondary:
-          'bg-zinc-100 dark:bg-(--bg-card-hover) text-(--text-primary) hover:bg-zinc-200 dark:hover:bg-(--bg-card-hover) data-[state=on]:bg-zinc-900 data-[state=on]:text-white dark:data-[state=on]:bg-(--text-primary) dark:data-[state=on]:text-(--text-on-fill)',
+          'bg-(--bg-subtle) dark:bg-(--bg-card-hover) text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card-hover) data-[state=on]:bg-zinc-900 data-[state=on]:text-white dark:data-[state=on]:bg-(--text-primary) dark:data-[state=on]:text-(--text-on-fill)',
       },
       size: {
         sm: 'h-8 px-2.5 type-caption',

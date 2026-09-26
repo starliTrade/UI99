@@ -16,7 +16,12 @@
   --bg-card-hover: #101117;
   --bg-elevated: #111218;
   --bg-sunken: #07080B;
+  /* Tint ladder — named steps between surface and canvas (theme parity law) */
+  --bg-subtle: rgba(255, 255, 255, 0.02);
+  --bg-wash: rgba(255, 255, 255, 0.04);
+  --bg-raised: rgba(255, 255, 255, 0.06);
   --border-subtle: rgba(255, 255, 255, 0.025);
+  --border-soft: rgba(255, 255, 255, 0.035);
   --border-strong: rgba(255, 255, 255, 0.05);
   --border-specular: rgba(255, 255, 255, 0.035);
   --border-hairline: rgba(255, 255, 255, 0.025);
@@ -69,13 +74,20 @@
   --bg-canvas: #F5F5F8;
   --bg-surface: #FFFFFF;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #F8F8FA;
+  --bg-card-hover: #FAFAFC;
   --bg-elevated: #FFFFFF;
   --bg-sunken: #F0F0F4;
-  --border-subtle: rgba(0, 0, 0, 0.045);
-  --border-strong: rgba(0, 0, 0, 0.12);
+  /* Tint ladder — the same named steps, mirrored. LIGHT values sit ~2.4x
+     lower than dark because white-on-white tints read louder than white-on-
+     black — a light hairline must whisper, not snap. */
+  --bg-subtle: #F9F9FB;
+  --bg-wash: #F6F6F9;
+  --bg-raised: #F1F1F5;
+  --border-subtle: rgba(0, 0, 0, 0.035);
+  --border-soft: rgba(0, 0, 0, 0.045);
+  --border-strong: rgba(0, 0, 0, 0.08);
   --border-specular: rgba(255, 255, 255, 1);
-  --border-hairline: rgba(0, 0, 0, 0.03);
+  --border-hairline: rgba(0, 0, 0, 0.025);
 
   --text-primary: #111116;
   --text-secondary: #646470;

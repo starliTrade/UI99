@@ -69,17 +69,17 @@ export function Surface({
 
   const variantMap = {
     surface:
-      'bg-(--bg-card) border border-black/[0.045] dark:border-white/[0.025] shadow-(--shadow-card)',
+      'bg-(--bg-card) border border-(--border-subtle) shadow-(--shadow-card)',
     surfaceSecondary:
-      'bg-(--bg-sunken) dark:bg-(--bg-surface) border border-black/[0.035] dark:border-white/[0.02] shadow-(--shadow-card)',
+      'bg-(--bg-sunken) dark:bg-(--bg-surface) border border-(--border-hairline) shadow-(--shadow-card)',
     elevated:
       'bg-(--bg-elevated) border border-(--border-hairline) shadow-(--shadow-card-hover)',
     glass:
       'bg-white/80 dark:bg-(--bg-card)/60 backdrop-blur-2xl border border-(--border-hairline) shadow-(--shadow-card-hover)',
     compact:
-      'bg-white/90 dark:bg-(--bg-surface) border border-black/[0.03] dark:border-white/[0.02] shadow-(--elevation-1)',
+      'bg-white/90 dark:bg-(--bg-surface) border border-(--border-hairline) shadow-(--elevation-1)',
     flat:
-      'bg-zinc-100/80 dark:bg-(--bg-surface)/80 border-transparent',
+      'bg-(--bg-wash) dark:bg-(--bg-surface)/80 border-transparent',
     outline:
       'bg-transparent border border-black/[0.08] dark:border-white/[0.035]',
   }[variant];

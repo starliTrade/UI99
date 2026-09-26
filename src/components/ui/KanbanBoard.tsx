@@ -68,7 +68,7 @@ export function KanbanBoard({
           <div
             key={col.id}
             aria-label={`${col.label} column`}
-            className="flex flex-col gap-3 rounded-(--radius-control) bg-zinc-100/60 dark:bg-(--bg-card) p-3 border border-black/[0.04] dark:border-white/[0.03] min-w-[240px]"
+            className="flex flex-col gap-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-card) p-3 border border-black/[0.04] dark:border-white/[0.03] min-w-[240px]"
           >
             {/* Column Header */}
             <div className="flex items-center justify-between px-1">
@@ -77,7 +77,7 @@ export function KanbanBoard({
                 <span className="type-caption font-semibold text-zinc-900 dark:text-zinc-200">
                   {col.label}
                 </span>
-                <span className="type-micro font-mono font-medium px-1.5 py-0.2 rounded-(--radius-pill) bg-zinc-200 dark:bg-white/[0.06] text-zinc-600 dark:text-zinc-400">
+                <span className="type-micro font-mono font-medium px-1.5 py-0.2 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-white/[0.06] text-zinc-600 dark:text-zinc-400">
                   {colCards.length}
                 </span>
               </div>
@@ -130,8 +130,8 @@ export function KanbanBoard({
                         className={cn(
                           'type-micro px-1.5 py-0.5 rounded font-mono transition-colors',
                           card.status === targetCol.id
-                            ? 'bg-zinc-200 dark:bg-white/10 text-zinc-900 dark:text-white font-bold'
-                            : 'hover:bg-zinc-100 dark:hover:bg-white/5 text-zinc-500'
+                            ? 'bg-(--bg-raised) dark:bg-white/10 text-zinc-900 dark:text-white font-bold'
+                            : 'hover:bg-(--bg-subtle) dark:hover:bg-white/5 text-zinc-500'
                         )}
                       >
                         {targetCol.label.slice(0, 3)}

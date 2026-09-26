@@ -41,12 +41,12 @@ export function DiffViewer({
   return (
     <div
       className={cn(
-        'rounded-(--radius-control) bg-white dark:bg-(--bg-canvas) border border-zinc-200 dark:border-white/[0.06] overflow-hidden type-caption font-mono shadow-sm dark:shadow-lg',
+        'rounded-(--radius-control) bg-white dark:bg-(--bg-canvas) border border-(--border-soft) dark:border-white/[0.06] overflow-hidden type-caption font-mono shadow-sm dark:shadow-lg',
         className
       )}
     >
       {/* Diff Header */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-50 dark:bg-(--bg-card) border-b border-zinc-200 dark:border-white/[0.04]">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-(--bg-subtle) dark:bg-(--bg-card) border-b border-(--border-soft) dark:border-white/[0.04]">
         <div className="flex items-center gap-2">
           <GitCommit className="icon-sm text-(--text-muted) dark:text-zinc-400" />
           <span className="text-zinc-900 dark:text-zinc-200 font-medium">{fileName}</span>
@@ -79,7 +79,7 @@ export function DiffViewer({
                 'flex items-center px-2 py-0.5 leading-relaxed font-mono select-text',
                 isAdd && 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-medium',
                 isDelete && 'bg-rose-500/10 text-rose-700 dark:text-rose-300 line-through opacity-80',
-                !isAdd && !isDelete && 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-white/[0.02]'
+                !isAdd && !isDelete && 'text-zinc-600 dark:text-zinc-400 hover:bg-(--bg-subtle) dark:hover:bg-white/[0.02]'
               )}
             >
               {/* Line Numbers */}

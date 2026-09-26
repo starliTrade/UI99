@@ -70,14 +70,14 @@ export function CalendarView({
           <button
             type="button"
             aria-label="Previous month"
-            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors"
           >
             <ChevronLeft className="icon-md" />
           </button>
           <button
             type="button"
             aria-label="Next month"
-            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors"
           >
             <ChevronRight className="icon-md" />
           </button>
@@ -120,15 +120,15 @@ export function CalendarView({
               className={cn(
                 'min-h-[44px] sm:min-h-[58px] p-1 sm:p-1.5 rounded-(--radius-sm) sm:rounded-(--radius-field) border flex flex-col items-start justify-between text-left transition-all dur-quick',
                 isSelected
-                  ? 'bg-zinc-100 dark:bg-white/[0.08] border-black/20 dark:border-white/20 shadow-xs'
-                  : 'bg-zinc-50/50 dark:bg-(--bg-elevated)/50 border-black/[0.04] dark:border-white/[0.02] hover:bg-zinc-100 dark:hover:bg-white/[0.04]'
+                  ? 'bg-(--bg-subtle) dark:bg-white/[0.08] border-black/20 dark:border-white/20 shadow-xs'
+                  : 'bg-(--bg-subtle) dark:bg-(--bg-elevated)/50 border-black/[0.04] dark:border-white/[0.02] hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04]'
               )}
             >
               <span
                 className={cn(
                   'type-micro font-mono font-medium w-5 h-5 flex items-center justify-center rounded-(--radius-pill)',
                   isToday
-                    ? 'bg-zinc-900 dark:bg-white text-white dark:text-black font-bold'
+                    ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-black font-bold'
                     : 'text-zinc-600 dark:text-zinc-400'
                 )}
               >

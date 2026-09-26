@@ -95,8 +95,8 @@ export function TourGuide({
               className={cn(
                 'h-1.5 rounded-(--radius-pill) transition-all dur-slow',
                 idx === currentStep
-                  ? 'w-4 bg-zinc-900 dark:bg-white'
-                  : 'w-1.5 bg-zinc-300 dark:bg-white/20'
+                  ? 'w-4 bg-(--ink-fill) dark:bg-white'
+                  : 'w-1.5 bg-(--bg-raised) dark:bg-white/20'
               )}
             />
           ))}

@@ -131,7 +131,7 @@ export function ObjectCard({
         className={`group relative p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden select-none ${
           isDark
             ? 'bg-(--bg-card) shadow-(--shadow-card)'
-            : 'bg-white shadow-(--shadow-card) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(--elevation-2)'
+            : 'bg-white shadow-(--shadow-card) border border-(--border-hairline) hover:border-(--border-soft) hover:shadow-(--elevation-2)'
         }`}
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-(--radius-pill) blur-2xl pointer-events-none" />
@@ -185,7 +185,7 @@ export function ObjectCard({
         className={`group relative p-5 rounded-(--radius-xl) cursor-pointer flex gap-4 overflow-hidden select-none ${
           isDark
             ? 'bg-(--bg-card) shadow-(--shadow-card)'
-            : 'bg-white shadow-(--shadow-card) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(--elevation-2)'
+            : 'bg-white shadow-(--shadow-card) border border-(--border-hairline) hover:border-(--border-soft) hover:shadow-(--elevation-2)'
         }`}
       >
         <div className={`w-12 h-16 rounded-(--radius-control) flex flex-col items-center justify-center shrink-0 ${isDark ? 'bg-white/[0.05] text-(--text-secondary) shadow-(--shadow-card)' : 'bg-black/[0.04] text-zinc-600'}`}>
@@ -237,7 +237,7 @@ export function ObjectCard({
         className={`group relative p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden select-none ${
           isDark
             ? 'bg-(--bg-card) card-aura-emerald shadow-(--shadow-card)'
-            : 'bg-white shadow-(--shadow-card) border border-black/[0.035] hover:border-black/[0.08] hover:shadow-(--elevation-2)'
+            : 'bg-white shadow-(--shadow-card) border border-(--border-hairline) hover:border-(--border-soft) hover:shadow-(--elevation-2)'
         }`}
       >
         <div className="flex items-center justify-between gap-2 mb-2">
