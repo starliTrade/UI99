@@ -26,13 +26,18 @@
 /* ======================= DARK — deep, diffuse, rim-led ======================= */
 .dark,
 [data-theme='dark'] {
-  /* Five levels. Ambient diffusion only; the rim does the edge work. */
+  /* Five levels — AGENTS.md diffusion formula: a barely-there contact layer
+     under the bottom edge, then one deep ambient layer with NEGATIVE spread
+     and a large blur, so shadow mass stays beneath the card's own footprint.
+     On a near-black canvas, an un-spread shadow paints a dark HALO *around*
+     the surface instead of depth under it — the velvet melt reads as a
+     floating island. The rim does the edge work; shadows only ground. */
   --elevation-0: none;
-  --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.28);
-  --elevation-2: 0 4px 10px rgba(0, 0, 0, 0.44), 0 8px 20px rgba(0, 0, 0, 0.3);
-  --elevation-3: 0 10px 24px rgba(0, 0, 0, 0.5), 0 18px 40px -12px rgba(0, 0, 0, 0.45);
-  --elevation-4: 0 18px 42px rgba(0, 0, 0, 0.56), 0 28px 60px -16px rgba(0, 0, 0, 0.5);
-  --elevation-5: 0 28px 64px rgba(0, 0, 0, 0.64), 0 44px 90px -20px rgba(0, 0, 0, 0.58);
+  --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.35), 0 6px 16px -8px rgba(0, 0, 0, 0.5);
+  --elevation-2: 0 2px 6px rgba(0, 0, 0, 0.3), 0 12px 28px -10px rgba(0, 0, 0, 0.55);
+  --elevation-3: 0 4px 10px rgba(0, 0, 0, 0.35), 0 18px 40px -12px rgba(0, 0, 0, 0.6);
+  --elevation-4: 0 6px 16px rgba(0, 0, 0, 0.4), 0 22px 48px -12px rgba(0, 0, 0, 0.65);
+  --elevation-5: 0 8px 20px rgba(0, 0, 0, 0.45), 0 28px 64px -14px rgba(0, 0, 0, 0.7);
 
   /* Rim families — the specular edge that separates glass from canvas.
      `none` is deliberately the default so a bare container stays flat. */

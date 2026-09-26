@@ -342,7 +342,7 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => setCurrentTab('DOCS')}
-            className="h-9 px-3.5 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-(--bg-card-hover) hover:bg-zinc-200/80 dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200/80 dark:border-white/[0.04] hover:border-zinc-300 dark:hover:border-white/[0.04] shadow-(--shadow-card) active:scale-[0.98] whitespace-nowrap"
+            className="h-9 px-3.5 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-(--bg-card-hover) hover:bg-zinc-200/80 dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-zinc-200/80 dark:border-white/[0.025] hover:border-zinc-300 dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
           >
             <BookOpen className="icon-sm text-zinc-700 dark:text-zinc-300" />
             <span>Interactive Docs</span>
@@ -352,14 +352,14 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
-            className="h-9 px-3 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-(--bg-card-hover) hover:bg-zinc-200/80 dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-[#EDEDEF] border border-zinc-200/80 dark:border-white/[0.04] hover:border-zinc-300 dark:hover:border-white/[0.04] shadow-(--shadow-card) active:scale-[0.98] whitespace-nowrap"
+            className="h-9 px-3 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-zinc-100 dark:bg-(--bg-card-hover) hover:bg-zinc-200/80 dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-zinc-200/80 dark:border-white/[0.025] hover:border-zinc-300 dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
           >
             <Github className="icon-sm text-zinc-700 dark:text-zinc-300" />
             <span>GitHub</span>
           </button>
 
           {/* 4. Terminal Action: CLI Install Box */}
-          <div className="h-9 inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-zinc-100 dark:bg-(--bg-surface) border border-zinc-200/80 dark:border-white/[0.035] shadow-(--shadow-card) type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+          <div className="h-9 inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-zinc-100 dark:bg-(--bg-surface) border border-zinc-200/80 dark:border-white/[0.025] type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
             <span className="flex items-center gap-1.5">
               <span className="text-emerald-500 dark:text-emerald-400 font-bold select-none type-caption tracking-tight">
                 &gt;_

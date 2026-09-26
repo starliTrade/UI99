@@ -216,7 +216,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
             <button
               type="button"
               onClick={onOpenCapture}
-              className="group flex items-center gap-2 px-4 py-2 rounded-(--radius-pill) bg-gradient-to-r from-white/[0.06] to-white/[0.03] hover:from-white/[0.1] hover:to-white/[0.05] text-[#EDEDEF] border border-white/[0.05] hover:border-white/[0.1] shadow-(--shadow-card) backdrop-blur-xl transition-all active:scale-95 cursor-pointer shrink-0"
+              className="group flex items-center gap-2 px-4 py-2 rounded-(--radius-pill) bg-(--state-hover) hover:bg-(--state-selected) text-(--text-primary) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card) transition-all active:scale-95 cursor-pointer shrink-0"
               title={isRTL ? 'ثبت سریع ایده، یادداشت یا کار' : 'Quick Capture'}
               aria-label="Universal Capture"
             >

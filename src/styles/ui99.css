@@ -16,7 +16,7 @@
   --bg-card-hover: #101117;
   --bg-elevated: #111218;
   --bg-sunken: #07080B;
-  --border-subtle: transparent;
+  --border-subtle: rgba(255, 255, 255, 0.025);
   --border-strong: rgba(255, 255, 255, 0.05);
   --border-specular: rgba(255, 255, 255, 0.035);
   --border-hairline: rgba(255, 255, 255, 0.025);
