@@ -308,28 +308,29 @@ export function DesignSystemHomeView() {
           dir={isRTL ? 'rtl' : 'ltr'}
           className="type-display sm:type-billboard font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.08] sm:leading-[1.03] text-start"
         >
+          {/* Positioning copy — declares a category the way Material and HIG
+              do: the system itself is the product. Line 3 is the era claim. */}
           {isRTL ? (
             <>
-              صد و دو کامپوننت،
+              سیستم طراحی،
               <br />
-              یک زبان طراحی،
+              نه وابستگی.
               <br />
-              صفرِ نگرانی.
+              عصرِ تازه‌ی طراحی.
             </>
           ) : (
             <>
-              102 components.
+              A design system,
               <br />
-              One design language.
+              not a dependency.
               <br />
-              Zero worry.
+              Design's new era.
             </>
           )}
         </motion.h1>
 
-        {/* Subtitle — three lines, both scripts. The text is genuinely
-            different per language, not translated word-for-word: Persian
-            reads like its own copy, not a localization artifact. */}
+        {/* Subtitle — three technical-minimal lines. Numbers and nouns carry
+            the credibility; no adjectives. Persian is its own copy. */}
         <motion.p
           {...reveal(2)}
           dir={isRTL ? 'rtl' : 'ltr'}
@@ -337,19 +338,19 @@ export function DesignSystemHomeView() {
         >
           {isRTL ? (
             <>
-              هر قطعه از قبل برای WCAG 2.2 ممیزی شده؛ سورسش را مال خودت کن،
+              ۱۰۲ پریمیتیو ممیزی‌شده. یک هسته‌ی توکن.
               <br />
-              نه وابستگی‌ات. بدون قفل برند، بدون قفل اکانت،
+              از CLI در ریپوی تو سبز می‌شود، در ریپوی تو می‌ماند.
               <br />
-              فقط کدِ تمیز که از تو بوت‌استرپ نمی‌خواهد.
+              بدون اکانت، بدون قفل برند — برای همیشه.
             </>
           ) : (
             <>
-              Every piece is already WCAG 2.2 audited — own the source,
+              102 audited primitives. One token core.
               <br />
-              not a dependency. No brand locks, no account locks,
+              Born from your CLI, owned in your repo.
               <br />
-              just clean code that doesn't bootstrap off you.
+              No accounts, no brand locks — ever.
             </>
           )}
         </motion.p>
@@ -407,10 +408,10 @@ export function DesignSystemHomeView() {
               command corrupts it. */}
           <div className="order-2 w-full sm:order-none sm:w-auto min-h-[44px] inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.025] type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
             <span dir="ltr" className="flex items-center gap-1.5">
-              <span className="text-emerald-500 dark:text-emerald-400 font-bold select-none tracking-tight">
+              <span className="font-mono text-emerald-500 dark:text-emerald-400 font-bold select-none tracking-tight">
                 &gt;_
               </span>
-              <span className="font-medium text-zinc-800 dark:text-[#EDEDEF]">
+              <span className="font-mono font-medium text-zinc-800 dark:text-[#EDEDEF] type-body tracking-tight">
                 npx @99/ui init
               </span>
             </span>
