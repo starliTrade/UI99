@@ -303,30 +303,33 @@ export function DesignSystemHomeView() {
             ramp swaps itself to the Persian optical steps (display 33px /
             billboard 66px), so no component-side mirroring is needed. The
             break point is a real sentence break in both scripts, so a plain
-            <br> is correct in both directions — no mirrored markup. */}
-        <motion.h1
+            <br> is correct in both directions — no mirrored markup. */}        <motion.h1
           {...reveal(0)}
           dir={isRTL ? 'rtl' : 'ltr'}
           className="type-display sm:type-billboard font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.08] sm:leading-[1.03] text-start"
         >
           {isRTL ? (
             <>
-              بازسازی نکن
+              صد و دو کامپوننت،
               <br />
-              چیزی را که از قبل کار می‌کند.
+              یک زبان طراحی،
+              <br />
+              صفرِ نگرانی.
             </>
           ) : (
             <>
-              Stop rebuilding
+              102 components.
               <br />
-              what already works.
+              One design language.
+              <br />
+              Zero worry.
             </>
           )}
         </motion.h1>
 
-        {/* Subtitle — 12px was a hero subhead at caption size; the floor for
-            hero copy is body. Arabic-script joins break under negative
-            tracking, so tracking only applies to the Latin run. */}
+        {/* Subtitle — three lines, both scripts. The text is genuinely
+            different per language, not translated word-for-word: Persian
+            reads like its own copy, not a localization artifact. */}
         <motion.p
           {...reveal(2)}
           dir={isRTL ? 'rtl' : 'ltr'}
@@ -334,15 +337,19 @@ export function DesignSystemHomeView() {
         >
           {isRTL ? (
             <>
-              {Number(KIT_COMPONENT_COUNT).toLocaleString('fa-IR')} پریمیتیو دسترس‌پذیر، هرکدام از قبل ممیزی‌شده‌ی
-              WCAG 2.2، تمیز در axe-core و تأییدشده از نظر کنتراست. سورس را مال خودت کن، در هر اپ React بیندازش، و
-              یک بعدازظهر به نتیجه برسان.
+              هر قطعه از قبل برای WCAG 2.2 ممیزی شده؛ سورسش را مال خودت کن،
+              <br />
+              نه وابستگی‌ات. بدون قفل برند، بدون قفل اکانت،
+              <br />
+              فقط کدِ تمیز که از تو بوت‌استرپ نمی‌خواهد.
             </>
           ) : (
             <>
-              {KIT_COMPONENT_COUNT} accessible primitives, each one already WCAG 2.2
-              audited, axe-core clean, and contrast-verified. Own the source, drop it
-              into any React app, and ship in an afternoon.
+              Every piece is already WCAG 2.2 audited — own the source,
+              <br />
+              not a dependency. No brand locks, no account locks,
+              <br />
+              just clean code that doesn't bootstrap off you.
             </>
           )}
         </motion.p>
@@ -364,7 +371,7 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => setCurrentTab('UIKIT')}
-            className="min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-semibold cursor-pointer transition-all bg-(--ink-fill) dark:bg-[#EDEDEF] hover:bg-zinc-800 dark:hover:bg-white text-white dark:text-zinc-950 shadow-xs active:scale-[0.98] whitespace-nowrap"
+            className="order-1 w-full sm:order-none sm:w-auto min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-semibold cursor-pointer transition-all bg-(--ink-fill) dark:bg-[#EDEDEF] hover:bg-zinc-800 dark:hover:bg-white text-white dark:text-zinc-950 shadow-xs active:scale-[0.98] whitespace-nowrap"
           >
             <span>
               {isRTL
@@ -379,7 +386,7 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => setCurrentTab('DOCS')}
-            className="min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-card-hover) hover:bg-(--bg-raised) dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-white/[0.025] hover:border-(--border-strong) dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
+            className="order-3 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-card-hover) hover:bg-(--bg-raised) dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-white/[0.025] hover:border-(--border-strong) dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
           >
             <BookOpen className="icon-sm text-zinc-700 dark:text-zinc-300" />
             <span>{isRTL ? 'مستندات تعاملی' : 'Interactive Docs'}</span>
@@ -389,7 +396,7 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
-            className="min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-card-hover) hover:bg-(--bg-raised) dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-white/[0.025] hover:border-(--border-strong) dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
+            className="order-4 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-card-hover) hover:bg-(--bg-raised) dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-white/[0.025] hover:border-(--border-strong) dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
           >
             <Github className="icon-sm text-zinc-700 dark:text-zinc-300" />
             <span>GitHub</span>
@@ -398,7 +405,7 @@ export function DesignSystemHomeView() {
           {/* 4. Terminal Action: CLI Install Box — the command itself stays
               LTR even in Persian: code is code, and mixing bidi into a shell
               command corrupts it. */}
-          <div className="min-h-[44px] inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.025] type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+          <div className="order-2 w-full sm:order-none sm:w-auto min-h-[44px] inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.025] type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
             <span dir="ltr" className="flex items-center gap-1.5">
               <span className="text-emerald-500 dark:text-emerald-400 font-bold select-none tracking-tight">
                 &gt;_

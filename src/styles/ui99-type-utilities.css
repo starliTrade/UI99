@@ -106,6 +106,12 @@
 [data-script='fa'] .type-hero { font-size: var(--type-fa-hero-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
 [data-script='fa'] .type-billboard { font-size: var(--type-fa-billboard-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
 
+/* Display steps override back to display leading — the fa body leading (1.85)
+   is for reading text; at 33–66px it rips headlines into vertical ribbons. */
+[data-script='fa'] .type-display,
+[data-script='fa'] .type-hero,
+[data-script='fa'] .type-billboard { line-height: var(--type-fa-display-leading); }
+
 /* ─── Weights ─── */
 @utility weight-regular { font-weight: var(--weight-regular); }
 @utility weight-medium { font-weight: var(--weight-medium); }

@@ -85,6 +85,10 @@
 
   --type-fa-leading: 1.85;
   --type-fa-tracking: 0em;
+  /* Display-scale Persian needs DISPLAY leading, not reading leading: 1.85
+     between 66px lines tears the headline apart. Large Arabic-script type
+     sits comfortably at ~1.2 — the joins carry the rhythm, not the leading. */
+  --type-fa-display-leading: 1.22;
 
   /* Weight tokens — 4 steps, no more. */
   --weight-regular: 400;
