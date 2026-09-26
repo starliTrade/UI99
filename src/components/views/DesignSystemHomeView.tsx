@@ -6,7 +6,7 @@
  * Code viewer, CLI package managers, and token inspector.
  */
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowRight,
@@ -26,6 +26,8 @@ import {
   Command,
   ShieldCheck,
   ChevronRight,
+  ChevronLeft,
+  CheckSquare,
   MousePointerClick,
   Bell,
   BarChart3,
@@ -39,6 +41,7 @@ import {
 import { useApp } from '../../core/context/AppContext';
 import { useAuth } from '../../core/context/AuthContext';
 import { useChoreography, Reveal } from '../ui/motion';
+import { STUDIO_SPECIMENS, HAND_BUILT_STAGE_IDS as HAND_BUILT_STAGES, SpecimenFallback } from '../home/studioSpecimens';
 import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 import {
   Button,
@@ -138,6 +141,17 @@ import {
 } from '../ui';
 import { REGISTRY_COMPONENTS, ComponentRegistryItem } from '../../registry/registryData';
 
+/**
+ * Reads a live custom-property value from the document. The tokens inspector
+ * uses this so it can never display a stale palette: what it prints IS the
+ * theme's current value, dark or light.
+ */
+function liveTokenValue(token: string): string {
+  if (typeof window === 'undefined') return token;
+  const v = getComputedStyle(document.documentElement).getPropertyValue(token).trim();
+  return v || token;
+}
+
 export function DesignSystemHomeView() {
   const { setCurrentTab, addToast, setFocusComponent } = useApp();
   const { isRTL } = useAuth();
@@ -196,55 +210,40 @@ export function DesignSystemHomeView() {
     setTimeout(() => setCopiedKey(null), 1600);
   };
 
-  const categories = [
-    { id: 'all', label: 'All (99)', count: 99, icon: Layers },
-    { id: 'actions', label: 'Actions & Buttons', count: 10, icon: MousePointerClick },
-    { id: 'forms', label: 'Forms & Inputs', count: 20, icon: Sliders },
-    { id: 'data', label: 'Data & Metrics', count: 15, icon: BarChart3 },
-    { id: 'feedback', label: 'Feedback & Badges', count: 12, icon: Bell },
-    { id: 'navigation', label: 'Navigation', count: 12, icon: Layout },
-    { id: 'overlays', label: 'Overlays & Dialogs', count: 12, icon: Sparkles },
-    { id: 'workflow', label: 'Workflow & Complex', count: 18, icon: Code2 },
-  ];
-
-  const categoryMap: Record<string, string[]> = {
-    actions: [
-      'button', 'icon-button', 'split-button', 'copy-button', 'toggle',
-      'toggle-group', 'floating-action-button', 'link-button', 'dropdown-button', 'wordmark'
-    ],
-    forms: [
-      'input', 'textarea', 'search-input', 'password-input', 'number-field',
-      'otp-input', 'pin-input', 'currency-input', 'tag-input', 'color-picker',
-      'date-picker', 'date-range-picker', 'time-picker', 'slider', 'range-slider',
-      'switch', 'checkbox', 'checkbox-group', 'radio', 'radio-group', 'segmented-control'
-    ],
-    data: [
-      'table', 'data-table', 'code-block', 'sparkline', 'stat-tile',
-      'metric-card', 'trend-delta', 'donut-ring', 'heatmap-calendar', 'meter-bar',
-      'progress', 'avatar', 'avatar-stack', 'kbd', 'badge'
-    ],
-    feedback: [
-      'status-badge', 'priority-badge', 'tag', 'alert', 'banner',
-      'spinner', 'skeleton', 'toast', 'empty-placeholder', 'empty-state',
-      'loading-state', 'confetti'
-    ],
-    navigation: [
-      'tabs', 'tabs-list', 'tabs-trigger', 'tabs-content', 'breadcrumb',
-      'pagination', 'stepper', 'timeline', 'bottom-navigation', 'top-header',
-      'scroll-area', 'sidebar'
-    ],
-    overlays: [
-      'dialog', 'sheet', 'drawer', 'popover', 'tooltip',
-      'hover-card', 'context-menu', 'dropdown-menu', 'command-menu', 'command-bar',
-      'alert-modal', 'modal'
-    ],
-    workflow: [
-      'terminal-emulator', 'kanban-board', 'linear-issue-tracker', 'diff-viewer', 'calendar-view',
-      'audio-player', 'activity-feed', 'tree-view', 'tour-guide', 'rich-text-editor-bar',
-      'signature-pad', 'file-upload', 'combobox', 'swatch', 'rating',
-      'card', 'accordion', 'collapsible'
-    ],
-  };
+  /**
+   * Category taxonomy is DERIVED from the registry, never hand-listed.
+   *
+   * The previous hand-written map had drifted into fiction: 15 ids that no
+   * longer exist (wordmark, radio, heatmap-calendar, drawer, alert-modal …),
+   * 19 registry items assigned to no bucket at all, and fabricated counts on
+   * a "99" that the registry had outgrown. A gallery whose own filter
+   * miscounts itself cannot be taken seriously. Now a new registry item is
+   * filed and counted automatically, and an empty filter can never appear.
+   */
+  const categories = useMemo(() => {
+    const meta: Record<string, { label: string; icon: typeof Layers }> = {
+      'Actions': { label: 'Actions & Buttons', icon: MousePointerClick },
+      'Forms': { label: 'Forms & Inputs', icon: Sliders },
+      'Selection': { label: 'Selection & Toggles', icon: CheckSquare },
+      'Data Display': { label: 'Data & Metrics', icon: BarChart3 },
+      'Overlays': { label: 'Overlays & Dialogs', icon: Sparkles },
+      'Layout & Navigation': { label: 'Layout & Navigation', icon: Layout },
+    };
+    const seen = new Map<string, number>();
+    for (const c of REGISTRY_COMPONENTS) {
+      seen.set(c.category, (seen.get(c.category) ?? 0) + 1);
+    }
+    const derived = [...seen.entries()].map(([cat, count]) => ({
+      id: cat,
+      label: meta[cat]?.label ?? cat,
+      count,
+      icon: meta[cat]?.icon ?? Layers,
+    }));
+    return [
+      { id: 'all', label: isRTL ? 'همه' : 'All', count: REGISTRY_COMPONENTS.length, icon: Layers },
+      ...derived,
+    ];
+  }, [isRTL]);
 
   const filteredComponents = REGISTRY_COMPONENTS.filter((c) => {
     const q = searchQuery.toLowerCase().trim();
@@ -256,16 +255,46 @@ export function DesignSystemHomeView() {
       (c.primitive && c.primitive.toLowerCase().includes(q)) ||
       (c.description && c.description.toLowerCase().includes(q));
 
-    const matchesCategory =
-      activeCategory === 'all' ||
-      c.category.toLowerCase().includes(activeCategory) ||
-      (categoryMap[activeCategory] && categoryMap[activeCategory].includes(c.id));
+    const matchesCategory = activeCategory === 'all' || c.category === activeCategory;
 
     return matchesSearch && matchesCategory;
   });
 
   const currentComp: ComponentRegistryItem =
     REGISTRY_COMPONENTS.find((c) => c.id === activeComponentId) || REGISTRY_COMPONENTS[0];
+
+  const registryIndex = Math.max(
+    0,
+    REGISTRY_COMPONENTS.findIndex((c) => c.id === activeComponentId),
+  );
+
+  /* Step through the whole registry, not just the current filter — the
+     stepper is a browse affordance, the ribbon is a search result. */
+  const stepComponent = (delta: number) => {
+    const next = REGISTRY_COMPONENTS[registryIndex + delta];
+    if (next) setActiveComponentId(next.id);
+  };
+
+  /* WAI-ARIA tabs pattern: the ribbon is a single tab stop, arrow keys walk
+     it and Home/End jump to the ends. 103 real tab stops was both a keyboard
+     trap and a screen-reader wall. */
+  const onRibbonKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+    if (!keys.includes(e.key)) return;
+    e.preventDefault();
+    const back = isRTL ? 1 : -1;
+    let next = registryIndex;
+    if (e.key === 'ArrowRight') next = registryIndex + back;
+    else if (e.key === 'ArrowLeft') next = registryIndex - back;
+    else if (e.key === 'Home') next = 0;
+    else next = REGISTRY_COMPONENTS.length - 1;
+    const target = REGISTRY_COMPONENTS[Math.min(Math.max(next, 0), REGISTRY_COMPONENTS.length - 1)];
+    if (!target) return;
+    setActiveComponentId(target.id);
+    requestAnimationFrame(() => {
+      document.querySelector<HTMLElement>(`[data-ribbon-item="${target.id}"]`)?.focus();
+    });
+  };
 
   return (
     <div className="w-full pb-16 px-0 sm:px-1 max-w-6xl mx-auto text-zinc-900 dark:text-white select-none transition-colors">
@@ -435,9 +464,9 @@ export function DesignSystemHomeView() {
       <Reveal index={4}>
         <div className="mt-4 sm:mt-8 rounded-(--radius-control) sm:rounded-(--radius-lg) border border-(--border-soft) dark:border-white/[0.025] bg-white dark:bg-(--bg-card) shadow-(--shadow-card) hover:shadow-(--shadow-card-hover) overflow-hidden transition-all">
           {/* 1. Studio Top Navigation & Control Bar */}
-          <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-(--border-subtle) dark:border-white/[0.03] bg-(--bg-wash) dark:bg-(--bg-surface) flex items-center justify-between gap-2 sm:gap-4 flex-nowrap min-w-0">
-            {/* Left: Active Component Breadcrumb */}
-            <div className="flex items-center gap-2 min-w-0 flex-1">
+          <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-(--border-subtle) dark:border-white/[0.03] bg-(--bg-wash) dark:bg-(--bg-surface) flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 sm:gap-4 min-w-0">
+            {/* Left: Active Component Breadcrumb + registry stepper */}
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
               <span className="flex h-2 w-2 relative shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-(--radius-pill) bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-(--radius-pill) h-2 w-2 bg-emerald-500" />
@@ -457,22 +486,55 @@ export function DesignSystemHomeView() {
               </div>
             </div>
 
+            {/* Registry stepper — the whole 103-item registry is browsable
+                without touching the ribbon. Two 44px targets, the same
+                affordance the docs pagination uses. */}
+            <div className="flex items-center gap-0.5 shrink-0 order-last sm:order-none w-full sm:w-auto justify-between sm:justify-start">
+              <button
+                type="button"
+                onClick={() => stepComponent(-1)}
+                disabled={registryIndex <= 0}
+                aria-label={isRTL ? 'کامپوننت قبلی' : 'Previous component'}
+                className="relative flex items-center justify-center h-8 w-8 rounded-(--radius-field) border border-(--border-soft) dark:border-white/[0.04] bg-(--bg-wash) dark:bg-white/[0.025] hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+              >
+                {isRTL ? <ChevronRight className="icon-xs" /> : <ChevronLeft className="icon-xs" />}
+              </button>
+              <span className="type-micro font-mono text-zinc-500 dark:text-zinc-400 tabular-nums px-1 select-none">
+                {registryIndex + 1}/{REGISTRY_COMPONENTS.length}
+              </span>
+              <button
+                type="button"
+                onClick={() => stepComponent(1)}
+                disabled={registryIndex >= REGISTRY_COMPONENTS.length - 1}
+                aria-label={isRTL ? 'کامپوننت بعدی' : 'Next component'}
+                className="relative flex items-center justify-center h-8 w-8 rounded-(--radius-field) border border-(--border-soft) dark:border-white/[0.04] bg-(--bg-wash) dark:bg-white/[0.025] hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+              >
+                {isRTL ? <ChevronLeft className="icon-xs" /> : <ChevronRight className="icon-xs" />}
+              </button>
+            </div>
+
             {/* Right: Studio Mode Switcher */}
             <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-              <div className="flex items-center gap-0.5 p-0.5 rounded-(--radius-field) bg-(--bg-raised) dark:bg-[#111218] border border-(--border-soft) dark:border-white/[0.03]">
-                {[
+              <div
+                role="tablist"
+                aria-label={isRTL ? 'نمای استودیو' : 'Studio view'}
+                className="flex items-center gap-0.5 p-0.5 rounded-(--radius-field) bg-(--bg-raised) dark:bg-[#111218] border border-(--border-soft) dark:border-white/[0.03]"
+              >
+                {([
                   { id: 'stage', label: 'Preview', icon: Eye },
                   { id: 'code', label: 'Code', icon: Code2 },
                   { id: 'cli', label: 'CLI', icon: Terminal },
                   { id: 'tokens', label: 'Tokens', icon: Palette },
-                ].map((v) => (
+                ] as const).map((v) => (
                   <button
                     key={v.id}
                     type="button"
-                    onClick={() => setStudioView(v.id as any)}
-                    className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer ${
+                    role="tab"
+                    aria-selected={studioView === v.id}
+                    onClick={() => setStudioView(v.id)}
+                    className={`relative flex items-center justify-center gap-1 sm:gap-1.5 h-8 px-2 sm:px-2.5 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
                       studioView === v.id
-                        ? 'bg-white dark:bg-white text-zinc-950 dark:text-zinc-950 font-bold shadow-xs'
+                        ? 'bg-white dark:bg-white text-zinc-950 font-bold shadow-xs'
                         : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white'
                     }`}
                   >
@@ -488,24 +550,26 @@ export function DesignSystemHomeView() {
                   setFocusComponent(currentComp.name);
                   setCurrentTab('DOCS');
                 }}
-                className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-field) type-caption font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.05] transition-colors cursor-pointer shrink-0"
+                aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
+                className="relative flex items-center gap-1 h-8 px-2 sm:px-2.5 rounded-(--radius-field) type-caption font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.05] transition-colors cursor-pointer shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               >
-                <span>Full API</span>
-                <ChevronRight className="icon-xs" />
+                <span className="hidden sm:inline">{isRTL ? 'مستندات کامل' : 'Full API'}</span>
+                <ArrowRight className="icon-xs rtl:rotate-180" />
               </button>
             </div>
           </div>
 
           {/* 2. Component Horizontal Category & Carousel Shelf */}
           <div className="border-b border-(--border-subtle) dark:border-white/[0.03] bg-zinc-100/40 dark:bg-[#07080B]">
-            {/* Category Filter Pills */}
+            {/* Category Filter Pills — counts are derived from the registry */}
             <div className="px-3 sm:px-4 pt-2.5 pb-1.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x">
               {categories.map((cat) => (
                 <button
                   key={cat.id}
                   type="button"
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-all cursor-pointer ${
+                  aria-pressed={activeCategory === cat.id}
+                  className={`relative inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
                     activeCategory === cat.id
                       ? 'bg-(--ink-fill) dark:bg-white/[0.08] text-white dark:text-[#EDEDEF] font-semibold border border-transparent dark:border-white/[0.04]'
                       : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.03]'
@@ -513,6 +577,7 @@ export function DesignSystemHomeView() {
                 >
                   <cat.icon className="w-3 h-3 shrink-0" />
                   <span>{cat.label}</span>
+                  <span className="tabular-nums opacity-55">{cat.count}</span>
                 </button>
               ))}
             </div>
@@ -521,35 +586,55 @@ export function DesignSystemHomeView() {
             <div className="px-3 sm:px-4 py-2 border-t border-(--border-subtle) dark:border-white/[0.02] flex items-center gap-2 overflow-x-auto no-scrollbar touch-pan-x">
               {/* Search filter pill */}
               <div className="relative shrink-0 w-32 xs:w-40 sm:w-48">
-                <Search className="icon-xs absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
+                <Search className="icon-xs absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 pointer-events-none" />
                 <input
-                  type="text"
+                  type="search"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search 99 elements..."
-                  className="w-full pl-7 pr-2.5 py-1 rounded-(--radius-sm) bg-white dark:bg-white/[0.03] border border-(--border-soft) dark:border-white/[0.04] type-caption text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 font-mono"
+                  placeholder={isRTL ? 'جستجوی کامپوننت…' : 'Search components…'}
+                  aria-label={isRTL ? 'جستجوی کامپوننت' : 'Search components'}
+                  className="w-full h-8 pl-7 pr-2.5 rounded-(--radius-sm) bg-white dark:bg-white/[0.03] border border-(--border-soft) dark:border-white/[0.04] type-caption text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 focus-ui99-inset font-mono"
                 />
               </div>
 
               <div className="h-4 w-px bg-zinc-300/70 dark:bg-white/[0.08] shrink-0" />
 
               {/* Horizontal Components Ribbon (Supporting All {KIT_COMPONENT_COUNT} Elements) */}
-              <div className="flex items-center gap-1.5 shrink-0">
-                {filteredComponents.map((c) => (
-                  <button
-                    key={c.id}
-                    type="button"
-                    onClick={() => setActiveComponentId(c.id)}
-                    className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-all cursor-pointer border min-h-[30px] sm:min-h-[32px] ${
-                      activeComponentId === c.id
-                        ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold border-transparent shadow-xs'
-                        : 'bg-white dark:bg-white/[0.02] text-zinc-600 dark:text-zinc-400 border-(--border-soft) dark:border-white/[0.03] hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] hover:text-zinc-950 dark:hover:text-white'
-                    }`}
-                  >
-                    <span>{c.title}</span>
-                  </button>
-                ))}
-              </div>
+              {filteredComponents.length === 0 ? (
+                <p className="type-caption font-mono text-zinc-500 dark:text-zinc-400 py-2">
+                  {isRTL ? 'کامپوننتی یافت نشد' : 'No components match this filter'}
+                </p>
+              ) : (
+                <div
+                  role="tablist"
+                  aria-label={isRTL ? 'کامپوننت‌های رجیستری' : 'Registry components'}
+                  aria-orientation="horizontal"
+                  className="flex items-center gap-1.5 shrink-0"
+                  onKeyDown={onRibbonKeyDown}
+                >
+                  {filteredComponents.map((c) => (
+                    <button
+                      key={c.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={activeComponentId === c.id}
+                      /* Roving tabindex: 103 registry buttons used to be 103
+                         tab stops. Now the ribbon is ONE stop and the arrow
+                         keys walk it — the WAI-ARIA tabs pattern. */
+                      tabIndex={activeComponentId === c.id ? 0 : -1}
+                      data-ribbon-item={c.id}
+                      onClick={() => setActiveComponentId(c.id)}
+                      className={`relative flex items-center gap-1.5 px-2.5 sm:px-3 h-8 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-all cursor-pointer border focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
+                        activeComponentId === c.id
+                          ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold border-transparent shadow-xs'
+                          : 'bg-white dark:bg-white/[0.02] text-zinc-600 dark:text-zinc-400 border-(--border-soft) dark:border-white/[0.03] hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] hover:text-zinc-950 dark:hover:text-white'
+                      }`}
+                    >
+                      <span>{c.title}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
@@ -559,7 +644,7 @@ export function DesignSystemHomeView() {
             {studioView === 'stage' && (
               <div className="flex-1 flex flex-col justify-between gap-3 sm:gap-4">
                 {/* Canvas Area with Velvet Dot Background */}
-                <div className="relative min-h-[220px] sm:min-h-[290px] rounded-(--radius-control) bg-(--bg-wash) dark:bg-[#060709] border border-(--border-soft) dark:border-white/[0.025] p-4 sm:p-8 flex items-center justify-center overflow-hidden">
+                <div className="relative min-h-[220px] sm:min-h-[290px] rounded-(--radius-control) bg-(--bg-wash) dark:bg-[#060709] border border-(--border-soft) dark:border-white/[0.025] p-4 sm:p-8 flex items-center justify-center overflow-x-auto overflow-y-hidden">
                   <div
                     aria-hidden="true"
                     className="absolute inset-0 opacity-20 dark:opacity-15 pointer-events-none"
@@ -569,8 +654,15 @@ export function DesignSystemHomeView() {
                     }}
                   />
 
-                  {/* Live Component Render Area */}
+                  {/* Live Component Render Area — hand-built demos first, then
+                      the designed specimen catalogue. 103/103 registry items
+                      render something real; the blank stage is retired.
+                      The specimen only takes over when no hand-built demo
+                      exists (the demo conditionals below then render null). */}
                   <div className="relative z-content w-full max-w-lg flex items-center justify-center">
+                    {!HAND_BUILT_STAGES.has(activeComponentId) && STUDIO_SPECIMENS[activeComponentId] && (
+                      (() => { const S = STUDIO_SPECIMENS[activeComponentId]; return <S />; })()
+                    )}
                     {/* BUTTONS & ACTIONS */}
                     {activeComponentId === 'button' && (
                       <Button
@@ -963,7 +1055,8 @@ export function DesignSystemHomeView() {
                                 key={v}
                                 type="button"
                                 onClick={() => setBtnVariant(v)}
-                                className={`px-2 py-0.5 rounded-(--radius-xs) capitalize font-mono type-micro whitespace-nowrap cursor-pointer transition-colors shrink-0 ${
+                                aria-pressed={btnVariant === v}
+                                className={`relative px-2 h-7 flex items-center rounded-(--radius-xs) capitalize font-mono type-micro whitespace-nowrap cursor-pointer transition-colors shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
                                   btnVariant === v
                                     ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold'
                                     : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white bg-(--bg-raised) dark:bg-white/[0.03]'
@@ -983,7 +1076,8 @@ export function DesignSystemHomeView() {
                                 key={s}
                                 type="button"
                                 onClick={() => setBtnSize(s)}
-                                className={`px-2 py-0.5 rounded-(--radius-xs) uppercase font-mono type-micro cursor-pointer transition-colors shrink-0 ${
+                                aria-pressed={btnSize === s}
+                                className={`relative px-2 h-7 flex items-center rounded-(--radius-xs) uppercase font-mono type-micro cursor-pointer transition-colors shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
                                   btnSize === s
                                     ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold'
                                     : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white bg-(--bg-raised) dark:bg-white/[0.03]'
@@ -1017,7 +1111,8 @@ export function DesignSystemHomeView() {
                           key={pm}
                           type="button"
                           onClick={() => setPackageManager(pm)}
-                          className={`px-1.5 py-0.5 rounded type-micro font-mono cursor-pointer transition-all ${
+                          aria-pressed={packageManager === pm}
+                          className={`relative px-1.5 h-7 flex items-center rounded type-micro font-mono cursor-pointer transition-all focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
                             packageManager === pm
                               ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold'
                               : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
@@ -1032,8 +1127,8 @@ export function DesignSystemHomeView() {
                     <button
                       type="button"
                       onClick={() => copy(getCliCommand(currentComp.name), 'quick-add')}
-                      aria-label="Copy CLI command"
-                      className="flex-1 lg:flex-initial inline-flex items-center justify-between gap-2 px-2.5 py-1 rounded-(--radius-field) type-caption font-mono bg-white dark:bg-[#0E0F14] hover:bg-(--bg-subtle) dark:hover:bg-[#151620] text-zinc-800 dark:text-[#EDEDEF] border border-(--border-soft) dark:border-white/[0.04] shadow-(--shadow-card) transition-colors cursor-pointer min-h-[30px] min-w-0 overflow-hidden"
+                      aria-label={isRTL ? 'کپی دستور نصب' : 'Copy CLI command'}
+                      className="relative flex-1 lg:flex-initial inline-flex items-center justify-between gap-2 px-2.5 h-8 rounded-(--radius-field) type-caption font-mono bg-white dark:bg-[#0E0F14] hover:bg-(--bg-subtle) dark:hover:bg-[#151620] text-zinc-800 dark:text-[#EDEDEF] border border-(--border-soft) dark:border-white/[0.04] shadow-(--shadow-card) transition-colors cursor-pointer min-w-0 overflow-hidden focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
                     >
                       <span className="flex items-center gap-1.5 truncate min-w-0">
                         <span className="text-emerald-500 dark:text-emerald-400 font-bold type-caption select-none shrink-0">&gt;_</span>
@@ -1079,7 +1174,8 @@ export function DesignSystemHomeView() {
                           key={pm}
                           type="button"
                           onClick={() => setPackageManager(pm)}
-                          className={`px-2 py-0.5 rounded type-micro font-mono cursor-pointer transition-all ${
+                          aria-pressed={packageManager === pm}
+                          className={`relative px-2 h-7 flex items-center rounded type-micro font-mono cursor-pointer transition-all focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
                             packageManager === pm
                               ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold'
                               : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white'
@@ -1138,23 +1234,23 @@ export function DesignSystemHomeView() {
             {/* ─── TOKENS INSPECTOR ─── */}
             {studioView === 'tokens' && (
               <div className="space-y-3">
-                <div className="p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-[#08090D] border border-(--border-soft) dark:border-white/[0.04] space-y-3">
+                <div className="p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-white/[0.02] border border-(--border-soft) dark:border-white/[0.04] space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="type-caption font-mono font-bold text-zinc-900 dark:text-white">Obsidian Velvet Token Specs</span>
+                    <span className="type-caption font-mono font-bold text-zinc-900 dark:text-white">Live token specs — current theme</span>
                     <span className="type-micro font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">Active</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 type-caption font-mono">
                     <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-white/[0.03]">
-                      <span className="text-zinc-500">Surface Base:</span> <span className="text-emerald-500">#06070A</span>
+                      <span className="text-zinc-500">Canvas:</span> <span className="text-emerald-600 dark:text-emerald-400 break-all">{liveTokenValue("--bg-canvas")}</span>
                     </div>
                     <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-white/[0.03]">
-                      <span className="text-zinc-500">Surface Card:</span> <span className="text-emerald-500">#0B0C11</span>
+                      <span className="text-zinc-500">Surface Card:</span> <span className="text-emerald-600 dark:text-emerald-400 break-all">{liveTokenValue("--bg-card")}</span>
                     </div>
                     <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-white/[0.03]">
-                      <span className="text-zinc-500">Hairline Border:</span> <span className="text-emerald-500">rgba(255,255,255,0.025)</span>
+                      <span className="text-zinc-500">Hairline Border:</span> <span className="text-emerald-600 dark:text-emerald-400 break-all">{liveTokenValue("--border-subtle")}</span>
                     </div>
                     <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-white/[0.03]">
-                      <span className="text-zinc-500">Focus Ring:</span> <span className="text-emerald-500">var(--focus-ui99)</span>
+                      <span className="text-zinc-500">Elevation 2:</span> <span className="text-emerald-600 dark:text-emerald-400 break-all">{liveTokenValue("--elevation-2")}</span>
                     </div>
                   </div>
                 </div>
