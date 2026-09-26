@@ -493,11 +493,27 @@ export function DesignSystemHomeView() {
 
       {/* ══════════════════════════════════════════════════════════════
           2 · WORLD-CLASS 99-ELEMENT COMPONENT REGISTRY STUDIO
+
+          LAYOUT CONTRACT — every value below is a token, and the pairing is
+          the one ui99-elevation.css documents for itself:
+
+            surface   card  radius-lg   bg-card      1px border-subtle
+            inset     stage radius-md   bg-sunken    1px border-subtle
+            zone      —     no radius   bg-surface   1px border-subtle
+            control   32px  radius-sm   bg-wash      group owns the border
+            micro     28px  radius-xs   fill only    no border
+            field     32px  radius-field  —          inputs and search
+
+          Padding is one scale everywhere: 12 horizontal and 8 vertical on a
+          phone, 16 and 12 from sm up; 16 around the stage, 24 from md. No
+          half-steps, no per-zone invention, no raw alpha borders or hexes —
+          which is what made this box read as nineteen unrelated little
+          rectangles instead of one card.
          ══════════════════════════════════════════════════════════════ */}
       <Reveal index={4}>
-        <div className="mt-4 sm:mt-8 rounded-(--radius-control) sm:rounded-(--radius-lg) border border-(--border-soft) dark:border-white/[0.025] bg-white dark:bg-(--bg-card) shadow-(--shadow-card) hover:shadow-(--shadow-card-hover) overflow-hidden transition-all">
+        <div className="mt-4 sm:mt-8 rounded-(--radius-lg) border border-(--border-subtle) bg-white dark:bg-(--bg-card) shadow-(--shadow-card) overflow-hidden">
           {/* 1. Studio Top Navigation & Control Bar */}
-          <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-(--border-subtle) dark:border-white/[0.03] bg-(--bg-wash) dark:bg-(--bg-surface) flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 min-w-0">
+          <div className="px-3 sm:px-4 py-2 sm:py-3 border-b border-(--border-subtle) bg-(--bg-surface) flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 min-w-0">
             {/* Row 1 — identity and position. The title truncates, the
                 stepper never does: which component, and where you are in the
                 registry, is one question — so they share a row. */}
@@ -525,7 +541,7 @@ export function DesignSystemHomeView() {
             {/* Registry stepper — the whole 103-item registry is browsable
                 without touching the ribbon. Two 44px targets, the same
                 affordance the docs pagination uses. */}
-            <div className="flex items-center gap-0.5 p-0.5 w-fit shrink-0 rounded-(--radius-field) bg-(--bg-raised) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.04]">
+            <div className="flex items-center gap-0.5 p-0.5 w-fit shrink-0 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft)">
               <button
                 type="button"
                 onClick={() => stepComponent(-1)}
@@ -554,7 +570,7 @@ export function DesignSystemHomeView() {
               <div
                 role="tablist"
                 aria-label={isRTL ? 'نمای استودیو' : 'Studio view'}
-                className="flex items-center gap-0.5 p-0.5 rounded-(--radius-field) bg-(--bg-raised) dark:bg-[#111218] border border-(--border-soft) dark:border-white/[0.03] flex-1 sm:flex-none"
+                className="flex items-center gap-0.5 p-0.5 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) flex-1 sm:flex-none"
               >
                 {([
                   { id: 'stage', label: 'Preview', icon: Eye },
@@ -568,7 +584,7 @@ export function DesignSystemHomeView() {
                     role="tab"
                     aria-selected={studioView === v.id}
                     onClick={() => setStudioView(v.id)}
-                    className={`relative flex-1 sm:flex-none flex items-center justify-center gap-1 sm:gap-1.5 h-8 px-2 sm:px-2.5 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
+                    className={`relative flex-1 sm:flex-none flex items-center justify-center gap-1 sm:gap-1.5 h-8 px-2 sm:px-2 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
                       studioView === v.id
                         ? 'bg-white dark:bg-white text-zinc-950 font-bold'
                         : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white'
@@ -587,7 +603,7 @@ export function DesignSystemHomeView() {
                   setCurrentTab('DOCS');
                 }}
                 aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
-                className="relative flex items-center gap-1.5 h-8 px-2.5 sm:px-3 rounded-(--radius-field) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] transition-colors cursor-pointer shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                className="relative flex items-center gap-1.5 h-8 px-2 sm:px-3 rounded-(--radius-sm) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] transition-colors cursor-pointer shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               >
                 <BookOpen className="icon-xs shrink-0" />
                 <span>{isRTL ? 'مستندات' : 'Full API'}</span>
@@ -597,18 +613,18 @@ export function DesignSystemHomeView() {
           </div>
 
           {/* 2. Component Horizontal Category & Carousel Shelf */}
-          <div className="border-b border-(--border-subtle) dark:border-white/[0.03] bg-zinc-100/40 dark:bg-[#07080B]">
+          <div className="border-b border-(--border-subtle) bg-zinc-100/40 dark:bg-(--bg-sunken)">
             {/* Category Filter Pills — counts are derived from the registry */}
-            <div className="px-3 sm:px-4 pt-2.5 pb-1.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x">
+            <div className="px-3 sm:px-4 pt-2 pb-1.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x">
               {categories.map((cat) => (
                 <button
                   key={cat.id}
                   type="button"
                   onClick={() => setActiveCategory(cat.id)}
                   aria-pressed={activeCategory === cat.id}
-                  className={`relative inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-field) type-caption font-mono whitespace-nowrap transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
+                  className={`relative inline-flex items-center gap-1.5 h-8 px-2 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
                     activeCategory === cat.id
-                      ? 'bg-(--ink-fill) dark:bg-white/[0.08] text-white dark:text-[#EDEDEF] font-semibold border border-transparent dark:border-white/[0.04]'
+                      ? 'bg-(--ink-fill) dark:bg-white/[0.08] text-white dark:text-(--text-primary) font-semibold border border-transparent dark:border-(--border-soft)'
                       : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.03]'
                   }`}
                 >
@@ -620,7 +636,7 @@ export function DesignSystemHomeView() {
             </div>
 
             {/* Component Horizontal Ribbon & Filter */}
-            <div className="px-3 sm:px-4 py-2 border-t border-(--border-subtle) dark:border-white/[0.02] flex items-center gap-2 overflow-x-auto no-scrollbar touch-pan-x">
+            <div className="px-3 sm:px-4 py-2 border-t border-(--border-subtle)  flex items-center gap-2 overflow-x-auto no-scrollbar touch-pan-x">
               {/* Search filter pill */}
               <div className="relative shrink-0 w-full xs:w-40 sm:w-48">
                 <Search className="icon-xs absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 pointer-events-none" />
@@ -630,7 +646,7 @@ export function DesignSystemHomeView() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={isRTL ? 'جستجوی کامپوننت…' : 'Search components…'}
                   aria-label={isRTL ? 'جستجوی کامپوننت' : 'Search components'}
-                  className="w-full h-8 pl-7 pr-2.5 rounded-(--radius-field) bg-white dark:bg-white/[0.03] border border-(--border-soft) dark:border-white/[0.04] type-caption text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 focus-ui99-inset font-mono"
+                  className="w-full h-8 pl-7 pr-2 rounded-(--radius-field) bg-white dark:bg-white/[0.03] border border-(--border-soft) dark:border-(--border-soft) type-caption text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 focus-ui99-inset font-mono"
                 />
               </div>
 
@@ -661,10 +677,10 @@ export function DesignSystemHomeView() {
                       tabIndex={activeComponentId === c.id ? 0 : -1}
                       data-ribbon-item={c.id}
                       onClick={() => setActiveComponentId(c.id)}
-                      className={`relative flex items-center gap-1.5 px-2.5 sm:px-3 h-8 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-all cursor-pointer border focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
+                      className={`relative flex items-center gap-1.5 px-2 sm:px-3 h-8 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-all cursor-pointer border focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
                         activeComponentId === c.id
                           ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold border-transparent shadow-xs'
-                          : 'bg-white dark:bg-white/[0.02] text-zinc-600 dark:text-zinc-400 border-(--border-soft) dark:border-white/[0.03] hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] hover:text-zinc-950 dark:hover:text-white'
+                          : 'bg-white dark:bg-white/[0.02] text-zinc-600 dark:text-zinc-400 border-(--border-soft) dark:border-(--border-subtle) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] hover:text-zinc-950 dark:hover:text-white'
                       }`}
                     >
                       <span>{c.title}</span>
@@ -676,12 +692,12 @@ export function DesignSystemHomeView() {
           </div>
 
           {/* 3. Spacious Interactive Stage Canvas */}
-          <div className="p-2.5 sm:p-6 md:p-8 bg-white dark:bg-(--bg-card)">
+          <div className="p-3 sm:p-5 md:p-6 bg-white dark:bg-(--bg-card)">
             {/* ─── STAGE (PREVIEW) ─── */}
             {studioView === 'stage' && (
               <div className="flex-1 flex flex-col justify-between gap-3 sm:gap-4">
                 {/* Canvas Area with Velvet Dot Background */}
-                <div className="relative min-h-[160px] sm:min-h-[290px] rounded-(--radius-control) bg-(--bg-wash) dark:bg-[#060709] border border-(--border-soft) dark:border-white/[0.025] p-3 sm:p-8 flex items-center justify-center overflow-x-auto overflow-y-hidden">
+                <div className="relative min-h-[160px] sm:min-h-[290px] rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) p-4 sm:p-6 flex items-center justify-center overflow-x-auto overflow-y-hidden">
                   <div
                     aria-hidden="true"
                     className="absolute inset-0 opacity-20 dark:opacity-15 pointer-events-none"
@@ -725,7 +741,7 @@ export function DesignSystemHomeView() {
                     )}
 
                     {activeComponentId === 'copy-button' && (
-                      <div className="flex items-center gap-3 p-3 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.04]">
+                      <div className="flex items-center gap-3 p-3 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft)">
                         <code className="type-caption font-mono text-emerald-500">npx @99/ui add button</code>
                         <CopyButton text="npx @99/ui add button" />
                       </div>
@@ -925,7 +941,7 @@ export function DesignSystemHomeView() {
                     )}
 
                     {activeComponentId === 'sparkline' && (
-                      <div className="w-full p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.04] space-y-2">
+                      <div className="w-full p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) space-y-2">
                         <div className="flex justify-between type-caption font-mono">
                           <span className="text-zinc-500">Real-time Telemetry</span>
                           <span className="text-emerald-500 font-bold">+14.2%</span>
@@ -1046,7 +1062,7 @@ export function DesignSystemHomeView() {
                 </div>
 
                 {/* Micro-Controls & CLI Installation Footer */}
-                <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 pt-3">
+                <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 pt-3 border-t border-(--border-subtle)">
                   {/* Left: Interactive Micro Controls */}
                   <div className="flex flex-col gap-1.5 min-w-0">
                     {activeComponentId === 'button' && (
@@ -1114,7 +1130,7 @@ export function DesignSystemHomeView() {
                   {/* Right: Quick Install CLI Capsule */}
                   <div className="flex items-center gap-1.5 min-w-0 w-full lg:w-auto shrink-0">
                     {/* PM Quick Pills */}
-                    <div className="flex items-center p-0.5 rounded-(--radius-field) bg-(--bg-raised) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.04] shrink-0">
+                    <div className="flex items-center p-0.5 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) shrink-0">
                       {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((pm) => (
                         <button
                           key={pm}
@@ -1137,7 +1153,7 @@ export function DesignSystemHomeView() {
                       type="button"
                       onClick={() => copy(getCliCommand(currentComp.name), 'quick-add')}
                       aria-label={isRTL ? 'کپی دستور نصب' : 'Copy CLI command'}
-                      className="relative flex-1 basis-[200px] inline-flex items-center justify-between gap-2 px-2.5 h-8 rounded-(--radius-field) type-caption font-mono bg-white dark:bg-white/[0.04] hover:bg-(--bg-subtle) dark:hover:bg-white/[0.07] text-zinc-800 dark:text-[#EDEDEF] border border-(--border-soft) dark:border-white/[0.04] transition-colors cursor-pointer min-w-0 overflow-hidden focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                      className="relative flex-1 basis-[200px] inline-flex items-center justify-between gap-2 px-2 h-8 rounded-(--radius-sm) type-caption font-mono bg-white dark:bg-white/[0.04] hover:bg-(--bg-subtle) dark:hover:bg-white/[0.07] text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-(--border-soft) transition-colors cursor-pointer min-w-0 overflow-hidden focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
                     >
                       <span className="flex items-center gap-1.5 truncate min-w-0">
                         <span className="text-emerald-500 dark:text-emerald-400 font-bold type-caption select-none shrink-0">&gt;_</span>
@@ -1169,15 +1185,15 @@ export function DesignSystemHomeView() {
 
             {/* ─── CLI (NPX / PNPM / BUN / YARN) ─── */}
             {studioView === 'cli' && (
-              <div className="space-y-3">
-                <div className="p-3 sm:p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-[#06070A] border border-(--border-subtle) dark:border-white/[0.04] space-y-2.5">
+              <div className="space-y-4">
+                <div className="p-4 rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) space-y-2.5">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="type-caption font-mono text-zinc-600 dark:text-zinc-400 font-semibold truncate">
                       Add component to your project
                     </span>
                     
                     {/* Package manager toggle */}
-                    <div className="flex items-center p-0.5 rounded-(--radius-sm) bg-(--bg-raised) dark:bg-white/[0.06] border border-(--border-soft) dark:border-white/[0.04] shrink-0">
+                    <div className="flex items-center p-0.5 rounded-(--radius-sm) bg-(--bg-raised) dark:bg-white/[0.06] border border-(--border-soft) dark:border-(--border-soft) shrink-0">
                       {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((pm) => (
                         <button
                           key={pm}
@@ -1196,7 +1212,7 @@ export function DesignSystemHomeView() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between gap-2 p-2.5 sm:p-3 rounded-(--radius-field) bg-(--ink-fill) dark:bg-(--bg-surface) font-mono type-caption text-emerald-400 border border-zinc-800 dark:border-white/[0.04] min-w-0 overflow-hidden">
+                  <div className="flex items-center justify-between gap-2 p-3 rounded-(--radius-sm) bg-(--ink-fill) dark:bg-(--bg-surface) font-mono type-caption text-emerald-400 border border-zinc-800 dark:border-(--border-soft) min-w-0 overflow-hidden">
                     <div className="flex items-center gap-2 truncate min-w-0">
                       <span className="select-none text-zinc-600 dark:text-zinc-500 shrink-0">&gt;_</span>
                       <span className="truncate type-micro sm:type-caption">{getCliCommand(currentComp.name)}</span>
@@ -1205,7 +1221,7 @@ export function DesignSystemHomeView() {
                       type="button"
                       onClick={() => copy(getCliCommand(currentComp.name), 'cli-single')}
                       aria-label="Copy command"
-                      className="p-1.5 rounded-(--radius-sm) hover:bg-zinc-800 dark:hover:bg-white/[0.08] text-zinc-400 hover:text-white transition-colors cursor-pointer shrink-0"
+                      className="p-1.5 rounded-(--radius-xs) hover:bg-zinc-800 dark:hover:bg-white/[0.08] text-zinc-400 hover:text-white transition-colors cursor-pointer shrink-0"
                     >
                       {copiedKey === 'cli-single' ? (
                         <Check className="icon-sm text-emerald-400" />
@@ -1216,7 +1232,7 @@ export function DesignSystemHomeView() {
                   </div>
                 </div>
 
-                <div className="p-3 sm:p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-[#06070A] border border-(--border-subtle) dark:border-white/[0.04] space-y-2">
+                <div className="p-4 rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) space-y-2">
                   <div className="flex items-center justify-between gap-2">
                     <span className="type-caption font-mono text-zinc-600 dark:text-zinc-400 font-semibold truncate">
                       Import statement
@@ -1224,7 +1240,7 @@ export function DesignSystemHomeView() {
                     <button
                       type="button"
                       onClick={() => copy(`import { ${currentComp.title.replace(/[\s-]+/g, '')} } from '@/components/ui/${currentComp.name}';`, 'import-code')}
-                      className="p-1.5 rounded-(--radius-sm) hover:bg-(--bg-raised) dark:hover:bg-white/[0.08] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer shrink-0"
+                      className="p-1.5 rounded-(--radius-xs) hover:bg-(--bg-raised) dark:hover:bg-white/[0.08] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer shrink-0"
                     >
                       {copiedKey === 'import-code' ? (
                         <Check className="icon-sm text-emerald-500 dark:text-emerald-400" />
@@ -1233,7 +1249,7 @@ export function DesignSystemHomeView() {
                       )}
                     </button>
                   </div>
-                  <div className="p-2.5 sm:p-3 rounded-(--radius-field) bg-(--ink-fill) dark:bg-(--bg-surface) font-mono type-micro sm:type-caption text-zinc-200 border border-zinc-800 dark:border-white/[0.04] overflow-x-auto no-scrollbar whitespace-nowrap">
+                  <div className="p-3 rounded-(--radius-sm) bg-(--ink-fill) dark:bg-(--bg-surface) font-mono type-micro sm:type-caption text-zinc-200 border border-zinc-800 dark:border-(--border-soft) overflow-x-auto no-scrollbar whitespace-nowrap">
                     import &#123; {currentComp.title.replace(/[\s-]+/g, '')} &#125; from '@/components/ui/{currentComp.name}';
                   </div>
                 </div>
@@ -1242,23 +1258,23 @@ export function DesignSystemHomeView() {
 
             {/* ─── TOKENS INSPECTOR ─── */}
             {studioView === 'tokens' && (
-              <div className="space-y-3">
-                <div className="p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-white/[0.02] border border-(--border-soft) dark:border-white/[0.04] space-y-3">
+              <div className="space-y-4">
+                <div className="p-4 rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="type-caption font-mono font-bold text-zinc-900 dark:text-white">Live token specs — current theme</span>
                     <span className="type-micro font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">Active</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 type-caption font-mono">
-                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-white/[0.03]">
+                    <div className="p-3 rounded-(--radius-sm) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-(--border-subtle)">
                       <span className="text-zinc-500">Canvas:</span> <span className="text-emerald-600 dark:text-emerald-400 break-all">{liveTokenValue("--bg-canvas")}</span>
                     </div>
-                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-white/[0.03]">
+                    <div className="p-3 rounded-(--radius-sm) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-(--border-subtle)">
                       <span className="text-zinc-500">Surface Card:</span> <span className="text-emerald-600 dark:text-emerald-400 break-all">{liveTokenValue("--bg-card")}</span>
                     </div>
-                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-white/[0.03]">
+                    <div className="p-3 rounded-(--radius-sm) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-(--border-subtle)">
                       <span className="text-zinc-500">Hairline Border:</span> <span className="text-emerald-600 dark:text-emerald-400 break-all">{liveTokenValue("--border-subtle")}</span>
                     </div>
-                    <div className="p-2.5 rounded-(--radius-field) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-white/[0.03]">
+                    <div className="p-3 rounded-(--radius-sm) bg-white dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-(--border-subtle)">
                       <span className="text-zinc-500">Elevation 2:</span> <span className="text-emerald-600 dark:text-emerald-400 break-all">{liveTokenValue("--elevation-2")}</span>
                     </div>
                   </div>
