@@ -11,16 +11,20 @@
  */
 
 import React from 'react';
-import { LayoutGrid, Layers, LayoutTemplate, BookOpen, Palette, Search } from 'lucide-react';
+import { House, Layers, LayoutTemplate, Component, BookOpen, Search } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { NAV_ITEMS, type NavTab } from './navItems';
 
 const ICONS: Record<NavTab, React.ComponentType<{ className?: string }>> = {
-  HOME: LayoutGrid,
+  // House: the only unambiguous "start of journey" glyph — in a product made
+  // of grids, LayoutGrid collided with the Components icon (audit: both read
+  // as "library"). Component: the tab inspects TOKENS, not colors — Palette
+  // sold the wrong content (audit finding, 2026-09).
+  HOME: House,
   UIKIT: Layers,
   BLOCKS: LayoutTemplate,
   DOCS: BookOpen,
-  FOUNDATIONS: Palette,
+  FOUNDATIONS: Component,
 };
 
 export interface BottomNavigationProps {
@@ -67,10 +71,15 @@ export function BottomNavigation({
                 aria-label={isRTL ? item.faLabel : item.label}
                 aria-current={isActive ? 'page' : undefined}
               >
+                {/* Cushion = the FULL button surface. It used to be inset-0.5,
+                    which shaved the 44px pill down until mono labels visually
+                    overflowed the cushion — the shadow also painted from a
+                    smaller box than the text. The dock's own padding keeps the
+                    cushion clear of the capsule edge, so nothing is clipped. */}
                 {isActive && (
                   <motion.div
                     layoutId={prefersReduced ? undefined : 'glassCushionActive'}
-                    className={`absolute inset-0.5 rounded-(--radius-pill) ${
+                    className={`absolute inset-0 rounded-(--radius-pill) ${
                       isDark
                         ? 'bg-white/[0.04] shadow-(--shadow-card)'
                         : 'liquid-glass-light-active-cushion'
@@ -84,7 +93,16 @@ export function BottomNavigation({
                     className={`icon-sm transition-colors dur-quick ${ isActive ? isDark ? 'stroke-(--text-primary) stroke-[2]' : 'stroke-zinc-950 stroke-[2]' : isDark ? 'stroke-(--text-muted) group-hover:stroke-zinc-300 stroke-[1.6]' : 'stroke-zinc-500 group-hover:stroke-zinc-800 stroke-[1.6]' }`}
                   />
                   <span
-                    className={`font-mono type-micro sm:type-micro tracking-tight transition-colors dur-quick whitespace-nowrap ${
+                    dir={isRTL ? 'rtl' : 'ltr'}
+                    className={`transition-colors dur-quick whitespace-nowrap ${
+                      // Persian labels: Vazirmatn (inherited from the [dir='rtl']
+                      // base rule) at the optically-corrected 11px step, zero
+                      // tracking — negative tracking breaks Arabic-script joins
+                      // and a mono stack carries no Persian glyphs at all.
+                      isRTL
+                        ? 'type-micro-fa sm:type-micro-fa tracking-normal'
+                        : 'font-mono type-micro sm:type-micro tracking-tight'
+                    } ${
                       isActive
                         ? isDark
                           ? 'text-(--text-primary) font-semibold'

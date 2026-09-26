@@ -40,6 +40,15 @@
   line-height: var(--type-micro-leading);
   letter-spacing: var(--type-micro-tracking);
 }
+/* Script-agnostic micro step for chrome that renders BOTH scripts (nav docks,
+   bilingual chips). Identical to type-micro under data-script='latin'; the
+   data-script='fa' override below then corrects the size optically. Pair it
+   with a sans family for Persian — a mono stack carries no Persian glyphs. */
+@utility type-micro-fa {
+  font-size: var(--type-micro-size);
+  line-height: var(--type-micro-leading);
+  letter-spacing: var(--type-micro-tracking);
+}
 @utility type-caption {
   font-size: var(--type-caption-size);
   line-height: var(--type-caption-leading);
@@ -87,6 +96,7 @@
  * the script-specific values in a higher-specificity selector is what makes
  * `data-script="fa"` authoritative rather than merely later. */
 [data-script='fa'] .type-micro { font-size: var(--type-fa-micro-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-micro-fa { font-size: var(--type-fa-micro-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
 [data-script='fa'] .type-caption { font-size: var(--type-fa-caption-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
 [data-script='fa'] .type-body { font-size: var(--type-fa-body-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
 [data-script='fa'] .type-body-lg { font-size: var(--type-fa-body-lg-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
