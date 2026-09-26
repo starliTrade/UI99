@@ -29,11 +29,9 @@ import {
   ChevronLeft,
   CheckSquare,
   MousePointerClick,
-  Bell,
   BarChart3,
   Layout,
   BookOpen,
-  Boxes,
   Palette,
   Play,
   RotateCcw,
@@ -41,7 +39,7 @@ import {
 import { useApp } from '../../core/context/AppContext';
 import { useAuth } from '../../core/context/AuthContext';
 import { useChoreography, Reveal } from '../ui/motion';
-import { STUDIO_SPECIMENS, HAND_BUILT_STAGE_IDS as HAND_BUILT_STAGES, SpecimenFallback } from '../home/studioSpecimens';
+import { STUDIO_SPECIMENS, HAND_BUILT_STAGE_IDS as HAND_BUILT_STAGES } from '../home/studioSpecimens';
 import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 import {
   Button,
@@ -268,6 +266,41 @@ export function DesignSystemHomeView() {
     REGISTRY_COMPONENTS.findIndex((c) => c.id === activeComponentId),
   );
 
+  /**
+   * The registry facts a visitor needs to trust a primitive — grouped, not
+   * run together. Each one is a claim the kit can actually back: the
+   * dependency list is the real one, the prop count is the documented
+   * surface, and the accessibility badge is a kit-wide guarantee rather than
+   * a per-component decoration.
+   */
+  const specFacts = useMemo(() => {
+    if (activeComponentId === 'button') return [];
+    const deps = currentComp.dependencies.filter((d) => d !== 'react');
+    return [
+      { label: isRTL ? 'دسته' : 'Category', value: currentComp.category },
+      { label: isRTL ? 'اولیه' : 'Primitive', value: currentComp.primitive || (isRTL ? 'بومی' : 'Native') },
+      {
+        label: isRTL ? 'پروپس' : 'Props',
+        value: String(currentComp.props.length),
+        tone: 'text-emerald-600 dark:text-emerald-400',
+      },
+      {
+        label: isRTL ? 'وابستگی' : 'Deps',
+        value: deps.length ? deps.join(', ') : (isRTL ? 'بدون' : 'none'),
+      },
+      {
+        label: isRTL ? 'نسخه' : 'Version',
+        value: `v${currentComp.version}`,
+        tone: 'text-zinc-500 dark:text-zinc-400',
+      },
+      {
+        label: isRTL ? 'دسترس‌پذیری' : 'A11y',
+        value: isRTL ? 'WCAG 2.2 AA' : 'WCAG 2.2 AA',
+        tone: 'text-emerald-600 dark:text-emerald-400',
+      },
+    ];
+  }, [activeComponentId, currentComp, isRTL]);
+
   /* Step through the whole registry, not just the current filter — the
      stepper is a browse affordance, the ribbon is a search result. */
   const stepComponent = (delta: number) => {
@@ -481,7 +514,7 @@ export function DesignSystemHomeView() {
                   {currentComp.primitive || 'Native'}
                 </span>
                 <span className="hidden md:inline-block px-1.5 py-0.5 rounded type-micro bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
-                  WCAG AAA
+                  WCAG 2.2 AA
                 </span>
               </div>
             </div>
@@ -551,10 +584,11 @@ export function DesignSystemHomeView() {
                   setCurrentTab('DOCS');
                 }}
                 aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
-                className="relative flex items-center gap-1 h-8 px-2 sm:px-2.5 rounded-(--radius-field) type-caption font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.05] transition-colors cursor-pointer shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                className="relative flex items-center gap-1.5 h-8 px-2.5 sm:px-3 rounded-(--radius-field) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] border border-(--border-soft) dark:border-white/[0.05] transition-colors cursor-pointer shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               >
-                <span className="hidden sm:inline">{isRTL ? 'مستندات کامل' : 'Full API'}</span>
-                <ArrowRight className="icon-xs rtl:rotate-180" />
+                <BookOpen className="icon-xs shrink-0" />
+                <span>{isRTL ? 'مستندات' : 'Full API'}</span>
+                <ArrowRight className="icon-xs rtl:rotate-180 shrink-0" />
               </button>
             </div>
           </div>
@@ -748,7 +782,7 @@ export function DesignSystemHomeView() {
                     {activeComponentId === 'banner' && (
                       <Banner
                         title="Obsidian Velvet System 2.0"
-                        description="Sub-pixel specular border highlights and WCAG 2.2 AAA certified."
+                        description="Sub-pixel specular border highlights and WCAG 2.2 AA certified."
                         variant="emerald"
                       />
                     )}
@@ -1005,50 +1039,17 @@ export function DesignSystemHomeView() {
                       </div>
                     )}
 
-                    {/* Fallback for other 99 components */}
-                    {![
-                      'button', 'icon-button', 'copy-button', 'toggle', 'toggle-group',
-                      'badge', 'status-badge', 'priority-badge', 'alert', 'banner',
-                      'input', 'password-input', 'otp-input', 'color-picker', 'tag-input',
-                      'number-field', 'rating', 'switch', 'slider', 'progress',
-                      'checkbox', 'segmented-control', 'card', 'stat-tile', 'sparkline',
-                      'avatar-stack', 'kbd', 'dialog', 'dropdown-menu', 'tabs',
-                      'terminal-emulator', 'diff-viewer'
-                    ].includes(activeComponentId) && (
-                      <div className="w-full p-6 rounded-(--radius-control) bg-(--bg-wash) dark:bg-[#08090D] border border-(--border-soft) dark:border-white/[0.04] text-center space-y-3">
-                        <div className="inline-flex p-3 rounded-(--radius-control) bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-                          <Boxes className="icon-xl" />
-                        </div>
-                        <div>
-                          <h4 className="type-body font-bold text-zinc-950 dark:text-white">{currentComp.title}</h4>
-                          <p className="type-caption text-zinc-500 dark:text-zinc-400 mt-1 max-w-sm mx-auto">{currentComp.description}</p>
-                        </div>
-                        <div className="flex items-center justify-center gap-2 pt-2">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setFocusComponent(currentComp.name);
-                              setCurrentTab('DOCS');
-                            }}
-                            className="px-3 py-1.5 rounded-(--radius-field) bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 type-caption font-mono font-bold cursor-pointer hover:opacity-90 transition-opacity inline-flex items-center gap-1.5"
-                          >
-                            <span>Open in Live Docs</span>
-                            <ArrowRight className="icon-sm" />
-                          </button>
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
 
                 {/* Micro-Controls & CLI Installation Footer */}
-                <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-(--radius-control) bg-zinc-50/90 dark:bg-[#08090D] border border-(--border-soft) dark:border-white/[0.03] overflow-hidden">
+                <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 p-2.5 sm:p-3 rounded-(--radius-control) bg-zinc-50/90 dark:bg-[#08090D] border border-(--border-soft) dark:border-white/[0.03]">
                   {/* Left: Interactive Micro Controls */}
                   <div className="flex flex-col gap-1.5 min-w-0">
                     {activeComponentId === 'button' && (
                       <>
                         <div className="flex items-center gap-1.5 min-w-0">
-                          <span className="text-zinc-500 font-mono type-micro select-none shrink-0 w-12">Variant:</span>
+                          <span className="text-zinc-500 font-mono type-micro select-none shrink-0 w-14">Variant:</span>
                           <div className="flex items-center gap-1 overflow-x-auto no-scrollbar touch-pan-x py-0.5">
                             {(['primary', 'secondary', 'outline', 'ghost', 'rose'] as const).map((v) => (
                               <button
@@ -1069,7 +1070,7 @@ export function DesignSystemHomeView() {
                         </div>
 
                         <div className="flex items-center gap-1.5 min-w-0">
-                          <span className="text-zinc-500 font-mono type-micro select-none shrink-0 w-12">Size:</span>
+                          <span className="text-zinc-500 font-mono type-micro select-none shrink-0 w-14">Size:</span>
                           <div className="flex items-center gap-1 overflow-x-auto no-scrollbar touch-pan-x py-0.5">
                             {(['xs', 'sm', 'md', 'lg'] as const).map((s) => (
                               <button
@@ -1091,19 +1092,24 @@ export function DesignSystemHomeView() {
                       </>
                     )}
 
-                    {activeComponentId !== 'button' && (
-                      <div className="flex items-center gap-2 type-caption font-mono text-zinc-500 dark:text-zinc-400 py-1">
-                        <span>Primitive: <strong className="text-zinc-950 dark:text-white">{currentComp.primitive || 'Native'}</strong></span>
-                        <span className="text-zinc-300 dark:text-zinc-700">·</span>
-                        <span>Category: <strong className="text-zinc-950 dark:text-white capitalize">{currentComp.category}</strong></span>
-                        <span className="text-zinc-300 dark:text-zinc-700">·</span>
-                        <span className="text-emerald-500">WCAG 2.2 AAA</span>
-                      </div>
-                    )}
+                    {/* Component spec strip — the registry facts that make a
+                        primitive legible at a glance, grouped instead of run
+                        together in one metadata sentence. Wraps to a tidy
+                        multi-row grid on mobile; never a horizontal squeeze. */}
+                    <dl className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-x-4 gap-y-2 type-micro font-mono min-w-0">
+                      {specFacts.map((f) => (
+                        <div key={f.label} className="flex items-center gap-1.5 min-w-0">
+                          <dt className="text-zinc-400 dark:text-zinc-500 shrink-0">{f.label}</dt>
+                          <dd className={`truncate ${f.tone ?? 'text-zinc-800 dark:text-zinc-200'}`}>
+                            {f.value}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
                   </div>
 
                   {/* Right: Quick Install CLI Capsule */}
-                  <div className="flex items-center gap-1.5 min-w-0 w-full lg:w-auto shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-(--border-soft) dark:border-white/[0.03]">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 min-w-0 w-full lg:w-auto shrink-0 pt-2.5 lg:pt-0 border-t lg:border-t-0 border-(--border-soft) dark:border-white/[0.03]">
                     {/* PM Quick Pills */}
                     <div className="flex items-center p-0.5 rounded-(--radius-sm) bg-(--bg-raised) dark:bg-white/[0.04] border border-(--border-strong) dark:border-white/[0.03] shrink-0">
                       {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((pm) => (
