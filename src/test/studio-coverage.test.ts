@@ -59,3 +59,43 @@ describe('home studio stage', () => {
     expect(categories.size).toBeGreaterThan(0);
   });
 });
+
+describe('studio inspector data', () => {
+  it('every component documents at least one capability', () => {
+    // Capabilities feed the inspector on every component, so an empty list
+    // would render a bare heading.
+    const empty = REGISTRY_COMPONENTS.filter((c) => c.features.length === 0);
+    expect(empty.map((c) => c.id)).toEqual([]);
+  });
+
+  it('tracks the components still missing prop documentation', () => {
+    // A known, explicit gap: the inspector renders an honest empty state for
+    // these instead of pretending. Document one and this list gets shorter —
+    // if it changes without that happening, the test is telling the truth
+    // about a regression rather than a deliberate edit.
+    const UNDOCUMENTED = [
+      'alert-dialog', 'command', 'dropdown-menu', 'hover-card',
+      'kanban-board', 'linear-issue-tracker', 'menubar', 'navigation-menu',
+      'scroll-area',
+    ];
+    const missing = REGISTRY_COMPONENTS.filter((c) => c.props.length === 0)
+      .map((c) => c.id)
+      .sort();
+    expect(missing).toEqual([...UNDOCUMENTED].sort());
+  });
+
+  it('keeps prop docs typed and named', () => {
+    for (const c of REGISTRY_COMPONENTS) {
+      for (const p of c.props) {
+        expect(p.name, `${c.id}.props.name`).toBeTruthy();
+        expect(p.type, `${c.id}.props.${p.name}.type`).toBeTruthy();
+        expect(p.description, `${c.id}.props.${p.name}.description`).toBeTruthy();
+      }
+    }
+  });
+
+  it('pins every component to a released version', () => {
+    const bad = REGISTRY_COMPONENTS.filter((c) => !/^\d+\.\d+\.\d+$/.test(c.version));
+    expect(bad.map((c) => c.id)).toEqual([]);
+  });
+});
