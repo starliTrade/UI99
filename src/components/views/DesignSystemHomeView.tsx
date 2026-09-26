@@ -497,9 +497,9 @@ export function DesignSystemHomeView() {
       <Reveal index={4}>
         <div className="mt-4 sm:mt-8 rounded-(--radius-control) sm:rounded-(--radius-lg) border border-(--border-soft) dark:border-white/[0.025] bg-white dark:bg-(--bg-card) shadow-(--shadow-card) hover:shadow-(--shadow-card-hover) overflow-hidden transition-all">
           {/* 1. Studio Top Navigation & Control Bar */}
-          <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-(--border-subtle) dark:border-white/[0.03] bg-(--bg-wash) dark:bg-(--bg-surface) flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 sm:gap-4 min-w-0">
+          <div className="px-3 sm:px-4 py-2.5 sm:py-3 border-b border-(--border-subtle) dark:border-white/[0.03] bg-(--bg-wash) dark:bg-(--bg-surface) flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 min-w-0">
             {/* Left: Active Component Breadcrumb + registry stepper */}
-            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1">
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 sm:flex-1">
               <span className="flex h-2 w-2 relative shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-(--radius-pill) bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-(--radius-pill) h-2 w-2 bg-emerald-500" />
@@ -522,7 +522,7 @@ export function DesignSystemHomeView() {
             {/* Registry stepper — the whole 103-item registry is browsable
                 without touching the ribbon. Two 44px targets, the same
                 affordance the docs pagination uses. */}
-            <div className="flex items-center gap-0.5 shrink-0 order-last sm:order-none w-full sm:w-auto justify-between sm:justify-start">
+            <div className="flex items-center gap-1 shrink-0">
               <button
                 type="button"
                 onClick={() => stepComponent(-1)}
@@ -551,7 +551,7 @@ export function DesignSystemHomeView() {
               <div
                 role="tablist"
                 aria-label={isRTL ? 'نمای استودیو' : 'Studio view'}
-                className="flex items-center gap-0.5 p-0.5 rounded-(--radius-field) bg-(--bg-raised) dark:bg-[#111218] border border-(--border-soft) dark:border-white/[0.03]"
+                className="flex items-center gap-0.5 p-0.5 rounded-(--radius-field) bg-(--bg-raised) dark:bg-[#111218] border border-(--border-soft) dark:border-white/[0.03] flex-1 sm:flex-none"
               >
                 {([
                   { id: 'stage', label: 'Preview', icon: Eye },
@@ -565,7 +565,7 @@ export function DesignSystemHomeView() {
                     role="tab"
                     aria-selected={studioView === v.id}
                     onClick={() => setStudioView(v.id)}
-                    className={`relative flex items-center justify-center gap-1 sm:gap-1.5 h-8 px-2 sm:px-2.5 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
+                    className={`relative flex-1 sm:flex-none flex items-center justify-center gap-1 sm:gap-1.5 h-8 px-2 sm:px-2.5 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
                       studioView === v.id
                         ? 'bg-white dark:bg-white text-zinc-950 font-bold shadow-xs'
                         : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white'
@@ -619,7 +619,7 @@ export function DesignSystemHomeView() {
             {/* Component Horizontal Ribbon & Filter */}
             <div className="px-3 sm:px-4 py-2 border-t border-(--border-subtle) dark:border-white/[0.02] flex items-center gap-2 overflow-x-auto no-scrollbar touch-pan-x">
               {/* Search filter pill */}
-              <div className="relative shrink-0 w-32 xs:w-40 sm:w-48">
+              <div className="relative shrink-0 w-full xs:w-40 sm:w-48">
                 <Search className="icon-xs absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 pointer-events-none" />
                 <input
                   type="search"
@@ -631,7 +631,7 @@ export function DesignSystemHomeView() {
                 />
               </div>
 
-              <div className="h-4 w-px bg-zinc-300/70 dark:bg-white/[0.08] shrink-0" />
+              <div className="hidden sm:block h-4 w-px bg-zinc-300/70 dark:bg-white/[0.08] shrink-0" />
 
               {/* Horizontal Components Ribbon (Supporting All {KIT_COMPONENT_COUNT} Elements) */}
               {filteredComponents.length === 0 ? (
@@ -643,7 +643,7 @@ export function DesignSystemHomeView() {
                   role="tablist"
                   aria-label={isRTL ? 'کامپوننت‌های رجیستری' : 'Registry components'}
                   aria-orientation="horizontal"
-                  className="flex items-center gap-1.5 shrink-0"
+                  className="hidden sm:flex items-center gap-1.5 shrink-0"
                   onKeyDown={onRibbonKeyDown}
                 >
                   {filteredComponents.map((c) => (
@@ -673,12 +673,12 @@ export function DesignSystemHomeView() {
           </div>
 
           {/* 3. Spacious Interactive Stage Canvas */}
-          <div className="p-3 sm:p-6 md:p-8 bg-white dark:bg-(--bg-card)">
+          <div className="p-2.5 sm:p-6 md:p-8 bg-white dark:bg-(--bg-card)">
             {/* ─── STAGE (PREVIEW) ─── */}
             {studioView === 'stage' && (
               <div className="flex-1 flex flex-col justify-between gap-3 sm:gap-4">
                 {/* Canvas Area with Velvet Dot Background */}
-                <div className="relative min-h-[220px] sm:min-h-[290px] rounded-(--radius-control) bg-(--bg-wash) dark:bg-[#060709] border border-(--border-soft) dark:border-white/[0.025] p-4 sm:p-8 flex items-center justify-center overflow-x-auto overflow-y-hidden">
+                <div className="relative min-h-[160px] sm:min-h-[290px] rounded-(--radius-control) bg-(--bg-wash) dark:bg-[#060709] border border-(--border-soft) dark:border-white/[0.025] p-3 sm:p-8 flex items-center justify-center overflow-x-auto overflow-y-hidden">
                   <div
                     aria-hidden="true"
                     className="absolute inset-0 opacity-20 dark:opacity-15 pointer-events-none"
@@ -1096,9 +1096,9 @@ export function DesignSystemHomeView() {
                         primitive legible at a glance, grouped instead of run
                         together in one metadata sentence. Wraps to a tidy
                         multi-row grid on mobile; never a horizontal squeeze. */}
-                    <dl className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-x-4 gap-y-2 type-micro font-mono min-w-0">
+                    <dl className="flex sm:flex-wrap sm:items-center items-center gap-x-4 gap-y-1 overflow-x-auto no-scrollbar touch-pan-x type-micro font-mono min-w-0 -mx-1 px-1">
                       {specFacts.map((f) => (
-                        <div key={f.label} className="flex items-center gap-1.5 min-w-0">
+                        <div key={f.label} className="flex items-center gap-1.5 min-w-0 shrink-0">
                           <dt className="text-zinc-400 dark:text-zinc-500 shrink-0">{f.label}</dt>
                           <dd className={`truncate ${f.tone ?? 'text-zinc-800 dark:text-zinc-200'}`}>
                             {f.value}
@@ -1109,7 +1109,7 @@ export function DesignSystemHomeView() {
                   </div>
 
                   {/* Right: Quick Install CLI Capsule */}
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 min-w-0 w-full lg:w-auto shrink-0 pt-2.5 lg:pt-0 border-t lg:border-t-0 border-(--border-soft) dark:border-white/[0.03]">
+                  <div className="flex items-center gap-1.5 min-w-0 w-full lg:w-auto shrink-0 pt-2.5 lg:pt-0 border-t lg:border-t-0 border-(--border-soft) dark:border-white/[0.03]">
                     {/* PM Quick Pills */}
                     <div className="flex items-center p-0.5 rounded-(--radius-sm) bg-(--bg-raised) dark:bg-white/[0.04] border border-(--border-strong) dark:border-white/[0.03] shrink-0">
                       {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((pm) => (
