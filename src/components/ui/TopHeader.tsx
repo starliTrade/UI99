@@ -143,7 +143,7 @@ export function TopHeader({
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Repository"
-            className="hidden sm:inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-field) border border-zinc-200/80 dark:border-white/[0.04] bg-zinc-100/60 dark:bg-white/[0.025] hover:bg-zinc-200/70 dark:hover:bg-white/[0.06] type-caption font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-field) border border-zinc-200/80 dark:border-white/[0.04] bg-zinc-100/60 dark:bg-white/[0.025] hover:bg-zinc-200/70 dark:hover:bg-white/[0.06] type-caption font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             <SquareArrowOutUpRight className="icon-sm" />
             <span>GitHub</span>
@@ -155,7 +155,7 @@ export function TopHeader({
             onClick={() => onToggleRTL?.()}
             aria-label="Toggle language direction"
             title={isRTL ? 'Switch to English' : 'تغییر به فارسی'}
-            className="h-8 px-2.5 rounded-(--radius-field) flex items-center justify-center gap-1 border border-zinc-200/80 dark:border-white/[0.04] bg-zinc-100/60 dark:bg-white/[0.025] hover:bg-zinc-200/70 dark:hover:bg-white/[0.06] type-caption font-mono font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95"
+            className="relative h-8 px-2.5 rounded-(--radius-field) flex items-center justify-center gap-1 border border-zinc-200/80 dark:border-white/[0.04] bg-zinc-100/60 dark:bg-white/[0.025] hover:bg-zinc-200/70 dark:hover:bg-white/[0.06] type-caption font-mono font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             <Globe className="icon-sm text-(--text-secondary) dark:text-zinc-500" />
             <span className="type-micro">{isRTL ? 'FA' : 'EN'}</span>
@@ -166,7 +166,7 @@ export function TopHeader({
             <button
               type="button"
               onClick={() => setIsDropdownOpen((v) => !v)}
-              className="h-8 w-8 rounded-(--radius-field) flex items-center justify-center border border-zinc-200/80 dark:border-white/[0.04] bg-zinc-100/60 dark:bg-white/[0.025] hover:bg-zinc-200/70 dark:hover:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 group focus-ui99"
+              className="relative h-8 w-8 rounded-(--radius-field) flex items-center justify-center border border-zinc-200/80 dark:border-white/[0.04] bg-zinc-100/60 dark:bg-white/[0.025] hover:bg-zinc-200/70 dark:hover:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 group focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               aria-label="Studio Preferences"
               title="Studio Preferences"
             >
@@ -190,7 +190,7 @@ export function TopHeader({
                       <button
                         type="button"
                         onClick={() => onThemeChange?.('dark')}
-                        className={`flex items-center justify-center gap-1.5 py-1.5 rounded-(--radius-sm) type-caption font-mono font-medium cursor-pointer transition-all ${
+                        className={`flex items-center justify-center gap-1.5 py-1.5 rounded-(--radius-sm) type-caption font-mono font-medium cursor-pointer transition-all focus-ui99-inset ${
                           isDark
                             ? 'bg-zinc-800 text-white shadow-xs'
                             : 'text-zinc-500 hover:text-zinc-900'
@@ -201,7 +201,7 @@ export function TopHeader({
                       <button
                         type="button"
                         onClick={() => onThemeChange?.('light')}
-                        className={`flex items-center justify-center gap-1.5 py-1.5 rounded-(--radius-sm) type-caption font-mono font-medium cursor-pointer transition-all ${
+                        className={`flex items-center justify-center gap-1.5 py-1.5 rounded-(--radius-sm) type-caption font-mono font-medium cursor-pointer transition-all focus-ui99-inset ${
                           !isDark
                             ? 'bg-white text-zinc-950 shadow-xs font-semibold'
                             : 'text-zinc-400 hover:text-white'
@@ -221,7 +221,7 @@ export function TopHeader({
                       onOpenSettings?.();
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full flex items-center gap-2 px-2.5 py-2 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors hover:bg-zinc-100 dark:hover:bg-white/[0.04] text-zinc-800 dark:text-zinc-200"
+                    className="w-full flex items-center gap-2 px-2.5 py-2 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors hover:bg-zinc-100 dark:hover:bg-white/[0.04] text-zinc-800 dark:text-zinc-200 focus-ui99-inset"
                   >
                     <SlidersHorizontal className="icon-sm text-(--text-muted) dark:text-zinc-400" />
                     <span>Design Tokens Inspector</span>

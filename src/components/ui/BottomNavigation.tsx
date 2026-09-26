@@ -62,7 +62,7 @@ export function BottomNavigation({
                 key={item.tab}
                 type="button"
                 onClick={() => onTabChange?.(item.tab)}
-                className="group relative flex-1 min-h-[44px] py-1.5 px-1 rounded-(--radius-pill) cursor-pointer flex flex-col items-center justify-center transition-all dur-quick active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
+                className="group relative flex-1 min-h-[44px] py-1.5 px-1 rounded-(--radius-pill) cursor-pointer flex flex-col items-center justify-center transition-all dur-quick active:scale-95 focus-ui99"
                 title={isRTL ? item.faIntent : item.intent}
                 aria-label={isRTL ? item.faLabel : item.label}
                 aria-current={isActive ? 'page' : undefined}
@@ -105,7 +105,7 @@ export function BottomNavigation({
         <button
           type="button"
           onClick={() => onOpenSearch?.()}
-          className={`relative min-w-[44px] min-h-[44px] w-10 h-10 rounded-(--radius-pill) active:scale-95 flex items-center justify-center transition-all dur-quick cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+          className={`relative min-w-[44px] min-h-[44px] w-10 h-10 rounded-(--radius-pill) active:scale-95 flex items-center justify-center transition-all dur-quick cursor-pointer shrink-0 focus-ui99 ${
             isDark
               ? 'liquid-glass-dark-dock hover:bg-(--bg-elevated)/70 text-(--text-muted) hover:text-(--text-primary)'
               : 'liquid-glass-light-dock hover:bg-white/60 text-zinc-600 hover:text-zinc-950'
