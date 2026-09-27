@@ -74,8 +74,8 @@ export function TourGuide({
       </div>
 
       {/* Step Content */}
-      <div className="flex flex-col gap-1.5 pb-4">
-        <h5 className="type-body font-semibold text-zinc-900 dark:text-white flex items-center gap-1.5">
+      <div className="flex flex-col gap-1 pb-4">
+        <h5 className="type-body font-semibold text-zinc-900 dark:text-white flex items-center gap-1">
           <Sparkles className="icon-sm text-amber-500" />
           {step.title}
         </h5>
@@ -103,7 +103,7 @@ export function TourGuide({
         </div>
 
         {/* Buttons */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1">
           {currentStep > 0 && (
             <Button size="xs" variant="ghost" onClick={prev} aria-label="Previous step">
               <ChevronLeft className="icon-sm" />

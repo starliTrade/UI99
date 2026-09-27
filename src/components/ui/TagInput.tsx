@@ -61,13 +61,13 @@ export function TagInput({
   };
 
   return (
-    <div className="flex flex-col gap-1.5 w-full relative">
+    <div className="flex flex-col gap-1 w-full relative">
       {label && <label className="type-caption font-medium text-zinc-700 dark:text-(--text-secondary)">{label}</label>}
 
       <div
         onClick={() => inputRef.current?.focus()}
         className={cn(
-          'flex flex-wrap items-center gap-1.5 p-2 min-h-[42px] rounded-(--radius-field) transition-all dur-quick cursor-text',
+          'flex flex-wrap items-center gap-1 p-2 min-h-[42px] rounded-(--radius-field) transition-all dur-quick cursor-text',
           'bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary)',
           'border border-(--border-strong) dark:border-(--border-strong) focus-within:border-zinc-500 dark:focus-within:border-white/20',
           className
@@ -76,7 +76,7 @@ export function TagInput({
         {tags.map((tag, idx) => (
           <span
             key={tag + idx}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-raised) dark:bg-(--bg-raised) text-zinc-800 dark:text-zinc-200 border border-(--border-subtle) dark:border-(--border-soft) animate-in fade-in zoom-in-95"
+            className="inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-raised) dark:bg-(--bg-raised) text-zinc-800 dark:text-zinc-200 border border-(--border-subtle) dark:border-(--border-soft) animate-in fade-in zoom-in-95"
           >
             <TagIcon className="icon-xs text-(--text-secondary) shrink-0" />
             <span>{tag}</span>
@@ -121,7 +121,7 @@ export function TagInput({
               key={s}
               type="button"
               onMouseDown={() => addTag(s)}
-              className="w-full text-left px-3 py-1.5 type-caption rounded-(--radius-sm) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) text-zinc-800 dark:text-zinc-200 flex items-center justify-between transition-colors"
+              className="w-full text-left px-3 py-1 type-caption rounded-(--radius-sm) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) text-zinc-800 dark:text-zinc-200 flex items-center justify-between transition-colors"
             >
               <span>{s}</span>
               <Plus className="icon-xs text-(--text-secondary)" />

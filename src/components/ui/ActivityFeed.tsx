@@ -98,7 +98,7 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
               />
 
               <div className="flex-1 flex flex-col gap-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-1.5 type-caption">
+                <div className="flex flex-wrap items-center gap-1 type-caption">
                   <span className="font-semibold text-zinc-900 dark:text-white truncate">
                     {evt.actor.name}
                   </span>

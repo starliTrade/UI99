@@ -42,7 +42,7 @@ export function UI99Wordmark({
       slash: 'type-caption',
       brackets: 'type-body',
       subtitle: 'type-micro',
-      padding: 'px-2.5 py-1',
+      padding: 'px-2 py-1',
     },
     md: {
       root: 'type-body sm:type-body-lg',
@@ -50,7 +50,7 @@ export function UI99Wordmark({
       slash: 'type-caption sm:type-body',
       brackets: 'type-body sm:type-body',
       subtitle: 'type-micro',
-      padding: 'px-3 py-1.5',
+      padding: 'px-3 py-1',
     },
     lg: {
       root: 'type-body-lg sm:type-title',
@@ -66,7 +66,7 @@ export function UI99Wordmark({
       slash: 'type-title sm:type-heading',
       brackets: 'type-heading sm:type-display',
       subtitle: 'type-caption',
-      padding: 'px-5 py-2.5',
+      padding: 'px-5 py-2',
     },
   }[size];
 
@@ -78,11 +78,11 @@ export function UI99Wordmark({
     >
       {/* Ultra-subtle, whisper-quiet diffuse aura highlight on hover */}
       <div
-        className="absolute inset-0 -m-1.5 rounded-(--radius-pill) bg-emerald-500/[0.04] dark:bg-emerald-400/[0.06] blur-md opacity-40 group-hover:opacity-100 group-hover:bg-emerald-500/[0.12] dark:group-hover:bg-emerald-400/[0.15] transition-all dur-slow pointer-events-none"
+        className="absolute inset-0 -m-1 rounded-(--radius-pill) bg-emerald-500/[0.04] dark:bg-emerald-400/[0.06] blur-md opacity-40 group-hover:opacity-100 group-hover:bg-emerald-500/[0.12] dark:group-hover:bg-emerald-400/[0.15] transition-all dur-slow pointer-events-none"
       />
 
       <div
-        className={`relative z-content flex items-center gap-1.5 font-bold tracking-tight leading-none rounded-(--radius-field) transition-all dur-base ${
+        className={`relative z-content flex items-center gap-1 font-bold tracking-tight leading-none rounded-(--radius-field) transition-all dur-base ${
           isDark
             ? 'group-hover:bg-white/[0.02]'
             : 'group-hover:bg-black/[0.02]'

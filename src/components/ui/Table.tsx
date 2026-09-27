@@ -71,7 +71,7 @@ TableHead.displayName = 'TableHead';
 export function TableCell({ className = '', ...props }: React.TdHTMLAttributes<HTMLTableCellElement>) {
   return (
     <td
-      className={cn('px-3 py-2.5 align-middle text-(--text-primary) [&:has([role=checkbox])]:pr-0', className)}
+      className={cn('px-3 py-2 align-middle text-(--text-primary) [&:has([role=checkbox])]:pr-0', className)}
       {...props}
     />
   );

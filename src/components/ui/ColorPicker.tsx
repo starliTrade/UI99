@@ -67,19 +67,19 @@ export function ColorPicker({
   };
 
   return (
-    <div className={cn('flex flex-col gap-3 p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-lg max-w-[280px]', className)}>
+    <div className={cn('flex flex-col gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-lg max-w-[280px]', className)}>
       {label && (
         <span className="type-caption font-semibold text-zinc-700 dark:text-(--text-secondary)">{label}</span>
       )}
 
       {/* Main Preview Swatch & Hex input */}
-      <div className="flex items-center gap-2.5">
+      <div className="flex items-center gap-2">
         <div
           aria-hidden="true"
           className="w-9 h-9 rounded-(--radius-field) border border-black/10 dark:border-white/10 shrink-0 shadow-inner transition-transform active:scale-95"
           style={{ backgroundColor: color }}
         />
-        <div className="flex-1 flex items-center bg-(--bg-subtle) dark:bg-(--bg-card) rounded-(--radius-field) px-2.5 py-1.5 border border-(--border-subtle) dark:border-(--border-subtle)">
+        <div className="flex-1 flex items-center bg-(--bg-subtle) dark:bg-(--bg-card) rounded-(--radius-field) px-2 py-1 border border-(--border-subtle) dark:border-(--border-subtle)">
           <span className="type-caption font-mono text-(--text-muted) mr-1">#</span>
           <input
             type="text"
@@ -121,7 +121,7 @@ export function ColorPicker({
       </div>
 
       {/* Preset Swatches Palette */}
-      <div className="flex flex-wrap gap-1.5 pt-1 border-t border-(--border-subtle) dark:border-(--border-subtle)">
+      <div className="flex flex-wrap gap-1 pt-1 border-t border-(--border-subtle) dark:border-(--border-subtle)">
         {presetColors.map((preset) => (
           <button
             key={preset}

@@ -181,9 +181,9 @@ function CommandWell({
       type="button"
       onClick={onCopy}
       aria-label={isRTL ? `کپی دستور: ${command}` : `Copy command: ${command}`}
-      className="flex-1 min-w-0 flex items-center justify-between gap-2 px-2.5 h-7 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) font-mono transition-colors cursor-pointer focus-ui99"
+      className="flex-1 min-w-0 flex items-center justify-between gap-2 px-2 h-7 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) font-mono transition-colors cursor-pointer focus-ui99"
     >
-      <span className="flex items-center gap-1.5 min-w-0 font-code">
+      <span className="flex items-center gap-1 min-w-0 font-code">
         <span className="text-emerald-500 dark:text-emerald-400 font-bold type-micro select-none shrink-0">
           &gt;_
         </span>
@@ -271,7 +271,7 @@ function Inspector({
         <h3 className="type-caption font-mono font-bold text-(--text-primary) mb-2">
           {isRTL ? 'قابلیت‌ها' : 'Capabilities'}
         </h3>
-        <ul className="space-y-1.5">
+        <ul className="space-y-1">
           {comp.features.map((f) => (
             <li key={f} className="flex items-start gap-2 type-micro text-(--text-secondary)">
               <CheckCircle2 className="icon-xs text-emerald-500 shrink-0 mt-px" />
@@ -282,7 +282,7 @@ function Inspector({
       </section>
 
       <section>
-        <h3 className="type-caption font-mono font-bold text-(--text-primary) mb-2 flex items-center gap-1.5">
+        <h3 className="type-caption font-mono font-bold text-(--text-primary) mb-2 flex items-center gap-1">
           <Zap className="icon-xs text-emerald-500" />
           {isRTL ? 'پروپس‌ها' : 'Props'}
           <span className="text-(--text-muted)">({comp.props.length})</span>
@@ -297,7 +297,7 @@ function Inspector({
           )}
           {comp.props.slice(0, propLimit).map((p) => (
             <li key={p.name} className="min-w-0">
-              <div className="flex items-baseline gap-1.5 min-w-0">
+              <div className="flex items-baseline gap-1 min-w-0">
                 <span className="type-micro font-mono font-semibold text-(--text-primary) truncate">{p.name}</span>
                 <span className="type-micro font-mono text-emerald-600 dark:text-emerald-400 truncate">{p.type}</span>
               </div>
@@ -323,7 +323,7 @@ function Inspector({
         <button
           type="button"
           onClick={onOpenDocs}
-          className={`relative flex-1 flex items-center justify-center gap-1.5 ${actionSize} px-3 rounded-(--radius-sm) bg-(--ink-fill) text-(--text-on-fill) type-caption font-mono font-bold transition-opacity hover:opacity-90 cursor-pointer focus-ui99 ${HIT}`}
+          className={`relative flex-1 flex items-center justify-center gap-1 ${actionSize} px-3 rounded-(--radius-sm) bg-(--ink-fill) text-(--text-on-fill) type-caption font-mono font-bold transition-opacity hover:opacity-90 cursor-pointer focus-ui99 ${HIT}`}
         >
           <BookOpen className="icon-xs" />
           {isRTL ? 'مستندات کامل' : 'Full API'}
@@ -505,13 +505,13 @@ export function RegistryStudio() {
           </span>
           <h2 className="type-caption font-mono min-w-0 truncate">
             <span className="font-semibold text-(--text-primary)">{currentComp.title}</span>
-            <span className="hidden lg:inline-flex ms-1.5 px-1.5 py-0.5 rounded-(--radius-xs) type-micro bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 align-middle">
+            <span className="hidden lg:inline-flex ms-1 px-1 py-0.5 rounded-(--radius-xs) type-micro bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 align-middle">
               WCAG 2.2 AA
             </span>
           </h2>
         </div>
 
-        <div className="flex items-center gap-1.5 shrink-0">
+        <div className="flex items-center gap-1 shrink-0">
           {/* Registry stepper — every component reachable without the ribbon.
               NO box of its own: the counter floats directly on the header —
               the faintest a control can be. */}
@@ -547,7 +547,7 @@ export function RegistryStudio() {
             type="button"
             onClick={openDocs}
             aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
-            className={`relative flex items-center justify-center sm:justify-start gap-1.5 h-8 w-8 sm:w-auto sm:px-2.5 rounded-(--radius-sm) type-caption font-mono font-medium text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT_WIDE}`}
+            className={`relative flex items-center justify-center sm:justify-start gap-1 h-8 w-8 sm:w-auto sm:px-2 rounded-(--radius-sm) type-caption font-mono font-medium text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT_WIDE}`}
           >
             <BookOpen className="icon-xs shrink-0" />
             <span className="hidden sm:inline">{isRTL ? 'مستندات' : 'Full API'}</span>
@@ -583,14 +583,14 @@ export function RegistryStudio() {
 
         {/* Categories: ONE clean horizontal scroll row at every breakpoint —
             short labels keep the strip tight on a phone. */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x min-w-0 flex-1">
+        <div className="flex items-center gap-1 overflow-x-auto no-scrollbar touch-pan-x min-w-0 flex-1">
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setActiveCategory(cat.id)}
               aria-pressed={activeCategory === cat.id}
-              className={`relative inline-flex items-center gap-1.5 h-6 px-2 rounded-(--radius-sm) type-micro font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDER} ${
+              className={`relative inline-flex items-center gap-1 h-6 px-2 rounded-(--radius-sm) type-micro font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDER} ${
                 activeCategory === cat.id ? SELECTED_CHIP : IDLE_CHIP
               }`}
             >
@@ -605,7 +605,7 @@ export function RegistryStudio() {
       {/* 3 - RIBBON — the filtered registry, one tab stop, every screen.
           A category that cannot show its own components is a filter with
           no answer, so this row is not desktop-only. */}
-      <div className="flex px-3 sm:px-4 py-2 border-b border-(--border-subtle) bg-(--bg-sunken) items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x">
+      <div className="flex px-3 sm:px-4 py-2 border-b border-(--border-subtle) bg-(--bg-sunken) items-center gap-1 overflow-x-auto no-scrollbar touch-pan-x">
         {filteredComponents.length === 0 ? (
           <div className="flex items-center gap-2 py-1">
             <Search className="icon-xs text-(--text-muted) shrink-0" />
@@ -616,7 +616,7 @@ export function RegistryStudio() {
               <button
                 type="button"
                 onClick={clearFilters}
-                className={`relative inline-flex items-center gap-1 h-8 px-2.5 rounded-(--radius-sm) type-micro font-mono text-emerald-600 dark:text-emerald-400 hover:bg-(--state-hover) cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT}`}
+                className={`relative inline-flex items-center gap-1 h-8 px-2 rounded-(--radius-sm) type-micro font-mono text-emerald-600 dark:text-emerald-400 hover:bg-(--state-hover) cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT}`}
               >
                 <X className="icon-xs" />
                 {isRTL ? 'پاک‌کردن فیلترها' : 'Clear filters'}
@@ -628,7 +628,7 @@ export function RegistryStudio() {
             role="tablist"
             aria-label={isRTL ? 'کامپوننت‌ها' : 'Registry components'}
             aria-orientation="horizontal"
-            className="flex items-center gap-1.5 shrink-0"
+            className="flex items-center gap-1 shrink-0"
             onKeyDown={onRibbonKeyDown}
           >
             {filteredComponents.map((c) => (
@@ -640,7 +640,7 @@ export function RegistryStudio() {
                 tabIndex={activeComponentId === c.id ? 0 : -1}
                 data-ribbon-item={c.id}
                 onClick={() => setActiveComponentId(c.id)}
-                className={`relative px-1.5 h-6 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDER} ${
+                className={`relative px-1 h-6 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDER} ${
                   activeComponentId === c.id ? SELECTED_CHIP : IDLE_CHIP
                 }`}
               >
@@ -1023,7 +1023,7 @@ export function RegistryStudio() {
               <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-2 space-y-2">
                 {activeComponentId === 'button' && (
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                    <div className="flex items-center gap-1.5 min-w-0">
+                    <div className="flex items-center gap-1 min-w-0">
                       <span className="w-14 shrink-0 type-micro font-mono text-(--text-muted)">Variant</span>
                       <div className="flex items-center gap-1 overflow-x-auto no-scrollbar touch-pan-x min-w-0">
                         {(['primary', 'secondary', 'outline', 'ghost', 'rose'] as const).map((v) => (
@@ -1032,7 +1032,7 @@ export function RegistryStudio() {
                             type="button"
                             onClick={() => setBtnVariant(v)}
                             aria-pressed={btnVariant === v}
-                            className={`relative flex items-center h-6 px-1.5 rounded-(--radius-xs) capitalize font-mono type-micro whitespace-nowrap cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT_WIDER} ${
+                            className={`relative flex items-center h-6 px-1 rounded-(--radius-xs) capitalize font-mono type-micro whitespace-nowrap cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT_WIDER} ${
                               btnVariant === v ? SELECTED_CHIP : `${IDLE_CHIP} bg-(--bg-raised) dark:bg-(--bg-wash)`
                             }`}
                           >
@@ -1041,7 +1041,7 @@ export function RegistryStudio() {
                         ))}
                       </div>
                     </div>
-                    <div className="flex items-center gap-1.5 min-w-0">
+                    <div className="flex items-center gap-1 min-w-0">
                       <span className="w-14 shrink-0 type-micro font-mono text-(--text-muted)">Size</span>
                       <div className="flex items-center gap-1 overflow-x-auto no-scrollbar touch-pan-x min-w-0">
                         {(['xs', 'sm', 'md', 'lg'] as const).map((s) => (
@@ -1050,7 +1050,7 @@ export function RegistryStudio() {
                             type="button"
                             onClick={() => setBtnSize(s)}
                             aria-pressed={btnSize === s}
-                            className={`relative flex items-center h-6 px-1.5 rounded-(--radius-xs) uppercase font-mono type-micro cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT_WIDER} ${
+                            className={`relative flex items-center h-6 px-1 rounded-(--radius-xs) uppercase font-mono type-micro cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT_WIDER} ${
                               btnSize === s ? SELECTED_CHIP : `${IDLE_CHIP} bg-(--bg-raised) dark:bg-(--bg-wash)`
                             }`}
                           >
@@ -1086,17 +1086,17 @@ export function RegistryStudio() {
           )}
 
           {studioView === 'cli' && (
-            <div className="space-y-2.5">
+            <div className="space-y-2">
               {/* Install — a padded code frame: label + PM picker on the head,
                   the command in a recessed mono block with a real copy target. */}
-              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-2.5 space-y-2">
+              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-2 space-y-2">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="type-micro font-mono text-(--text-secondary) font-semibold uppercase tracking-wide truncate">
                     {isRTL ? 'افزودن به پروژه' : 'Add component to your project'}
                   </span>
                   <PmPicker value={packageManager} onChange={setPackageManager} isRTL={isRTL} />
                 </div>
-                <div className="flex items-center gap-2 px-2.5 py-2 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) transition-colors">
+                <div className="flex items-center gap-2 px-2 py-2 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) transition-colors">
                   <span className="text-emerald-500 dark:text-emerald-400 font-bold type-micro font-mono select-none shrink-0">
                     &gt;_
                   </span>
@@ -1133,7 +1133,7 @@ export function RegistryStudio() {
                   />
                 </button>
                 {importOpen && (
-                  <div id="studio-import" className="mt-2 flex items-center gap-2 px-2.5 py-2 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle)">
+                  <div id="studio-import" className="mt-2 flex items-center gap-2 px-2 py-2 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle)">
                     <code
                       dir="ltr"
                       className="flex-1 min-w-0 truncate type-micro font-code text-(--text-primary) whitespace-nowrap overflow-x-auto no-scrollbar"
@@ -1155,7 +1155,7 @@ export function RegistryStudio() {
           )}
 
           {studioView === 'tokens' && (
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
               {[
                 ['--bg-canvas', isRTL ? 'بوم' : 'Canvas'],
                 ['--bg-card', isRTL ? 'کارت' : 'Surface card'],
@@ -1164,7 +1164,7 @@ export function RegistryStudio() {
                 ['--elevation-2', isRTL ? 'ارتفاع' : 'Elevation 2'],
                 ['--space-md', isRTL ? 'فاصله' : 'Space step'],
               ].map(([token, label]) => (
-                <div key={token} className="p-2.5 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) type-micro font-mono min-w-0">
+                <div key={token} className="p-2 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) type-micro font-mono min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">
                     <span className="text-(--text-secondary)">{label}</span>
                     <span className="text-(--text-muted) truncate">{token}</span>

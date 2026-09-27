@@ -24,7 +24,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
         onClick={onAddBook}
         className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
-        <div className="flex items-center gap-3.5">
+        <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-(--radius-control) bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
             <BookOpen className="icon-lg stroke-[1.8]" />
           </div>
@@ -85,7 +85,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
           </p>
 
           {bookObject.description && (
-            <p className="type-caption text-zinc-400 font-serif italic line-clamp-2 mt-1.5 leading-relaxed">
+            <p className="type-caption text-zinc-400 font-serif italic line-clamp-2 mt-1 leading-relaxed">
               "{bookObject.description}"
             </p>
           )}
@@ -93,7 +93,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
       </div>
 
       {/* Footer */}
-      <div className="mt-3.5 pt-2.5 border-t border-white/[0.025] flex items-center justify-between type-micro text-[#92929B] relative z-content">
+      <div className="mt-3 pt-2 border-t border-white/[0.025] flex items-center justify-between type-micro text-[#92929B] relative z-content">
         <span>{isRTL ? 'هنر زیبایی‌شناسی ژاپنی' : 'Aesthetics & Light'}</span>
         <span className="text-blue-400 group-hover:underline flex items-center gap-1 font-medium">
           <span>{isRTL ? 'جزئیات کتاب' : 'Book Details'}</span>

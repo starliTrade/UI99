@@ -51,6 +51,49 @@ describe('WCAG contrast matrix — light theme', () => {
   });
 });
 
+describe('Muted text — the floor of the ladder, in BOTH themes', () => {
+  // Muted is not decoration. It carries timestamps, helper copy, captions and
+  // metadata — all of it small text, so WCAG asks 4.5:1 and not the 3:1 a
+  // decorative grey can reach for. Both themes shipped at ~3.1:1, and only
+  // fixing light would have made the two drift apart again, which is the exact
+  // failure this block exists to prevent.
+  it('dark muted clears AA on a card', () => {
+    expect(calculateContrastRatio(dark.text.muted, dark.canvas.surface)).toBeGreaterThanOrEqual(4.5);
+  });
+  it('light muted clears AA on a card', () => {
+    expect(calculateContrastRatio(light.text.muted, light.canvas.surface)).toBeGreaterThanOrEqual(4.5);
+  });
+  it('light muted still clears AA on the canvas, not just on a card', () => {
+    expect(calculateContrastRatio(light.text.muted, light.canvas.base)).toBeGreaterThanOrEqual(4.5);
+  });
+  it('muted stays below secondary — the hierarchy must survive the fix', () => {
+    // On dark, less contrast = lighter. On light, less contrast = darker. A
+    // muted that outranks secondary in either direction is a bug, not a taste
+    // call: the two tokens would be telling the eye the opposite story.
+    expect(calculateContrastRatio(dark.text.muted, dark.canvas.surface)).toBeLessThan(
+      calculateContrastRatio(dark.text.secondary, dark.canvas.surface),
+    );
+    expect(calculateContrastRatio(light.text.muted, light.canvas.surface)).toBeLessThan(
+      calculateContrastRatio(light.text.secondary, light.canvas.surface),
+    );
+  });
+});
+
+describe('Light/dark surface parity', () => {
+  // "Light should be exactly as good as dark" has to mean something measurable,
+  // or it is just a preference. The one number that captures it: how far a
+  // theme's own card sits from its own canvas. Dark cards melt into a near-black
+  // canvas; light cards used to sit on a visibly grey page, 3x further away.
+  it('light canvas is no further from its card than dark is', () => {
+    const d = auditBrightnessLimit(dark.canvas.base, dark.canvas.surface, 'dark');
+    const l = auditBrightnessLimit(light.canvas.base, light.canvas.surface, 'light');
+    expect(
+      l.difference,
+      `light canvas→card gap ${l.difference} vs dark ${d.difference} — light should be the same system in a brighter room`,
+    ).toBeLessThanOrEqual(d.difference * 1.5);
+  });
+});
+
 describe('Anti-slop brightness audit (canvas vs surface)', () => {
   it('dark mode stays within the 12% limit', () => {
     const r = auditBrightnessLimit(dark.canvas.base, dark.canvas.surface, 'dark');

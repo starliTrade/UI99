@@ -36,7 +36,7 @@ export function LinkButton({
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
-      className={`inline-flex items-center gap-1.5 type-caption font-mono cursor-pointer ${variantStyles} ${className}`}
+      className={`inline-flex items-center gap-1 type-caption font-mono cursor-pointer ${variantStyles} ${className}`}
       {...props}
     >
       {icon && <span className="shrink-0">{icon}</span>}
@@ -87,7 +87,7 @@ export function DropdownButton({
     return () => document.removeEventListener('mousedown', handleClick);
   }, [open]);
 
-  const sizeStyles = size === 'sm' ? 'h-8 px-2.5 type-caption' : 'h-9 px-3 type-caption';
+  const sizeStyles = size === 'sm' ? 'h-8 px-2 type-caption' : 'h-9 px-3 type-caption';
 
   const variantStyles = {
     primary:
@@ -106,7 +106,7 @@ export function DropdownButton({
         type="button"
         disabled={disabled}
         onClick={() => setOpen(!open)}
-        className={`rounded-(--radius-field) font-medium inline-flex items-center gap-1.5 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${sizeStyles} ${variantStyles}`}
+        className={`rounded-(--radius-field) font-medium inline-flex items-center gap-1 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${sizeStyles} ${variantStyles}`}
       >
         <span>{currentLabel}</span>
         <ChevronDown className={`icon-sm transition-transform ${open ? 'rotate-180' : ''}`} />
@@ -123,7 +123,7 @@ export function DropdownButton({
                 onSelect(opt.value);
                 setOpen(false);
               }}
-              className={`w-full px-3 py-1.5 type-caption text-left font-mono flex items-center justify-between transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
+              className={`w-full px-3 py-1 type-caption text-left font-mono flex items-center justify-between transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
                 selected === opt.value
                   ? 'bg-(--bg-subtle) dark:bg-(--bg-raised) text-emerald-500 font-bold'
                   : 'text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'

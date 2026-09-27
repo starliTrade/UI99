@@ -92,7 +92,7 @@ export function SettingsModal() {
             <button
               key={t.id}
               onClick={() => setActiveTab(t.id as any)}
-              className={`px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold flex items-center gap-1.5 transition-all whitespace-nowrap cursor-pointer select-none ${
+              className={`px-3 py-1 rounded-(--radius-pill) type-caption font-semibold flex items-center gap-1 transition-all whitespace-nowrap cursor-pointer select-none ${
                 activeTab === t.id
                   ? 'bg-white text-[#09090B] shadow-(--elevation-2)'
                   : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
@@ -106,7 +106,7 @@ export function SettingsModal() {
 
         {/* PROFILE TAB */}
         {activeTab === 'PROFILE' && (
-          <div className="space-y-3.5 type-caption">
+          <div className="space-y-3 type-caption">
             <div>
               <label className="block text-zinc-400 font-bold mb-1">Name</label>
               <input
@@ -140,7 +140,7 @@ export function SettingsModal() {
             </div>
 
             {/* Language and RTL */}
-            <div className="p-3.5 bg-[#18181D] rounded-(--radius-field) border border-white/[0.08] flex items-center justify-between">
+            <div className="p-3 bg-[#18181D] rounded-(--radius-field) border border-white/[0.08] flex items-center justify-between">
               <div>
                 <span className="font-bold text-white block">Layout Direction & Language</span>
                 <span className="text-zinc-400 type-micro">English LTR / فارسی راست‌به‌چپ</span>
@@ -172,8 +172,8 @@ export function SettingsModal() {
             </div>
 
             {/* Density — compact is a pointer affordance, not a finger one. */}
-            <div className="p-3.5 bg-[#18181D] rounded-(--radius-field) border border-white/[0.08]">
-              <div className="flex items-center justify-between mb-2.5">
+            <div className="p-3 bg-[#18181D] rounded-(--radius-field) border border-white/[0.08]">
+              <div className="flex items-center justify-between mb-2">
                 <div>
                   <span className="font-bold text-white block">Interface Density</span>
                   <span className="text-zinc-400 type-micro">
@@ -191,7 +191,7 @@ export function SettingsModal() {
           <div className="space-y-3 type-caption">
             <div className="p-4 bg-[#18181D] rounded-(--radius-control) border border-white/[0.08] space-y-3">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-(--radius-pill) bg-purple-950/40 border border-purple-500/30 flex items-center justify-center text-purple-300">
                     <HeartHandshake className="icon-md" />
                   </div>
@@ -204,7 +204,7 @@ export function SettingsModal() {
                 </div>
               </div>
 
-              <div className="pt-2.5 border-t border-white/[0.06] flex items-center justify-between">
+              <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between">
                 <span className="text-zinc-300 font-semibold">Default Permission:</span>
                 <button
                   type="button"
@@ -255,7 +255,7 @@ export function SettingsModal() {
         {/* AI TAB */}
         {activeTab === 'AI' && (
           <div className="space-y-3 type-caption">
-            <div className="p-4 bg-[#18181D] rounded-(--radius-control) border border-white/[0.08] space-y-2.5">
+            <div className="p-4 bg-[#18181D] rounded-(--radius-control) border border-white/[0.08] space-y-2">
               <div className="flex items-center gap-2 font-bold text-white">
                 <Sparkles className="icon-md text-purple-400" />
                 <span>UI99 Intelligence Architecture</span>
@@ -272,7 +272,7 @@ export function SettingsModal() {
         {/* Footer Actions */}
         <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between">
           <Button variant="ghost" size="sm" onClick={logout} className="text-rose-400 hover:bg-rose-500/10">
-            <LogOut className="icon-sm mr-1.5" />
+            <LogOut className="icon-sm mr-1" />
             Sign Out
           </Button>
 

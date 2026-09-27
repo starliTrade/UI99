@@ -39,11 +39,11 @@ export function CopyButton({ text, label = 'Copy', size = 'sm', className = '' }
       aria-label={copied ? 'Copied' : label}
       aria-live="polite"
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-(--radius-sm) font-mono type-micro transition-colors cursor-pointer',
+        'inline-flex items-center gap-1 rounded-(--radius-sm) font-mono type-micro transition-colors cursor-pointer',
         'border border-black/[0.06] bg-white text-zinc-600 hover:bg-black/[0.03]',
         'dark:border-(--border-strong) dark:bg-(--bg-card) dark:text-(--text-secondary) dark:hover:bg-(--bg-wash)',
         'focus-visible:outline-none focus-ui99-inset',
-        size === 'sm' ? 'h-8 px-2.5' : 'h-10 px-3.5',
+        size === 'sm' ? 'h-8 px-2' : 'h-10 px-3',
         className
       )}
     >

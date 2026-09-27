@@ -118,10 +118,10 @@ export function CodeBlock({
     >
       {/* Top Header Tab Bar */}
       {showChrome && (
-        <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-surface) px-3 sm:px-3.5 py-1.5 sm:py-2 select-none min-w-0">
+        <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-surface) px-3 sm:px-3 py-1 sm:py-2 select-none min-w-0">
           {/* Active File Tab */}
           <div className="flex items-center gap-2 min-w-0 flex-1">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) bg-white dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) shadow-xs min-w-0">
+            <div className="inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) shadow-xs min-w-0">
               {isBash ? (
                 <Terminal className="icon-sm text-emerald-600 dark:text-emerald-400 shrink-0" />
               ) : (
@@ -133,13 +133,13 @@ export function CodeBlock({
             </div>
 
             {/* Line Count Tag */}
-            <span className="hidden xs:inline-flex items-center type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-wash) shrink-0">
+            <span className="hidden xs:inline-flex items-center type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-wash) shrink-0">
               {lineCount} lines
             </span>
           </div>
 
           {/* Action Tools */}
-          <div className="flex items-center gap-1.5 shrink-0 ml-2">
+          <div className="flex items-center gap-1 shrink-0 ml-2">
             {/* Word wrap toggle */}
             <button
               type="button"
@@ -147,7 +147,7 @@ export function CodeBlock({
               title={wordWrap ? 'Disable wrap' : 'Enable word wrap'}
               aria-label="Toggle word wrap"
               className={cn(
-                'hidden sm:inline-flex items-center justify-center p-1.5 rounded-(--radius-sm) type-caption font-mono transition-colors cursor-pointer border',
+                'hidden sm:inline-flex items-center justify-center p-1 rounded-(--radius-sm) type-caption font-mono transition-colors cursor-pointer border',
                 wordWrap
                   ? 'bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border-emerald-500/30'
                   : 'bg-white dark:bg-(--bg-subtle) text-zinc-500 dark:text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) border-(--border-soft) dark:border-(--border-subtle)'
@@ -167,7 +167,7 @@ export function CodeBlock({
               onClick={copy}
               aria-label={copied ? 'Copied to clipboard' : 'Copy code'}
               className={cn(
-                'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer border shrink-0',
+                'inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer border shrink-0',
                 copied
                   ? 'bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 shadow-xs'
                   : 'bg-white dark:bg-(--bg-wash) text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border-(--border-soft) dark:border-(--border-strong)'
@@ -192,7 +192,7 @@ export function CodeBlock({
       {/* Code View Canvas */}
       <div
         className={cn(
-          'overflow-x-auto p-3.5 sm:p-4 font-mono type-caption sm:type-caption leading-relaxed text-zinc-800 dark:text-(--text-primary)',
+          'overflow-x-auto p-3 sm:p-4 font-mono type-caption sm:type-caption leading-relaxed text-zinc-800 dark:text-(--text-primary)',
           isCollapsed ? 'max-h-[160px] overflow-hidden' : ''
         )}
         style={{
@@ -215,7 +215,7 @@ export function CodeBlock({
                 >
                   {showLineNumbers && (
                     <span
-                      className="table-cell select-none text-right pr-3.5 sm:pr-4 type-micro text-(--text-secondary) dark:text-(--text-muted) group-hover/line:text-zinc-600 dark:group-hover/line:text-zinc-400 font-mono w-7 sm:w-9 shrink-0 align-top transition-colors"
+                      className="table-cell select-none text-right pr-3 sm:pr-4 type-micro text-(--text-secondary) dark:text-(--text-muted) group-hover/line:text-zinc-600 dark:group-hover/line:text-zinc-400 font-mono w-7 sm:w-9 shrink-0 align-top transition-colors"
                       aria-hidden="true"
                     >
                       {lineNum}
@@ -243,7 +243,7 @@ export function CodeBlock({
           <button
             type="button"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-(--radius-pill) type-caption font-mono font-medium text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white bg-white dark:bg-(--bg-wash) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border border-(--border-soft) dark:border-(--border-strong) transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-pill) type-caption font-mono font-medium text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white bg-white dark:bg-(--bg-wash) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border border-(--border-soft) dark:border-(--border-strong) transition-colors cursor-pointer"
           >
             {isCollapsed ? (
               <>

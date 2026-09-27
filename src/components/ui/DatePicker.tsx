@@ -110,7 +110,7 @@ export function DatePicker({
               type="button"
               onClick={() => shiftMonth(-1)}
               aria-label="Previous month"
-              className="rounded-(--radius-sm) p-1.5 text-(--text-muted) hover:bg-(--bg-subtle) dark:text-(--text-secondary) dark:hover:bg-(--bg-raised) focus-visible:outline-none focus-ui99 cursor-pointer"
+              className="rounded-(--radius-sm) p-1 text-(--text-muted) hover:bg-(--bg-subtle) dark:text-(--text-secondary) dark:hover:bg-(--bg-raised) focus-visible:outline-none focus-ui99 cursor-pointer"
             >
               <ChevronLeft className="icon-md" />
             </button>
@@ -121,7 +121,7 @@ export function DatePicker({
               type="button"
               onClick={() => shiftMonth(1)}
               aria-label="Next month"
-              className="rounded-(--radius-sm) p-1.5 text-(--text-muted) hover:bg-(--bg-subtle) dark:text-(--text-secondary) dark:hover:bg-(--bg-raised) focus-visible:outline-none focus-ui99 cursor-pointer"
+              className="rounded-(--radius-sm) p-1 text-(--text-muted) hover:bg-(--bg-subtle) dark:text-(--text-secondary) dark:hover:bg-(--bg-raised) focus-visible:outline-none focus-ui99 cursor-pointer"
             >
               <ChevronRight className="icon-md" />
             </button>

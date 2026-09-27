@@ -53,13 +53,13 @@ export function SplitButton({
 
   const mainPadding = {
     sm: 'px-3',
-    md: 'px-3.5',
+    md: 'px-3',
     lg: 'px-4',
   }[size];
 
   const triggerPadding = {
     sm: 'px-2',
-    md: 'px-2.5',
+    md: 'px-2',
     lg: 'px-3',
   }[size];
 
@@ -107,7 +107,7 @@ export function SplitButton({
 
       {/* Dropdown Menu */}
       {open && (
-        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-strong) shadow-xl z-popover animate-in fade-in zoom-in-95 dur-fast">
+        <div className="absolute top-full right-0 mt-1 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-strong) shadow-xl z-popover animate-in fade-in zoom-in-95 dur-fast">
           {items.map((item, idx) => (
             <button
               key={idx}
@@ -117,7 +117,7 @@ export function SplitButton({
                 item.onClick();
                 setOpen(false);
               }}
-              className="w-full px-3 py-1.5 type-caption text-left font-mono flex items-center gap-2 text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full px-3 py-1 type-caption text-left font-mono flex items-center gap-2 text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {item.icon && <span className="w-3.5 h-3.5">{item.icon}</span>}
               <span>{item.label}</span>

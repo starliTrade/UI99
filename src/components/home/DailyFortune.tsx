@@ -89,7 +89,7 @@ export function DailyFortune() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.25 }}
-              className="w-full space-y-2.5"
+              className="w-full space-y-2"
             >
               <p className="type-body font-medium text-[#EDEDEF] leading-relaxed tracking-wide font-persian-luxury">
                 "{isRTL ? fortune.whisperFa : fortune.whisperEn}"

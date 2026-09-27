@@ -24,11 +24,11 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
   const isDark = useIsDark();
 
   return (
-    <nav aria-label="Breadcrumb" className={`flex items-center space-x-1.5 type-caption font-medium ${className}`}>
+    <nav aria-label="Breadcrumb" className={`flex items-center space-x-1 type-caption font-medium ${className}`}>
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
         return (
-          <div key={index} className="flex items-center space-x-1.5">
+          <div key={index} className="flex items-center space-x-1">
             {index > 0 && (
               <ChevronRight className="icon-sm text-(--text-secondary) shrink-0 rtl:rotate-180" />
             )}
@@ -36,7 +36,7 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
               <button
                 type="button"
                 onClick={item.onClick}
-                className={`flex items-center gap-1.5 px-1.5 py-0.5 rounded-(--radius-xs) transition-colors cursor-pointer ${
+                className={`flex items-center gap-1 px-1 py-0.5 rounded-(--radius-xs) transition-colors cursor-pointer ${
                   isLast || item.active
                     ? isDark
                       ? 'text-(--text-primary) font-semibold'
@@ -51,7 +51,7 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
               </button>
             ) : (
               <span
-                className={`flex items-center gap-1.5 px-1.5 py-0.5 ${
+                className={`flex items-center gap-1 px-1 py-0.5 ${
                   isLast || item.active
                     ? isDark
                       ? 'text-(--text-primary) font-semibold'

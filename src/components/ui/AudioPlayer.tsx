@@ -130,7 +130,7 @@ export function AudioPlayer({
             type="button"
             onClick={() => setCurrentTime((prev) => Math.max(0, prev - 10))}
             aria-label="Rewind 10 seconds"
-            className="p-1.5 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             <RotateCcw className="icon-sm" />
           </button>
@@ -149,7 +149,7 @@ export function AudioPlayer({
             type="button"
             onClick={() => setCurrentTime((prev) => Math.min(durationSec, prev + 10))}
             aria-label="Forward 10 seconds"
-            className="p-1.5 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             <RotateCw className="icon-sm" />
           </button>

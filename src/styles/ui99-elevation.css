@@ -87,13 +87,25 @@
   --elevation-4: 0 3px 8px rgba(23, 22, 40, 0.05), 0 16px 36px -12px rgba(23, 22, 40, 0.07);
   --elevation-5: 0 4px 12px rgba(23, 22, 40, 0.06), 0 24px 48px -14px rgba(23, 22, 40, 0.09);
 
-  /* Light surfaces get a rim only when they sit on a brighter page. */
-  --rim-subtle: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
-  --rim-soft: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
-  --rim-strong: inset 0 1px 0 0 rgba(255, 255, 255, 1);
+  /* Light rims are DARKENED, and this is not a stylistic preference.
+     A rim is a specular highlight — light catching the top edge of a surface.
+     In dark that highlight is white on a near-black card, so it lifts the
+     edge 6-14% off the canvas and does most of the work of making the surface
+     read as glass. In light, `inset 0 1px 0 rgba(255,255,255,…)` is a white
+     line on a white card: it composites to nothing at all, which is what this
+     block used to declare and why light surfaces looked flatter than dark ones
+     no matter how much shadow they were given.
+     So the polarity flips and the ALPHAS STAY IDENTICAL to dark's — 0.028 /
+     0.04 / 0.06 of ink darkens a white card by 7 / 10 / 15 levels, which is
+     the same step each of dark's white rims lifts it by. The rim hue is the
+     same ink the light shadows already use (#171628), not pure black, so the
+     edge cools instead of greying. */
+  --rim-subtle: inset 0 1px 0 0 rgba(23, 22, 40, 0.028);
+  --rim-soft: inset 0 1px 0 0 rgba(23, 22, 40, 0.04);
+  --rim-strong: inset 0 1px 0 0 rgba(23, 22, 40, 0.06);
   --rim-crisp:
-    inset 0 1px 0 0 rgba(255, 255, 255, 1),
-    inset 0 0 0 1px rgba(23, 22, 40, 0.04);
+    inset 0 1px 0 0 rgba(23, 22, 40, 0.06),
+    inset 0 0 0 1px rgba(23, 22, 40, 0.022);
 
   --shadow-card: var(--rim-soft), var(--elevation-1);
   --shadow-card-hover: var(--rim-strong), var(--elevation-2);

@@ -115,10 +115,10 @@ export function SpendingSpectrumCard({
         </div>
 
         {/* Category Breakdown */}
-        <div className="space-y-2.5 pt-1">
+        <div className="space-y-2 pt-1">
           {items.map((item, i) => (
             <div key={i} className="flex items-center justify-between type-caption sm:type-body">
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2">
                 <span className={`w-2 h-3.5 rounded-(--radius-pill) ${item.colorClass} shadow-(--glow-current-sm)`} />
                 <span className={`font-medium tracking-tight ${isDark ? 'text-[#90909A]' : 'text-[#6E6E78]'}`}>
                   {item.name}

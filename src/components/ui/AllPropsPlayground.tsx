@@ -390,10 +390,10 @@ export function AllPropsPlayground() {
   };
 
   return (
-    <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-5">
+    <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-(--border-subtle) dark:border-(--border-soft) pb-4">
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           <Database className="icon-lg text-emerald-500" />
           <div>
             <h3 className="type-body font-bold text-zinc-950 dark:text-(--text-primary) tracking-tight">
@@ -420,7 +420,7 @@ export function AllPropsPlayground() {
       </div>
 
       {/* Component selector */}
-      <div className="flex flex-wrap gap-1.5 max-h-40 overflow-y-auto p-1 -m-1" role="tablist" aria-label="Playground component">
+      <div className="flex flex-wrap gap-1 max-h-40 overflow-y-auto p-1 -m-1" role="tablist" aria-label="Playground component">
         {COMPONENTS.map((c) => (
           <button
             key={c.value}
@@ -428,7 +428,7 @@ export function AllPropsPlayground() {
             role="tab"
             aria-selected={component === c.value}
             onClick={() => setComponent(c.value)}
-            className={`inline-flex items-center gap-1.5 h-8 px-3 rounded-(--radius-pill) type-caption font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99 ${
+            className={`inline-flex items-center gap-1 h-8 px-3 rounded-(--radius-pill) type-caption font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99 ${
               component === c.value
                 ? 'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs'
                 : 'bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-700 dark:text-(--text-secondary) hover:bg-state-hover'
@@ -440,14 +440,14 @@ export function AllPropsPlayground() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Props panel */}
-        <div className="lg:col-span-4 space-y-3.5" role="tabpanel">
+        <div className="lg:col-span-4 space-y-3" role="tabpanel">
           {component === 'data-table' && (
             <>
               <Switch size="sm" checked={dtSearchable} onChange={setDtSearchable} label="Searchable" />
               <div>
-                <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Page size</span>
+                <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1">Page size</span>
                 <Segmented
                   value={dtPageSize}
                   onChange={setDtPageSize}
@@ -467,13 +467,13 @@ export function AllPropsPlayground() {
           )}
           {component === 'slider' && (
             <div>
-              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Unit</span>
+              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1">Unit</span>
               <Segmented value={slUnit} onChange={setSlUnit} options={[{ value: '%', label: '%' }, { value: 'px', label: 'px' }, { value: 'ms', label: 'ms' }]} />
             </div>
           )}
           {component === 'switch' && (
             <div>
-              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Size</span>
+              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1">Size</span>
               <Segmented value={swSize} onChange={setSwSize} options={[{ value: 'sm', label: 'sm' }, { value: 'md', label: 'md' }, { value: 'lg', label: 'lg' }]} />
             </div>
           )}
@@ -482,7 +482,7 @@ export function AllPropsPlayground() {
           )}
           {component === 'otp' && (
             <div>
-              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Length</span>
+              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1">Length</span>
               <Segmented value={otpLength} onChange={setOtpLength} options={[4, 5, 6].map((n) => ({ value: n, label: String(n) }))} />
             </div>
           )}
@@ -494,7 +494,7 @@ export function AllPropsPlayground() {
           {component === 'time-picker' && (
             <>
               <div>
-                <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Step (minutes)</span>
+                <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1">Step (minutes)</span>
                 <Segmented value={tpStep} onChange={setTpStep} options={[5, 15, 30, 60].map((n) => ({ value: n as 5 | 15 | 30 | 60, label: String(n) }))} />
               </div>
               <Button variant="outline" size="xs" onClick={() => setTpValue(null)}>Clear value</Button>
@@ -507,7 +507,7 @@ export function AllPropsPlayground() {
           )}
           {component === 'checkbox' && (
             <div>
-              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Size</span>
+              <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1">Size</span>
               <Segmented value={ckSize} onChange={setCkSize} options={[{ value: 'sm' as const, label: 'sm' }, { value: 'md' as const, label: 'md' }]} />
             </div>
           )}
@@ -604,7 +604,7 @@ export function AllPropsPlayground() {
           {component === 'avatar-stack' && (
             <>
               <div>
-                <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1.5">Max visible</span>
+                <span className="type-caption font-semibold text-(--text-muted) dark:text-(--text-secondary) block mb-1">Max visible</span>
                 <Segmented value={asMax} onChange={setAsMax} options={[3, 4, 5].map((n) => ({ value: n, label: String(n) }))} />
               </div>
               <div className="type-micro text-(--text-muted) dark:text-(--text-secondary)">+1 more → overflow counter</div>
@@ -768,7 +768,7 @@ export function AllPropsPlayground() {
                   { value: 'porcelain', label: 'Matte Porcelain' },
                   { value: 'graphite', label: 'Studio Graphite' },
                 ].map((opt) => (
-                  <div key={opt.value} className="flex items-center gap-2.5">
+                  <div key={opt.value} className="flex items-center gap-2">
                     <RadioGroupItem value={opt.value} id={`rg-${opt.value}`} />
                     <Label htmlFor={`rg-${opt.value}`} className="type-body cursor-pointer">{opt.label}</Label>
                   </div>
@@ -879,7 +879,7 @@ export function AllPropsPlayground() {
                   </button>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-64">
-                  <div className="space-y-1.5">
+                  <div className="space-y-1">
                     <div className="flex items-center gap-2">
                       <Badge>UI99</Badge>
                       <span className="type-caption font-semibold text-zinc-950 dark:text-(--text-primary)">Velvet context</span>
@@ -1049,7 +1049,7 @@ function Segmented<T extends string | number>({
           key={String(o.value)}
           type="button"
           onClick={() => onChange(o.value)}
-          className={`h-6 px-2.5 rounded-(--radius-pill) type-micro font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99-inset ${
+          className={`h-6 px-2 rounded-(--radius-pill) type-micro font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99-inset ${
             value === o.value
               ? 'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs'
               : 'text-zinc-600 dark:text-(--text-secondary) hover:text-zinc-900 dark:hover:text-(--text-primary)'
@@ -1068,7 +1068,7 @@ function CodePanel({ code }: { code: string }) {
   return (
     <div className="relative rounded-(--radius-control) bg-zinc-950 dark:bg-black/40 border border-(--border-soft) dark:border-(--border-strong) overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2 border-b border-white/[0.06]">
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1">
           <span className="icon-dot rounded-(--radius-pill) bg-rose-400/70" />
           <span className="icon-dot rounded-(--radius-pill) bg-amber-400/70" />
           <span className="icon-dot rounded-(--radius-pill) bg-emerald-400/70" />

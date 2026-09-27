@@ -49,7 +49,7 @@ export function Progress({
   if (segmented && segmented > 1) {
     const currentStep = Math.round((percentage / 100) * segmented);
     return (
-      <div className={`w-full space-y-1.5 ${className}`}>
+      <div className={`w-full space-y-1 ${className}`}>
         {(label || showValue) && (
           <div className="flex items-center justify-between type-caption">
             {label && (
@@ -64,7 +64,7 @@ export function Progress({
             )}
           </div>
         )}
-        <div className="grid gap-1.5" style={{ gridTemplateColumns: `repeat(${segmented}, minmax(0, 1fr))` }}>
+        <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${segmented}, minmax(0, 1fr))` }}>
           {Array.from({ length: segmented }).map((_, i) => {
             const isFilled = i < currentStep;
             return (
@@ -86,7 +86,7 @@ export function Progress({
   }
 
   return (
-    <div className={`w-full space-y-1.5 ${className}`}>
+    <div className={`w-full space-y-1 ${className}`}>
       {(label || showValue) && (
         <div className="flex items-center justify-between type-caption">
           {label && (

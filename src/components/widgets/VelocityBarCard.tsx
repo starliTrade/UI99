@@ -60,14 +60,14 @@ export function VelocityBarCard({
         </div>
 
         {/* Trend Indicator Pill */}
-        <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) type-caption font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
+        <div className="mt-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-(--radius-pill) type-caption font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
           <span className="type-micro">▲</span>
           <span>{trend}</span>
         </div>
       </div>
 
       {/* Pillar Bar Columns */}
-      <div className="mt-8 pt-2 flex items-end justify-between gap-2.5 sm:gap-3 h-36 relative z-content">
+      <div className="mt-8 pt-2 flex items-end justify-between gap-2 sm:gap-3 h-36 relative z-content">
         {bars.map((bar, i) => {
           if (bar.isHighlighted) {
             return (

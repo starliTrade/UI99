@@ -48,10 +48,10 @@ export function BottomNavigation({
   return (
     <nav
       aria-label="Primary"
-      className="fixed inset-x-0 bottom-0 z-dock px-3 sm:px-6 pb-safe pt-1 pointer-events-none flex justify-center items-center mb-2.5 sm:mb-3.5 w-full"
+      className="fixed inset-x-0 bottom-0 z-dock px-3 sm:px-6 pb-safe pt-1 pointer-events-none flex justify-center items-center mb-2 sm:mb-3 w-full"
       dir="ltr"
     >
-      <div className="pointer-events-auto flex items-center justify-center gap-1.5 w-full max-w-[380px] mx-auto">
+      <div className="pointer-events-auto flex items-center justify-center gap-1 w-full max-w-[380px] mx-auto">
         <div
           className={`relative flex-1 flex items-center justify-between p-0.5 sm:p-1 rounded-(--radius-pill) select-none transition-all dur-slow ${
             isDark ? 'liquid-glass-dark-dock' : 'liquid-glass-light-dock'
@@ -66,7 +66,7 @@ export function BottomNavigation({
                 key={item.tab}
                 type="button"
                 onClick={() => onTabChange?.(item.tab)}
-                className="group relative flex-1 min-h-[44px] py-1.5 px-1 rounded-(--radius-pill) cursor-pointer flex flex-col items-center justify-center transition-all dur-quick active:scale-95 focus-ui99"
+                className="group relative flex-1 min-h-[44px] py-1 px-1 rounded-(--radius-pill) cursor-pointer flex flex-col items-center justify-center transition-all dur-quick active:scale-95 focus-ui99"
                 title={isRTL ? item.faIntent : item.intent}
                 aria-label={isRTL ? item.faLabel : item.label}
                 aria-current={isActive ? 'page' : undefined}

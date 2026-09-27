@@ -53,7 +53,7 @@ export function ProjectProgressCard({
       <div className={`absolute -top-10 -right-10 w-44 h-44 rounded-(--radius-pill) blur-2xl pointer-events-none ${isDark ? 'bg-emerald-500/15' : 'bg-emerald-500/10'}`} />
 
       {/* Top row: Sparkle icon */}
-      <div className="flex items-center gap-2 mb-2.5 relative z-content">
+      <div className="flex items-center gap-2 mb-2 relative z-content">
         <div
           className={`w-6 h-6 rounded-(--radius-pill) flex items-center justify-center transition-colors ${
             isDark ? 'bg-white/[0.08] text-white/90' : 'bg-black/[0.05] text-black/80'
@@ -80,11 +80,11 @@ export function ProjectProgressCard({
       </div>
 
       {/* Title & Category Capsule Tag */}
-      <div className="flex items-center gap-2.5 flex-wrap mb-1 relative z-content">
+      <div className="flex items-center gap-2 flex-wrap mb-1 relative z-content">
         <h3 className={`type-body-lg sm:type-body-lg font-semibold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
           {title}
         </h3>
-        <span className="px-2.5 py-0.5 rounded-(--radius-pill) type-caption font-medium text-emerald-500 bg-emerald-500/10 border border-emerald-500/20">
+        <span className="px-2 py-0.5 rounded-(--radius-pill) type-caption font-medium text-emerald-500 bg-emerald-500/10 border border-emerald-500/20">
           {category}
         </span>
       </div>
@@ -119,7 +119,7 @@ export function ProjectProgressCard({
           <span className={`block type-caption font-medium mb-2 tracking-tight ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
             Collaborators {collaboratorsCount}
           </span>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             {collaboratorImages.map((src, i) => (
               <img
                 key={i}
@@ -135,7 +135,7 @@ export function ProjectProgressCard({
         <button
           type="button"
           onClick={onClick || (() => openCapture(ObjectType.PROJECT))}
-          className={`flex items-center gap-1.5 px-4 py-2 rounded-(--radius-pill) type-caption font-semibold cursor-pointer transition-all active:scale-95 ${
+          className={`flex items-center gap-1 px-4 py-2 rounded-(--radius-pill) type-caption font-semibold cursor-pointer transition-all active:scale-95 ${
             isDark
               ? 'bg-white/[0.08] hover:bg-white/[0.14] text-white shadow-(--shadow-card)'
               : 'bg-black/[0.05] hover:bg-black/[0.08] text-[#111116] shadow-(--elevation-1)'

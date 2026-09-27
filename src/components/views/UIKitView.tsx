@@ -412,7 +412,7 @@ export function UIKitView() {
   return (
     <div className="space-y-10 pb-28">
       {/* 1. PAGE HEADER — Atmospheric Obsidian Halo & Precision Hierarchy */}
-      <header className="relative pb-4 space-y-5 overflow-visible">
+      <header className="relative pb-4 space-y-4 overflow-visible">
         {/* Soft emerald brand halo glow */}
         <div
           aria-hidden="true"
@@ -423,7 +423,7 @@ export function UIKitView() {
           }}
         />
 
-        <div className="flex flex-col items-start gap-2.5">
+        <div className="flex flex-col items-start gap-2">
           <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft)">
 v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           </div>
@@ -436,7 +436,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
 
         {/* 4-Pillar Quality Indicators */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
           <div className="p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-(--shadow-card)">
             <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted) block">Catalog</span>
             <span className="type-body font-bold text-zinc-900 dark:text-zinc-100 font-mono">{KIT_COMPONENT_COUNT} Primitives</span>
@@ -458,7 +458,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         {/* Hero Quick Action Bar */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
           {/* CLI Box */}
-          <div className="h-9 inline-flex items-center gap-2 pl-3 pr-1.5 rounded-(--radius-field) bg-(--bg-wash) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono text-zinc-800 dark:text-zinc-200">
+          <div className="h-9 inline-flex items-center gap-2 pl-3 pr-1 rounded-(--radius-field) bg-(--bg-wash) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono text-zinc-800 dark:text-zinc-200">
             <span className="text-emerald-500 font-bold select-none">&gt;_</span>
             <span className="font-medium">npx @99/ui add button</span>
             <button
@@ -484,7 +484,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       </header>
 
       {/* 2. CATEGORY SELECTOR & INSTANT COMPONENT SEARCH (Linear-Style Sticky Filter Rail) */}
-      <div className="sticky top-14 z-sticky py-2.5 backdrop-blur-xl bg-white/90 dark:bg-[#06070A]/90 border-b border-(--border-subtle) dark:border-(--border-subtle) space-y-2">
+      <div className="sticky top-14 z-sticky py-2 backdrop-blur-xl bg-white/90 dark:bg-[#06070A]/90 border-b border-(--border-subtle) dark:border-(--border-subtle) space-y-2">
         <div className="flex items-center gap-2">
           {/* Quick Search */}
           <div className="relative flex-1 max-w-sm">
@@ -494,7 +494,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={isRTL ? `جستجو در ${KIT_COMPONENT_COUNT.toLocaleString('fa-IR')} کامپوننت و توکن...` : `Filter ${KIT_COMPONENT_COUNT} components...`}
-              className="w-full pl-8 pr-7 py-1.5 rounded-(--radius-field) type-caption font-mono bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) text-zinc-900 dark:text-[#EDEDEF] placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-all"
+              className="w-full pl-8 pr-7 py-1 rounded-(--radius-field) type-caption font-mono bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) text-zinc-900 dark:text-[#EDEDEF] placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-all"
             />
             {searchQuery && (
               <button
@@ -526,9 +526,9 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       {/* 3. FOUNDATIONS SECTION: Color Science, Psychology, Typography, Radii Math */}
       {/* ========================================================================= */}
       {isSectionVisible('FOUNDATIONS', ['foundation', 'color', 'obsidian', 'porcelain', 'psychology', 'contrast', 'wcag', 'typography', 'radii']) && (
-        <section className="space-y-8">
+        <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <Palette className="icon-lg text-emerald-500" />
               <div>
                 <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -539,7 +539,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 </p>
               </div>
             </div>
-            <span className="type-micro font-mono px-2.5 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-[#8E8E98]">
+            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-[#8E8E98]">
               RATIO 18.4:1
             </span>
           </div>
@@ -649,7 +649,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               10% Semantic Color Psychology (Functional Signals)
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
               {[
                 { name: 'Emerald', hex: '#10B981', psych: tokens.psychology.emerald },
                 { name: 'Amber', hex: '#F59E0B', psych: tokens.psychology.amber },
@@ -686,7 +686,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               <span className="type-micro font-mono text-zinc-400">RATIO 1.25 (MAJOR THIRD)</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Persian Luxury */}
               <div className="p-5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) space-y-3 text-right rtl">
                 <span className="type-micro font-mono font-bold uppercase text-emerald-600 dark:text-emerald-400">
@@ -713,7 +713,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                   Precision Velocity & Sub-Pixel Rims
                 </p>
                 <p className="type-body text-zinc-600 dark:text-[#92929B] leading-relaxed">
-                  Calibrated 1.5–1.7 leading with zero clipping in pills, tags, and command bars: <code className="type-caption font-mono px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-(--state-selected)">⌘K Spotlight</code>
+                  Calibrated 1.5–1.7 leading with zero clipping in pills, tags, and command bars: <code className="type-caption font-mono px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-(--state-selected)">⌘K Spotlight</code>
                 </p>
                 <div className="pt-2 flex items-center justify-between type-caption font-mono text-zinc-400 border-t border-(--border-subtle) dark:border-(--border-soft)">
                   <span>Plus Jakarta Sans & JetBrains Mono</span>
@@ -760,9 +760,9 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       {/* 4. COMPONENT SUITE (shadcn/ui style live registry) */}
       {/* ========================================================================= */}
       {isSectionVisible('COMPONENTS', ['button', 'buttons', 'slider', 'progress', 'switch', 'checkbox', 'radio', 'dropdown', 'input', 'textarea', 'modal', 'accordion', 'tooltip', 'breadcrumb', 'tag', 'avatar', 'wave', 'separator', 'alert', 'dialog', 'table', 'stepper', 'timeline', 'sparkline', 'stat', 'donut', 'heatmap', 'menubar', 'rating', 'otp', 'color', 'password', 'tag', 'editor', 'banner', 'kanban', 'diff', 'tree', 'terminal', 'audio', 'split', 'fab', 'currency', 'pin', 'spinner']) && (
-        <section className="space-y-8">
+        <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <Sliders className="icon-lg text-emerald-500" />
               <div>
                 <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -773,20 +773,20 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 </p>
               </div>
             </div>
-            <span className="type-micro font-mono px-2.5 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-[#8E8E98]">
+            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-[#8E8E98]">
               ATOMIC EXPORTS
             </span>
           </div>
 
           {/* Interactive Component Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Card 1: Buttons & IconButtons */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Buttons & IconButtons</h3>
                 <span className="type-micro font-mono text-zinc-400">Button, IconButton</span>
               </div>
-              <div className="flex flex-wrap items-center gap-2.5">
+              <div className="flex flex-wrap items-center gap-2">
                 {(
                   [
                     'primary',
@@ -915,7 +915,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                     Hover For Tooltip
                   </Button>
                 </Tooltip>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1">
                   <Kbd size="sm">⌘</Kbd>
                   <Kbd size="sm">K</Kbd>
                 </div>
@@ -1197,7 +1197,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <Sparkles className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1211,7 +1211,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           <Badge variant="green" size="sm">NEW</Badge>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Toggle + ToggleGroup */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Toggle & Group</h3>
@@ -1275,7 +1275,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                   </HoverCardContent>
                 </HoverCard>
                 <Collapsible>
-                  <CollapsibleTrigger className="flex items-center gap-1.5 type-caption font-semibold text-zinc-700 dark:text-[#92929B]">
+                  <CollapsibleTrigger className="flex items-center gap-1 type-caption font-semibold text-zinc-700 dark:text-[#92929B]">
                     <ChevronDown className="icon-sm transition-transform group-data-[state=open]:rotate-180" />
                     Show install steps
                   </CollapsibleTrigger>
@@ -1297,7 +1297,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <ShieldCheck className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1311,9 +1311,9 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           <Badge variant="green" size="sm">NEW</Badge>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {/* AlertDialog + RadioGroup */}
-          <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-5">
+          <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Interruptive Flows</h3>
             <AlertDialog>
               <AlertDialogTrigger asChild>
@@ -1335,18 +1335,18 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
             <Separator />
 
-            <fieldset className="space-y-2.5">
+            <fieldset className="space-y-2">
               <legend className="type-caption font-semibold text-zinc-700 dark:text-[#92929B] mb-2">Visibility</legend>
               <RadioGroup defaultValue="private">
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2">
                   <RadioGroupItem value="private" id="rg-private" />
                   <Label htmlFor="rg-private" className="font-normal type-caption cursor-pointer">Private — only me</Label>
                 </div>
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2">
                   <RadioGroupItem value="team" id="rg-team" />
                   <Label htmlFor="rg-team" className="font-normal type-caption cursor-pointer">Team — workspace members</Label>
                 </div>
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2">
                   <RadioGroupItem value="public" id="rg-public" disabled />
                   <Label htmlFor="rg-public" className="font-normal type-caption opacity-50">Public (soon)</Label>
                 </div>
@@ -1406,7 +1406,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <Compass className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1420,7 +1420,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           <Badge variant="green" size="sm">NEW</Badge>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Stepper</h3>
             <Stepper steps={['Capture', 'Organize', 'Review']} current={1} />
@@ -1448,7 +1448,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <SlidersHorizontal className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1469,7 +1469,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           <StatTile label="Review load" value={68} size="md" trend={<DonutRing segments={[{ value: 68 }]} size={40} thickness={5} label="Review load" />} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Sparkline modes</h3>
             <div className="flex items-end gap-4 flex-wrap">
@@ -1517,7 +1517,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <LayoutGrid className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1531,7 +1531,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           <Badge variant="green" size="sm">NEW</Badge>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Menubar & NavigationMenu</h3>
             <Menubar>
@@ -1608,7 +1608,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <LayoutGrid className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1622,8 +1622,8 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           <Badge variant="green" size="sm">NEW</Badge>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">AvatarStack & CodeBlock</h3>
             <AvatarStack names={['Sara', 'Ali', 'Nima', 'Raha', 'Omid', 'Bahar']} max={4} size="md" />
             <CodeBlock
@@ -1663,7 +1663,7 @@ export default function App() {
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <Calendar className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1677,7 +1677,7 @@ export default function App() {
           <Badge variant="green" size="sm">NEW</Badge>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-3">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">DatePicker</h3>
             <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">Popover month grid · today ring · disabledDates</p>
@@ -1713,7 +1713,7 @@ export default function App() {
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <Star className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1727,13 +1727,13 @@ export default function App() {
           <Badge variant="green" size="sm">NEW</Badge>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Rating & NumberField</h3>
             <WaveHInputsDemo />
           </div>
 
-          <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-5">
+          <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">OTPInput</h3>
             <p className="type-caption text-zinc-500 dark:text-[#8E8E98]">Auto-advance · paste · arrows</p>
             <OTPInput length={6} />
@@ -1756,7 +1756,7 @@ export default function App() {
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <Sparkles className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1778,7 +1778,7 @@ export default function App() {
           onAction={() => setIsShortcutsOpen(true)}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* ColorPicker & RichTextEditorBar */}
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">ColorPicker & Toolbar</h3>
@@ -1824,7 +1824,7 @@ export default function App() {
         </div>
 
         {/* Signature Pad */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-3">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Vector SignaturePad</h3>
             <SignaturePad />
@@ -1846,7 +1846,7 @@ export default function App() {
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <Layers className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1861,7 +1861,7 @@ export default function App() {
         </div>
 
         {/* Terminal & Audio Player */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-3">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Interactive CLI Terminal</h3>
             <TerminalEmulator />
@@ -1892,7 +1892,7 @@ export default function App() {
         </div>
 
         {/* TreeView, CalendarView, ActivityFeed */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-3">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Hierarchical TreeView</h3>
             <TreeView
@@ -1942,7 +1942,7 @@ export default function App() {
       {/* ========================================================================= */}
       <section className="space-y-6">
         <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <Boxes className="icon-lg text-emerald-500" />
             <div>
               <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -1957,7 +1957,7 @@ export default function App() {
         </div>
 
         {/* Row 1: Actions & Advanced Buttons */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-3">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">SplitButton</h3>
             <p className="type-caption text-zinc-500">Primary action + chevron menu</p>
@@ -2025,7 +2025,7 @@ export default function App() {
         </div>
 
         {/* Row 2: Precision Form Inputs */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-3">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">PinInput (Security)</h3>
             <p className="type-caption text-zinc-500">Masked bullet progression</p>
@@ -2056,7 +2056,7 @@ export default function App() {
         </div>
 
         {/* Row 3: DataTable, MetricCard, CheckboxGroup */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2 p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
             <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF]">Enterprise DataTable</h3>
             <p className="type-caption text-zinc-500">Searchable, sortable, paginated high-velocity table</p>
@@ -2118,7 +2118,7 @@ export default function App() {
       {isSectionVisible('LINEAR_PATTERNS', ['linear', 'issue', 'tracker', 'task', 'workflow', 'priority', 'status']) && (
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <Terminal className="icon-lg text-emerald-500" />
               <div>
                 <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -2146,7 +2146,7 @@ export default function App() {
       {isSectionVisible('SURFACES', ['surface', 'glass', 'dock', 'liquid glass', 'auras', 'specular', 'materials']) && (
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <Sparkles className="icon-lg text-emerald-500" />
               <div>
                 <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -2157,12 +2157,12 @@ export default function App() {
                 </p>
               </div>
             </div>
-            <span className="type-micro font-mono px-2.5 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-[#8E8E98]">
+            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-[#8E8E98]">
               PHYSICS & BLUR
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Obsidian Liquid Glass Dock */}
             <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-[#06070A] border border-white/[0.04] shadow-2xl space-y-4">
               <div className="flex items-center justify-between text-white">
@@ -2170,7 +2170,7 @@ export default function App() {
                 <span className="type-micro text-zinc-400">rgba(14,14,19,0.52) • blur(20px)</span>
               </div>
               <div className="py-6 flex justify-center">
-                <div className="liquid-glass-dark-dock px-4 py-2.5 rounded-(--radius-pill) flex items-center gap-3">
+                <div className="liquid-glass-dark-dock px-4 py-2 rounded-(--radius-pill) flex items-center gap-3">
                   <span className="p-2 rounded-(--radius-pill) bg-white/[0.06] text-white">
                     <LayoutGrid className="icon-md" />
                   </span>
@@ -2197,7 +2197,7 @@ export default function App() {
                 <span className="type-micro text-zinc-500">rgba(255,255,255,0.72) • blur(24px)</span>
               </div>
               <div className="py-6 flex justify-center">
-                <div className="liquid-glass-light-dock px-4 py-2.5 rounded-(--radius-pill) flex items-center gap-3">
+                <div className="liquid-glass-light-dock px-4 py-2 rounded-(--radius-pill) flex items-center gap-3">
                   <span className="p-2 rounded-(--radius-pill) bg-zinc-950 text-white shadow-xs">
                     <LayoutGrid className="icon-md" />
                   </span>
@@ -2226,7 +2226,7 @@ export default function App() {
       {isSectionVisible('REGISTRY', ['registry', 'install', 'cli', 'npm', 'package', 'architecture']) && (
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <Package className="icon-lg text-emerald-500" />
               <div>
                 <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -2237,7 +2237,7 @@ export default function App() {
                 </p>
               </div>
             </div>
-            <span className="type-micro font-mono px-2.5 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-[#8E8E98]">
+            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-[#8E8E98]">
               UNIVERSAL REUSABILITY
             </span>
           </div>
@@ -2296,10 +2296,10 @@ export default function App() {
               <table className="w-full type-caption text-left">
                 <thead>
                   <tr className="border-b border-(--border-soft) dark:border-(--border-soft) text-zinc-400 font-mono">
-                    <th className="py-2.5 px-3">Component</th>
-                    <th className="py-2.5 px-3">Module Path</th>
-                    <th className="py-2.5 px-3">Key Props</th>
-                    <th className="py-2.5 px-3">Dual-Theme Status</th>
+                    <th className="py-2 px-3">Component</th>
+                    <th className="py-2 px-3">Module Path</th>
+                    <th className="py-2 px-3">Key Props</th>
+                    <th className="py-2 px-3">Dual-Theme Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-(--border-subtle) dark:divide-(--border-subtle)">
@@ -2337,7 +2337,7 @@ export default function App() {
       {isSectionVisible('SANDBOX', ['sandbox', 'live', 'code lab', 'generator', 'jsx', 'interactive']) && (
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) pb-3">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <Code className="icon-lg text-emerald-500" />
               <div>
                 <h2 className="type-title font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
@@ -2348,12 +2348,12 @@ export default function App() {
                 </p>
               </div>
             </div>
-            <span className="type-micro font-mono px-2.5 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-[#8E8E98]">
+            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-[#8E8E98]">
               LIVE GENERATOR
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
             {/* Controls */}
             <div className="lg:col-span-5 p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-4">
               <h3 className="type-body font-bold text-zinc-950 dark:text-[#EDEDEF] tracking-tight">
@@ -2411,7 +2411,7 @@ export default function App() {
                 </>
               )}
 
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <span className="type-caption font-semibold text-zinc-500">Size</span>
                 <SegmentedControl
                   size="sm"
@@ -2449,14 +2449,14 @@ export default function App() {
                   </span>
                 </div>
 
-                <div className="absolute top-3 right-4 flex items-center gap-1.5">
+                <div className="absolute top-3 right-4 flex items-center gap-1">
                   <div className="flex items-center p-0.5 rounded-(--radius-sm) bg-(--bg-raised) dark:bg-[#07080B] border border-(--border-soft) dark:border-(--border-soft)">
                     {(['npm', 'pnpm', 'yarn', 'bun'] as const).map((pm) => (
                       <button
                         key={pm}
                         type="button"
                         onClick={() => setSbPackageManager(pm)}
-                        className={`px-1.5 py-0.5 rounded type-micro font-mono transition-all cursor-pointer ${
+                        className={`px-1 py-0.5 rounded type-micro font-mono transition-all cursor-pointer ${
                           sbPackageManager === pm
                             ? 'bg-white dark:bg-white text-zinc-950 font-bold shadow-xs'
                             : 'text-zinc-500 dark:text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white'

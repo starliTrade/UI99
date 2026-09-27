@@ -473,8 +473,8 @@ export function DocsView() {
       </CommandDialog>
 
       {/* ── 1. TOP STATUS BAR / BREADCRUMB / REGISTRY QUICK LINK ── */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 border-b border-(--border-soft) dark:border-(--border-soft) type-caption font-mono">
-        <div className="flex items-center gap-1.5 sm:gap-2 text-zinc-500 dark:text-(--text-secondary)">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-(--border-soft) dark:border-(--border-soft) type-caption font-mono">
+        <div className="flex items-center gap-1 sm:gap-2 text-zinc-500 dark:text-(--text-secondary)">
           <button
             type="button"
             onClick={() => setActiveSection('intro')}
@@ -506,7 +506,7 @@ export function DocsView() {
             href="/registry.json"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-zinc-700 dark:text-(--text-secondary) transition-colors border border-(--border-subtle) dark:border-(--border-subtle)"
+            className="inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-sm) type-caption font-mono bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-zinc-700 dark:text-(--text-secondary) transition-colors border border-(--border-subtle) dark:border-(--border-subtle)"
           >
             <Code2 className="icon-sm" />
             <span>registry.json</span>
@@ -524,11 +524,11 @@ export function DocsView() {
             <SheetTrigger asChild>
               <button
                 type="button"
-                className="flex items-center gap-2 px-3 py-2.5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-strong) dark:border-(--border-soft) type-caption font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
+                className="flex items-center gap-2 px-3 py-2 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-strong) dark:border-(--border-soft) type-caption font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
               >
                 <Menu className="icon-md text-emerald-400" />
                 <span className="hidden xs:inline">Menu</span>
-                <span className="px-1.5 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 text-emerald-400 type-micro font-bold">
+                <span className="px-1 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 text-emerald-400 type-micro font-bold">
                   {REGISTRY_COMPONENTS.length}
                 </span>
               </button>
@@ -635,7 +635,7 @@ export function DocsView() {
                 setActiveSection(e.target.value);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="w-full pl-3 pr-8 py-2.5 rounded-(--radius-control) type-caption font-mono font-medium bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
+              className="w-full pl-3 pr-8 py-2 rounded-(--radius-control) type-caption font-mono font-medium bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
             >
               <optgroup label="Getting Started">
                 <option value="intro">Introduction</option>
@@ -660,11 +660,11 @@ export function DocsView() {
         </div>
 
         {/* Fast horizontal category chips */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 type-caption">
+        <div className="flex items-center gap-1 overflow-x-auto no-scrollbar py-1 type-caption">
           <button
             type="button"
             onClick={() => setActiveSection('intro')}
-            className={`px-3 py-1.5 rounded-(--radius-pill) whitespace-nowrap type-caption font-mono transition-colors shrink-0 ${
+            className={`px-3 py-1 rounded-(--radius-pill) whitespace-nowrap type-caption font-mono transition-colors shrink-0 ${
               isGuideSection
                 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-semibold'
                 : 'bg-white/[0.03] text-zinc-400 border border-white/[0.04]'
@@ -680,7 +680,7 @@ export function DocsView() {
                 setActiveSection(c.id);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`px-3 py-1.5 rounded-(--radius-pill) whitespace-nowrap type-caption font-mono transition-colors shrink-0 ${
+              className={`px-3 py-1 rounded-(--radius-pill) whitespace-nowrap type-caption font-mono transition-colors shrink-0 ${
                 activeSection === c.id
                   ? 'bg-white text-zinc-950 font-bold shadow-xs'
                   : 'bg-white/[0.03] text-zinc-400 hover:text-zinc-200 border border-white/[0.04]'
@@ -740,7 +740,7 @@ export function DocsView() {
                       setActiveSection(item.id);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-(--radius-field) type-caption font-medium transition-all text-left cursor-pointer ${
+                    className={`w-full flex items-center gap-2 px-3 py-1 rounded-(--radius-field) type-caption font-medium transition-all text-left cursor-pointer ${
                       isActive
                         ? 'bg-zinc-950 text-white dark:bg-(--bg-raised) dark:text-white font-semibold shadow-xs'
                         : 'text-zinc-600 dark:text-(--text-secondary) hover:text-black dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
@@ -755,7 +755,7 @@ export function DocsView() {
           </div>
 
           {/* Component Catalog Grouped by Category */}
-          <div className="space-y-5 pt-2 border-t border-(--border-subtle) dark:border-(--border-subtle)">
+          <div className="space-y-4 pt-2 border-t border-(--border-subtle) dark:border-(--border-subtle)">
             <div className="flex items-center justify-between px-3">
               <h4 className="type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted)">
                 Components
@@ -781,7 +781,7 @@ export function DocsView() {
                           setActiveSection(item.id);
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className={`w-full flex items-center justify-between px-3 py-1.5 rounded-(--radius-field) type-caption font-medium transition-all text-left cursor-pointer ${
+                        className={`w-full flex items-center justify-between px-3 py-1 rounded-(--radius-field) type-caption font-medium transition-all text-left cursor-pointer ${
                           isActive
                             ? 'bg-zinc-950 text-white dark:bg-(--bg-raised) dark:text-white font-semibold shadow-xs'
                             : 'text-zinc-600 dark:text-(--text-secondary) hover:text-black dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
@@ -806,7 +806,7 @@ export function DocsView() {
               VIEW 1: COMPONENT SHOWCASE (SHADCN PATTERN)
              ======================================================== */}
           {activeComponent && (
-            <article className="space-y-8">
+            <article className="space-y-6">
               {/* PAGE HEADER */}
               <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <div className="flex items-center gap-2">
@@ -840,7 +840,7 @@ export function DocsView() {
                     </button>
                   </div>
 
-                  <span className="type-caption font-mono text-zinc-400 border border-white/[0.04] bg-white/[0.02] px-2.5 py-1 rounded-(--radius-field)">
+                  <span className="type-caption font-mono text-zinc-400 border border-white/[0.04] bg-white/[0.02] px-2 py-1 rounded-(--radius-field)">
                     Primitive: {activeComponent.primitive || 'Native React'}
                   </span>
                 </div>
@@ -855,7 +855,7 @@ export function DocsView() {
                     <button
                       type="button"
                       onClick={() => setActiveTab('preview')}
-                      className={`px-3.5 py-1.5 rounded-(--radius-field) type-caption font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
+                      className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium flex items-center gap-1 cursor-pointer transition-all ${
                         activeTab === 'preview'
                           ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                           : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
@@ -867,7 +867,7 @@ export function DocsView() {
                     <button
                       type="button"
                       onClick={() => setActiveTab('code')}
-                      className={`px-3.5 py-1.5 rounded-(--radius-field) type-caption font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
+                      className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium flex items-center gap-1 cursor-pointer transition-all ${
                         activeTab === 'code'
                           ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                           : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
@@ -885,7 +885,7 @@ export function DocsView() {
                         type="button"
                         onClick={() => setViewportWidth('100%')}
                         title="Full width (100%)"
-                        className={`p-1.5 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
+                        className={`p-1 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
                           viewportWidth === '100%'
                             ? 'bg-white text-zinc-900 dark:bg-(--state-selected) dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
@@ -897,7 +897,7 @@ export function DocsView() {
                         type="button"
                         onClick={() => setViewportWidth('768px')}
                         title="Tablet width (768px)"
-                        className={`p-1.5 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
+                        className={`p-1 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
                           viewportWidth === '768px'
                             ? 'bg-white text-zinc-900 dark:bg-(--state-selected) dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
@@ -909,7 +909,7 @@ export function DocsView() {
                         type="button"
                         onClick={() => setViewportWidth('375px')}
                         title="Mobile width (375px)"
-                        className={`p-1.5 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
+                        className={`p-1 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
                           viewportWidth === '375px'
                             ? 'bg-white text-zinc-900 dark:bg-(--state-selected) dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
@@ -1107,7 +1107,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'checkbox' && (
-                          <div className="flex items-center gap-3 p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle)">
+                          <div className="flex items-center gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle)">
                             <Checkbox checked={demoCheckboxChecked} onChange={setDemoCheckboxChecked} />
                             <span className="type-caption font-medium text-zinc-700 dark:text-(--text-secondary)">
                               Enable specular border highlights across registry
@@ -1302,13 +1302,13 @@ export function DocsView() {
 
                         {activeComponent.id === 'icon-button' && (
                           <div className="flex items-center gap-3">
-                            <Button size="sm" className="p-2.5 rounded-(--radius-pill)" variant="primary">
+                            <Button size="sm" className="p-2 rounded-(--radius-pill)" variant="primary">
                               <Sparkles className="icon-md" />
                             </Button>
-                            <Button size="sm" className="p-2.5 rounded-(--radius-control)" variant="secondary">
+                            <Button size="sm" className="p-2 rounded-(--radius-control)" variant="secondary">
                               <Search className="icon-md" />
                             </Button>
-                            <Button size="sm" className="p-2.5 rounded-(--radius-field)" variant="outline">
+                            <Button size="sm" className="p-2 rounded-(--radius-field)" variant="outline">
                               <Terminal className="icon-md" />
                             </Button>
                           </div>
@@ -1340,13 +1340,13 @@ export function DocsView() {
 
                         {activeComponent.id === 'trend-delta' && (
                           <div className="flex items-center gap-3">
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) type-caption font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-pill) type-caption font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                               +24.8% ↑
                             </span>
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) type-caption font-mono font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-pill) type-caption font-mono font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
                               -8.2% ↓
                             </span>
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-(--radius-pill) type-caption font-mono font-bold bg-zinc-500/10 text-zinc-400 border border-zinc-500/20">
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-pill) type-caption font-mono font-bold bg-zinc-500/10 text-zinc-400 border border-zinc-500/20">
                               0.0% —
                             </span>
                           </div>
@@ -1358,7 +1358,7 @@ export function DocsView() {
                               <span>Throughput</span>
                               <span className="text-emerald-400 font-bold">+18.4%</span>
                             </div>
-                            <div className="h-12 w-full flex items-end gap-1.5 pt-2">
+                            <div className="h-12 w-full flex items-end gap-1 pt-2">
                               {[30, 45, 25, 60, 80, 50, 75, 95, 65, 85, 90, 100].map((val, i) => (
                                 <div
                                   key={i}
@@ -1371,7 +1371,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'donut-ring' && (
-                          <div className="flex items-center gap-6">
+                          <div className="flex items-center gap-4">
                             <div className="relative w-20 h-20 flex items-center justify-center">
                               <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
                                 <path
@@ -1431,7 +1431,7 @@ export function DocsView() {
 
                         {activeComponent.id === 'alert' && (
                           <div className="w-full max-w-md p-4 rounded-(--radius-control) bg-rose-500/10 border border-rose-500/20 text-rose-300 space-y-1 type-caption">
-                            <div className="font-bold flex items-center gap-1.5">
+                            <div className="font-bold flex items-center gap-1">
                               <ShieldCheck className="icon-md text-rose-400" />
                               Security Policy Notice
                             </div>
@@ -1620,7 +1620,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'avatar' && (
-                          <div className="flex flex-wrap items-center justify-center gap-5">
+                          <div className="flex flex-wrap items-center justify-center gap-4">
                             <Avatar name="Aria" size="xs" />
                             <Avatar name="Safa" size="sm" status="online" />
                             <Avatar name="Nova" size="md" status="online" />
@@ -1869,7 +1869,7 @@ export function DocsView() {
                               <Button variant="ghost">@ui99</Button>
                             </HoverCardTrigger>
                             <HoverCardContent>
-                              <div className="space-y-1.5">
+                              <div className="space-y-1">
                                 <p className="type-body font-semibold text-white">UI99 Design System</p>
                                 <p className="type-caption text-zinc-400">Velvet-obsidian React kit · WCAG 2.2 audited · RTL-first.</p>
                               </div>
@@ -2290,14 +2290,14 @@ export function DocsView() {
 
                     {/* LIVE INTERACTIVE CONTROLLERS (Props Tweaker) */}
                     <div className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-subtle) border border-(--border-subtle) dark:border-(--border-subtle) flex flex-wrap items-center gap-4 type-caption font-mono">
-                      <div className="flex items-center gap-1.5 text-zinc-500">
+                      <div className="flex items-center gap-1 text-zinc-500">
                         <SlidersHorizontal className="icon-sm text-emerald-400" />
                         <span className="font-semibold">Live Props:</span>
                       </div>
 
                       {activeComponent.id === 'button' && (
                         <>
-                          <div className="flex items-center gap-1.5">
+                          <div className="flex items-center gap-1">
                             <span className="text-zinc-400">variant:</span>
                             <select
                               value={demoBtnVariant}
@@ -2312,7 +2312,7 @@ export function DocsView() {
                             </select>
                           </div>
 
-                          <div className="flex items-center gap-1.5">
+                          <div className="flex items-center gap-1">
                             <span className="text-zinc-400">size:</span>
                             <select
                               value={demoBtnSize}
@@ -2326,7 +2326,7 @@ export function DocsView() {
                             </select>
                           </div>
 
-                          <label className="flex items-center gap-1.5 cursor-pointer">
+                          <label className="flex items-center gap-1 cursor-pointer">
                             <input
                               type="checkbox"
                               checked={demoBtnLoading}
@@ -2336,7 +2336,7 @@ export function DocsView() {
                             <span className="text-zinc-400">loading</span>
                           </label>
 
-                          <label className="flex items-center gap-1.5 cursor-pointer">
+                          <label className="flex items-center gap-1 cursor-pointer">
                             <input
                               type="checkbox"
                               checked={demoBtnDisabled}
@@ -2350,7 +2350,7 @@ export function DocsView() {
 
                       {activeComponent.id === 'badge' && (
                         <>
-                          <div className="flex items-center gap-1.5">
+                          <div className="flex items-center gap-1">
                             <span className="text-zinc-400">variant:</span>
                             <select
                               value={demoBadgeVariant}
@@ -2366,7 +2366,7 @@ export function DocsView() {
                             </select>
                           </div>
 
-                          <label className="flex items-center gap-1.5 cursor-pointer">
+                          <label className="flex items-center gap-1 cursor-pointer">
                             <input
                               type="checkbox"
                               checked={demoBadgePulse}
@@ -2379,7 +2379,7 @@ export function DocsView() {
                       )}
 
                       {activeComponent.id === 'input' && (
-                        <label className="flex items-center gap-1.5 cursor-pointer">
+                        <label className="flex items-center gap-1 cursor-pointer">
                           <input
                             type="checkbox"
                             checked={demoInputDisabled}
@@ -2479,13 +2479,13 @@ export function DocsView() {
                 {installMethod === 'cli' ? (
                   <div className="space-y-3">
                     {/* Package manager switcher: pnpm / npm / yarn / bun */}
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1">
                       {(['npm', 'pnpm', 'yarn', 'bun'] as PackageManager[]).map((pm) => (
                         <button
                           key={pm}
                           type="button"
                           onClick={() => setPackageManager(pm)}
-                          className={`px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono cursor-pointer transition-colors ${
+                          className={`px-2 py-1 rounded-(--radius-sm) type-caption font-mono cursor-pointer transition-colors ${
                             packageManager === pm
                               ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
                               : 'text-zinc-400 hover:text-zinc-200 bg-white/[0.02]'
@@ -2575,7 +2575,7 @@ export function DocsView() {
                             {p.name}
                           </td>
                           <td className="p-3 font-mono text-zinc-400 whitespace-nowrap">
-                            <span className="px-1.5 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-300">
+                            <span className="px-1 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-300">
                               {p.type}
                             </span>
                           </td>
@@ -2620,7 +2620,7 @@ export function DocsView() {
                       Keyboard Interaction
                     </h3>
                     <p className="type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
-                      Full keyboard operability with <kbd className="px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-mono">Tab</kbd>, <kbd className="px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-mono">Enter</kbd>, <kbd className="px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-mono">Space</kbd>, and arrow key navigation in RTL & LTR modes.
+                      Full keyboard operability with <kbd className="px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-mono">Tab</kbd>, <kbd className="px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-mono">Enter</kbd>, <kbd className="px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-mono">Space</kbd>, and arrow key navigation in RTL & LTR modes.
                     </p>
                   </div>
                 </div>
@@ -2675,7 +2675,7 @@ export function DocsView() {
 
           {/* GUIDE 1: INTRODUCTION */}
           {activeSection === 'intro' && (
-            <article className="space-y-8">
+            <article className="space-y-6">
               <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft)">
                   v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
@@ -2745,7 +2745,7 @@ export function DocsView() {
 
           {/* GUIDE 2: INSTALLATION */}
           {activeSection === 'installation' && (
-            <article className="space-y-8">
+            <article className="space-y-6">
               <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Installation
@@ -2854,7 +2854,7 @@ export function cn(...inputs: ClassValue[]) {
 
           {/* GUIDE 3: THEMING */}
           {activeSection === 'theming' && (
-            <article className="space-y-8">
+            <article className="space-y-6">
               <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Theming & Design Tokens
@@ -2942,7 +2942,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
 
           {/* GUIDE 4: REGISTRY ARCHITECTURE (NPM GUIDE) */}
           {activeSection === 'npm-guide' && (
-            <article className="space-y-8">
+            <article className="space-y-6">
               <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Registry Architecture
@@ -3026,7 +3026,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
 
           {/* GUIDE 5: CLI REFERENCE */}
           {activeSection === 'cli' && (
-            <article className="space-y-8">
+            <article className="space-y-6">
               <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   CLI Reference
@@ -3110,7 +3110,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
 
           {/* GUIDE 6: CHANGELOG & RELEASES (audit P3 — versioning on the site) */}
           {activeSection === 'changelog' && (
-            <article className="space-y-8">
+            <article className="space-y-6">
               <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Changelog &amp; Releases
@@ -3237,7 +3237,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
 
         {/* ── RIGHT COLUMN: "ON THIS PAGE" TABLE OF CONTENTS (2 cols on xl) ── */}
         <aside className="hidden xl:block xl:col-span-2 space-y-4 sticky top-16 select-none pl-4 border-l border-(--border-subtle) dark:border-(--border-subtle)">
-          <div className="type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted) flex items-center gap-1.5">
+          <div className="type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted) flex items-center gap-1">
             <Hash className="icon-xs text-emerald-400" />
             <span>On This Page</span>
           </div>
@@ -3290,7 +3290,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                 navigator.clipboard.writeText(window.location.href);
                 addToast('Page URL copied to clipboard', 'success');
               }}
-              className="flex items-center gap-1.5 type-micro font-mono text-zinc-500 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
+              className="flex items-center gap-1 type-micro font-mono text-zinc-500 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
             >
               <Share2 className="icon-xs text-emerald-400" />
               <span>Share Page</span>

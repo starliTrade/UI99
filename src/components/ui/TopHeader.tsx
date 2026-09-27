@@ -71,7 +71,7 @@ export function TopHeader({
           type="button"
           onClick={() => onNavigate?.('HOME')}
           aria-label="UI99 Design System Home"
-          className="group inline-flex items-center gap-2.5 cursor-pointer transition-transform active:scale-[0.98] focus-ui99"
+          className="group inline-flex items-center gap-2 cursor-pointer transition-transform active:scale-[0.98] focus-ui99"
         >
           {/* Obsidian Jewel Geometric Emblem */}
           <div className="relative flex items-center justify-center w-8 h-8 rounded-(--radius-field) bg-(--ink-fill) dark:bg-(--bg-elevated) border border-black/10 dark:border-(--border-strong) shadow-(--shadow-card) overflow-hidden transition-all group-hover:border-emerald-500/40 dark:group-hover:border-emerald-400/40">
@@ -103,7 +103,7 @@ export function TopHeader({
           </div>
 
           {/* Clean High-Prestige Wordmark with UI \\ [99] */}
-          <div className="flex items-center gap-1.5 font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]">
+          <div className="flex items-center gap-1 font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]">
             <div className="flex items-center type-body sm:type-body-lg tracking-[-0.03em] leading-none select-none">
               <span className="font-bold text-zinc-950 dark:text-(--text-primary) transition-colors">
                 UI
@@ -125,7 +125,7 @@ export function TopHeader({
                 `../../generated/kit-count` would have broken the install the same
                 way the contexts did. */}
             {version && (
-              <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-(--radius-xs) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-subtle) type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) leading-none">
+              <div className="flex items-center gap-1 px-1 py-0.5 rounded-(--radius-xs) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-subtle) type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) leading-none">
                 <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-emerald-500 shrink-0" />
                 <span>v{version}</span>
               </div>
@@ -136,14 +136,14 @@ export function TopHeader({
         {/* ══════════════════════════════════════════════════════════════
             2 · RIGHT: Unified Fast-Action Glass Capsule
            ══════════════════════════════════════════════════════════════ */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           {/* GitHub Quick Link */}
           <a
             href="https://github.com/starliTrade/UI99"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Repository"
-            className="hidden sm:inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-field) border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-subtle) hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) type-caption font-mono text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+            className="hidden sm:inline-flex items-center gap-1 h-8 px-2 rounded-(--radius-field) border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-subtle) hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) type-caption font-mono text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             <SquareArrowOutUpRight className="icon-sm" />
             <span>GitHub</span>
@@ -155,7 +155,7 @@ export function TopHeader({
             onClick={() => onToggleRTL?.()}
             aria-label="Toggle language direction"
             title={isRTL ? 'Switch to English' : 'تغییر به فارسی'}
-            className="relative h-8 px-2.5 rounded-(--radius-field) flex items-center justify-center gap-1 border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-subtle) hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) type-caption font-mono font-medium text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+            className="relative h-8 px-2 rounded-(--radius-field) flex items-center justify-center gap-1 border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-subtle) hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) type-caption font-mono font-medium text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             <Globe className="icon-sm text-(--text-secondary) dark:text-(--text-muted)" />
             <span className="type-micro">{isRTL ? 'FA' : 'EN'}</span>
@@ -182,15 +182,15 @@ export function TopHeader({
                   transition={{ type: 'spring', stiffness: 440, damping: 32 }}
                   className="absolute end-0 mt-2 w-56 rounded-(--radius-control) p-2 z-popover backdrop-blur-2xl bg-white/95 dark:bg-(--bg-card)/95 text-zinc-900 dark:text-white shadow-(--elevation-3) shadow-(--shadow-popover) border border-(--border-soft) dark:border-(--border-subtle)"
                 >
-                  <div className="p-1.5 mb-1">
-                    <span className="block type-micro font-bold font-mono uppercase tracking-wider text-(--text-secondary) dark:text-(--text-muted) mb-1.5 px-1">
+                  <div className="p-1 mb-1">
+                    <span className="block type-micro font-bold font-mono uppercase tracking-wider text-(--text-secondary) dark:text-(--text-muted) mb-1 px-1">
                       Quick Switch
                     </span>
                     <div className="grid grid-cols-2 p-0.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-sunken) border border-(--border-soft) dark:border-(--border-subtle)">
                       <button
                         type="button"
                         onClick={() => onThemeChange?.('dark')}
-                        className={`flex items-center justify-center gap-1.5 py-1.5 rounded-(--radius-sm) type-caption font-mono font-medium cursor-pointer transition-all focus-ui99-inset ${
+                        className={`flex items-center justify-center gap-1 py-1 rounded-(--radius-sm) type-caption font-mono font-medium cursor-pointer transition-all focus-ui99-inset ${
                           isDark
                             ? 'bg-zinc-800 text-white shadow-xs'
                             : 'text-zinc-500 hover:text-zinc-900'
@@ -201,7 +201,7 @@ export function TopHeader({
                       <button
                         type="button"
                         onClick={() => onThemeChange?.('light')}
-                        className={`flex items-center justify-center gap-1.5 py-1.5 rounded-(--radius-sm) type-caption font-mono font-medium cursor-pointer transition-all focus-ui99-inset ${
+                        className={`flex items-center justify-center gap-1 py-1 rounded-(--radius-sm) type-caption font-mono font-medium cursor-pointer transition-all focus-ui99-inset ${
                           !isDark
                             ? 'bg-white text-zinc-950 shadow-xs font-semibold'
                             : 'text-zinc-400 hover:text-white'
@@ -221,7 +221,7 @@ export function TopHeader({
                       onOpenSettings?.();
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full flex items-center gap-2 px-2.5 py-2 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) text-zinc-800 dark:text-zinc-200 focus-ui99-inset"
+                    className="w-full flex items-center gap-2 px-2 py-2 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) text-zinc-800 dark:text-zinc-200 focus-ui99-inset"
                   >
                     <SlidersHorizontal className="icon-sm text-(--text-muted) dark:text-(--text-secondary)" />
                     <span>Design Tokens Inspector</span>

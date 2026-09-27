@@ -24,7 +24,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
         onClick={onCaptureMusic}
         className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
-        <div className="flex items-center gap-3.5">
+        <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-(--radius-control) bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors">
             <Music className="icon-lg stroke-[1.8]" />
           </div>
@@ -69,7 +69,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) bg-white/[0.04] type-micro text-rose-300 border border-white/[0.04]">
+        <div className="flex items-center gap-1 px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.04] type-micro text-rose-300 border border-white/[0.04]">
           <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-rose-500 animate-pulse" />
           <span>{mood}</span>
         </div>
@@ -98,7 +98,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
           </p>
 
           {/* Equalizer Bars Graphic */}
-          <div className="flex items-center gap-1 mt-2.5">
+          <div className="flex items-center gap-1 mt-2">
             {[40, 75, 55, 90, 60, 80, 45].map((height, i) => (
               <motion.div
                 key={i}

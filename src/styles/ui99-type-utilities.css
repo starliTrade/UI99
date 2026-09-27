@@ -10,7 +10,10 @@
  *
  * Persian is automatic: when the app sets `data-script="fa"` on <html> (the
  * AuthContext language switch already toggles `lang`/`dir`), the ramp swaps to
- * the optically-corrected Persian values. No component has to know.
+ * the optically-corrected Persian values — size AND leading, per step. No
+ * component has to know, and no component may opt out by hand: a component that
+ * re-declared its own Persian size would be the one place the two scripts
+ * disagreed.
  *
  * The pairing is the point — line-height and tracking travel WITH the size, so
  * a design system can actually own vertical rhythm.
@@ -90,27 +93,26 @@
   letter-spacing: var(--type-billboard-tracking);
 }
 
-/* ─── Persian override: optical size, looser leading, no negative tracking ────
+/* ─── Persian override: optical size, per-step leading, no negative tracking ──
  * The utilities themselves must not declare these properties, or Tailwind
  * would emit a same-layer rule whose source order decides the winner. Keeping
  * the script-specific values in a higher-specificity selector is what makes
- * `data-script="fa"` authoritative rather than merely later. */
-[data-script='fa'] .type-micro { font-size: var(--type-fa-micro-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
-[data-script='fa'] .type-micro-fa { font-size: var(--type-fa-micro-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
-[data-script='fa'] .type-caption { font-size: var(--type-fa-caption-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
-[data-script='fa'] .type-body { font-size: var(--type-fa-body-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
-[data-script='fa'] .type-body-lg { font-size: var(--type-fa-body-lg-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
-[data-script='fa'] .type-title { font-size: var(--type-fa-title-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
-[data-script='fa'] .type-heading { font-size: var(--type-fa-heading-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
-[data-script='fa'] .type-display { font-size: var(--type-fa-display-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
-[data-script='fa'] .type-hero { font-size: var(--type-fa-hero-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
-[data-script='fa'] .type-billboard { font-size: var(--type-fa-billboard-size); line-height: var(--type-fa-leading); letter-spacing: var(--type-fa-tracking); }
-
-/* Display steps override back to display leading — the fa body leading (1.85)
-   is for reading text; at 33–66px it rips headlines into vertical ribbons. */
-[data-script='fa'] .type-display,
-[data-script='fa'] .type-hero,
-[data-script='fa'] .type-billboard { line-height: var(--type-fa-display-leading); }
+ * `data-script="fa"` authoritative rather than merely later.
+ *
+ * Every step carries its OWN leading (see ui99-type.css). The earlier version
+ * handed all nine steps one reading leading, which is why Persian labels
+ * clipped inside fixed-height chips while their Latin twins sat clean: a chip
+ * is bound by its box, not by reading comfort. */
+[data-script='fa'] .type-micro { font-size: var(--type-fa-micro-size); line-height: var(--type-fa-micro-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-micro-fa { font-size: var(--type-fa-micro-size); line-height: var(--type-fa-micro-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-caption { font-size: var(--type-fa-caption-size); line-height: var(--type-fa-caption-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-body { font-size: var(--type-fa-body-size); line-height: var(--type-fa-body-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-body-lg { font-size: var(--type-fa-body-lg-size); line-height: var(--type-fa-body-lg-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-title { font-size: var(--type-fa-title-size); line-height: var(--type-fa-title-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-heading { font-size: var(--type-fa-heading-size); line-height: var(--type-fa-heading-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-display { font-size: var(--type-fa-display-size); line-height: var(--type-fa-display-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-hero { font-size: var(--type-fa-hero-size); line-height: var(--type-fa-hero-leading); letter-spacing: var(--type-fa-tracking); }
+[data-script='fa'] .type-billboard { font-size: var(--type-fa-billboard-size); line-height: var(--type-fa-billboard-leading); letter-spacing: var(--type-fa-tracking); }
 
 /* ─── Weights ─── */
 @utility weight-regular { font-weight: var(--weight-regular); }

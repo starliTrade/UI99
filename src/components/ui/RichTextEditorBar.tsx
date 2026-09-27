@@ -81,7 +81,7 @@ export function RichTextEditorBar({
             onClick={() => toggleFormat(btn.key!)}
             title={btn.label}
             className={cn(
-              'p-1.5 rounded-(--radius-sm) transition-all text-zinc-500 hover:text-zinc-900 dark:hover:text-white',
+              'p-1 rounded-(--radius-sm) transition-all text-zinc-500 hover:text-zinc-900 dark:hover:text-white',
               isActive
                 ? 'bg-(--bg-raised) dark:bg-(--state-selected) text-zinc-900 dark:text-white shadow-xs font-semibold'
                 : 'hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'

@@ -64,7 +64,7 @@ export function Modal({
 
             {/* Header */}
             {(title || showClose) && (
-              <div className="px-5 sm:px-6 pt-3 sm:pt-4 pb-3.5 border-b border-(--border-soft) dark:border-(--border-strong) flex items-center justify-between shrink-0">
+              <div className="px-5 sm:px-6 pt-3 sm:pt-4 pb-3 border-b border-(--border-soft) dark:border-(--border-strong) flex items-center justify-between shrink-0">
                 <div>
                   {title && (
                     <DialogPrimitive.Title className="type-body-lg sm:type-title font-bold tracking-tight text-(--text-primary)">

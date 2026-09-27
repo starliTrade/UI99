@@ -97,7 +97,7 @@ export function ObjectDetailModal() {
       subtitle={`Created ${new Date(selectedObject.createdAt).toLocaleDateString()}`}
       maxWidth="lg"
     >
-      <div className="space-y-5">
+      <div className="space-y-4">
         {/* Title input */}
         <div>
           <label className="block type-caption font-bold text-zinc-400 mb-1">Title</label>
@@ -105,7 +105,7 @@ export function ObjectDetailModal() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3.5 py-2 type-body text-white font-semibold focus:outline-none focus:border-white/30"
+            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 type-body text-white font-semibold focus:outline-none focus:border-white/30"
           />
         </div>
 
@@ -143,7 +143,7 @@ export function ObjectDetailModal() {
             <button
               type="button"
               onClick={() => setAllowSLO(!allowSLO)}
-              className={`w-full py-2 px-3 rounded-(--radius-field) border type-caption font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+              className={`w-full py-2 px-3 rounded-(--radius-field) border type-caption font-semibold flex items-center justify-center gap-1 transition-all cursor-pointer ${
                 allowSLO
                   ? 'bg-purple-950/40 text-purple-300 border-purple-500/30'
                   : 'bg-[#18181D] text-zinc-400 border-white/[0.08]'
@@ -158,7 +158,7 @@ export function ObjectDetailModal() {
         {/* Tags */}
         {selectedObject.tags?.length > 0 && (
           <div>
-            <label className="block type-caption font-bold text-zinc-400 mb-1.5">Tags</label>
+            <label className="block type-caption font-bold text-zinc-400 mb-1">Tags</label>
             <div className="flex items-center gap-2 flex-wrap">
               {selectedObject.tags.map((t) => (
                 <Tag key={t} label={t} variant="neutral" />
@@ -170,7 +170,7 @@ export function ObjectDetailModal() {
         {/* Connected Graph Relationships */}
         <div className="p-4 rounded-(--radius-control) bg-[#18181D] border border-white/[0.08] space-y-3 shadow-inner">
           <div className="flex items-center justify-between">
-            <h4 className="type-caption font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5">
+            <h4 className="type-caption font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-1">
               <Link2 className="icon-sm text-amber-400" />
               Connected Graph Relations ({related.length})
             </h4>
@@ -193,7 +193,7 @@ export function ObjectDetailModal() {
                 <select
                   value={linkType}
                   onChange={(e) => setLinkType(e.target.value as RelationshipType)}
-                  className="bg-[#18181D] border border-white/[0.08] text-white rounded-(--radius-sm) p-1.5"
+                  className="bg-[#18181D] border border-white/[0.08] text-white rounded-(--radius-sm) p-1"
                 >
                   <option value={RelationshipType.RELATED_TO}>RELATED_TO</option>
                   <option value={RelationshipType.PART_OF}>PART_OF</option>
@@ -206,7 +206,7 @@ export function ObjectDetailModal() {
                 <select
                   value={targetObjectId}
                   onChange={(e) => setTargetObjectId(e.target.value)}
-                  className="bg-[#18181D] border border-white/[0.08] text-white rounded-(--radius-sm) p-1.5"
+                  className="bg-[#18181D] border border-white/[0.08] text-white rounded-(--radius-sm) p-1"
                 >
                   <option value="">Select target object...</option>
                   {availableTargets.map((t) => (
@@ -238,11 +238,11 @@ export function ObjectDetailModal() {
               No relationships connected yet. Link this to projects, notes, or inspirations.
             </p>
           ) : (
-            <div className="space-y-1.5">
+            <div className="space-y-1">
               {related.map(({ rel, object: relObj }) => (
                 <div
                   key={rel.id}
-                  className="p-2.5 rounded-(--radius-field) bg-[#202026] border border-white/[0.06] flex items-center justify-between type-caption group"
+                  className="p-2 rounded-(--radius-field) bg-[#202026] border border-white/[0.06] flex items-center justify-between type-caption group"
                 >
                   <div className="flex items-center gap-2 min-w-0">
                     <span className="type-micro font-bold text-amber-300 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">
@@ -269,7 +269,7 @@ export function ObjectDetailModal() {
         {/* Modal Actions */}
         <div className="pt-3 flex items-center justify-between border-t border-white/[0.06]">
           <Button variant="ghost" size="sm" onClick={handleDelete} className="text-rose-400 hover:bg-rose-500/10">
-            <Trash2 className="icon-md mr-1.5 text-rose-400" />
+            <Trash2 className="icon-md mr-1 text-rose-400" />
             Delete
           </Button>
 

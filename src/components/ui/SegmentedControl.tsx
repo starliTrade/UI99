@@ -38,8 +38,8 @@ export function SegmentedControl<T extends string = string>({
 }: SegmentedControlProps<T>) {
   const isDark = useIsDark();
   const groupRef = useRef<HTMLDivElement>(null);
-  const padMap = size === 'sm' ? 'p-1' : 'p-1.5';
-  const itemPad = size === 'sm' ? 'px-3 py-1.5 type-caption' : 'px-4 py-2 type-caption sm:type-body';
+  const padMap = size === 'sm' ? 'p-1' : 'p-1';
+  const itemPad = size === 'sm' ? 'px-3 py-1 type-caption' : 'px-4 py-2 type-caption sm:type-body';
 
   const isRTL =
     typeof document !== 'undefined' &&
@@ -117,7 +117,7 @@ export function SegmentedControl<T extends string = string>({
               aria-checked={isSelected}
               tabIndex={isFocusTarget ? 0 : -1}
               onClick={() => onChange(opt.value)}
-              className={`relative ${itemPad} rounded-(--radius-pill) font-medium transition-all dur-base flex items-center justify-center gap-1.5 cursor-pointer select-none whitespace-nowrap shrink-0 sm:shrink focus-ui99-inset ${
+              className={`relative ${itemPad} rounded-(--radius-pill) font-medium transition-all dur-base flex items-center justify-center gap-1 cursor-pointer select-none whitespace-nowrap shrink-0 sm:shrink focus-ui99-inset ${
                 fullWidth ? 'flex-1' : ''
               } ${
                 isSelected
@@ -140,12 +140,12 @@ export function SegmentedControl<T extends string = string>({
                   transition={{ type: 'spring', stiffness: 500, damping: 38 }}
                 />
               )}
-              <span className="relative z-content flex items-center justify-center gap-1.5">
+              <span className="relative z-content flex items-center justify-center gap-1">
                 {opt.icon && <span className="shrink-0">{opt.icon}</span>}
                 <span className="tracking-tight">{opt.label}</span>
                 {opt.badge !== undefined && (
                   <span
-                    className={`px-1.5 py-0.2 type-micro rounded-(--radius-pill) font-semibold ${
+                    className={`px-1 py-0.2 type-micro rounded-(--radius-pill) font-semibold ${
                       isSelected
                         ? isDark
                           ? 'bg-black text-white'

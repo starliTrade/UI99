@@ -31,7 +31,7 @@ export function AtelierMoment({
         className="group relative p-6 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card-hover)"
       >
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3.5">
+          <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-(--radius-control) bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
               <Scissors className="icon-lg stroke-[1.8]" />
             </div>
@@ -44,7 +44,7 @@ export function AtelierMoment({
               </p>
             </div>
           </div>
-          <span className="p-2.5 rounded-(--radius-pill) bg-white/[0.03] text-zinc-400 group-hover:text-white transition-colors">
+          <span className="p-2 rounded-(--radius-pill) bg-white/[0.03] text-zinc-400 group-hover:text-white transition-colors">
             <Plus className="icon-md" />
           </span>
         </div>
@@ -66,7 +66,7 @@ export function AtelierMoment({
       <div className="absolute top-0 right-0 w-60 h-60 bg-amber-600/[0.07] rounded-(--radius-pill) blur-3xl pointer-events-none" />
 
       {/* Top Header */}
-      <div className="flex items-center justify-between mb-3.5 relative z-content">
+      <div className="flex items-center justify-between mb-3 relative z-content">
         <div className="flex items-center gap-2">
           <span className="flex items-center justify-center w-5 h-5 rounded-(--radius-pill) bg-amber-500/15 text-amber-400">
             <Scissors className="icon-xs stroke-[2.2]" />
@@ -76,7 +76,7 @@ export function AtelierMoment({
           </span>
         </div>
 
-        <span className="type-micro font-medium px-2.5 py-0.5 rounded-(--radius-pill) bg-amber-500/10 text-amber-300 border border-amber-500/20">
+        <span className="type-micro font-medium px-2 py-0.5 rounded-(--radius-pill) bg-amber-500/10 text-amber-300 border border-amber-500/20">
           {stage}
         </span>
       </div>
@@ -96,7 +96,7 @@ export function AtelierMoment({
         {/* Swatches & Fabric Composition Bar */}
         <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
           {/* Color Swatches */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <span className="type-micro text-zinc-500 font-medium mr-1 rtl:ml-1 rtl:mr-0">
               {isRTL ? 'پالت رنگ:' : 'Palette:'}
             </span>
@@ -111,7 +111,7 @@ export function AtelierMoment({
           </div>
 
           {/* Silhouette badge */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             {fabrics.slice(0, 2).map((fabric, idx) => (
               <span
                 key={idx}
@@ -132,7 +132,7 @@ export function AtelierMoment({
             }}
             className="mt-2 p-3 rounded-(--radius-control) bg-white/[0.02] border border-white/[0.03] hover:bg-white/[0.04] transition-colors flex items-center justify-between"
           >
-            <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex items-center gap-2 min-w-0">
               <span className="icon-dot rounded-(--radius-pill) bg-amber-400/70" />
               <span className="type-caption text-[#EDEDEF] truncate font-medium">
                 {sketchObject.title}

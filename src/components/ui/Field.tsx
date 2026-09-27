@@ -31,7 +31,7 @@ export function FormField({
   const hintId = hint ? `${htmlFor ?? 'field'}-hint` : undefined;
   const errorId = error ? `${htmlFor ?? 'field'}-error` : undefined;
   return (
-    <div className={cn('w-full space-y-1.5', className)} {...props}>
+    <div className={cn('w-full space-y-1', className)} {...props}>
       {label && (
         <div className="flex items-baseline justify-between gap-2">
           <Label htmlFor={htmlFor}>

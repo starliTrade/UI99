@@ -46,11 +46,11 @@ export function DiffViewer({
       )}
     >
       {/* Diff Header */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-(--bg-subtle) dark:bg-(--bg-card) border-b border-(--border-soft) dark:border-(--border-soft)">
+      <div className="flex items-center justify-between px-4 py-2 bg-(--bg-subtle) dark:bg-(--bg-card) border-b border-(--border-soft) dark:border-(--border-soft)">
         <div className="flex items-center gap-2">
           <GitCommit className="icon-sm text-(--text-muted) dark:text-(--text-secondary)" />
           <span className="text-zinc-900 dark:text-zinc-200 font-medium">{fileName}</span>
-          <div className="flex items-center gap-1.5 ml-2">
+          <div className="flex items-center gap-1 ml-2">
             <span className="text-emerald-600 dark:text-emerald-400 font-semibold">+{additions}</span>
             <span className="text-rose-600 dark:text-rose-400 font-semibold">-{deletions}</span>
           </div>

@@ -278,21 +278,21 @@ export function ModernLinearHomeView() {
     switch (priority) {
       case 'urgent':
         return (
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded type-micro font-mono font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30">
+          <span className="inline-flex items-center gap-1 px-1 py-0.5 rounded type-micro font-mono font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30">
             <SignalHigh className="icon-xs text-rose-400" />
             <span>P0</span>
           </span>
         );
       case 'high':
         return (
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded type-micro font-mono font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
+          <span className="inline-flex items-center gap-1 px-1 py-0.5 rounded type-micro font-mono font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
             <SignalHigh className="icon-xs text-amber-400" />
             <span>P1</span>
           </span>
         );
       case 'medium':
         return (
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded type-micro font-mono font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+          <span className="inline-flex items-center gap-1 px-1 py-0.5 rounded type-micro font-mono font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
             <SignalMedium className="icon-xs text-blue-400" />
             <span>P2</span>
           </span>
@@ -300,7 +300,7 @@ export function ModernLinearHomeView() {
       case 'low':
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded type-micro font-mono font-medium text-zinc-500 border border-zinc-500/20">
+          <span className="inline-flex items-center gap-1 px-1 py-0.5 rounded type-micro font-mono font-medium text-zinc-500 border border-zinc-500/20">
             <SignalLow className="icon-xs text-zinc-500" />
             <span>P3</span>
           </span>
@@ -346,7 +346,7 @@ export function ModernLinearHomeView() {
                 setIsComposerOpen(true);
                 setTimeout(() => composerInputRef.current?.focus(), 50);
               }}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) type-caption font-semibold bg-zinc-950 text-white dark:bg-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all active:scale-[0.97] cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-field) type-caption font-semibold bg-zinc-950 text-white dark:bg-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all active:scale-[0.97] cursor-pointer shadow-xs"
             >
               <Plus className="icon-sm stroke-[2.5]" />
               <span>New Issue</span>
@@ -356,7 +356,7 @@ export function ModernLinearHomeView() {
             <button
               type="button"
               onClick={() => setCurrentTab('UIKIT')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) type-caption font-medium bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-zinc-700 dark:text-(--text-secondary) transition-all cursor-pointer border border-(--border-subtle) dark:border-(--border-subtle)"
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-field) type-caption font-medium bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-zinc-700 dark:text-(--text-secondary) transition-all cursor-pointer border border-(--border-subtle) dark:border-(--border-subtle)"
             >
               <Layers className="icon-sm" />
               <span className="hidden sm:inline">UI Kit</span>
@@ -365,7 +365,7 @@ export function ModernLinearHomeView() {
         </div>
 
         {/* Progress Bar (Linear Sub-Pixel Specular) */}
-        <div className="space-y-1.5 pt-1">
+        <div className="space-y-1 pt-1">
           <div className="w-full h-2 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-(--bg-card)/80 overflow-hidden flex">
             <div
               className="h-full bg-emerald-500 transition-all dur-lazy"
@@ -437,7 +437,7 @@ export function ModernLinearHomeView() {
                   value={newPriority}
                   onChange={(e) => setNewPriority(e.target.value as PriorityLevel)}
                   aria-label="Issue priority level"
-                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2.5 py-1 text-zinc-700 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft) focus:outline-none cursor-pointer"
+                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2 py-1 text-zinc-700 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft) focus:outline-none cursor-pointer"
                 >
                   <option value="urgent">P0 Urgent</option>
                   <option value="high">P1 High</option>
@@ -450,7 +450,7 @@ export function ModernLinearHomeView() {
                   value={newEstimate}
                   onChange={(e) => setNewEstimate(Number(e.target.value))}
                   aria-label="Story points estimate"
-                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2.5 py-1 text-zinc-700 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft) focus:outline-none cursor-pointer"
+                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2 py-1 text-zinc-700 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft) focus:outline-none cursor-pointer"
                 >
                   <option value={1}>1 pt</option>
                   <option value={2}>2 pts</option>
@@ -471,7 +471,7 @@ export function ModernLinearHomeView() {
                 <button
                   type="submit"
                   disabled={!newTitle.trim()}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) type-caption font-semibold bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-40 disabled:pointer-events-none transition-all cursor-pointer shadow-xs"
+                  className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-field) type-caption font-semibold bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-40 disabled:pointer-events-none transition-all cursor-pointer shadow-xs"
                 >
                   <span>Save Issue</span>
                   <CornerDownLeft className="icon-xs" />
@@ -517,7 +517,7 @@ export function ModernLinearHomeView() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Filter issues..."
-              className="w-full bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) rounded-(--radius-field) pl-8 pr-3 py-1.5 type-caption text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
+              className="w-full bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) rounded-(--radius-field) pl-8 pr-3 py-1 type-caption text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
             />
           </div>
 
@@ -525,7 +525,7 @@ export function ModernLinearHomeView() {
             value={filterPriority}
             onChange={(e) => setFilterPriority(e.target.value)}
             aria-label="Filter issues by priority"
-            className="bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono rounded-(--radius-field) px-2.5 py-1.5 text-zinc-600 dark:text-(--text-secondary) focus:outline-none cursor-pointer"
+            className="bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono rounded-(--radius-field) px-2 py-1 text-zinc-600 dark:text-(--text-secondary) focus:outline-none cursor-pointer"
           >
             <option value="ALL">All Priorities</option>
             <option value="urgent">P0 Urgent</option>
@@ -553,7 +553,7 @@ export function ModernLinearHomeView() {
               <div
                 key={iss.id}
                 onClick={() => setSelectedIdx(idx)}
-                className={`group flex items-center justify-between p-3 sm:px-4 sm:py-3.5 transition-all cursor-pointer select-none ${
+                className={`group flex items-center justify-between p-3 sm:px-4 sm:py-3 transition-all cursor-pointer select-none ${
                   isSelected
                     ? 'bg-(--bg-wash) dark:bg-(--bg-wash) ring-1 ring-inset ring-emerald-500/40'
                     : 'hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle)'
@@ -592,11 +592,11 @@ export function ModernLinearHomeView() {
                     </span>
 
                     {/* Labels */}
-                    <div className="hidden md:flex items-center gap-1.5 shrink-0">
+                    <div className="hidden md:flex items-center gap-1 shrink-0">
                       {iss.labels.map((lbl) => (
                         <span
                           key={lbl}
-                          className="px-1.5 py-0.2 rounded type-micro font-mono text-zinc-500 dark:text-(--text-secondary) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)"
+                          className="px-1 py-0.2 rounded type-micro font-mono text-zinc-500 dark:text-(--text-secondary) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)"
                         >
                           {lbl}
                         </span>
@@ -612,7 +612,7 @@ export function ModernLinearHomeView() {
 
                   {/* Estimate */}
                   {iss.estimate && (
-                    <span className="hidden sm:inline-block px-1.5 py-0.5 rounded type-micro font-mono font-semibold text-zinc-600 dark:text-(--text-secondary) bg-(--bg-subtle) dark:bg-(--bg-wash)">
+                    <span className="hidden sm:inline-block px-1 py-0.5 rounded type-micro font-mono font-semibold text-zinc-600 dark:text-(--text-secondary) bg-(--bg-subtle) dark:bg-(--bg-wash)">
                       {iss.estimate}pt
                     </span>
                   )}
@@ -637,22 +637,22 @@ export function ModernLinearHomeView() {
       </div>
 
       {/* 5. KEYBOARD SHORTCUTS REFERENCE BAR (Linear Pro Productivity Hint) */}
-      <div className="p-3.5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) flex flex-wrap items-center justify-between gap-3 type-micro font-mono text-zinc-500">
+      <div className="p-3 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) flex flex-wrap items-center justify-between gap-3 type-micro font-mono text-zinc-500">
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <Kbd size="xs">J</Kbd>
             <Kbd size="xs">K</Kbd>
             <span>Navigate</span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <Kbd size="xs">C</Kbd>
             <span>New Issue</span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <Kbd size="xs">Space</Kbd>
             <span>Toggle Done</span>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <Kbd size="xs">⌘</Kbd>
             <Kbd size="xs">K</Kbd>
             <span>Search</span>

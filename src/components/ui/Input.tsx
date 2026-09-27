@@ -23,8 +23,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const inputSizeStyles = {
-  sm: 'type-caption px-3 py-1.5 h-8 rounded-(--radius-sm)',
-  md: 'type-body px-3.5 py-2.5 h-10 rounded-(--radius-field)',
+  sm: 'type-caption px-3 py-1 h-8 rounded-(--radius-sm)',
+  md: 'type-body px-3 py-2 h-10 rounded-(--radius-field)',
   lg: 'type-body-lg px-4 py-3 h-12 rounded-(--radius-control)',
 } as const;
 
@@ -33,7 +33,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const inputId = id || (label ? `input-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined);
     const helperId = error ? `${inputId}-error` : undefined;
     return (
-      <div className="w-full space-y-1.5">
+      <div className="w-full space-y-1">
         {label && (
           <label htmlFor={inputId} className="block type-caption font-semibold text-zinc-700 dark:text-(--text-secondary) tracking-tight">
             {label}
@@ -84,7 +84,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const textareaId = id || (label ? `textarea-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined);
     const helperId = error ? `${textareaId}-error` : undefined;
     return (
-      <div className="w-full space-y-1.5">
+      <div className="w-full space-y-1">
         {label && (
           <label htmlFor={textareaId} className="block type-caption font-semibold text-zinc-700 dark:text-(--text-secondary) tracking-tight">
             {label}
@@ -97,7 +97,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={error ? true : undefined}
           aria-describedby={helperId}
           className={cn(
-            'w-full bg-(--bg-elevated) border border-(--border-strong) dark:border-(--border-strong) rounded-(--radius-field) p-3.5 type-body text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover transition-all dur-quick focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-ui99',
+            'w-full bg-(--bg-elevated) border border-(--border-strong) dark:border-(--border-strong) rounded-(--radius-field) p-3 type-body text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover transition-all dur-quick focus:outline-none focus:border-black/30 dark:focus:border-white/[0.16] resize-y shadow-xs focus-ui99',
             error && 'border-rose-500/60 focus:border-rose-500',
             className
           )}
@@ -137,7 +137,7 @@ export function SearchBar({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         autoFocus={autoFocus}
-        className="w-full bg-(--bg-elevated) border border-(--border-strong) dark:border-(--border-strong) rounded-(--radius-pill) pl-10 pr-10 py-2.5 type-body text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover focus:border-black/30 dark:focus:border-white/[0.16] transition-all shadow-xs tracking-tight focus-ui99"
+        className="w-full bg-(--bg-elevated) border border-(--border-strong) dark:border-(--border-strong) rounded-(--radius-pill) pl-10 pr-10 py-2 type-body text-(--text-primary) placeholder-(--text-muted) hover:bg-state-hover focus:border-black/30 dark:focus:border-white/[0.16] transition-all shadow-xs tracking-tight focus-ui99"
       />
       {value && onClear && (
         <button

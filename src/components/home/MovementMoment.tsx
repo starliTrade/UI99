@@ -30,7 +30,7 @@ export function MovementMoment({
         onClick={onAddMovement}
         className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
-        <div className="flex items-center gap-3.5">
+        <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-(--radius-control) bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400">
             <Activity className="icon-lg stroke-[1.8]" />
           </div>
@@ -62,7 +62,7 @@ export function MovementMoment({
       <div className="absolute top-0 right-0 w-44 h-44 bg-orange-500/[0.06] rounded-(--radius-pill) blur-3xl pointer-events-none" />
 
       {/* Header */}
-      <div className="flex items-center justify-between mb-3.5 relative z-content">
+      <div className="flex items-center justify-between mb-3 relative z-content">
         <div className="flex items-center gap-2">
           <span className="flex items-center justify-center w-5 h-5 rounded-(--radius-pill) bg-orange-500/15 text-orange-400">
             <Activity className="icon-xs stroke-[2.2]" />
@@ -93,7 +93,7 @@ export function MovementMoment({
         <button
           type="button"
           onClick={(e) => onCheckIn(movementHabit, e)}
-          className="flex items-center gap-1.5 px-3.5 py-2 rounded-(--radius-pill) bg-orange-500/15 hover:bg-orange-500/25 text-orange-300 border border-orange-500/25 shrink-0 transition-transform active:scale-95 cursor-pointer shadow-(--glow-warning-md)"
+          className="flex items-center gap-1 px-3 py-2 rounded-(--radius-pill) bg-orange-500/15 hover:bg-orange-500/25 text-orange-300 border border-orange-500/25 shrink-0 transition-transform active:scale-95 cursor-pointer shadow-(--glow-warning-md)"
         >
           <Flame className="icon-sm fill-current" />
           <span className="type-caption font-semibold">{isRTL ? 'ثبت حرکت' : 'Check-in'}</span>

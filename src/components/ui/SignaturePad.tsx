@@ -138,18 +138,18 @@ export function SignaturePad({
   };
 
   return (
-    <div className={cn('flex flex-col gap-2.5 p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-md', className)}>
+    <div className={cn('flex flex-col gap-2 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-md', className)}>
       <div className="flex items-center justify-between pb-1">
-        <span className="type-caption font-medium text-zinc-600 dark:text-(--text-secondary) flex items-center gap-1.5">
+        <span className="type-caption font-medium text-zinc-600 dark:text-(--text-secondary) flex items-center gap-1">
           <Sparkles className="icon-sm text-emerald-500" />
           Draw signature with finger or stylus
         </span>
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1">
           <button
             type="button"
             onClick={undo}
             disabled={history.length === 0}
-            className="p-1.5 type-caption text-(--text-muted) hover:text-zinc-900 dark:hover:text-white disabled:opacity-30 rounded-(--radius-sm) transition-colors"
+            className="p-1 type-caption text-(--text-muted) hover:text-zinc-900 dark:hover:text-white disabled:opacity-30 rounded-(--radius-sm) transition-colors"
             title="Undo"
           >
             <RotateCcw className="icon-sm" />
@@ -158,7 +158,7 @@ export function SignaturePad({
             type="button"
             onClick={clear}
             disabled={isEmpty}
-            className="p-1.5 type-caption text-rose-500 hover:bg-rose-500/10 disabled:opacity-30 rounded-(--radius-sm) transition-colors"
+            className="p-1 type-caption text-rose-500 hover:bg-rose-500/10 disabled:opacity-30 rounded-(--radius-sm) transition-colors"
             title="Clear canvas"
           >
             <Trash2 className="icon-sm" />

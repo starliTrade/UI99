@@ -413,6 +413,30 @@ describe('type scale', () => {
     expect(type, '--type-fa-tracking').toMatch(/--type-fa-tracking\s*:/);
   });
 
+  it('gives Persian its OWN leading per step, not one reading value', () => {
+    // The single-leading bug: all nine steps inherited one 1.85 reading leading,
+    // which put a 13 × 1.85 = 24.05px line box into a 24px chip. Persian labels
+    // clipped inside fixed-height controls while their Latin twins sat clean,
+    // and the cause was invisible because nothing is a hard overflow — the
+    // label just quietly lost 2px of air it was never designed to give up.
+    for (const step of STEPS) {
+      expect(type, `--type-fa-${step}-leading`).toMatch(
+        new RegExp(`--type-fa-${step}-leading\\s*:`),
+      );
+    }
+    // The chrome steps are bound by a box, not by reading comfort, so they must
+    // be tighter than prose. If this ever inverts, Persian chips start clipping
+    // again.
+    const lead = (s: string) =>
+      parseFloat(type.match(new RegExp(`--type-fa-${s}-leading:\\s*([\\d.]+)`))![1]);
+    expect(lead('micro')).toBeLessThan(lead('body'));
+    expect(lead('caption')).toBeLessThan(lead('body'));
+    // And the ramp must still tighten as the type grows, or a 66px Persian
+    // headline tears into vertical ribbons.
+    expect(lead('body')).toBeGreaterThan(lead('billboard'));
+    expect(lead('heading')).toBeGreaterThan(lead('display'));
+  });
+
   it('gives Persian a larger optical size than Latin', () => {
     // Vazirmatn reads smaller at equal px; a smaller nominal size would make
     // Persian body text visibly weaker than the Latin it sits beside.

@@ -70,9 +70,9 @@
   --type-billboard-tracking: -0.04em;
 
   /* ─── Persian ramp — same 9 steps, optically corrected ─── */
-  /* Vazirmatn reads smaller than Latin at equal px, so size steps up ~8% and
-     leading loosens. Tracking goes to normal: negative tracking damages
-     Arabic-script connections. */
+  /* Vazirmatn reads smaller than Latin at equal px, so size steps up ~6-8%.
+     Tracking goes to normal: negative tracking damages Arabic-script
+     connections, and Persian letterforms already sit far apart. */
   --type-fa-micro-size: 0.6875rem;
   --type-fa-caption-size: 0.8125rem;
   --type-fa-body-size: 0.9375rem;
@@ -83,12 +83,32 @@
   --type-fa-hero-size: 2.875rem;
   --type-fa-billboard-size: 4.125rem;
 
-  --type-fa-leading: 1.85;
+  /* ─── Persian LEADING is per-step, and this is the whole fix. ──────────────
+     A single reading leading for all nine steps was the bug. Arabic-script
+     body text genuinely wants ~1.75 — the descenders of ی/ج/خ and the tall
+     alef need the air, and 1.5 is genuinely cramped for it. But that same 1.75
+     applied to `type-caption` inside a 24px chip put a 13 × 1.85 = 24.05px
+     line box into a 24px box, and Persian labels were the ones clipping while
+     their Latin twins beside them sat clean. The constraint on a control is
+     its HEIGHT, not its reading comfort: a chip, a table row, a status pill
+     and a headline have opposite leading needs, so they cannot share a value.
+     Leading now travels with the step, which is what "a scale owns its
+     vertical rhythm" was supposed to mean in the first place. */
+  --type-fa-micro-leading: 1.4;   /* timestamps, badges — box-height bound */
+  --type-fa-caption-leading: 1.45;/* labels, chips, helper — box-height bound */
+  --type-fa-body-leading: 1.75;   /* the reading steps get the real air */
+  --type-fa-body-lg-leading: 1.75;
+  --type-fa-title-leading: 1.55;
+  --type-fa-heading-leading: 1.45;
+  --type-fa-display-leading: 1.3;
+  --type-fa-hero-leading: 1.22;
+  --type-fa-billboard-leading: 1.15;
+
+  /* The reading leading, kept as a named token: prose in Persian wants one
+     number, and any future surface that has no step of its own should borrow
+     this rather than re-guess. */
+  --type-fa-leading: 1.75;
   --type-fa-tracking: 0em;
-  /* Display-scale Persian needs DISPLAY leading, not reading leading: 1.85
-     between 66px lines tears the headline apart. Large Arabic-script type
-     sits comfortably at ~1.2 — the joins carry the rhythm, not the leading. */
-  --type-fa-display-leading: 1.22;
 
   /* Weight tokens — 4 steps, no more. */
   --weight-regular: 400;

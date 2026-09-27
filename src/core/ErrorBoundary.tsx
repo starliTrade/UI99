@@ -43,7 +43,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
       return (
         <div
           dir="ltr"
-          className="flex min-h-screen flex-col items-center justify-center gap-6 bg-[#06070A] px-6 text-center text-[#EDEDEF]"
+          className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#06070A] px-6 text-center text-[#EDEDEF]"
         >
           <div className="flex flex-col items-center gap-3">
             <div

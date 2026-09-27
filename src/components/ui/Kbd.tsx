@@ -17,7 +17,7 @@ export function Kbd({ children, size = 'sm', className = '' }: KbdProps) {
 
   const sizeStyles = {
     xs: 'type-micro min-w-[16px] h-4 px-1 rounded',
-    sm: 'type-micro min-w-[18px] h-[18px] px-1.5 rounded-(--radius-xs)',
+    sm: 'type-micro min-w-[18px] h-[18px] px-1 rounded-(--radius-xs)',
     md: 'type-caption min-w-[22px] h-[22px] px-2 rounded-(--radius-xs)',
   }[size];
 

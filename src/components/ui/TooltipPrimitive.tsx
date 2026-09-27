@@ -29,7 +29,7 @@ const TooltipContent = React.forwardRef<
     ref={ref}
     sideOffset={sideOffset}
     className={cn(
-      'z-popover overflow-hidden rounded-(--radius-field) px-3 py-1.5 type-caption font-medium tracking-tight shadow-md dur-quick',
+      'z-popover overflow-hidden rounded-(--radius-field) px-3 py-1 type-caption font-medium tracking-tight shadow-md dur-quick',
       'bg-(--ink-fill) text-(--ink-on-fill) border border-black/[0.1] shadow-(--elevation-2)',
       'dark:bg-(--bg-elevated) dark:text-(--text-primary) dark:border-(--border-strong) dark:shadow-(--elevation-2)',
       'animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',

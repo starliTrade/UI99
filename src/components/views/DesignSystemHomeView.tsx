@@ -225,7 +225,7 @@ export function DesignSystemHomeView() {
         <motion.p
           {...reveal(2)}
           dir={isRTL ? 'rtl' : 'ltr'}
-          className="mt-3.5 sm:mt-5 type-body sm:type-body-lg text-zinc-600 dark:text-[#8E909D] leading-relaxed text-start max-w-xl font-normal"
+          className="mt-3 sm:mt-5 type-body sm:type-body-lg text-zinc-600 dark:text-[#8E909D] leading-relaxed text-start max-w-xl font-normal"
         >
           {isRTL ? (
             <>
@@ -248,7 +248,7 @@ export function DesignSystemHomeView() {
         <motion.div
           {...reveal(3)}
           dir={isRTL ? 'rtl' : 'ltr'}
-          className="relative mt-5 sm:mt-7 flex flex-wrap items-center gap-2.5 w-full"
+          className="relative mt-5 sm:mt-7 flex flex-wrap items-center gap-2 w-full"
         >
           <div
             aria-hidden="true"
@@ -259,7 +259,7 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => setCurrentTab('UIKIT')}
-            className="order-1 w-full sm:order-none sm:w-auto min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-semibold cursor-pointer transition-all bg-(--ink-fill) dark:bg-[#EDEDEF] hover:bg-zinc-800 dark:hover:bg-white text-white dark:text-zinc-950 shadow-xs active:scale-[0.98] whitespace-nowrap"
+            className="order-1 w-full sm:order-none sm:w-auto min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1 type-caption font-semibold cursor-pointer transition-all bg-(--ink-fill) dark:bg-[#EDEDEF] hover:bg-zinc-800 dark:hover:bg-white text-white dark:text-zinc-950 shadow-xs active:scale-[0.98] whitespace-nowrap"
           >
             <span>
               {isRTL
@@ -274,7 +274,7 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => setCurrentTab('DOCS')}
-            className="order-3 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-surface) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) text-zinc-800 dark:text-(--text-secondary) dark:hover:text-(--text-primary) border border-(--border-subtle) dark:border-(--border-subtle) hover:border-(--border-soft) dark:hover:border-(--border-soft) active:scale-[0.98] whitespace-nowrap"
+            className="order-3 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-surface) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) text-zinc-800 dark:text-(--text-secondary) dark:hover:text-(--text-primary) border border-(--border-subtle) dark:border-(--border-subtle) hover:border-(--border-soft) dark:hover:border-(--border-soft) active:scale-[0.98] whitespace-nowrap"
           >
             <BookOpen className="icon-sm text-zinc-600 dark:text-(--text-secondary)" />
             <span>{isRTL ? 'مستندات تعاملی' : 'Interactive Docs'}</span>
@@ -284,7 +284,7 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
-            className="order-4 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-surface) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) text-zinc-800 dark:text-(--text-secondary) dark:hover:text-(--text-primary) border border-(--border-subtle) dark:border-(--border-subtle) hover:border-(--border-soft) dark:hover:border-(--border-soft) active:scale-[0.98] whitespace-nowrap"
+            className="order-4 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-surface) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) text-zinc-800 dark:text-(--text-secondary) dark:hover:text-(--text-primary) border border-(--border-subtle) dark:border-(--border-subtle) hover:border-(--border-soft) dark:hover:border-(--border-soft) active:scale-[0.98] whitespace-nowrap"
           >
             <Github className="icon-sm text-zinc-600 dark:text-(--text-secondary)" />
             <span>GitHub</span>
@@ -293,8 +293,8 @@ export function DesignSystemHomeView() {
           {/* 4. Terminal Action: CLI Install Box — the command itself stays
               LTR even in Persian: code is code, and mixing bidi into a shell
               command corrupts it. */}
-          <div className="order-2 w-full sm:order-none sm:w-auto min-h-[44px] inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-subtle) dark:border-(--border-subtle) type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
-            <span dir="ltr" className="flex items-center gap-1.5">
+          <div className="order-2 w-full sm:order-none sm:w-auto min-h-[44px] inline-flex items-center justify-between gap-2 pl-3 pr-1 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-subtle) dark:border-(--border-subtle) type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+            <span dir="ltr" className="flex items-center gap-1">
               <span className="font-mono text-emerald-500 dark:text-emerald-400 font-bold select-none tracking-tight">
                 &gt;_
               </span>
@@ -326,7 +326,7 @@ export function DesignSystemHomeView() {
           3 · DESIGN SYSTEM CRAFT PILLARS
          ══════════════════════════════════════════════════════════════ */}
       <Reveal index={5}>
-        <section className="pt-12 sm:pt-16 space-y-5">
+        <section className="pt-12 sm:pt-16 space-y-4">
           {/* Left-Aligned Header */}
           <div className="space-y-1 text-left">
             <div className="flex items-center gap-2">
@@ -344,31 +344,31 @@ export function DesignSystemHomeView() {
           </div>
 
           {/* Connected Pillar Card */}
-          <div className="rounded-(--radius-control) bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) shadow-(--elevation-1) dark:shadow-(--elevation-1) divide-y divide-zinc-100 dark:divide-(--border-soft) sm:divide-y-0 sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:shadow-none sm:grid sm:grid-cols-3 sm:gap-3.5">
+          <div className="rounded-(--radius-control) bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) shadow-(--elevation-1) dark:shadow-(--elevation-1) divide-y divide-zinc-100 dark:divide-(--border-soft) sm:divide-y-0 sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:shadow-none sm:grid sm:grid-cols-3 sm:gap-3">
             {/* Pillar 1: Keyboard Velocity */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-(--border-soft) sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-(--border-soft)">
+            <div className="p-3 sm:p-4 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-(--border-soft) sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-(--border-soft)">
               <div className="w-8 h-8 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-(--border-soft) dark:border-emerald-500/20">
                 <Zap className="icon-md" />
               </div>
               <div className="space-y-1 min-w-0">
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1">
                   <h3 className="type-caption sm:type-body font-bold text-zinc-950 dark:text-white">
                     Keyboard Velocity &amp; {KIT_COMPONENT_COUNT} Elements
                   </h3>
                 </div>
                 <p className="type-micro sm:type-caption text-zinc-600 dark:text-[#92929B] leading-relaxed">
-                  Roving tabindex, global <code className="px-1.5 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-raised) text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft) dark:border-(--border-soft)">⌘K</code> hotkeys, and tactile focus states across all 99 primitives.
+                  Roving tabindex, global <code className="px-1 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-raised) text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft) dark:border-(--border-soft)">⌘K</code> hotkeys, and tactile focus states across all 99 primitives.
                 </p>
               </div>
             </div>
 
             {/* Pillar 2: Specular Velvet Depth */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-(--border-soft) sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-(--border-soft)">
+            <div className="p-3 sm:p-4 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-(--border-soft) sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-(--border-soft)">
               <div className="w-8 h-8 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 border border-(--border-soft) dark:border-indigo-500/20">
                 <Sparkles className="icon-md" />
               </div>
               <div className="space-y-1 min-w-0">
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1">
                   <h3 className="type-caption sm:type-body font-bold text-zinc-950 dark:text-white">
                     Specular Velvet Depth
                   </h3>
@@ -380,12 +380,12 @@ export function DesignSystemHomeView() {
             </div>
 
             {/* Pillar 3: Zero Runtime Overhead */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-(--border-soft) sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-(--border-soft)">
+            <div className="p-3 sm:p-4 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-(--border-soft) sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-(--border-soft)">
               <div className="w-8 h-8 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 mt-0.5 border border-(--border-soft) dark:border-amber-500/20">
                 <ShieldCheck className="icon-md" />
               </div>
               <div className="space-y-1 min-w-0">
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1">
                   <h3 className="type-caption sm:type-body font-bold text-zinc-950 dark:text-white">
                     Zero Runtime Overhead
                   </h3>
@@ -408,7 +408,7 @@ export function DesignSystemHomeView() {
             <span className="font-mono type-caption sm:type-body font-bold text-zinc-950 dark:text-white">
               UI \ [99]
             </span>
-            <span className="type-micro font-mono text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">{KIT_COMPONENT_COUNT} Elements</span>
+            <span className="type-micro font-mono text-emerald-500 bg-emerald-500/10 px-1 py-0.5 rounded border border-emerald-500/20">{KIT_COMPONENT_COUNT} Elements</span>
           </div>
 
           <nav className="flex items-center gap-3 sm:gap-4 type-caption font-mono text-zinc-500 dark:text-(--text-secondary)" aria-label="Footer Navigation">

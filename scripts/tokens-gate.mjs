@@ -22,7 +22,7 @@
  *
  * Run: node scripts/tokens-gate.mjs
  */
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -532,8 +532,145 @@ if (softViolations.length) {
   process.exit(1);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   RULE F — SPACING GRID (4px). The one sanctioned off-grid rung is the 2px
+   half-step `p-0.5`, for icon-to-text pairs that need to sit closer than 4px
+   without colliding. Everything else is a multiple of 4.
+
+   Off-grid spacing is not a 2px rounding error, it is the reason a dense UI
+   reads as unsound: every `gap-1.5` is a place where two components disagree
+   about how much air a thing gets, and 525 of them were scattered over 95
+   files. It also overflows — a 32px control with `py-1.5` and a 14/1.6 line
+   needs 34.4px, and the label loses 2px it was never designed to give up.
+
+   Width and height are NOT spacing. `w-3.5` is a 14px icon, not a gap.
+   ═══════════════════════════════════════════════════════════════════════════ */
+const SPACING_PROPS =
+  'gap(?:-[xy])?|space-[xy]|p[xytrbles]?|m[xytrbles]?';
+const OFF_GRID_RE = new RegExp(
+  String.raw`(?<![\w-])(?:[a-z0-9\[\]&#>:/.-]+:)*(${SPACING_PROPS})-(\d+)\.5(?![\w.\d-])`,
+  'g',
+);
+const gridViolations = [];
+
+function walkSource(dir, out = []) {
+  for (const entry of readdirSync(dir)) {
+    const p = resolve(dir, entry);
+    const st = statSync(p);
+    if (st.isDirectory()) walkSource(p, out);
+    else if (/\.(tsx|ts|css)$/.test(entry)) out.push(p);
+  }
+  return out;
+}
+
+for (const abs of walkSource(resolve(root, 'src'))) {
+  const rel = abs.slice(root.length + 1);
+  readFileSync(abs, 'utf8')
+    .split('\n')
+    .forEach((line, i) => {
+      for (const m of line.matchAll(OFF_GRID_RE)) {
+        // The documented 2px exception: `-0.5` is 2px, the tight icon pair.
+        if (m[2] === '0') continue;
+        gridViolations.push(
+          `${rel}:${i + 1}: off-grid spacing — "${m[0].trim()}" (round down to the 4px grid)`,
+        );
+      }
+    });
+}
+
+if (gridViolations.length) {
+  console.error(
+    `\n✗ tokens-gate: ${gridViolations.length} off-grid spacing class(es) — every gap is a multiple of 4px (docs/standards.md §3):\n`,
+  );
+  for (const v of gridViolations.slice(0, 25)) console.error('  ' + v);
+  if (gridViolations.length > 25) {
+    console.error(`  … and ${gridViolations.length - 25} more`);
+  }
+  console.error('\nCodemod: node scripts/migrate-spacing-grid.mjs\n');
+  process.exit(1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RULE G — LIGHT IS DARK, POLARITY FLIPPED.
+
+   The two themes are not allowed to drift into two different design languages.
+   For the border ladder and the rim family, light must carry the SAME alphas
+   as dark with the ink direction inverted. This is arithmetic, not taste: dark's
+   white rim at 0.04 lifts a card's top edge 10 levels off the canvas, and a
+   light rim at 0.04 of ink darkens a white card by 10. The old light block ran
+   borders 1.4-1.5x stronger and declared its rims as `rgba(255,255,255,…)` —
+   a white highlight on a white card, which composites to NOTHING. That is the
+   whole reason light looked flatter than dark no matter how much shadow it was
+   given, and a gate is the only thing that keeps it from coming back.
+   ═══════════════════════════════════════════════════════════════════════════ */
+const ui99Css = readFileSync(resolve(root, 'src/styles/ui99.css'), 'utf8');
+const elevationCss = readFileSync(resolve(root, 'src/styles/ui99-elevation.css'), 'utf8');
+const mirrorViolations = [];
+
+/** Read `--name: value` from inside one theme block. */
+function tokenFrom(source, blockSel, name) {
+  const at = source.indexOf(blockSel);
+  if (at < 0) return null;
+  const body = source.slice(at, source.indexOf('\n}', at));
+  const m = body.match(new RegExp(`--${name}:\\s*([^;]+);`));
+  return m ? m[1].trim() : null;
+}
+
+/** Pull the leading alpha out of `rgba(r, g, b, a)` or a multi-layer rim. */
+function alphasOf(value) {
+  if (!value) return [];
+  return [...value.matchAll(/rgba\(\s*[\d.]+\s*,\s*[\d.]+\s*,\s*[\d.]+\s*,\s*([\d.]+)\s*\)/g)].map(
+    (m) => Number(m[1]),
+  );
+}
+
+for (const name of ['border-subtle', 'border-soft', 'border-strong', 'border-hairline', 'border-specular']) {
+  const dark = tokenFrom(ui99Css, "/* ======================= OBSIDIAN DARK", name);
+  const light = tokenFrom(ui99Css, '/* ======================= PORCELAIN LIGHT', name);
+  if (!dark || !light) continue;
+  const [d] = alphasOf(dark);
+  const [l] = alphasOf(light);
+  if (d !== undefined && l !== undefined && Math.abs(d - l) > 0.0001) {
+    mirrorViolations.push(
+      `--${name}: dark alpha ${d} vs light alpha ${l} — light must mirror dark, polarity flipped`,
+    );
+  }
+}
+
+for (const name of ['rim-subtle', 'rim-soft', 'rim-strong', 'rim-crisp']) {
+  const dark = tokenFrom(elevationCss, "/* ======================= DARK", name);
+  const light = tokenFrom(elevationCss, '/* ======================= LIGHT', name);
+  if (!dark || !light) continue;
+  const d = alphasOf(dark);
+  const l = alphasOf(light);
+  if (d.length !== l.length) continue;
+  for (let i = 0; i < d.length; i++) {
+    if (Math.abs(d[i] - l[i]) > 0.0001) {
+      mirrorViolations.push(
+        `--${name}[${i}]: dark alpha ${d[i]} vs light alpha ${l[i]} — light must mirror dark, polarity flipped`,
+      );
+    }
+  }
+  // A light rim drawn in white is a no-op on a white card. Catch the specific
+  // mistake that shipped, not just any change in alpha.
+  const lightWhites = (light.match(/rgba\(255,\s*255,\s*255/g) ?? []).length;
+  if (lightWhites > 0 && !/rgba\(255,\s*255,\s*255/.test(dark)) {
+    mirrorViolations.push(
+      `--${name}: a light rim must be INK, not white — white on a white card composites to nothing`,
+    );
+  }
+}
+
+if (mirrorViolations.length) {
+  console.error(
+    `\n✗ tokens-gate: ${mirrorViolations.length} light/dark mirror violation(s) — light is dark with the polarity flipped, nothing else changed:\n`,
+  );
+  for (const v of mirrorViolations) console.error('  ' + v);
+  process.exit(1);
+}
+
 console.log(
   `✓ tokens-gate: ${files.length} kit files clean — no hardcoded hexes, no arbitrary or raw-scale ` +
     `elevation/radius/blur/type, no dead utilities, all ${declared.size} tokens declared, ` +
-    `soft-continuity ladder enforced (5 rules: hex · structural · declared · compiles · soft)`,
+    `soft-continuity ladder enforced (7 rules: hex · structural · declared · compiles · soft · grid · mirror)`,
 );

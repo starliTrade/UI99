@@ -114,7 +114,7 @@ export function Dropdown<T extends string = string>({
     if (idx >= 0) setActiveIndex(idx);
   };
 
-  const sizeClass = size === 'sm' ? 'px-3 py-1.5 type-caption' : 'px-3.5 py-2 type-body';
+  const sizeClass = size === 'sm' ? 'px-3 py-1 type-caption' : 'px-3 py-2 type-body';
   const listId = `dropdown-list-${label || 'default'}`.replace(/\s+/g, '-').toLowerCase();
 
   return (
@@ -122,7 +122,7 @@ export function Dropdown<T extends string = string>({
       {label && (
         <span
           id={`${listId}-label`}
-          className={`block type-caption font-semibold mb-1.5 ${
+          className={`block type-caption font-semibold mb-1 ${
             isDark ? 'text-(--text-secondary)' : 'text-zinc-700'
           }`}
         >
@@ -164,7 +164,7 @@ export function Dropdown<T extends string = string>({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.98 }}
             transition={{ duration: 0.14 }}
-            className={`absolute left-0 right-0 mt-1.5 p-1 rounded-(--radius-control) z-popover backdrop-blur-2xl shadow-xl overflow-hidden ${
+            className={`absolute left-0 right-0 mt-1 p-1 rounded-(--radius-control) z-popover backdrop-blur-2xl shadow-xl overflow-hidden ${
               isDark
                 ? 'bg-(--bg-elevated)/95 border border-white/[0.07] shadow-(--elevation-4)'
                 : 'bg-white/95 border border-black/[0.06] shadow-(--elevation-3)'

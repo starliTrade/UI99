@@ -73,7 +73,7 @@ export function StreakHabitCard({
 
       {/* 7-Day Circular Streak Tokens */}
       <div className="my-5 pt-1 relative z-content">
-        <div className="flex items-center justify-between gap-1.5 sm:gap-2">
+        <div className="flex items-center justify-between gap-1 sm:gap-2">
           {dayNames.map((day, idx) => {
             const isCompleted = completedDays.includes(idx);
             const isToday = idx === currentDayIndex;
@@ -82,7 +82,7 @@ export function StreakHabitCard({
               <div key={day} className="flex flex-col items-center gap-2">
                 {/* Circular Token */}
                 <div
-                  className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-(--radius-pill) flex items-center justify-center transition-all ${
+                  className={`w-8 h-8 sm:w-9 sm:h-9 rounded-(--radius-pill) flex items-center justify-center transition-all ${
                     isCompleted
                       ? 'bg-gradient-to-tr from-emerald-500 to-lime-300 text-zinc-950 font-bold shadow-(--glow-accent-md)'
                       : isToday
@@ -111,7 +111,7 @@ export function StreakHabitCard({
 
       {/* Goal Metric Section */}
       <div className={`mt-4 pt-3 border-t relative z-content ${isDark ? 'border-white/[0.05]' : 'border-black/[0.05]'}`}>
-        <div className="flex items-baseline justify-between mb-1.5">
+        <div className="flex items-baseline justify-between mb-1">
           <div>
             <span className={`block type-micro font-bold tracking-wider uppercase mb-0.5 ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
               {metricLabel}

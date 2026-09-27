@@ -24,7 +24,7 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
         onClick={onCaptureMemory}
         className="group relative p-5 rounded-(--radius-xl) cursor-pointer overflow-hidden transition-all dur-slow bg-(--bg-card) border border-white/[0.025] hover:border-white/[0.04] shadow-(--shadow-card-hover) flex items-center justify-between"
       >
-        <div className="flex items-center gap-3.5">
+        <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-(--radius-control) bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
             <Heart className="icon-lg stroke-[1.8]" />
           </div>
@@ -92,7 +92,7 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
       </div>
 
       {/* Footer */}
-      <div className="mt-3.5 pt-2.5 border-t border-white/[0.025] flex items-center justify-between type-micro text-[#92929B] relative z-content">
+      <div className="mt-3 pt-2 border-t border-white/[0.025] flex items-center justify-between type-micro text-[#92929B] relative z-content">
         <div className="flex items-center gap-2">
           <span>📍 {location}</span>
           <span>•</span>

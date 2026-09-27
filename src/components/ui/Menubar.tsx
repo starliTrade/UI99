@@ -10,10 +10,10 @@ import { Check, ChevronRight, Circle } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const menuContentClass =
-  'z-popover min-w-[12rem] overflow-hidden rounded-(--radius-control) border border-(--border-soft) dark:border-(--border-strong) bg-white/95 dark:bg-(--bg-card)/95 backdrop-blur-2xl p-1.5 text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3) data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95';
+  'z-popover min-w-[12rem] overflow-hidden rounded-(--radius-control) border border-(--border-soft) dark:border-(--border-strong) bg-white/95 dark:bg-(--bg-card)/95 backdrop-blur-2xl p-1 text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3) data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95';
 
 const menuItemClass =
-  'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-sm) px-2 py-1.5 type-caption outline-none transition-colors focus:bg-(--bg-wash) focus:text-zinc-950 data-[disabled]:pointer-events-none data-[disabled]:opacity-40 dark:focus:bg-(--bg-raised) dark:focus:text-white [&_svg]:size-3.5 [&_svg]:shrink-0';
+  'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-sm) px-2 py-1 type-caption outline-none transition-colors focus:bg-(--bg-wash) focus:text-zinc-950 data-[disabled]:pointer-events-none data-[disabled]:opacity-40 dark:focus:bg-(--bg-raised) dark:focus:text-white [&_svg]:size-3.5 [&_svg]:shrink-0';
 
 export function Menubar({
   className = '',
@@ -43,7 +43,7 @@ export function MenubarTrigger({
   return (
     <MenubarPrimitive.Trigger
       className={cn(
-        'flex cursor-pointer select-none items-center rounded-(--radius-sm) px-2.5 py-1.5 type-caption font-medium outline-none transition-colors focus-visible:outline-none focus-ui99-inset data-[state=open]:bg-white data-[state=open]:shadow-xs dark:data-[state=open]:bg-(--bg-elevated)',
+        'flex cursor-pointer select-none items-center rounded-(--radius-sm) px-2 py-1 type-caption font-medium outline-none transition-colors focus-visible:outline-none focus-ui99-inset data-[state=open]:bg-white data-[state=open]:shadow-xs dark:data-[state=open]:bg-(--bg-elevated)',
         className
       )}
       {...props}
@@ -116,7 +116,7 @@ export function MenubarLabel({
 }: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Label>) {
   return (
     <MenubarPrimitive.Label
-      className={cn('px-2 py-1.5 type-micro font-mono uppercase tracking-wider text-zinc-400', className)}
+      className={cn('px-2 py-1 type-micro font-mono uppercase tracking-wider text-zinc-400', className)}
       {...props}
     />
   );

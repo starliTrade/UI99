@@ -66,7 +66,7 @@ export function PasswordInput({
   }, [score]);
 
   return (
-    <div className="flex flex-col gap-1.5 w-full">
+    <div className="flex flex-col gap-1 w-full">
       {label && (
         <div className="flex items-center justify-between">
           <label className="type-caption font-medium text-zinc-700 dark:text-(--text-secondary)">{label}</label>
@@ -87,7 +87,7 @@ export function PasswordInput({
             onChange?.(e);
           }}
           className={cn(
-            'w-full px-3.5 py-2.5 pr-10 type-body rounded-(--radius-field) transition-all dur-quick',
+            'w-full px-3 py-2 pr-10 type-body rounded-(--radius-field) transition-all dur-quick',
             'bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary) placeholder-zinc-400',
             'border border-(--border-strong) dark:border-(--border-strong) focus:border-zinc-500 dark:focus:border-white/20 focus:outline-none',
             error && 'border-rose-500',
@@ -118,7 +118,7 @@ export function PasswordInput({
           {/* Validation Checklist */}
           <div className="grid grid-cols-2 gap-1 pt-1">
             {rules.map((rule) => (
-              <div key={rule.id} className="flex items-center gap-1.5 type-micro">
+              <div key={rule.id} className="flex items-center gap-1 type-micro">
                 {rule.met ? (
                   <Check className="icon-xs text-emerald-500 shrink-0" />
                 ) : (

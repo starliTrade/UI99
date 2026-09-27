@@ -128,7 +128,7 @@ export function CheckboxGroup({
 
   return (
     <div
-      className={`flex ${orientation === 'vertical' ? 'flex-col gap-2.5' : 'flex-wrap gap-4'} ${className}`}
+      className={`flex ${orientation === 'vertical' ? 'flex-col gap-2' : 'flex-wrap gap-4'} ${className}`}
     >
       {options.map((opt) => (
         <div key={opt.value} className="flex flex-col">

@@ -78,7 +78,7 @@ export function FileUpload({
       </label>
 
       {files.length > 0 && (
-        <ul className="flex flex-wrap gap-1.5" aria-label="Selected files">
+        <ul className="flex flex-wrap gap-1" aria-label="Selected files">
           {files.map((f, i) => (
             <li key={`${f.name}-${i}`}>
               <Tag

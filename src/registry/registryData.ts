@@ -132,7 +132,7 @@ export const REGISTRY_COMPONENTS: ComponentRegistryItem[] = [
     cliCommand: 'npx @99/ui add kbd',
     features: ['Pixel-perfect 18px height', 'Double specular border', 'JetBrains Mono font'],
     usageSnippet: `import { Kbd } from "@99/ui"\n\n<Kbd>⌘K</Kbd>`,
-    codeSnippet: `export const Kbd = ({ children }) => <kbd className="px-1.5 py-0.5 font-mono text-xs">{children}</kbd>;`,
+    codeSnippet: `export const Kbd = ({ children }) => <kbd className="px-1 py-0.5 font-mono text-xs">{children}</kbd>;`,
     props: [{ name: 'size', type: "'xs' | 'sm' | 'md'", description: 'Size tier.' }],
   },
   {

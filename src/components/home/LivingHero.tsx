@@ -153,10 +153,10 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
         <div className="relative z-content flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           
           {/* Left: Typography & Context */}
-          <div className="space-y-1.5 min-w-0 flex-1">
+          <div className="space-y-1 min-w-0 flex-1">
             {/* Context Date Badge & Status */}
             <div className="flex items-center gap-2 type-caption text-[#92929B] font-medium">
-              <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.035]">
+              <span className="flex items-center gap-1 px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.035]">
                 <TimeIcon className="icon-sm text-rose-400" />
                 <span className="text-zinc-300">{dateFormatted}</span>
               </span>
@@ -180,7 +180,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
           </div>
 
           {/* Right: Layered Organic Depth Sculpture & Universal Capture */}
-          <div className="flex items-center gap-3.5 shrink-0 self-end md:self-center">
+          <div className="flex items-center gap-3 shrink-0 self-end md:self-center">
             
             {/* Jewelry-like Depth Orb Emblem */}
             <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-(--radius-pill) bg-gradient-to-br from-[#1A1A24] via-[#0E0E14] to-[#07070A] border border-white/[0.04] shadow-(--elevation-2) flex items-center justify-center overflow-hidden shrink-0 group">

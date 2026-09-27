@@ -98,7 +98,7 @@ export function SidebarItem({ icon, isActive, label, className = '', ...props }:
       aria-current={isActive ? 'page' : undefined}
       data-active={isActive}
       className={cn(
-        'group flex min-h-[44px] items-center gap-2.5 rounded-(--radius-field) px-2.5 type-caption font-medium transition-colors cursor-pointer focus-visible:outline-none focus-ui99-inset',
+        'group flex min-h-[44px] items-center gap-2 rounded-(--radius-field) px-2 type-caption font-medium transition-colors cursor-pointer focus-visible:outline-none focus-ui99-inset',
         isActive
           ? 'bg-(--bg-wash) text-zinc-950 dark:bg-(--bg-wash) dark:text-white shadow-(--rim-soft)'
           : 'text-zinc-600 hover:bg-(--bg-subtle) hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:bg-(--bg-wash) dark:hover:text-(--text-primary)',

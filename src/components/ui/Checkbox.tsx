@@ -34,7 +34,7 @@ export function Checkbox({
 
   return (
     <label
-      className={`inline-flex items-start gap-2.5 select-none ${
+      className={`inline-flex items-start gap-2 select-none ${
         disabled ? 'opacity-40 cursor-not-allowed pointer-events-none' : 'cursor-pointer'
       } ${className}`}
     >
@@ -120,7 +120,7 @@ export function Radio({
 
   return (
     <label
-      className={`inline-flex items-center gap-2.5 cursor-pointer select-none ${
+      className={`inline-flex items-center gap-2 cursor-pointer select-none ${
         disabled ? 'opacity-40 cursor-not-allowed' : ''
       } ${className}`}
     >

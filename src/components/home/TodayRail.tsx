@@ -74,7 +74,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
     <div className="w-full relative py-0.5 select-none">
       <div
         ref={scrollRef}
-        className="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1.5 px-0.5 scroll-smooth"
+        className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-0.5 scroll-smooth"
       >
         {days.map((d) => {
           const selected = isSameDay(d, selectedDate);
@@ -91,7 +91,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
             >
               {/* Day Label (e.g. Fri, Sat, Sun / امروز) */}
               <span
-                className={`type-micro font-medium tracking-tight mb-1.5 transition-colors ${
+                className={`type-micro font-medium tracking-tight mb-1 transition-colors ${
                   selected
                     ? isDark ? 'text-[#EDEDEF] font-semibold' : 'text-zinc-950 font-bold'
                     : isDark ? 'text-[#8E8E98] group-hover:text-zinc-300' : 'text-zinc-500 group-hover:text-zinc-900'

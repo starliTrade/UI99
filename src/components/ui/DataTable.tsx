@@ -93,7 +93,7 @@ export function DataTable<T extends Record<string, any>>({
             }}
             placeholder="Search records..."
             aria-label="Search records"
-            className="w-full pl-8 pr-3 py-1.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) type-caption font-mono text-zinc-950 dark:text-white placeholder:text-zinc-400 focus:border-zinc-400 dark:focus:border-white/20 focus-ui99"
+            className="w-full pl-8 pr-3 py-1 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) type-caption font-mono text-zinc-950 dark:text-white placeholder:text-zinc-400 focus:border-zinc-400 dark:focus:border-white/20 focus-ui99"
           />
         </div>
       )}
@@ -131,7 +131,7 @@ export function DataTable<T extends Record<string, any>>({
                     }
                     className={col.sortable ? 'cursor-pointer select-none hover:text-zinc-950 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60' : ''}
                   >
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1">
                       <span>{col.header}</span>
                       {col.sortable && !isSorted && (
                         <span aria-hidden="true" className="text-(--text-secondary)">

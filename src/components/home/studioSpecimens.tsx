@@ -236,7 +236,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   command: () => (
     <div className="w-full max-w-md rounded-(--radius-control) border border-(--border-subtle) bg-(--bg-surface) shadow-(--shadow-card) overflow-hidden">
       <CommandRoot>
-        <CommandList className="p-1.5">
+        <CommandList className="p-1">
           <CommandEmpty>No results.</CommandEmpty>
           <CommandGroup heading="Suggestions">
             <CommandItem><Plus className="icon-sm mr-2" /> Add component</CommandItem>
@@ -323,7 +323,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   ),
 
   'field-error': () => (
-    <div className="w-full max-w-xs space-y-1.5">
+    <div className="w-full max-w-xs space-y-1">
       <Label htmlFor="specimen-field">Workspace name</Label>
       <Input id="specimen-field" defaultValue="velvet-lab" aria-invalid />
       <FormError>This name is taken.</FormError>
@@ -380,7 +380,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   ),
 
   label: () => (
-    <div className="w-full max-w-xs space-y-1.5">
+    <div className="w-full max-w-xs space-y-1">
       <Label htmlFor="specimen-label">API key</Label>
       <Input id="specimen-label" placeholder="••••" />
     </div>
@@ -410,7 +410,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   'meter-bar': () => <MeterBar value={72} label="Token coverage" showValue className="w-full max-w-sm" />,
 
   'metric-card': () => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full max-w-md">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full max-w-md">
       <MetricCard label="Primitives" value={102} delta={8} sparklineColor="emerald" />
       <MetricCard label="Install time" value="4.2s" delta={-11} sparklineColor="blue" />
     </div>
@@ -535,7 +535,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   sidebar: () => (
     <div className="h-44 w-full max-w-md overflow-hidden rounded-(--radius-control) border border-(--border-subtle) bg-(--bg-canvas) flex">
       <SidebarProvider>
-        <div className="w-48 p-2.5 bg-(--bg-surface) border-e border-(--border-subtle) flex flex-col gap-1">
+        <div className="w-48 p-2 bg-(--bg-surface) border-e border-(--border-subtle) flex flex-col gap-1">
           <SidebarItem icon={<Home className="icon-sm" />} label="Overview" isActive />
           <SidebarItem icon={<Layers className="icon-sm" />} label="Registry" />
           <SidebarItem icon={<Search className="icon-sm" />} label="Search" />
@@ -575,7 +575,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
 
 
   skeleton: () => (
-    <div className="w-full max-w-sm space-y-2.5">
+    <div className="w-full max-w-sm space-y-2">
       <Skeleton className="h-5 w-2/3" rounded="md" />
       <Skeleton className="h-3 w-full" rounded="sm" />
       <Skeleton className="h-3 w-4/5" rounded="sm" />
@@ -639,7 +639,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
       <div className="h-10 bg-(--bg-surface) border-b border-(--border-subtle) flex items-center px-3 gap-2">
         <span className="h-2 w-2 rounded-(--radius-pill) bg-emerald-500" />
         <span className="type-caption font-mono text-(--text-muted)">Registry / Button</span>
-        <span className="ml-auto flex items-center gap-1.5">
+        <span className="ml-auto flex items-center gap-1">
           <Search className="icon-sm text-(--text-muted)" />
           <Bell className="icon-sm text-(--text-muted)" />
         </span>
@@ -684,7 +684,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   'ui99-wordmark': () => <UI99Wordmark />,
 
   toast: () => (
-    <div className="w-full max-w-sm p-4 rounded-(--radius-control) bg-(--bg-surface) border border-(--border-subtle) shadow-(--shadow-card) flex items-center gap-2.5">
+    <div className="w-full max-w-sm p-4 rounded-(--radius-control) bg-(--bg-surface) border border-(--border-subtle) shadow-(--shadow-card) flex items-center gap-2">
       <Check className="icon-sm text-emerald-500 shrink-0" />
       <p className="type-caption text-(--text-primary)">Tokens exported — 192 values</p>
     </div>

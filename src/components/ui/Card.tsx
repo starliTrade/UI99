@@ -60,8 +60,8 @@ export function Surface({
 
   const padMap = {
     none: 'p-0',
-    xs: 'p-2 sm:p-2.5',
-    sm: 'p-3 sm:p-3.5',
+    xs: 'p-2 sm:p-2',
+    sm: 'p-3 sm:p-3',
     md: 'p-4 sm:p-5',
     lg: 'p-5 sm:p-6',
     xl: 'p-6 sm:p-8',
@@ -103,7 +103,7 @@ export function Surface({
 export const Card = Surface;
 
 export function CardHeader({ className = '', ...props }: HTMLAttributes<HTMLDivElement>) {
-  return <div className={`flex flex-col space-y-1.5 pb-3 ${className}`} {...props} />;
+  return <div className={`flex flex-col space-y-1 pb-3 ${className}`} {...props} />;
 }
 
 export function CardTitle({ className = '', ...props }: HTMLAttributes<HTMLHeadingElement>) {
@@ -115,7 +115,7 @@ export function CardDescription({ className = '', ...props }: HTMLAttributes<HTM
 }
 
 export function CardContent({ className = '', ...props }: HTMLAttributes<HTMLDivElement>) {
-  return <div className={`py-1.5 ${className}`} {...props} />;
+  return <div className={`py-1 ${className}`} {...props} />;
 }
 
 export function CardFooter({ className = '', ...props }: HTMLAttributes<HTMLDivElement>) {

@@ -124,20 +124,20 @@ export function TerminalEmulator({
       )}
     >
       {/* Top Titlebar */}
-      <div className="flex items-center justify-between px-3.5 py-2.5 bg-(--bg-card) border-b border-white/[0.04]">
+      <div className="flex items-center justify-between px-3 py-2 bg-(--bg-card) border-b border-white/[0.04]">
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1">
             <div className="icon-dot-lg rounded-(--radius-pill) bg-rose-500/80" />
             <div className="icon-dot-lg rounded-(--radius-pill) bg-amber-500/80" />
             <div className="icon-dot-lg rounded-(--radius-pill) bg-emerald-500/80" />
           </div>
-          <span className="text-(--text-secondary) font-medium ml-2 flex items-center gap-1.5">
+          <span className="text-(--text-secondary) font-medium ml-2 flex items-center gap-1">
             <Terminal className="icon-sm text-(--text-secondary)" />
             ui99-cli ~ v1.0.0
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1">
           <button
             type="button"
             onClick={copyAll}
@@ -185,7 +185,7 @@ export function TerminalEmulator({
       {/* Command Input Form */}
       <form
         onSubmit={runCommand}
-        className="flex items-center gap-2 px-3.5 py-2.5 bg-(--bg-card) border-t border-white/[0.04]"
+        className="flex items-center gap-2 px-3 py-2 bg-(--bg-card) border-t border-white/[0.04]"
       >
         <span className="text-emerald-400 font-bold">$</span>
         <input

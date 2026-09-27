@@ -75,7 +75,7 @@ export function RhythmSparklineCard({
         <h3 className={`type-heading sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
           {value}
         </h3>
-        <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-(--radius-pill) type-caption font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
+        <div className="mt-1 inline-flex items-center gap-1 px-2 py-0.5 rounded-(--radius-pill) type-caption font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
           <span className="type-micro">▲</span>
           <span>{trend}</span>
         </div>
@@ -93,7 +93,7 @@ export function RhythmSparklineCard({
         {/* Floating Tooltip with Vertical Hairline & Subtle Dot on Peak */}
         <div className="absolute left-[50%] top-2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-content">
           <div
-            className={`px-3.5 py-1.5 rounded-(--radius-field) backdrop-blur-md text-center transition-all ${
+            className={`px-3 py-1 rounded-(--radius-field) backdrop-blur-md text-center transition-all ${
               isDark
                 ? 'bg-[#14151C]/95 shadow-(--shadow-card) text-white'
                 : 'bg-white/95 shadow-(--shadow-card) border border-black/[0.04] text-[#111116]'

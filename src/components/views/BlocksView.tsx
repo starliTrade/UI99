@@ -97,7 +97,7 @@ function LinearIssueTrackerBlock() {
         {issues.map((issue) => (
           <div
             key={issue.id}
-            className="p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) flex items-center justify-between gap-4 hover:border-black/20 dark:hover:border-white/10 transition-colors cursor-pointer shadow-xs"
+            className="p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) flex items-center justify-between gap-4 hover:border-black/20 dark:hover:border-white/10 transition-colors cursor-pointer shadow-xs"
           >
             <div className="flex items-center gap-3 min-w-0">
               <PriorityBadge priority={issue.priority} size="sm" showLabel={false} />
@@ -247,7 +247,7 @@ function PricingPlansBlock() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <div className="flex flex-col items-center text-center space-y-3">
         <h2 className="type-heading sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
           Predictable, transparent plans.
@@ -267,7 +267,7 @@ function PricingPlansBlock() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {plans.map((plan) => (
           <Card
             key={plan.name}
@@ -288,7 +288,7 @@ function PricingPlansBlock() {
               <CardHeader>
                 <CardTitle className="type-body-lg">{plan.name}</CardTitle>
                 <CardDescription className="type-caption">{plan.description}</CardDescription>
-                <div className="pt-4 flex items-baseline gap-1.5">
+                <div className="pt-4 flex items-baseline gap-1">
                   <span className="type-display sm:type-display font-mono font-bold text-zinc-950 dark:text-white">
                     {plan.price}
                   </span>
@@ -296,7 +296,7 @@ function PricingPlansBlock() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2.5 pt-2 border-t border-(--border-soft) dark:border-(--border-soft)">
+                <div className="space-y-2 pt-2 border-t border-(--border-soft) dark:border-(--border-soft)">
                   {plan.features.map((feat) => (
                     <div key={feat} className="flex items-center gap-2 type-caption text-zinc-700 dark:text-(--text-secondary)">
                       <Check className="icon-sm text-emerald-400 shrink-0" />
@@ -352,7 +352,7 @@ export function LinearIssueTrackerBlock() {
       </div>
       <div className="space-y-2">
         {issues.map((issue) => (
-          <div key={issue.id} className="p-3.5 rounded-(--radius-control) bg-(--bg-elevated) border border-white/[0.035] flex items-center justify-between gap-4">
+          <div key={issue.id} className="p-3 rounded-(--radius-control) bg-(--bg-elevated) border border-white/[0.035] flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <PriorityBadge priority={issue.priority as any} size="sm" showLabel={false} />
               <span className="type-caption font-mono text-zinc-400">{issue.id}</span>
@@ -415,19 +415,19 @@ export function PricingPlansBlock() {
   const [billing, setBilling] = useState<'monthly' | 'yearly'>('yearly');
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <SegmentedControl
         options={[{ label: 'Monthly', value: 'monthly' }, { label: 'Yearly (Save 25%)', value: 'yearly' }]}
         value={billing}
         onChange={setBilling}
       />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {plans.map((plan) => (
           <Card key={plan.name} className={plan.highlight ? 'ring-1 ring-emerald-500/20' : ''}>
             <CardHeader>
               <CardTitle>{plan.name}</CardTitle>
               <CardDescription>{plan.description}</CardDescription>
-              <div className="pt-4 flex items-baseline gap-1.5">
+              <div className="pt-4 flex items-baseline gap-1">
                 <span className="type-display font-mono font-bold">{plan.price[billing]}</span>
                 <span className="type-caption font-mono text-zinc-500">/{plan.period}</span>
               </div>
@@ -467,7 +467,7 @@ export function AnalyticsMetricsBlock() {
           <CardTitle>Rolling 30-Day Throughput</CardTitle>
           <CardDescription>Requests per minute, edge regions aggregated.</CardDescription>
         </CardHeader>
-        <CardContent className="flex items-center gap-6">
+        <CardContent className="flex items-center gap-4">
           <Sparkline data={invocations} color="emerald" width={320} height={64} />
           <DonutRing segments={[{ value: 92, color: 'emerald' }, { value: 8, color: 'neutral' }]} size={96} label="92%" />
         </CardContent>
@@ -510,7 +510,7 @@ export function SecuritySettingsBlock() {
   };
 
   return (
-    <div className="w-full space-y-8 pb-16">
+    <div className="w-full space-y-6 pb-16">
       {/* PAGE HEADER */}
       <header className="pb-2 space-y-3">
         <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft)">v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
@@ -525,11 +525,11 @@ export function SecuritySettingsBlock() {
 
       {/* Block Category Navigation & Preview/Code Switcher */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-(--border-soft) dark:border-(--border-soft)">
-        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)">
+        <div className="flex flex-wrap items-center gap-1 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)">
           <button
             type="button"
             onClick={() => setActiveBlock('linear')}
-            className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
               activeBlock === 'linear'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                 : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
@@ -540,7 +540,7 @@ export function SecuritySettingsBlock() {
           <button
             type="button"
             onClick={() => setActiveBlock('auth')}
-            className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
               activeBlock === 'auth'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                 : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
@@ -551,7 +551,7 @@ export function SecuritySettingsBlock() {
           <button
             type="button"
             onClick={() => setActiveBlock('pricing')}
-            className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
               activeBlock === 'pricing'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                 : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
@@ -562,7 +562,7 @@ export function SecuritySettingsBlock() {
           <button
             type="button"
             onClick={() => setActiveBlock('analytics')}
-            className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
               activeBlock === 'analytics'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                 : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
@@ -573,7 +573,7 @@ export function SecuritySettingsBlock() {
           <button
             type="button"
             onClick={() => setActiveBlock('settings')}
-            className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
               activeBlock === 'settings'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                 : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
@@ -584,11 +584,11 @@ export function SecuritySettingsBlock() {
         </div>
 
         {/* Preview / Code Tab Toggle */}
-        <div className="flex items-center gap-1.5 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)">
+        <div className="flex items-center gap-1 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)">
           <button
             type="button"
             onClick={() => setBlockTab('preview')}
-            className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium flex items-center gap-1.5 cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium flex items-center gap-1 cursor-pointer transition-colors ${
               blockTab === 'preview'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                 : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
@@ -600,7 +600,7 @@ export function SecuritySettingsBlock() {
           <button
             type="button"
             onClick={() => setBlockTab('code')}
-            className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium flex items-center gap-1.5 cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium flex items-center gap-1 cursor-pointer transition-colors ${
               blockTab === 'code'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
                 : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
@@ -684,7 +684,7 @@ export function SecuritySettingsBlock() {
                   <CardDescription>Real-time edge performance — requests per minute, regions aggregated.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-col sm:flex-row items-center gap-6">
+                  <div className="flex flex-col sm:flex-row items-center gap-4">
                     <div className="flex-1 w-full min-w-0">
                       <Sparkline data={[12, 18, 14, 22, 30, 26, 34, 41, 38, 45, 52, 49, 58, 64]} color="emerald" height={72} />
                     </div>

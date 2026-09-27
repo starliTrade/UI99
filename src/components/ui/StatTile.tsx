@@ -49,7 +49,7 @@ export function StatTile({
       className={cn(
         'rounded-(--radius-control) bg-(--bg-card) border border-(--border-hairline) p-4 sm:p-5',
         'shadow-(--elevation-1) shadow-(--shadow-card)',
-        'space-y-1.5',
+        'space-y-1',
         className
       )}
     >

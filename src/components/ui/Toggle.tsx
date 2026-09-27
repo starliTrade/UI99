@@ -22,7 +22,7 @@ export const toggleVariants = cva(
           'bg-(--bg-subtle) dark:bg-(--bg-card) text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) data-[state=on]:bg-zinc-900 data-[state=on]:text-white dark:data-[state=on]:bg-(--text-primary) dark:data-[state=on]:text-(--text-on-fill)',
       },
       size: {
-        sm: 'h-8 px-2.5 type-caption',
+        sm: 'h-8 px-2 type-caption',
         md: 'h-10 px-3 type-body',
         lg: 'h-12 px-4 type-body-lg',
       },

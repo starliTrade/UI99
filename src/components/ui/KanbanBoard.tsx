@@ -77,7 +77,7 @@ export function KanbanBoard({
                 <span className="type-caption font-semibold text-zinc-900 dark:text-zinc-200">
                   {col.label}
                 </span>
-                <span className="type-micro font-mono font-medium px-1.5 py-0.2 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-(--bg-raised) text-zinc-600 dark:text-(--text-secondary)">
+                <span className="type-micro font-mono font-medium px-1 py-0.2 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-(--bg-raised) text-zinc-600 dark:text-(--text-secondary)">
                   {colCards.length}
                 </span>
               </div>
@@ -128,7 +128,7 @@ export function KanbanBoard({
                         aria-label={`Move ${card.title} to ${targetCol.label}`}
                         aria-pressed={card.status === targetCol.id}
                         className={cn(
-                          'type-micro px-1.5 py-0.5 rounded font-mono transition-colors',
+                          'type-micro px-1 py-0.5 rounded font-mono transition-colors',
                           card.status === targetCol.id
                             ? 'bg-(--bg-raised) dark:bg-(--state-selected) text-zinc-900 dark:text-white font-bold'
                             : 'hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) text-zinc-500'

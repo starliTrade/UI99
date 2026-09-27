@@ -46,7 +46,7 @@ export function MeterBar({
 
   return (
     <div
-      className={cn('w-full space-y-1.5', className)}
+      className={cn('w-full space-y-1', className)}
       role="meter"
       aria-valuenow={value}
       aria-valuemin={min}

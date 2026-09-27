@@ -84,7 +84,7 @@ export function ExecutionSection({
           {/* Subtle amber aura */}
           <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/[0.05] rounded-(--radius-pill) blur-3xl pointer-events-none" />
 
-          <div className="flex items-center justify-between mb-2.5 relative z-content">
+          <div className="flex items-center justify-between mb-2 relative z-content">
             <div className="flex items-center gap-2">
               <span className="flex items-center justify-center w-5 h-5 rounded-(--radius-pill) bg-amber-500/15 text-amber-400">
                 <Target className="icon-xs stroke-[2.2]" />
@@ -113,7 +113,7 @@ export function ExecutionSection({
 
           {/* Progress bar if project */}
           {focusObject.metadata?.progress !== undefined && (
-            <div className="w-full h-1.5 rounded-(--radius-pill) overflow-hidden p-0.5 bg-black/50 mb-3.5">
+            <div className="w-full h-1.5 rounded-(--radius-pill) overflow-hidden p-0.5 bg-black/50 mb-3">
               <div
                 className="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 rounded-(--radius-pill) transition-all dur-lazy shadow-(--glow-warning-md)"
                 style={{ width: `${focusObject.metadata.progress}%` }}
@@ -121,8 +121,8 @@ export function ExecutionSection({
             </div>
           )}
 
-          <div className="flex items-center justify-between pt-2.5 border-t border-white/[0.025] type-caption text-[#92929B] relative z-content">
-            <div className="flex items-center gap-1.5">
+          <div className="flex items-center justify-between pt-2 border-t border-white/[0.025] type-caption text-[#92929B] relative z-content">
+            <div className="flex items-center gap-1">
               {focusObject.tags?.slice(0, 2).map((t) => (
                 <span
                   key={t}
@@ -199,7 +199,7 @@ export function ExecutionSection({
                           {task.title}
                         </span>
                         {task.metadata?.priority === 'high' && (
-                          <span className="type-micro uppercase font-mono font-bold tracking-wider px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 shrink-0">
+                          <span className="type-micro uppercase font-mono font-bold tracking-wider px-1 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 shrink-0">
                             P1
                           </span>
                         )}
@@ -253,7 +253,7 @@ export function ExecutionSection({
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-1.5 type-caption font-mono font-semibold text-orange-400 shrink-0 ml-3 rtl:mr-3 rtl:ml-0">
+                  <div className="flex items-center gap-1 type-caption font-mono font-semibold text-orange-400 shrink-0 ml-3 rtl:mr-3 rtl:ml-0">
                     <Flame className="icon-xs fill-current" />
                     <span>{streak}d</span>
                   </div>

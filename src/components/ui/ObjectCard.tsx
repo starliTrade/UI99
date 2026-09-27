@@ -156,7 +156,7 @@ export function ObjectCard({
         )}
 
         <div className={`mt-4 flex items-center justify-between pt-3 border-t relative z-content ${isDark ? 'border-white/[0.04]' : 'border-black/[0.05]'}`}>
-          <div className="flex items-center gap-1.5 flex-wrap">
+          <div className="flex items-center gap-1 flex-wrap">
             {object.tags?.slice(0, 2).map((t) => (
               <Tag key={t} variant="neutral" size="sm">
                 {t}
@@ -254,7 +254,7 @@ export function ObjectCard({
         </h4>
 
         {object.description && (
-          <p className={`type-caption mt-1.5 line-clamp-2 leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+          <p className={`type-caption mt-1 line-clamp-2 leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
             {object.description}
           </p>
         )}
@@ -268,7 +268,7 @@ export function ObjectCard({
         </div>
 
         <div className={`mt-4 flex items-center justify-between type-caption pt-3 border-t ${isDark ? 'border-white/[0.04]' : 'border-black/[0.05]'}`}>
-          <div className="flex items-center gap-1.5 flex-wrap">
+          <div className="flex items-center gap-1 flex-wrap">
             {object.tags?.slice(0, 2).map((t) => (
               <Tag key={t} variant="neutral" size="sm">
                 {t}
@@ -328,13 +328,13 @@ export function ObjectCard({
         )}
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-1.5 flex-wrap mb-1">
+          <div className="flex items-center gap-1 flex-wrap mb-1">
             <Tag variant={badge.variant} size="sm">
               {badge.label}
             </Tag>
 
             {object.metadata?.priority === 'high' && (
-              <span className="type-micro uppercase font-mono font-bold tracking-wider px-1.5 py-0.2 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">
+              <span className="type-micro uppercase font-mono font-bold tracking-wider px-1 py-0.2 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">
                 P1
               </span>
             )}
@@ -361,8 +361,8 @@ export function ObjectCard({
             </p>
           )}
 
-          <div className="mt-2.5 flex items-center justify-between gap-2 flex-wrap">
-            <div className="flex items-center gap-1.5 flex-wrap">
+          <div className="mt-2 flex items-center justify-between gap-2 flex-wrap">
+            <div className="flex items-center gap-1 flex-wrap">
               {object.tags?.slice(0, 3).map((t) => (
                 <Tag key={t} variant="neutral" size="sm">
                   {t}

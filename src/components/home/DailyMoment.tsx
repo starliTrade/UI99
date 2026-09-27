@@ -22,14 +22,14 @@ export function DailyMoment() {
   return (
     <div className="relative py-3 px-3 sm:px-4 select-none group">
       {/* Soft Editorial Left/Right Border Accent */}
-      <div className="flex items-start gap-3.5 sm:gap-4">
+      <div className="flex items-start gap-3 sm:gap-4">
         {/* Subtle Vertical Rose-Gold Pillar */}
         <div className="w-[2px] self-stretch rounded-(--radius-pill) bg-gradient-to-b from-rose-500/50 via-rose-500/20 to-transparent shrink-0 mt-1" />
 
         <div className="flex-1 min-w-0 space-y-2">
           {/* Header & Category */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5 text-rose-400/90 type-caption font-medium">
+            <div className="flex items-center gap-1 text-rose-400/90 type-caption font-medium">
               <Feather className="icon-xs" />
               <span className="type-micro font-semibold tracking-wide text-zinc-300">
                 {isRTL ? 'نیت و نجوای امروز' : "Today's Intention"}
@@ -55,7 +55,7 @@ export function DailyMoment() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.25 }}
-              className="space-y-1.5"
+              className="space-y-1"
             >
               <p className="type-body sm:type-body-lg text-[#EDEDEF] leading-relaxed font-serif tracking-wide italic">
                 «{isRTL ? current.textFa : current.textEn}»

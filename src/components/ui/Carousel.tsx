@@ -62,7 +62,7 @@ export function Carousel({ children, itemClassName = '', label = 'Carousel', cla
       </div>
 
       <div className="mt-3 flex items-center justify-between">
-        <div className="flex items-center gap-1.5" role="tablist" aria-label={`${label} position`}>
+        <div className="flex items-center gap-1" role="tablist" aria-label={`${label} position`}>
           {Array.from({ length: count }).map((_, i) => (
             <button
               key={i}
@@ -80,7 +80,7 @@ export function Carousel({ children, itemClassName = '', label = 'Carousel', cla
             />
           ))}
         </div>
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1">
           <IconButton
             icon={<ChevronLeft className="icon-md" />}
             variant="outline"

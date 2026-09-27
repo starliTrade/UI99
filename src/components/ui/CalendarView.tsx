@@ -118,7 +118,7 @@ export function CalendarView({
                 onSelectDay?.(dayNum);
               }}
               className={cn(
-                'min-h-[44px] sm:min-h-[58px] p-1 sm:p-1.5 rounded-(--radius-sm) sm:rounded-(--radius-field) border flex flex-col items-start justify-between text-left transition-all dur-quick',
+                'min-h-[44px] sm:min-h-[58px] p-1 sm:p-1 rounded-(--radius-sm) sm:rounded-(--radius-field) border flex flex-col items-start justify-between text-left transition-all dur-quick',
                 isSelected
                   ? 'bg-(--bg-subtle) dark:bg-(--bg-raised) border-black/20 dark:border-white/20 shadow-xs'
                   : 'bg-(--bg-subtle) dark:bg-(--bg-card)/50 border-(--border-subtle) dark:border-(--border-subtle) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'

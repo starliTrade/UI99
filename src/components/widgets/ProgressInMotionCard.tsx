@@ -62,7 +62,7 @@ export function ProgressInMotionCard({
       </div>
 
       {/* Segmented Horizontal Equalizer / Battery Ticks */}
-      <div className="flex items-center gap-1.5 pt-1 overflow-hidden">
+      <div className="flex items-center gap-1 pt-1 overflow-hidden">
         {Array.from({ length: totalSegments }).map((_, idx) => {
           const isFilled = idx < completedSegments;
           return (

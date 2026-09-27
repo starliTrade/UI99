@@ -176,9 +176,9 @@ export function UniversalCaptureModal() {
 
         {/* AI Extraction Preview Card if parsed */}
         {aiResult && (
-          <div className="p-3.5 rounded-(--radius-control) bg-purple-950/25 border border-purple-500/30 type-caption space-y-2">
+          <div className="p-3 rounded-(--radius-control) bg-purple-950/25 border border-purple-500/30 type-caption space-y-2">
             <div className="flex items-center justify-between text-purple-300 font-semibold">
-              <span className="flex items-center gap-1.5">
+              <span className="flex items-center gap-1">
                 <Sparkles className="icon-sm" />
                 {isRTL ? 'پیشنهاد هوشمند' : 'AI Suggested Classification'}
               </span>
@@ -210,7 +210,7 @@ export function UniversalCaptureModal() {
                   key={t.type}
                   type="button"
                   onClick={() => setSelectedType(t.type)}
-                  className={`px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold flex items-center gap-1.5 transition-all cursor-pointer select-none active:scale-95 ${
+                  className={`px-3 py-1 rounded-(--radius-pill) type-caption font-semibold flex items-center gap-1 transition-all cursor-pointer select-none active:scale-95 ${
                     isSelected
                       ? 'bg-white text-[#09090B] shadow-(--elevation-2)'
                       : 'bg-[#18181D] text-zinc-400 border border-white/[0.08] hover:text-white'
@@ -229,7 +229,7 @@ export function UniversalCaptureModal() {
           <label className="block type-micro font-bold text-zinc-400 uppercase tracking-wider mb-2">
             {isRTL ? 'برچسب‌ها و زمینه' : 'Tags & Context'}
           </label>
-          <div className="flex items-center gap-1.5 flex-wrap mb-2">
+          <div className="flex items-center gap-1 flex-wrap mb-2">
             {tags.map((t) => (
               <Tag key={t} label={t} variant="purple" onRemove={() => handleRemoveTag(t)} />
             ))}

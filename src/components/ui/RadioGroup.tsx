@@ -15,7 +15,7 @@ export function RadioGroup({
 }: React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>) {
   return (
     <RadioGroupPrimitive.Root
-      className={cn('grid gap-2.5', className)}
+      className={cn('grid gap-2', className)}
       {...props}
     />
   );

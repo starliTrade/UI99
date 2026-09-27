@@ -53,7 +53,7 @@ export const badgeVariants = cva(
       },
       size: {
         sm: 'type-micro px-2 py-0.5 [&_svg]:size-3',
-        md: 'type-caption px-2.5 py-0.5 [&_svg]:size-3.5',
+        md: 'type-caption px-2 py-0.5 [&_svg]:size-3.5',
         lg: 'type-body px-3 py-1 [&_svg]:size-4',
       },
     },
@@ -132,8 +132,8 @@ export function PriorityBadge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-(--radius-pill) border type-micro font-medium tracking-tight whitespace-nowrap transition-colors ${
-        size === 'md' ? 'px-2.5 py-1 type-caption' : ''
+      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-(--radius-pill) border type-micro font-medium tracking-tight whitespace-nowrap transition-colors ${
+        size === 'md' ? 'px-2 py-1 type-caption' : ''
       } ${config.style} ${className}`}
       title={config.label}
     >
@@ -197,7 +197,7 @@ export function StatusBadge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 type-caption font-medium tracking-tight whitespace-nowrap ${
+      className={`inline-flex items-center gap-1 type-caption font-medium tracking-tight whitespace-nowrap ${
         size === 'md' ? 'type-body gap-2' : ''
       } ${config.style} ${className}`}
     >

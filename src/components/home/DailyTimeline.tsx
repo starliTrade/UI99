@@ -102,7 +102,7 @@ export function DailyTimeline({
         </div>
 
         {isToday && (
-          <div className="flex items-center gap-1.5 type-micro font-medium text-rose-400">
+          <div className="flex items-center gap-1 type-micro font-medium text-rose-400">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-(--radius-pill) bg-rose-500 opacity-75" />
               <span className="relative inline-flex rounded-(--radius-pill) h-2 w-2 bg-rose-500 shadow-(--glow-rose-sm)" />
@@ -119,7 +119,7 @@ export function DailyTimeline({
           onClick={onOpenCapture}
           className="group relative p-5 sm:p-6 rounded-(--radius-lg) bg-(--bg-surface) border border-white/[0.025] hover:border-white/[0.05] shadow-(--shadow-card) transition-all cursor-pointer flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left rtl:sm:text-right"
         >
-          <div className="flex items-center gap-3.5">
+          <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-zinc-400 group-hover:text-rose-400 transition-colors shrink-0">
               <Calendar className="icon-md" />
             </div>
@@ -139,7 +139,7 @@ export function DailyTimeline({
 
           <button
             type="button"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-(--radius-pill) bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 border border-white/[0.04] type-caption font-medium shrink-0 transition-transform active:scale-95 cursor-pointer"
+            className="flex items-center gap-1 px-3 py-1 rounded-(--radius-pill) bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 border border-white/[0.04] type-caption font-medium shrink-0 transition-transform active:scale-95 cursor-pointer"
           >
             <Plus className="icon-sm text-rose-400" />
             <span>{isRTL ? 'ثبت برنامه' : 'Add Event'}</span>
@@ -163,7 +163,7 @@ export function DailyTimeline({
               <React.Fragment key={item.id}>
                 {/* NOW Indicator */}
                 {showNowBefore && (
-                  <div className="relative flex items-center gap-3 px-4 py-1.5 bg-rose-500/[0.04] border-y border-rose-500/20">
+                  <div className="relative flex items-center gap-3 px-4 py-1 bg-rose-500/[0.04] border-y border-rose-500/20">
                     <div className="w-12 text-right rtl:text-left shrink-0">
                       <span className="type-micro font-mono font-bold text-rose-400 tracking-wider">
                         NOW
@@ -212,7 +212,7 @@ export function DailyTimeline({
                         {item.title}
                       </span>
                       <span
-                        className={`type-micro uppercase font-mono font-semibold tracking-wider px-1.5 py-0.5 rounded border ${badge.className}`}
+                        className={`type-micro uppercase font-mono font-semibold tracking-wider px-1 py-0.5 rounded border ${badge.className}`}
                       >
                         {badge.label}
                       </span>

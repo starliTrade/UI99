@@ -133,7 +133,7 @@ export function FoundationsView() {
         </div>
 
         <div className="p-6 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <div className="flex justify-between type-caption font-mono text-zinc-400">
                 <span>Outer Radius</span>
@@ -251,7 +251,7 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-5 sm:p-7 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-5">
+        <div className="p-5 sm:p-7 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-4">
           <div className="flex flex-wrap items-center gap-3">
             <Button
               variant={isDark ? 'outline' : 'primary'}
@@ -299,7 +299,7 @@ export function FoundationsView() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="p-4 rounded-(--radius-control) bg-(--bg-card) border border-(--border-hairline) space-y-1.5">
+            <div className="p-4 rounded-(--radius-control) bg-(--bg-card) border border-(--border-hairline) space-y-1">
               <div className="type-caption font-semibold text-(--text-primary)">ui-card sample</div>
               <div className="type-micro text-(--text-secondary)">Tokens resolve live in both themes.</div>
             </div>
@@ -318,7 +318,7 @@ export function FoundationsView() {
       {/* 4. DESIGN PILLARS (Anti-Slop, Velvet Base & Linear Speed)                 */}
       {/* ========================================================================= */}
         <Reveal index={1}>
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="p-6 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-3">
           <div className="w-8 h-8 rounded-(--radius-field) bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono type-caption font-bold">
             #06

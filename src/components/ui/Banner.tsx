@@ -75,7 +75,7 @@ export function Banner({
             size="xs"
             variant="secondary"
             onClick={onAction}
-            className="type-caption h-7 px-2.5"
+            className="type-caption h-7 px-2"
           >
             <span>{actionLabel}</span>
             <ArrowRight className="icon-xs ml-1" />

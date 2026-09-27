@@ -46,10 +46,10 @@ export const buttonVariants = cva(
       // rectangle sized to its own height, and `shape` is the explicit opt-in
       // for a real capsule.
       size: {
-        xs: 'type-micro px-2.5 py-1 rounded-(--radius-xs) gap-1 control-h-xs',
-        sm: 'type-caption px-3.5 py-1.5 rounded-(--radius-sm) gap-1.5 control-h-sm',
-        md: 'type-body px-4 sm:px-5 py-2 sm:py-2.5 rounded-(--radius-control) gap-2 control-h-md',
-        lg: 'type-body-lg px-6 py-3 rounded-(--radius-md) gap-2.5 control-h-lg',
+        xs: 'type-micro px-2 py-1 rounded-(--radius-xs) gap-1 control-h-xs',
+        sm: 'type-caption px-3 py-1 rounded-(--radius-sm) gap-1 control-h-sm',
+        md: 'type-body px-4 sm:px-5 py-2 sm:py-2 rounded-(--radius-control) gap-2 control-h-md',
+        lg: 'type-body-lg px-6 py-3 rounded-(--radius-md) gap-2 control-h-lg',
         icon: 'w-10 h-10 rounded-(--radius-control) p-0 [&_svg]:size-4',
       },
       shape: {
@@ -223,7 +223,7 @@ export function Tag({
   className = '',
 }: TagProps) {
   const effectiveVariant = variant || color || 'neutral';
-  const sizeStyle = size === 'sm' ? 'type-micro px-2.5 py-0.5' : 'type-caption px-3 py-1';
+  const sizeStyle = size === 'sm' ? 'type-micro px-2 py-0.5' : 'type-caption px-3 py-1';
 
   const variantStyle = {
     neutral:

@@ -120,7 +120,7 @@ function TreeItem({
         onKeyDown={handleKeyDown}
         style={{ paddingLeft: `${level * 16 + 8}px` }}
         className={cn(
-          'flex items-center gap-2 py-1.5 pr-2 rounded-(--radius-field) type-caption font-mono transition-colors cursor-pointer outline-none',
+          'flex items-center gap-2 py-1 pr-2 rounded-(--radius-field) type-caption font-mono transition-colors cursor-pointer outline-none',
           'focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent',
           isSelected
             ? 'bg-(--bg-raised) dark:bg-(--bg-raised) text-zinc-950 dark:text-white font-semibold'

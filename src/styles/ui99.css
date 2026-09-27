@@ -29,7 +29,10 @@
   /* Text - High contrast WCAG 2.2 / APCA certified */
   --text-primary: #EDEDEF;
   --text-secondary: #92929B;
-  --text-muted: #60606B;
+  /* 3.13:1 on a card — the same AA failure light had, so it is fixed in both
+     themes rather than only the one that was complained about. 4.84:1 now, and
+     still clearly below --text-secondary's 6.29:1 so the hierarchy holds. */
+  --text-muted: #7E7E8A;
   --text-on-fill: #060709;
   /* Inverted fill system — ink-on-paper duality (Linear-style pressed fill) */
   --ink-fill: #EDEDEF;
@@ -68,40 +71,81 @@
   --rose-tint-text: #F3CBD2;
 }
 
-/* ======================= PORCELAIN LIGHT ======================= */
+/* ======================= PORCELAIN LIGHT =======================
+ *
+ * THE PARITY LAW, stated as one sentence: **light is dark with the polarity
+ * flipped, and nothing else changed.** Same alphas, inverted ink/light; same
+ * surface ladder, mirrored; same rim geometry, opposite direction of light.
+ * Every value below is the dark counterpart with white↔black swapped, and the
+ * audit that follows is arithmetic, not taste.
+ *
+ * THREE MEASURED DEFECTS this block used to have, all now fixed:
+ *
+ * 1. THE CANVAS STOOD 3x FURTHER FROM ITS CARDS THAN DARK'S DID.
+ *    Perceived-brightness gap canvas→card: dark 1.3, light 3.8 (0-100 scale).
+ *    That is why light read as a different design language rather than as the
+ *    same system in a brighter room: dark cards melt into a near-black canvas,
+ *    light cards sat on a visibly grey page. Canvas moves #F5F5F8 → #FAFAFC and
+ *    the gap falls to 1.9 — within half a point of dark's 1.3.
+ *
+ * 2. THE RIM WAS A NO-OP. `--rim-*` was rgba(255,255,255,…) and
+ *    `--border-specular` was rgba(255,255,255,1): a WHITE highlight on a WHITE
+ *    card paints nothing. Dark's rim is what lifts a card's top edge 6-14% off
+ *    the canvas and does most of the work of making a surface look like glass;
+ *    light was getting none of it, and falling back on borders that were then
+ *    running 1.4-1.5x too strong. The rims below use the SAME alphas as dark
+ *    with ink substituted for white, so each darkens the card by the same 7/10/
+ *    15 levels it lightens it in dark.
+ *
+ * 3. THE TINT LADDER DID NOT COMPOSITE. Light's `--bg-subtle/wash/raised` were
+ *    opaque greys, so a nested surface replaced its parent's colour instead of
+ *    tinting it: an inset well inside a card went flat, and the same token read
+ *    as a different value depending on what it sat on. As alpha they now
+ *    compose, exactly as dark's do, and nesting is free.
+ */
 [data-theme='light'],
 .light {
-  --bg-canvas: #F5F5F8;
+  --bg-canvas: #FAFAFC;
   --bg-surface: #FFFFFF;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #FAFAFC;
+  --bg-card-hover: #F5F5F8;
   --bg-elevated: #FFFFFF;
-  --bg-sunken: #F0F0F4;
-  /* Tint ladder — the same named steps, mirrored. LIGHT values sit ~2.4x
-     lower than dark because white-on-white tints read louder than white-on-
-     black — a light hairline must whisper, not snap. */
-  --bg-subtle: #F9F9FB;
-  --bg-wash: #F6F6F9;
-  --bg-raised: #F1F1F5;
-  --border-subtle: rgba(0, 0, 0, 0.035);
-  --border-soft: rgba(0, 0, 0, 0.045);
-  --border-strong: rgba(0, 0, 0, 0.08);
-  --border-specular: rgba(255, 255, 255, 1);
+  --bg-sunken: #F3F3F6;
+  /* Tint ladder — same three names, same three alphas as dark, polarity
+     flipped. Alpha, not hex: a tint that composites nests, a tint that
+     replaces flattens. */
+  --bg-subtle: rgba(0, 0, 0, 0.018);
+  --bg-wash: rgba(0, 0, 0, 0.03);
+  --bg-raised: rgba(0, 0, 0, 0.045);
+  /* Borders — identical alphas to dark. The old ladder ran 0.035/0.045/0.08,
+     which is 1.4-1.5x the dark edge, so light surfaces were ringed harder than
+     dark ones precisely where dark was whispering. */
+  --border-subtle: rgba(0, 0, 0, 0.025);
+  --border-soft: rgba(0, 0, 0, 0.035);
+  --border-strong: rgba(0, 0, 0, 0.05);
+  /* Was rgba(255,255,255,1) — a white specular on a white card, i.e. nothing.
+     The specular edge in light is the first DARKENED line of the card, because
+     that is the only direction light has to travel at a top edge. */
+  --border-specular: rgba(23, 22, 40, 0.035);
   --border-hairline: rgba(0, 0, 0, 0.025);
 
   --text-primary: #111116;
   --text-secondary: #646470;
-  --text-muted: #9494A0;
+  /* Was #9494A0 = 3.00:1 on white. Muted is the floor of the text ladder and
+     it is used for captions, timestamps and helper copy — all small text, so
+     WCAG asks 4.5:1, not the 3:1 a decorative grey could get away with. Now
+     5.03:1 on a card and 4.83:1 on the canvas. */
+  --text-muted: #6E6E7A;
   --text-on-fill: #FFFFFF;
   /* Light theme: fill is the dark ink itself; content on it is porcelain */
   --ink-fill: #111116;
-  --ink-on-fill: #F5F5F8;
+  --ink-on-fill: #FAFAFC;
 
-  --dock-bg: rgba(255, 255, 255, 0.94);
-  --dock-border: rgba(0, 0, 0, 0.05);
+  --dock-bg: rgba(255, 255, 255, 0.85);
+  --dock-border: rgba(0, 0, 0, 0.035);
 
   /* Light-mode calibrated state layers (subtle, non-glare) */
-  --state-hover: rgba(0, 0, 0, 0.04);
+  --state-hover: rgba(0, 0, 0, 0.045);
   --state-press: rgba(0, 0, 0, 0.03);
   --state-selected: rgba(0, 0, 0, 0.06);
   --state-drag: rgba(0, 0, 0, 0.1);
@@ -167,9 +211,18 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 
   /* Typography */
-  --font-sans: 'Geist', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-persian: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Typography. Every family named here is self-hosted from /public/fonts
+     (see the @font-face block in index.css). Naming a family that only exists
+     on a third-party CDN is worse than naming none: the browser resolves it
+     when the CDN answers and silently falls back when it does not, so the font
+     appears and disappears with network conditions. The system stack after each
+     family is the deliberate first-paint fallback, not a second choice. */
+  --font-sans: 'Inter', 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Vazirmatn', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* Persian leads, Latin follows INSIDE the same family: Vazirmatn's latin
+     subset is the one drawing the digits and identifiers, so a Persian line
+     with an inline number stays one optical voice instead of two fonts. */
+  --font-persian: 'Vazirmatn', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* Radius deliberately NOT declared here. The rounded standard lives in one
      place only — ui99-elevation.css §RADIUS — because a second, drifting copy

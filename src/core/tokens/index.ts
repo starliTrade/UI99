@@ -74,8 +74,8 @@ export const tokens = {
     text: {
       primary: '#EDEDEF',               // High-contrast refined silver white
       secondary: '#8E8E98',             // Clean silver neutral (#92929B equivalent)
-      muted: '#5C5C68',                 // Subtle muted caption
-      subtle: '#454550',                // Darkest caption
+      muted: '#7E7E8A',                 // 4.84:1 on a card — was #5C5C68 at 3.13:1
+      subtle: '#5C5C68',                // Darkest caption
       accentEmerald: '#10B981',         // Completion tick
       accentAmber: '#F59E0B',           // Focus mark
       accentRose: '#F43F5E',            // Live indicator
@@ -99,42 +99,52 @@ export const tokens = {
   },
 
   // Pure Matte Light Theme Tokens (Calm porcelain companion)
+  //
+  // MIRRORED, not re-invented. The law is: light is dark with the polarity
+  // flipped and nothing else changed — same alphas, inverted ink, same
+  // surface ladder, mirrored. This block previously drifted on all three
+  // counts at once (canvas 3x further from its cards than dark's, borders
+  // 1.4x stronger, `highlightInset` a white line on a white card, i.e.
+  // literally nothing). See the header in src/styles/ui99.css for the audit.
   light: {
     canvas: {
-      base: '#F5F5F8',                  // Matte porcelain base
+      base: '#FAFAFC',                  // Perceived-brightness gap to card: 1.9
+                                         // (dark's is 1.3 — was 3.8 here)
       surface: '#FFFFFF',               // Pure white container
-      surfaceSecondary: '#F8F8FA',      // Inset group container
+      surfaceSecondary: '#F5F5F8',      // Inset group container
       elevated: '#FFFFFF',              // Elevated floating sheet
-      cardHover: '#FAFAFC',             // Hover card state
-      cardActive: '#F0F0F4',            // Pressed state
-      glass: 'rgba(255, 255, 255, 0.72)', // Frosted porcelain glass (blur 24px)
-      glassSubtle: 'rgba(0, 0, 0, 0.04)', // Active light cushion
-      highlightInset: 'inset 0 1px 0 0 rgba(255, 255, 255, 1)',
+      cardHover: '#F5F5F8',             // Hover card state
+      cardActive: '#EFEFF3',            // Pressed state
+      glass: 'rgba(255, 255, 255, 0.85)', // Frosted porcelain glass (blur 24px)
+      glassSubtle: 'rgba(0, 0, 0, 0.045)', // Active light cushion
+      /* Darkened, like every other light rim — a white highlight on a white
+         card composites to nothing. Same alphas as dark's, polarity flipped. */
+      highlightInset: 'inset 0 1px 0 0 rgba(23, 22, 40, 0.04)',
     },
     text: {
       primary: '#111116',               // Deep obsidian charcoal text
       secondary: '#646470',             // Muted steel text
-      muted: '#9494A0',                 // Caption text
-      subtle: '#B5B5BE',                // Hairline text
+      muted: '#6E6E7A',                 // 5.03:1 on a card — was #9494A0 at 3.00:1
+      subtle: '#8E8E99',                // Hairline text (still below muted)
       accentEmerald: '#059669',
-      accentAmber: '#B45309', // amber-700 — amber-600 fails WCAG UI 3:1 on #F5F5F8 (2.93:1)
+      accentAmber: '#B45309', // amber-700 — amber-600 fails WCAG UI 3:1 on #FAFAFC (2.98:1)
       accentRose: '#E11D48',
       accentSapphire: '#2563EB',
       accentAmethyst: '#7C3AED',
     },
     border: {
-      hairline: 'rgba(0, 0, 0, 0.03)',
-      subtle: 'rgba(0, 0, 0, 0.05)',
-      medium: 'rgba(0, 0, 0, 0.09)',
+      hairline: 'rgba(0, 0, 0, 0.025)',
+      subtle: 'rgba(0, 0, 0, 0.035)',
+      medium: 'rgba(0, 0, 0, 0.05)',
       focus: 'rgba(0, 0, 0, 0.35)',
       active: '#111116',
     },
     shadow: {
       e0: 'none',
-      e1: '0 2px 6px 0 rgba(0, 0, 0, 0.02), inset 0 1px 0 0 rgba(255, 255, 255, 0.8)',
-      e2: '0 6px 18px -4px rgba(0, 0, 0, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.9)',
-      e3: '0 12px 28px -6px rgba(0, 0, 0, 0.06), inset 0 1px 0 0 rgba(255, 255, 255, 1)',
-      e4: '0 20px 42px -8px rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 1)',
+      e1: '0 1px 2px rgba(23, 22, 40, 0.03), 0 4px 12px -6px rgba(23, 22, 40, 0.04), inset 0 1px 0 0 rgba(23, 22, 40, 0.04)',
+      e2: '0 1px 2px rgba(23, 22, 40, 0.04), 0 8px 20px -8px rgba(23, 22, 40, 0.05), inset 0 1px 0 0 rgba(23, 22, 40, 0.045)',
+      e3: '0 2px 4px rgba(23, 22, 40, 0.04), 0 12px 28px -10px rgba(23, 22, 40, 0.06), inset 0 1px 0 0 rgba(23, 22, 40, 0.05)',
+      e4: '0 3px 8px rgba(23, 22, 40, 0.05), 0 16px 36px -12px rgba(23, 22, 40, 0.07), inset 0 0 0 1px rgba(23, 22, 40, 0.025)',
     },
   },
 

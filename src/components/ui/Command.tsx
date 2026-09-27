@@ -39,7 +39,7 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
       <DialogContent className="overflow-hidden p-0 max-w-xl">
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-zinc-400 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-3 [&_[cmdk-item]]:py-2.5 [&_[cmdk-item]_svg]:h-4 [&_[cmdk-item]_svg]:w-4">
+        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-zinc-400 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-3 [&_[cmdk-item]]:py-2 [&_[cmdk-item]_svg]:h-4 [&_[cmdk-item]_svg]:w-4">
           {children}
         </Command>
       </DialogContent>
@@ -96,7 +96,7 @@ const CommandGroup = React.forwardRef<
   <CommandPrimitive.Group
     ref={ref}
     className={cn(
-      'overflow-hidden p-1 text-zinc-700 dark:text-(--text-secondary) [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:type-micro [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:uppercase',
+      'overflow-hidden p-1 text-zinc-700 dark:text-(--text-secondary) [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1 [&_[cmdk-group-heading]]:type-micro [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:uppercase',
       className
     )}
     {...props}
@@ -123,7 +123,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-field) px-2.5 py-2 type-caption sm:type-body font-medium outline-none transition-colors',
+      'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-field) px-2 py-2 type-caption sm:type-body font-medium outline-none transition-colors',
       'aria-selected:bg-(--bg-wash) aria-selected:text-zinc-950 dark:aria-selected:bg-(--bg-raised) dark:aria-selected:text-white',
       'data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
       className
@@ -140,7 +140,7 @@ const CommandShortcut = ({
   return (
     <span
       className={cn(
-        'ml-auto type-micro tracking-widest text-(--text-muted) font-mono px-1.5 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-raised) border border-(--border-subtle) dark:border-(--border-strong)',
+        'ml-auto type-micro tracking-widest text-(--text-muted) font-mono px-1 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-raised) border border-(--border-subtle) dark:border-(--border-strong)',
         className
       )}
       {...props}
