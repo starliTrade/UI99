@@ -181,7 +181,7 @@ function CommandWell({
       type="button"
       onClick={onCopy}
       aria-label={isRTL ? `کپی دستور: ${command}` : `Copy command: ${command}`}
-      className="flex-1 min-w-0 flex items-center justify-between gap-2 px-2 h-7 rounded-(--radius-sm) bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-soft) font-mono transition-colors cursor-pointer focus-ui99"
+      className="flex-1 min-w-0 flex items-center justify-between gap-2 px-2 h-7 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) font-mono transition-colors cursor-pointer focus-ui99"
     >
       <span className="flex items-center gap-1 min-w-0 font-code">
         <span className="text-emerald-500 dark:text-emerald-400 font-bold type-micro select-none shrink-0">
@@ -332,7 +332,7 @@ function Inspector({
           type="button"
           onClick={onCopy}
           aria-label={isRTL ? 'کپی دستور نصب' : 'Copy install command'}
-          className={`relative flex items-center justify-center ${actionSize} ${variant === 'rail' ? 'w-9' : 'w-10'} shrink-0 rounded-(--radius-sm) bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-soft) text-(--text-secondary) transition-colors cursor-pointer focus-ui99 ${HIT}`}
+          className={`relative flex items-center justify-center ${actionSize} ${variant === 'rail' ? 'w-9' : 'w-10'} shrink-0 rounded-(--radius-sm) bg-(--bg-control) border border-(--border-soft) text-(--text-secondary) hover:bg-(--state-hover) transition-colors cursor-pointer focus-ui99 ${HIT}`}
         >
           {copied ? <Check className="icon-sm text-emerald-500" /> : <Plus className="icon-sm" />}
         </button>
@@ -552,7 +552,7 @@ export function RegistryStudio() {
             type="button"
             onClick={openDocs}
             aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
-            className={`relative flex items-center justify-center sm:justify-start gap-1 h-8 w-8 sm:w-auto sm:px-2 rounded-(--radius-sm) type-caption font-medium text-(--text-secondary) bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-soft) hover:text-(--text-primary) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT_WIDE}`}
+            className={`relative flex items-center justify-center sm:justify-start gap-1 h-8 w-8 sm:w-auto sm:px-2 rounded-(--radius-sm) type-caption font-medium text-(--text-secondary) bg-(--bg-control) border border-(--border-soft) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT_WIDE}`}
           >
             <BookOpen className="icon-xs shrink-0" />
             <span className="hidden sm:inline">{isRTL ? 'مستندات' : 'Full API'}</span>

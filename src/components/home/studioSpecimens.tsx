@@ -207,7 +207,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
 
   collapsible: () => (
     <Collapsible className="w-full max-w-md">
-      <CollapsibleTrigger className="min-h-[44px] w-full px-4 rounded-(--radius-control) bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-subtle) type-caption font-medium text-(--text-primary) flex items-center justify-between cursor-pointer">
+      <CollapsibleTrigger className="min-h-[44px] w-full px-4 rounded-(--radius-control) bg-(--bg-subtle) border border-(--border-subtle) type-caption font-medium text-(--text-primary) flex items-center justify-between cursor-pointer">
         Release notes
         <ChevronDown className="icon-sm text-(--text-muted)" />
       </CollapsibleTrigger>
@@ -254,7 +254,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   confetti: () => (
     <div className="relative">
       <Confetti active={false} />
-      <div className="p-4 rounded-(--radius-control) bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-subtle) type-caption text-(--text-secondary)">
+      <div className="p-4 rounded-(--radius-control) bg-(--bg-subtle) border border-(--border-subtle) type-caption text-(--text-secondary)">
         Triggered on success — fires once, then removes itself.
       </div>
     </div>
@@ -470,7 +470,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   popover: () => (
     <Popover>
       <PopoverTrigger asChild>
-        <button className="min-h-[44px] px-4 rounded-(--radius-field) type-caption bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-subtle) text-(--text-primary) cursor-pointer">
+        <button className="min-h-[44px] px-4 rounded-(--radius-field) type-caption bg-(--bg-subtle) border border-(--border-subtle) text-(--text-primary) cursor-pointer">
           Token preview
         </button>
       </PopoverTrigger>
@@ -520,7 +520,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   sheet: () => (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="min-h-[44px] px-4 rounded-(--radius-field) type-caption bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-subtle) text-(--text-primary) cursor-pointer">
+        <button className="min-h-[44px] px-4 rounded-(--radius-field) type-caption bg-(--bg-subtle) border border-(--border-subtle) text-(--text-primary) cursor-pointer">
           Open settings sheet
         </button>
       </SheetTrigger>

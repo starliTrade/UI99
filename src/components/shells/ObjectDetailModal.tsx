@@ -146,7 +146,7 @@ export function ObjectDetailModal() {
               className={`w-full py-2 px-3 rounded-(--radius-field) border type-caption font-semibold flex items-center justify-center gap-1 transition-all cursor-pointer ${
                 allowSLO
                   ? 'bg-purple-950/40 text-purple-300 border-purple-500/30'
-                  : 'bg-(--bg-control) hover:bg-(--bg-control-hover) text-(--text-secondary) border-(--border-soft)'
+                  : 'bg-(--bg-elevated) text-zinc-400 border-white/[0.08]'
               }`}
             >
               <HeartHandshake className="icon-sm" />

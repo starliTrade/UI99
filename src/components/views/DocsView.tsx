@@ -524,7 +524,7 @@ export function DocsView() {
             <SheetTrigger asChild>
               <button
                 type="button"
-                className="flex items-center gap-2 px-3 py-2 rounded-(--radius-control) bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-soft) type-caption font-mono font-medium text-(--text-secondary) hover:text-(--text-primary) shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
+                className="flex items-center gap-2 px-3 py-2 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-strong) dark:border-(--border-soft) type-caption font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
               >
                 <Menu className="icon-md text-emerald-400" />
                 <span className="hidden xs:inline">Menu</span>

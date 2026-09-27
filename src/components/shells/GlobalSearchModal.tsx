@@ -84,7 +84,7 @@ export function GlobalSearchModal() {
                 className={`px-3 py-1 type-caption rounded-(--radius-pill) transition-all whitespace-nowrap cursor-pointer select-none ${
                   isSelected
                     ? 'bg-white text-(--text-primary) font-bold shadow-(--elevation-2)'
-                    : 'bg-(--bg-control) hover:bg-(--bg-control-hover) text-(--text-secondary) border border-(--border-soft) hover:text-(--text-primary)'
+                    : 'bg-(--bg-elevated) text-zinc-400 border border-white/[0.08] hover:text-white'
                 }`}
               >
                 {f.label}
