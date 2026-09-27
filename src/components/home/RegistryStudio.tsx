@@ -218,57 +218,44 @@ function Inspector({
 }) {
   const propLimit = variant === 'rail' ? 6 : 4;
   const actionSize = variant === 'rail' ? 'h-9' : 'h-10';
-  // The sheet placement lives inside its own "Specification & details"
-  // dropdown, so its spec block stays open — double-disclosure reads as
-  // a locked drawer. The rail owns its own collapse state.
-  const [specOpen, setSpecOpen] = useState(variant === 'sheet');
 
+  // The spec block is NOT behind a disclosure, in either placement. A second
+  // level of collapse inside a panel that is already a panel reads as a
+  // locked drawer, and on the rail it shipped collapsed — the "dropdown is
+  // still there" complaint, exactly. The heading is a plain label now, not a
+  // button, so there is nothing to open.
   return (
     <div className="space-y-4">
       <section>
-        <button
-          type="button"
-          onClick={() => setSpecOpen((o) => !o)}
-          aria-expanded={specOpen}
-          aria-controls={`studio-spec-${variant}`}
-          className={`relative flex w-full items-center justify-between gap-2 cursor-pointer focus-ui99 ${HIT}`}
-        >
-          <span className="type-caption font-mono font-bold text-(--text-primary)">
-            {isRTL ? 'مشخصات' : 'Specification'}
-          </span>
-          <ChevronDown
-            aria-hidden="true"
-            className={`icon-xs text-(--text-muted) transition-transform ${specOpen ? 'rotate-180' : ''}`}
-          />
-        </button>
-        {specOpen && (
-          <div id={`studio-spec-${variant}`} className="space-y-2 mt-2">
-            <dl className="grid grid-cols-2 gap-x-3 gap-y-2 type-micro font-mono">
-              {[
-                { l: isRTL ? 'دسته' : 'Category', v: comp.category },
-                { l: isRTL ? 'اولیه' : 'Primitive', v: comp.primitive || (isRTL ? 'بومی' : 'Native') },
-                { l: isRTL ? 'نسخه' : 'Version', v: `v${comp.version}` },
-                { l: isRTL ? 'پروپس' : 'Props', v: String(comp.props.length), tone: true },
-              ].map((f) => (
-                <div key={f.l} className="min-w-0">
-                  <dt className="text-(--text-muted)">{f.l}</dt>
-                  <dd className={`truncate ${'tone' in f && f.tone ? 'text-emerald-600 dark:text-emerald-400' : 'text-(--text-primary)'}`}>
-                    {f.v}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-            {deps.length > 0 && (
-              <p className="type-micro font-mono text-(--text-secondary) truncate">
-                {isRTL ? 'وابستگی: ' : 'Deps: '}{deps.join(', ')}
-              </p>
-            )}
-          </div>
-        )}
+        <h3 className="type-caption font-ui font-bold text-(--text-primary)">
+          {isRTL ? 'مشخصات' : 'Specification'}
+        </h3>
+        <div id={`studio-spec-${variant}`} className="space-y-2 mt-2">
+          <dl className="grid grid-cols-2 gap-x-3 gap-y-2 type-micro font-ui">
+            {[
+              { l: isRTL ? 'دسته' : 'Category', v: comp.category },
+              { l: isRTL ? 'اولیه' : 'Primitive', v: comp.primitive || (isRTL ? 'بومی' : 'Native') },
+              { l: isRTL ? 'نسخه' : 'Version', v: `v${comp.version}` },
+              { l: isRTL ? 'پروپس' : 'Props', v: String(comp.props.length), tone: true },
+            ].map((f) => (
+              <div key={f.l} className="min-w-0">
+                <dt className="text-(--text-muted)">{f.l}</dt>
+                <dd className={`truncate ${'tone' in f && f.tone ? 'text-emerald-600 dark:text-emerald-400' : 'text-(--text-primary)'}`}>
+                  {f.v}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          {deps.length > 0 && (
+            <p className="type-micro font-ui text-(--text-secondary) truncate">
+              {isRTL ? 'وابستگی: ' : 'Deps: '}{deps.join(', ')}
+            </p>
+          )}
+        </div>
       </section>
 
       <section>
-        <h3 className="type-caption font-mono font-bold text-(--text-primary) mb-2">
+        <h3 className="type-caption font-ui font-bold text-(--text-primary) mb-2">
           {isRTL ? 'قابلیت‌ها' : 'Capabilities'}
         </h3>
         <ul className="space-y-1">
@@ -282,7 +269,7 @@ function Inspector({
       </section>
 
       <section>
-        <h3 className="type-caption font-mono font-bold text-(--text-primary) mb-2 flex items-center gap-1">
+        <h3 className="type-caption font-ui font-bold text-(--text-primary) mb-2 flex items-center gap-1">
           <Zap className="icon-xs text-emerald-500" />
           {isRTL ? 'پروپس‌ها' : 'Props'}
           <span className="text-(--text-muted)">({comp.props.length})</span>
@@ -309,7 +296,7 @@ function Inspector({
               <button
                 type="button"
                 onClick={onOpenDocs}
-                className={`relative type-micro font-mono text-(--text-secondary) hover:text-(--text-primary) inline-flex items-center gap-1 cursor-pointer focus-ui99 ${HIT}`}
+                className={`relative type-micro font-ui text-(--text-secondary) hover:text-(--text-primary) inline-flex items-center gap-1 cursor-pointer focus-ui99 ${HIT}`}
               >
                 {isRTL ? `و ${comp.props.length - propLimit} پروپس دیگر` : `+ ${comp.props.length - propLimit} more`}
                 <ArrowRight className="icon-xs rtl:rotate-180" />
@@ -323,7 +310,7 @@ function Inspector({
         <button
           type="button"
           onClick={onOpenDocs}
-          className={`relative flex-1 flex items-center justify-center gap-1 ${actionSize} px-3 rounded-(--radius-sm) bg-(--ink-fill) text-(--text-on-fill) type-caption font-mono font-bold transition-opacity hover:opacity-90 cursor-pointer focus-ui99 ${HIT}`}
+          className={`relative flex-1 flex items-center justify-center gap-1 ${actionSize} px-3 rounded-(--radius-sm) bg-(--ink-fill) text-(--text-on-fill) type-caption font-ui font-bold transition-opacity hover:opacity-90 cursor-pointer focus-ui99 ${HIT}`}
         >
           <BookOpen className="icon-xs" />
           {isRTL ? 'مستندات کامل' : 'Full API'}
@@ -373,7 +360,6 @@ export function RegistryStudio() {
   const [segmentedValue, setSegmentedValue] = useState('ALL');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [importOpen, setImportOpen] = useState(false);
-  const [sheetOpen, setSheetOpen] = useState(false);
   const [tags, setTags] = useState(['react', 'tailwind-v4', 'obsidian', 'linear']);
   const [toggleState, setToggleState] = useState(true);
   const [packageManager, setPackageManager] = useState<'npm' | 'pnpm' | 'yarn' | 'bun'>('npm');
@@ -572,7 +558,7 @@ export function RegistryStudio() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={isRTL ? 'جستجو…' : 'Search…'}
             aria-label={isRTL ? 'جستجوی کامپوننت' : 'Search components'}
-            className="w-full h-9 sm:h-7 ps-8 pe-9 sm:pe-2 rounded-(--radius-field) bg-(--bg-card) dark:bg-(--bg-wash) border border-(--border-soft) type-caption text-(--text-primary) placeholder:text-(--text-muted) focus:outline-none focus:border-(--border-strong) focus-ui99-inset font-mono"
+            className="w-full h-9 sm:h-7 ps-8 pe-9 sm:pe-2 rounded-(--radius-field) bg-(--bg-card) dark:bg-(--bg-wash) border border-(--border-soft) type-caption text-(--text-primary) placeholder:text-(--text-muted) focus:outline-none focus:border-(--border-strong) focus-ui99-inset font-ui"
           />
           {searchQuery !== '' && (
             <button
@@ -587,7 +573,9 @@ export function RegistryStudio() {
         </div>
 
         {/* Categories: ONE clean horizontal scroll row at every breakpoint —
-            short labels keep the strip tight on a phone. */}
+            short labels keep the strip tight on a phone. The label is Persian
+            in RTL, so this row takes the UI voice, not the mono voice: the
+            mono stack is for identifiers, and a Persian word is not one. */}
         <div className="flex items-center gap-1 overflow-x-auto no-scrollbar touch-pan-x min-w-0 flex-1">
           {categories.map((cat) => (
             <button
@@ -595,7 +583,7 @@ export function RegistryStudio() {
               type="button"
               onClick={() => setActiveCategory(cat.id)}
               aria-pressed={activeCategory === cat.id}
-              className={`relative inline-flex items-center gap-1 h-6 px-2 rounded-(--radius-sm) type-micro font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDER} ${
+              className={`relative inline-flex items-center gap-1 h-6 px-2 rounded-(--radius-sm) type-micro font-ui whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDER} ${
                 activeCategory === cat.id ? SELECTED_CHIP : IDLE_CHIP
               }`}
             >
@@ -614,14 +602,14 @@ export function RegistryStudio() {
         {filteredComponents.length === 0 ? (
           <div className="flex items-center gap-2 py-1">
             <Search className="icon-xs text-(--text-muted) shrink-0" />
-            <p className="type-caption font-mono text-(--text-secondary)">
+            <p className="type-caption font-ui text-(--text-secondary)">
               {isRTL ? 'کامپوننتی یافت نشد' : 'No components match this filter'}
             </p>
             {filtersActive && (
               <button
                 type="button"
                 onClick={clearFilters}
-                className={`relative inline-flex items-center gap-1 h-8 px-2 rounded-(--radius-sm) type-micro font-mono text-emerald-600 dark:text-emerald-400 hover:bg-(--state-hover) cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT}`}
+                className={`relative inline-flex items-center gap-1 h-8 px-2 rounded-(--radius-sm) type-micro font-ui text-emerald-600 dark:text-emerald-400 hover:bg-(--state-hover) cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT}`}
               >
                 <X className="icon-xs" />
                 {isRTL ? 'پاک‌کردن فیلترها' : 'Clear filters'}
@@ -1096,7 +1084,7 @@ export function RegistryStudio() {
                   the command in a recessed mono block with a real copy target. */}
               <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-2 space-y-2">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="type-micro font-mono text-(--text-secondary) font-semibold uppercase tracking-wide truncate">
+                  <span className="type-micro font-ui text-(--text-secondary) font-semibold uppercase tracking-wide truncate">
                     {isRTL ? 'افزودن به پروژه' : 'Add component to your project'}
                   </span>
                   <PmPicker value={packageManager} onChange={setPackageManager} isRTL={isRTL} />
@@ -1129,7 +1117,7 @@ export function RegistryStudio() {
                   aria-controls="studio-import"
                   className={`relative flex w-full items-center justify-between gap-2 cursor-pointer focus-ui99 ${HIT}`}
                 >
-                  <span className="type-caption font-mono text-(--text-secondary) font-semibold truncate">
+                  <span className="type-caption font-ui text-(--text-secondary) font-semibold truncate">
                     {isRTL ? 'دستور ایمپورت' : 'Import statement'}
                   </span>
                   <ChevronDown
@@ -1169,7 +1157,7 @@ export function RegistryStudio() {
                 ['--elevation-2', isRTL ? 'ارتفاع' : 'Elevation 2'],
                 ['--space-md', isRTL ? 'فاصله' : 'Space step'],
               ].map(([token, label]) => (
-                <div key={token} className="p-2 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) type-micro font-mono min-w-0">
+                <div key={token} className="p-2 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) type-micro font-ui min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">
                     <span className="text-(--text-secondary)">{label}</span>
                     <span className="text-(--text-muted) truncate">{token}</span>
@@ -1200,37 +1188,23 @@ export function RegistryStudio() {
         </aside>
       </div>
 
-      {/* 6 - SPEC SHEET — the phone placement. One closed dropdown row:
-          tap to unfold the full inspector in place. */}
+      {/* 6 - SPEC ON PHONE — the inspector, in place, always open.
+          It used to sit behind a "مشخصات و جزئیات" disclosure with a chevron, which is a second
+          navigation model inside a panel that is already the answer to "what is
+          this component?". A phone user had to discover that the information
+          existed, then tap, then read — for content that is the whole reason
+          the surface is there. The dropdown is gone; the spec is simply the
+          last block, the same way it is in the desktop rail. */}
       <div className="lg:hidden border-t border-(--border-subtle) bg-(--bg-surface) px-3 sm:px-4">
-        <button
-          type="button"
-          onClick={() => setSheetOpen((o) => !o)}
-          aria-expanded={sheetOpen}
-          aria-controls="studio-sheet"
-          className={`relative flex w-full items-center justify-between gap-2 py-3 cursor-pointer focus-ui99 ${HIT}`}
-        >
-          <span className="type-caption font-mono font-semibold text-(--text-secondary)">
-            {isRTL ? 'مشخصات و جزئیات' : 'Specification & details'}
-          </span>
-          <ChevronDown
-            aria-hidden="true"
-            className={`icon-xs text-(--text-muted) transition-transform ${sheetOpen ? 'rotate-180' : ''}`}
-          />
-        </button>
-        {sheetOpen && (
-          <div id="studio-sheet" className="pb-4">
-            <Inspector
-              comp={currentComp}
-              isRTL={isRTL}
-              deps={realDeps}
-              copied={copiedKey === 'mobile-add'}
-              onCopy={() => copy(cliCommand, 'mobile-add')}
-              onOpenDocs={openDocs}
-              variant="sheet"
-            />
-          </div>
-        )}
+        <Inspector
+          comp={currentComp}
+          isRTL={isRTL}
+          deps={realDeps}
+          copied={copiedKey === 'mobile-add'}
+          onCopy={() => copy(cliCommand, 'mobile-add')}
+          onOpenDocs={openDocs}
+          variant="sheet"
+        />
       </div>
     </section>
   );

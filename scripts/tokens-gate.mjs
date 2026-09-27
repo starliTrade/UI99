@@ -907,8 +907,111 @@ if (unlayeredViolations.length) {
   process.exit(1);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   RULE J — EVERY FONT STACK CARRIES THE PERSIAN FACE.
+
+   The stack in `@theme inline { --font-mono: 'JetBrains Mono', 'Inter', … }`
+   had no Vazirmatn in it. `.font-mono` is a UTILITIES-layer rule, so it beats
+   the `@layer base` rule that gives `[dir='rtl']` the Persian family — and the
+   browser then walked JetBrains Mono (no Arabic), Inter (no Arabic),
+   ui-monospace (no Arabic) and landed on whatever the OS has. Every Persian
+   label in the studio rendered in a machine-dependent fallback, silently, with
+   nothing in the markup to hint that it had happened.
+
+   The rule is a single sentence: a stack that does not name Vazirmatn cannot
+   render Persian, and this system is Persian-first. `font-ui` exists for the
+   same reason — a label is prose, and prose is not a monospace.
+   ═══════════════════════════════════════════════════════════════════════════ */
+const fontViolations = [];
+for (const sheet of ['src/index.css', 'src/styles/ui99.css']) {
+  const abs = resolve(root, sheet);
+  const lines = readFileSync(abs, 'utf8').split('\n');
+  lines.forEach((line, i) => {
+    const code = line.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/\/\/.*$/, '');
+    const m = code.match(/--font-(sans|mono|persian|serif)\s*:\s*([^;]+);/);
+    if (!m) return;
+    // `monospace` / `serif` with no named family at all is a naked keyword
+    // stack; it can never name a script, so it can never be right here.
+    if (!/Vazirmatn/.test(m[2])) {
+      fontViolations.push(
+        `${sheet}:${i + 1}: --font-${m[1]} has no Vazirmatn — "${m[2].trim()}" cannot render Persian`,
+      );
+    }
+  });
+}
+
+// A `font-mono` element next to Persian copy is a label wearing a code voice.
+const PERSIAN = /[\u0600-\u06FF]/;
+for (const abs of [...componentFiles, ...coreFiles, ...files.map((f) => resolve(uiDir, f))]) {
+  if (!/[/\\]src[/\\]/.test(abs) || !/\.tsx?$/.test(abs)) continue;
+  const lines = readFileSync(abs, 'utf8').split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    if (!/font-mono/.test(lines[i])) continue;
+    // Widen the window: a class list and the `dir="ltr"` that exempts it are
+    // routinely six lines apart, and an exemption you cannot see is an
+    // exemption that does not exist.
+    // TWO DIFFERENT WINDOWS, on purpose.
+    //
+    // `own` is the element's own span — from this class list to its closing
+    // tag. That is where Persian prose has to be, and nothing else counts: a
+    // Persian heading three elements above does not make a page-number chip
+    // (`p. 128`) Persian, and a naive fixed window flagged exactly that.
+    //
+    // `around` reaches further back, and is used ONLY to find an exemption.
+    // A command like `npx @99/ui init` is mono by design, but its `dir="ltr"`
+    // lives on a parent span several lines up — so the exemption has to be
+    // allowed to see the wrapper even though the verdict may not.
+    // `own` is the element's OWN span, found by walking to its closing tag —
+    // not a fixed line count. A fixed count runs straight past `</span>` into
+    // the next sibling, which is how a Latin `p. 128` chip and a Latin
+    // `RATIO 1.25` label both got reported as Persian: the Persian was two
+    // elements below, in a specimen block.
+    let end = i;
+    const openTag = lines[i].slice(0, (lines[i].search(/class(?:Name)?\s*=/) + 1) || 0);
+    const tagName = (openTag.match(/<([A-Za-z][\w.]*)[\s/>]/) ?? [])[1];
+    if (lines[i].includes(`</${tagName}>`)) end = i;              // one-line element
+    else if (tagName) {
+      while (end < lines.length && end < i + 16 && !lines[end].includes(`</${tagName}>`)) end++;
+    } else end = i;
+    const own = lines.slice(i, end + 1).join('\n');
+    const around = lines.slice(Math.max(0, i - 10), Math.min(lines.length, i + 14)).join('\n');
+
+    // Persian must be in the element's TEXT, not in one of its attributes. A
+    // `title="تغییر به فارسی"` on a button whose label reads `EN` is an
+    // accessible name, and the name is rendered in the UI font regardless of
+    // what the button's own class list says. Reading attributes as text made
+    // this rule report the globe toggle in the header — a button whose only
+    // text is two Latin letters.
+    const text = own
+      .replace(/\{\/\*[\s\S]*?\*\/\}/g, ' ')           // JSX comments
+      .replace(/\{\/\/.*$/gm, ' ')                       // line comments
+      .replace(/=\s*("[^"]*"|'[^']*'|`[^`]*`)/g, ' ')    // every string attribute
+      .replace(/=\s*\{[^{}]*\}/g, ' ')                    // every expression attribute
+      .replace(/<[^>]*>/g, ' ')                            // tags, incl. class lists
+      .replace(/\$\{[^}]*\}/g, ' ');                     // interpolations
+    if (!PERSIAN.test(text)) continue;
+
+    // Identifier contexts legitimately stay mono: a code element, an LTR run
+    // or a data attribute is a name being displayed, not prose.
+    if (/<code\b/.test(around) || /dir="ltr"/.test(around) || /data-[a-z-]+=/.test(around)) continue;
+    fontViolations.push(
+      `${abs.slice(root.length + 1)}:${i + 1}: Persian copy on a font-mono element — use font-ui (prose) or mark the run dir="ltr" (identifier)`,
+    );
+  }
+}
+
+if (fontViolations.length) {
+  console.error(
+    `\n✗ tokens-gate: ${fontViolations.length} font-law violation(s) — every stack carries Vazirmatn, and Persian prose is never a monospace:\n`,
+  );
+  for (const v of fontViolations.slice(0, 20)) console.error('  ' + v);
+  if (fontViolations.length > 20) console.error(`  … and ${fontViolations.length - 20} more`);
+  console.error('\nCodemod: node scripts/migrate-persian-labels.mjs\n');
+  process.exit(1);
+}
+
 console.log(
   `✓ tokens-gate: ${files.length} kit files clean — no hardcoded hexes, no arbitrary or raw-scale ` +
     `elevation/radius/blur/type, no dead utilities, all ${declared.size} tokens declared, ` +
-    `soft-continuity ladder enforced (9 rules: hex · structural · declared · compiles · soft · grid · mirror · control · layering)`,
+    `soft-continuity ladder enforced (10 rules: hex · structural · declared · compiles · soft · grid · mirror · control · layering · font)`,
 );

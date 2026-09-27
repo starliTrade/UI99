@@ -494,7 +494,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={isRTL ? `جستجو در ${KIT_COMPONENT_COUNT.toLocaleString('fa-IR')} کامپوننت و توکن...` : `Filter ${KIT_COMPONENT_COUNT} components...`}
-              className="w-full pl-8 pr-7 py-1 rounded-(--radius-field) type-caption font-mono bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) text-zinc-900 dark:text-(--text-primary) placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-all"
+              className="w-full pl-8 pr-7 py-1 rounded-(--radius-field) type-caption font-ui bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) text-zinc-900 dark:text-(--text-primary) placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-all"
             />
             {searchQuery && (
               <button
@@ -689,7 +689,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Persian Luxury */}
               <div className="p-5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) space-y-3 text-right rtl">
-                <span className="type-micro font-mono font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                <span className="type-micro font-ui font-bold uppercase text-emerald-600 dark:text-emerald-400">
                   فارسی فاخر (وزیرمتن با اعداد فارسی)
                 </span>
                 <p className="type-heading font-bold font-persian-luxury text-zinc-950 dark:text-(--text-primary)">
@@ -698,7 +698,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 <p className="type-body font-persian-luxury text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
                   تراز اپتیکال دقیق خطوط، خوانایی حداکثری، و قالب‌بندی ارقام فارسی: ۱۲۳،۴۵۶ ریال در کادرها.
                 </p>
-                <div className="pt-2 flex items-center justify-between type-caption font-mono text-zinc-400 border-t border-(--border-subtle) dark:border-(--border-soft)">
+                <div className="pt-2 flex items-center justify-between type-caption font-ui text-zinc-400 border-t border-(--border-subtle) dark:border-(--border-soft)">
                   <span>Vazirmatn Weights: 400 / 500 / 700</span>
                   <span>کنتراست AAA</span>
                 </div>

@@ -158,7 +158,7 @@ export function ExecutionSection({
             <h4 className="type-micro font-semibold uppercase tracking-wider text-(--text-secondary)">
               {isRTL ? 'کارهای آماده اقدام و آیین‌ها' : 'Active Items & Rituals'}
             </h4>
-            <span className="type-micro font-mono text-zinc-500">
+            <span className="type-micro font-ui text-zinc-500">
               {activeTasks.length + activeHabits.length} {isRTL ? 'مورد' : 'items'}
             </span>
           </div>
