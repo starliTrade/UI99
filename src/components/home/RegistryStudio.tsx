@@ -183,7 +183,7 @@ function CommandWell({
       aria-label={isRTL ? `کپی دستور: ${command}` : `Copy command: ${command}`}
       className="flex-1 min-w-0 flex items-center justify-between gap-2 px-2.5 h-7 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) font-mono transition-colors cursor-pointer focus-ui99"
     >
-      <span className="flex items-center gap-1.5 min-w-0">
+      <span className="flex items-center gap-1.5 min-w-0 font-code">
         <span className="text-emerald-500 dark:text-emerald-400 font-bold type-micro select-none shrink-0">
           &gt;_
         </span>
@@ -218,7 +218,10 @@ function Inspector({
 }) {
   const propLimit = variant === 'rail' ? 6 : 4;
   const actionSize = variant === 'rail' ? 'h-9' : 'h-10';
-  const [specOpen, setSpecOpen] = useState(false);
+  // The sheet placement lives inside its own "Specification & details"
+  // dropdown, so its spec block stays open — double-disclosure reads as
+  // a locked drawer. The rail owns its own collapse state.
+  const [specOpen, setSpecOpen] = useState(variant === 'sheet');
 
   return (
     <div className="space-y-4">
@@ -228,7 +231,7 @@ function Inspector({
           onClick={() => setSpecOpen((o) => !o)}
           aria-expanded={specOpen}
           aria-controls={`studio-spec-${variant}`}
-          className={`relative flex w-full items-center justify-between gap-2 mb-2 cursor-pointer focus-ui99 ${HIT}`}
+          className={`relative flex w-full items-center justify-between gap-2 cursor-pointer focus-ui99 ${HIT}`}
         >
           <span className="type-caption font-mono font-bold text-(--text-primary)">
             {isRTL ? 'مشخصات' : 'Specification'}
@@ -239,7 +242,7 @@ function Inspector({
           />
         </button>
         {specOpen && (
-          <div id={`studio-spec-${variant}`} className="space-y-2">
+          <div id={`studio-spec-${variant}`} className="space-y-2 mt-2">
             <dl className="grid grid-cols-2 gap-x-3 gap-y-2 type-micro font-mono">
               {[
                 { l: isRTL ? 'دسته' : 'Category', v: comp.category },
@@ -511,7 +514,7 @@ export function RegistryStudio() {
         <div className="flex items-center gap-1.5 shrink-0">
           {/* Registry stepper — every component reachable without the ribbon.
               28px visuals; the 44px touch floor comes from HIT_WIDE. */}
-          <div className="flex items-center gap-0.5 p-1 sm:p-0.5 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) shrink-0">
+          <div className="flex items-center gap-0.5 p-0.5 rounded-(--radius-sm) bg-(--bg-subtle) border border-(--border-hairline) shrink-0">
             <button
               type="button"
               onClick={() => stepComponent(-1)}
@@ -650,7 +653,7 @@ export function RegistryStudio() {
       {/* 4 - WORKBENCH — one switcher, the canvas, and the quick-add tray;
           from lg the inspector rail joins on the right. */}
       <div className="flex flex-col lg:flex-row min-w-0">
-        <div className="flex-1 min-w-0 p-3.5 sm:p-4 md:p-6 flex flex-col gap-3.5 sm:gap-4 bg-(--bg-card)">
+        <div className="flex-1 min-w-0 p-3 sm:p-4 md:p-6 flex flex-col gap-3 sm:gap-4 bg-(--bg-card)">
           <div className="flex justify-center">
             <ViewTabs view={studioView} onChange={setStudioView} isRTL={isRTL} />
           </div>
@@ -1096,7 +1099,7 @@ export function RegistryStudio() {
                   <span className="text-emerald-500 dark:text-emerald-400 font-bold type-caption font-mono select-none shrink-0">
                     &gt;_
                   </span>
-                  <code dir="ltr" className="flex-1 min-w-0 truncate type-caption font-mono text-(--text-primary)">
+                  <code dir="ltr" className="flex-1 min-w-0 truncate type-caption font-code text-(--text-primary)">
                     {cliCommand}
                   </code>
                   <button
@@ -1132,7 +1135,7 @@ export function RegistryStudio() {
                   <div id="studio-import" className="mt-2.5 flex items-center gap-2 px-3 py-2.5 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle)">
                     <code
                       dir="ltr"
-                      className="flex-1 min-w-0 truncate type-caption font-mono text-(--text-primary) whitespace-nowrap overflow-x-auto no-scrollbar"
+                      className="flex-1 min-w-0 truncate type-caption font-code text-(--text-primary) whitespace-nowrap overflow-x-auto no-scrollbar"
                     >
                       {`import { ${currentComp.title.replace(/[\s-]+/g, '')} } from '@/components/ui/${currentComp.name}';`}
                     </code>
