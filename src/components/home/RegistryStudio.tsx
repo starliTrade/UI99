@@ -9,12 +9,14 @@
  *   3. How do I get it into my project?
  *   4. How is it built — props, tokens, source?
  *
- * MOBILE-FIRST CONTRACT — the phone is the primary canvas, desktop is the
- * refinement. Every interactive target is >=44px on a phone (AGENTS S5) and
- * relaxes to the 32px control at sm, where a pointer takes over:
+ * TOUCH DENSITY LAW — the 44px floor (AGENTS S5) is a TOUCH floor, never
+ * a visual one. Controls stay pro-dense (28–32px) at EVERY breakpoint; a
+ * transparent after-pseudo expands the hit area out to the floor:
  *
- *   touch   44px floor   chips / inputs / stepper / pills   h-11 sm:h-8
- *   micro   40px zone    view tabs                          h-10 sm:h-7
+ *   28px visual + HIT_WIDE (-inset-2)  = 44px touch  stepper, icon buttons
+ *   32px visual + HIT      (-inset-1.5) = 44px touch  chips, tabs, pills
+ *   36px field, no expansion            search input (inputs cannot carry
+ *                                                      pseudo hit areas)
  *   well    recessed     command trays sit in bg-sunken, never elevated
  *
  * Zone anatomy (all radii/fills are tokens, zero raw alphas, one matte fill
@@ -66,8 +68,13 @@ function liveTokenValue(token: string): string {
 const SELECTED_CHIP = 'bg-(--ink-fill) text-(--text-on-fill) font-bold';
 const IDLE_CHIP =
   'text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--state-hover)';
-/** Pseudo-element hit expansion for compact desktop targets. */
-const HIT = "after:absolute after:-inset-1.5 after:content-['']";
+/**
+ * Touch density — the 44px Apple-HIG floor is a TOUCH floor, not a visual
+ * one. Visuals stay dense on every breakpoint; the pseudo-element carries
+ * the floor. Inset math: 28px + 2×8 = 44, 32px + 2×6 = 44.
+ */
+const HIT = "after:absolute after:-inset-1.5 after:content-['']"; // 32px visuals
+const HIT_WIDE = "after:absolute after:-inset-2 after:content-['']"; // 28px visuals
 
 type StudioView = 'stage' | 'code' | 'cli' | 'tokens';
 
@@ -95,7 +102,7 @@ function ViewTabs({
     <div
       role="tablist"
       aria-label={isRTL ? 'نمای استودیو' : 'Studio view'}
-      className="w-full sm:w-auto grid grid-cols-4 sm:inline-flex items-center gap-0.5 p-1 sm:p-0.5 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft)"
+      className="w-full sm:w-auto grid grid-cols-4 sm:inline-flex items-center gap-0.5 p-1 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft)"
     >
       {VIEWS.map((v) => (
         <button
@@ -104,12 +111,12 @@ function ViewTabs({
           role="tab"
           aria-selected={view === v.id}
           onClick={() => onChange(v.id)}
-          className={`relative flex items-center justify-center gap-1 sm:gap-1.5 h-10 sm:h-7 px-1.5 sm:px-2.5 rounded-(--radius-xs) type-caption font-mono transition-colors cursor-pointer focus-ui99 ${HIT} ${
+          className={`relative flex items-center justify-center gap-1.5 h-8 px-2.5 rounded-(--radius-xs) type-caption font-mono transition-colors cursor-pointer focus-ui99 ${HIT} ${
             view === v.id ? SELECTED_CHIP : IDLE_CHIP
           }`}
         >
           <v.icon className="icon-xs shrink-0" />
-          <span className="type-micro sm:type-caption">{v.label}</span>
+          <span className="type-caption">{v.label}</span>
         </button>
       ))}
     </div>
@@ -132,7 +139,7 @@ function PmPicker({
     <div
       role="radiogroup"
       aria-label={isRTL ? 'پکیج منیجر' : 'Package manager'}
-      className="grid grid-cols-4 sm:inline-flex sm:items-center gap-1 sm:gap-0.5 p-1 sm:p-0.5 w-full sm:w-fit rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) shrink-0"
+      className="grid grid-cols-4 sm:inline-flex sm:items-center gap-1 p-1 w-full sm:w-fit rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) shrink-0"
     >
       {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((pm) => (
         <button
@@ -141,7 +148,7 @@ function PmPicker({
           role="radio"
           aria-checked={value === pm}
           onClick={() => onChange(pm)}
-          className={`relative flex items-center justify-center h-11 sm:h-7 px-2 rounded-(--radius-xs) type-micro font-mono uppercase whitespace-nowrap cursor-pointer transition-colors focus-ui99 ${HIT} ${
+          className={`relative flex items-center justify-center h-8 px-2.5 rounded-(--radius-xs) type-micro font-mono uppercase whitespace-nowrap cursor-pointer transition-colors focus-ui99 ${HIT} ${
             value === pm ? SELECTED_CHIP : IDLE_CHIP
           }`}
         >
@@ -154,26 +161,24 @@ function PmPicker({
 
 /**
  * The recessed command well — the one idiom for "a shell line lives here".
- * Sunken fill, hairline border, emerald prompt, whole well is the copy
- * target with a 44px phone footprint.
+ * Sunken fill, hairline border, emerald prompt. 36px visual height — a
+ * text-adjacent control, like an IDE status bar; full-width on a phone so
+ * the whole row is the copy target.
  */
 function CommandWell({
-  command, copied, onCopy, isRTL, size = 'touch',
+  command, copied, onCopy, isRTL,
 }: {
   command: string;
   copied: boolean;
   onCopy: () => void;
   isRTL: boolean;
-  size?: 'touch' | 'compact';
 }) {
   return (
     <button
       type="button"
       onClick={onCopy}
       aria-label={isRTL ? `کپی دستور: ${command}` : `Copy command: ${command}`}
-      className={`flex-1 min-w-0 flex items-center justify-between gap-2 px-3 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) font-mono transition-colors cursor-pointer focus-ui99 ${
-        size === 'touch' ? 'h-11 sm:h-9' : 'h-9'
-      }`}
+      className="flex-1 min-w-0 flex items-center justify-between gap-2 px-3 h-9 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) font-mono transition-colors cursor-pointer focus-ui99"
     >
       <span className="flex items-center gap-1.5 min-w-0">
         <span className="text-emerald-500 dark:text-emerald-400 font-bold type-caption select-none shrink-0">
@@ -208,7 +213,7 @@ function Inspector({
   variant: 'rail' | 'sheet';
 }) {
   const propLimit = variant === 'rail' ? 6 : 4;
-  const actionSize = variant === 'rail' ? 'h-9' : 'h-11';
+  const actionSize = variant === 'rail' ? 'h-9' : 'h-10';
 
   return (
     <div className="space-y-4">
@@ -294,7 +299,7 @@ function Inspector({
         <button
           type="button"
           onClick={onOpenDocs}
-          className={`relative flex-1 flex items-center justify-center gap-1.5 ${actionSize} px-3 rounded-(--radius-sm) bg-(--ink-fill) text-(--text-on-fill) type-caption font-mono font-bold transition-opacity hover:opacity-90 cursor-pointer focus-ui99`}
+          className={`relative flex-1 flex items-center justify-center gap-1.5 ${actionSize} px-3 rounded-(--radius-sm) bg-(--ink-fill) text-(--text-on-fill) type-caption font-mono font-bold transition-opacity hover:opacity-90 cursor-pointer focus-ui99 ${HIT}`}
         >
           <BookOpen className="icon-xs" />
           {isRTL ? 'مستندات کامل' : 'Full API'}
@@ -303,7 +308,7 @@ function Inspector({
           type="button"
           onClick={onCopy}
           aria-label={isRTL ? 'کپی دستور نصب' : 'Copy install command'}
-          className={`relative flex items-center justify-center ${actionSize} ${variant === 'rail' ? 'w-9' : 'w-11'} shrink-0 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) text-(--text-secondary) hover:bg-(--state-hover) transition-colors cursor-pointer focus-ui99`}
+          className={`relative flex items-center justify-center ${actionSize} ${variant === 'rail' ? 'w-9' : 'w-10'} shrink-0 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) text-(--text-secondary) hover:bg-(--state-hover) transition-colors cursor-pointer focus-ui99 ${HIT}`}
         >
           {copied ? <Check className="icon-sm text-emerald-500" /> : <Plus className="icon-sm" />}
         </button>
@@ -462,10 +467,11 @@ export function RegistryStudio() {
       className="rounded-(--radius-lg) border border-(--border-subtle) bg-(--bg-card) shadow-(--shadow-card) overflow-hidden"
       aria-label={isRTL ? 'استودیوی رجیستری' : 'Registry studio'}
     >
-      {/* 1 - IDENTITY — which component, where you are, and how to act. Two
-          clean rows on a phone (title / controls), one line from sm. */}
-      <header className="px-3 sm:px-4 py-2 sm:py-2.5 border-b border-(--border-subtle) bg-(--bg-surface) flex flex-wrap items-center gap-x-2 gap-y-1.5 min-w-0">
-        <div className="flex items-center gap-2 min-w-0 flex-1 basis-full sm:basis-0">
+      {/* 1 - IDENTITY — which component, where you are, and how to act.
+          One dense row at every breakpoint: the title truncates, controls
+          stay compact and take their touch room from hit expansion. */}
+      <header className="px-3 sm:px-4 py-2 border-b border-(--border-subtle) bg-(--bg-surface) flex items-center gap-2 min-w-0">
+        <div className="flex items-center gap-2 min-w-0 flex-1">
           <span className="flex h-2 w-2 relative shrink-0" aria-hidden="true">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-(--radius-pill) bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-(--radius-pill) h-2 w-2 bg-emerald-500" />
@@ -481,16 +487,16 @@ export function RegistryStudio() {
           </h2>
         </div>
 
-        <div className="flex w-full sm:w-auto items-center justify-between sm:justify-start gap-1.5 shrink-0">
+        <div className="flex items-center gap-1.5 shrink-0">
           {/* Registry stepper — every component reachable without the ribbon.
-              Phone: 36px buttons in a padded 44px well. Desktop: 28px in 32px. */}
+              28px visuals; the 44px touch floor comes from HIT_WIDE. */}
           <div className="flex items-center gap-0.5 p-1 sm:p-0.5 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) shrink-0">
             <button
               type="button"
               onClick={() => stepComponent(-1)}
               disabled={registryIndex <= 0}
               aria-label={isRTL ? 'کامپوننت قبلی' : 'Previous component'}
-              className={`relative flex items-center justify-center h-9 w-9 sm:h-7 sm:w-7 rounded-(--radius-xs) text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--state-hover) disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 ${HIT}`}
+              className={`relative flex items-center justify-center h-7 w-7 rounded-(--radius-xs) text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--state-hover) disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 ${HIT_WIDE}`}
             >
               {isRTL ? <ChevronRight className="icon-xs" /> : <ChevronLeft className="icon-xs" />}
             </button>
@@ -505,7 +511,7 @@ export function RegistryStudio() {
               onClick={() => stepComponent(1)}
               disabled={registryIndex >= REGISTRY_COMPONENTS.length - 1}
               aria-label={isRTL ? 'کامپوننت بعدی' : 'Next component'}
-              className={`relative flex items-center justify-center h-9 w-9 sm:h-7 sm:w-7 rounded-(--radius-xs) text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--state-hover) disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 ${HIT}`}
+              className={`relative flex items-center justify-center h-7 w-7 rounded-(--radius-xs) text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--state-hover) disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 ${HIT_WIDE}`}
             >
               {isRTL ? <ChevronLeft className="icon-xs" /> : <ChevronRight className="icon-xs" />}
             </button>
@@ -516,7 +522,7 @@ export function RegistryStudio() {
             type="button"
             onClick={openDocs}
             aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
-            className={`relative flex items-center justify-center sm:justify-start gap-1.5 h-11 w-11 sm:h-8 sm:w-auto sm:px-2 rounded-(--radius-sm) type-caption font-mono font-medium text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT}`}
+            className={`relative flex items-center justify-center sm:justify-start gap-1.5 h-8 w-8 sm:w-auto sm:px-2.5 rounded-(--radius-sm) type-caption font-mono font-medium text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT_WIDE}`}
           >
             <BookOpen className="icon-xs shrink-0" />
             <span className="hidden sm:inline">{isRTL ? 'مستندات' : 'Full API'}</span>
@@ -536,14 +542,14 @@ export function RegistryStudio() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={isRTL ? 'جستجو…' : 'Search…'}
             aria-label={isRTL ? 'جستجوی کامپوننت' : 'Search components'}
-            className="w-full h-11 sm:h-8 ps-8 pe-10 sm:pe-2 rounded-(--radius-field) bg-(--bg-card) dark:bg-(--bg-wash) border border-(--border-soft) type-caption text-(--text-primary) placeholder:text-(--text-muted) focus:outline-none focus:border-(--border-strong) focus-ui99-inset font-mono"
+            className="w-full h-10 sm:h-8 ps-8 pe-9 sm:pe-2 rounded-(--radius-field) bg-(--bg-card) dark:bg-(--bg-wash) border border-(--border-soft) type-caption text-(--text-primary) placeholder:text-(--text-muted) focus:outline-none focus:border-(--border-strong) focus-ui99-inset font-mono"
           />
           {searchQuery !== '' && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
               aria-label={isRTL ? 'پاک‌کردن جستجو' : 'Clear search'}
-              className="absolute end-1.5 top-1/2 -translate-y-1/2 flex items-center justify-center h-8 w-8 rounded-(--radius-xs) text-(--text-muted) hover:text-(--text-primary) cursor-pointer focus-ui99"
+              className="absolute end-1 top-1/2 -translate-y-1/2 flex items-center justify-center h-7 w-7 rounded-(--radius-xs) text-(--text-muted) hover:text-(--text-primary) cursor-pointer focus-ui99"
             >
               <X className="icon-xs" />
             </button>
@@ -557,7 +563,7 @@ export function RegistryStudio() {
               type="button"
               onClick={() => setActiveCategory(cat.id)}
               aria-pressed={activeCategory === cat.id}
-              className={`relative inline-flex items-center gap-1.5 h-11 sm:h-8 px-2.5 sm:px-2 rounded-(--radius-sm) type-micro font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT} ${
+              className={`relative inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-sm) type-micro font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT} ${
                 activeCategory === cat.id ? SELECTED_CHIP : IDLE_CHIP
               }`}
             >
@@ -583,7 +589,7 @@ export function RegistryStudio() {
               <button
                 type="button"
                 onClick={clearFilters}
-                className="relative inline-flex items-center gap-1 h-11 sm:h-8 px-2.5 sm:px-2 rounded-(--radius-sm) type-micro font-mono text-emerald-600 dark:text-emerald-400 hover:bg-(--state-hover) cursor-pointer transition-colors shrink-0 focus-ui99"
+                className={`relative inline-flex items-center gap-1 h-8 px-2.5 rounded-(--radius-sm) type-micro font-mono text-emerald-600 dark:text-emerald-400 hover:bg-(--state-hover) cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT}`}
               >
                 <X className="icon-xs" />
                 {isRTL ? 'پاک‌کردن فیلترها' : 'Clear filters'}
@@ -607,7 +613,7 @@ export function RegistryStudio() {
                 tabIndex={activeComponentId === c.id ? 0 : -1}
                 data-ribbon-item={c.id}
                 onClick={() => setActiveComponentId(c.id)}
-                className={`relative px-2.5 sm:px-2 h-11 sm:h-8 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT} ${
+                className={`relative px-2.5 h-8 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT} ${
                   activeComponentId === c.id ? SELECTED_CHIP : IDLE_CHIP
                 }`}
               >
@@ -621,7 +627,7 @@ export function RegistryStudio() {
       {/* 4 - WORKBENCH — one switcher, the canvas, and the quick-add tray;
           from lg the inspector rail joins on the right. */}
       <div className="flex flex-col lg:flex-row min-w-0">
-        <div className="flex-1 min-w-0 p-3 sm:p-4 md:p-6 flex flex-col gap-3 sm:gap-4 bg-(--bg-card)">
+        <div className="flex-1 min-w-0 p-3.5 sm:p-4 md:p-6 flex flex-col gap-3.5 sm:gap-4 bg-(--bg-card)">
           <div className="flex justify-center">
             <ViewTabs view={studioView} onChange={setStudioView} isRTL={isRTL} />
           </div>
@@ -630,7 +636,7 @@ export function RegistryStudio() {
             <>
               {/* The stage — a recessed canvas with a dot lattice; wide
                   specimens scroll, never squeeze. */}
-              <div className="relative min-h-[240px] sm:min-h-[300px] rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) p-4 sm:p-6 flex items-center justify-center overflow-x-auto overflow-y-hidden">
+              <div className="relative min-h-[260px] sm:min-h-[340px] rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) p-4 sm:p-6 flex items-center justify-center overflow-x-auto overflow-y-hidden">
                 <div
                   aria-hidden="true"
                   className="absolute inset-0 opacity-20 dark:opacity-15 pointer-events-none"
@@ -987,7 +993,7 @@ export function RegistryStudio() {
 
               {/* Quick-add tray — demo chips for stateful specimens, then the
                   universal PM + install row. One tray, one visual weight. */}
-              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-3 space-y-3">
+              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-3.5 space-y-3">
                 {activeComponentId === 'button' && (
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                     <div className="flex items-center gap-1.5 min-w-0">
@@ -999,7 +1005,7 @@ export function RegistryStudio() {
                             type="button"
                             onClick={() => setBtnVariant(v)}
                             aria-pressed={btnVariant === v}
-                            className={`relative flex items-center h-11 sm:h-7 px-2.5 sm:px-2 rounded-(--radius-xs) capitalize font-mono type-micro whitespace-nowrap cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT} ${
+                            className={`relative flex items-center h-7 px-2.5 rounded-(--radius-xs) capitalize font-mono type-micro whitespace-nowrap cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT_WIDE} ${
                               btnVariant === v ? SELECTED_CHIP : `${IDLE_CHIP} bg-(--bg-raised) dark:bg-(--bg-wash)`
                             }`}
                           >
@@ -1017,7 +1023,7 @@ export function RegistryStudio() {
                             type="button"
                             onClick={() => setBtnSize(s)}
                             aria-pressed={btnSize === s}
-                            className={`relative flex items-center h-11 sm:h-7 px-2.5 sm:px-2 rounded-(--radius-xs) uppercase font-mono type-micro cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT} ${
+                            className={`relative flex items-center h-7 px-2.5 rounded-(--radius-xs) uppercase font-mono type-micro cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT_WIDE} ${
                               btnSize === s ? SELECTED_CHIP : `${IDLE_CHIP} bg-(--bg-raised) dark:bg-(--bg-wash)`
                             }`}
                           >
@@ -1029,7 +1035,7 @@ export function RegistryStudio() {
                   </div>
                 )}
 
-                <div className={`flex flex-col sm:flex-row sm:items-center gap-2 ${activeComponentId === 'button' ? 'pt-3 border-t border-(--border-subtle)' : ''}`}>
+                <div className={`flex flex-col sm:flex-row sm:items-center gap-2.5 ${activeComponentId === 'button' ? 'pt-3 border-t border-(--border-subtle)' : ''}`}>
                   <PmPicker value={packageManager} onChange={setPackageManager} isRTL={isRTL} />
                   <CommandWell
                     command={cliCommand}
@@ -1078,7 +1084,7 @@ export function RegistryStudio() {
                     type="button"
                     onClick={() => copy(`import { ${currentComp.title.replace(/[\s-]+/g, '')} } from '@/components/ui/${currentComp.name}';`, 'import-code')}
                     aria-label={isRTL ? 'کپی ایمپورت' : 'Copy import'}
-                    className="relative flex items-center justify-center h-9 w-9 rounded-(--radius-xs) text-(--text-muted) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99"
+                    className={`relative flex items-center justify-center h-8 w-8 rounded-(--radius-xs) text-(--text-muted) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT}`}
                   >
                     {copiedKey === 'import-code' ? <Check className="icon-sm text-emerald-500 dark:text-emerald-400" /> : <Copy className="icon-sm" />}
                   </button>
@@ -1091,7 +1097,7 @@ export function RegistryStudio() {
           )}
 
           {studioView === 'tokens' && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5">
               {[
                 ['--bg-canvas', isRTL ? 'بوم' : 'Canvas'],
                 ['--bg-card', isRTL ? 'کارت' : 'Surface card'],
@@ -1100,7 +1106,7 @@ export function RegistryStudio() {
                 ['--elevation-2', isRTL ? 'ارتفاع' : 'Elevation 2'],
                 ['--space-md', isRTL ? 'فاصله' : 'Space step'],
               ].map(([token, label]) => (
-                <div key={token} className="p-3 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) type-micro font-mono min-w-0">
+                <div key={token} className="p-2.5 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) type-micro font-mono min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">
                     <span className="text-(--text-secondary)">{label}</span>
                     <span className="text-(--text-muted) truncate">{token}</span>
