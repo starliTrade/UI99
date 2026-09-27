@@ -274,9 +274,9 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => setCurrentTab('DOCS')}
-            className="order-3 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-card-hover) hover:bg-(--bg-raised) dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-white/[0.025] hover:border-(--border-strong) dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
+            className="order-3 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-surface) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) text-zinc-800 dark:text-(--text-secondary) dark:hover:text-(--text-primary) border border-(--border-subtle) dark:border-(--border-subtle) hover:border-(--border-soft) dark:hover:border-(--border-soft) active:scale-[0.98] whitespace-nowrap"
           >
-            <BookOpen className="icon-sm text-zinc-700 dark:text-zinc-300" />
+            <BookOpen className="icon-sm text-zinc-600 dark:text-(--text-secondary)" />
             <span>{isRTL ? 'مستندات تعاملی' : 'Interactive Docs'}</span>
           </button>
 
@@ -284,21 +284,21 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
-            className="order-4 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-card-hover) hover:bg-(--bg-raised) dark:hover:bg-(--bg-elevated) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-white/[0.025] hover:border-(--border-strong) dark:hover:border-white/[0.04] active:scale-[0.98] whitespace-nowrap"
+            className="order-4 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1.5 type-caption font-medium cursor-pointer transition-all bg-(--bg-subtle) dark:bg-(--bg-surface) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) text-zinc-800 dark:text-(--text-secondary) dark:hover:text-(--text-primary) border border-(--border-subtle) dark:border-(--border-subtle) hover:border-(--border-soft) dark:hover:border-(--border-soft) active:scale-[0.98] whitespace-nowrap"
           >
-            <Github className="icon-sm text-zinc-700 dark:text-zinc-300" />
+            <Github className="icon-sm text-zinc-600 dark:text-(--text-secondary)" />
             <span>GitHub</span>
           </button>
 
           {/* 4. Terminal Action: CLI Install Box — the command itself stays
               LTR even in Persian: code is code, and mixing bidi into a shell
               command corrupts it. */}
-          <div className="order-2 w-full sm:order-none sm:w-auto min-h-[44px] inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.025] type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
+          <div className="order-2 w-full sm:order-none sm:w-auto min-h-[44px] inline-flex items-center justify-between gap-2.5 pl-3 pr-1.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-subtle) dark:border-(--border-subtle) type-caption font-mono text-zinc-800 dark:text-zinc-200 whitespace-nowrap">
             <span dir="ltr" className="flex items-center gap-1.5">
               <span className="font-mono text-emerald-500 dark:text-emerald-400 font-bold select-none tracking-tight">
                 &gt;_
               </span>
-              <span className="font-mono font-medium text-zinc-800 dark:text-[#EDEDEF] type-body tracking-tight">
+              <span className="font-mono font-medium text-zinc-800 dark:text-(--text-primary) type-body tracking-tight">
                 npx @99/ui init
               </span>
             </span>
@@ -306,7 +306,7 @@ export function DesignSystemHomeView() {
               type="button"
               onClick={() => copy('npx @99/ui init', 'cli-init')}
               aria-label={isRTL ? 'کپی دستور' : 'Copy CLI command'}
-              className="p-1 rounded-(--radius-sm) hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer shrink-0 ml-1"
+              className="p-1 rounded-(--radius-sm) hover:bg-(--bg-raised) text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer shrink-0 ml-1"
             >
               {copiedKey === 'cli-init' ? (
                 <Check className="icon-xs text-emerald-500 dark:text-emerald-400" />
