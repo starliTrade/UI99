@@ -32,7 +32,7 @@ export function MetricCard({
     <div
       role="group"
       aria-label={`${label}: ${typeof value === 'string' || typeof value === 'number' ? value : ''}${delta !== undefined ? `, ${delta > 0 ? 'up' : 'down'} ${Math.abs(delta)} percent` : ''}`}
-      className={`p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-xs space-y-3 ${className}`}
+      className={`p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) shadow-xs space-y-3 ${className}`}
     >
       <div className="flex items-center justify-between">
         <span className="type-caption font-mono text-(--text-muted) dark:text-(--text-secondary) font-medium">

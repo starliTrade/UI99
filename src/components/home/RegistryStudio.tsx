@@ -704,7 +704,7 @@ export function RegistryStudio() {
                   )}
 
                   {activeComponentId === 'copy-button' && (
-                    <div className="flex items-center gap-3 p-3 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft)">
+                    <div className="flex items-center gap-3 p-3 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft)">
                       <code className="type-caption font-mono text-emerald-500">npx @99/ui add button</code>
                       <CopyButton text="npx @99/ui add button" />
                     </div>
@@ -904,7 +904,7 @@ export function RegistryStudio() {
                   )}
 
                   {activeComponentId === 'sparkline' && (
-                    <div className="w-full p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) space-y-2">
+                    <div className="w-full p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) space-y-2">
                       <div className="flex justify-between type-caption font-mono">
                         <span className="text-(--text-muted)">Real-time Telemetry</span>
                         <span className="text-emerald-500 font-bold">+14.2%</span>

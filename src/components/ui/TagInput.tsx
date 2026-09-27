@@ -62,7 +62,7 @@ export function TagInput({
 
   return (
     <div className="flex flex-col gap-1 w-full relative">
-      {label && <label className="type-caption font-medium text-zinc-700 dark:text-(--text-secondary)">{label}</label>}
+      {label && <label className="type-caption font-medium text-(--text-secondary)">{label}</label>}
 
       <div
         onClick={() => inputRef.current?.focus()}

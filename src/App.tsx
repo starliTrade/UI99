@@ -65,9 +65,7 @@ function MainShell() {
 
   const content = (
     <div
-      className={`min-h-screen ${isDark ? 'dark bg-[#06070A] text-[#EDEDEF] studio-dark-canvas' : 'light bg-[#F4F4F6] text-[#111113]'} flex flex-col font-sans transition-colors dur-base relative overflow-x-hidden ${
-        isRTL ? 'font-persian-luxury' : ''
-      }`}
+      className={`min-h-screen ${isDark ? 'dark' : 'light'} studio-dark-canvas bg-(--bg-canvas) text-(--text-primary) flex flex-col font-sans transition-colors dur-base relative overflow-x-hidden`}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       {/* Unified Calm Ambient Canvas Lighting — Soft, neutral, zero color blotches */}

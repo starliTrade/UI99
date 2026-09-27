@@ -143,7 +143,7 @@ export function TopHeader({
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Repository"
-            className="hidden sm:inline-flex items-center gap-1 h-8 px-2 rounded-(--radius-field) border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-subtle) hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) type-caption font-mono text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+            className="hidden sm:inline-flex items-center gap-1 h-8 px-2 rounded-(--radius-field) border border-(--border-soft) bg-(--bg-control) hover:bg-(--state-hover) type-caption font-mono text-(--text-secondary) hover:text-(--text-primary) transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             <SquareArrowOutUpRight className="icon-sm" />
             <span>GitHub</span>
@@ -155,7 +155,7 @@ export function TopHeader({
             onClick={() => onToggleRTL?.()}
             aria-label="Toggle language direction"
             title={isRTL ? 'Switch to English' : 'تغییر به فارسی'}
-            className="relative h-8 px-2 rounded-(--radius-field) flex items-center justify-center gap-1 border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-subtle) hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) type-caption font-mono font-medium text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+            className="relative h-8 px-2 rounded-(--radius-field) flex items-center justify-center gap-1 border border-(--border-soft) bg-(--bg-control) hover:bg-(--state-hover) type-caption font-mono font-medium text-(--text-secondary) hover:text-(--text-primary) transition-all cursor-pointer active:scale-95 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             <Globe className="icon-sm text-(--text-secondary) dark:text-(--text-muted)" />
             <span className="type-micro">{isRTL ? 'FA' : 'EN'}</span>
@@ -166,7 +166,7 @@ export function TopHeader({
             <button
               type="button"
               onClick={() => setIsDropdownOpen((v) => !v)}
-              className="relative h-8 w-8 rounded-(--radius-field) flex items-center justify-center border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-subtle) hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer active:scale-95 group focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+              className="relative h-8 w-8 rounded-(--radius-field) flex items-center justify-center border border-(--border-soft) bg-(--bg-control) hover:bg-(--state-hover) text-(--text-secondary) hover:text-(--text-primary) transition-all cursor-pointer active:scale-95 group focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               aria-label="Studio Preferences"
               title="Studio Preferences"
             >

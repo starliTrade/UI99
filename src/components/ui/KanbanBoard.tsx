@@ -99,7 +99,7 @@ export function KanbanBoard({
                   key={card.id}
                   role="listitem"
                   aria-label={`${card.title}, ${card.priority} priority, ${card.status}`}
-                  className="p-3 rounded-(--radius-field) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-xs hover:border-black/15 dark:hover:border-white/10 transition-all cursor-grab active:cursor-grabbing flex flex-col gap-2 group"
+                  className="p-3 rounded-(--radius-field) bg-white dark:bg-(--bg-card) border border-(--border-soft) shadow-xs hover:border-black/15 dark:hover:border-white/10 transition-all cursor-grab active:cursor-grabbing flex flex-col gap-2 group"
                 >
                   <div className="flex items-center justify-between">
                     <PriorityBadge priority={card.priority} showLabel={false} />

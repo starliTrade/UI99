@@ -51,20 +51,20 @@ export function RhythmSparklineCard({
           className={`w-8 h-8 rounded-(--radius-pill) flex items-center justify-center transition-colors ${
             isDark
               ? 'bg-white/[0.08] shadow-(--elevation-1) text-white'
-              : 'bg-black/[0.06] text-[#111116]'
+              : 'bg-black/[0.06] text-(--text-primary)'
           }`}
         >
-          <svg className={`w-3.5 h-3.5 ${isDark ? 'fill-white' : 'fill-[#111116]'}`} viewBox="0 0 24 24">
+          <svg className={`w-3.5 h-3.5 ${'fill-(--text-primary)'}`} viewBox="0 0 24 24">
             <path d="M12 1.5L4.5 12.25L12 16.5L19.5 12.25L12 1.5Z" opacity="0.85" />
             <path d="M12 17.5L4.5 13.5L12 23.5L19.5 13.5L12 17.5Z" />
           </svg>
         </div>
 
         <div>
-          <h4 className={`type-body-lg font-semibold tracking-tight ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+          <h4 className={`type-body-lg font-semibold tracking-tight ${isDark ? 'text-white' : 'text-(--text-primary)'}`}>
             {title}
           </h4>
-          <span className={`type-micro font-mono tracking-wider uppercase ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
+          <span className={`type-micro font-mono tracking-wider uppercase text-(--text-secondary)`}>
             {subtitle}
           </span>
         </div>
@@ -72,7 +72,7 @@ export function RhythmSparklineCard({
 
       {/* Main Metric & Green Trend */}
       <div className="mt-3 relative z-content">
-        <h3 className={`type-heading sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+        <h3 className={`type-heading sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-(--text-primary)'}`}>
           {value}
         </h3>
         <div className="mt-1 inline-flex items-center gap-1 px-2 py-0.5 rounded-(--radius-pill) type-caption font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/25">
@@ -96,18 +96,18 @@ export function RhythmSparklineCard({
             className={`px-3 py-1 rounded-(--radius-field) backdrop-blur-md text-center transition-all ${
               isDark
                 ? 'bg-[#14151C]/95 shadow-(--shadow-card) text-white'
-                : 'bg-white/95 shadow-(--shadow-card) border border-black/[0.04] text-[#111116]'
+                : 'bg-white/95 shadow-(--shadow-card) border border-black/[0.04] text-(--text-primary)'
             }`}
           >
-            <span className={`block type-micro font-mono font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+            <span className={`block type-micro font-mono font-bold tracking-tight ${isDark ? 'text-white' : 'text-(--text-primary)'}`}>
               {tooltipValue}
             </span>
-            <span className={`block type-micro font-medium ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
+            <span className={`block type-micro font-medium text-(--text-secondary)`}>
               {tooltipDate}
             </span>
           </div>
           <div className={`w-[1px] h-4 ${isDark ? 'bg-gradient-to-b from-white/30 to-white/10' : 'bg-gradient-to-b from-black/20 to-black/5'}`} />
-          <div className={`icon-dot-lg rounded-(--radius-pill) bg-cyan-400 shadow-(--glow-accent-md) ring-2 ${isDark ? 'ring-[#0E0F14]' : 'ring-white'}`} />
+          <div className={`icon-dot-lg rounded-(--radius-pill) bg-cyan-400 shadow-(--glow-accent-md) ring-2 ring-(--bg-card)`} />
         </div>
 
         {/* Organic Sparkline SVG Curve with luminous gradient */}

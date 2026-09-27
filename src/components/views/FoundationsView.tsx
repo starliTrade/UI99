@@ -46,12 +46,12 @@ export function FoundationsView() {
   };
 
   const colorTokens = [
-    { name: 'Canvas Root', dark: '#06070A', light: '#F4F4F6', desc: 'Base velvet obsidian canvas' },
-    { name: 'Surface Layer 1', dark: '#0B0C11', light: '#FFFFFF', desc: 'Standard cards & containers' },
-    { name: 'Surface Layer 2', dark: '#131318', light: '#F9F9FB', desc: 'Elevated popovers & modals' },
-    { name: 'Liquid Glass Dock', dark: 'rgba(14, 14, 19, 0.52)', light: 'rgba(255, 255, 255, 0.82)', desc: 'Capsules with blur(18px)' },
-    { name: 'Text Primary', dark: '#EDEDEF', light: '#111113', desc: 'High-contrast typography' },
-    { name: 'Text Muted', dark: '#8E8E98', light: '#71717A', desc: 'Secondary metadata & labels' },
+    { name: 'Canvas Root', dark: '#060709', light: '#FAFAFC', desc: 'Base velvet obsidian canvas' },
+    { name: 'Surface Layer 1', dark: '#090A0E', light: '#FFFFFF', desc: 'Standard cards & containers' },
+    { name: 'Surface Layer 2', dark: '#0C0D12', light: '#FFFFFF', desc: 'Elevated popovers & modals' },
+    { name: 'Liquid Glass Dock', dark: 'rgba(14, 14, 19, 0.52)', light: 'rgba(255, 255, 255, 0.85)', desc: 'Capsules with blur(18px)' },
+    { name: 'Text Primary', dark: '#EDEDEF', light: '#111116', desc: 'High-contrast typography' },
+    { name: 'Text Muted', dark: '#7E7E8A', light: '#6E6E7A', desc: 'Timestamps & helper copy — 4.5:1 minimum (§2.5)' },
     { name: 'Accent Emerald', dark: '#10B981', light: '#059669', desc: 'Success & positive status' },
     { name: 'Accent Rose', dark: '#F43F5E', light: '#E11D48', desc: 'Urgent & destructive priority' },
   ];
@@ -60,7 +60,7 @@ export function FoundationsView() {
     <div className="w-full space-y-12 pb-20">
       {/* Header */}
       <div className="space-y-3">
-        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft)">
+        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft)">
           {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="type-display sm:type-display font-extrabold tracking-tight text-zinc-950 dark:text-white">
@@ -166,7 +166,7 @@ export function FoundationsView() {
           </div>
 
           {/* Visualization Area */}
-          <div className="p-8 rounded-(--radius-control) bg-(--bg-raised) dark:bg-[#06070A] flex flex-col items-center justify-center gap-4">
+          <div className="p-8 rounded-(--radius-control) bg-(--bg-raised) dark:bg-(--bg-canvas) flex flex-col items-center justify-center gap-4">
             <div
               style={{
                 borderRadius: `${simOuterRadius}px`,
@@ -285,7 +285,7 @@ export function FoundationsView() {
                 key={row.token}
                 type="button"
                 onClick={() => copyValue(`var(${row.token})`, row.token)}
-                className="text-left p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-soft) space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
+                className="text-left p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-wash) border border-(--border-soft) space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
               >
                 <div
                   className="w-full h-12 rounded-(--radius-field) border border-(--border-soft) dark:border-(--border-strong)"

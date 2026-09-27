@@ -441,6 +441,60 @@ describe('type scale', () => {
     expect(l, 'light control must stay a whisper — 4% ink is a hole on white').toBeLessThanOrEqual(0.03);
   });
 
+  it('never lets a utility-layer colour override the page canvas', () => {
+    // The bug this closes: AppContext painted <body> with a hard-coded
+    // `bg-[#F4F4F6]` / `bg-[#06070A]` per theme. Those are UTILITY-layer rules,
+    // and utilities beat base — so `body { background-color: var(--bg-canvas) }`
+    // in @layer base was overridden by a literal hex on every page. Light mode
+    // rendered on #F4F4F6 while its own token said #FAFAFC, 13 levels apart, and
+    // because every light surface is specified as a step away from its canvas,
+    // a card meant to sit 11 levels above it actually sat 24 above the page.
+    //
+    // Two sources for one value is one source too many, and the symptom is
+    // uniquely deceptive: the token is correct, the test suite is green, and
+    // no change to the token can ever appear on screen.
+    const ctx = readFileSync(resolve(process.cwd(), 'src/core/context/AppContext.tsx'), 'utf8');
+    const bodyPaint = ctx
+      .split('\n')
+      .filter((l) => !/\/\/|\/\*|\*\//.test(l))
+      .filter((l) => /document\.body|\bbg-\[|text-\[#/.test(l));
+    expect(
+      bodyPaint,
+      'AppContext must not paint <body> — --bg-canvas/--text-primary in @layer base already do it',
+    ).toEqual([]);
+
+    // The app root is the same mistake one level down, and it was the one that
+    // actually shipped: `App.tsx` put `bg-[#F4F4F6]` on its `min-h-screen`
+    // div. A utility-layer rule, so it beat the `body` rule in @layer base.
+    const app = readFileSync(resolve(process.cwd(), 'src/App.tsx'), 'utf8');
+    const rootPaint = app
+      .split('\n')
+      .filter((l) => !/\/\/|\/\*|\*\//.test(l))
+      .filter((l) => /bg-\[|text-\[#/.test(l));
+    expect(
+      rootPaint,
+      'the app root must resolve through --bg-canvas / --text-primary, not a hex utility',
+    ).toEqual([]);
+  });
+
+  it('keeps every theme-scoped surface rule inside a @layer', () => {
+    // In CSS an unlayered rule beats every layered rule at ANY specificity.
+    // That is why the light page had three backgrounds and the visible one was
+    // a literal hex: `body { var(--bg-canvas) }` sat in @layer base, the app
+    // root's `.bg-[#F4F4F6]` sat in @layer utilities, and
+    // `.light .studio-dark-canvas { #F5F5F8 }` sat in NO layer and won.
+    //
+    // The symptom is uniquely deceptive — the token is right, every test is
+    // green, and no edit to the token can ever change the screen.
+    const css = readFileSync(resolve(process.cwd(), 'src/index.css'), 'utf8');
+    const lightCanvas = css.match(/\.light \.studio-dark-canvas\s*\{([^}]*)\}/);
+    expect(lightCanvas, '.light .studio-dark-canvas must exist for the ambient veil').not.toBeNull();
+    // The light canvas override may add an ambient veil, but it may not
+    // re-state a surface as a literal — that is the whole bug.
+    expect(lightCanvas![1]).not.toMatch(/background-color\s*:\s*#/);
+    expect(lightCanvas![1]).not.toMatch(/background\s*:\s*#/);
+  });
+
   it('resolves technical text direction per element, not per page (§4)', () => {
     // An RTL document reorders every neutral character in a Latin run, so
     // `Value: 1234` renders as `1234 :Value`. The old fix was `dir="ltr"` on

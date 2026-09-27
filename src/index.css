@@ -263,7 +263,7 @@
 }
 
 .light .linear-group-container {
-  background: #FFFFFF;
+  background: var(--bg-card);
   border-radius: 20px;
   border: 1px solid var(--border-subtle);
   box-shadow: 
@@ -276,15 +276,15 @@
 }
 
 .light .linear-group-row:hover {
-  background: rgba(0, 0, 0, 0.025);
+  background: var(--state-hover);
 }
 
 .light .linear-group-row:active {
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--state-press);
 }
 
 .light .material-obsidian-card {
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   box-shadow: 
     inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
@@ -293,7 +293,7 @@
 }
 
 .light .material-obsidian-card:hover {
-  background: #FFFFFF;
+  background: var(--bg-card-hover);
   border-color: var(--border-soft);
   box-shadow: 
     inset 0 1px 0 0 rgba(255, 255, 255, 1),
@@ -301,13 +301,20 @@
     0 0 0 1px rgba(0, 0, 0, 0.028);
 }
 
+/* The light canvas override is GONE, and deleting it is the fix.
+   `.studio-dark-canvas` below already resolves through `var(--bg-canvas)`,
+   which is theme-reactive. This override re-stated the light value as a
+   literal `#F5F5F8` plus a white radial glow — and because it lives OUTSIDE
+   every @layer, it beat every layered rule in the cascade, including the
+   utilities-layer class on the app root and the `body` rule in @layer base.
+   Three candidates were painting the page background; the hard-coded hex won.
+   That is why no change to a canvas token could ever appear on screen. */
 .light .studio-dark-canvas {
-  background-color: #F5F5F8;
-  background-image: radial-gradient(80% 60% at 50% 0%, #FFFFFF 0%, #F5F5F8 70%);
+  background-image: radial-gradient(80% 60% at 50% 0%, var(--bg-elevated) 0%, transparent 70%);
 }
 
 .light .material-insight-glow {
-  background: linear-gradient(145deg, #FFFFFF 0%, #F9F9FB 100%);
+  background: linear-gradient(145deg, var(--bg-elevated) 0%, var(--bg-wash) 100%);
   border: 1px solid var(--border-subtle);
   box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 1);
 }
@@ -337,68 +344,19 @@
   box-shadow: 0 24px 56px -18px rgba(0, 0, 0, 0.09), inset 0 1px 0 0 rgba(255, 255, 255, 1);
 }
 
-/* Light mode overrides for legacy dark-hardcoded utility patterns without breaking explicit dark variants */
-.light [class*="bg-[#0A0B10]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#0B0C11]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#090A0E]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#090A0F]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#06070A]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#050507]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#0E0E14]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#0E0F14]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#131318]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#18181D]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#16161B]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#202026]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="bg-[#222228]"]:not([class*="dark:"]):not([class*="light:"]) {
-  background-color: #FFFFFF !important;
-  border-color: var(--border-subtle) !important;
-  box-shadow: 0 4px 16px -8px rgba(0, 0, 0, 0.03), inset 0 1px 0 0 rgba(255, 255, 255, 0.95) !important;
-}
+/* The legacy `!important` band-aid is DELETED, and it had stopped working
+   long before anyone noticed. Those rules read
+   `.light [class*="bg-[#06070A]"]:not([class*="dark:"])` — an attribute
+   selector whose VALUE contains square brackets and a `#`, which the CSS
+   selector parser has to match before Tailwind's own escaping touches it. They
+   compiled to nothing at all: not one of those selectors is present in the
+   built stylesheet. So for as long as they sat here they were read as a
+   working light-mode repair, and were believed to be the reason light looked
+   right, while every hard-coded dark surface in the views was quietly staying
+   hard-coded.
+   The real repair is that those surfaces are tokens now, and a token cannot be
+   wrong in one theme and right in the other. */
 
-.light [class*="text-[#EDEDEF]"]:not([class*="dark:"]):not([class*="light:"]) {
-  color: #111116 !important;
-}
-
-.light [class*="text-[#F2F2F5]"]:not([class*="dark:"]):not([class*="light:"]) {
-  color: #111116 !important;
-}
-
-.light [class*="text-[#6E6E78]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="text-[#9E9EA8]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="text-[#5C5C68]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="text-[#92929B]"]:not([class*="dark:"]):not([class*="light:"]),
-.light [class*="text-[#8E8E98]"]:not([class*="dark:"]):not([class*="light:"]) {
-  color: #646470 !important;
-}
-
-.light [class*="border-white/"]:not([class*="dark:"]):not([class*="light:"]) {
-  border-color: var(--border-subtle) !important;
-}
-
-/* Vibrant Living Aura Accents for Cards */
-.card-aura-emerald {
-  background-image: radial-gradient(circle at 8% 0%, rgba(16, 185, 129, 0.22) 0%, rgba(5, 150, 105, 0.08) 35%, transparent 65%);
-}
-
-.card-aura-sapphire {
-  background-image: radial-gradient(circle at 92% 5%, rgba(59, 130, 246, 0.22) 0%, rgba(99, 102, 241, 0.08) 35%, transparent 65%);
-}
-
-.card-aura-sunset {
-  background-image: radial-gradient(circle at 50% -10%, rgba(249, 115, 22, 0.18) 0%, rgba(168, 85, 247, 0.08) 40%, transparent 70%);
-}
-
-.card-aura-ruby {
-  background-image: radial-gradient(circle at 10% 10%, rgba(244, 63, 94, 0.2) 0%, rgba(234, 88, 12, 0.08) 35%, transparent 65%);
-}
-
-.glass-pill-active {
-  background: rgba(255, 255, 255, 0.14);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2), 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-/* Studio Canvas - Deep Charcoal Jet Black */
 .studio-dark-canvas {
   /* Seam-free velvet canvas: the token canvas (never a darker hex), with an
      ambient key-light veil fading to nothing — a lit canvas, not a slab.

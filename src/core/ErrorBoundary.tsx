@@ -43,28 +43,31 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
       return (
         <div
           dir="ltr"
-          className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#06070A] px-6 text-center text-[#EDEDEF]"
+          className="flex min-h-screen flex-col items-center justify-center gap-4 bg-(--bg-canvas) px-6 text-center text-(--text-primary)"
         >
           <div className="flex flex-col items-center gap-3">
             <div
               aria-hidden="true"
-              className="h-12 w-12 rounded-full border border-white/[0.025] bg-[#0B0C11] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),0_18px_40px_-10px_rgba(0,0,0,0.65)]"
+              className="h-12 w-12 rounded-full border border-(--border-hairline) bg-(--bg-card) shadow-(--shadow-card)"
             />
             <h1 className="text-xl font-semibold tracking-tight">UI99 hit an unexpected error</h1>
-            <p className="max-w-md text-sm leading-relaxed text-[#92929B]">
+            <p className="max-w-md text-sm leading-relaxed text-(--text-secondary)">
               The app crashed while rendering. Your data is safe — reload to try again.
             </p>
           </div>
           <pre
-            className="max-w-xl overflow-auto rounded-xl border border-white/[0.025] bg-[#0B0C11] p-4 text-left font-mono text-xs text-[#8E8E98]"
+            className="max-w-xl overflow-auto rounded-xl border border-(--border-hairline) bg-(--bg-card) p-4 text-left font-mono text-xs text-(--text-secondary)"
             role="alert"
           >
             {error.message || String(error)}
           </pre>
+          {/* The one control on this screen, and it wears the resting surface
+              like every other control in the system (§2.6) — the crash page is
+              the first thing a user ever sees of it. */}
           <button
             type="button"
             onClick={this.handleReload}
-            className="min-h-[44px] rounded-full border border-white/[0.025] bg-[#0E0E14]/75 px-6 text-sm font-medium text-[#EDEDEF] backdrop-blur-xl transition-colors hover:bg-[#131318] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06070A]"
+            className="min-h-[44px] rounded-full border border-(--border-soft) bg-(--bg-control) px-6 text-sm font-medium text-(--text-primary) transition-colors hover:bg-(--state-hover) focus-visible:outline-none focus-ui99"
           >
             Reload UI99
           </button>

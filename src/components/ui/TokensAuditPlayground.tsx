@@ -224,7 +224,7 @@ export function TokensAuditPlayground() {
           {/* Outer Radius Slider */}
           <div className="space-y-1">
             <div className="flex justify-between type-caption font-semibold">
-              <span className="text-zinc-700 dark:text-(--text-secondary)">Outer Radius (r_outer)</span>
+              <span className="text-(--text-secondary)">Outer Radius (r_outer)</span>
               <span className="font-mono text-emerald-500">{outerRadius}px</span>
             </div>
             <input
@@ -246,7 +246,7 @@ export function TokensAuditPlayground() {
           {/* Padding Slider */}
           <div className="space-y-1">
             <div className="flex justify-between type-caption font-semibold">
-              <span className="text-zinc-700 dark:text-(--text-secondary)">Container Intervening Padding</span>
+              <span className="text-(--text-secondary)">Container Intervening Padding</span>
               <span className="font-mono text-emerald-500">{padding}px</span>
             </div>
             <input

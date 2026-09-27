@@ -97,7 +97,7 @@ function LinearIssueTrackerBlock() {
         {issues.map((issue) => (
           <div
             key={issue.id}
-            className="p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) flex items-center justify-between gap-4 hover:border-black/20 dark:hover:border-white/10 transition-colors cursor-pointer shadow-xs"
+            className="p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) flex items-center justify-between gap-4 hover:border-black/20 dark:hover:border-white/10 transition-colors cursor-pointer shadow-xs"
           >
             <div className="flex items-center gap-3 min-w-0">
               <PriorityBadge priority={issue.priority} size="sm" showLabel={false} />
@@ -110,7 +110,7 @@ function LinearIssueTrackerBlock() {
             <div className="flex items-center gap-3 shrink-0">
               <Tag variant="neutral">{issue.tag}</Tag>
               <StatusBadge status={issue.status} showLabel={true} />
-              <div className="w-5 h-5 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-bold flex items-center justify-center text-zinc-700 dark:text-(--text-secondary)">
+              <div className="w-5 h-5 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-bold flex items-center justify-center text-(--text-secondary)">
                 {issue.assignee[0]}
               </div>
             </div>
@@ -298,7 +298,7 @@ function PricingPlansBlock() {
               <CardContent>
                 <div className="space-y-2 pt-2 border-t border-(--border-soft) dark:border-(--border-soft)">
                   {plan.features.map((feat) => (
-                    <div key={feat} className="flex items-center gap-2 type-caption text-zinc-700 dark:text-(--text-secondary)">
+                    <div key={feat} className="flex items-center gap-2 type-caption text-(--text-secondary)">
                       <Check className="icon-sm text-emerald-400 shrink-0" />
                       <span>{feat}</span>
                     </div>
@@ -513,12 +513,12 @@ export function SecuritySettingsBlock() {
     <div className="w-full space-y-6 pb-16">
       {/* PAGE HEADER */}
       <header className="pb-2 space-y-3">
-        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft)">v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
+        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft)">v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="type-display sm:type-hero font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.05] text-balance">
           Production Blocks.
         </h1>
-        <p className="type-body sm:type-body-lg text-zinc-500 dark:text-[#92929B] max-w-xl leading-relaxed">
+        <p className="type-body sm:type-body-lg text-zinc-500 dark:text-(--text-secondary) max-w-xl leading-relaxed">
           Real application modules assembled from UI \ [99] primitives — study the pattern, then copy the code directly.
         </p>
       </header>
@@ -634,7 +634,7 @@ export function SecuritySettingsBlock() {
                   <span>Interactive Workflow Module</span>
                 </span>
               </div>
-              <div className="rounded-(--radius-lg) border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-subtle) dark:bg-(--bg-card) p-6 shadow-sm">
+              <div className="rounded-(--radius-lg) border border-(--border-soft) bg-(--bg-subtle) dark:bg-(--bg-card) p-6 shadow-sm">
                 <LinearIssueTrackerBlock />
               </div>
             </div>
@@ -649,7 +649,7 @@ export function SecuritySettingsBlock() {
                   <span>SSO & Credentials Card</span>
                 </span>
               </div>
-              <div className="rounded-(--radius-lg) border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-subtle) dark:bg-[#06070A] p-6 sm:p-12 shadow-sm">
+              <div className="rounded-(--radius-lg) border border-(--border-soft) bg-(--bg-subtle) dark:bg-(--bg-canvas) p-6 sm:p-12 shadow-sm">
                 <AuthCardBlock />
               </div>
             </div>
@@ -664,7 +664,7 @@ export function SecuritySettingsBlock() {
                   <span>Tiered Pricing Table</span>
                 </span>
               </div>
-              <div className="rounded-(--radius-lg) border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-subtle) dark:bg-[#06070A] p-6 sm:p-8 shadow-sm">
+              <div className="rounded-(--radius-lg) border border-(--border-soft) bg-(--bg-subtle) dark:bg-(--bg-canvas) p-6 sm:p-8 shadow-sm">
                 <PricingPlansBlock />
               </div>
             </div>

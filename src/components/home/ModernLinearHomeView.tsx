@@ -317,7 +317,7 @@ export function ModernLinearHomeView() {
   return (
     <div className="w-full max-w-4xl mx-auto px-3 sm:px-6 pb-28 pt-1 select-none space-y-6">
       {/* 1. LINEAR HEADER BAR: Active Cycle, Velocity & Actions */}
-      <div className="p-4 sm:p-5 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-xs space-y-4">
+      <div className="p-4 sm:p-5 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) shadow-xs space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-(--radius-control) bg-(--ink-fill) dark:bg-(--state-selected) flex items-center justify-center text-white shrink-0 border border-(--border-strong) dark:border-(--border-soft)">
@@ -325,14 +325,14 @@ export function ModernLinearHomeView() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="type-body-lg sm:type-body-lg font-bold tracking-tight text-zinc-950 dark:text-[#EDEDEF]">
+                <h1 className="type-body-lg sm:type-body-lg font-bold tracking-tight text-zinc-950 dark:text-(--text-primary)">
                   Sprint Cycle 24
                 </h1>
                 <span className="px-2 py-0.5 rounded-(--radius-pill) type-micro font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                   ACTIVE • 4d left
                 </span>
               </div>
-              <p className="type-caption text-zinc-500 dark:text-[#8E8E98] font-mono">
+              <p className="type-caption text-zinc-500 dark:text-(--text-secondary) font-mono">
                 {donePoints} of {totalPoints} story points completed ({cycleCompletion}%)
               </p>
             </div>
@@ -356,7 +356,7 @@ export function ModernLinearHomeView() {
             <button
               type="button"
               onClick={() => setCurrentTab('UIKIT')}
-              className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-field) type-caption font-medium bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-zinc-700 dark:text-(--text-secondary) transition-all cursor-pointer border border-(--border-subtle) dark:border-(--border-subtle)"
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-field) type-caption font-medium bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-(--text-secondary) transition-all cursor-pointer border border-(--border-subtle) dark:border-(--border-subtle)"
             >
               <Layers className="icon-sm" />
               <span className="hidden sm:inline">UI Kit</span>
@@ -437,7 +437,7 @@ export function ModernLinearHomeView() {
                   value={newPriority}
                   onChange={(e) => setNewPriority(e.target.value as PriorityLevel)}
                   aria-label="Issue priority level"
-                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2 py-1 text-zinc-700 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft) focus:outline-none cursor-pointer"
+                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2 py-1 text-(--text-secondary) border border-(--border-soft) focus:outline-none cursor-pointer"
                 >
                   <option value="urgent">P0 Urgent</option>
                   <option value="high">P1 High</option>
@@ -450,7 +450,7 @@ export function ModernLinearHomeView() {
                   value={newEstimate}
                   onChange={(e) => setNewEstimate(Number(e.target.value))}
                   aria-label="Story points estimate"
-                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2 py-1 text-zinc-700 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft) focus:outline-none cursor-pointer"
+                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2 py-1 text-(--text-secondary) border border-(--border-soft) focus:outline-none cursor-pointer"
                 >
                   <option value={1}>1 pt</option>
                   <option value={2}>2 pts</option>
@@ -500,7 +500,7 @@ export function ModernLinearHomeView() {
               className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium whitespace-nowrap transition-all cursor-pointer ${
                 filterStatus === tab.id
                   ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                  : 'text-zinc-600 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white'
+                  : 'text-zinc-600 dark:text-(--text-secondary) hover:text-(--text-primary)'
               }`}
             >
               {tab.label}
@@ -585,7 +585,7 @@ export function ModernLinearHomeView() {
                       className={`type-caption sm:type-body font-medium tracking-tight truncate ${
                         isDone
                           ? 'line-through text-zinc-400 dark:text-(--text-muted)'
-                          : 'text-zinc-950 dark:text-[#EDEDEF]'
+                          : 'text-zinc-950 dark:text-(--text-primary)'
                       }`}
                     >
                       {iss.title}

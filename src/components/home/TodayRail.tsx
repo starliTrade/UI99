@@ -93,8 +93,8 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
               <span
                 className={`type-micro font-medium tracking-tight mb-1 transition-colors ${
                   selected
-                    ? isDark ? 'text-[#EDEDEF] font-semibold' : 'text-zinc-950 font-bold'
-                    : isDark ? 'text-[#8E8E98] group-hover:text-zinc-300' : 'text-zinc-500 group-hover:text-zinc-900'
+                    ? isDark ? 'text-(--text-primary) font-semibold' : 'text-zinc-950 font-bold'
+                    : isDark ? 'text-(--text-secondary) group-hover:text-zinc-300' : 'text-zinc-500 group-hover:text-zinc-900'
                 }`}
               >
                 {today ? (isRTL ? 'امروز' : 'Today') : getDayOfWeekName(d)}
@@ -105,10 +105,10 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
                 className={`relative w-11 h-11 sm:w-12 sm:h-12 rounded-(--radius-pill) flex flex-col items-center justify-center transition-all dur-base ${
                   selected
                     ? isDark
-                      ? 'bg-[#EDEDEF] text-[#09090C] shadow-(--elevation-1) font-bold'
+                      ? 'bg-[#EDEDEF] text-(--text-on-fill) shadow-(--elevation-1) font-bold'
                       : 'bg-zinc-950 text-white shadow-(--elevation-1) font-bold'
                     : isDark
-                    ? 'bg-[#0E0E13] text-[#8E8E98] border border-white/[0.025] hover:bg-(--bg-elevated) hover:text-[#EDEDEF]'
+                    ? 'bg-(--bg-card) text-(--text-secondary) border border-white/[0.025] hover:bg-(--bg-elevated) hover:text-(--text-primary)'
                     : 'bg-(--bg-surface) text-zinc-600 border border-(--border-hairline) hover:bg-(--bg-subtle) hover:text-zinc-950 shadow-xs'
                 }`}
               >
@@ -125,7 +125,7 @@ export function TodayRail({ selectedDate, onSelectDate }: TodayRailProps) {
                   <span
                     className={`absolute -bottom-0.5 w-3 h-3 rounded-(--radius-pill) flex items-center justify-center shadow-xs ${
                       isDark
-                        ? 'bg-[#15151B] text-[#8E8E98] border border-white/[0.04]'
+                        ? 'bg-(--bg-card) text-(--text-secondary) border border-white/[0.04]'
                         : 'bg-(--bg-raised) text-zinc-500 border border-(--border-subtle)'
                     }`}
                   >

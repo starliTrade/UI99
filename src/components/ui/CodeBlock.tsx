@@ -150,7 +150,7 @@ export function CodeBlock({
                 'hidden sm:inline-flex items-center justify-center p-1 rounded-(--radius-sm) type-caption font-mono transition-colors cursor-pointer border',
                 wordWrap
                   ? 'bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border-emerald-500/30'
-                  : 'bg-white dark:bg-(--bg-subtle) text-zinc-500 dark:text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) border-(--border-soft) dark:border-(--border-subtle)'
+                  : 'bg-white dark:bg-(--bg-subtle) text-zinc-500 dark:text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--state-hover) border-(--border-soft) dark:border-(--border-subtle)'
               )}
             >
               <WrapText className="icon-xs" />
@@ -170,7 +170,7 @@ export function CodeBlock({
                 'inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer border shrink-0',
                 copied
                   ? 'bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 shadow-xs'
-                  : 'bg-white dark:bg-(--bg-wash) text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border-(--border-soft) dark:border-(--border-strong)'
+                  : 'bg-white dark:bg-(--bg-wash) text-zinc-700 dark:text-zinc-200 hover:text-(--text-primary) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border-(--border-soft) dark:border-(--border-strong)'
               )}
             >
               {copied ? (
@@ -243,7 +243,7 @@ export function CodeBlock({
           <button
             type="button"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-pill) type-caption font-mono font-medium text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white bg-white dark:bg-(--bg-wash) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border border-(--border-soft) dark:border-(--border-strong) transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-pill) type-caption font-mono font-medium text-(--text-secondary) hover:text-(--text-primary) bg-white dark:bg-(--bg-wash) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border border-(--border-soft) dark:border-(--border-strong) transition-colors cursor-pointer"
           >
             {isCollapsed ? (
               <>

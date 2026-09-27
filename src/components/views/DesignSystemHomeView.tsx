@@ -195,7 +195,7 @@ export function DesignSystemHomeView() {
             <br> is correct in both directions — no mirrored markup. */}        <motion.h1
           {...reveal(0)}
           dir={isRTL ? 'rtl' : 'ltr'}
-          className="type-display sm:type-billboard font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.08] sm:leading-[1.03] text-start"
+          className="type-display sm:type-billboard font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-(--text-primary) leading-[1.08] sm:leading-[1.03] text-start"
         >
           {/* Positioning copy — declares a category the way Material and HIG
               do: the system itself is the product. Line 3 is the era claim. */}
@@ -259,7 +259,7 @@ export function DesignSystemHomeView() {
           <button
             type="button"
             onClick={() => setCurrentTab('UIKIT')}
-            className="order-1 w-full sm:order-none sm:w-auto min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1 type-caption font-semibold cursor-pointer transition-all bg-(--ink-fill) dark:bg-[#EDEDEF] hover:bg-zinc-800 dark:hover:bg-white text-white dark:text-zinc-950 shadow-xs active:scale-[0.98] whitespace-nowrap"
+            className="order-1 w-full sm:order-none sm:w-auto min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1 type-caption font-semibold cursor-pointer transition-all bg-(--ink-fill) hover:opacity-90 text-(--text-on-fill) shadow-xs active:scale-[0.98] whitespace-nowrap"
           >
             <span>
               {isRTL
@@ -338,13 +338,13 @@ export function DesignSystemHomeView() {
             <h2 className="type-title sm:type-heading font-bold tracking-tight text-zinc-950 dark:text-white">
               Crafted without compromise
             </h2>
-            <p className="type-caption sm:type-body text-zinc-600 dark:text-[#92929B] max-w-xl">
+            <p className="type-caption sm:type-body text-zinc-600 dark:text-(--text-secondary) max-w-xl">
               Engineered with the exact standards required by production developer tools and enterprise web applications.
             </p>
           </div>
 
           {/* Connected Pillar Card */}
-          <div className="rounded-(--radius-control) bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) shadow-(--elevation-1) dark:shadow-(--elevation-1) divide-y divide-zinc-100 dark:divide-(--border-soft) sm:divide-y-0 sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:shadow-none sm:grid sm:grid-cols-3 sm:gap-3">
+          <div className="rounded-(--radius-control) bg-white dark:bg-(--bg-surface) border border-(--border-soft) shadow-(--elevation-1) dark:shadow-(--elevation-1) divide-y divide-zinc-100 dark:divide-(--border-soft) sm:divide-y-0 sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:shadow-none sm:grid sm:grid-cols-3 sm:gap-3">
             {/* Pillar 1: Keyboard Velocity */}
             <div className="p-3 sm:p-4 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-(--border-soft) sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-(--border-soft)">
               <div className="w-8 h-8 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-(--border-soft) dark:border-emerald-500/20">
@@ -356,8 +356,8 @@ export function DesignSystemHomeView() {
                     Keyboard Velocity &amp; {KIT_COMPONENT_COUNT} Elements
                   </h3>
                 </div>
-                <p className="type-micro sm:type-caption text-zinc-600 dark:text-[#92929B] leading-relaxed">
-                  Roving tabindex, global <code className="px-1 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-raised) text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft) dark:border-(--border-soft)">⌘K</code> hotkeys, and tactile focus states across all 99 primitives.
+                <p className="type-micro sm:type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
+                  Roving tabindex, global <code className="px-1 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-raised) text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft)">⌘K</code> hotkeys, and tactile focus states across all 99 primitives.
                 </p>
               </div>
             </div>
@@ -373,7 +373,7 @@ export function DesignSystemHomeView() {
                     Specular Velvet Depth
                   </h3>
                 </div>
-                <p className="type-micro sm:type-caption text-zinc-600 dark:text-[#92929B] leading-relaxed">
+                <p className="type-micro sm:type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
                   Mathematical obsidian layers with sub-pixel rim highlights that separate naturally in any environment.
                 </p>
               </div>
@@ -390,7 +390,7 @@ export function DesignSystemHomeView() {
                     Zero Runtime Overhead
                   </h3>
                 </div>
-                <p className="type-micro sm:type-caption text-zinc-600 dark:text-[#92929B] leading-relaxed">
+                <p className="type-micro sm:type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
                   Pure Tailwind v4 utility tokens and headless primitives. Copy, paste, and ship without runtime weight.
                 </p>
               </div>
@@ -417,7 +417,7 @@ export function DesignSystemHomeView() {
                 key={tab}
                 type="button"
                 onClick={() => setCurrentTab(tab)}
-                className="hover:text-zinc-950 dark:hover:text-white transition-colors cursor-pointer"
+                className="hover:text-(--text-primary) transition-colors cursor-pointer"
               >
                 {tab === 'UIKIT' ? `${KIT_COMPONENT_COUNT} Components` : tab === 'BLOCKS' ? 'Patterns' : tab === 'DOCS' ? 'Guides' : 'Design Tokens'}
               </button>

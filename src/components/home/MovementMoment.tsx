@@ -35,10 +35,10 @@ export function MovementMoment({
             <Activity className="icon-lg stroke-[1.8]" />
           </div>
           <div>
-            <h4 className="type-body font-semibold text-[#EDEDEF]">
+            <h4 className="type-body font-semibold text-(--text-primary)">
               {isRTL ? 'حرکت و تندرستی' : 'Movement & Vitality'}
             </h4>
-            <p className="type-caption text-[#92929B] mt-0.5">
+            <p className="type-caption text-(--text-secondary) mt-0.5">
               {isRTL ? 'آماده یک حرکت کوتاه و کشش بدنی هستی؟' : 'Ready for a little restorative movement?'}
             </p>
           </div>
@@ -67,7 +67,7 @@ export function MovementMoment({
           <span className="flex items-center justify-center w-5 h-5 rounded-(--radius-pill) bg-orange-500/15 text-orange-400">
             <Activity className="icon-xs stroke-[2.2]" />
           </span>
-          <span className="type-micro uppercase font-bold tracking-widest text-[#EDEDEF]">
+          <span className="type-micro uppercase font-bold tracking-widest text-(--text-primary)">
             {isRTL ? 'حرکت و تندرستی روزانه' : 'Daily Movement & Vitality'}
           </span>
         </div>
@@ -81,10 +81,10 @@ export function MovementMoment({
       {/* Content Body with Check-in Button */}
       <div className="flex items-center justify-between gap-4 relative z-content">
         <div className="min-w-0">
-          <h4 className="type-body-lg font-bold text-[#EDEDEF] leading-snug truncate">
+          <h4 className="type-body-lg font-bold text-(--text-primary) leading-snug truncate">
             {movementHabit.title}
           </h4>
-          <p className="type-caption text-[#92929B] mt-0.5 line-clamp-1">
+          <p className="type-caption text-(--text-secondary) mt-0.5 line-clamp-1">
             {movementHabit.description || (isRTL ? 'تمرین ملایم و آرامش عضلات' : `${duration} mins restorative flow`)}
           </p>
         </div>

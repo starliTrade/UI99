@@ -138,7 +138,7 @@ export function SignaturePad({
   };
 
   return (
-    <div className={cn('flex flex-col gap-2 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-md', className)}>
+    <div className={cn('flex flex-col gap-2 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) shadow-md', className)}>
       <div className="flex items-center justify-between pb-1">
         <span className="type-caption font-medium text-zinc-600 dark:text-(--text-secondary) flex items-center gap-1">
           <Sparkles className="icon-sm text-emerald-500" />

@@ -98,7 +98,7 @@ export function DataTable<T extends Record<string, any>>({
         </div>
       )}
 
-      <div className="rounded-(--radius-field) border border-(--border-soft) dark:border-(--border-soft) overflow-hidden bg-white dark:bg-(--bg-surface)">
+      <div className="rounded-(--radius-field) border border-(--border-soft) overflow-hidden bg-white dark:bg-(--bg-surface)">
         <Table>
           <TableHeader>
             <TableRow>
@@ -129,7 +129,7 @@ export function DataTable<T extends Record<string, any>>({
                         ? `${col.header}${isSorted ? (sortDir === 'asc' ? ', sorted ascending' : ', sorted descending') : ', activate to sort'}`
                         : undefined
                     }
-                    className={col.sortable ? 'cursor-pointer select-none hover:text-zinc-950 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60' : ''}
+                    className={col.sortable ? 'cursor-pointer select-none hover:text-(--text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/60' : ''}
                   >
                     <div className="flex items-center gap-1">
                       <span>{col.header}</span>

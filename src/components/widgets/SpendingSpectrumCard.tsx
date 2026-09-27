@@ -84,14 +84,14 @@ export function SpendingSpectrumCard({
         <div className={`absolute -top-12 left-1/2 -translate-x-1/2 w-64 h-32 rounded-(--radius-pill) blur-2xl pointer-events-none ${isDark ? 'bg-gradient-to-r from-orange-500/10 via-purple-500/10 to-pink-500/10' : 'bg-gradient-to-r from-orange-500/8 via-purple-500/8 to-pink-500/8'}`} />
 
         {/* Monospace Tracked Header */}
-        <span className={`block type-micro font-mono tracking-widest uppercase ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
+        <span className={`block type-micro font-mono tracking-widest uppercase text-(--text-secondary)`}>
           {title}
         </span>
 
         {/* Amount & Percentage Row */}
         <div className="mt-1 flex items-baseline justify-between">
           <div className="flex items-baseline">
-            <span className={`type-display sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+            <span className={`type-display sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-(--text-primary)'}`}>
               {totalAmount}
             </span>
             <span className={`type-title sm:type-heading font-medium ${isDark ? 'text-white/40' : 'text-black/35'}`}>
@@ -99,7 +99,7 @@ export function SpendingSpectrumCard({
             </span>
           </div>
 
-          <span className={`type-body font-semibold tracking-tight ${isDark ? 'text-white/70' : 'text-[#111116]/70'}`}>
+          <span className={`type-body font-semibold tracking-tight ${isDark ? 'text-white/70' : 'text-(--text-primary)/70'}`}>
             {percentage}
           </span>
         </div>
@@ -120,11 +120,11 @@ export function SpendingSpectrumCard({
             <div key={i} className="flex items-center justify-between type-caption sm:type-body">
               <div className="flex items-center gap-2">
                 <span className={`w-2 h-3.5 rounded-(--radius-pill) ${item.colorClass} shadow-(--glow-current-sm)`} />
-                <span className={`font-medium tracking-tight ${isDark ? 'text-[#90909A]' : 'text-[#6E6E78]'}`}>
+                <span className={`font-medium tracking-tight ${'text-(--text-secondary)'}`}>
                   {item.name}
                 </span>
               </div>
-              <span className={`font-mono font-semibold tracking-tight ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+              <span className={`font-mono font-semibold tracking-tight ${isDark ? 'text-white' : 'text-(--text-primary)'}`}>
                 {item.amount}
               </span>
             </div>

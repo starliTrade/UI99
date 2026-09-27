@@ -53,7 +53,7 @@ export function CalendarView({
   return (
     <div
       className={cn(
-        'flex flex-col gap-3 p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-md w-full',
+        'flex flex-col gap-3 p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) shadow-md w-full',
         className
       )}
     >

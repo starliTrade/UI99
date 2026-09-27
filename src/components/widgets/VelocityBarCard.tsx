@@ -50,7 +50,7 @@ export function VelocityBarCard({
 
       {/* Top Header Section */}
       <div className="relative z-content">
-        <span className={`type-caption font-semibold uppercase tracking-wider ${isDark ? 'text-[#8E8E98]' : 'text-zinc-600'}`}>
+        <span className={`type-caption font-semibold uppercase tracking-wider ${isDark ? 'text-(--text-secondary)' : 'text-zinc-600'}`}>
           {title}
         </span>
         <div className="mt-1 flex items-baseline gap-2">
@@ -85,7 +85,7 @@ export function VelocityBarCard({
 
           return (
             <div key={i} className="flex flex-col items-center flex-1 h-full justify-end">
-              <span className={`type-micro font-medium mb-2 tracking-tight ${isDark ? 'text-[#5C5C68]' : 'text-[#8E8E98]'}`}>
+              <span className={`type-micro font-medium mb-2 tracking-tight ${isDark ? 'text-(--text-muted)' : 'text-(--text-secondary)'}`}>
                 {bar.label}
               </span>
               <div

@@ -46,7 +46,7 @@ export function DailyFortune() {
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="type-micro uppercase tracking-wider px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.04] text-[#92929B] border border-white/[0.04]">
+          <span className="type-micro uppercase tracking-wider px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.04] text-(--text-secondary) border border-white/[0.04]">
             {isRTL ? 'سرگرمی و دلگرمی' : 'Playful'}
           </span>
 
@@ -75,10 +75,10 @@ export function DailyFortune() {
               <div className="w-10 h-10 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.04] flex items-center justify-center shadow-(--rim-strong) group-hover:scale-105 transition-transform text-violet-300">
                 <Sparkles className="icon-md fill-current" />
               </div>
-              <p className="type-caption font-medium text-[#EDEDEF] tracking-wide">
+              <p className="type-caption font-medium text-(--text-primary) tracking-wide">
                 {isRTL ? 'برای گشودن نجوای امروز لمس کنید' : 'Tap to reveal today’s whisper'}
               </p>
-              <span className="type-micro text-[#92929B]">
+              <span className="type-micro text-(--text-secondary)">
                 {isRTL ? fortune.categoryFa : fortune.categoryEn}
               </span>
             </motion.div>
@@ -91,7 +91,7 @@ export function DailyFortune() {
               transition={{ duration: 0.25 }}
               className="w-full space-y-2"
             >
-              <p className="type-body font-medium text-[#EDEDEF] leading-relaxed tracking-wide font-persian-luxury">
+              <p className="type-body font-medium text-(--text-primary) leading-relaxed tracking-wide font-persian-luxury">
                 "{isRTL ? fortune.whisperFa : fortune.whisperEn}"
               </p>
 
@@ -106,7 +106,7 @@ export function DailyFortune() {
       </div>
 
       {/* Subtle Bottom Footer */}
-      <div className="flex items-center justify-between pt-3 border-t border-white/[0.025] type-micro text-[#92929B] relative z-content">
+      <div className="flex items-center justify-between pt-3 border-t border-white/[0.025] type-micro text-(--text-secondary) relative z-content">
         <span>{isRTL ? 'نیت قلبی' : 'Personal delight moment'}</span>
         <span className="text-violet-400 font-medium group-hover:underline">
           {isRevealed ? (isRTL ? 'بستن' : 'Close') : isRTL ? 'گشودن فال' : 'Reveal'}

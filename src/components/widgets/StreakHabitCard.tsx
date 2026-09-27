@@ -62,8 +62,8 @@ export function StreakHabitCard({
             <span className={`block type-micro font-bold tracking-wider uppercase ${isDark ? 'text-white/60' : 'text-black/50'}`}>
               STREAK
             </span>
-            <span className={`type-body-lg sm:type-title font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
-              {streakDays} <span className={`type-caption font-semibold ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>DAYS</span>
+            <span className={`type-body-lg sm:type-title font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-(--text-primary)'}`}>
+              {streakDays} <span className={`type-caption font-semibold text-(--text-secondary)`}>DAYS</span>
             </span>
           </div>
         </div>
@@ -98,7 +98,7 @@ export function StreakHabitCard({
                 {/* Day Label */}
                 <span
                   className={`type-micro font-medium tracking-tight ${
-                    isToday ? (isDark ? 'text-white font-bold' : 'text-[#111116] font-bold') : (isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]')
+                    isToday ? (isDark ? 'text-white font-bold' : 'text-(--text-primary) font-bold') : 'text-(--text-secondary)'
                   }`}
                 >
                   {day}
@@ -113,11 +113,11 @@ export function StreakHabitCard({
       <div className={`mt-4 pt-3 border-t relative z-content ${isDark ? 'border-white/[0.05]' : 'border-black/[0.05]'}`}>
         <div className="flex items-baseline justify-between mb-1">
           <div>
-            <span className={`block type-micro font-bold tracking-wider uppercase mb-0.5 ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
+            <span className={`block type-micro font-bold tracking-wider uppercase mb-0.5 text-(--text-secondary)`}>
               {metricLabel}
             </span>
             <div className="flex items-baseline gap-1">
-              <span className={`type-title sm:type-heading font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+              <span className={`type-title sm:type-heading font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-(--text-primary)'}`}>
                 {currentValue.toLocaleString()}
               </span>
               <span className={`type-caption sm:type-body font-medium ${isDark ? 'text-white/30' : 'text-black/30'}`}>

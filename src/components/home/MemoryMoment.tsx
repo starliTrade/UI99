@@ -29,10 +29,10 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
             <Heart className="icon-lg stroke-[1.8]" />
           </div>
           <div>
-            <h4 className="type-body font-semibold text-[#EDEDEF]">
+            <h4 className="type-body font-semibold text-(--text-primary)">
               {isRTL ? 'گوشه خاطرات و لحظه‌ها' : 'A Moment From Your World'}
             </h4>
-            <p className="type-caption text-[#92929B] mt-0.5">
+            <p className="type-caption text-(--text-secondary) mt-0.5">
               {isRTL ? 'یک لحظه قشنگ یا خاطره باارزش را ثبت کن' : 'Save a quiet memory or heartfelt moment'}
             </p>
           </div>
@@ -80,19 +80,19 @@ export function MemoryMoment({ memoryObject, onSelectMemory, onCaptureMemory }: 
 
       {/* Content Body */}
       <div className="space-y-2 relative z-content">
-        <h3 className="type-body-lg sm:type-body-lg font-bold text-[#EDEDEF] tracking-tight leading-snug">
+        <h3 className="type-body-lg sm:type-body-lg font-bold text-(--text-primary) tracking-tight leading-snug">
           "{memoryObject.title}"
         </h3>
 
         {memoryObject.description && (
-          <p className="type-caption text-[#92929B] leading-relaxed font-serif italic line-clamp-2">
+          <p className="type-caption text-(--text-secondary) leading-relaxed font-serif italic line-clamp-2">
             {memoryObject.description}
           </p>
         )}
       </div>
 
       {/* Footer */}
-      <div className="mt-3 pt-2 border-t border-white/[0.025] flex items-center justify-between type-micro text-[#92929B] relative z-content">
+      <div className="mt-3 pt-2 border-t border-white/[0.025] flex items-center justify-between type-micro text-(--text-secondary) relative z-content">
         <div className="flex items-center gap-2">
           <span>📍 {location}</span>
           <span>•</span>

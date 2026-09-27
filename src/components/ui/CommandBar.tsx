@@ -18,7 +18,7 @@ export function CommandBar({ leading, className = '', children, ...props }: Comm
       role="toolbar"
       aria-label="Contextual actions"
       className={cn(
-        'flex items-center gap-2 rounded-(--radius-lg) border border-(--border-soft) dark:border-(--border-soft) bg-white/80 dark:bg-(--bg-elevated)/80 backdrop-blur-xl px-3 py-2 shadow-(--elevation-2) dark:shadow-(--elevation-2)',
+        'flex items-center gap-2 rounded-(--radius-lg) border border-(--border-soft) bg-white/80 dark:bg-(--bg-elevated)/80 backdrop-blur-xl px-3 py-2 shadow-(--elevation-2) dark:shadow-(--elevation-2)',
         className
       )}
       {...props}

@@ -105,7 +105,7 @@ export function ObjectDetailModal() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 type-body text-white font-semibold focus:outline-none focus:border-white/30"
+            className="w-full bg-(--bg-elevated) border border-white/[0.08] rounded-(--radius-field) px-3 py-2 type-body text-white font-semibold focus:outline-none focus:border-white/30"
           />
         </div>
 
@@ -116,7 +116,7 @@ export function ObjectDetailModal() {
             rows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) p-3 type-body text-zinc-200 focus:outline-none focus:border-white/30 resize-y"
+            className="w-full bg-(--bg-elevated) border border-white/[0.08] rounded-(--radius-field) p-3 type-body text-zinc-200 focus:outline-none focus:border-white/30 resize-y"
           />
         </div>
 
@@ -127,7 +127,7 @@ export function ObjectDetailModal() {
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as ObjectStatus)}
-              className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 type-caption text-white focus:outline-none focus:border-white/30"
+              className="w-full bg-(--bg-elevated) border border-white/[0.08] rounded-(--radius-field) px-3 py-2 type-caption text-white focus:outline-none focus:border-white/30"
             >
               <option value={ObjectStatus.ACTIVE}>Active</option>
               <option value={ObjectStatus.INBOX}>Inbox</option>
@@ -146,7 +146,7 @@ export function ObjectDetailModal() {
               className={`w-full py-2 px-3 rounded-(--radius-field) border type-caption font-semibold flex items-center justify-center gap-1 transition-all cursor-pointer ${
                 allowSLO
                   ? 'bg-purple-950/40 text-purple-300 border-purple-500/30'
-                  : 'bg-[#18181D] text-zinc-400 border-white/[0.08]'
+                  : 'bg-(--bg-elevated) text-zinc-400 border-white/[0.08]'
               }`}
             >
               <HeartHandshake className="icon-sm" />
@@ -168,7 +168,7 @@ export function ObjectDetailModal() {
         )}
 
         {/* Connected Graph Relationships */}
-        <div className="p-4 rounded-(--radius-control) bg-[#18181D] border border-white/[0.08] space-y-3 shadow-inner">
+        <div className="p-4 rounded-(--radius-control) bg-(--bg-elevated) border border-white/[0.08] space-y-3 shadow-inner">
           <div className="flex items-center justify-between">
             <h4 className="type-caption font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-1">
               <Link2 className="icon-sm text-amber-400" />
@@ -193,7 +193,7 @@ export function ObjectDetailModal() {
                 <select
                   value={linkType}
                   onChange={(e) => setLinkType(e.target.value as RelationshipType)}
-                  className="bg-[#18181D] border border-white/[0.08] text-white rounded-(--radius-sm) p-1"
+                  className="bg-(--bg-elevated) border border-white/[0.08] text-white rounded-(--radius-sm) p-1"
                 >
                   <option value={RelationshipType.RELATED_TO}>RELATED_TO</option>
                   <option value={RelationshipType.PART_OF}>PART_OF</option>
@@ -206,7 +206,7 @@ export function ObjectDetailModal() {
                 <select
                   value={targetObjectId}
                   onChange={(e) => setTargetObjectId(e.target.value)}
-                  className="bg-[#18181D] border border-white/[0.08] text-white rounded-(--radius-sm) p-1"
+                  className="bg-(--bg-elevated) border border-white/[0.08] text-white rounded-(--radius-sm) p-1"
                 >
                   <option value="">Select target object...</option>
                   {availableTargets.map((t) => (

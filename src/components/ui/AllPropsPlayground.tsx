@@ -431,7 +431,7 @@ export function AllPropsPlayground() {
             className={`inline-flex items-center gap-1 h-8 px-3 rounded-(--radius-pill) type-caption font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99 ${
               component === c.value
                 ? 'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs'
-                : 'bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-700 dark:text-(--text-secondary) hover:bg-state-hover'
+                : 'bg-(--bg-subtle) dark:bg-(--bg-wash) text-(--text-secondary) hover:bg-state-hover'
             }`}
           >
             {c.icon}
@@ -898,7 +898,7 @@ export function AllPropsPlayground() {
                   <Button variant="outline" size="sm">Open popover</Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-64">
-                  <p className="type-caption text-zinc-700 dark:text-(--text-secondary)">
+                  <p className="type-caption text-(--text-secondary)">
                     Focus-trapped velvet popover. Esc or outside click dismisses.
                   </p>
                 </PopoverContent>

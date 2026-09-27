@@ -456,7 +456,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) text-zinc-700 dark:text-(--text-secondary) flex items-center gap-1 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) text-(--text-secondary) flex items-center gap-1 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <Filter className="icon-xs text-(--text-secondary)" />
                   <span className="capitalize">
@@ -486,7 +486,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) text-zinc-700 dark:text-(--text-secondary) flex items-center gap-1 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) text-(--text-secondary) flex items-center gap-1 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <span className="capitalize">
                     {priorityFilter === 'all' ? 'All Priorities' : priorityFilter}

@@ -149,7 +149,7 @@ export function UniversalCaptureModal() {
                 ? 'چه فکری در ذهن دارید؟ (مثال: بررسی پارچه‌های ابریشمی برای کلکسیون فردا #طراحی)'
                 : "What's on your mind? (e.g. 'Review raw silk fabric swatches by tomorrow #design')"
             }
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-control) p-4 type-body text-white placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 resize-none transition-all shadow-inner"
+            className="w-full bg-(--bg-elevated) border border-white/[0.08] rounded-(--radius-control) p-4 type-body text-white placeholder-zinc-500 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 resize-none transition-all shadow-inner"
           />
 
           {/* AI Understand Trigger inside textarea box */}
@@ -212,8 +212,8 @@ export function UniversalCaptureModal() {
                   onClick={() => setSelectedType(t.type)}
                   className={`px-3 py-1 rounded-(--radius-pill) type-caption font-semibold flex items-center gap-1 transition-all cursor-pointer select-none active:scale-95 ${
                     isSelected
-                      ? 'bg-white text-[#09090B] shadow-(--elevation-2)'
-                      : 'bg-[#18181D] text-zinc-400 border border-white/[0.08] hover:text-white'
+                      ? 'bg-white text-(--text-primary) shadow-(--elevation-2)'
+                      : 'bg-(--bg-elevated) text-zinc-400 border border-white/[0.08] hover:text-white'
                   }`}
                 >
                   {t.icon}
@@ -240,7 +240,7 @@ export function UniversalCaptureModal() {
             onChange={(e) => setTagInput(e.target.value)}
             onKeyDown={handleAddTag}
             placeholder={isRTL ? 'برچسب را تایپ کنید و Enter بزنید...' : 'Type tag and press Enter...'}
-            className="w-full bg-[#18181D] border border-white/[0.08] rounded-(--radius-field) px-3 py-2 type-caption text-white placeholder-zinc-500 focus:outline-none focus:border-white/30"
+            className="w-full bg-(--bg-elevated) border border-white/[0.08] rounded-(--radius-field) px-3 py-2 type-caption text-white placeholder-zinc-500 focus:outline-none focus:border-white/30"
           />
         </div>
 

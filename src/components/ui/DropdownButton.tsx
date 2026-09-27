@@ -24,7 +24,7 @@ export function LinkButton({
 }: LinkButtonProps) {
   const variantStyles = {
     subtle:
-      'text-zinc-600 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white transition-colors',
+      'text-zinc-600 dark:text-(--text-secondary) hover:text-(--text-primary) transition-colors',
     emerald:
       'text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 underline underline-offset-4 decoration-emerald-500/30 hover:decoration-emerald-500 transition-colors',
     underline:
@@ -93,7 +93,7 @@ export function DropdownButton({
     primary:
       'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 hover:opacity-90 border border-transparent shadow-xs',
     secondary:
-      'bg-(--bg-subtle) dark:bg-(--bg-elevated) text-zinc-900 dark:text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card-hover) border border-(--border-soft) dark:border-(--border-soft)',
+      'bg-(--bg-subtle) dark:bg-(--bg-elevated) text-zinc-900 dark:text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card-hover) border border-(--border-soft)',
     outline:
       'bg-transparent text-zinc-900 dark:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) border border-(--border-strong) dark:border-(--border-strong)',
   }[variant];
@@ -126,7 +126,7 @@ export function DropdownButton({
               className={`w-full px-3 py-1 type-caption text-left font-mono flex items-center justify-between transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
                 selected === opt.value
                   ? 'bg-(--bg-subtle) dark:bg-(--bg-raised) text-emerald-500 font-bold'
-                  : 'text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
+                  : 'text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
               }`}
             >
               <div className="flex items-center gap-2">

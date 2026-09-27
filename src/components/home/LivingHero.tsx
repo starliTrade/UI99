@@ -155,7 +155,7 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
           {/* Left: Typography & Context */}
           <div className="space-y-1 min-w-0 flex-1">
             {/* Context Date Badge & Status */}
-            <div className="flex items-center gap-2 type-caption text-[#92929B] font-medium">
+            <div className="flex items-center gap-2 type-caption text-(--text-secondary) font-medium">
               <span className="flex items-center gap-1 px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.03] border border-white/[0.035]">
                 <TimeIcon className="icon-sm text-rose-400" />
                 <span className="text-zinc-300">{dateFormatted}</span>
@@ -169,12 +169,12 @@ export function LivingHero({ selectedDate, onOpenCapture }: LivingHeroProps) {
             </div>
 
             {/* Main Greeting */}
-            <h1 className="type-title sm:type-heading font-bold tracking-tight text-[#EDEDEF] leading-snug">
+            <h1 className="type-title sm:type-heading font-bold tracking-tight text-(--text-primary) leading-snug">
               {isRTL ? contextData.greeting.fa : contextData.greeting.en}
             </h1>
 
             {/* Contextual Editorial Microcopy */}
-            <p className="type-caption sm:type-body text-[#92929B] leading-relaxed font-light line-clamp-2 max-w-xl">
+            <p className="type-caption sm:type-body text-(--text-secondary) leading-relaxed font-light line-clamp-2 max-w-xl">
               {isRTL ? contextData.microcopy.fa : contextData.microcopy.en}
             </p>
           </div>

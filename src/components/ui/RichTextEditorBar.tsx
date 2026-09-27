@@ -63,7 +63,7 @@ export function RichTextEditorBar({
     <div
       className={cn(
         'inline-flex items-center gap-0.5 p-1 rounded-(--radius-control) bg-white/95 dark:bg-(--bg-card)/90 backdrop-blur-xl',
-        'border border-(--border-soft) dark:border-(--border-soft) shadow-(--elevation-3)',
+        'border border-(--border-soft) shadow-(--elevation-3)',
         className
       )}
     >

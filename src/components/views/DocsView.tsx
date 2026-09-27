@@ -506,7 +506,7 @@ export function DocsView() {
             href="/registry.json"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-sm) type-caption font-mono bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-zinc-700 dark:text-(--text-secondary) transition-colors border border-(--border-subtle) dark:border-(--border-subtle)"
+            className="inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-sm) type-caption font-mono bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-(--text-secondary) transition-colors border border-(--border-subtle) dark:border-(--border-subtle)"
           >
             <Code2 className="icon-sm" />
             <span>registry.json</span>
@@ -635,7 +635,7 @@ export function DocsView() {
                 setActiveSection(e.target.value);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="w-full pl-3 pr-8 py-2 rounded-(--radius-control) type-caption font-mono font-medium bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
+              className="w-full pl-3 pr-8 py-2 rounded-(--radius-control) type-caption font-mono font-medium bg-white dark:bg-(--bg-surface) border border-(--border-soft) text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
             >
               <optgroup label="Getting Started">
                 <option value="intro">Introduction</option>
@@ -703,7 +703,7 @@ export function DocsView() {
               placeholder="Search docs & components..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 rounded-(--radius-field) type-caption font-mono bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-soft) text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500/50 transition-colors"
+              className="w-full pl-9 pr-8 py-2 rounded-(--radius-field) type-caption font-mono bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500/50 transition-colors"
             />
             {searchQuery && (
               <button
@@ -823,7 +823,7 @@ export function DocsView() {
 
                 {/* Quick Action Chips & CLI Copy Toolbar */}
                 <div className="flex flex-wrap items-center gap-2 pt-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono text-zinc-700 dark:text-(--text-secondary)">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono text-(--text-secondary)">
                     <Terminal className="icon-sm text-emerald-400" />
                     <span>{activeComponent.cliCommand}</span>
                     <button
@@ -989,7 +989,7 @@ export function DocsView() {
                         {activeComponent.id === 'switch' && (
                           <div className="flex items-center gap-4 p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle)">
                             <Switch checked={demoSwitchChecked} onCheckedChange={setDemoSwitchChecked} />
-                            <span className="type-caption font-mono font-medium text-zinc-700 dark:text-(--text-secondary)">
+                            <span className="type-caption font-mono font-medium text-(--text-secondary)">
                               {demoSwitchChecked ? 'Enabled · Active State' : 'Disabled · Inactive'}
                             </span>
                           </div>
@@ -1109,7 +1109,7 @@ export function DocsView() {
                         {activeComponent.id === 'checkbox' && (
                           <div className="flex items-center gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle)">
                             <Checkbox checked={demoCheckboxChecked} onChange={setDemoCheckboxChecked} />
-                            <span className="type-caption font-medium text-zinc-700 dark:text-(--text-secondary)">
+                            <span className="type-caption font-medium text-(--text-secondary)">
                               Enable specular border highlights across registry
                             </span>
                           </div>
@@ -1253,7 +1253,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'tree-view' && (
-                          <div className="w-full max-w-sm p-3 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft)">
+                          <div className="w-full max-w-sm p-3 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft)">
                             <TreeView
                               data={[
                                 {
@@ -2506,7 +2506,7 @@ export function DocsView() {
                   /* MANUAL INSTALLATION STEPS */
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <span className="type-caption font-semibold text-zinc-700 dark:text-(--text-secondary)">
+                      <span className="type-caption font-semibold text-(--text-secondary)">
                         1. Install required primitive packages:
                       </span>
                       <CodeBlock
@@ -2517,7 +2517,7 @@ export function DocsView() {
                     </div>
 
                     <div className="space-y-2">
-                      <span className="type-caption font-semibold text-zinc-700 dark:text-(--text-secondary)">
+                      <span className="type-caption font-semibold text-(--text-secondary)">
                         2. Copy component source code to{' '}
                         <code className="text-emerald-400">
                           src/components/ui/{activeComponent.name}.tsx
@@ -2558,7 +2558,7 @@ export function DocsView() {
                   TypeScript interfaces and runtime props for {activeComponent.title}.
                 </p>
 
-                <div className="overflow-x-auto rounded-(--radius-control) border border-(--border-soft) dark:border-(--border-soft)">
+                <div className="overflow-x-auto rounded-(--radius-control) border border-(--border-soft)">
                   <table className="w-full text-left type-caption border-collapse">
                     <thead>
                       <tr className="border-b border-(--border-soft) dark:border-(--border-soft) bg-zinc-100/50 dark:bg-(--bg-subtle)">
@@ -2604,7 +2604,7 @@ export function DocsView() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-subtle) border border-(--border-soft) dark:border-(--border-subtle) space-y-2">
+                  <div className="p-4 rounded-(--radius-control) bg-(--bg-control) border border-(--border-soft) dark:border-(--border-subtle) space-y-2">
                     <h3 className="type-caption font-mono font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
                       <span className="icon-dot rounded-(--radius-pill) bg-emerald-400" />
                       Focus & State Management
@@ -2614,7 +2614,7 @@ export function DocsView() {
                     </p>
                   </div>
 
-                  <div className="p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-subtle) border border-(--border-soft) dark:border-(--border-subtle) space-y-2">
+                  <div className="p-4 rounded-(--radius-control) bg-(--bg-control) border border-(--border-soft) dark:border-(--border-subtle) space-y-2">
                     <h3 className="type-caption font-mono font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
                       <span className="icon-dot rounded-(--radius-pill) bg-blue-400" />
                       Keyboard Interaction
@@ -2677,7 +2677,7 @@ export function DocsView() {
           {activeSection === 'intro' && (
             <article className="space-y-6">
               <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
-                <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft)">
+                <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft)">
                   v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 </div>
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
@@ -2693,7 +2693,7 @@ export function DocsView() {
                   <strong className="text-zinc-900 dark:text-white font-semibold">UI \ [99]</strong> is <strong>NOT</strong> a component library in the traditional sense of an immutable npm package. It is a collection of re-usable components that you can copy and paste directly into your apps.
                 </p>
 
-                <div className="p-5 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) space-y-3">
+                <div className="p-5 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) space-y-3">
                   <h3 className="type-body font-bold text-zinc-950 dark:text-white flex items-center gap-2">
                     <Sparkles className="icon-md text-emerald-400" />
                     Core Architecture Principles
@@ -2866,8 +2866,8 @@ export function cn(...inputs: ClassValue[]) {
 
               {/* Swatch Palette Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 rounded-(--radius-control) bg-[#06070A] border border-white/[0.04] space-y-2">
-                  <div className="h-14 rounded-(--radius-field) bg-[#06070A] border border-white/[0.04]" />
+                <div className="p-4 rounded-(--radius-control) bg-(--bg-canvas) border border-white/[0.04] space-y-2">
+                  <div className="h-14 rounded-(--radius-field) bg-(--bg-canvas) border border-white/[0.04]" />
                   <div className="type-caption font-mono font-bold text-white">#06070A</div>
                   <div className="type-micro font-mono text-zinc-400">Canvas Root</div>
                 </div>
@@ -2953,7 +2953,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
               </header>
 
               <div className="space-y-6">
-                <div className="p-5 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) space-y-3">
+                <div className="p-5 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) space-y-3">
                   <h3 className="type-body font-bold text-zinc-950 dark:text-white flex items-center gap-2">
                     <FolderGit2 className="icon-md text-emerald-400" />
                     How It Works
@@ -3121,7 +3121,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
               </header>
 
               {/* Current release — version is GENERATED (src/generated/kit-count.ts), never hard-coded */}
-              <div className="p-5 sm:p-6 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) space-y-4">
+              <div className="p-5 sm:p-6 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) space-y-4">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-zinc-950 text-white dark:bg-(--bg-raised) dark:text-white type-caption font-mono font-bold">
                     <Rocket className="icon-sm text-emerald-400" />
@@ -3192,7 +3192,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                 />
               </div>
 
-              <div className="p-4 rounded-(--radius-control) border border-(--border-soft) dark:border-(--border-soft) bg-white/[0.02] type-micro font-mono text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
+              <div className="p-4 rounded-(--radius-control) border border-(--border-soft) bg-white/[0.02] type-micro font-mono text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
                 The version shown on this page, the header badge, and the registry envelope are all generated
                 from one source — <code className="text-emerald-400">src/generated/kit-count.ts</code> — so the site can never advertise a version the package is not.
               </div>

@@ -26,7 +26,7 @@ export function InspirationRail({ items, onSelectItem, onAddInspiration }: Inspi
           <span className="flex items-center justify-center w-4 h-4 rounded-(--radius-pill) bg-emerald-500/15 text-emerald-400">
             <Compass className="w-2.5 h-2.5 stroke-[2.2]" />
           </span>
-          <h3 className="type-micro font-semibold uppercase tracking-wider text-[#92929B]">
+          <h3 className="type-micro font-semibold uppercase tracking-wider text-(--text-secondary)">
             {isRTL ? 'الهام‌های بصری و ایده‌ها' : 'Inspiration & Aesthetics'}
           </h3>
         </div>
@@ -53,10 +53,10 @@ export function InspirationRail({ items, onSelectItem, onAddInspiration }: Inspi
                 <Image className="icon-md" />
               </div>
               <div>
-                <p className="type-caption font-semibold text-[#EDEDEF]">
+                <p className="type-caption font-semibold text-(--text-primary)">
                   {isRTL ? 'ثبت اولین تصویر الهام‌بخش' : 'Save your first visual mood'}
                 </p>
-                <p className="type-micro text-[#92929B] mt-0.5">
+                <p className="type-micro text-(--text-secondary) mt-0.5">
                   {isRTL ? 'معماری، پالت، خطوط و مناظر' : 'Architecture, textures, and landscapes'}
                 </p>
               </div>
@@ -80,7 +80,7 @@ export function InspirationRail({ items, onSelectItem, onAddInspiration }: Inspi
                   {/* Visual Mood Card Header with Abstract Gradient/Texture */}
                   <div className="w-full h-24 rounded-(--radius-control) bg-gradient-to-br from-[#1C1D26] via-[#101117] to-[#0A0B10] border border-white/[0.05] p-3 flex flex-col justify-between relative overflow-hidden mb-3">
                     <div className="flex items-center justify-between relative z-content">
-                      <span className="type-micro uppercase font-bold tracking-wider px-2 py-0.5 rounded-(--radius-pill) bg-black/50 text-[#EDEDEF] border border-white/[0.05] backdrop-blur-md">
+                      <span className="type-micro uppercase font-bold tracking-wider px-2 py-0.5 rounded-(--radius-pill) bg-black/50 text-(--text-primary) border border-white/[0.05] backdrop-blur-md">
                         {category}
                       </span>
                       <Eye className="icon-sm text-white/50" />
@@ -101,18 +101,18 @@ export function InspirationRail({ items, onSelectItem, onAddInspiration }: Inspi
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-400 via-transparent to-transparent pointer-events-none" />
                   </div>
 
-                  <h4 className="type-caption sm:type-body font-semibold text-[#EDEDEF] line-clamp-1 leading-snug">
+                  <h4 className="type-caption sm:type-body font-semibold text-(--text-primary) line-clamp-1 leading-snug">
                     {item.title}
                   </h4>
 
                   {location && (
-                    <p className="type-micro text-[#92929B] mt-0.5 truncate">
+                    <p className="type-micro text-(--text-secondary) mt-0.5 truncate">
                       📍 {location}
                     </p>
                   )}
                 </div>
 
-                <div className="mt-3 pt-2 border-t border-white/[0.025] flex items-center justify-between type-micro text-[#92929B]">
+                <div className="mt-3 pt-2 border-t border-white/[0.025] flex items-center justify-between type-micro text-(--text-secondary)">
                   <span>{isRTL ? 'مشاهده' : 'View mood'}</span>
                   <ArrowUpRight className="icon-xs text-emerald-400" />
                 </div>

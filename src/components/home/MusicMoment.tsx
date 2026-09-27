@@ -29,10 +29,10 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
             <Music className="icon-lg stroke-[1.8]" />
           </div>
           <div>
-            <h4 className="type-body font-semibold text-[#EDEDEF]">
+            <h4 className="type-body font-semibold text-(--text-primary)">
               {isRTL ? 'موسیقی و نوای آرامش' : 'Today in Music'}
             </h4>
-            <p className="type-caption text-[#92929B] mt-0.5">
+            <p className="type-caption text-(--text-secondary) mt-0.5">
               {isRTL ? 'هنوز موسیقی ثبت نشده — قطعه محبوبت را اضافه کن' : 'Nothing playing yet — save your mood soundtrack'}
             </p>
           </div>
@@ -64,7 +64,7 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
           <span className="flex items-center justify-center w-5 h-5 rounded-(--radius-pill) bg-rose-500/15 text-rose-400">
             <Music className="icon-xs stroke-[2.2]" />
           </span>
-          <span className="type-micro uppercase font-bold tracking-widest text-[#EDEDEF]">
+          <span className="type-micro uppercase font-bold tracking-widest text-(--text-primary)">
             {isRTL ? 'نوای امروز' : 'Today in Music'}
           </span>
         </div>
@@ -90,10 +90,10 @@ export function MusicMoment({ songObject, onSelectObject, onCaptureMusic }: Musi
 
         {/* Track Metadata */}
         <div className="min-w-0 flex-1">
-          <h3 className="type-body-lg font-bold text-[#EDEDEF] truncate leading-snug">
+          <h3 className="type-body-lg font-bold text-(--text-primary) truncate leading-snug">
             {songObject.title}
           </h3>
-          <p className="type-caption text-[#92929B] truncate mt-0.5">
+          <p className="type-caption text-(--text-secondary) truncate mt-0.5">
             {artist} <span className="text-zinc-600">•</span> {album}
           </p>
 

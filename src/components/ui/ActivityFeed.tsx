@@ -69,7 +69,7 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
   return (
     <div
       className={cn(
-        'p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft)',
+        'p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft)',
         'flex flex-col gap-4 shadow-sm w-full',
         className
       )}

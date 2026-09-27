@@ -29,10 +29,10 @@ export function TravelMoment({ tripObject, onSelectTrip, onAddTrip }: TravelMome
             <Plane className="icon-lg stroke-[1.8]" />
           </div>
           <div>
-            <h4 className="type-body font-semibold text-[#EDEDEF]">
+            <h4 className="type-body font-semibold text-(--text-primary)">
               {isRTL ? 'رویاهای سفر و مکان‌ها' : 'Dreaming About'}
             </h4>
-            <p className="type-caption text-[#92929B] mt-0.5">
+            <p className="type-caption text-(--text-secondary) mt-0.5">
               {isRTL ? 'مقصد رویایی بعدی‌ات کجاست؟' : 'Where would you love to go next?'}
             </p>
           </div>
@@ -76,12 +76,12 @@ export function TravelMoment({ tripObject, onSelectTrip, onAddTrip }: TravelMome
 
       {/* Title and Description */}
       <div className="space-y-2 relative z-content">
-        <h3 className="type-body-lg sm:type-body-lg font-bold text-[#EDEDEF] tracking-tight leading-snug">
+        <h3 className="type-body-lg sm:type-body-lg font-bold text-(--text-primary) tracking-tight leading-snug">
           {tripObject.title}
         </h3>
 
         {tripObject.description && (
-          <p className="type-caption text-[#92929B] leading-relaxed line-clamp-2">
+          <p className="type-caption text-(--text-secondary) leading-relaxed line-clamp-2">
             {tripObject.description}
           </p>
         )}
@@ -91,7 +91,7 @@ export function TravelMoment({ tripObject, onSelectTrip, onAddTrip }: TravelMome
           {wishlist.map((item, idx) => (
             <span
               key={idx}
-              className="type-micro px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.04] text-[#EDEDEF] border border-white/[0.04]"
+              className="type-micro px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.04] text-(--text-primary) border border-white/[0.04]"
             >
               ✦ {item}
             </span>
@@ -100,7 +100,7 @@ export function TravelMoment({ tripObject, onSelectTrip, onAddTrip }: TravelMome
       </div>
 
       {/* Footer */}
-      <div className="mt-3 pt-2 border-t border-white/[0.025] flex items-center justify-between type-micro text-[#92929B] relative z-content">
+      <div className="mt-3 pt-2 border-t border-white/[0.025] flex items-center justify-between type-micro text-(--text-secondary) relative z-content">
         <span>📍 {location}</span>
         <span className="text-cyan-400 group-hover:underline flex items-center gap-1 font-medium">
           <span>{isRTL ? 'مشاهده رویا' : 'View Dream'}</span>

@@ -69,7 +69,7 @@ export function PasswordInput({
     <div className="flex flex-col gap-1 w-full">
       {label && (
         <div className="flex items-center justify-between">
-          <label className="type-caption font-medium text-zinc-700 dark:text-(--text-secondary)">{label}</label>
+          <label className="type-caption font-medium text-(--text-secondary)">{label}</label>
           {val && showStrength && (
             <span className={cn('type-micro font-mono font-medium', strengthMeta.text)}>
               {strengthMeta.label}

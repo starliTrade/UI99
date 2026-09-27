@@ -70,20 +70,30 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const root = document.documentElement;
-    const body = document.body;
     // Dual protocol: the legacy .dark/.light classes AND the standard
     // data-theme attribute (daisyUI/Tailwind v4 convention, audit P2.8).
     const theme = themeMode === 'dark' ? 'dark' : 'light';
     root.classList.add(theme);
     root.classList.remove(theme === 'dark' ? 'light' : 'dark');
     root.setAttribute('data-theme', theme);
-    if (theme === 'dark') {
-      body.classList.add('bg-[#06070A]', 'text-[#EDEDEF]');
-      body.classList.remove('bg-[#F4F4F6]', 'text-[#111113]');
-    } else {
-      body.classList.add('bg-[#F4F4F6]', 'text-[#111113]');
-      body.classList.remove('bg-[#06070A]', 'text-[#EDEDEF]');
-    }
+    // The <body> background and text colour are NOT set here, and that is the
+    // whole point. They used to be, as hard-coded classes: `bg-(--bg-canvas)` /
+    // `bg-(--bg-canvas)` swapped per theme. Those are UTILITY-layer rules, and
+    // utilities beat base — so the body's `background-color: var(--bg-canvas)`
+    // in @layer base was overridden by a literal hex on every single page.
+    //
+    // In light mode that meant the page painted #F4F4F6 while the token canvas
+    // said #FAFAFC: 13 levels apart. Every light surface in the system is
+    // specified as a step away from its own canvas, so the one background the
+    // whole light theme is measured against was not the one it was designed
+    // against. A card computed to sit 11 levels above the canvas in fact sat
+    // 24 above the page — which is exactly "the light theme looks so detached
+    // from the background", and it also meant a corrected canvas token
+    // produced no visible change at all, because it never painted.
+    //
+    // `body { background-color: var(--bg-canvas); color: var(--text-primary) }`
+    // in @layer base is already theme-reactive and already correct. Two
+    // sources for one value is one source too many.
   }, [themeMode]);
 
   // All context functions are memoized: consumers rely on stable identities

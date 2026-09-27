@@ -29,10 +29,10 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
             <BookOpen className="icon-lg stroke-[1.8]" />
           </div>
           <div>
-            <h4 className="type-body font-semibold text-[#EDEDEF]">
+            <h4 className="type-body font-semibold text-(--text-primary)">
               {isRTL ? 'کتابخانه و خلوت مطالعه' : 'Reading & Sanctuary'}
             </h4>
-            <p className="type-caption text-[#92929B] mt-0.5">
+            <p className="type-caption text-(--text-secondary) mt-0.5">
               {isRTL ? 'کتابی که این روزها می‌خوانی را اضافه کن' : 'Add a book you are currently immersed in'}
             </p>
           </div>
@@ -60,7 +60,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
           <span className="flex items-center justify-center w-5 h-5 rounded-(--radius-pill) bg-blue-500/15 text-blue-400">
             <BookOpen className="icon-xs stroke-[2.2]" />
           </span>
-          <span className="type-micro uppercase font-bold tracking-widest text-[#EDEDEF]">
+          <span className="type-micro uppercase font-bold tracking-widest text-(--text-primary)">
             {isRTL ? 'کتابخانه و مطالعه' : 'Currently Reading'}
           </span>
         </div>
@@ -77,10 +77,10 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
         </div>
 
         <div className="min-w-0 flex-1">
-          <h3 className="type-body-lg font-bold text-[#EDEDEF] leading-snug truncate">
+          <h3 className="type-body-lg font-bold text-(--text-primary) leading-snug truncate">
             {bookObject.title}
           </h3>
-          <p className="type-caption text-[#92929B] truncate mt-0.5">
+          <p className="type-caption text-(--text-secondary) truncate mt-0.5">
             {author}
           </p>
 
@@ -93,7 +93,7 @@ export function ReadingMoment({ bookObject, onSelectBook, onAddBook }: ReadingMo
       </div>
 
       {/* Footer */}
-      <div className="mt-3 pt-2 border-t border-white/[0.025] flex items-center justify-between type-micro text-[#92929B] relative z-content">
+      <div className="mt-3 pt-2 border-t border-white/[0.025] flex items-center justify-between type-micro text-(--text-secondary) relative z-content">
         <span>{isRTL ? 'هنر زیبایی‌شناسی ژاپنی' : 'Aesthetics & Light'}</span>
         <span className="text-blue-400 group-hover:underline flex items-center gap-1 font-medium">
           <span>{isRTL ? 'جزئیات کتاب' : 'Book Details'}</span>

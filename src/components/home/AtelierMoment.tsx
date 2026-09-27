@@ -36,10 +36,10 @@ export function AtelierMoment({
               <Scissors className="icon-lg stroke-[1.8]" />
             </div>
             <div>
-              <h4 className="type-body-lg font-bold text-[#EDEDEF]">
+              <h4 className="type-body-lg font-bold text-(--text-primary)">
                 {isRTL ? 'کارگاه طراحی و آتلیه' : 'Atelier & Design World'}
               </h4>
-              <p className="type-caption text-[#92929B] mt-0.5">
+              <p className="type-caption text-(--text-secondary) mt-0.5">
                 {isRTL ? 'طرح جدید، پالت رنگ یا الگوی پارچه را ثبت کن' : 'Your next collection or silhouette is waiting'}
               </p>
             </div>
@@ -83,12 +83,12 @@ export function AtelierMoment({
 
       {/* Main Editorial Showcase */}
       <div className="space-y-3 relative z-content">
-        <h3 className="type-body-lg sm:type-title font-bold text-[#EDEDEF] tracking-tight leading-snug">
+        <h3 className="type-body-lg sm:type-title font-bold text-(--text-primary) tracking-tight leading-snug">
           {atelierProject.title}
         </h3>
 
         {atelierProject.description && (
-          <p className="type-caption text-[#92929B] leading-relaxed line-clamp-2">
+          <p className="type-caption text-(--text-secondary) leading-relaxed line-clamp-2">
             {atelierProject.description}
           </p>
         )}
@@ -115,7 +115,7 @@ export function AtelierMoment({
             {fabrics.slice(0, 2).map((fabric, idx) => (
               <span
                 key={idx}
-                className="type-micro px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.04] text-[#EDEDEF] border border-white/[0.04]"
+                className="type-micro px-2 py-0.5 rounded-(--radius-pill) bg-white/[0.04] text-(--text-primary) border border-white/[0.04]"
               >
                 {fabric}
               </span>
@@ -134,7 +134,7 @@ export function AtelierMoment({
           >
             <div className="flex items-center gap-2 min-w-0">
               <span className="icon-dot rounded-(--radius-pill) bg-amber-400/70" />
-              <span className="type-caption text-[#EDEDEF] truncate font-medium">
+              <span className="type-caption text-(--text-primary) truncate font-medium">
                 {sketchObject.title}
               </span>
             </div>
@@ -146,7 +146,7 @@ export function AtelierMoment({
       </div>
 
       {/* Footer */}
-      <div className="mt-4 pt-3 border-t border-white/[0.03] flex items-center justify-between type-caption text-[#92929B] relative z-content">
+      <div className="mt-4 pt-3 border-t border-white/[0.03] flex items-center justify-between type-caption text-(--text-secondary) relative z-content">
         <span className="type-micro">{silhouette}</span>
         <span className="inline-flex items-center gap-1 type-micro font-medium text-amber-400 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-transform">
           <span>{isRTL ? 'ورود به آتلیه' : 'Explore Atelier'}</span>

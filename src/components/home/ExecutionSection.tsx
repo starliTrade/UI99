@@ -60,7 +60,7 @@ export function ExecutionSection({
       <div className="flex items-center justify-between px-1">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-rose-500" />
-          <h3 className="type-micro font-semibold uppercase tracking-wider text-[#92929B]">
+          <h3 className="type-micro font-semibold uppercase tracking-wider text-(--text-secondary)">
             {isRTL ? 'جریان کارهای امروز و آیین‌ها' : 'Today’s Focus & Flow'}
           </h3>
         </div>
@@ -101,12 +101,12 @@ export function ExecutionSection({
             )}
           </div>
 
-          <h3 className="type-body-lg sm:type-body-lg font-bold text-[#EDEDEF] tracking-tight leading-snug mb-1">
+          <h3 className="type-body-lg sm:type-body-lg font-bold text-(--text-primary) tracking-tight leading-snug mb-1">
             {focusObject.title}
           </h3>
 
           {focusObject.description && (
-            <p className="type-caption text-[#92929B] leading-relaxed line-clamp-2 mb-3 font-normal">
+            <p className="type-caption text-(--text-secondary) leading-relaxed line-clamp-2 mb-3 font-normal">
               {focusObject.description}
             </p>
           )}
@@ -121,7 +121,7 @@ export function ExecutionSection({
             </div>
           )}
 
-          <div className="flex items-center justify-between pt-2 border-t border-white/[0.025] type-caption text-[#92929B] relative z-content">
+          <div className="flex items-center justify-between pt-2 border-t border-white/[0.025] type-caption text-(--text-secondary) relative z-content">
             <div className="flex items-center gap-1">
               {focusObject.tags?.slice(0, 2).map((t) => (
                 <span
@@ -155,7 +155,7 @@ export function ExecutionSection({
       {(activeTasks.length > 0 || activeHabits.length > 0) && (
         <div className="space-y-2 pt-2">
           <div className="flex items-center justify-between px-1">
-            <h4 className="type-micro font-semibold uppercase tracking-wider text-[#92929B]">
+            <h4 className="type-micro font-semibold uppercase tracking-wider text-(--text-secondary)">
               {isRTL ? 'کارهای آماده اقدام و آیین‌ها' : 'Active Items & Rituals'}
             </h4>
             <span className="type-micro font-mono text-zinc-500">
@@ -205,7 +205,7 @@ export function ExecutionSection({
                         )}
                       </div>
                       {task.description && (
-                        <p className="type-micro text-[#8E8E98] truncate mt-0.5 font-light">
+                        <p className="type-micro text-(--text-secondary) truncate mt-0.5 font-light">
                           {task.description}
                         </p>
                       )}
@@ -244,10 +244,10 @@ export function ExecutionSection({
                     </button>
 
                     <div className="min-w-0 flex-1">
-                      <span className="type-caption sm:type-caption font-medium tracking-tight text-[#EDEDEF] truncate block">
+                      <span className="type-caption sm:type-caption font-medium tracking-tight text-(--text-primary) truncate block">
                         {habit.title}
                       </span>
-                      <p className="type-micro text-[#8E8E98] truncate mt-0.5 font-light">
+                      <p className="type-micro text-(--text-secondary) truncate mt-0.5 font-light">
                         {habit.description || (isRTL ? 'آیین روزانه' : 'Daily ritual streak')}
                       </p>
                     </div>

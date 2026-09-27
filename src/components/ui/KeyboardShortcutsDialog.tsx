@@ -87,7 +87,7 @@ export function KeyboardShortcutsDialog({
                 {group.shortcuts.map((sc, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center justify-between py-2 type-caption text-zinc-700 dark:text-(--text-secondary)"
+                    className="flex items-center justify-between py-2 type-caption text-(--text-secondary)"
                   >
                     <dt>{sc.description}</dt>
                     <dd className="flex items-center gap-1">

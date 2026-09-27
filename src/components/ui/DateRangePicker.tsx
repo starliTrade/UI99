@@ -41,7 +41,7 @@ export function DateRangePicker({
         type="button"
         disabled={disabled}
         onClick={() => setOpen(!open)}
-        className="h-9 px-3 rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) type-caption font-mono text-zinc-900 dark:text-white inline-flex items-center gap-2 hover:bg-(--bg-subtle) dark:hover:bg-(--bg-card) transition-colors cursor-pointer disabled:opacity-50"
+        className="h-9 px-3 rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-(--border-soft) type-caption font-mono text-zinc-900 dark:text-white inline-flex items-center gap-2 hover:bg-(--bg-subtle) dark:hover:bg-(--bg-card) transition-colors cursor-pointer disabled:opacity-50"
       >
         <Calendar className="icon-sm text-(--text-secondary)" />
         <span>{start}</span>

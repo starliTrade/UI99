@@ -32,7 +32,7 @@ export function ProgressInMotionCard({
     <motion.div
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2 }}
-      className="relative rounded-(--radius-xl) bg-[#12131A] border border-white/[0.045] p-6 overflow-hidden transition-all shadow-(--elevation-2) hover:border-white/[0.07] select-none"
+      className="relative rounded-(--radius-xl) bg-(--bg-elevated) border border-white/[0.045] p-6 overflow-hidden transition-all shadow-(--elevation-2) hover:border-white/[0.07] select-none"
     >
       {/* Top Row: Icon, Title & Status Pill */}
       <div className="flex items-start justify-between gap-3 mb-2">
@@ -40,7 +40,7 @@ export function ProgressInMotionCard({
           <div className="w-5 h-5 flex items-center justify-center text-white/70">
             <TrendingUp className="icon-md text-white/80" />
           </div>
-          <h3 className="type-body-lg font-semibold tracking-tight text-[#F2F2F5]">
+          <h3 className="type-body-lg font-semibold tracking-tight text-(--text-primary)">
             {title}
           </h3>
         </div>
@@ -53,10 +53,10 @@ export function ProgressInMotionCard({
 
       {/* Momentum Text */}
       <div className="mb-4">
-        <span className="block type-micro font-medium text-[#8E8E98] tracking-tight">
+        <span className="block type-micro font-medium text-(--text-secondary) tracking-tight">
           {subtitle}
         </span>
-        <p className="type-caption text-[#8E8E98] font-medium tracking-tight mt-0.5">
+        <p className="type-caption text-(--text-secondary) font-medium tracking-tight mt-0.5">
           {momentumText}
         </p>
       </div>

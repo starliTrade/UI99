@@ -67,9 +67,9 @@ export function ColorPicker({
   };
 
   return (
-    <div className={cn('flex flex-col gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-lg max-w-[280px]', className)}>
+    <div className={cn('flex flex-col gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) shadow-lg max-w-[280px]', className)}>
       {label && (
-        <span className="type-caption font-semibold text-zinc-700 dark:text-(--text-secondary)">{label}</span>
+        <span className="type-caption font-semibold text-(--text-secondary)">{label}</span>
       )}
 
       {/* Main Preview Swatch & Hex input */}

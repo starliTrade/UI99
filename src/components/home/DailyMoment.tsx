@@ -57,11 +57,11 @@ export function DailyMoment() {
               transition={{ duration: 0.25 }}
               className="space-y-1"
             >
-              <p className="type-body sm:type-body-lg text-[#EDEDEF] leading-relaxed font-serif tracking-wide italic">
+              <p className="type-body sm:type-body-lg text-(--text-primary) leading-relaxed font-serif tracking-wide italic">
                 «{isRTL ? current.textFa : current.textEn}»
               </p>
 
-              <div className="flex items-center justify-between type-micro text-[#92929B] pt-1">
+              <div className="flex items-center justify-between type-micro text-(--text-secondary) pt-1">
                 <span className="font-medium text-zinc-400">
                   {isRTL ? current.author : 'UI99 Sanctuary Reflection'}
                 </span>

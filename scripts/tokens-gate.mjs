@@ -23,7 +23,7 @@
  * Run: node scripts/tokens-gate.mjs
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
+import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -46,12 +46,49 @@ const FORBIDDEN = new Set([
   '#EDEDEF', '#EBEBEF', '#E2E2E8', '#F2F2F5', '#F5F5F8', '#FFFFFF',
   '#0C0C0E', '#92929B', '#8E8E98', '#9E9EA8', '#A1A1AA', '#D4D4D8',
   '#6E6E78', '#5C5C66', '#60606B', '#71717A', '#85858F',
+  // The body-background hexes AppContext used to paint <body> with. Named
+  // explicitly because they are the exact values that overrode --bg-canvas
+  // from the utilities layer and made the light canvas 13 levels off from the
+  // one every light surface is specified against.
+  '#F4F4F6', '#111113', '#FAFAFC', '#F7F7F9', '#F3F3F6', '#F5F5F8',
   // intent fill pairings (destructive/success/rose-tint) — Sprint 1 closure
   '#2A0A10', '#06251A', '#161216', '#1E171E', '#F3CBD2', '#D4C5B9',
 ]);
 
 const files = readdirSync(uiDir).filter((f) => f.endsWith('.tsx') || f.endsWith('.ts'));
 const violations = [];
+
+/**
+ * Rule A also runs over `src/core` — the shell that owns <html> and <body>.
+ *
+ * This used to be components-only, and the hole was load-bearing: AppContext
+ * painted the page background with a hard-coded `bg-[#F4F4F6]` per theme, and
+ * because that is a UTILITY-layer rule it beat the `body { background-color:
+ * var(--bg-canvas) }` in @layer base. The light theme therefore rendered on
+ * #F4F4F6 while its own token said #FAFAFC — 13 levels apart — so no canvas
+ * correction could ever show up. Ten more sites sat in ErrorBoundary, which is
+ * the first surface a user ever sees of this system.
+ *
+ * `src/core/tokens/` is EXEMPT: it is the machine-readable authority that
+ * declares these values, so scanning it would fail on the source of truth.
+ */
+const coreDir = resolve(root, 'src/core');
+const coreFiles = readdirSync(coreDir, { recursive: true })
+  .filter((f) => typeof f === 'string' && /\.tsx?$/.test(f) && !f.includes('tokens'))
+  .map((f) => join(coreDir, f));
+
+// The app shell is a component like any other, and it was hiding the single
+// worst offender in the system: `App.tsx` painted the page with
+// `bg-[#F4F4F6]`, an unlayered `!important` band-aid in index.css patched
+// surfaces that Tailwind had mangled away, and an unlayered
+// `.light .studio-dark-canvas` re-stated the light canvas as a literal hex —
+// which, being unlayered, beat every layered rule including the token itself.
+const appShell = [resolve(root, 'src/App.tsx')].filter((f) => statSync(f).isFile());
+
+const componentsDir = resolve(root, 'src/components');
+const componentFiles = readdirSync(componentsDir, { recursive: true })
+  .filter((f) => typeof f === 'string' && /\.tsx?$/.test(f))
+  .map((f) => join(componentsDir, f));
 
 /**
  * Legit non-UI uses of surface hexes: SSR fallbacks after a live token read
@@ -63,21 +100,78 @@ const VALUE_CONTEXT =
   /(?:const [A-Z_]+ = \[|DEFAULT_PRESETS|var\(--[a-z-]+,|getComputedStyle|strokeStyle =|read\('--|\?\?\s*['"]#)/;
 
 /** Files whose forbidden-hex lines are value presets / canvas data, verified by hand. */
-const VALUE_ONLY_FILES = new Set(['ColorPicker.tsx', 'TokenLatticeHero.tsx']);
+/**
+ * Files where a surface hex is the CONTENT, not the styling.
+ *
+ * `UIKitView` is the palette page: it renders swatches labelled with the hexes
+ * they stand for, and the code sample in it prints the canvas value as a
+ * string. Tokenising those would delete the documentation of the tokens. This
+ * is the same exemption ColorPicker and TokenLatticeHero have always had, for
+ * the same reason — a value the USER reads is not a value the system paints.
+ */
+const VALUE_ONLY_FILES = new Set([
+  'ColorPicker.tsx',
+  'TokenLatticeHero.tsx',
+  'UIKitView.tsx',
+  'FoundationsView.tsx',
+]);
 
-for (const f of files) {
-  if (VALUE_ONLY_FILES.has(f)) continue;
-  const src = readFileSync(resolve(uiDir, f), 'utf8');
-  const lines = src.split('\n');
-  lines.forEach((line, i) => {
-    if (VALUE_CONTEXT.test(line)) return; // data values, not theme styling
-    for (const m of line.matchAll(/#[0-9A-Fa-f]{6}\b/g)) {
-      const hex = m[0].toUpperCase();
-      if (FORBIDDEN.has(hex)) {
-        violations.push(`${f}:${i + 1}: ${hex} — "${line.trim().slice(0, 90)}"`);
+for (const [dir, list] of [
+  [uiDir, files],
+  [coreDir, coreFiles],
+  [resolve(root, 'src'), appShell],
+  // The whole product surface, not just the kit. The views carried hard-coded
+  // dark surfaces that a now-deleted `!important` band-aid used to repaint in
+  // light mode — and that band-aid had stopped compiling years earlier, so
+  // those surfaces were simply dark boxes in porcelain.
+  [componentsDir, componentFiles],
+]) {
+  for (const f of list) {
+    // `f` is a relative path for the recursive walks, so match on the basename.
+    if (VALUE_ONLY_FILES.has(f.split('/').pop())) continue;
+    const abs = resolve(dir, f);
+    const rel = abs.slice(root.length + 1);
+    const src = readFileSync(abs, 'utf8');
+    const lines = src.split('\n');
+    lines.forEach((line, i) => {
+      if (VALUE_CONTEXT.test(line)) return; // data values, not theme styling
+      // Strip comments first. Several of these files carry the forbidden hexes
+      // in the comment that explains why they were removed, and a gate that
+      // fails on its own explanation is a gate that gets switched off.
+      const code = line.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/\/\/.*$/, '');
+      // A hex the USER READS is a value, not a style. The palette page prints
+      // `#06070A` as the label of the swatch that shows it; a docs table prints
+      // it as a cell. Both are the documentation OF the tokens, and tokenising
+      // them would delete the thing being documented.
+      //
+      // So the test is positional, not per-file: only hexes that appear INSIDE
+      // a class attribute are styling. Everything else — JSX text, a `hex=`
+      // prop, prose, a code sample — is content. That is narrower and more
+      // honest than exempting whole files, and it leaves those same files
+      // fully gated for the styling they do own.
+      const inClass = [...code.matchAll(/class(?:Name)?\s*=\s*("[^"]*"|'[^']*'|`[^`]*`)/g)]
+        .map((m) => {
+          // Gradient stops are artwork, not surfaces. A
+          // `bg-gradient-to-br from-[#1C1D26] via-[#0A0B10]` on a thumbnail is a
+          // PICTURE of a surface, and pinning it to a token would make the
+          // picture follow the theme — the opposite of what a picture should
+          // do. This is the carve-out the file header already makes for data
+          // palettes and identity colours, extended from "a colour class" to
+          // "a colour inside a gradient". Only when a gradient is actually
+          // present: a bare `from-[#hex]` without one is a surface.
+          const list = m[1];
+          if (!/\bbg-(?:gradient|linear)[\w-]*\b/.test(list)) return list;
+          return list.replace(/(?:from|via|to)-\[#[0-9A-Fa-f]{6}\]/g, '');
+        })
+        .join(' ');
+      for (const m of inClass.matchAll(/#[0-9A-Fa-f]{6}\b/g)) {
+        const hex = m[0].toUpperCase();
+        if (FORBIDDEN.has(hex)) {
+          violations.push(`${rel}:${i + 1}: ${hex} — "${line.trim().slice(0, 90)}"`);
+        }
       }
-    }
-  });
+    });
+  }
 }
 
 if (violations.length) {
@@ -719,8 +813,102 @@ if (controlViolations.length) {
   process.exit(1);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   RULE I — NO UNLAYERED SURFACE RULE.
+
+   In CSS, a rule outside every `@layer` beats every rule inside one, at ANY
+   specificity. That is the mechanism behind the worst bug in this system's
+   history, and it is worth stating plainly because it is counter-intuitive:
+
+   the light page background had THREE candidates.
+     body { background-color: var(--bg-canvas) }   @layer base
+     .bg-[#F4F4F6]   (the app root's utility)     @layer utilities
+     .light .studio-dark-canvas { #F5F5F8 }        UNLAYERED  <- won
+
+   The unlayered literal hex beat the token by default. No amount of editing a
+   canvas token could ever have changed what the user saw, and every test in
+   the suite was green the whole time, because every one of them was reading
+   the token and never the paint order.
+
+   So: any rule in a UI99 stylesheet that sets a background or a colour must be
+   inside a layer. Component utilities (`.material-*`, `.font-persian-luxury`,
+   `.dur-*`) live in `components`; theme-scoped blocks live in `base`.
+   ═══════════════════════════════════════════════════════════════════════════ */
+const unlayeredViolations = [];
+for (const [sheet, abs] of [
+  ['src/index.css', resolve(root, 'src/index.css')],
+  ['src/styles/porcelain.css', resolve(root, 'src/styles/porcelain.css')],
+  ['src/styles/ui99-glow.css', resolve(root, 'src/styles/ui99-glow.css')],
+]) {
+  if (!statSync(abs).isFile()) continue;
+  const lines = readFileSync(abs, 'utf8').split('\n');
+  let layer = null;
+  let buf = '';
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (layer === null && /@layer\s+[a-z, ]+\s*\{/.test(line)) {
+      layer = line.replace(/^.*@layer\s+([a-z, ]+)\s*\{.*$/, '$1').trim();
+      buf = '';
+    }
+    if (layer === null) {
+      const code = line.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/\/\/.*$/, '');
+      if (/\{[^}]*$/.test(code) && /^\s*\.[a-zA-Z-][\w-]*[^,{]*(?:,[\s\S]*?)?\{\s*$/.test(code)) {
+        if (!/^\s*\.(light|dark|\[data-theme|html|body)\b/.test(code)) { /* not theme-scoped */ }
+        else {
+          // The selector must open a SURFACE, not an ink. Syntax highlighting
+          // and status LEDs are identity colours, not theme surfaces, and they
+          // are named here rather than quietly skipped — an unnamed exemption
+          // is a hole you stop looking at.
+          const EXEMPT_IDENTITY = /code-token-render|progress-led-block/;
+          if (EXEMPT_IDENTITY.test(code)) { /* identity colour — out of scope */ }
+          else {
+            // Read THIS rule's body only. A fixed window bleeds into the next
+            // selector and reports a violation against the wrong rule — the
+            // kind of false positive that teaches people to ignore a gate.
+            let depth = 0;
+            const body = [];
+            for (let k = i; k < lines.length && k < i + 40; k++) {
+              body.push(lines[k]);
+              depth += (lines[k].match(/\{/g) ?? []).length;
+              depth -= (lines[k].match(/\}/g) ?? []).length;
+              if (depth <= 0) break;
+            }
+            const block = body.join('\n');
+            const surface = block.match(
+              /^\s*(?:background|background-color)\s*:\s*([^;]+);/m,
+            );
+            // A `var(--bg-*)` is exactly what this rule is asking for. Only a
+            // raw hex or rgba is a violation.
+            if (surface && /#|rgba?\(/.test(surface[1])) {
+              unlayeredViolations.push(
+                `${sheet}:${i + 1}: unlayered surface rule — "${code.trim()}" sets ${surface[1].trim().slice(0, 40)}; unlayered CSS beats every @layer, so this defeats the token itself`,
+              );
+            }
+          }
+        }
+      }
+    }
+    if (layer !== null) {
+      buf += line;
+      if (line.trim() === '}') {
+        const depth = (buf.match(/\{/g) ?? []).length - (buf.match(/\}/g) ?? []).length;
+        if (depth <= 0) layer = null;
+        buf = '';
+      }
+    }
+  }
+}
+
+if (unlayeredViolations.length) {
+  console.error(
+    `\n✗ tokens-gate: ${unlayeredViolations.length} unlayered surface rule(s) — unlayered CSS beats every @layer, so a literal hex silently defeats the token system:\n`,
+  );
+  for (const v of unlayeredViolations) console.error('  ' + v);
+  process.exit(1);
+}
+
 console.log(
   `✓ tokens-gate: ${files.length} kit files clean — no hardcoded hexes, no arbitrary or raw-scale ` +
     `elevation/radius/blur/type, no dead utilities, all ${declared.size} tokens declared, ` +
-    `soft-continuity ladder enforced (8 rules: hex · structural · declared · compiles · soft · grid · mirror · control)`,
+    `soft-continuity ladder enforced (9 rules: hex · structural · declared · compiles · soft · grid · mirror · control · layering)`,
 );

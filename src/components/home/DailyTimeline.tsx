@@ -96,7 +96,7 @@ export function DailyTimeline({
       <div className="flex items-center justify-between px-1">
         <div className="flex items-center gap-2">
           <Clock className="icon-sm text-zinc-400" />
-          <h3 className="type-micro font-semibold uppercase tracking-wider text-[#92929B]">
+          <h3 className="type-micro font-semibold uppercase tracking-wider text-(--text-secondary)">
             {isRTL ? 'جریان و برنامه روز' : 'Daily Schedule & Rhythm'}
           </h3>
         </div>
@@ -124,12 +124,12 @@ export function DailyTimeline({
               <Calendar className="icon-md" />
             </div>
             <div>
-              <p className="type-caption sm:type-body font-medium text-[#EDEDEF] leading-relaxed">
+              <p className="type-caption sm:type-body font-medium text-(--text-primary) leading-relaxed">
                 {isRTL
                   ? 'امروز هنوز چیزی در برنامه‌ات ثبت نشده.'
                   : 'Nothing scheduled for this day yet.'}
               </p>
-              <p className="type-micro text-[#92929B] mt-0.5 font-light">
+              <p className="type-micro text-(--text-secondary) mt-0.5 font-light">
                 {isRTL
                   ? 'شاید وقت خوبیه برای اینکه روزت رو خودت بسازی ✦'
                   : 'A quiet, unhurried space to shape your day ✦'}
@@ -183,7 +183,7 @@ export function DailyTimeline({
                 >
                   {/* Time */}
                   <div className="w-12 text-right rtl:text-left shrink-0">
-                    <span className="type-micro font-mono font-medium text-[#8E8E98]">
+                    <span className="type-micro font-mono font-medium text-(--text-secondary)">
                       {item.time}
                     </span>
                   </div>
@@ -219,7 +219,7 @@ export function DailyTimeline({
                     </div>
 
                     {item.description && (
-                      <p className="type-micro mt-0.5 leading-relaxed truncate text-[#8E8E98] font-light">
+                      <p className="type-micro mt-0.5 leading-relaxed truncate text-(--text-secondary) font-light">
                         {item.description}
                       </p>
                     )}

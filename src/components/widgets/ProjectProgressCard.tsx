@@ -81,7 +81,7 @@ export function ProjectProgressCard({
 
       {/* Title & Category Capsule Tag */}
       <div className="flex items-center gap-2 flex-wrap mb-1 relative z-content">
-        <h3 className={`type-body-lg sm:type-body-lg font-semibold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+        <h3 className={`type-body-lg sm:type-body-lg font-semibold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-(--text-primary)'}`}>
           {title}
         </h3>
         <span className="px-2 py-0.5 rounded-(--radius-pill) type-caption font-medium text-emerald-500 bg-emerald-500/10 border border-emerald-500/20">
@@ -91,7 +91,7 @@ export function ProjectProgressCard({
 
       {/* High-Contrast Percentage */}
       <div className="my-2 flex items-baseline relative z-content">
-        <span className={`type-display sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-[#111116]'}`}>
+        <span className={`type-display sm:type-display font-bold tracking-tight drop-shadow-sm ${isDark ? 'text-white' : 'text-(--text-primary)'}`}>
           {progress}
         </span>
         <span className={`type-title sm:type-heading font-semibold ml-0.5 ${isDark ? 'text-white/40' : 'text-black/35'}`}>
@@ -116,7 +116,7 @@ export function ProjectProgressCard({
       {/* Bottom Row: Collaborators & Action Button */}
       <div className="mt-4 pt-1 flex items-end justify-between gap-3 relative z-content">
         <div>
-          <span className={`block type-caption font-medium mb-2 tracking-tight ${isDark ? 'text-[#8E8E98]' : 'text-[#6E6E78]'}`}>
+          <span className={`block type-caption font-medium mb-2 tracking-tight text-(--text-secondary)`}>
             Collaborators {collaboratorsCount}
           </span>
           <div className="flex items-center gap-1">
@@ -138,7 +138,7 @@ export function ProjectProgressCard({
           className={`flex items-center gap-1 px-4 py-2 rounded-(--radius-pill) type-caption font-semibold cursor-pointer transition-all active:scale-95 ${
             isDark
               ? 'bg-white/[0.08] hover:bg-white/[0.14] text-white shadow-(--shadow-card)'
-              : 'bg-black/[0.05] hover:bg-black/[0.08] text-[#111116] shadow-(--elevation-1)'
+              : 'bg-black/[0.05] hover:bg-black/[0.08] text-(--text-primary) shadow-(--elevation-1)'
           }`}
         >
           <span>More details</span>
