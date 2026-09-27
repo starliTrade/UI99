@@ -368,6 +368,7 @@ export function RegistryStudio() {
   const [checkboxChecked, setCheckboxChecked] = useState(true);
   const [segmentedValue, setSegmentedValue] = useState('ALL');
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [importOpen, setImportOpen] = useState(false);
   const [tags, setTags] = useState(['react', 'tailwind-v4', 'obsidian', 'linear']);
   const [toggleState, setToggleState] = useState(true);
   const [packageManager, setPackageManager] = useState<'npm' | 'pnpm' | 'yarn' | 'bun'>('npm');
@@ -397,24 +398,25 @@ export function RegistryStudio() {
    * itself cannot be taken seriously.
    */
   const categories = useMemo(() => {
-    const meta: Record<string, { label: string; icon: typeof Layers }> = {
-      'Actions': { label: 'Actions & Buttons', icon: MousePointerClick },
-      'Forms': { label: 'Forms & Inputs', icon: Sparkles },
-      'Selection': { label: 'Selection & Toggles', icon: CheckSquare },
-      'Data Display': { label: 'Data & Metrics', icon: BarChart3 },
-      'Overlays': { label: 'Overlays & Dialogs', icon: Bell },
-      'Layout & Navigation': { label: 'Layout & Navigation', icon: Layout },
+    const meta: Record<string, { label: string; short: string; icon: typeof Layers }> = {
+      'Actions': { label: 'Actions & Buttons', short: isRTL ? 'اکشن‌ها' : 'Actions', icon: MousePointerClick },
+      'Forms': { label: 'Forms & Inputs', short: isRTL ? 'فرم‌ها' : 'Forms', icon: Sparkles },
+      'Selection': { label: 'Selection & Toggles', short: isRTL ? 'انتخاب' : 'Selection', icon: CheckSquare },
+      'Data Display': { label: 'Data & Metrics', short: isRTL ? 'داده' : 'Data', icon: BarChart3 },
+      'Overlays': { label: 'Overlays & Dialogs', short: isRTL ? 'اورلی‌ها' : 'Overlays', icon: Bell },
+      'Layout & Navigation': { label: 'Layout & Navigation', short: isRTL ? 'چیدمان' : 'Layout', icon: Layout },
     };
     const seen = new Map<string, number>();
     for (const c of REGISTRY_COMPONENTS) seen.set(c.category, (seen.get(c.category) ?? 0) + 1);
     const derived = [...seen.entries()].map(([cat, count]) => ({
       id: cat,
       label: meta[cat]?.label ?? cat,
+      short: meta[cat]?.short ?? cat,
       count,
       icon: meta[cat]?.icon ?? Layers,
     }));
     return [
-      { id: 'all', label: isRTL ? 'همه' : 'All', count: REGISTRY_COMPONENTS.length, icon: Layers },
+      { id: 'all', label: isRTL ? 'همه' : 'All', short: isRTL ? 'همه' : 'All', count: REGISTRY_COMPONENTS.length, icon: Layers },
       ...derived,
     ];
   }, [isRTL]);
@@ -576,19 +578,23 @@ export function RegistryStudio() {
           )}
         </div>
 
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x min-w-0 flex-1">
+        {/* Categories WRAP on a phone — a horizontal strip that fights the
+            page's vertical scroll is not responsive. From sm the row is
+            wide enough to scroll as one line again. */}
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-1 sm:gap-1.5 min-w-0 flex-1 sm:overflow-x-auto sm:no-scrollbar">
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setActiveCategory(cat.id)}
               aria-pressed={activeCategory === cat.id}
-              className={`relative inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-sm) type-micro font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT} ${
+              className={`relative inline-flex items-center gap-1.5 h-7 sm:h-8 px-2 sm:px-2.5 rounded-(--radius-sm) type-micro font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDE} ${
                 activeCategory === cat.id ? SELECTED_CHIP : IDLE_CHIP
               }`}
             >
               <cat.icon className="w-3 h-3 shrink-0" />
-              <span>{cat.label}</span>
+              <span className="sm:hidden">{cat.short}</span>
+              <span className="hidden sm:inline">{cat.label}</span>
               <span className="tabular-nums opacity-55">{cat.count}</span>
             </button>
           ))}
@@ -633,7 +639,7 @@ export function RegistryStudio() {
                 tabIndex={activeComponentId === c.id ? 0 : -1}
                 data-ribbon-item={c.id}
                 onClick={() => setActiveComponentId(c.id)}
-                className={`relative px-2 h-7 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDE} ${
+                className={`relative px-1.5 h-6 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDER} ${
                   activeComponentId === c.id ? SELECTED_CHIP : IDLE_CHIP
                 }`}
               >
@@ -1079,39 +1085,70 @@ export function RegistryStudio() {
           )}
 
           {studioView === 'cli' && (
-            <div className="space-y-3">
-              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-3 space-y-2">
+            <div className="space-y-2.5">
+              {/* Install — a padded code frame: label + PM picker on the head,
+                  the command in a recessed mono block with a real copy target. */}
+              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-3 space-y-2.5">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="type-caption font-mono text-(--text-secondary) font-semibold truncate">
                     {isRTL ? 'افزودن به پروژه' : 'Add component to your project'}
                   </span>
                   <PmPicker value={packageManager} onChange={setPackageManager} isRTL={isRTL} />
                 </div>
-                <CommandWell
-                  command={cliCommand}
-                  copied={copiedKey === 'cli-single'}
-                  onCopy={() => copy(cliCommand, 'cli-single')}
-                  isRTL={isRTL}
-                />
+                <div className="flex items-center gap-2 px-3 py-2.5 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) transition-colors">
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold type-caption font-mono select-none shrink-0">
+                    &gt;_
+                  </span>
+                  <code dir="ltr" className="flex-1 min-w-0 truncate type-caption font-mono text-(--text-primary)">
+                    {cliCommand}
+                  </code>
+                  <button
+                    type="button"
+                    onClick={() => copy(cliCommand, 'cli-single')}
+                    aria-label={isRTL ? 'کپی دستور نصب' : 'Copy install command'}
+                    className={`relative flex items-center justify-center h-7 w-7 shrink-0 rounded-(--radius-xs) text-(--text-muted) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer focus-ui99 ${HIT}`}
+                  >
+                    {copiedKey === 'cli-single' ? <Check className="icon-sm text-emerald-500 dark:text-emerald-400" /> : <Copy className="icon-sm" />}
+                  </button>
+                </div>
               </div>
 
-              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-3 space-y-2">
-                <div className="flex items-center justify-between gap-2">
+              {/* Import — a disclosure. Collapsed until asked for; the code
+                  block lives inside the open state. */}
+              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-3">
+                <button
+                  type="button"
+                  onClick={() => setImportOpen((o) => !o)}
+                  aria-expanded={importOpen}
+                  aria-controls="studio-import"
+                  className={`relative flex w-full items-center justify-between gap-2 cursor-pointer focus-ui99 ${HIT}`}
+                >
                   <span className="type-caption font-mono text-(--text-secondary) font-semibold truncate">
                     {isRTL ? 'دستور ایمپورت' : 'Import statement'}
                   </span>
-                  <button
-                    type="button"
-                    onClick={() => copy(`import { ${currentComp.title.replace(/[\s-]+/g, '')} } from '@/components/ui/${currentComp.name}';`, 'import-code')}
-                    aria-label={isRTL ? 'کپی ایمپورت' : 'Copy import'}
-                    className={`relative flex items-center justify-center h-8 w-8 rounded-(--radius-xs) text-(--text-muted) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT}`}
-                  >
-                    {copiedKey === 'import-code' ? <Check className="icon-sm text-emerald-500 dark:text-emerald-400" /> : <Copy className="icon-sm" />}
-                  </button>
-                </div>
-                <div className="px-3 py-2.5 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) font-mono type-micro sm:type-caption text-(--text-primary) overflow-x-auto no-scrollbar whitespace-nowrap" dir="ltr">
-                  import &#123; {currentComp.title.replace(/[\s-]+/g, '')} &#125; from '@/components/ui/{currentComp.name}';
-                </div>
+                  <ChevronDown
+                    aria-hidden="true"
+                    className={`icon-xs text-(--text-muted) transition-transform ${importOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {importOpen && (
+                  <div id="studio-import" className="mt-2.5 flex items-center gap-2 px-3 py-2.5 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle)">
+                    <code
+                      dir="ltr"
+                      className="flex-1 min-w-0 truncate type-caption font-mono text-(--text-primary) whitespace-nowrap overflow-x-auto no-scrollbar"
+                    >
+                      {`import { ${currentComp.title.replace(/[\s-]+/g, '')} } from '@/components/ui/${currentComp.name}';`}
+                    </code>
+                    <button
+                      type="button"
+                      onClick={() => copy(`import { ${currentComp.title.replace(/[\s-]+/g, '')} } from '@/components/ui/${currentComp.name}';`, 'import-code')}
+                      aria-label={isRTL ? 'کپی ایمپورت' : 'Copy import'}
+                      className={`relative flex items-center justify-center h-7 w-7 shrink-0 rounded-(--radius-xs) text-(--text-muted) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer focus-ui99 ${HIT}`}
+                    >
+                      {copiedKey === 'import-code' ? <Check className="icon-sm text-emerald-500 dark:text-emerald-400" /> : <Copy className="icon-sm" />}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           )}
