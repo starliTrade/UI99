@@ -32,9 +32,10 @@
  *   field     --         radius-field inputs and search
  *
  * Structure, in reading order: identity -> browser -> ribbon -> switcher ->
- * workbench -> spec. ONE view switcher (not one per view), and the spec sheet
- * is content on a phone — always visible below the workbench — while desktop
- * gets it as a right rail from lg. Same Inspector component, two placements.
+ * workbench -> spec. ONE view switcher (not one per view). On a phone the
+ * spec sheet is a CLOSED dropdown row — tap to unfold the inspector in place;
+ * desktop gets the same inspector as a right rail from lg. Two placements,
+ * one component.
  *
  * A11y: WAI-ARIA tabs on the ribbon (roving tabindex, RTL-aware arrow keys),
  * radiogroup on the PM picker, labelled icon-only buttons, focus-ui99 rings
@@ -369,6 +370,7 @@ export function RegistryStudio() {
   const [segmentedValue, setSegmentedValue] = useState('ALL');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [importOpen, setImportOpen] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
   const [tags, setTags] = useState(['react', 'tailwind-v4', 'obsidian', 'linear']);
   const [toggleState, setToggleState] = useState(true);
   const [packageManager, setPackageManager] = useState<'npm' | 'pnpm' | 'yarn' | 'bun'>('npm');
@@ -500,9 +502,6 @@ export function RegistryStudio() {
           </span>
           <h2 className="type-caption font-mono min-w-0 truncate">
             <span className="font-semibold text-(--text-primary)">{currentComp.title}</span>
-            <span className="ms-1.5 px-1.5 py-0.5 rounded-(--radius-xs) type-micro bg-(--bg-raised) dark:bg-(--bg-wash) text-(--text-secondary) font-normal">
-              {currentComp.primitive || 'Native'}
-            </span>
             <span className="hidden lg:inline-flex ms-1.5 px-1.5 py-0.5 rounded-(--radius-xs) type-micro bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 align-middle">
               WCAG 2.2 AA
             </span>
@@ -578,23 +577,21 @@ export function RegistryStudio() {
           )}
         </div>
 
-        {/* Categories WRAP on a phone — a horizontal strip that fights the
-            page's vertical scroll is not responsive. From sm the row is
-            wide enough to scroll as one line again. */}
-        <div className="flex flex-wrap sm:flex-nowrap items-center gap-1 sm:gap-1.5 min-w-0 flex-1 sm:overflow-x-auto sm:no-scrollbar">
+        {/* Categories: ONE clean horizontal scroll row at every breakpoint —
+            short labels keep the strip tight on a phone. */}
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x min-w-0 flex-1">
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setActiveCategory(cat.id)}
               aria-pressed={activeCategory === cat.id}
-              className={`relative inline-flex items-center gap-1.5 h-7 sm:h-8 px-2 sm:px-2.5 rounded-(--radius-sm) type-micro font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDE} ${
+              className={`relative inline-flex items-center gap-1.5 h-6 px-2 rounded-(--radius-sm) type-micro font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDER} ${
                 activeCategory === cat.id ? SELECTED_CHIP : IDLE_CHIP
               }`}
             >
               <cat.icon className="w-3 h-3 shrink-0" />
-              <span className="sm:hidden">{cat.short}</span>
-              <span className="hidden sm:inline">{cat.label}</span>
+              <span>{cat.short}</span>
               <span className="tabular-nums opacity-55">{cat.count}</span>
             </button>
           ))}
@@ -1194,18 +1191,37 @@ export function RegistryStudio() {
         </aside>
       </div>
 
-      {/* 6 - SPEC SHEET — the phone placement. Spec is content, not a
-          hidden drawer: it is always visible below the workbench. */}
-      <div className="lg:hidden border-t border-(--border-subtle) bg-(--bg-surface) px-3 sm:px-4 py-4">
-        <Inspector
-          comp={currentComp}
-          isRTL={isRTL}
-          deps={realDeps}
-          copied={copiedKey === 'mobile-add'}
-          onCopy={() => copy(cliCommand, 'mobile-add')}
-          onOpenDocs={openDocs}
-          variant="sheet"
-        />
+      {/* 6 - SPEC SHEET — the phone placement. One closed dropdown row:
+          tap to unfold the full inspector in place. */}
+      <div className="lg:hidden border-t border-(--border-subtle) bg-(--bg-surface) px-3 sm:px-4">
+        <button
+          type="button"
+          onClick={() => setSheetOpen((o) => !o)}
+          aria-expanded={sheetOpen}
+          aria-controls="studio-sheet"
+          className={`relative flex w-full items-center justify-between gap-2 py-3 cursor-pointer focus-ui99 ${HIT}`}
+        >
+          <span className="type-caption font-mono font-semibold text-(--text-secondary)">
+            {isRTL ? 'مشخصات و جزئیات' : 'Specification & details'}
+          </span>
+          <ChevronDown
+            aria-hidden="true"
+            className={`icon-xs text-(--text-muted) transition-transform ${sheetOpen ? 'rotate-180' : ''}`}
+          />
+        </button>
+        {sheetOpen && (
+          <div id="studio-sheet" className="pb-4">
+            <Inspector
+              comp={currentComp}
+              isRTL={isRTL}
+              deps={realDeps}
+              copied={copiedKey === 'mobile-add'}
+              onCopy={() => copy(cliCommand, 'mobile-add')}
+              onOpenDocs={openDocs}
+              variant="sheet"
+            />
+          </div>
+        )}
       </div>
     </section>
   );
