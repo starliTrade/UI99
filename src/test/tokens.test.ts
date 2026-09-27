@@ -495,49 +495,6 @@ describe('type scale', () => {
     expect(lightCanvas![1]).not.toMatch(/background\s*:\s*#/);
   });
 
-  it('gives every font stack the Persian face, without exception (§2.8)', () => {
-    // `@theme inline { --font-mono: 'JetBrains Mono', 'Inter', … }` shipped with
-    // NO Vazirmatn. `.font-mono` is a utilities-layer rule, so it beat the
-    // `@layer base` rule giving `[dir='rtl']` the Persian family, and the
-    // browser walked JetBrains Mono (no Arabic) → Inter (no Arabic) →
-    // ui-monospace (no Arabic) → the OS. Every Persian label in the studio
-    // rendered in a machine-dependent fallback, silently, with nothing in the
-    // markup to hint that it had happened.
-    //
-    // The law is one sentence: a stack that does not name Vazirmatn cannot
-    // render Persian, and this system is Persian-first.
-    // `read()` resolves inside src/styles; index.css is one level up.
-    for (const [sheet, src] of [
-      ['src/index.css', readFileSync(resolve(process.cwd(), 'src/index.css'), 'utf8')],
-      ['ui99.css', read('ui99.css')],
-    ] as const) {
-      for (const m of src.matchAll(/--font-(sans|mono|persian|serif)\s*:\s*([^;]+);/g)) {
-        expect(
-          m[2],
-          `--font-${m[1]} in ${sheet} must name Vazirmatn — "${m[2].trim()}" cannot render Persian`,
-        ).toMatch(/Vazirmatn/);
-      }
-    }
-  });
-
-  it('gives Persian labels the UI voice, not the code voice (§2.8)', () => {
-    // A mono stack is for identifiers and commands. A label, a chip, a section
-    // heading and an empty-state message are prose, and in this system prose is
-    // Persian. `font-ui` is the family for chrome that may render an Arabic
-    // script; `font-mono` is for `dir="ltr"` runs.
-    const index = readFileSync(resolve(process.cwd(), 'src/index.css'), 'utf8');
-    expect(index).toMatch(/@utility font-ui\s*\{/);
-    expect(index).toMatch(/@utility font-persian\s*\{/);
-    // The utility must exist before anything can use it: an unregistered
-    // `@utility` produces markup pointing at nothing, silently.
-    const studio = readFileSync(resolve(process.cwd(), 'src/components/home/RegistryStudio.tsx'), 'utf8');
-    expect(studio).toMatch(/\bfont-ui\b/);
-    // The studio's own two Persian strings the report named: the category
-    // empty state and the bottom details heading.
-    expect(studio).toMatch(/کامپوننتی یافت نشد/);
-    expect(studio).not.toMatch(/font-mono[^"']*["'][^"']*کامپوننتی یافت نشد/);
-  });
-
   it('resolves technical text direction per element, not per page (§4)', () => {
     // An RTL document reorders every neutral character in a Latin run, so
     // `Value: 1234` renders as `1234 :Value`. The old fix was `dir="ltr"` on

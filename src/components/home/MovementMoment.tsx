@@ -72,7 +72,7 @@ export function MovementMoment({
           </span>
         </div>
 
-        <div className="flex items-center gap-1 type-caption font-ui font-bold text-orange-400">
+        <div className="flex items-center gap-1 type-caption font-mono font-bold text-orange-400">
           <Flame className="icon-sm fill-current" />
           <span>{streak} {isRTL ? 'روز' : 'days'}</span>
         </div>

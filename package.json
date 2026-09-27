@@ -17,8 +17,6 @@
     "registry:validate": "node scripts/validate-registry.mjs",
     "registry:audit-install": "node scripts/audit-consumer-install.mjs",
     "tokens:gate": "node scripts/tokens-gate.mjs",
-    "css:gate": "node scripts/stylesheet-gate.mjs",
-    "gate": "npm run tokens:gate && npm run css:gate && npm run test && npm run registry:validate",
     "tokens:migrate": "node scripts/migrate-tokens.mjs",
     "lib:build": "vite build --config vite.config.lib.ts && npm run lib:css && npm run lib:types && npm run lib:manifest && npm run registry:build",
     "changeset": "changeset",

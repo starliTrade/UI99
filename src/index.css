@@ -68,53 +68,20 @@
 
 /* Expose state-layer tokens as Tailwind utilities: bg-state-hover, bg-state-press, ... */
 @theme inline {
-  /* ═══ THE FONT LAW ══════════════════════════════════════════════════════
-     One place decides the stacks, and every stack carries Vazirmatn.
-
-     `--font-mono` shipped here WITHOUT Vazirmatn. `.font-mono` is a
-     utilities-layer rule, so it beat the @layer base rule that gives
-     `[dir='rtl']` the Persian family, and the browser walked the whole stack —
-     JetBrains Mono (no Arabic), Inter (no Arabic), ui-monospace (no Arabic) —
-     and landed on whatever the OS has. Every Persian label in the studio
-     rendered in a machine-dependent fallback, silently, with nothing in the
-     markup to hint that it had happened.
-
-     The law is one sentence: a stack that does not name Vazirmatn cannot
-     render Persian, and this system is Persian-first. */
-  --font-sans: 'Inter', 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  /* Code voice. Vazirmatn is the per-glyph fallback for a Latin monospace run,
-     so a Persian word inside a code block does not drop to the OS monospace. */
-  --font-mono: 'JetBrains Mono', 'Vazirmatn', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  /* Persian voice, for a Persian value inside an otherwise-Latin row. */
-  --font-persian: 'Vazirmatn', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --color-state-hover: var(--state-hover);
   --color-state-press: var(--state-press);
   --color-state-selected: var(--state-selected);
-  --color-drag: var(--state-drag);
+  --color-state-drag: var(--state-drag);
+  --font-mono: 'JetBrains Mono', 'Inter', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: 'Inter', 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* `font-ui` — the family for UI CHROME THAT MAY RENDER PERSIAN. Not a Tailwind
-   built-in, because the distinction that matters is not sans-vs-mono but "does
-   this element's text ever go through an Arabic script": a label, a chip, a
-   section heading, a table cell, a search field. The code voice is for
-   identifiers and commands, and those are `dir="ltr"` by construction. */
-@utility font-ui {
-  font-family: var(--font-sans);
-}
-
-/* `font-persian` — the Persian face explicitly, for a Persian value that sits
-   inside an otherwise-Latin row and must not inherit the Latin one. */
-@utility font-persian {
-  font-family: var(--font-persian);
-}
-
-/* `font-code` — the mono voice for an inline command or identifier. Vazirmatn
-   is in this stack on purpose: JetBrains Mono carries no Arabic glyphs, so a
-   Persian label inside a code block used to drop to whatever monospace the OS
-   had — a different voice, a different weight, a different baseline than the
-   JetBrains digits beside it. Per-glyph fallback is what keeps a bilingual
-   `npm i @99/ui` line reading as ONE piece of type. */
 @utility font-code {
+  /* Vazirmatn is in this stack on purpose. JetBrains Mono carries no Arabic
+     glyphs, so a Persian label inside a code block used to drop to whatever
+     monospace the OS had — a different voice, a different weight, a different
+     baseline than the JetBrains digits beside it. Per-glyph fallback is what
+     keeps a bilingual `npm i @99/ui` line reading as ONE piece of type. */
   font-family: 'JetBrains Mono', 'Vazirmatn', 'Inter', ui-monospace, SFMono-Regular, Menlo, monospace;
   font-feature-settings: "calt" 1, "zero" 1, "ss01" 1;
 }
