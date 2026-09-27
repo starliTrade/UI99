@@ -13,10 +13,11 @@
  * a visual one. Controls stay pro-dense (28–32px) at EVERY breakpoint; a
  * transparent after-pseudo expands the hit area out to the floor:
  *
- *   28px visual + HIT_WIDE (-inset-2)  = 44px touch  stepper, icon buttons
- *   32px visual + HIT      (-inset-1.5) = 44px touch  chips, tabs, pills
- *   36px field, no expansion            search input (inputs cannot carry
- *                                                      pseudo hit areas)
+ *   24px visual + HIT_WIDER (-inset-2.5) = 44px touch view tabs, pm lanes
+ *   28px visual + HIT_WIDE  (-inset-2)   = 44px touch stepper, icon buttons
+ *   32px visual + HIT       (-inset-1.5) = 44px touch chips, pills
+ *   36px field, no expansion             search input (inputs cannot carry
+ *                                                        pseudo hit areas)
  *   well    recessed     command trays sit in bg-sunken, never elevated
  *
  * Zone anatomy (all radii/fills are tokens, zero raw alphas, one matte fill
@@ -43,7 +44,7 @@
 import { useMemo, useState } from 'react';
 import {
   ArrowRight, BarChart3, Bell, BookOpen, Check, CheckCircle2, CheckSquare,
-  ChevronLeft, ChevronRight, Code2, Copy, Eye, Github, Layers, Layout,
+  ChevronDown, ChevronLeft, ChevronRight, Code2, Copy, Eye, Github, Layers, Layout,
   MousePointerClick, Palette, Plus, Search, Sparkles, Terminal, X, Zap,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
@@ -75,6 +76,7 @@ const IDLE_CHIP =
  */
 const HIT = "after:absolute after:-inset-1.5 after:content-['']"; // 32px visuals
 const HIT_WIDE = "after:absolute after:-inset-2 after:content-['']"; // 28px visuals
+const HIT_WIDER = "after:absolute after:-inset-2.5 after:content-['']"; // 24px visuals
 
 type StudioView = 'stage' | 'code' | 'cli' | 'tokens';
 
@@ -111,7 +113,7 @@ function ViewTabs({
           role="tab"
           aria-selected={view === v.id}
           onClick={() => onChange(v.id)}
-          className={`relative flex items-center justify-center gap-1.5 h-8 px-2.5 rounded-(--radius-xs) type-caption font-mono transition-colors cursor-pointer focus-ui99 ${HIT} ${
+          className={`relative flex items-center justify-center gap-1 h-6 px-2 rounded-(--radius-xs) type-micro font-mono transition-colors cursor-pointer focus-ui99 ${HIT_WIDER} ${
             view === v.id ? SELECTED_CHIP : IDLE_CHIP
           }`}
         >
@@ -148,7 +150,7 @@ function PmPicker({
           role="radio"
           aria-checked={value === pm}
           onClick={() => onChange(pm)}
-          className={`relative flex items-center justify-center h-8 px-2.5 rounded-(--radius-xs) type-micro font-mono uppercase whitespace-nowrap cursor-pointer transition-colors focus-ui99 ${HIT} ${
+          className={`relative flex items-center justify-center h-6 px-2 rounded-(--radius-xs) type-micro font-mono uppercase whitespace-nowrap cursor-pointer transition-colors focus-ui99 ${HIT_WIDER} ${
             value === pm ? SELECTED_CHIP : IDLE_CHIP
           }`}
         >
@@ -178,13 +180,13 @@ function CommandWell({
       type="button"
       onClick={onCopy}
       aria-label={isRTL ? `کپی دستور: ${command}` : `Copy command: ${command}`}
-      className="flex-1 min-w-0 flex items-center justify-between gap-2 px-3 h-9 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) font-mono transition-colors cursor-pointer focus-ui99"
+      className="flex-1 min-w-0 flex items-center justify-between gap-2 px-2.5 h-7 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) font-mono transition-colors cursor-pointer focus-ui99"
     >
       <span className="flex items-center gap-1.5 min-w-0">
-        <span className="text-emerald-500 dark:text-emerald-400 font-bold type-caption select-none shrink-0">
+        <span className="text-emerald-500 dark:text-emerald-400 font-bold type-micro select-none shrink-0">
           &gt;_
         </span>
-        <span dir="ltr" className="truncate type-micro sm:type-caption text-(--text-primary)">
+        <span dir="ltr" className="truncate type-micro text-(--text-primary)">
           {command}
         </span>
       </span>
@@ -199,7 +201,8 @@ function CommandWell({
  * The spec sheet — registry truth about the component. One presentational
  * component, two placements: a right rail from lg (variant="rail") and an
  * always-visible sheet under the workbench on a phone (variant="sheet").
- * No second data source, no hidden features.
+ * No second data source. The Specification block is a disclosure — collapsed
+ * until asked for — so the sheet leads with capabilities, not metadata.
  */
 function Inspector({
   comp, isRTL, deps, copied, onCopy, onOpenDocs, variant,
@@ -214,32 +217,49 @@ function Inspector({
 }) {
   const propLimit = variant === 'rail' ? 6 : 4;
   const actionSize = variant === 'rail' ? 'h-9' : 'h-10';
+  const [specOpen, setSpecOpen] = useState(false);
 
   return (
     <div className="space-y-4">
       <section>
-        <h3 className="type-caption font-mono font-bold text-(--text-primary) mb-2">
-          {isRTL ? 'مشخصات' : 'Specification'}
-        </h3>
-        <dl className="grid grid-cols-2 gap-x-3 gap-y-2 type-micro font-mono">
-          {[
-            { l: isRTL ? 'دسته' : 'Category', v: comp.category },
-            { l: isRTL ? 'اولیه' : 'Primitive', v: comp.primitive || (isRTL ? 'بومی' : 'Native') },
-            { l: isRTL ? 'نسخه' : 'Version', v: `v${comp.version}` },
-            { l: isRTL ? 'پروپس' : 'Props', v: String(comp.props.length), tone: true },
-          ].map((f) => (
-            <div key={f.l} className="min-w-0">
-              <dt className="text-(--text-muted)">{f.l}</dt>
-              <dd className={`truncate ${'tone' in f && f.tone ? 'text-emerald-600 dark:text-emerald-400' : 'text-(--text-primary)'}`}>
-                {f.v}
-              </dd>
-            </div>
-          ))}
-        </dl>
-        {deps.length > 0 && (
-          <p className="mt-2 type-micro font-mono text-(--text-secondary) truncate">
-            {isRTL ? 'وابستگی: ' : 'Deps: '}{deps.join(', ')}
-          </p>
+        <button
+          type="button"
+          onClick={() => setSpecOpen((o) => !o)}
+          aria-expanded={specOpen}
+          aria-controls={`studio-spec-${variant}`}
+          className={`relative flex w-full items-center justify-between gap-2 mb-2 cursor-pointer focus-ui99 ${HIT}`}
+        >
+          <span className="type-caption font-mono font-bold text-(--text-primary)">
+            {isRTL ? 'مشخصات' : 'Specification'}
+          </span>
+          <ChevronDown
+            aria-hidden="true"
+            className={`icon-xs text-(--text-muted) transition-transform ${specOpen ? 'rotate-180' : ''}`}
+          />
+        </button>
+        {specOpen && (
+          <div id={`studio-spec-${variant}`} className="space-y-2">
+            <dl className="grid grid-cols-2 gap-x-3 gap-y-2 type-micro font-mono">
+              {[
+                { l: isRTL ? 'دسته' : 'Category', v: comp.category },
+                { l: isRTL ? 'اولیه' : 'Primitive', v: comp.primitive || (isRTL ? 'بومی' : 'Native') },
+                { l: isRTL ? 'نسخه' : 'Version', v: `v${comp.version}` },
+                { l: isRTL ? 'پروپس' : 'Props', v: String(comp.props.length), tone: true },
+              ].map((f) => (
+                <div key={f.l} className="min-w-0">
+                  <dt className="text-(--text-muted)">{f.l}</dt>
+                  <dd className={`truncate ${'tone' in f && f.tone ? 'text-emerald-600 dark:text-emerald-400' : 'text-(--text-primary)'}`}>
+                    {f.v}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            {deps.length > 0 && (
+              <p className="type-micro font-mono text-(--text-secondary) truncate">
+                {isRTL ? 'وابستگی: ' : 'Deps: '}{deps.join(', ')}
+              </p>
+            )}
+          </div>
         )}
       </section>
 
@@ -542,7 +562,7 @@ export function RegistryStudio() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={isRTL ? 'جستجو…' : 'Search…'}
             aria-label={isRTL ? 'جستجوی کامپوننت' : 'Search components'}
-            className="w-full h-10 sm:h-8 ps-8 pe-9 sm:pe-2 rounded-(--radius-field) bg-(--bg-card) dark:bg-(--bg-wash) border border-(--border-soft) type-caption text-(--text-primary) placeholder:text-(--text-muted) focus:outline-none focus:border-(--border-strong) focus-ui99-inset font-mono"
+            className="w-full h-9 sm:h-7 ps-8 pe-9 sm:pe-2 rounded-(--radius-field) bg-(--bg-card) dark:bg-(--bg-wash) border border-(--border-soft) type-caption text-(--text-primary) placeholder:text-(--text-muted) focus:outline-none focus:border-(--border-strong) focus-ui99-inset font-mono"
           />
           {searchQuery !== '' && (
             <button
@@ -613,7 +633,7 @@ export function RegistryStudio() {
                 tabIndex={activeComponentId === c.id ? 0 : -1}
                 data-ribbon-item={c.id}
                 onClick={() => setActiveComponentId(c.id)}
-                className={`relative px-2.5 h-8 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT} ${
+                className={`relative px-2 h-7 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 ${HIT_WIDE} ${
                   activeComponentId === c.id ? SELECTED_CHIP : IDLE_CHIP
                 }`}
               >
@@ -993,7 +1013,7 @@ export function RegistryStudio() {
 
               {/* Quick-add tray — demo chips for stateful specimens, then the
                   universal PM + install row. One tray, one visual weight. */}
-              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-3.5 space-y-3">
+              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-2 space-y-2">
                 {activeComponentId === 'button' && (
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                     <div className="flex items-center gap-1.5 min-w-0">
@@ -1035,7 +1055,7 @@ export function RegistryStudio() {
                   </div>
                 )}
 
-                <div className={`flex flex-col sm:flex-row sm:items-center gap-2.5 ${activeComponentId === 'button' ? 'pt-3 border-t border-(--border-subtle)' : ''}`}>
+                <div className={`flex flex-col sm:flex-row sm:items-center gap-2 ${activeComponentId === 'button' ? 'pt-2 border-t border-(--border-subtle)' : ''}`}>
                   <PmPicker value={packageManager} onChange={setPackageManager} isRTL={isRTL} />
                   <CommandWell
                     command={cliCommand}
