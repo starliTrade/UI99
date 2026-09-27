@@ -24,6 +24,15 @@
      button, a chip, a pill and an icon button are one kind of thing and must
      wear one fill. It sits 2 levels off the canvas, never below it. */
   --bg-control: rgba(255, 255, 255, 0.05);
+  /* --bg-quiet — the closest a control may sit to the canvas and still read as
+     a filled button, not a shadow. The distance from base was measured, not
+     guessed: Δ +6 of 255 in dark. Anything lower fails: at a=0.006 the fill
+     composites to #07080B, Δ +4, which is exactly --bg-sunken — a recessed
+     well, not a button. The step to hover is +9 (a=0.008 -> 0.020) so the
+     three states stay distinguishable: base / rest / hover = 0 / +6 / +15.
+     See §2.9. */
+  --bg-quiet: rgba(255, 255, 255, 0.008);
+  --bg-quiet-hover: rgba(255, 255, 255, 0.020);
   --border-subtle: rgba(255, 255, 255, 0.025);
   --border-soft: rgba(255, 255, 255, 0.035);
   --border-strong: rgba(255, 255, 255, 0.05);
@@ -127,6 +136,16 @@
      in the page. 0.025 lands 3 levels above the canvas — the same "barely
      there, one step off the background" the dark value gives. §2.6. */
   --bg-control: rgba(0, 0, 0, 0.025);
+  /* --bg-quiet — the same ±6-of-255 gap from the canvas in BOTH themes. Measured,
+     not guessed: dark a=0.008 lands Δ +6 above #060709; light a=0.008 lands Δ −6
+     below #FAFAFC (at these magnitudes the alpha rounds to the same integer
+     level in both polarities — the 1.875x scaling of --bg-control only matters
+     once tints stop rounding away, which is why that token differs and this one
+     does not). Hover step −7 mirrors dark's +9: same ladder family (4/7/10).
+     Anything lower fails: a≤0.006 in dark composites to exactly --bg-sunken —
+     a recessed well, not a button. See §2.9. */
+  --bg-quiet: rgba(0, 0, 0, 0.008);
+  --bg-quiet-hover: rgba(0, 0, 0, 0.018);
   /* Borders — identical alphas to dark. The old ladder ran 0.035/0.045/0.08,
      which is 1.4-1.5x the dark edge, so light surfaces were ringed harder than
      dark ones precisely where dark was whispering. */
