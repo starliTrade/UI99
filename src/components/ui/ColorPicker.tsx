@@ -140,7 +140,7 @@ export function ColorPicker({
             type="button"
             onClick={handleEyeDropper}
             aria-label="Pick color from screen"
-            className="w-5 h-5 rounded-(--radius-sm) border border-black/10 dark:border-white/10 flex items-center justify-center bg-(--bg-subtle) dark:bg-(--bg-wash) text-(--text-muted) hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="w-5 h-5 rounded-(--radius-sm) border border-black/10 dark:border-white/10 flex items-center justify-center bg-(--bg-control) hover:bg-(--bg-control-hover) text-(--text-muted) hover:text-(--text-primary) transition-colors"
           >
             <Pipette className="icon-xs" />
           </button>

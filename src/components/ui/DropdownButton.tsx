@@ -95,7 +95,7 @@ export function DropdownButton({
     secondary:
       'bg-(--bg-subtle) dark:bg-(--bg-elevated) text-zinc-900 dark:text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card-hover) border border-(--border-soft)',
     outline:
-      'bg-transparent text-zinc-900 dark:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) border border-(--border-strong) dark:border-(--border-strong)',
+      'bg-transparent text-zinc-900 dark:text-white hover:bg-(--bg-control-hover) border border-(--border-strong) dark:border-(--border-strong)',
   }[variant];
 
   const currentLabel = options.find((o) => o.value === selected)?.label || label;
@@ -125,8 +125,8 @@ export function DropdownButton({
               }}
               className={`w-full px-3 py-1 type-caption text-left font-mono flex items-center justify-between transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
                 selected === opt.value
-                  ? 'bg-(--bg-subtle) dark:bg-(--bg-raised) text-emerald-500 font-bold'
-                  : 'text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
+                  ? 'bg-(--bg-control) text-emerald-500 font-bold'
+                  : 'text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-control-hover)'
               }`}
             >
               <div className="flex items-center gap-2">

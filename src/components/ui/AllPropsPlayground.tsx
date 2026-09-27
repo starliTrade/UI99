@@ -873,7 +873,7 @@ export function AllPropsPlayground() {
                 <HoverCardTrigger asChild>
                   <button
                     type="button"
-                    className="h-10 px-4 rounded-(--radius-field) type-body font-medium bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
+                    className="h-10 px-4 rounded-(--radius-field) type-body font-medium bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-soft) cursor-pointer focus-visible:outline-none focus-ui99"
                   >
                     Hover / focus me
                   </button>

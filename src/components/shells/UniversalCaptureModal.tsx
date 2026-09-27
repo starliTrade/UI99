@@ -213,7 +213,7 @@ export function UniversalCaptureModal() {
                   className={`px-3 py-1 rounded-(--radius-pill) type-caption font-semibold flex items-center gap-1 transition-all cursor-pointer select-none active:scale-95 ${
                     isSelected
                       ? 'bg-white text-(--text-primary) shadow-(--elevation-2)'
-                      : 'bg-(--bg-elevated) text-zinc-400 border border-white/[0.08] hover:text-white'
+                      : 'bg-(--bg-control) hover:bg-(--bg-control-hover) text-(--text-secondary) border border-(--border-soft) hover:text-(--text-primary)'
                   }`}
                 >
                   {t.icon}

@@ -456,7 +456,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) text-(--text-secondary) flex items-center gap-1 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-soft) text-(--text-secondary) flex items-center gap-1 cursor-pointer"
                 >
                   <Filter className="icon-xs text-(--text-secondary)" />
                   <span className="capitalize">
@@ -486,7 +486,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) text-(--text-secondary) flex items-center gap-1 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-soft) text-(--text-secondary) flex items-center gap-1 cursor-pointer"
                 >
                   <span className="capitalize">
                     {priorityFilter === 'all' ? 'All Priorities' : priorityFilter}
@@ -556,7 +556,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                       <DropdownMenuTrigger asChild>
                         <button
                           type="button"
-                          className="px-2 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-elevated) border border-(--border-soft) dark:border-(--border-strong) flex items-center gap-1 cursor-pointer"
+                          className="px-2 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-soft) flex items-center gap-1 cursor-pointer"
                         >
                           <PriorityBadge priority={newPriority} showLabel={true} />
                         </button>
@@ -575,7 +575,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                       <DropdownMenuTrigger asChild>
                         <button
                           type="button"
-                          className="px-2 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-elevated) border border-(--border-soft) dark:border-(--border-strong) flex items-center gap-1 cursor-pointer"
+                          className="px-2 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-soft) flex items-center gap-1 cursor-pointer"
                         >
                           <StatusBadge status={newStatus} showLabel={true} />
                         </button>

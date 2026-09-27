@@ -137,7 +137,7 @@ export function Dropdown<T extends string = string>({
         onKeyDown={handleTriggerKeyDown}
         className={`w-full flex items-center justify-between rounded-(--radius-field) font-medium transition-all dur-quick cursor-pointer select-none focus-ui99 ${sizeClass} ${
           isDark
-            ? 'bg-(--bg-elevated) text-(--text-primary) border border-white/[0.06] hover:border-white/[0.14] shadow-xs'
+            ? 'bg-(--bg-control) hover:bg-(--bg-control-hover) text-(--text-primary) border border-(--border-soft)'
             : 'bg-white text-zinc-900 border border-black/[0.08] hover:border-black/[0.18] shadow-xs'
         }`}
         aria-expanded={isOpen}

@@ -285,7 +285,7 @@ export function FoundationsView() {
                 key={row.token}
                 type="button"
                 onClick={() => copyValue(`var(${row.token})`, row.token)}
-                className="text-left p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-wash) border border-(--border-soft) space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
+                className="text-left p-3 rounded-(--radius-control) bg-(--bg-control) hover:bg-(--bg-control-hover) border border-(--border-soft) space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
               >
                 <div
                   className="w-full h-12 rounded-(--radius-field) border border-(--border-soft) dark:border-(--border-strong)"
