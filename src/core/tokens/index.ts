@@ -70,6 +70,10 @@ export const tokens = {
       glass: 'rgba(14, 14, 19, 0.52)',  // Frosted liquid glass (blur 20px)
       glassSubtle: 'rgba(255, 255, 255, 0.045)', // Active navigation cushion
       highlightInset: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+      /* §2.6 — the ONE resting fill for a secondary control. A button, a chip,
+         a pill and an icon button are one kind of object; three peers in the
+         same 32px row once wore three different fills. */
+      control: 'rgba(255, 255, 255, 0.05)',
     },
     text: {
       primary: '#EDEDEF',               // High-contrast refined silver white
@@ -120,6 +124,9 @@ export const tokens = {
       /* Darkened, like every other light rim — a white highlight on a white
          card composites to nothing. Same alphas as dark's, polarity flipped. */
       highlightInset: 'inset 0 1px 0 0 rgba(23, 22, 40, 0.04)',
+      /* 0.025, not 0.04: light tints are perceptually far steeper, and 4% ink on
+         a white card lands 11 levels BELOW the canvas — a hole in the page. */
+      control: 'rgba(0, 0, 0, 0.025)',
     },
     text: {
       primary: '#111116',               // Deep obsidian charcoal text

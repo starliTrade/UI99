@@ -22,8 +22,15 @@ export const buttonVariants = cva(
       variant: {
         primary:
           'bg-(--ink-fill) text-(--ink-on-fill) hover:bg-(--ink-fill) border border-black/10 shadow-xs dark:border-white/10 dark:shadow-(--elevation-2)',
+        // §2.6 — one resting surface for every secondary control, in BOTH
+        // themes, with no light/dark fork at all. The old version had a raw
+        // `bg-zinc-100` on the light side, which is an opaque #F4F4F5: 24
+        // levels darker than the card it sits on and 13 levels BELOW the page
+        // canvas, so in porcelain it read as a hole punched in the page rather
+        // than a button resting on it. `dark:` is gone because there is nothing
+        // left to differ — the token already carries the polarity flip.
         secondary:
-          'bg-zinc-100 text-zinc-800 hover:bg-state-hover hover:text-black border border-(--border-soft) shadow-xs dark:bg-(--bg-wash) dark:text-(--text-primary) dark:hover:text-white dark:border-(--border-subtle) shadow-(--shadow-card)',
+          'bg-(--bg-control) text-(--text-primary) hover:bg-(--state-hover) border border-(--border-soft) shadow-(--shadow-card)',
         outline:
           'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-(--text-primary) dark:border-(--border-soft)',
         ghost:
@@ -36,7 +43,7 @@ export const buttonVariants = cva(
         'white-pill':
           'bg-(--ink-fill) text-(--ink-on-fill) font-semibold shadow-xs border border-white/20 dark:border-white/10',
         'dark-pill':
-          'bg-(--bg-sunken) text-(--text-primary) hover:bg-(--bg-card-hover) hover:text-white border border-black/10 dark:bg-(--bg-wash) dark:border-(--border-subtle) shadow-(--shadow-card) shadow-xs',
+          'bg-(--bg-control) text-(--text-primary) hover:bg-(--state-hover) border border-(--border-soft) shadow-(--shadow-card)',
         rose:
           'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
       },
@@ -140,9 +147,13 @@ export const iconButtonVariants = cva(
         primary:
           'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs',
         white:
-          'bg-white text-zinc-900 hover:bg-zinc-100 shadow-xs border border-black/[0.06] dark:bg-(--text-primary) dark:text-(--ink-on-fill) dark:hover:bg-white',
+          'bg-white text-zinc-900 hover:opacity-90 shadow-xs border border-black/[0.06] dark:bg-(--text-primary) dark:text-(--ink-on-fill)',
+        // Same law, same token, same absence of a `dark:` fork as Button's
+        // secondary (§2.6). An icon button IS a secondary control — sizing it
+        // differently is how the GitHub button and the docs button ended up
+        // wearing different fills while sitting side by side.
         secondary:
-          'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 border border-(--border-soft) dark:bg-(--bg-card) dark:text-(--text-secondary) dark:hover:bg-(--bg-card) dark:border-(--border-strong)',
+          'bg-(--bg-control) text-(--text-secondary) hover:bg-(--state-hover) hover:text-(--text-primary) border border-(--border-soft)',
         outline:
           'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover dark:text-(--text-secondary) dark:border-(--border-strong)',
         ghost:
@@ -227,7 +238,7 @@ export function Tag({
 
   const variantStyle = {
     neutral:
-      'bg-zinc-100 text-zinc-700 border border-(--border-soft) dark:bg-(--bg-wash) dark:text-(--text-secondary) dark:border-(--border-strong)',
+      'bg-(--bg-control) text-(--text-secondary) border border-(--border-soft)',
     amber:
       'bg-amber-50 text-amber-800 border border-amber-300/40 font-medium dark:bg-amber-400/[0.08] dark:text-amber-300/90 dark:border-amber-400/20',
     purple:
@@ -237,7 +248,7 @@ export function Tag({
     red:
       'bg-rose-50 text-rose-800 border border-rose-300/40 font-medium dark:bg-rose-400/[0.08] dark:text-rose-300/90 dark:border-rose-400/20',
     rose:
-      'bg-stone-100 text-stone-800 border border-stone-200 font-medium dark:bg-(--bg-wash) dark:text-(--text-secondary) dark:border-(--border-strong)',
+      'bg-(--bg-control) text-(--text-secondary) font-medium border border-(--border-soft)',
     blue:
       'bg-blue-50 text-blue-800 border border-blue-300/40 font-medium dark:bg-blue-400/[0.08] dark:text-blue-300/90 dark:border-blue-400/20',
     outline:
@@ -307,7 +318,7 @@ export function Avatar({
         />
       ) : (
         <div
-          className={`rounded-(--radius-pill) bg-zinc-200 text-zinc-800 dark:bg-(--bg-card) dark:text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
+          className={`rounded-(--radius-pill) bg-(--bg-control) text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
         >
           {initial}
         </div>

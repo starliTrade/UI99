@@ -32,7 +32,7 @@ export function FloatingActionButton({
 
   const variantClasses = {
     primary:
-      'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 shadow-(--elevation-3) dark:shadow-(--elevation-3) border border-white/10 dark:border-white/20',
+      'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 hover:opacity-90 shadow-(--elevation-3) border border-white/10 dark:border-white/20',
     emerald:
       'bg-emerald-500 hover:bg-emerald-400 text-white shadow-(--elevation-3) border border-emerald-400/30',
     secondary:

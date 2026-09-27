@@ -145,6 +145,29 @@
     font-family: var(--font-sans);
   }
 
+  /* Technical text resolves its OWN direction. This is the single biggest
+     source of "the studio comes apart in Persian": a document set to RTL
+     reorders every neutral character in a Latin run, so `Value: 1234` renders
+     as `1234 :Value`, `+ 5 more` becomes `5 more +`, and a trailing `)` lands
+     on the wrong end of a prop type. The old fix was a `dir="ltr"` sprinkled
+     across 7 call sites, which is 7 chances to forget one — and the studio
+     alone has 40 spans of mono content.
+
+     `unicode-bidi: plaintext` makes the direction of each element follow the
+     direction of its own first strong character: Latin stays Latin, Persian
+     stays Persian, and a genuinely mixed element picks a side instead of
+     inheriting the page's. It is per-element, so it cannot leak outward, and
+     an element with no strong character falls back to the inherited direction
+     rather than guessing. Scoped to the mono/code utilities because that is
+     exactly the content class that is Latin-inside-an-RTL-page. */
+  [dir='rtl'] .font-mono,
+  [dir='rtl'] .font-code,
+  [dir='rtl'] code,
+  [dir='rtl'] kbd,
+  [dir='rtl'] samp {
+    unicode-bidi: plaintext;
+  }
+
   body {
     background-color: var(--bg-canvas);
     color: var(--text-primary);

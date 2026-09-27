@@ -630,7 +630,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                   isCursorActive
                     ? 'bg-(--bg-wash) dark:bg-(--bg-wash) shadow-(--accent-bar)'
                     : issue.completed
-                    ? 'bg-zinc-50/40 dark:bg-(--bg-subtle)'
+                    ? 'bg-(--bg-subtle)'
                     : 'hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle)'
                 }`}
               >
@@ -755,7 +755,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
         </div>
 
         {/* 4. FOOTER WITH LINEAR KEYBOARD GUIDE */}
-        <div className="px-5 py-3 border-t border-(--border-hairline) flex flex-wrap items-center justify-between gap-3 type-caption text-(--text-muted) dark:text-(--text-secondary) bg-zinc-50/30 dark:bg-(--bg-subtle)">
+        <div className="px-5 py-3 border-t border-(--border-hairline) flex flex-wrap items-center justify-between gap-3 type-caption text-(--text-muted) dark:text-(--text-secondary) bg-(--bg-subtle)">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
               <Kbd size="xs">J</Kbd> / <Kbd size="xs">K</Kbd> Navigate

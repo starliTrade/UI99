@@ -45,7 +45,7 @@ export function FileUpload({
       <label
         className={cn(
           'relative flex min-h-[96px] cursor-pointer flex-col items-center justify-center gap-2 rounded-(--radius-control) border border-dashed p-6 text-center transition-all dur-quick',
-          'border-(--border-strong) bg-zinc-50/60 dark:bg-(--bg-card)/60',
+          'border-(--border-strong) bg-(--bg-control)',
           'hover:border-emerald-500/40 hover:bg-emerald-500/[0.03] focus-visible:outline-none focus-ui99',
           isDragging && 'border-emerald-500 bg-emerald-500/[0.05] scale-[0.99]',
           disabled && 'opacity-40 pointer-events-none'

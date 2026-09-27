@@ -58,7 +58,7 @@ export function Checkbox({
             ? 'bg-emerald-500 text-white shadow-(--glow-accent-md) border border-emerald-400'
             : isDark
             ? 'bg-(--bg-elevated) border border-white/[0.1] peer-hover:border-white/[0.2]'
-            : 'bg-zinc-100 border border-black/[0.12] peer-hover:border-black/[0.25]'
+            : 'bg-(--bg-control) border border-(--border-soft) peer-hover:border-(--border-strong)'
         }`}
       >
         {checked && (
@@ -139,7 +139,7 @@ export function Radio({
             ? 'border-2 border-emerald-500'
             : isDark
             ? 'border border-white/[0.12] bg-(--bg-elevated) peer-hover:border-white/[0.25]'
-            : 'border border-black/[0.15] bg-zinc-100 peer-hover:border-black/[0.3]'
+            : 'border border-(--border-soft) bg-(--bg-control) peer-hover:border-(--border-strong)'
         }`}
       >
         {checked && (

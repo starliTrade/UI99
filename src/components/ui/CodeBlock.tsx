@@ -209,7 +209,7 @@ export function CodeBlock({
                 <div
                   key={idx}
                   className={cn(
-                    'table-row hover:bg-zinc-200/30 dark:hover:bg-(--bg-wash) transition-colors group/line',
+                    'table-row hover:bg-(--bg-wash) transition-colors group/line',
                     isHighlighted && 'bg-emerald-500/10 -mx-4 px-4'
                   )}
                 >

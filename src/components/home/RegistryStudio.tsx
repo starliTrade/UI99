@@ -332,7 +332,7 @@ function Inspector({
           type="button"
           onClick={onCopy}
           aria-label={isRTL ? 'کپی دستور نصب' : 'Copy install command'}
-          className={`relative flex items-center justify-center ${actionSize} ${variant === 'rail' ? 'w-9' : 'w-10'} shrink-0 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) text-(--text-secondary) hover:bg-(--state-hover) transition-colors cursor-pointer focus-ui99 ${HIT}`}
+          className={`relative flex items-center justify-center ${actionSize} ${variant === 'rail' ? 'w-9' : 'w-10'} shrink-0 rounded-(--radius-sm) bg-(--bg-control) border border-(--border-soft) text-(--text-secondary) hover:bg-(--state-hover) transition-colors cursor-pointer focus-ui99 ${HIT}`}
         >
           {copied ? <Check className="icon-sm text-emerald-500" /> : <Plus className="icon-sm" />}
         </button>
@@ -491,6 +491,7 @@ export function RegistryStudio() {
 
   return (
     <section
+      dir={isRTL ? 'rtl' : 'ltr'}
       className="rounded-(--radius-lg) border border-(--border-subtle) bg-(--bg-card) shadow-(--shadow-card) overflow-hidden"
       aria-label={isRTL ? 'استودیوی رجیستری' : 'Registry studio'}
     >
@@ -542,12 +543,16 @@ export function RegistryStudio() {
             </button>
           </div>
 
-          {/* Docs — icon-only 44px target on a phone, labelled pill from sm. */}
+          {/* Docs — icon-only 44px target on a phone, labelled pill from sm.
+              It wears `--bg-control` like every other secondary control (§2.6).
+              It used to be a bare ghost with no resting fill at all, which is
+              why the GitHub icon button and this one — peers, same row, same
+              job — read as two different objects. */}
           <button
             type="button"
             onClick={openDocs}
             aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
-            className={`relative flex items-center justify-center sm:justify-start gap-1 h-8 w-8 sm:w-auto sm:px-2 rounded-(--radius-sm) type-caption font-mono font-medium text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT_WIDE}`}
+            className={`relative flex items-center justify-center sm:justify-start gap-1 h-8 w-8 sm:w-auto sm:px-2 rounded-(--radius-sm) type-caption font-medium text-(--text-secondary) bg-(--bg-control) border border-(--border-soft) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT_WIDE}`}
           >
             <BookOpen className="icon-xs shrink-0" />
             <span className="hidden sm:inline">{isRTL ? 'مستندات' : 'Full API'}</span>

@@ -91,7 +91,7 @@ export function DropdownButton({
 
   const variantStyles = {
     primary:
-      'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 border border-transparent shadow-xs',
+      'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 hover:opacity-90 border border-transparent shadow-xs',
     secondary:
       'bg-(--bg-subtle) dark:bg-(--bg-elevated) text-zinc-900 dark:text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card-hover) border border-(--border-soft) dark:border-(--border-soft)',
     outline:

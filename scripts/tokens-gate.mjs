@@ -669,8 +669,58 @@ if (mirrorViolations.length) {
   process.exit(1);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   RULE H — ONE RESTING SURFACE (§2.6).
+
+   A button, a chip, a pill and an icon button are ONE kind of object. Three
+   peers sitting in the same row were wearing three different fills: the GitHub
+   icon button took a raw `bg-zinc-100` in porcelain (#F4F4F5 — 24 levels darker
+   than the card it sat on and 13 levels BELOW the page canvas, so it read as a
+   hole punched in the page), the docs button wore no fill at all, and the copy
+   button wore `--bg-wash`. Twenty-four levels of disagreement between two
+   controls doing the same job in the same 32px row.
+
+   The law: a resting secondary control wears `--bg-control` and nothing else,
+   with no `dark:` fork — the token already carries the polarity flip. This
+   rule catches the two ways that regresses: a raw palette surface standing in
+   for the token, and a `dark:`-forked pair where one token is meant to do.
+   ═══════════════════════════════════════════════════════════════════════════ */
+const controlViolations = [];
+const RAW_PALETTE_SURFACE = /(?<![\w-])((?:[a-z0-9\[\]&#>:/.-]+:)*)bg-(?:zinc|gray|neutral|slate|stone)-(50|100|200)(?![\w.\d-])/g;
+
+// A `hover:`/`peer-hover:` fill is a STATE layer, governed by §2.4 and the
+// `--state-*` tokens — not the resting surface this rule is about. Excluding
+// them here keeps the rule honest: it claims one thing and checks one thing.
+const RESTING = /^(?!.*\bhover:)/;
+
+for (const f of readdirSync(uiDir).filter((f) => f.endsWith('.tsx'))) {
+  const rel = `src/components/ui/${f}`;
+  readFileSync(resolve(uiDir, f), 'utf8')
+    .split('\n')
+    .forEach((line, i) => {
+      // Strip comments first. This rule quotes the offending hexes in its own
+      // prose — a comment that documents a migration is not a violation of it,
+      // and a gate that flags its own explanation gets switched off.
+      const code = line.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/\/\/.*$/, '');
+      for (const m of code.matchAll(RAW_PALETTE_SURFACE)) {
+        if (!RESTING.test(m[1])) continue;
+        controlViolations.push(
+          `${rel}:${i + 1}: raw palette surface for a control — "${m[0].trim()}" → bg-(--bg-control) (§2.6)`,
+        );
+      }
+    });
+}
+
+if (controlViolations.length) {
+  console.error(
+    `\n✗ tokens-gate: ${controlViolations.length} control-surface violation(s) — one resting surface, one border, one distance from the background (docs/standards.md §2.6):\n`,
+  );
+  for (const v of controlViolations) console.error('  ' + v);
+  process.exit(1);
+}
+
 console.log(
   `✓ tokens-gate: ${files.length} kit files clean — no hardcoded hexes, no arbitrary or raw-scale ` +
     `elevation/radius/blur/type, no dead utilities, all ${declared.size} tokens declared, ` +
-    `soft-continuity ladder enforced (7 rules: hex · structural · declared · compiles · soft · grid · mirror)`,
+    `soft-continuity ladder enforced (8 rules: hex · structural · declared · compiles · soft · grid · mirror · control)`,
 );

@@ -413,6 +413,57 @@ describe('type scale', () => {
     expect(type, '--type-fa-tracking').toMatch(/--type-fa-tracking\s*:/);
   });
 
+  it('gives every secondary control ONE resting surface, near the canvas (§2.6)', () => {
+    // A button, a chip, a pill and an icon button are one kind of object. Three
+    // peers in the same 32px row once wore three fills — and the light one was
+    // a raw `zinc-100` sitting 13 levels BELOW the page canvas, so in porcelain
+    // it read as a hole punched in the page rather than a button resting on it.
+    // The law is a number: every resting control sits 2-3 levels off its canvas.
+    const read_ = (name: string, from: string) => {
+      const m = from.match(new RegExp(`--${name}:\\s*rgba\\([^)]*?([\\d.]+)\\s*\\);`));
+      return m ? Number(m[1]) : null;
+    };
+    for (const [block, label] of [
+      ['/* ======================= OBSIDIAN DARK', 'dark'],
+      ['/* ======================= PORCELAIN LIGHT', 'light'],
+    ] as const) {
+      const from = base.slice(base.indexOf(block));
+      expect(read_('bg-control', from), `${label} must declare --bg-control`).not.toBeNull();
+    }
+
+    // The polarity flip is the point, so light's alpha is NOT dark's: on
+    // white, 4% ink lands 11 levels under the canvas, which is the hole.
+    const darkFrom = base.slice(base.indexOf('/* ======================= OBSIDIAN DARK'));
+    const lightFrom = base.slice(base.indexOf('/* ======================= PORCELAIN LIGHT'));
+    const d = read_('bg-control', darkFrom)!;
+    const l = read_('bg-control', lightFrom)!;
+    expect(l, 'light control must be fainter than dark, not a straight copy').toBeLessThan(d);
+    expect(l, 'light control must stay a whisper — 4% ink is a hole on white').toBeLessThanOrEqual(0.03);
+  });
+
+  it('resolves technical text direction per element, not per page (§4)', () => {
+    // An RTL document reorders every neutral character in a Latin run, so
+    // `Value: 1234` renders as `1234 :Value`. The old fix was `dir="ltr"` on
+    // seven call sites — seven chances to forget one, in a studio that has
+    // forty mono spans.
+    const css = readFileSync(resolve(process.cwd(), 'src/index.css'), 'utf8');
+    // Match the DECLARATION, not the prose: the comment above the rule quotes
+    // `unicode-bidi: plaintext` in backticks, and a naive indexOf lands inside
+    // the comment and "verifies" nothing.
+    const decl = css.match(/unicode-bidi:\s*plaintext\s*;/);
+    expect(decl, 'index.css must resolve mono direction per element').not.toBeNull();
+    // Scoped to technical text only. Applying it to body copy would make
+    // every Persian paragraph pick its own base direction, which is the
+    // opposite of what a reading surface wants. Walk back to the rule's own
+    // opening brace so the assertion reads the SELECTOR, not the prose above it.
+    const at = decl!.index!;
+    const rule = css
+      .slice(css.lastIndexOf('}', at) + 1, at)
+      .replace(/\/\*[\s\S]*?\*\//g, ' ');
+    expect(rule, 'the plaintext rule must target the mono/code utilities').toMatch(/font-mono/);
+    expect(rule).not.toMatch(/\bbody\b/);
+  });
+
   it('gives Persian its OWN leading per step, not one reading value', () => {
     // The single-leading bug: all nine steps inherited one 1.85 reading leading,
     // which put a 13 × 1.85 = 24.05px line box into a 24px chip. Persian labels
