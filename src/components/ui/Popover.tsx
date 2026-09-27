@@ -31,7 +31,7 @@ const PopoverContent = React.forwardRef<
         // p-4 = 16px → the `md` padding band (docs/standards.md §5c).
         'z-popover w-72 rounded-(--radius-md) p-4 shadow-(--shadow-popover) outline-none dur-quick backdrop-blur-2xl',
         'bg-white/95 dark:bg-(--bg-elevated)/95 text-(--text-primary)',
-        'border border-black/[0.06] dark:border-white/[0.07]',
+        'border border-(--border-soft) dark:border-(--border-strong)',
         'shadow-(--elevation-3) dark:shadow-(--elevation-4)',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
         className

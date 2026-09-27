@@ -63,7 +63,7 @@ export function MeterBar({
       )}
       <div
         className={cn(
-          'w-full rounded-(--radius-pill) overflow-hidden bg-black/[0.08] dark:bg-white/[0.08]',
+          'w-full rounded-(--radius-pill) overflow-hidden bg-(--bg-raised) dark:bg-(--bg-raised)',
           size === 'sm' ? 'h-1.5' : 'h-2.5'
         )}
       >

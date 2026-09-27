@@ -71,7 +71,7 @@ export function Stepper({
                 aria-hidden="true"
                 className={cn(
                   'mx-3 h-px flex-1 transition-colors dur-base',
-                  i < current ? 'bg-emerald-500/50' : 'bg-black/[0.08] dark:bg-white/[0.08]'
+                  i < current ? 'bg-emerald-500/50' : 'bg-(--bg-raised) dark:bg-(--bg-raised)'
                 )}
               />
             )}

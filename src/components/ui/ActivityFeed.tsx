@@ -69,12 +69,12 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
   return (
     <div
       className={cn(
-        'p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04]',
+        'p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft)',
         'flex flex-col gap-4 shadow-sm w-full',
         className
       )}
     >
-      <div className="flex items-center justify-between pb-2 border-b border-black/[0.04] dark:border-white/[0.03]">
+      <div className="flex items-center justify-between pb-2 border-b border-(--border-subtle) dark:border-(--border-subtle)">
         <h4 className="type-caption font-semibold text-zinc-900 dark:text-white uppercase tracking-wider font-mono">
           Live Activity Stream
         </h4>
@@ -82,7 +82,7 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
       </div>
 
       <div className="flex flex-col gap-4 relative">
-        <div className="absolute top-3 bottom-3 left-4 w-[1px] bg-(--bg-raised) dark:bg-white/[0.06] -z-base" />
+        <div className="absolute top-3 bottom-3 left-4 w-[1px] bg-(--bg-raised) dark:bg-(--bg-raised) -z-base" />
 
         {events.map((evt) => {
           const meta = getActionMeta(evt.action);
@@ -102,7 +102,7 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
                   <span className="font-semibold text-zinc-900 dark:text-white truncate">
                     {evt.actor.name}
                   </span>
-                  <span className="text-(--text-muted) dark:text-zinc-400">{evt.action}</span>
+                  <span className="text-(--text-muted) dark:text-(--text-secondary)">{evt.action}</span>
                   <span className="font-medium text-zinc-800 dark:text-zinc-200 truncate max-w-[200px] sm:max-w-none">
                     {evt.target}
                   </span>
@@ -112,7 +112,7 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
                 </div>
 
                 {evt.details && (
-                  <p className="type-caption text-(--text-muted) dark:text-zinc-400 bg-(--bg-subtle) dark:bg-(--bg-elevated) p-2 rounded-(--radius-field) border border-black/[0.03] dark:border-white/[0.03]">
+                  <p className="type-caption text-(--text-muted) dark:text-(--text-secondary) bg-(--bg-subtle) dark:bg-(--bg-card) p-2 rounded-(--radius-field) border border-(--border-subtle) dark:border-(--border-subtle)">
                     {evt.details}
                   </p>
                 )}

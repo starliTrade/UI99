@@ -138,9 +138,9 @@ export function SignaturePad({
   };
 
   return (
-    <div className={cn('flex flex-col gap-2.5 p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04] shadow-md', className)}>
+    <div className={cn('flex flex-col gap-2.5 p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-md', className)}>
       <div className="flex items-center justify-between pb-1">
-        <span className="type-caption font-medium text-zinc-600 dark:text-zinc-400 flex items-center gap-1.5">
+        <span className="type-caption font-medium text-zinc-600 dark:text-(--text-secondary) flex items-center gap-1.5">
           <Sparkles className="icon-sm text-emerald-500" />
           Draw signature with finger or stylus
         </span>
@@ -182,11 +182,11 @@ export function SignaturePad({
           style={{ height: `${height}px` }}
         />
         {isEmpty && (
-          <div className="absolute inset-0 pointer-events-none flex items-center justify-center type-caption text-(--text-secondary) dark:text-zinc-600 font-mono">
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center type-caption text-(--text-secondary) dark:text-(--text-muted) font-mono">
             Sign on the line below
           </div>
         )}
-        <div className="absolute bottom-6 left-6 right-6 border-b border-(--border-soft) dark:border-zinc-800/80 pointer-events-none" />
+        <div className="absolute bottom-6 left-6 right-6 border-b border-(--border-soft) dark:border-(--border-soft)/80 pointer-events-none" />
       </div>
 
       <div className="flex items-center justify-between pt-1">

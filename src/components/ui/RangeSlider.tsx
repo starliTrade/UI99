@@ -43,7 +43,7 @@ export function RangeSlider({
     <div className={`w-full space-y-2 select-none ${className}`}>
       <div className="relative w-full h-5 flex items-center">
         {/* Track */}
-        <div className="w-full h-1.5 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-white/[0.06] relative">
+        <div className="w-full h-1.5 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-(--bg-raised) relative">
           {/* Highlight Range */}
           <div
             className="absolute h-full rounded-(--radius-pill) bg-emerald-500"
@@ -139,7 +139,7 @@ export function CheckboxGroup({
             label={opt.label}
           />
           {opt.description && (
-            <span className="type-micro text-(--text-muted) dark:text-zinc-400 ml-6">
+            <span className="type-micro text-(--text-muted) dark:text-(--text-secondary) ml-6">
               {opt.description}
             </span>
           )}

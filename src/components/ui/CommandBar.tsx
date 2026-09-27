@@ -18,7 +18,7 @@ export function CommandBar({ leading, className = '', children, ...props }: Comm
       role="toolbar"
       aria-label="Contextual actions"
       className={cn(
-        'flex items-center gap-2 rounded-(--radius-lg) border border-black/[0.05] dark:border-white/[0.04] bg-white/80 dark:bg-(--bg-elevated)/80 backdrop-blur-xl px-3 py-2 shadow-(--elevation-2) dark:shadow-(--elevation-2)',
+        'flex items-center gap-2 rounded-(--radius-lg) border border-(--border-soft) dark:border-(--border-soft) bg-white/80 dark:bg-(--bg-elevated)/80 backdrop-blur-xl px-3 py-2 shadow-(--elevation-2) dark:shadow-(--elevation-2)',
         className
       )}
       {...props}
@@ -44,7 +44,7 @@ export function CommandAction({ keys, active, className = '', children, ...props
         'focus-visible:outline-none focus-ui99-inset active:scale-[0.97]',
         active
           ? 'bg-zinc-900 text-white dark:bg-(--text-primary) dark:text-(--text-on-fill)'
-          : 'text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:bg-white/[0.05] dark:hover:text-white',
+          : 'text-zinc-600 hover:bg-(--bg-subtle) hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:bg-(--bg-wash) dark:hover:text-white',
         className
       )}
       {...props}

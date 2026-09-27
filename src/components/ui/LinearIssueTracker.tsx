@@ -388,7 +388,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
       {/* 1. WORKFLOW TOOLBAR */}
       <div className="rounded-(--radius-lg) bg-(--bg-card) border border-(--border-hairline) shadow-xs overflow-hidden">
         {/* Top Segment Views & Action Button */}
-        <div className="p-4 border-b border-black/[0.05] dark:border-white/[0.04] flex flex-col md:flex-row md:items-center justify-between gap-3 bg-(--bg-subtle) dark:bg-white/[0.01]">
+        <div className="p-4 border-b border-(--border-soft) dark:border-(--border-soft) flex flex-col md:flex-row md:items-center justify-between gap-3 bg-(--bg-subtle) dark:bg-(--bg-subtle)">
           {/* View Tabs */}
           <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
             {(['ALL', 'ACTIVE', 'DONE', 'URGENT'] as const).map((tab) => {
@@ -408,15 +408,15 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                   className={`px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold flex items-center gap-1.5 transition-all cursor-pointer select-none ${
                     isActive
                       ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-bold shadow-xs'
-                      : 'text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white hover:bg-black/[0.03] dark:hover:bg-white/[0.04]'
+                      : 'text-zinc-600 hover:text-black dark:text-(--text-secondary) dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
                   }`}
                 >
                   <span>{tab === 'ALL' ? 'All Issues' : tab.charAt(0) + tab.slice(1).toLowerCase()}</span>
                   <span
                     className={`type-micro font-mono px-1.5 py-0.2 rounded-(--radius-pill) ${
                       isActive
-                        ? 'bg-white/20 dark:bg-black/10'
-                        : 'bg-black/[0.05] dark:bg-white/[0.06]'
+                        ? 'bg-white/20 dark:bg-(--state-selected)'
+                        : 'bg-(--bg-wash) dark:bg-(--bg-raised)'
                     }`}
                   >
                     {count}
@@ -440,7 +440,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
         </div>
 
         {/* Filter Controls Row */}
-        <div className="px-4 py-3 border-b border-black/[0.05] dark:border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="px-4 py-3 border-b border-(--border-soft) dark:border-(--border-soft) flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="w-full sm:w-80">
             <SearchBar
               value={searchQuery}
@@ -456,7 +456,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) text-zinc-700 dark:text-(--text-secondary) flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <Filter className="icon-xs text-(--text-secondary)" />
                   <span className="capitalize">
@@ -486,7 +486,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.04] text-zinc-700 dark:text-zinc-300 flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1.5 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) text-zinc-700 dark:text-(--text-secondary) flex items-center gap-1.5 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
                 >
                   <span className="capitalize">
                     {priorityFilter === 'all' ? 'All Priorities' : priorityFilter}
@@ -546,7 +546,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                     }
                   }}
                   placeholder="Issue title (e.g. Calibrate specular rim reflection for cards)..."
-                  className="w-full px-3.5 py-2 rounded-(--radius-field) type-body font-medium bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.08] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-(--text-primary) placeholder:text-zinc-400"
+                  className="w-full px-3.5 py-2 rounded-(--radius-field) type-body font-medium bg-(--bg-elevated) border border-(--border-strong) dark:border-(--border-strong) focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-(--text-primary) placeholder:text-zinc-400"
                 />
 
                 <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
@@ -556,7 +556,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                       <DropdownMenuTrigger asChild>
                         <button
                           type="button"
-                          className="px-2.5 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
+                          className="px-2.5 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-elevated) border border-(--border-soft) dark:border-(--border-strong) flex items-center gap-1.5 cursor-pointer"
                         >
                           <PriorityBadge priority={newPriority} showLabel={true} />
                         </button>
@@ -575,7 +575,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                       <DropdownMenuTrigger asChild>
                         <button
                           type="button"
-                          className="px-2.5 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] flex items-center gap-1.5 cursor-pointer"
+                          className="px-2.5 py-1 rounded-(--radius-sm) type-caption font-medium bg-(--bg-elevated) border border-(--border-soft) dark:border-(--border-strong) flex items-center gap-1.5 cursor-pointer"
                         >
                           <StatusBadge status={newStatus} showLabel={true} />
                         </button>
@@ -595,7 +595,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                       value={newLabel}
                       onChange={(e) => setNewLabel(e.target.value)}
                       placeholder="Tag..."
-                      className="w-28 px-2.5 py-1 rounded-(--radius-sm) type-caption bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.06] text-zinc-800 dark:text-zinc-200 focus-ui99"
+                      className="w-28 px-2.5 py-1 rounded-(--radius-sm) type-caption bg-(--bg-elevated) border border-(--border-soft) dark:border-(--border-strong) text-zinc-800 dark:text-zinc-200 focus-ui99"
                     />
                   </div>
 
@@ -614,7 +614,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
         </AnimatePresence>
 
         {/* 3. LINEAR ISSUE ROWS */}
-        <div className="divide-y divide-black/[0.04] dark:divide-white/[0.03]">
+        <div className="divide-y divide-(--border-subtle) dark:divide-(--border-subtle)">
           {filteredIssues.map((issue, idx) => {
             const isSelected = selectedIssueIds.includes(issue.id);
             const isCursorActive = activeCursorIndex === idx;
@@ -628,10 +628,10 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                 }}
                 className={`group relative px-4 py-3 sm:px-5 sm:py-3.5 flex items-center justify-between gap-3 transition-colors cursor-pointer select-none ${
                   isCursorActive
-                    ? 'bg-(--bg-wash) dark:bg-white/[0.035] shadow-(--accent-bar)'
+                    ? 'bg-(--bg-wash) dark:bg-(--bg-wash) shadow-(--accent-bar)'
                     : issue.completed
-                    ? 'bg-zinc-50/40 dark:bg-white/[0.008]'
-                    : 'hover:bg-(--bg-subtle) dark:hover:bg-white/[0.015]'
+                    ? 'bg-zinc-50/40 dark:bg-(--bg-subtle)'
+                    : 'hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle)'
                 }`}
               >
                 {/* Left Side: Checkbox, Status Trigger Dropdown, Code, Title */}
@@ -685,7 +685,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
 
                   {/* Issue Title */}
                   <span
-                    className={`type-caption sm:type-body font-medium tracking-tight truncate ${ issue.completed ? 'line-through text-(--text-secondary) dark:text-zinc-500' : 'text-(--text-primary)' }`}
+                    className={`type-caption sm:type-body font-medium tracking-tight truncate ${ issue.completed ? 'line-through text-(--text-secondary) dark:text-(--text-muted)' : 'text-(--text-primary)' }`}
                   >
                     {issue.title}
                   </span>
@@ -755,7 +755,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
         </div>
 
         {/* 4. FOOTER WITH LINEAR KEYBOARD GUIDE */}
-        <div className="px-5 py-3 border-t border-(--border-hairline) flex flex-wrap items-center justify-between gap-3 type-caption text-(--text-muted) dark:text-zinc-400 bg-zinc-50/30 dark:bg-white/[0.01]">
+        <div className="px-5 py-3 border-t border-(--border-hairline) flex flex-wrap items-center justify-between gap-3 type-caption text-(--text-muted) dark:text-(--text-secondary) bg-zinc-50/30 dark:bg-(--bg-subtle)">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
               <Kbd size="xs">J</Kbd> / <Kbd size="xs">K</Kbd> Navigate

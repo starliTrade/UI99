@@ -51,7 +51,7 @@ const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
-  <div className="flex items-center border-b border-black/[0.06] dark:border-white/[0.05] px-4">
+  <div className="flex items-center border-b border-(--border-soft) dark:border-(--border-strong) px-4">
     <Search className="icon-md mr-2 shrink-0 opacity-50 text-(--text-secondary) dark:text-(--text-secondary)" />
     <CommandPrimitive.Input
       ref={ref}
@@ -110,7 +110,7 @@ const CommandSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CommandPrimitive.Separator
     ref={ref}
-    className={cn('-mx-1 my-1 h-px bg-black/[0.06] dark:bg-white/[0.05]', className)}
+    className={cn('-mx-1 my-1 h-px bg-(--bg-wash) dark:bg-(--bg-wash)', className)}
     {...props}
   />
 ));
@@ -124,7 +124,7 @@ const CommandItem = React.forwardRef<
     ref={ref}
     className={cn(
       'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-field) px-2.5 py-2 type-caption sm:type-body font-medium outline-none transition-colors',
-      'aria-selected:bg-black/[0.05] aria-selected:text-zinc-950 dark:aria-selected:bg-white/[0.07] dark:aria-selected:text-white',
+      'aria-selected:bg-(--bg-wash) aria-selected:text-zinc-950 dark:aria-selected:bg-(--bg-raised) dark:aria-selected:text-white',
       'data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
       className
     )}
@@ -140,7 +140,7 @@ const CommandShortcut = ({
   return (
     <span
       className={cn(
-        'ml-auto type-micro tracking-widest text-(--text-muted) font-mono px-1.5 py-0.5 rounded bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.04] dark:border-white/[0.06]',
+        'ml-auto type-micro tracking-widest text-(--text-muted) font-mono px-1.5 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-raised) border border-(--border-subtle) dark:border-(--border-strong)',
         className
       )}
       {...props}

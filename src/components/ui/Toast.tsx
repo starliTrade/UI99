@@ -109,7 +109,7 @@ function ToastRow({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: stri
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -16, scale: 0.96 }}
       transition={{ type: 'spring', stiffness: 450, damping: 30 }}
-      className={`pointer-events-auto relative w-full flex items-center gap-2.5 px-4 py-2.5 rounded-(--radius-control) border border-black/[0.08] dark:border-white/[0.08] bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3) type-caption font-medium select-none ${visual.accentClass}`}
+      className={`pointer-events-auto relative w-full flex items-center gap-2.5 px-4 py-2.5 rounded-(--radius-control) border border-(--border-strong) dark:border-(--border-strong) bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3) type-caption font-medium select-none ${visual.accentClass}`}
     >
       {visual.icon}
       <span className="flex-1 leading-snug">{toast.message}</span>
@@ -171,9 +171,9 @@ export function EmptyState({
   persianTitle,
 }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/[0.06] dark:border-white/[0.055] shadow-(--elevation-2) dark:shadow-(--elevation-2)">
+    <div className="flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-(--border-soft) dark:border-(--border-strong) shadow-(--elevation-2) dark:shadow-(--elevation-2)">
       {icon && (
-        <div className="w-12 h-12 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-card-hover) border border-black/[0.06] dark:border-white/[0.06] text-(--text-secondary) flex items-center justify-center mb-3">
+        <div className="w-12 h-12 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-card-hover) border border-(--border-soft) dark:border-(--border-strong) text-(--text-secondary) flex items-center justify-center mb-3">
           {icon}
         </div>
       )}

@@ -23,9 +23,9 @@ export const buttonVariants = cva(
         primary:
           'bg-(--ink-fill) text-(--ink-on-fill) hover:bg-(--ink-fill) border border-black/10 shadow-xs dark:border-white/10 dark:shadow-(--elevation-2)',
         secondary:
-          'bg-zinc-100 text-zinc-800 hover:bg-state-hover hover:text-black border border-black/[0.05] shadow-xs dark:bg-white/[0.045] dark:text-(--text-primary) dark:hover:text-white dark:border-white/[0.025] shadow-(--shadow-card)',
+          'bg-zinc-100 text-zinc-800 hover:bg-state-hover hover:text-black border border-(--border-soft) shadow-xs dark:bg-(--bg-wash) dark:text-(--text-primary) dark:hover:text-white dark:border-(--border-subtle) shadow-(--shadow-card)',
         outline:
-          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-(--text-primary) dark:border-white/[0.04]',
+          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-(--text-primary) dark:border-(--border-soft)',
         ghost:
           'bg-transparent text-zinc-600 hover:bg-state-hover hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:text-(--text-primary)',
         link: 'bg-transparent underline-offset-4 hover:underline text-(--text-primary) hover:bg-transparent px-0',
@@ -36,7 +36,7 @@ export const buttonVariants = cva(
         'white-pill':
           'bg-(--ink-fill) text-(--ink-on-fill) font-semibold shadow-xs border border-white/20 dark:border-white/10',
         'dark-pill':
-          'bg-(--bg-sunken) text-(--text-primary) hover:bg-(--bg-card-hover) hover:text-white border border-black/10 dark:bg-white/[0.045] dark:border-white/[0.03] shadow-(--shadow-card) shadow-xs',
+          'bg-(--bg-sunken) text-(--text-primary) hover:bg-(--bg-card-hover) hover:text-white border border-black/10 dark:bg-(--bg-wash) dark:border-(--border-subtle) shadow-(--shadow-card) shadow-xs',
         rose:
           'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
       },
@@ -142,9 +142,9 @@ export const iconButtonVariants = cva(
         white:
           'bg-white text-zinc-900 hover:bg-zinc-100 shadow-xs border border-black/[0.06] dark:bg-(--text-primary) dark:text-(--ink-on-fill) dark:hover:bg-white',
         secondary:
-          'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 border border-black/[0.05] dark:bg-(--bg-card-hover) dark:text-(--text-secondary) dark:hover:bg-(--bg-card-hover) dark:border-white/[0.06]',
+          'bg-zinc-100 text-zinc-800 hover:bg-zinc-200 border border-(--border-soft) dark:bg-(--bg-card) dark:text-(--text-secondary) dark:hover:bg-(--bg-card) dark:border-(--border-strong)',
         outline:
-          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover dark:text-(--text-secondary) dark:border-white/[0.08]',
+          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover dark:text-(--text-secondary) dark:border-(--border-strong)',
         ghost:
           'bg-transparent text-zinc-600 hover:bg-state-hover hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:text-(--text-primary)',
         link: 'bg-transparent hover:bg-transparent text-(--text-primary) hover:scale-100',
@@ -227,7 +227,7 @@ export function Tag({
 
   const variantStyle = {
     neutral:
-      'bg-zinc-100 text-zinc-700 border border-black/[0.06] dark:bg-white/[0.04] dark:text-(--text-secondary) dark:border-white/[0.06]',
+      'bg-zinc-100 text-zinc-700 border border-(--border-soft) dark:bg-(--bg-wash) dark:text-(--text-secondary) dark:border-(--border-strong)',
     amber:
       'bg-amber-50 text-amber-800 border border-amber-300/40 font-medium dark:bg-amber-400/[0.08] dark:text-amber-300/90 dark:border-amber-400/20',
     purple:
@@ -237,7 +237,7 @@ export function Tag({
     red:
       'bg-rose-50 text-rose-800 border border-rose-300/40 font-medium dark:bg-rose-400/[0.08] dark:text-rose-300/90 dark:border-rose-400/20',
     rose:
-      'bg-stone-100 text-stone-800 border border-stone-200 font-medium dark:bg-white/[0.05] dark:text-(--text-secondary) dark:border-white/[0.07]',
+      'bg-stone-100 text-stone-800 border border-stone-200 font-medium dark:bg-(--bg-wash) dark:text-(--text-secondary) dark:border-(--border-strong)',
     blue:
       'bg-blue-50 text-blue-800 border border-blue-300/40 font-medium dark:bg-blue-400/[0.08] dark:text-blue-300/90 dark:border-blue-400/20',
     outline:
@@ -307,7 +307,7 @@ export function Avatar({
         />
       ) : (
         <div
-          className={`rounded-(--radius-pill) bg-zinc-200 text-zinc-800 dark:bg-(--bg-card-hover) dark:text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
+          className={`rounded-(--radius-pill) bg-zinc-200 text-zinc-800 dark:bg-(--bg-card) dark:text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
         >
           {initial}
         </div>

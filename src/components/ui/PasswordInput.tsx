@@ -69,7 +69,7 @@ export function PasswordInput({
     <div className="flex flex-col gap-1.5 w-full">
       {label && (
         <div className="flex items-center justify-between">
-          <label className="type-caption font-medium text-zinc-700 dark:text-zinc-300">{label}</label>
+          <label className="type-caption font-medium text-zinc-700 dark:text-(--text-secondary)">{label}</label>
           {val && showStrength && (
             <span className={cn('type-micro font-mono font-medium', strengthMeta.text)}>
               {strengthMeta.label}
@@ -89,7 +89,7 @@ export function PasswordInput({
           className={cn(
             'w-full px-3.5 py-2.5 pr-10 type-body rounded-(--radius-field) transition-all dur-quick',
             'bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary) placeholder-zinc-400',
-            'border border-black/[0.08] dark:border-white/[0.06] focus:border-zinc-500 dark:focus:border-white/20 focus:outline-none',
+            'border border-(--border-strong) dark:border-(--border-strong) focus:border-zinc-500 dark:focus:border-white/20 focus:outline-none',
             error && 'border-rose-500',
             className
           )}
@@ -108,7 +108,7 @@ export function PasswordInput({
       {/* Strength Bar */}
       {showStrength && val.length > 0 && (
         <div className="flex flex-col gap-2 pt-1">
-          <div className="w-full h-1 bg-(--bg-raised) dark:bg-white/[0.06] rounded-(--radius-pill) overflow-hidden">
+          <div className="w-full h-1 bg-(--bg-raised) dark:bg-(--bg-raised) rounded-(--radius-pill) overflow-hidden">
             <div
               className={cn('h-full transition-all dur-slow rounded-(--radius-pill)', strengthMeta.color)}
               style={{ width: strengthMeta.width }}
@@ -124,7 +124,7 @@ export function PasswordInput({
                 ) : (
                   <div className="w-1.5 h-1.5 rounded-(--radius-pill) bg-zinc-400 dark:bg-zinc-600 ml-1 mr-0.5 shrink-0" />
                 )}
-                <span className={cn(rule.met ? 'text-zinc-800 dark:text-zinc-200' : 'text-zinc-400 dark:text-zinc-500')}>
+                <span className={cn(rule.met ? 'text-zinc-800 dark:text-zinc-200' : 'text-zinc-400 dark:text-(--text-muted)')}>
                   {rule.label}
                 </span>
               </div>

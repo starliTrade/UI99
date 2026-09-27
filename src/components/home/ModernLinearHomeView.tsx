@@ -317,10 +317,10 @@ export function ModernLinearHomeView() {
   return (
     <div className="w-full max-w-4xl mx-auto px-3 sm:px-6 pb-28 pt-1 select-none space-y-6">
       {/* 1. LINEAR HEADER BAR: Active Cycle, Velocity & Actions */}
-      <div className="p-4 sm:p-5 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.035] shadow-xs space-y-4">
+      <div className="p-4 sm:p-5 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-xs space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-(--radius-control) bg-(--ink-fill) dark:bg-white/10 flex items-center justify-center text-white shrink-0 border border-black/[0.08] dark:border-white/[0.04]">
+            <div className="w-9 h-9 rounded-(--radius-control) bg-(--ink-fill) dark:bg-(--state-selected) flex items-center justify-center text-white shrink-0 border border-(--border-strong) dark:border-(--border-soft)">
               <Zap className="icon-md text-emerald-400 fill-emerald-400/20" />
             </div>
             <div>
@@ -356,7 +356,7 @@ export function ModernLinearHomeView() {
             <button
               type="button"
               onClick={() => setCurrentTab('UIKIT')}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) type-caption font-medium bg-zinc-100 hover:bg-(--bg-raised) dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-zinc-700 dark:text-zinc-300 transition-all cursor-pointer border border-black/[0.04] dark:border-white/[0.03]"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-(--radius-field) type-caption font-medium bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-zinc-700 dark:text-(--text-secondary) transition-all cursor-pointer border border-(--border-subtle) dark:border-(--border-subtle)"
             >
               <Layers className="icon-sm" />
               <span className="hidden sm:inline">UI Kit</span>
@@ -366,7 +366,7 @@ export function ModernLinearHomeView() {
 
         {/* Progress Bar (Linear Sub-Pixel Specular) */}
         <div className="space-y-1.5 pt-1">
-          <div className="w-full h-2 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-zinc-800/80 overflow-hidden flex">
+          <div className="w-full h-2 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-(--bg-card)/80 overflow-hidden flex">
             <div
               className="h-full bg-emerald-500 transition-all dur-lazy"
               style={{ width: `${cycleCompletion}%` }}
@@ -376,7 +376,7 @@ export function ModernLinearHomeView() {
               style={{ width: `${Math.round((inProgressCount / issues.length) * 100)}%` }}
             />
           </div>
-          <div className="flex items-center justify-between type-micro font-mono text-zinc-400 dark:text-zinc-500 px-0.5">
+          <div className="flex items-center justify-between type-micro font-mono text-zinc-400 dark:text-(--text-muted) px-0.5">
             <div className="flex items-center gap-3">
               <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
                 <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-emerald-500" />
@@ -405,7 +405,7 @@ export function ModernLinearHomeView() {
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 450, damping: 35 }}
             onSubmit={handleCreateIssue}
-            className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.08] dark:border-white/[0.04] shadow-lg space-y-3"
+            className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-strong) dark:border-(--border-soft) shadow-lg space-y-3"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 type-caption font-mono font-semibold text-emerald-600 dark:text-emerald-400">
@@ -430,14 +430,14 @@ export function ModernLinearHomeView() {
               className="w-full bg-transparent type-body font-medium text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
             />
 
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-black/[0.04] dark:border-white/[0.03]">
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-(--border-subtle) dark:border-(--border-subtle)">
               <div className="flex items-center gap-2">
                 {/* Priority Selector */}
                 <select
                   value={newPriority}
                   onChange={(e) => setNewPriority(e.target.value as PriorityLevel)}
                   aria-label="Issue priority level"
-                  className="bg-(--bg-subtle) dark:bg-white/[0.04] type-caption font-mono font-medium rounded-(--radius-sm) px-2.5 py-1 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04] focus:outline-none cursor-pointer"
+                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2.5 py-1 text-zinc-700 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft) focus:outline-none cursor-pointer"
                 >
                   <option value="urgent">P0 Urgent</option>
                   <option value="high">P1 High</option>
@@ -450,7 +450,7 @@ export function ModernLinearHomeView() {
                   value={newEstimate}
                   onChange={(e) => setNewEstimate(Number(e.target.value))}
                   aria-label="Story points estimate"
-                  className="bg-(--bg-subtle) dark:bg-white/[0.04] type-caption font-mono font-medium rounded-(--radius-sm) px-2.5 py-1 text-zinc-700 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04] focus:outline-none cursor-pointer"
+                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2.5 py-1 text-zinc-700 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft) focus:outline-none cursor-pointer"
                 >
                   <option value={1}>1 pt</option>
                   <option value={2}>2 pts</option>
@@ -485,7 +485,7 @@ export function ModernLinearHomeView() {
       {/* 3. FILTER AND SEARCH TOOLBAR */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         {/* Status filters */}
-        <div className="flex items-center gap-1 bg-(--bg-wash) dark:bg-(--bg-card) p-1 rounded-(--radius-control) border border-black/[0.04] dark:border-white/[0.03] overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-1 bg-(--bg-wash) dark:bg-(--bg-card) p-1 rounded-(--radius-control) border border-(--border-subtle) dark:border-(--border-subtle) overflow-x-auto no-scrollbar">
           {[
             { id: 'ALL', label: 'All' },
             { id: 'ACTIVE', label: 'In Flight' },
@@ -500,7 +500,7 @@ export function ModernLinearHomeView() {
               className={`px-3 py-1 rounded-(--radius-field) type-caption font-medium whitespace-nowrap transition-all cursor-pointer ${
                 filterStatus === tab.id
                   ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white'
+                  : 'text-zinc-600 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white'
               }`}
             >
               {tab.label}
@@ -517,7 +517,7 @@ export function ModernLinearHomeView() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Filter issues..."
-              className="w-full bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] rounded-(--radius-field) pl-8 pr-3 py-1.5 type-caption text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
+              className="w-full bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) rounded-(--radius-field) pl-8 pr-3 py-1.5 type-caption text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
             />
           </div>
 
@@ -525,7 +525,7 @@ export function ModernLinearHomeView() {
             value={filterPriority}
             onChange={(e) => setFilterPriority(e.target.value)}
             aria-label="Filter issues by priority"
-            className="bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] type-caption font-mono rounded-(--radius-field) px-2.5 py-1.5 text-zinc-600 dark:text-zinc-400 focus:outline-none cursor-pointer"
+            className="bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono rounded-(--radius-field) px-2.5 py-1.5 text-zinc-600 dark:text-(--text-secondary) focus:outline-none cursor-pointer"
           >
             <option value="ALL">All Priorities</option>
             <option value="urgent">P0 Urgent</option>
@@ -537,7 +537,7 @@ export function ModernLinearHomeView() {
       </div>
 
       {/* 4. LINEAR ISSUE STREAM (J/K Navigable Table) */}
-      <div className="rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] shadow-xs overflow-hidden divide-y divide-black/[0.04] dark:divide-white/[0.03]">
+      <div className="rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs overflow-hidden divide-y divide-(--border-subtle) dark:divide-(--border-subtle)">
         {filteredIssues.length === 0 ? (
           <div className="p-12 text-center space-y-2">
             <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto opacity-60" />
@@ -555,8 +555,8 @@ export function ModernLinearHomeView() {
                 onClick={() => setSelectedIdx(idx)}
                 className={`group flex items-center justify-between p-3 sm:px-4 sm:py-3.5 transition-all cursor-pointer select-none ${
                   isSelected
-                    ? 'bg-(--bg-wash) dark:bg-white/[0.04] ring-1 ring-inset ring-emerald-500/40'
-                    : 'hover:bg-(--bg-subtle) dark:hover:bg-white/[0.015]'
+                    ? 'bg-(--bg-wash) dark:bg-(--bg-wash) ring-1 ring-inset ring-emerald-500/40'
+                    : 'hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle)'
                 }`}
               >
                 {/* Left section: toggle + ID + Title */}
@@ -575,7 +575,7 @@ export function ModernLinearHomeView() {
                   </button>
 
                   {/* Identifier */}
-                  <span className="type-micro font-mono font-bold text-zinc-400 dark:text-zinc-500 shrink-0">
+                  <span className="type-micro font-mono font-bold text-zinc-400 dark:text-(--text-muted) shrink-0">
                     {iss.key}
                   </span>
 
@@ -584,7 +584,7 @@ export function ModernLinearHomeView() {
                     <span
                       className={`type-caption sm:type-body font-medium tracking-tight truncate ${
                         isDone
-                          ? 'line-through text-zinc-400 dark:text-zinc-500'
+                          ? 'line-through text-zinc-400 dark:text-(--text-muted)'
                           : 'text-zinc-950 dark:text-[#EDEDEF]'
                       }`}
                     >
@@ -596,7 +596,7 @@ export function ModernLinearHomeView() {
                       {iss.labels.map((lbl) => (
                         <span
                           key={lbl}
-                          className="px-1.5 py-0.2 rounded type-micro font-mono text-zinc-500 dark:text-zinc-400 bg-(--bg-subtle) dark:bg-white/[0.03] border border-black/[0.04] dark:border-white/[0.02]"
+                          className="px-1.5 py-0.2 rounded type-micro font-mono text-zinc-500 dark:text-(--text-secondary) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)"
                         >
                           {lbl}
                         </span>
@@ -612,7 +612,7 @@ export function ModernLinearHomeView() {
 
                   {/* Estimate */}
                   {iss.estimate && (
-                    <span className="hidden sm:inline-block px-1.5 py-0.5 rounded type-micro font-mono font-semibold text-zinc-600 dark:text-zinc-400 bg-(--bg-subtle) dark:bg-white/[0.03]">
+                    <span className="hidden sm:inline-block px-1.5 py-0.5 rounded type-micro font-mono font-semibold text-zinc-600 dark:text-(--text-secondary) bg-(--bg-subtle) dark:bg-(--bg-wash)">
                       {iss.estimate}pt
                     </span>
                   )}
@@ -621,12 +621,12 @@ export function ModernLinearHomeView() {
                   <img
                     src={iss.assignee.avatar}
                     alt={iss.assignee.name}
-                    className="w-5 h-5 rounded-(--radius-pill) object-cover border border-black/[0.08] dark:border-white/[0.04]"
+                    className="w-5 h-5 rounded-(--radius-pill) object-cover border border-(--border-strong) dark:border-(--border-soft)"
                     title={iss.assignee.name}
                   />
 
                   {/* Relative timestamp */}
-                  <span className="hidden lg:inline-block type-micro font-mono text-zinc-400 dark:text-zinc-500 w-12 text-right">
+                  <span className="hidden lg:inline-block type-micro font-mono text-zinc-400 dark:text-(--text-muted) w-12 text-right">
                     {iss.updatedAt}
                   </span>
                 </div>
@@ -637,7 +637,7 @@ export function ModernLinearHomeView() {
       </div>
 
       {/* 5. KEYBOARD SHORTCUTS REFERENCE BAR (Linear Pro Productivity Hint) */}
-      <div className="p-3.5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center justify-between gap-3 type-micro font-mono text-zinc-500">
+      <div className="p-3.5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) flex flex-wrap items-center justify-between gap-3 type-micro font-mono text-zinc-500">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
             <Kbd size="xs">J</Kbd>

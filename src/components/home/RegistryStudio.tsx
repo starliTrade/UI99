@@ -89,7 +89,7 @@ function ViewTabs({
           className={`relative flex-1 sm:flex-none flex items-center justify-center gap-1 sm:gap-1.5 h-8 px-2 rounded-(--radius-xs) type-caption font-mono transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
             view === v.id
               ? 'bg-white dark:bg-white text-zinc-950 font-bold'
-              : 'text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white'
+              : 'text-zinc-600 hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:text-white'
           }`}
         >
           <v.icon className="w-3 h-3 shrink-0" />
@@ -244,7 +244,7 @@ export function RegistryStudio() {
         </span>
         <div className="flex items-center gap-1.5 type-caption font-mono min-w-0 truncate">
           <span className="font-semibold text-zinc-950 dark:text-white truncate">{currentComp.title}</span>
-          <span className="px-1.5 py-0.5 rounded type-micro bg-(--bg-raised) dark:bg-white/[0.04] text-zinc-600 dark:text-zinc-400 shrink-0">
+          <span className="px-1.5 py-0.5 rounded type-micro bg-(--bg-raised) dark:bg-(--bg-wash) text-zinc-600 dark:text-(--text-secondary) shrink-0">
             {currentComp.primitive || 'Native'}
           </span>
           <span className="hidden lg:inline-block px-1.5 py-0.5 rounded type-micro bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 shrink-0">
@@ -261,11 +261,11 @@ export function RegistryStudio() {
             onClick={() => stepComponent(-1)}
             disabled={registryIndex <= 0}
             aria-label={isRTL ? 'کامپوننت قبلی' : 'Previous component'}
-            className="relative flex items-center justify-center h-7 w-7 rounded-(--radius-xs) text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-white/[0.07] dark:hover:bg-white/[0.07] disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+            className="relative flex items-center justify-center h-7 w-7 rounded-(--radius-xs) text-zinc-600 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white hover:bg-white/[0.07] dark:hover:bg-(--bg-raised) disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             {isRTL ? <ChevronRight className="icon-xs" /> : <ChevronLeft className="icon-xs" />}
           </button>
-          <span className="type-micro font-mono text-zinc-500 dark:text-zinc-400 tabular-nums px-1 select-none">
+          <span className="type-micro font-mono text-zinc-500 dark:text-(--text-secondary) tabular-nums px-1 select-none">
             {registryIndex + 1}/{REGISTRY_COMPONENTS.length}
           </span>
           <button
@@ -273,7 +273,7 @@ export function RegistryStudio() {
             onClick={() => stepComponent(1)}
             disabled={registryIndex >= REGISTRY_COMPONENTS.length - 1}
             aria-label={isRTL ? 'کامپوننت بعدی' : 'Next component'}
-            className="relative flex items-center justify-center h-7 w-7 rounded-(--radius-xs) text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-white/[0.07] dark:hover:bg-white/[0.07] disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+            className="relative flex items-center justify-center h-7 w-7 rounded-(--radius-xs) text-zinc-600 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white hover:bg-white/[0.07] dark:hover:bg-(--bg-raised) disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             {isRTL ? <ChevronLeft className="icon-xs" /> : <ChevronRight className="icon-xs" />}
           </button>
@@ -283,7 +283,7 @@ export function RegistryStudio() {
           type="button"
           onClick={() => { setFocusComponent(currentComp.name); setCurrentTab('DOCS'); }}
           aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
-          className="relative flex items-center gap-1.5 h-8 px-2 rounded-(--radius-sm) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] transition-colors cursor-pointer shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+          className="relative flex items-center gap-1.5 h-8 px-2 rounded-(--radius-sm) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) transition-colors cursor-pointer shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
         >
           <BookOpen className="icon-xs shrink-0" />
           <span className="hidden sm:inline">{isRTL ? 'مستندات' : 'Full API'}</span>
@@ -294,14 +294,14 @@ export function RegistryStudio() {
       {/* 2 · BROWSER — search and categories, one scroll strip. */}
       <div className="px-3 sm:px-4 py-2 border-b border-(--border-subtle) bg-(--bg-surface) flex items-center gap-2 min-w-0">
         <div className="relative w-28 sm:w-44 shrink-0">
-          <Search className="icon-xs absolute left-2 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 pointer-events-none" />
+          <Search className="icon-xs absolute left-2 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-(--text-muted) pointer-events-none" />
           <input
             type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={isRTL ? 'جستجو…' : 'Search…'}
             aria-label={isRTL ? 'جستجوی کامپوننت' : 'Search components'}
-            className="w-full h-11 sm:h-8 pl-6 pr-2 rounded-(--radius-field) bg-white dark:bg-white/[0.03] border border-(--border-soft) type-caption text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 focus-ui99-inset font-mono"
+            className="w-full h-11 sm:h-8 pl-6 pr-2 rounded-(--radius-field) bg-white dark:bg-(--bg-wash) border border-(--border-soft) type-caption text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-(--text-muted) focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 focus-ui99-inset font-mono"
           />
         </div>
 
@@ -314,8 +314,8 @@ export function RegistryStudio() {
               aria-pressed={activeCategory === cat.id}
               className={`relative inline-flex items-center gap-1.5 h-8 px-2 rounded-(--radius-sm) type-micro font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
                 activeCategory === cat.id
-                  ? 'bg-(--ink-fill) dark:bg-white/[0.08] text-white dark:text-(--text-primary) font-semibold'
-                  : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.03]'
+                  ? 'bg-(--ink-fill) dark:bg-(--bg-raised) text-white dark:text-(--text-primary) font-semibold'
+                  : 'text-zinc-500 hover:text-zinc-900 dark:text-(--text-secondary) dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-(--bg-wash)'
               }`}
             >
               <cat.icon className="w-3 h-3 shrink-0" />
@@ -331,7 +331,7 @@ export function RegistryStudio() {
           no answer, so this row is not desktop-only. */}
       <div className="flex px-3 sm:px-4 py-2 border-b border-(--border-subtle) bg-(--bg-sunken) items-center gap-1.5 overflow-x-auto no-scrollbar touch-pan-x">
         {filteredComponents.length === 0 ? (
-          <p className="type-caption font-mono text-zinc-500 dark:text-zinc-400">
+          <p className="type-caption font-mono text-zinc-500 dark:text-(--text-secondary)">
             {isRTL ? 'کامپوننتی یافت نشد' : 'No components match this filter'}
           </p>
         ) : (
@@ -348,7 +348,7 @@ export function RegistryStudio() {
                 className={`relative px-2 h-8 rounded-(--radius-sm) type-caption font-mono whitespace-nowrap transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
                   activeComponentId === c.id
                     ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold'
-                    : 'text-zinc-600 dark:text-zinc-400 hover:bg-(--bg-raised) dark:hover:bg-white/[0.04] hover:text-zinc-950 dark:hover:text-white'
+                    : 'text-zinc-600 dark:text-(--text-secondary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-wash) hover:text-zinc-950 dark:hover:text-white'
                 }`}
               >
                 {c.title}
@@ -528,7 +528,7 @@ export function RegistryStudio() {
                     {activeComponentId === 'switch' && (
                       <div className="flex items-center gap-3">
                         <Switch checked={switchChecked} onCheckedChange={setSwitchChecked} />
-                        <span className="type-caption font-medium text-zinc-700 dark:text-zinc-300">
+                        <span className="type-caption font-medium text-zinc-700 dark:text-(--text-secondary)">
                           Specular Rim Highlight ({switchChecked ? 'Active' : 'Muted'})
                         </span>
                       </div>
@@ -536,7 +536,7 @@ export function RegistryStudio() {
 
                     {activeComponentId === 'slider' && (
                       <div className="w-full space-y-2">
-                        <div className="flex justify-between type-caption font-mono text-zinc-600 dark:text-zinc-400">
+                        <div className="flex justify-between type-caption font-mono text-zinc-600 dark:text-(--text-secondary)">
                           <span>Level</span>
                           <span className="text-zinc-950 dark:text-white font-bold">{sliderValue}%</span>
                         </div>
@@ -546,7 +546,7 @@ export function RegistryStudio() {
 
                     {activeComponentId === 'progress' && (
                       <div className="w-full space-y-2">
-                        <div className="flex justify-between type-caption font-mono text-zinc-600 dark:text-zinc-400">
+                        <div className="flex justify-between type-caption font-mono text-zinc-600 dark:text-(--text-secondary)">
                           <span>Sprint Completion</span>
                           <span className="text-zinc-950 dark:text-white font-bold">{progressValue}%</span>
                         </div>
@@ -582,7 +582,7 @@ export function RegistryStudio() {
                           <CardDescription>Sub-pixel specular border highlights.</CardDescription>
                         </CardHeader>
                         <CardContent>
-                          <p className="type-caption text-zinc-600 dark:text-zinc-400">
+                          <p className="type-caption text-zinc-600 dark:text-(--text-secondary)">
                             Engineered with #06070A velvet obsidian base.
                           </p>
                         </CardContent>
@@ -622,7 +622,7 @@ export function RegistryStudio() {
                       <div className="flex items-center gap-2">
                         <Kbd size="sm">⌘</Kbd>
                         <Kbd size="sm">K</Kbd>
-                        <span className="type-caption text-zinc-600 dark:text-zinc-400 ml-1 font-mono">
+                        <span className="type-caption text-zinc-600 dark:text-(--text-secondary) ml-1 font-mono">
                           Command Palette
                         </span>
                       </div>
@@ -681,13 +681,13 @@ export function RegistryStudio() {
                           <TabsTrigger value="activity">Activity</TabsTrigger>
                           <TabsTrigger value="settings">Settings</TabsTrigger>
                         </TabsList>
-                        <TabsContent value="overview" className="p-2 type-caption text-zinc-600 dark:text-zinc-400">
+                        <TabsContent value="overview" className="p-2 type-caption text-zinc-600 dark:text-(--text-secondary)">
                           Overview panel content with velvet spring indicator.
                         </TabsContent>
-                        <TabsContent value="activity" className="p-2 type-caption text-zinc-600 dark:text-zinc-400">
+                        <TabsContent value="activity" className="p-2 type-caption text-zinc-600 dark:text-(--text-secondary)">
                           Real-time user event bus telemetry.
                         </TabsContent>
-                        <TabsContent value="settings" className="p-2 type-caption text-zinc-600 dark:text-zinc-400">
+                        <TabsContent value="settings" className="p-2 type-caption text-zinc-600 dark:text-(--text-secondary)">
                           System preferences and token overrides.
                         </TabsContent>
                       </Tabs>
@@ -738,7 +738,7 @@ export function RegistryStudio() {
                                 className={`relative px-2 h-7 flex items-center rounded-(--radius-xs) capitalize font-mono type-micro whitespace-nowrap cursor-pointer transition-colors shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
                                   btnVariant === v
                                     ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold'
-                                    : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white bg-(--bg-raised) dark:bg-white/[0.03]'
+                                    : 'text-zinc-600 hover:text-zinc-900 dark:text-(--text-secondary) dark:hover:text-white bg-(--bg-raised) dark:bg-(--bg-wash)'
                                 }`}
                               >
                                 {v}
@@ -759,7 +759,7 @@ export function RegistryStudio() {
                                 className={`relative px-2 h-7 flex items-center rounded-(--radius-xs) uppercase font-mono type-micro cursor-pointer transition-colors shrink-0 focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
                                   btnSize === s
                                     ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold'
-                                    : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white bg-(--bg-raised) dark:bg-white/[0.03]'
+                                    : 'text-zinc-600 hover:text-zinc-900 dark:text-(--text-secondary) dark:hover:text-white bg-(--bg-raised) dark:bg-(--bg-wash)'
                                 }`}
                               >
                                 {s}
@@ -779,7 +779,7 @@ export function RegistryStudio() {
                       type="button"
                       onClick={() => setInspectorOpen((v) => !v)}
                       aria-expanded={inspectorOpen}
-                      className="relative order-last flex items-center gap-1.5 h-8 px-2 rounded-(--radius-sm) type-micro font-mono text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                      className="relative order-last flex items-center gap-1.5 h-8 px-2 rounded-(--radius-sm) type-micro font-mono text-zinc-600 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
                     >
                       <Zap className="icon-xs text-emerald-500 shrink-0" />
                       {isRTL ? 'مشخصات' : 'Spec'}
@@ -798,7 +798,7 @@ export function RegistryStudio() {
                           className={`relative px-1.5 h-7 flex items-center rounded type-micro font-mono cursor-pointer transition-all focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
                             packageManager === pm
                               ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold'
-                              : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
+                              : 'text-zinc-500 hover:text-zinc-900 dark:text-(--text-secondary) dark:hover:text-white'
                           }`}
                         >
                           {pm}
@@ -811,7 +811,7 @@ export function RegistryStudio() {
                       type="button"
                       onClick={() => copy(getCliCommand(currentComp.name), 'quick-add')}
                       aria-label={isRTL ? 'کپی دستور نصب' : 'Copy CLI command'}
-                      className="relative flex-1 basis-[200px] inline-flex items-center justify-between gap-2 px-2 h-8 rounded-(--radius-sm) type-caption font-mono bg-white dark:bg-white/[0.04] hover:bg-(--bg-subtle) dark:hover:bg-white/[0.07] text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-(--border-soft) transition-colors cursor-pointer min-w-0 overflow-hidden focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                      className="relative flex-1 basis-[200px] inline-flex items-center justify-between gap-2 px-2 h-8 rounded-(--radius-sm) type-caption font-mono bg-white dark:bg-(--bg-wash) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) text-zinc-800 dark:text-(--text-primary) border border-(--border-soft) dark:border-(--border-soft) transition-colors cursor-pointer min-w-0 overflow-hidden focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
                     >
                       <span className="flex items-center gap-1.5 truncate min-w-0">
                         <span className="text-emerald-500 dark:text-emerald-400 font-bold type-caption select-none shrink-0">&gt;_</span>
@@ -850,7 +850,7 @@ export function RegistryStudio() {
               <div className="space-y-4">
               <div className="p-3 rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) space-y-2">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="type-caption font-mono text-zinc-600 dark:text-zinc-400 font-semibold truncate">
+                  <span className="type-caption font-mono text-zinc-600 dark:text-(--text-secondary) font-semibold truncate">
                     {isRTL ? 'افزودن به پروژه' : 'Add component to your project'}
                   </span>
                   <div className="flex items-center p-0.5 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) shrink-0">
@@ -863,7 +863,7 @@ export function RegistryStudio() {
                         className={`relative px-2 h-7 flex items-center rounded-(--radius-xs) type-micro font-mono cursor-pointer transition-colors focus-ui99 after:absolute after:-inset-1 after:content-[''] ${
                           packageManager === pm
                             ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 font-bold'
-                            : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
+                            : 'text-zinc-500 hover:text-zinc-900 dark:text-(--text-secondary) dark:hover:text-white'
                         }`}
                       >
                         {pm}
@@ -873,14 +873,14 @@ export function RegistryStudio() {
                 </div>
                 <div className="flex items-center justify-between gap-2 px-3 h-9 rounded-(--radius-sm) bg-(--ink-fill) dark:bg-(--bg-surface) font-mono type-caption text-emerald-400 border border-(--border-soft) min-w-0 overflow-hidden">
                   <div className="flex items-center gap-2 truncate min-w-0">
-                    <span className="select-none text-zinc-600 dark:text-zinc-500 shrink-0">&gt;_</span>
+                    <span className="select-none text-zinc-600 dark:text-(--text-muted) shrink-0">&gt;_</span>
                     <span className="truncate type-micro sm:type-caption">{getCliCommand(currentComp.name)}</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => copy(getCliCommand(currentComp.name), 'cli-single')}
                     aria-label={isRTL ? 'کپی دستور' : 'Copy command'}
-                    className="p-1.5 rounded-(--radius-xs) hover:bg-zinc-800 dark:hover:bg-white/[0.08] text-zinc-400 hover:text-white transition-colors cursor-pointer shrink-0 focus-ui99"
+                    className="p-1.5 rounded-(--radius-xs) hover:bg-zinc-800 dark:hover:bg-(--bg-raised) text-zinc-400 hover:text-white transition-colors cursor-pointer shrink-0 focus-ui99"
                   >
                     {copiedKey === 'cli-single' ? <Check className="icon-sm text-emerald-400" /> : <Copy className="icon-sm" />}
                   </button>
@@ -889,14 +889,14 @@ export function RegistryStudio() {
 
               <div className="p-3 rounded-(--radius-md) bg-(--bg-sunken) border border-(--border-subtle) space-y-1.5">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="type-caption font-mono text-zinc-600 dark:text-zinc-400 font-semibold truncate">
+                  <span className="type-caption font-mono text-zinc-600 dark:text-(--text-secondary) font-semibold truncate">
                     {isRTL ? 'دستور ایمپورت' : 'Import statement'}
                   </span>
                   <button
                     type="button"
                     onClick={() => copy(`import { ${currentComp.title.replace(/[\s-]+/g, '')} } from '@/components/ui/${currentComp.name}';`, 'import-code')}
                     aria-label={isRTL ? 'کپی ایمپورت' : 'Copy import'}
-                    className="p-1.5 rounded-(--radius-xs) hover:bg-(--bg-raised) dark:hover:bg-white/[0.08] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer shrink-0 focus-ui99"
+                    className="p-1.5 rounded-(--radius-xs) hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) text-zinc-500 hover:text-zinc-900 dark:text-(--text-secondary) dark:hover:text-white transition-colors cursor-pointer shrink-0 focus-ui99"
                   >
                     {copiedKey === 'import-code' ? <Check className="icon-sm text-emerald-500 dark:text-emerald-400" /> : <Copy className="icon-sm" />}
                   </button>
@@ -925,8 +925,8 @@ export function RegistryStudio() {
               ].map(([token, label]) => (
                 <div key={token} className="p-3 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) type-micro font-mono min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-zinc-500 dark:text-zinc-400">{label}</span>
-                    <span className="text-zinc-600 dark:text-zinc-600 truncate">{token}</span>
+                    <span className="text-zinc-500 dark:text-(--text-secondary)">{label}</span>
+                    <span className="text-zinc-600 dark:text-(--text-muted) truncate">{token}</span>
                   </div>
                   <span className="text-emerald-600 dark:text-emerald-400 break-all">{liveTokenValue(token)}</span>
                 </div>
@@ -956,13 +956,13 @@ export function RegistryStudio() {
                   { l: isRTL ? 'پروپس' : 'Props', v: String(currentComp.props.length), tone: true },
                 ].map((f) => (
                   <div key={f.l} className="min-w-0">
-                    <dt className="text-zinc-400 dark:text-zinc-500">{f.l}</dt>
+                    <dt className="text-zinc-400 dark:text-(--text-muted)">{f.l}</dt>
                     <dd className={`truncate ${'tone' in f && f.tone ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-800 dark:text-zinc-200'}`}>{f.v}</dd>
                   </div>
                 ))}
               </dl>
               {realDeps.length > 0 && (
-                <p className="mt-2 type-micro font-mono text-zinc-500 dark:text-zinc-400 truncate">
+                <p className="mt-2 type-micro font-mono text-zinc-500 dark:text-(--text-secondary) truncate">
                   {isRTL ? 'وابستگی: ' : 'Deps: '}{realDeps.join(', ')}
                 </p>
               )}
@@ -974,7 +974,7 @@ export function RegistryStudio() {
               </h3>
               <ul className="space-y-1.5">
                 {currentComp.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 type-micro text-zinc-600 dark:text-zinc-300">
+                  <li key={f} className="flex items-start gap-2 type-micro text-zinc-600 dark:text-(--text-secondary)">
                     <CheckCircle2 className="icon-xs text-emerald-500 shrink-0 mt-px" />
                     <span className="min-w-0">{f}</span>
                   </li>
@@ -986,11 +986,11 @@ export function RegistryStudio() {
               <h3 className="type-caption font-mono font-bold text-zinc-900 dark:text-white mb-2 flex items-center gap-1.5">
                 <Zap className="icon-xs text-emerald-500" />
                 {isRTL ? 'پروپس‌ها' : 'Props'}
-                <span className="text-zinc-500 dark:text-zinc-500">({currentComp.props.length})</span>
+                <span className="text-zinc-500 dark:text-(--text-muted)">({currentComp.props.length})</span>
               </h3>
               <ul className="space-y-2">
                 {currentComp.props.length === 0 && (
-                  <li className="type-micro text-zinc-500 dark:text-zinc-400">
+                  <li className="type-micro text-zinc-500 dark:text-(--text-secondary)">
                     {isRTL
                       ? 'برای این کامپوننت هنوز مستندات پروپس ثبت نشده است.'
                       : 'No prop documentation filed for this component yet.'}
@@ -1002,7 +1002,7 @@ export function RegistryStudio() {
                       <span className="type-micro font-mono font-semibold text-zinc-900 dark:text-white truncate">{p.name}</span>
                       <span className="type-micro font-mono text-emerald-600 dark:text-emerald-400 truncate">{p.type}</span>
                     </div>
-                    <p className="type-micro text-zinc-500 dark:text-zinc-400 leading-snug">{p.description}</p>
+                    <p className="type-micro text-zinc-500 dark:text-(--text-secondary) leading-snug">{p.description}</p>
                   </li>
                 ))}
                 {currentComp.props.length > 6 && (
@@ -1010,7 +1010,7 @@ export function RegistryStudio() {
                     <button
                       type="button"
                       onClick={() => { setFocusComponent(currentComp.name); setCurrentTab('DOCS'); }}
-                      className="relative type-micro font-mono text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white inline-flex items-center gap-1 cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                      className="relative type-micro font-mono text-zinc-500 dark:text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white inline-flex items-center gap-1 cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
                     >
                       {isRTL ? `و ${currentComp.props.length - 6} پروپس دیگر` : `+ ${currentComp.props.length - 6} more`}
                       <ArrowRight className="icon-xs rtl:rotate-180" />
@@ -1033,7 +1033,7 @@ export function RegistryStudio() {
                 type="button"
                 onClick={() => copy(getCliCommand(currentComp.name), 'inspector-add')}
                 aria-label={isRTL ? 'کپی دستور نصب' : 'Copy install command'}
-                className="relative flex items-center justify-center h-9 w-9 shrink-0 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) text-zinc-600 dark:text-zinc-300 hover:bg-(--bg-raised) dark:hover:bg-white/[0.07] transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+                className="relative flex items-center justify-center h-9 w-9 shrink-0 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) text-zinc-600 dark:text-(--text-secondary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) transition-colors cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               >
                 {copiedKey === 'inspector-add' ? <Check className="icon-sm text-emerald-500" /> : <Plus className="icon-sm" />}
               </button>
@@ -1088,13 +1088,13 @@ function MobileInspector({
           { l: isRTL ? 'پروپس' : 'Props', v: String(comp.props.length), tone: true },
         ].map((f) => (
           <div key={f.l} className="min-w-0">
-            <dt className="text-zinc-400 dark:text-zinc-500">{f.l}</dt>
+            <dt className="text-zinc-400 dark:text-(--text-muted)">{f.l}</dt>
             <dd className={`truncate ${'tone' in f && f.tone ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-800 dark:text-zinc-200'}`}>{f.v}</dd>
           </div>
         ))}
       </dl>
       {deps.length > 0 && (
-        <p className="type-micro font-mono text-zinc-500 dark:text-zinc-400 truncate">
+        <p className="type-micro font-mono text-zinc-500 dark:text-(--text-secondary) truncate">
           {isRTL ? 'وابستگی: ' : 'Deps: '}{deps.join(', ')}
         </p>
       )}
@@ -1106,7 +1106,7 @@ function MobileInspector({
         </h3>
         <ul className="space-y-2">
           {comp.props.length === 0 && (
-            <li className="type-micro text-zinc-500 dark:text-zinc-400">
+            <li className="type-micro text-zinc-500 dark:text-(--text-secondary)">
               {isRTL
                 ? 'برای این کامپوننت هنوز مستندات پروپس ثبت نشده است.'
                 : 'No prop documentation filed for this component yet.'}
@@ -1118,7 +1118,7 @@ function MobileInspector({
                 <span className="type-micro font-mono font-semibold text-zinc-900 dark:text-white truncate">{p.name}</span>
                 <span className="type-micro font-mono text-emerald-600 dark:text-emerald-400 truncate">{p.type}</span>
               </div>
-              <p className="type-micro text-zinc-500 dark:text-zinc-400 leading-snug">{p.description}</p>
+              <p className="type-micro text-zinc-500 dark:text-(--text-secondary) leading-snug">{p.description}</p>
             </li>
           ))}
         </ul>
@@ -1130,7 +1130,7 @@ function MobileInspector({
         </h3>
         <ul className="space-y-1.5">
           {comp.features.map((f) => (
-            <li key={f} className="flex items-start gap-2 type-micro text-zinc-600 dark:text-zinc-300">
+            <li key={f} className="flex items-start gap-2 type-micro text-zinc-600 dark:text-(--text-secondary)">
               <CheckCircle2 className="icon-xs text-emerald-500 shrink-0 mt-px" />
               <span className="min-w-0">{f}</span>
             </li>
@@ -1151,7 +1151,7 @@ function MobileInspector({
           type="button"
           onClick={onCopy}
           aria-label={isRTL ? 'کپی دستور نصب' : 'Copy install command'}
-          className="relative flex items-center justify-center h-11 w-11 shrink-0 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) text-zinc-600 dark:text-zinc-300 transition-colors cursor-pointer focus-ui99"
+          className="relative flex items-center justify-center h-11 w-11 shrink-0 rounded-(--radius-sm) bg-(--bg-wash) border border-(--border-soft) text-zinc-600 dark:text-(--text-secondary) transition-colors cursor-pointer focus-ui99"
         >
           {copied ? <Check className="icon-sm text-emerald-500" /> : <Plus className="icon-sm" />}
         </button>

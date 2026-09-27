@@ -52,7 +52,7 @@ const DialogContent = React.forwardRef<
         'bg-white dark:bg-(--bg-elevated) text-(--text-primary)',
         // p-6 = 24px → the `xl` padding band → `--radius-xl`. The corner
         // follows the padding (docs/standards.md §5c), not a remembered value.
-        'border border-black/[0.08] dark:border-white/[0.06] rounded-(--radius-xl)',
+        'border border-(--border-strong) dark:border-(--border-strong) rounded-(--radius-xl)',
         'shadow-(--elevation-4) shadow-(--shadow-popover)',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         className

@@ -67,9 +67,9 @@ export function SplitButton({
     primary:
       'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 border border-transparent shadow-xs',
     secondary:
-      'bg-(--bg-subtle) dark:bg-(--bg-elevated) text-zinc-900 dark:text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card-hover) border border-(--border-soft) dark:border-white/[0.04]',
+      'bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft)',
     outline:
-      'bg-transparent text-zinc-900 dark:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] border border-(--border-strong) dark:border-white/[0.08]',
+      'bg-transparent text-zinc-900 dark:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) border border-(--border-strong) dark:border-(--border-strong)',
   }[variant];
 
   return (
@@ -89,7 +89,7 @@ export function SplitButton({
         className={`w-px ${
           variant === 'primary'
             ? 'bg-zinc-700 dark:bg-zinc-300'
-            : 'bg-(--bg-raised) dark:bg-white/[0.08]'
+            : 'bg-(--bg-raised) dark:bg-(--bg-raised)'
         }`}
       />
 
@@ -107,7 +107,7 @@ export function SplitButton({
 
       {/* Dropdown Menu */}
       {open && (
-        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-elevated) border border-(--border-soft) dark:border-white/[0.06] shadow-xl z-popover animate-in fade-in zoom-in-95 dur-fast">
+        <div className="absolute top-full right-0 mt-1.5 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-strong) shadow-xl z-popover animate-in fade-in zoom-in-95 dur-fast">
           {items.map((item, idx) => (
             <button
               key={idx}
@@ -117,7 +117,7 @@ export function SplitButton({
                 item.onClick();
                 setOpen(false);
               }}
-              className="w-full px-3 py-1.5 type-caption text-left font-mono flex items-center gap-2 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.06] transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full px-3 py-1.5 type-caption text-left font-mono flex items-center gap-2 text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {item.icon && <span className="w-3.5 h-3.5">{item.icon}</span>}
               <span>{item.label}</span>

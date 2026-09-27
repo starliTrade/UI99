@@ -41,14 +41,14 @@ export function DiffViewer({
   return (
     <div
       className={cn(
-        'rounded-(--radius-control) bg-white dark:bg-(--bg-canvas) border border-(--border-soft) dark:border-white/[0.06] overflow-hidden type-caption font-mono shadow-sm dark:shadow-lg',
+        'rounded-(--radius-control) bg-white dark:bg-(--bg-canvas) border border-(--border-soft) dark:border-(--border-strong) overflow-hidden type-caption font-mono shadow-sm dark:shadow-lg',
         className
       )}
     >
       {/* Diff Header */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-(--bg-subtle) dark:bg-(--bg-card) border-b border-(--border-soft) dark:border-white/[0.04]">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-(--bg-subtle) dark:bg-(--bg-card) border-b border-(--border-soft) dark:border-(--border-soft)">
         <div className="flex items-center gap-2">
-          <GitCommit className="icon-sm text-(--text-muted) dark:text-zinc-400" />
+          <GitCommit className="icon-sm text-(--text-muted) dark:text-(--text-secondary)" />
           <span className="text-zinc-900 dark:text-zinc-200 font-medium">{fileName}</span>
           <div className="flex items-center gap-1.5 ml-2">
             <span className="text-emerald-600 dark:text-emerald-400 font-semibold">+{additions}</span>
@@ -60,14 +60,14 @@ export function DiffViewer({
           type="button"
           onClick={copyDiff}
           aria-label="Copy diff"
-          className="p-1 rounded text-(--text-muted) hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer"
+          className="p-1 rounded text-(--text-muted) hover:text-zinc-900 dark:text-(--text-secondary) dark:hover:text-white transition-colors cursor-pointer"
         >
           {copied ? <Check className="icon-sm text-emerald-600 dark:text-emerald-400" /> : <Copy className="icon-sm" />}
         </button>
       </div>
 
       {/* Line Content */}
-      <div className="divide-y divide-zinc-100 dark:divide-white/[0.02] overflow-x-auto py-1">
+      <div className="divide-y divide-zinc-100 dark:divide-(--border-subtle) overflow-x-auto py-1">
         {lines.map((line, idx) => {
           const isAdd = line.type === 'add';
           const isDelete = line.type === 'delete';
@@ -79,14 +79,14 @@ export function DiffViewer({
                 'flex items-center px-2 py-0.5 leading-relaxed font-mono select-text',
                 isAdd && 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-medium',
                 isDelete && 'bg-rose-500/10 text-rose-700 dark:text-rose-300 line-through opacity-80',
-                !isAdd && !isDelete && 'text-zinc-600 dark:text-zinc-400 hover:bg-(--bg-subtle) dark:hover:bg-white/[0.02]'
+                !isAdd && !isDelete && 'text-zinc-600 dark:text-(--text-secondary) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle)'
               )}
             >
               {/* Line Numbers */}
-              <div className="w-8 text-right pr-2 type-micro text-(--text-secondary) dark:text-zinc-600 select-none">
+              <div className="w-8 text-right pr-2 type-micro text-(--text-secondary) dark:text-(--text-muted) select-none">
                 {line.oldLineNumber || ''}
               </div>
-              <div className="w-8 text-right pr-3 type-micro text-(--text-secondary) dark:text-zinc-600 select-none">
+              <div className="w-8 text-right pr-3 type-micro text-(--text-secondary) dark:text-(--text-muted) select-none">
                 {line.newLineNumber || ''}
               </div>
 

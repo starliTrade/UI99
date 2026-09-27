@@ -35,7 +35,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      'flex cursor-default select-none items-center rounded-(--radius-field) px-2.5 py-1.5 type-caption sm:type-body outline-none focus:bg-black/[0.04] dark:focus:bg-white/[0.06]',
+      'flex cursor-default select-none items-center rounded-(--radius-field) px-2.5 py-1.5 type-caption sm:type-body outline-none focus:bg-(--bg-subtle) dark:focus:bg-(--bg-raised)',
       inset && 'pl-8',
       className
     )}
@@ -56,7 +56,7 @@ const DropdownMenuSubContent = React.forwardRef<
     className={cn(
       'z-popover min-w-[8rem] overflow-hidden rounded-(--radius-control) p-1 shadow-xl backdrop-blur-2xl',
       'bg-white/95 dark:bg-(--bg-elevated)/95 text-(--text-primary)',
-      'border border-black/[0.06] dark:border-white/[0.07]',
+      'border border-(--border-soft) dark:border-(--border-strong)',
       'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
       className
     )}
@@ -76,7 +76,7 @@ const DropdownMenuContent = React.forwardRef<
       className={cn(
         'z-popover min-w-[10rem] overflow-hidden rounded-(--radius-control) p-1.5 shadow-xl backdrop-blur-2xl',
         'bg-white/95 dark:bg-(--bg-elevated)/95 text-(--text-primary)',
-        'border border-black/[0.06] dark:border-white/[0.07]',
+        'border border-(--border-soft) dark:border-(--border-strong)',
         'shadow-(--elevation-3) dark:shadow-(--elevation-4)',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         className
@@ -97,7 +97,7 @@ const DropdownMenuItem = React.forwardRef<
     ref={ref}
     className={cn(
       'relative flex cursor-pointer select-none items-center rounded-(--radius-field) px-2.5 py-1.5 type-caption sm:type-body font-medium outline-none transition-colors',
-      'focus:bg-black/[0.05] focus:text-zinc-950 dark:focus:bg-white/[0.08] dark:focus:text-white',
+      'focus:bg-(--bg-wash) focus:text-zinc-950 dark:focus:bg-(--bg-raised) dark:focus:text-white',
       'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       inset && 'pl-8',
       className
@@ -115,7 +115,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     ref={ref}
     className={cn(
       'relative flex cursor-pointer select-none items-center rounded-(--radius-field) py-1.5 pl-8 pr-2.5 type-caption sm:type-body font-medium outline-none transition-colors',
-      'focus:bg-black/[0.05] focus:text-zinc-950 dark:focus:bg-white/[0.08] dark:focus:text-white',
+      'focus:bg-(--bg-wash) focus:text-zinc-950 dark:focus:bg-(--bg-raised) dark:focus:text-white',
       'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       className
     )}
@@ -140,7 +140,7 @@ const DropdownMenuRadioItem = React.forwardRef<
     ref={ref}
     className={cn(
       'relative flex cursor-pointer select-none items-center rounded-(--radius-field) py-1.5 pl-8 pr-2.5 type-caption sm:type-body font-medium outline-none transition-colors',
-      'focus:bg-black/[0.05] focus:text-zinc-950 dark:focus:bg-white/[0.08] dark:focus:text-white',
+      'focus:bg-(--bg-wash) focus:text-zinc-950 dark:focus:bg-(--bg-raised) dark:focus:text-white',
       'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       className
     )}
@@ -180,7 +180,7 @@ const DropdownMenuSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
     ref={ref}
-    className={cn('-mx-1 my-1 h-px bg-black/[0.05] dark:bg-white/[0.05]', className)}
+    className={cn('-mx-1 my-1 h-px bg-(--bg-wash) dark:bg-(--bg-wash)', className)}
     {...props}
   />
 ));

@@ -53,7 +53,7 @@ export function TourGuide({
       aria-label={`Product tour, step ${currentStep + 1} of ${steps.length}: ${step.title}`}
       aria-live="polite"
       className={cn(
-        'w-full max-w-sm p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/10 dark:border-white/[0.06]',
+        'w-full max-w-sm p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/10 dark:border-(--border-strong)',
         'shadow-(--elevation-4) backdrop-blur-xl animate-in fade-in zoom-in-95',
         className
       )}
@@ -79,13 +79,13 @@ export function TourGuide({
           <Sparkles className="icon-sm text-amber-500" />
           {step.title}
         </h5>
-        <p className="type-caption text-(--text-muted) dark:text-zinc-400 leading-relaxed">
+        <p className="type-caption text-(--text-muted) dark:text-(--text-secondary) leading-relaxed">
           {step.description}
         </p>
       </div>
 
       {/* Step Indicators & Actions */}
-      <div className="flex items-center justify-between pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
+      <div className="flex items-center justify-between pt-2 border-t border-(--border-subtle) dark:border-(--border-soft)">
         {/* Progress Dots */}
         <div className="flex items-center gap-1" role="progressbar" aria-valuemin={1} aria-valuemax={steps.length} aria-valuenow={currentStep + 1} aria-label={`Tour progress: step ${currentStep + 1} of ${steps.length}`}>
           {steps.map((_, idx) => (

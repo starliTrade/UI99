@@ -306,7 +306,7 @@ export function DesignSystemHomeView() {
               type="button"
               onClick={() => copy('npx @99/ui init', 'cli-init')}
               aria-label={isRTL ? 'کپی دستور' : 'Copy CLI command'}
-              className="p-1 rounded-(--radius-sm) hover:bg-(--bg-raised) text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer shrink-0 ml-1"
+              className="p-1 rounded-(--radius-sm) hover:bg-(--bg-raised) text-zinc-500 hover:text-zinc-900 dark:text-(--text-secondary) dark:hover:text-white transition-colors cursor-pointer shrink-0 ml-1"
             >
               {copiedKey === 'cli-init' ? (
                 <Check className="icon-xs text-emerald-500 dark:text-emerald-400" />
@@ -331,7 +331,7 @@ export function DesignSystemHomeView() {
           <div className="space-y-1 text-left">
             <div className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-(--radius-pill) bg-emerald-500 inline-block" />
-              <span className="type-micro font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+              <span className="type-micro font-mono uppercase tracking-widest text-zinc-500 dark:text-(--text-secondary)">
                 Engineering Architecture
               </span>
             </div>
@@ -344,9 +344,9 @@ export function DesignSystemHomeView() {
           </div>
 
           {/* Connected Pillar Card */}
-          <div className="rounded-(--radius-control) bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.035] shadow-(--elevation-1) dark:shadow-(--elevation-1) divide-y divide-zinc-100 dark:divide-white/[0.035] sm:divide-y-0 sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:shadow-none sm:grid sm:grid-cols-3 sm:gap-3.5">
+          <div className="rounded-(--radius-control) bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) shadow-(--elevation-1) dark:shadow-(--elevation-1) divide-y divide-zinc-100 dark:divide-(--border-soft) sm:divide-y-0 sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:shadow-none sm:grid sm:grid-cols-3 sm:gap-3.5">
             {/* Pillar 1: Keyboard Velocity */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-white/[0.04]">
+            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-(--border-soft) sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-(--border-soft)">
               <div className="w-8 h-8 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-(--border-soft) dark:border-emerald-500/20">
                 <Zap className="icon-md" />
               </div>
@@ -357,13 +357,13 @@ export function DesignSystemHomeView() {
                   </h3>
                 </div>
                 <p className="type-micro sm:type-caption text-zinc-600 dark:text-[#92929B] leading-relaxed">
-                  Roving tabindex, global <code className="px-1.5 py-0.5 rounded bg-(--bg-subtle) dark:bg-white/[0.06] text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft) dark:border-white/[0.04]">⌘K</code> hotkeys, and tactile focus states across all 99 primitives.
+                  Roving tabindex, global <code className="px-1.5 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-raised) text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft) dark:border-(--border-soft)">⌘K</code> hotkeys, and tactile focus states across all 99 primitives.
                 </p>
               </div>
             </div>
 
             {/* Pillar 2: Specular Velvet Depth */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-white/[0.04]">
+            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-(--border-soft) sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-(--border-soft)">
               <div className="w-8 h-8 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 mt-0.5 border border-(--border-soft) dark:border-indigo-500/20">
                 <Sparkles className="icon-md" />
               </div>
@@ -380,7 +380,7 @@ export function DesignSystemHomeView() {
             </div>
 
             {/* Pillar 3: Zero Runtime Overhead */}
-            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-white/[0.035] sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-white/[0.04]">
+            <div className="p-3.5 sm:p-4.5 sm:rounded-(--radius-control) sm:bg-white sm:dark:bg-(--bg-surface) sm:border sm:border-zinc-200/80 sm:dark:border-(--border-soft) sm:shadow-(--elevation-1) sm:dark:shadow-(--elevation-1) flex items-start gap-3 transition-all hover:border-(--border-strong) dark:hover:border-(--border-soft)">
               <div className="w-8 h-8 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 mt-0.5 border border-(--border-soft) dark:border-amber-500/20">
                 <ShieldCheck className="icon-md" />
               </div>
@@ -402,7 +402,7 @@ export function DesignSystemHomeView() {
       {/* ══════════════════════════════════════════════════════════════
           4 · MINIMALIST FOOTER
          ══════════════════════════════════════════════════════════════ */}
-      <footer className="pt-8 sm:pt-10 mt-12 sm:mt-16 border-t border-(--border-soft) dark:border-white/[0.04]">
+      <footer className="pt-8 sm:pt-10 mt-12 sm:mt-16 border-t border-(--border-soft) dark:border-(--border-soft)">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center gap-2">
             <span className="font-mono type-caption sm:type-body font-bold text-zinc-950 dark:text-white">
@@ -411,7 +411,7 @@ export function DesignSystemHomeView() {
             <span className="type-micro font-mono text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">{KIT_COMPONENT_COUNT} Elements</span>
           </div>
 
-          <nav className="flex items-center gap-3 sm:gap-4 type-caption font-mono text-zinc-500 dark:text-zinc-400" aria-label="Footer Navigation">
+          <nav className="flex items-center gap-3 sm:gap-4 type-caption font-mono text-zinc-500 dark:text-(--text-secondary)" aria-label="Footer Navigation">
             {(['UIKIT', 'BLOCKS', 'DOCS', 'FOUNDATIONS'] as const).map((tab) => (
               <button
                 key={tab}
@@ -425,7 +425,7 @@ export function DesignSystemHomeView() {
           </nav>
         </div>
 
-        <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-white/[0.03] flex flex-wrap items-center justify-between gap-2 type-micro sm:type-micro font-mono text-zinc-500">
+        <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-(--border-subtle) flex flex-wrap items-center justify-between gap-2 type-micro sm:type-micro font-mono text-zinc-500">
           <span>© 2026 UI \ [99] · MIT Licensed</span>
           <span>Dual Obsidian / Light Primitives · {KIT_COMPONENT_COUNT} Certified Elements</span>
         </div>

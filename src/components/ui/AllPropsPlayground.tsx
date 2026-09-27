@@ -230,7 +230,7 @@ const PRIORITY_COLORS: Record<TaskRow['priority'], string> = {
   urgent: 'text-rose-500',
   high: 'text-amber-500',
   medium: 'text-blue-500',
-  low: 'text-zinc-400 dark:text-zinc-500',
+  low: 'text-zinc-400 dark:text-(--text-muted)',
 };
 
 export function AllPropsPlayground() {
@@ -390,9 +390,9 @@ export function AllPropsPlayground() {
   };
 
   return (
-    <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] shadow-xs space-y-5">
+    <div className="p-4 sm:p-6 rounded-(--radius-control) sm:rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-xs space-y-5">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/[0.04] dark:border-white/[0.04] pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-(--border-subtle) dark:border-(--border-soft) pb-4">
         <div className="flex items-center gap-2.5">
           <Database className="icon-lg text-emerald-500" />
           <div>
@@ -431,7 +431,7 @@ export function AllPropsPlayground() {
             className={`inline-flex items-center gap-1.5 h-8 px-3 rounded-(--radius-pill) type-caption font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99 ${
               component === c.value
                 ? 'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs'
-                : 'bg-(--bg-subtle) dark:bg-white/[0.04] text-zinc-700 dark:text-(--text-secondary) hover:bg-state-hover'
+                : 'bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-700 dark:text-(--text-secondary) hover:bg-state-hover'
             }`}
           >
             {c.icon}
@@ -459,8 +459,8 @@ export function AllPropsPlayground() {
           {component === 'combobox' && (
             <>
               <Switch size="sm" checked={cbAllowCreate} onChange={setCbAllowCreate} label="Allow create option" />
-              <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed border-t border-black/[0.04] dark:border-white/[0.04] pt-3">
-                Type free text and press <kbd className="font-mono px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-white/10 type-micro">Enter</kbd> with
+              <div className="type-micro text-(--text-muted) dark:text-(--text-secondary) leading-relaxed border-t border-(--border-subtle) dark:border-(--border-soft) pt-3">
+                Type free text and press <kbd className="font-mono px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-(--state-selected) type-micro">Enter</kbd> with
                 create enabled — the option flows through the same <code className="font-mono">onChange</code>.
               </div>
             </>
@@ -873,7 +873,7 @@ export function AllPropsPlayground() {
                 <HoverCardTrigger asChild>
                   <button
                     type="button"
-                    className="h-10 px-4 rounded-(--radius-field) type-body font-medium bg-(--bg-subtle) dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.05] cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
+                    className="h-10 px-4 rounded-(--radius-field) type-body font-medium bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
                   >
                     Hover / focus me
                   </button>
@@ -1043,7 +1043,7 @@ function Segmented<T extends string | number>({
   options: { value: T; label: string }[];
 }) {
   return (
-    <div className="inline-flex p-0.5 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.04]">
+    <div className="inline-flex p-0.5 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-soft)">
       {options.map((o) => (
         <button
           key={String(o.value)}
@@ -1066,7 +1066,7 @@ function Segmented<T extends string | number>({
 function CodePanel({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
   return (
-    <div className="relative rounded-(--radius-control) bg-zinc-950 dark:bg-black/40 border border-black/[0.06] dark:border-white/[0.05] overflow-hidden">
+    <div className="relative rounded-(--radius-control) bg-zinc-950 dark:bg-black/40 border border-(--border-soft) dark:border-(--border-strong) overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2 border-b border-white/[0.06]">
         <div className="flex items-center gap-1.5">
           <span className="icon-dot rounded-(--radius-pill) bg-rose-400/70" />

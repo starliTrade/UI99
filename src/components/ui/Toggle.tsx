@@ -15,11 +15,11 @@ export const toggleVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-transparent text-zinc-600 hover:bg-black/[0.04] hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:bg-white/[0.04] dark:hover:text-(--text-primary) data-[state=on]:bg-black/[0.06] data-[state=on]:text-zinc-950 dark:data-[state=on]:bg-white/[0.08] dark:data-[state=on]:text-white',
+          'bg-transparent text-zinc-600 hover:bg-(--bg-subtle) hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:bg-(--bg-wash) dark:hover:text-(--text-primary) data-[state=on]:bg-(--bg-wash) data-[state=on]:text-zinc-950 dark:data-[state=on]:bg-white/[0.08] dark:data-[state=on]:text-white',
         outline:
-          'bg-transparent border border-black/[0.1] dark:border-white/[0.08] text-(--text-primary) hover:bg-black/[0.03] dark:hover:bg-white/[0.04] shadow-xs data-[state=on]:border-black/20 dark:data-[state=on]:border-white/25 data-[state=on]:bg-black/[0.05] dark:data-[state=on]:bg-white/[0.06]',
+          'bg-transparent border border-black/[0.1] dark:border-(--border-strong) text-(--text-primary) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) shadow-xs data-[state=on]:border-black/20 dark:data-[state=on]:border-white/25 data-[state=on]:bg-(--bg-wash) dark:data-[state=on]:bg-white/[0.06]',
         secondary:
-          'bg-(--bg-subtle) dark:bg-(--bg-card-hover) text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card-hover) data-[state=on]:bg-zinc-900 data-[state=on]:text-white dark:data-[state=on]:bg-(--text-primary) dark:data-[state=on]:text-(--text-on-fill)',
+          'bg-(--bg-subtle) dark:bg-(--bg-card) text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) data-[state=on]:bg-zinc-900 data-[state=on]:text-white dark:data-[state=on]:bg-(--text-primary) dark:data-[state=on]:text-(--text-on-fill)',
       },
       size: {
         sm: 'h-8 px-2.5 type-caption',

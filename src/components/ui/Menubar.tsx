@@ -10,10 +10,10 @@ import { Check, ChevronRight, Circle } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const menuContentClass =
-  'z-popover min-w-[12rem] overflow-hidden rounded-(--radius-control) border border-black/[0.06] dark:border-white/[0.05] bg-white/95 dark:bg-(--bg-elevated)/95 backdrop-blur-2xl p-1.5 text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3) data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95';
+  'z-popover min-w-[12rem] overflow-hidden rounded-(--radius-control) border border-(--border-soft) dark:border-(--border-strong) bg-white/95 dark:bg-(--bg-card)/95 backdrop-blur-2xl p-1.5 text-(--text-primary) shadow-(--elevation-3) dark:shadow-(--elevation-3) data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95';
 
 const menuItemClass =
-  'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-sm) px-2 py-1.5 type-caption outline-none transition-colors focus:bg-black/[0.05] focus:text-zinc-950 data-[disabled]:pointer-events-none data-[disabled]:opacity-40 dark:focus:bg-white/[0.06] dark:focus:text-white [&_svg]:size-3.5 [&_svg]:shrink-0';
+  'relative flex cursor-pointer select-none items-center gap-2 rounded-(--radius-sm) px-2 py-1.5 type-caption outline-none transition-colors focus:bg-(--bg-wash) focus:text-zinc-950 data-[disabled]:pointer-events-none data-[disabled]:opacity-40 dark:focus:bg-(--bg-raised) dark:focus:text-white [&_svg]:size-3.5 [&_svg]:shrink-0';
 
 export function Menubar({
   className = '',
@@ -129,7 +129,7 @@ export function MenubarSeparator({
 }: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Separator>) {
   return (
     <MenubarPrimitive.Separator
-      className={cn('-mx-1 my-1 h-px bg-black/[0.06] dark:bg-white/[0.06]', className)}
+      className={cn('-mx-1 my-1 h-px bg-(--bg-wash) dark:bg-(--bg-raised)', className)}
       {...props}
     />
   );

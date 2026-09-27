@@ -473,8 +473,8 @@ export function DocsView() {
       </CommandDialog>
 
       {/* ── 1. TOP STATUS BAR / BREADCRUMB / REGISTRY QUICK LINK ── */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 border-b border-black/[0.06] dark:border-white/[0.04] type-caption font-mono">
-        <div className="flex items-center gap-1.5 sm:gap-2 text-zinc-500 dark:text-zinc-400">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 border-b border-(--border-soft) dark:border-(--border-soft) type-caption font-mono">
+        <div className="flex items-center gap-1.5 sm:gap-2 text-zinc-500 dark:text-(--text-secondary)">
           <button
             type="button"
             onClick={() => setActiveSection('intro')}
@@ -506,7 +506,7 @@ export function DocsView() {
             href="/registry.json"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono bg-zinc-100 hover:bg-(--bg-raised) dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-zinc-700 dark:text-zinc-300 transition-colors border border-black/[0.04] dark:border-white/[0.03]"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-zinc-700 dark:text-(--text-secondary) transition-colors border border-(--border-subtle) dark:border-(--border-subtle)"
           >
             <Code2 className="icon-sm" />
             <span>registry.json</span>
@@ -524,7 +524,7 @@ export function DocsView() {
             <SheetTrigger asChild>
               <button
                 type="button"
-                className="flex items-center gap-2 px-3 py-2.5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.04] type-caption font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
+                className="flex items-center gap-2 px-3 py-2.5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-strong) dark:border-(--border-soft) type-caption font-mono font-medium text-zinc-800 dark:text-zinc-200 shrink-0 cursor-pointer shadow-xs active:scale-95 transition-transform"
               >
                 <Menu className="icon-md text-emerald-400" />
                 <span className="hidden xs:inline">Menu</span>
@@ -533,12 +533,12 @@ export function DocsView() {
                 </span>
               </button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[360px] p-0 bg-white dark:bg-(--bg-sunken) border-r border-(--border-soft) dark:border-white/[0.04] overflow-y-auto">
-              <SheetHeader className="p-4 border-b border-(--border-soft) dark:border-white/[0.04] text-left">
+            <SheetContent side="left" className="w-[300px] sm:w-[360px] p-0 bg-white dark:bg-(--bg-sunken) border-r border-(--border-soft) dark:border-(--border-soft) overflow-y-auto">
+              <SheetHeader className="p-4 border-b border-(--border-soft) dark:border-(--border-soft) text-left">
                 <SheetTitle className="type-body font-mono font-bold text-zinc-950 dark:text-white flex items-center gap-2">
                   <Package className="icon-md text-emerald-500 dark:text-emerald-400" /> UI99 Component Registry
                 </SheetTitle>
-                <SheetDescription className="type-caption text-zinc-500 dark:text-zinc-400">
+                <SheetDescription className="type-caption text-zinc-500 dark:text-(--text-secondary)">
                   Select a guide or component
                 </SheetDescription>
               </SheetHeader>
@@ -635,7 +635,7 @@ export function DocsView() {
                 setActiveSection(e.target.value);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="w-full pl-3 pr-8 py-2.5 rounded-(--radius-control) type-caption font-mono font-medium bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.04] text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
+              className="w-full pl-3 pr-8 py-2.5 rounded-(--radius-control) type-caption font-mono font-medium bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) text-zinc-900 dark:text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer shadow-sm"
             >
               <optgroup label="Getting Started">
                 <option value="intro">Introduction</option>
@@ -703,7 +703,7 @@ export function DocsView() {
               placeholder="Search docs & components..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 rounded-(--radius-field) type-caption font-mono bg-(--bg-subtle) dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500/50 transition-colors"
+              className="w-full pl-9 pr-8 py-2 rounded-(--radius-field) type-caption font-mono bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-soft) text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500/50 transition-colors"
             />
             {searchQuery && (
               <button
@@ -718,7 +718,7 @@ export function DocsView() {
 
           {/* Getting Started Section */}
           <div className="space-y-1">
-            <h4 className="px-3 type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2">
+            <h4 className="px-3 type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted) mb-2">
               Getting Started
             </h4>
             <div className="space-y-0.5">
@@ -742,8 +742,8 @@ export function DocsView() {
                     }}
                     className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-(--radius-field) type-caption font-medium transition-all text-left cursor-pointer ${
                       isActive
-                        ? 'bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white font-semibold shadow-xs'
-                        : 'text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.03]'
+                        ? 'bg-zinc-950 text-white dark:bg-(--bg-raised) dark:text-white font-semibold shadow-xs'
+                        : 'text-zinc-600 dark:text-(--text-secondary) hover:text-black dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
                     }`}
                   >
                     <Icon className={`icon-sm ${isActive ? 'text-emerald-400' : 'text-zinc-400'}`} />
@@ -755,9 +755,9 @@ export function DocsView() {
           </div>
 
           {/* Component Catalog Grouped by Category */}
-          <div className="space-y-5 pt-2 border-t border-black/[0.04] dark:border-white/[0.03]">
+          <div className="space-y-5 pt-2 border-t border-(--border-subtle) dark:border-(--border-subtle)">
             <div className="flex items-center justify-between px-3">
-              <h4 className="type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              <h4 className="type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted)">
                 Components
               </h4>
               <span className="type-micro font-mono text-emerald-500 font-semibold">
@@ -767,7 +767,7 @@ export function DocsView() {
 
             {Object.entries(categories).map(([category, items]) => (
               <div key={category} className="space-y-1">
-                <div className="px-3 type-micro font-mono font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-600">
+                <div className="px-3 type-micro font-mono font-semibold uppercase tracking-wider text-zinc-400 dark:text-(--text-muted)">
                   {category}
                 </div>
                 <div className="space-y-0.5">
@@ -783,8 +783,8 @@ export function DocsView() {
                         }}
                         className={`w-full flex items-center justify-between px-3 py-1.5 rounded-(--radius-field) type-caption font-medium transition-all text-left cursor-pointer ${
                           isActive
-                            ? 'bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white font-semibold shadow-xs'
-                            : 'text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.03]'
+                            ? 'bg-zinc-950 text-white dark:bg-(--bg-raised) dark:text-white font-semibold shadow-xs'
+                            : 'text-zinc-600 dark:text-(--text-secondary) hover:text-black dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
                         }`}
                       >
                         <span className="truncate">{item.title}</span>
@@ -808,7 +808,7 @@ export function DocsView() {
           {activeComponent && (
             <article className="space-y-8">
               {/* PAGE HEADER */}
-              <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
+              <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <div className="flex items-center gap-2">
                   <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                     {activeComponent.title}
@@ -817,13 +817,13 @@ export function DocsView() {
                     v{activeComponent.version}
                   </span>
                 </div>
-                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-(--text-secondary) leading-relaxed max-w-2xl">
                   {activeComponent.description}
                 </p>
 
                 {/* Quick Action Chips & CLI Copy Toolbar */}
                 <div className="flex flex-wrap items-center gap-2 pt-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/[0.03] type-caption font-mono text-zinc-700 dark:text-zinc-300">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono text-zinc-700 dark:text-(--text-secondary)">
                     <Terminal className="icon-sm text-emerald-400" />
                     <span>{activeComponent.cliCommand}</span>
                     <button
@@ -851,14 +851,14 @@ export function DocsView() {
                 {/* Tabs & Viewport Controls Toolbar */}
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   {/* Preview / Code Tab Buttons */}
-                  <div className="flex items-center gap-1 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.03]">
+                  <div className="flex items-center gap-1 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)">
                     <button
                       type="button"
                       onClick={() => setActiveTab('preview')}
                       className={`px-3.5 py-1.5 rounded-(--radius-field) type-caption font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
                         activeTab === 'preview'
                           ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                          : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+                          : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
                       }`}
                     >
                       <Eye className="icon-sm" />
@@ -870,7 +870,7 @@ export function DocsView() {
                       className={`px-3.5 py-1.5 rounded-(--radius-field) type-caption font-medium flex items-center gap-1.5 cursor-pointer transition-all ${
                         activeTab === 'code'
                           ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                          : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+                          : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
                       }`}
                     >
                       <Code2 className="icon-sm" />
@@ -880,14 +880,14 @@ export function DocsView() {
 
                   {/* Viewport Width Switchers (Desktop / Tablet / Mobile) */}
                   {activeTab === 'preview' && (
-                    <div className="hidden sm:flex items-center gap-1 p-1 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.03]">
+                    <div className="hidden sm:flex items-center gap-1 p-1 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-subtle) border border-(--border-subtle) dark:border-(--border-subtle)">
                       <button
                         type="button"
                         onClick={() => setViewportWidth('100%')}
                         title="Full width (100%)"
                         className={`p-1.5 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
                           viewportWidth === '100%'
-                            ? 'bg-white text-zinc-900 dark:bg-white/[0.1] dark:text-white shadow-xs'
+                            ? 'bg-white text-zinc-900 dark:bg-(--state-selected) dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
                         }`}
                       >
@@ -899,7 +899,7 @@ export function DocsView() {
                         title="Tablet width (768px)"
                         className={`p-1.5 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
                           viewportWidth === '768px'
-                            ? 'bg-white text-zinc-900 dark:bg-white/[0.1] dark:text-white shadow-xs'
+                            ? 'bg-white text-zinc-900 dark:bg-(--state-selected) dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
                         }`}
                       >
@@ -911,7 +911,7 @@ export function DocsView() {
                         title="Mobile width (375px)"
                         className={`p-1.5 rounded-(--radius-sm) type-caption transition-colors cursor-pointer ${
                           viewportWidth === '375px'
-                            ? 'bg-white text-zinc-900 dark:bg-white/[0.1] dark:text-white shadow-xs'
+                            ? 'bg-white text-zinc-900 dark:bg-(--state-selected) dark:text-white shadow-xs'
                             : 'text-zinc-400 hover:text-white'
                         }`}
                       >
@@ -926,7 +926,7 @@ export function DocsView() {
                   <div className="space-y-4">
                     {/* Live Playground Stage */}
                     <div
-                      className="mx-auto rounded-(--radius-control) sm:rounded-(--radius-lg) border border-black/[0.08] dark:border-white/[0.04] bg-(--bg-subtle) dark:bg-(--bg-sunken) p-4 sm:p-8 md:p-12 min-h-[260px] sm:min-h-[320px] flex items-center justify-center relative overflow-hidden transition-all dur-slow shadow-(--elevation-3)"
+                      className="mx-auto rounded-(--radius-control) sm:rounded-(--radius-lg) border border-(--border-strong) dark:border-(--border-soft) bg-(--bg-subtle) dark:bg-(--bg-sunken) p-4 sm:p-8 md:p-12 min-h-[260px] sm:min-h-[320px] flex items-center justify-center relative overflow-hidden transition-all dur-slow shadow-(--elevation-3)"
                       style={{ maxWidth: viewportWidth }}
                     >
                       {/* Sub-pixel top rim specular highlight */}
@@ -974,7 +974,7 @@ export function DocsView() {
                               </CardDescription>
                             </CardHeader>
                             <CardContent>
-                              <p className="type-caption text-zinc-500 dark:text-zinc-400">
+                              <p className="type-caption text-zinc-500 dark:text-(--text-secondary)">
                                 Crafted for high-density interfaces and dark luxury dashboards.
                               </p>
                             </CardContent>
@@ -987,9 +987,9 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'switch' && (
-                          <div className="flex items-center gap-4 p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.05] dark:border-white/[0.03]">
+                          <div className="flex items-center gap-4 p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle)">
                             <Switch checked={demoSwitchChecked} onCheckedChange={setDemoSwitchChecked} />
-                            <span className="type-caption font-mono font-medium text-zinc-700 dark:text-zinc-300">
+                            <span className="type-caption font-mono font-medium text-zinc-700 dark:text-(--text-secondary)">
                               {demoSwitchChecked ? 'Enabled · Active State' : 'Disabled · Inactive'}
                             </span>
                           </div>
@@ -1045,13 +1045,13 @@ export function DocsView() {
                                 <TabsTrigger value="analytics">Analytics</TabsTrigger>
                                 <TabsTrigger value="reports">Reports</TabsTrigger>
                               </TabsList>
-                              <TabsContent value="overview" className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
+                              <TabsContent value="overview" className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) type-caption text-zinc-400 mt-2">
                                 Overview content with spring tab transitions.
                               </TabsContent>
-                              <TabsContent value="analytics" className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
+                              <TabsContent value="analytics" className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) type-caption text-zinc-400 mt-2">
                                 Real-time analytics metrics streaming via edge nodes.
                               </TabsContent>
-                              <TabsContent value="reports" className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.04] dark:border-white/[0.03] type-caption text-zinc-400 mt-2">
+                              <TabsContent value="reports" className="p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) type-caption text-zinc-400 mt-2">
                                 Audit reports generated automatically.
                               </TabsContent>
                             </Tabs>
@@ -1107,9 +1107,9 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'checkbox' && (
-                          <div className="flex items-center gap-3 p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-card-hover) border border-black/[0.04] dark:border-white/[0.03]">
+                          <div className="flex items-center gap-3 p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle)">
                             <Checkbox checked={demoCheckboxChecked} onChange={setDemoCheckboxChecked} />
-                            <span className="type-caption font-medium text-zinc-700 dark:text-zinc-300">
+                            <span className="type-caption font-medium text-zinc-700 dark:text-(--text-secondary)">
                               Enable specular border highlights across registry
                             </span>
                           </div>
@@ -1253,7 +1253,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'tree-view' && (
-                          <div className="w-full max-w-sm p-3 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04]">
+                          <div className="w-full max-w-sm p-3 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft)">
                             <TreeView
                               data={[
                                 {
@@ -1315,7 +1315,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'copy-button' && (
-                          <div className="flex items-center gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03]">
+                          <div className="flex items-center gap-3 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle)">
                             <code className="type-caption font-mono text-emerald-400">npx @99/ui add all</code>
                             <Button
                               size="xs"
@@ -1353,7 +1353,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'sparkline' && (
-                          <div className="w-full max-w-xs p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-2">
+                          <div className="w-full max-w-xs p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-2">
                             <div className="flex items-center justify-between type-caption font-mono text-zinc-400">
                               <span>Throughput</span>
                               <span className="text-emerald-400 font-bold">+18.4%</span>
@@ -1519,7 +1519,7 @@ export function DocsView() {
                         )}
 
                         {activeComponent.id === 'range-slider' && (
-                          <div className="w-full max-w-sm p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03]">
+                          <div className="w-full max-w-sm p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle)">
                             <RangeSlider value={[25, 75]} onChange={() => {}} min={0} max={100} />
                           </div>
                         )}
@@ -2262,7 +2262,7 @@ export function DocsView() {
                         {/* General showcase fallback — safety net for future registry additions.
                             Every one of the 99 standard elements ships a dedicated live preview above. */}
                         {!LIVE_PREVIEW_IDS.has(activeComponent.id) && (
-                          <div className="w-full max-w-md p-6 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-4 text-center">
+                          <div className="w-full max-w-md p-6 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-4 text-center">
                             <div className="w-12 h-12 rounded-(--radius-control) bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mx-auto">
                               <Sparkles className="icon-xl" />
                             </div>
@@ -2270,7 +2270,7 @@ export function DocsView() {
                               <h3 className="type-body-lg font-bold text-zinc-950 dark:text-white">
                                 {activeComponent.title} Primitive
                               </h3>
-                              <p className="type-caption text-zinc-500 dark:text-zinc-400 max-w-xs mx-auto">
+                              <p className="type-caption text-zinc-500 dark:text-(--text-secondary) max-w-xs mx-auto">
                                 {activeComponent.description}
                               </p>
                             </div>
@@ -2289,7 +2289,7 @@ export function DocsView() {
                     </div>
 
                     {/* LIVE INTERACTIVE CONTROLLERS (Props Tweaker) */}
-                    <div className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.03] flex flex-wrap items-center gap-4 type-caption font-mono">
+                    <div className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-subtle) border border-(--border-subtle) dark:border-(--border-subtle) flex flex-wrap items-center gap-4 type-caption font-mono">
                       <div className="flex items-center gap-1.5 text-zinc-500">
                         <SlidersHorizontal className="icon-sm text-emerald-400" />
                         <span className="font-semibold">Live Props:</span>
@@ -2302,7 +2302,7 @@ export function DocsView() {
                             <select
                               value={demoBtnVariant}
                               onChange={(e) => setDemoBtnVariant(e.target.value as any)}
-                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.04] type-caption font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-(--bg-surface) border border-(--border-strong) dark:border-(--border-soft) type-caption font-mono"
                             >
                               <option value="primary">primary</option>
                               <option value="secondary">secondary</option>
@@ -2317,7 +2317,7 @@ export function DocsView() {
                             <select
                               value={demoBtnSize}
                               onChange={(e) => setDemoBtnSize(e.target.value as any)}
-                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.04] type-caption font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-(--bg-surface) border border-(--border-strong) dark:border-(--border-soft) type-caption font-mono"
                             >
                               <option value="xs">xs</option>
                               <option value="sm">sm</option>
@@ -2355,7 +2355,7 @@ export function DocsView() {
                             <select
                               value={demoBadgeVariant}
                               onChange={(e) => setDemoBadgeVariant(e.target.value as any)}
-                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.04] type-caption font-mono"
+                              className="px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-(--bg-surface) border border-(--border-strong) dark:border-(--border-soft) type-caption font-mono"
                             >
                               <option value="default">default</option>
                               <option value="secondary">secondary</option>
@@ -2451,7 +2451,7 @@ export function DocsView() {
                 </div>
 
                 {/* Installation Method Toggle: CLI vs Manual */}
-                <div className="flex items-center gap-2 border-b border-black/[0.06] dark:border-white/[0.04] pb-2">
+                <div className="flex items-center gap-2 border-b border-(--border-soft) dark:border-(--border-soft) pb-2">
                   <button
                     type="button"
                     onClick={() => setInstallMethod('cli')}
@@ -2506,7 +2506,7 @@ export function DocsView() {
                   /* MANUAL INSTALLATION STEPS */
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <span className="type-caption font-semibold text-zinc-700 dark:text-zinc-300">
+                      <span className="type-caption font-semibold text-zinc-700 dark:text-(--text-secondary)">
                         1. Install required primitive packages:
                       </span>
                       <CodeBlock
@@ -2517,7 +2517,7 @@ export function DocsView() {
                     </div>
 
                     <div className="space-y-2">
-                      <span className="type-caption font-semibold text-zinc-700 dark:text-zinc-300">
+                      <span className="type-caption font-semibold text-zinc-700 dark:text-(--text-secondary)">
                         2. Copy component source code to{' '}
                         <code className="text-emerald-400">
                           src/components/ui/{activeComponent.name}.tsx
@@ -2558,31 +2558,31 @@ export function DocsView() {
                   TypeScript interfaces and runtime props for {activeComponent.title}.
                 </p>
 
-                <div className="overflow-x-auto rounded-(--radius-control) border border-black/[0.06] dark:border-white/[0.04]">
+                <div className="overflow-x-auto rounded-(--radius-control) border border-(--border-soft) dark:border-(--border-soft)">
                   <table className="w-full text-left type-caption border-collapse">
                     <thead>
-                      <tr className="border-b border-black/[0.06] dark:border-white/[0.04] bg-zinc-100/50 dark:bg-white/[0.02]">
+                      <tr className="border-b border-(--border-soft) dark:border-(--border-soft) bg-zinc-100/50 dark:bg-(--bg-subtle)">
                         <th className="p-3 font-mono font-bold text-zinc-900 dark:text-zinc-200">Prop</th>
                         <th className="p-3 font-mono font-bold text-zinc-900 dark:text-zinc-200">Type</th>
                         <th className="p-3 font-mono font-bold text-zinc-900 dark:text-zinc-200">Default</th>
                         <th className="p-3 font-mono font-bold text-zinc-900 dark:text-zinc-200">Description</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-black/[0.04] dark:divide-white/[0.03]">
+                    <tbody className="divide-y divide-(--border-subtle) dark:divide-(--border-subtle)">
                       {activeComponent.props.map((p, idx) => (
                         <tr key={idx} className="hover:bg-white/[0.015] transition-colors">
                           <td className="p-3 font-mono font-semibold text-emerald-400 whitespace-nowrap">
                             {p.name}
                           </td>
                           <td className="p-3 font-mono text-zinc-400 whitespace-nowrap">
-                            <span className="px-1.5 py-0.5 rounded bg-black/[0.04] dark:bg-white/[0.04] text-zinc-300">
+                            <span className="px-1.5 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-300">
                               {p.type}
                             </span>
                           </td>
                           <td className="p-3 font-mono text-zinc-500 whitespace-nowrap">
                             {p.default || '-'}
                           </td>
-                          <td className="p-3 text-zinc-600 dark:text-zinc-300 leading-relaxed min-w-[200px]">
+                          <td className="p-3 text-zinc-600 dark:text-(--text-secondary) leading-relaxed min-w-[200px]">
                             {p.description}
                           </td>
                         </tr>
@@ -2604,30 +2604,30 @@ export function DocsView() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
+                  <div className="p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-subtle) border border-(--border-soft) dark:border-(--border-subtle) space-y-2">
                     <h3 className="type-caption font-mono font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
                       <span className="icon-dot rounded-(--radius-pill) bg-emerald-400" />
                       Focus & State Management
                     </h3>
-                    <p className="type-caption text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    <p className="type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
                       Equipped with <code className="text-emerald-400 font-mono">focus-ui99</code> double-ring indicator (2px canvas gap + 2px emerald focus ring) meeting WCAG 2.4.11 / 2.4.13 focus appearance guidelines.
                     </p>
                   </div>
 
-                  <div className="p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.03] space-y-2">
+                  <div className="p-4 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-subtle) border border-(--border-soft) dark:border-(--border-subtle) space-y-2">
                     <h3 className="type-caption font-mono font-bold text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
                       <span className="icon-dot rounded-(--radius-pill) bg-blue-400" />
                       Keyboard Interaction
                     </h3>
-                    <p className="type-caption text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                      Full keyboard operability with <kbd className="px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-zinc-800 type-micro font-mono">Tab</kbd>, <kbd className="px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-zinc-800 type-micro font-mono">Enter</kbd>, <kbd className="px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-zinc-800 type-micro font-mono">Space</kbd>, and arrow key navigation in RTL & LTR modes.
+                    <p className="type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
+                      Full keyboard operability with <kbd className="px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-mono">Tab</kbd>, <kbd className="px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-mono">Enter</kbd>, <kbd className="px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-mono">Space</kbd>, and arrow key navigation in RTL & LTR modes.
                     </p>
                   </div>
                 </div>
               </section>
 
               {/* ── SECTION 6: PAGINATION FOOTER (PREV / NEXT) ── */}
-              <footer className="flex items-center justify-between pt-10 border-t border-black/[0.06] dark:border-white/[0.04]">
+              <footer className="flex items-center justify-between pt-10 border-t border-(--border-soft) dark:border-(--border-soft)">
                 {prevItem ? (
                   <button
                     type="button"
@@ -2635,7 +2635,7 @@ export function DocsView() {
                       setActiveSection(prevItem.id);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                    className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-left"
                   >
                     <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                       <ArrowLeft className="icon-xs" /> Previous
@@ -2655,7 +2655,7 @@ export function DocsView() {
                       setActiveSection(nextItem.id);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                    className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-right"
                   >
                     <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                       Next <ArrowRight className="icon-xs" />
@@ -2676,24 +2676,24 @@ export function DocsView() {
           {/* GUIDE 1: INTRODUCTION */}
           {activeSection === 'intro' && (
             <article className="space-y-8">
-              <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
-                <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card-hover) text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+              <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
+                <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft)">
                   v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 </div>
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Introduction.
                 </h1>
-                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-(--text-secondary) leading-relaxed max-w-2xl">
                   Re-usable components built using Radix UI primitives, Tailwind CSS, and Velvet Obsidian Dark design tokens.
                 </p>
               </header>
 
-              <div className="space-y-6 type-body text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              <div className="space-y-6 type-body text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
                 <p>
                   <strong className="text-zinc-900 dark:text-white font-semibold">UI \ [99]</strong> is <strong>NOT</strong> a component library in the traditional sense of an immutable npm package. It is a collection of re-usable components that you can copy and paste directly into your apps.
                 </p>
 
-                <div className="p-5 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card-hover) border border-black/[0.05] dark:border-white/[0.04] space-y-3">
+                <div className="p-5 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) space-y-3">
                   <h3 className="type-body font-bold text-zinc-950 dark:text-white flex items-center gap-2">
                     <Sparkles className="icon-md text-emerald-400" />
                     Core Architecture Principles
@@ -2722,7 +2722,7 @@ export function DocsView() {
               </div>
 
               {/* Pagination */}
-              <footer className="flex items-center justify-between pt-10 border-t border-black/[0.06] dark:border-white/[0.04]">
+              <footer className="flex items-center justify-between pt-10 border-t border-(--border-soft) dark:border-(--border-soft)">
                 <div />
                 <button
                   type="button"
@@ -2730,7 +2730,7 @@ export function DocsView() {
                     setActiveSection('installation');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-right"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="icon-xs" />
@@ -2746,11 +2746,11 @@ export function DocsView() {
           {/* GUIDE 2: INSTALLATION */}
           {activeSection === 'installation' && (
             <article className="space-y-8">
-              <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
+              <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Installation
                 </h1>
-                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-(--text-secondary) leading-relaxed max-w-2xl">
                   How to install dependencies and configure your project for UI \ [99].
                 </p>
               </header>
@@ -2816,14 +2816,14 @@ export function cn(...inputs: ClassValue[]) {
               </div>
 
               {/* Pagination */}
-              <footer className="flex items-center justify-between pt-10 border-t border-black/[0.06] dark:border-white/[0.04]">
+              <footer className="flex items-center justify-between pt-10 border-t border-(--border-soft) dark:border-(--border-soft)">
                 <button
                   type="button"
                   onClick={() => {
                     setActiveSection('intro');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-left"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     <ArrowLeft className="icon-xs" /> Previous
@@ -2839,7 +2839,7 @@ export function cn(...inputs: ClassValue[]) {
                     setActiveSection('theming');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-right"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="icon-xs" />
@@ -2855,11 +2855,11 @@ export function cn(...inputs: ClassValue[]) {
           {/* GUIDE 3: THEMING */}
           {activeSection === 'theming' && (
             <article className="space-y-8">
-              <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
+              <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Theming & Design Tokens
                 </h1>
-                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-(--text-secondary) leading-relaxed max-w-2xl">
                   Mathematical color tokens, specular rim highlights, and diffusion shadow profiles.
                 </p>
               </header>
@@ -2904,14 +2904,14 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
               </div>
 
               {/* Pagination */}
-              <footer className="flex items-center justify-between pt-10 border-t border-black/[0.06] dark:border-white/[0.04]">
+              <footer className="flex items-center justify-between pt-10 border-t border-(--border-soft) dark:border-(--border-soft)">
                 <button
                   type="button"
                   onClick={() => {
                     setActiveSection('installation');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-left"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     <ArrowLeft className="icon-xs" /> Previous
@@ -2927,7 +2927,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('npm-guide');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-right"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="icon-xs" />
@@ -2943,17 +2943,17 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
           {/* GUIDE 4: REGISTRY ARCHITECTURE (NPM GUIDE) */}
           {activeSection === 'npm-guide' && (
             <article className="space-y-8">
-              <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
+              <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Registry Architecture
                 </h1>
-                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-(--text-secondary) leading-relaxed max-w-2xl">
                   How UI \ [99] distributes zero-dependency copy-paste components via standard JSON registry schemas.
                 </p>
               </header>
 
               <div className="space-y-6">
-                <div className="p-5 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card-hover) border border-black/[0.05] dark:border-white/[0.04] space-y-3">
+                <div className="p-5 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) space-y-3">
                   <h3 className="type-body font-bold text-zinc-950 dark:text-white flex items-center gap-2">
                     <FolderGit2 className="icon-md text-emerald-400" />
                     How It Works
@@ -2988,14 +2988,14 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
               </div>
 
               {/* Pagination */}
-              <footer className="flex items-center justify-between pt-10 border-t border-black/[0.06] dark:border-white/[0.04]">
+              <footer className="flex items-center justify-between pt-10 border-t border-(--border-soft) dark:border-(--border-soft)">
                 <button
                   type="button"
                   onClick={() => {
                     setActiveSection('theming');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-left"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     <ArrowLeft className="icon-xs" /> Previous
@@ -3011,7 +3011,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('cli');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-right"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="icon-xs" />
@@ -3027,11 +3027,11 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
           {/* GUIDE 5: CLI REFERENCE */}
           {activeSection === 'cli' && (
             <article className="space-y-8">
-              <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
+              <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   CLI Reference
                 </h1>
-                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-(--text-secondary) leading-relaxed max-w-2xl">
                   Command-line interface commands for adding components and blocks.
                 </p>
               </header>
@@ -3072,14 +3072,14 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
               </div>
 
               {/* Pagination */}
-              <footer className="flex items-center justify-between pt-10 border-t border-black/[0.06] dark:border-white/[0.04]">
+              <footer className="flex items-center justify-between pt-10 border-t border-(--border-soft) dark:border-(--border-soft)">
                 <button
                   type="button"
                   onClick={() => {
                     setActiveSection('npm-guide');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-left"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     <ArrowLeft className="icon-xs" /> Previous
@@ -3095,7 +3095,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('changelog');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-right"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="icon-xs" />
@@ -3111,19 +3111,19 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
           {/* GUIDE 6: CHANGELOG & RELEASES (audit P3 — versioning on the site) */}
           {activeSection === 'changelog' && (
             <article className="space-y-8">
-              <header className="space-y-3 pb-6 border-b border-black/[0.06] dark:border-white/[0.04]">
+              <header className="space-y-3 pb-6 border-b border-(--border-soft) dark:border-(--border-soft)">
                 <h1 className="type-display sm:type-display font-bold tracking-tight text-zinc-950 dark:text-white">
                   Changelog &amp; Releases
                 </h1>
-                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl">
+                <p className="type-body-lg sm:type-body-lg text-zinc-600 dark:text-(--text-secondary) leading-relaxed max-w-2xl">
                   Every release of UI \ [99], versioned with Changesets and gated by the full quality pipeline.
                 </p>
               </header>
 
               {/* Current release — version is GENERATED (src/generated/kit-count.ts), never hard-coded */}
-              <div className="p-5 sm:p-6 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card-hover) border border-black/[0.05] dark:border-white/[0.04] space-y-4">
+              <div className="p-5 sm:p-6 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) space-y-4">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-zinc-950 text-white dark:bg-white/[0.08] dark:text-white type-caption font-mono font-bold">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-(--radius-field) bg-zinc-950 text-white dark:bg-(--bg-raised) dark:text-white type-caption font-mono font-bold">
                     <Rocket className="icon-sm text-emerald-400" />
                     v{KIT_VERSION}
                   </span>
@@ -3133,7 +3133,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   <span className="type-caption font-mono text-zinc-400">@99/ui — first stable, publish-ready</span>
                 </div>
 
-                <ul className="space-y-2 type-caption text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                <ul className="space-y-2 type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="icon-sm text-emerald-400 shrink-0 mt-0.5" />
                     <span>
@@ -3178,12 +3178,12 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                   <History className="icon-lg text-emerald-400" />
                   How releases are cut
                 </h2>
-                <p className="type-caption text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                <p className="type-caption text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
                   Versions are minted by Changesets — never bumped by hand. A pull request carrying a changeset
                   file lands its notes in the generated CHANGELOG.md and GitHub Releases on the next{' '}
-                  <code className="mx-1 px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-white/[0.06] font-mono type-micro">version-packages</code>{' '}
+                  <code className="mx-1 px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-raised) font-mono type-micro">version-packages</code>{' '}
                   run. The full checklist lives in{' '}
-                  <code className="px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-white/[0.06] font-mono type-micro">docs/RELEASE.md</code>.
+                  <code className="px-1 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-raised) font-mono type-micro">docs/RELEASE.md</code>.
                 </p>
                 <CodeBlock
                   code={`bun run changeset          # describe the change (semver intent)\nbun run version-packages   # bump version + generate CHANGELOG.md\nbun run lib:build          # rebuild the kit with the new version baked in\ncd dist-kit && npm publish`}
@@ -3192,20 +3192,20 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                 />
               </div>
 
-              <div className="p-4 rounded-(--radius-control) border border-black/[0.05] dark:border-white/[0.04] bg-white/[0.02] type-micro font-mono text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              <div className="p-4 rounded-(--radius-control) border border-(--border-soft) dark:border-(--border-soft) bg-white/[0.02] type-micro font-mono text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
                 The version shown on this page, the header badge, and the registry envelope are all generated
                 from one source — <code className="text-emerald-400">src/generated/kit-count.ts</code> — so the site can never advertise a version the package is not.
               </div>
 
               {/* Pagination */}
-              <footer className="flex items-center justify-between pt-10 border-t border-black/[0.06] dark:border-white/[0.04]">
+              <footer className="flex items-center justify-between pt-10 border-t border-(--border-soft) dark:border-(--border-soft)">
                 <button
                   type="button"
                   onClick={() => {
                     setActiveSection('cli');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-left"
+                  className="flex flex-col items-start gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-left"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     <ArrowLeft className="icon-xs" /> Previous
@@ -3221,7 +3221,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
                     setActiveSection('button');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors cursor-pointer text-right"
+                  className="flex flex-col items-end gap-1 p-3 rounded-(--radius-control) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors cursor-pointer text-right"
                 >
                   <span className="type-micro font-mono text-zinc-400 flex items-center gap-1">
                     Next <ArrowRight className="icon-xs" />
@@ -3236,13 +3236,13 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
         </div>
 
         {/* ── RIGHT COLUMN: "ON THIS PAGE" TABLE OF CONTENTS (2 cols on xl) ── */}
-        <aside className="hidden xl:block xl:col-span-2 space-y-4 sticky top-16 select-none pl-4 border-l border-black/[0.04] dark:border-white/[0.03]">
-          <div className="type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-1.5">
+        <aside className="hidden xl:block xl:col-span-2 space-y-4 sticky top-16 select-none pl-4 border-l border-(--border-subtle) dark:border-(--border-subtle)">
+          <div className="type-micro font-bold font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted) flex items-center gap-1.5">
             <Hash className="icon-xs text-emerald-400" />
             <span>On This Page</span>
           </div>
 
-          <div className="space-y-1 type-caption font-mono text-zinc-500 dark:text-zinc-400">
+          <div className="space-y-1 type-caption font-mono text-zinc-500 dark:text-(--text-secondary)">
             {activeComponent ? (
               <>
                 <button
@@ -3283,7 +3283,7 @@ box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.65);`}
             )}
           </div>
 
-          <div className="pt-4 border-t border-black/[0.04] dark:border-white/[0.03] space-y-2">
+          <div className="pt-4 border-t border-(--border-subtle) dark:border-(--border-subtle) space-y-2">
             <button
               type="button"
               onClick={() => {

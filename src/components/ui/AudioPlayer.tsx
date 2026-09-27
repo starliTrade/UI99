@@ -54,7 +54,7 @@ export function AudioPlayer({
       role="group"
       aria-label={`Audio player: ${title} by ${artist}`}
       className={cn(
-        'p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04]',
+        'p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft)',
         'shadow-(--elevation-3) flex flex-col gap-3 w-full max-w-md',
         className
       )}
@@ -69,7 +69,7 @@ export function AudioPlayer({
             <h5 className="type-caption font-semibold text-zinc-900 dark:text-white truncate">
               {title}
             </h5>
-            <p className="type-micro text-(--text-muted) dark:text-zinc-400 truncate">
+            <p className="type-micro text-(--text-muted) dark:text-(--text-secondary) truncate">
               {artist}
             </p>
           </div>
@@ -115,7 +115,7 @@ export function AudioPlayer({
                 'flex-1 rounded-(--radius-pill) transition-all dur-quick',
                 isPassed
                   ? 'bg-(--ink-fill) dark:bg-emerald-400'
-                  : 'bg-(--bg-raised) dark:bg-white/[0.08]'
+                  : 'bg-(--bg-raised) dark:bg-(--bg-raised)'
               )}
               style={{ height: `${barHeight}%` }}
             />
@@ -124,7 +124,7 @@ export function AudioPlayer({
       </div>
 
       {/* Control Bar */}
-      <div className="flex items-center justify-between pt-1 border-t border-black/[0.04] dark:border-white/[0.03]">
+      <div className="flex items-center justify-between pt-1 border-t border-(--border-subtle) dark:border-(--border-subtle)">
         <div className="flex items-center gap-1">
           <button
             type="button"
@@ -176,7 +176,7 @@ export function AudioPlayer({
               if (muted) setMuted(false);
             }}
             aria-label="Volume"
-            className="w-16 h-1 bg-(--bg-raised) dark:bg-zinc-800 rounded-(--radius-sm) appearance-none cursor-pointer accent-zinc-900 dark:accent-white"
+            className="w-16 h-1 bg-(--bg-raised) dark:bg-(--bg-card) rounded-(--radius-sm) appearance-none cursor-pointer accent-zinc-900 dark:accent-white"
           />
         </div>
       </div>

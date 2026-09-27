@@ -46,7 +46,7 @@ export function Modal({
           <DialogPrimitive.Content
             className={cn(
               'pointer-events-auto relative w-full bg-white dark:bg-(--bg-elevated) text-(--text-primary)',
-              'border border-black/[0.08] dark:border-white/[0.06]',
+              'border border-(--border-strong) dark:border-(--border-strong)',
               'shadow-(--elevation-4) shadow-(--shadow-popover)',
               // Mobile: a bottom sheet, so only the top corners are rounded —
               // `lg` reads as a sheet rising off the screen edge. At sm+ it
@@ -64,7 +64,7 @@ export function Modal({
 
             {/* Header */}
             {(title || showClose) && (
-              <div className="px-5 sm:px-6 pt-3 sm:pt-4 pb-3.5 border-b border-black/[0.06] dark:border-white/[0.05] flex items-center justify-between shrink-0">
+              <div className="px-5 sm:px-6 pt-3 sm:pt-4 pb-3.5 border-b border-(--border-soft) dark:border-(--border-strong) flex items-center justify-between shrink-0">
                 <div>
                   {title && (
                     <DialogPrimitive.Title className="type-body-lg sm:type-title font-bold tracking-tight text-(--text-primary)">

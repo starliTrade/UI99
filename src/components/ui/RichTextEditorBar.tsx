@@ -62,14 +62,14 @@ export function RichTextEditorBar({
   return (
     <div
       className={cn(
-        'inline-flex items-center gap-0.5 p-1 rounded-(--radius-control) bg-white/95 dark:bg-(--bg-elevated)/90 backdrop-blur-xl',
-        'border border-black/[0.06] dark:border-white/[0.04] shadow-(--elevation-3)',
+        'inline-flex items-center gap-0.5 p-1 rounded-(--radius-control) bg-white/95 dark:bg-(--bg-card)/90 backdrop-blur-xl',
+        'border border-(--border-soft) dark:border-(--border-soft) shadow-(--elevation-3)',
         className
       )}
     >
       {buttons.map((btn, idx) => {
         if (btn.type === 'separator') {
-          return <div key={idx} className="w-[1px] h-4 bg-(--bg-raised) dark:bg-white/[0.06] mx-1" />;
+          return <div key={idx} className="w-[1px] h-4 bg-(--bg-raised) dark:bg-(--bg-raised) mx-1" />;
         }
         const Icon = btn.icon!;
         const isActive = activeList.includes(btn.key!);
@@ -83,8 +83,8 @@ export function RichTextEditorBar({
             className={cn(
               'p-1.5 rounded-(--radius-sm) transition-all text-zinc-500 hover:text-zinc-900 dark:hover:text-white',
               isActive
-                ? 'bg-(--bg-raised) dark:bg-white/[0.1] text-zinc-900 dark:text-white shadow-xs font-semibold'
-                : 'hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04]'
+                ? 'bg-(--bg-raised) dark:bg-(--state-selected) text-zinc-900 dark:text-white shadow-xs font-semibold'
+                : 'hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
             )}
           >
             <Icon className="icon-md" />

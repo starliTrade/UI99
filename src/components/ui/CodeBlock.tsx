@@ -109,7 +109,7 @@ export function CodeBlock({
         // across the breakpoint, so its corner steps with it (Material's
         // adaptive shape). Identical radii at both breakpoints was the bug.
         'group relative overflow-hidden rounded-(--radius-control) sm:rounded-(--radius-lg)',
-        'border border-(--border-soft) dark:border-white/[0.045]',
+        'border border-(--border-soft) dark:border-(--border-strong)',
         'bg-[#FBFBFC] dark:bg-(--bg-sunken)',
         'shadow-(--elevation-1) dark:shadow-(--elevation-4)',
         'transition-all dur-base',
@@ -118,10 +118,10 @@ export function CodeBlock({
     >
       {/* Top Header Tab Bar */}
       {showChrome && (
-        <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-white/[0.04] bg-(--bg-wash) dark:bg-(--bg-surface) px-3 sm:px-3.5 py-1.5 sm:py-2 select-none min-w-0">
+        <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-surface) px-3 sm:px-3.5 py-1.5 sm:py-2 select-none min-w-0">
           {/* Active File Tab */}
           <div className="flex items-center gap-2 min-w-0 flex-1">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) bg-white dark:bg-white/[0.05] border border-(--border-soft) dark:border-white/[0.06] shadow-xs min-w-0">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) bg-white dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) shadow-xs min-w-0">
               {isBash ? (
                 <Terminal className="icon-sm text-emerald-600 dark:text-emerald-400 shrink-0" />
               ) : (
@@ -133,7 +133,7 @@ export function CodeBlock({
             </div>
 
             {/* Line Count Tag */}
-            <span className="hidden xs:inline-flex items-center type-micro font-mono text-(--text-muted) dark:text-zinc-400 px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-white/[0.03] shrink-0">
+            <span className="hidden xs:inline-flex items-center type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) px-1.5 py-0.5 rounded bg-(--bg-raised) dark:bg-(--bg-wash) shrink-0">
               {lineCount} lines
             </span>
           </div>
@@ -150,7 +150,7 @@ export function CodeBlock({
                 'hidden sm:inline-flex items-center justify-center p-1.5 rounded-(--radius-sm) type-caption font-mono transition-colors cursor-pointer border',
                 wordWrap
                   ? 'bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border-emerald-500/30'
-                  : 'bg-white dark:bg-white/[0.02] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-white/[0.06] border-(--border-soft) dark:border-white/[0.03]'
+                  : 'bg-white dark:bg-(--bg-subtle) text-zinc-500 dark:text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-raised) dark:hover:bg-(--bg-raised) border-(--border-soft) dark:border-(--border-subtle)'
               )}
             >
               <WrapText className="icon-xs" />
@@ -170,7 +170,7 @@ export function CodeBlock({
                 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer border shrink-0',
                 copied
                   ? 'bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 shadow-xs'
-                  : 'bg-white dark:bg-white/[0.04] text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.08] border-(--border-soft) dark:border-white/[0.05]'
+                  : 'bg-white dark:bg-(--bg-wash) text-zinc-700 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border-(--border-soft) dark:border-(--border-strong)'
               )}
             >
               {copied ? (
@@ -180,7 +180,7 @@ export function CodeBlock({
                 </>
               ) : (
                 <>
-                  <Copy className="icon-sm shrink-0 text-(--text-muted) dark:text-zinc-400" />
+                  <Copy className="icon-sm shrink-0 text-(--text-muted) dark:text-(--text-secondary)" />
                   <span className="type-micro hidden sm:inline">Copy</span>
                 </>
               )}
@@ -209,13 +209,13 @@ export function CodeBlock({
                 <div
                   key={idx}
                   className={cn(
-                    'table-row hover:bg-zinc-200/30 dark:hover:bg-white/[0.03] transition-colors group/line',
+                    'table-row hover:bg-zinc-200/30 dark:hover:bg-(--bg-wash) transition-colors group/line',
                     isHighlighted && 'bg-emerald-500/10 -mx-4 px-4'
                   )}
                 >
                   {showLineNumbers && (
                     <span
-                      className="table-cell select-none text-right pr-3.5 sm:pr-4 type-micro text-(--text-secondary) dark:text-zinc-600 group-hover/line:text-zinc-600 dark:group-hover/line:text-zinc-400 font-mono w-7 sm:w-9 shrink-0 align-top transition-colors"
+                      className="table-cell select-none text-right pr-3.5 sm:pr-4 type-micro text-(--text-secondary) dark:text-(--text-muted) group-hover/line:text-zinc-600 dark:group-hover/line:text-zinc-400 font-mono w-7 sm:w-9 shrink-0 align-top transition-colors"
                       aria-hidden="true"
                     >
                       {lineNum}
@@ -236,14 +236,14 @@ export function CodeBlock({
       {allowCollapse && lineCount > 12 && (
         <div
           className={cn(
-            'flex items-center justify-center p-2 border-t border-(--border-soft) dark:border-white/[0.03] bg-(--bg-wash) dark:bg-(--bg-surface)/90 backdrop-blur-md',
+            'flex items-center justify-center p-2 border-t border-(--border-soft) dark:border-(--border-subtle) bg-(--bg-wash) dark:bg-(--bg-surface)/90 backdrop-blur-md',
             isCollapsed && 'absolute inset-x-0 bottom-0 pt-10 bg-gradient-to-t from-white dark:from-(--bg-sunken) via-white/90 dark:via-(--bg-sunken)/90 to-transparent'
           )}
         >
           <button
             type="button"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-(--radius-pill) type-caption font-mono font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white bg-white dark:bg-white/[0.04] hover:bg-(--bg-subtle) dark:hover:bg-white/[0.08] border border-(--border-soft) dark:border-white/[0.06] transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-(--radius-pill) type-caption font-mono font-medium text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white bg-white dark:bg-(--bg-wash) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border border-(--border-soft) dark:border-(--border-strong) transition-colors cursor-pointer"
           >
             {isCollapsed ? (
               <>

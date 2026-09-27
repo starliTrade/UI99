@@ -81,7 +81,7 @@ export function Surface({
     flat:
       'bg-(--bg-wash) dark:bg-(--bg-surface)/80 border-transparent',
     outline:
-      'bg-transparent border border-black/[0.08] dark:border-white/[0.035]',
+      'bg-transparent border border-(--border-strong) dark:border-(--border-soft)',
   }[variant];
 
   const hoverStyle =
@@ -111,7 +111,7 @@ export function CardTitle({ className = '', ...props }: HTMLAttributes<HTMLHeadi
 }
 
 export function CardDescription({ className = '', ...props }: HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={`type-caption text-(--text-muted) dark:text-zinc-400 ${className}`} {...props} />;
+  return <p className={`type-caption text-(--text-muted) dark:text-(--text-secondary) ${className}`} {...props} />;
 }
 
 export function CardContent({ className = '', ...props }: HTMLAttributes<HTMLDivElement>) {

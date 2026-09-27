@@ -53,12 +53,12 @@ export function CalendarView({
   return (
     <div
       className={cn(
-        'flex flex-col gap-3 p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.04] shadow-md w-full',
+        'flex flex-col gap-3 p-4 rounded-(--radius-lg) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-md w-full',
         className
       )}
     >
       {/* Month Navigation Header */}
-      <div className="flex items-center justify-between pb-2 border-b border-black/[0.04] dark:border-white/[0.03]">
+      <div className="flex items-center justify-between pb-2 border-b border-(--border-subtle) dark:border-(--border-subtle)">
         <div className="flex items-center gap-2">
           <CalendarIcon className="icon-md text-emerald-500" aria-hidden="true" />
           <h4 className="type-body font-semibold text-zinc-900 dark:text-white">
@@ -70,14 +70,14 @@ export function CalendarView({
           <button
             type="button"
             aria-label="Previous month"
-            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors"
           >
             <ChevronLeft className="icon-md" />
           </button>
           <button
             type="button"
             aria-label="Next month"
-            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors"
           >
             <ChevronRight className="icon-md" />
           </button>
@@ -120,8 +120,8 @@ export function CalendarView({
               className={cn(
                 'min-h-[44px] sm:min-h-[58px] p-1 sm:p-1.5 rounded-(--radius-sm) sm:rounded-(--radius-field) border flex flex-col items-start justify-between text-left transition-all dur-quick',
                 isSelected
-                  ? 'bg-(--bg-subtle) dark:bg-white/[0.08] border-black/20 dark:border-white/20 shadow-xs'
-                  : 'bg-(--bg-subtle) dark:bg-(--bg-elevated)/50 border-black/[0.04] dark:border-white/[0.02] hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04]'
+                  ? 'bg-(--bg-subtle) dark:bg-(--bg-raised) border-black/20 dark:border-white/20 shadow-xs'
+                  : 'bg-(--bg-subtle) dark:bg-(--bg-card)/50 border-(--border-subtle) dark:border-(--border-subtle) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
               )}
             >
               <span
@@ -129,7 +129,7 @@ export function CalendarView({
                   'type-micro font-mono font-medium w-5 h-5 flex items-center justify-center rounded-(--radius-pill)',
                   isToday
                     ? 'bg-(--ink-fill) dark:bg-white text-white dark:text-black font-bold'
-                    : 'text-zinc-600 dark:text-zinc-400'
+                    : 'text-zinc-600 dark:text-(--text-secondary)'
                 )}
               >
                 {dayNum}

@@ -24,7 +24,7 @@ export function LinkButton({
 }: LinkButtonProps) {
   const variantStyles = {
     subtle:
-      'text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors',
+      'text-zinc-600 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white transition-colors',
     emerald:
       'text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 underline underline-offset-4 decoration-emerald-500/30 hover:decoration-emerald-500 transition-colors',
     underline:
@@ -93,9 +93,9 @@ export function DropdownButton({
     primary:
       'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 border border-transparent shadow-xs',
     secondary:
-      'bg-(--bg-subtle) dark:bg-(--bg-elevated) text-zinc-900 dark:text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card-hover) border border-(--border-soft) dark:border-white/[0.04]',
+      'bg-(--bg-subtle) dark:bg-(--bg-elevated) text-zinc-900 dark:text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card-hover) border border-(--border-soft) dark:border-(--border-soft)',
     outline:
-      'bg-transparent text-zinc-900 dark:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04] border border-(--border-strong) dark:border-white/[0.08]',
+      'bg-transparent text-zinc-900 dark:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) border border-(--border-strong) dark:border-(--border-strong)',
   }[variant];
 
   const currentLabel = options.find((o) => o.value === selected)?.label || label;
@@ -113,7 +113,7 @@ export function DropdownButton({
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-1 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-elevated) border border-(--border-soft) dark:border-white/[0.06] shadow-xl z-popover animate-in fade-in zoom-in-95 dur-fast">
+        <div className="absolute top-full left-0 mt-1 min-w-[160px] py-1 rounded-(--radius-field) bg-white dark:bg-(--bg-elevated) border border-(--border-soft) dark:border-(--border-strong) shadow-xl z-popover animate-in fade-in zoom-in-95 dur-fast">
           {options.map((opt) => (
             <button
               key={opt.value}
@@ -125,8 +125,8 @@ export function DropdownButton({
               }}
               className={`w-full px-3 py-1.5 type-caption text-left font-mono flex items-center justify-between transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
                 selected === opt.value
-                  ? 'bg-(--bg-subtle) dark:bg-white/[0.08] text-emerald-500 font-bold'
-                  : 'text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-white/[0.04]'
+                  ? 'bg-(--bg-subtle) dark:bg-(--bg-raised) text-emerald-500 font-bold'
+                  : 'text-zinc-700 dark:text-(--text-secondary) hover:text-zinc-950 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
               }`}
             >
               <div className="flex items-center gap-2">

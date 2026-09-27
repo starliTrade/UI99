@@ -86,7 +86,7 @@ export function DatePicker({
           disabled={disabled}
           className={cn(
             'inline-flex h-10 min-w-[180px] items-center gap-2 rounded-(--radius-field) border border-black/[0.07] bg-white px-3 type-body text-zinc-950',
-            'dark:border-white/[0.07] dark:bg-(--bg-elevated) dark:text-(--text-primary)',
+            'dark:border-(--border-strong) dark:bg-(--bg-card) dark:text-(--text-primary)',
             'transition-colors hover:bg-(--state-hover)',
             'focus-visible:outline-none focus-ui99-inset cursor-pointer',
             'disabled:cursor-not-allowed disabled:opacity-45',
@@ -103,14 +103,14 @@ export function DatePicker({
         <PopoverPrimitive.Content
           sideOffset={8}
           align="start"
-          className="z-popover w-[280px] rounded-(--radius-control) border border-black/[0.06] bg-white p-3 shadow-(--elevation-4) dark:border-white/[0.06] dark:bg-(--bg-elevated)"
+          className="z-popover w-[280px] rounded-(--radius-control) border border-(--border-soft) bg-white p-3 shadow-(--elevation-4) dark:border-(--border-strong) dark:bg-(--bg-card)"
         >
           <div className="mb-2 flex items-center justify-between">
             <button
               type="button"
               onClick={() => shiftMonth(-1)}
               aria-label="Previous month"
-              className="rounded-(--radius-sm) p-1.5 text-(--text-muted) hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
+              className="rounded-(--radius-sm) p-1.5 text-(--text-muted) hover:bg-(--bg-subtle) dark:text-(--text-secondary) dark:hover:bg-(--bg-raised) focus-visible:outline-none focus-ui99 cursor-pointer"
             >
               <ChevronLeft className="icon-md" />
             </button>
@@ -121,7 +121,7 @@ export function DatePicker({
               type="button"
               onClick={() => shiftMonth(1)}
               aria-label="Next month"
-              className="rounded-(--radius-sm) p-1.5 text-(--text-muted) hover:bg-black/[0.04] dark:text-(--text-secondary) dark:hover:bg-white/[0.06] focus-visible:outline-none focus-ui99 cursor-pointer"
+              className="rounded-(--radius-sm) p-1.5 text-(--text-muted) hover:bg-(--bg-subtle) dark:text-(--text-secondary) dark:hover:bg-(--bg-raised) focus-visible:outline-none focus-ui99 cursor-pointer"
             >
               <ChevronRight className="icon-md" />
             </button>

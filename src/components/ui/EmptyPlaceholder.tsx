@@ -32,12 +32,12 @@ export function EmptyPlaceholder({
     <div
       className={cn(
         'flex flex-col items-center justify-center text-center p-8 sm:p-12 rounded-(--radius-lg)',
-        'border border-dashed border-black/10 dark:border-white/[0.06] bg-(--bg-subtle) dark:bg-(--bg-card)/50',
+        'border border-dashed border-black/10 dark:border-(--border-strong) bg-(--bg-subtle) dark:bg-(--bg-card)/50',
         'w-full max-w-lg mx-auto',
         className
       )}
     >
-      <div className="w-12 h-12 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/5 dark:border-white/5 flex items-center justify-center text-(--text-secondary) dark:text-zinc-500 shadow-xs mb-4">
+      <div className="w-12 h-12 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-strong) flex items-center justify-center text-(--text-secondary) dark:text-(--text-muted) shadow-xs mb-4">
         {icon || <Inbox className="icon-xl stroke-[1.5]" />}
       </div>
 
@@ -46,7 +46,7 @@ export function EmptyPlaceholder({
       </h4>
 
       {description && (
-        <p className="type-caption sm:type-body text-(--text-muted) dark:text-zinc-400 max-w-sm mb-6 leading-relaxed">
+        <p className="type-caption sm:type-body text-(--text-muted) dark:text-(--text-secondary) max-w-sm mb-6 leading-relaxed">
           {description}
         </p>
       )}

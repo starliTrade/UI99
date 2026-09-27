@@ -32,13 +32,13 @@ export function MetricCard({
     <div
       role="group"
       aria-label={`${label}: ${typeof value === 'string' || typeof value === 'number' ? value : ''}${delta !== undefined ? `, ${delta > 0 ? 'up' : 'down'} ${Math.abs(delta)} percent` : ''}`}
-      className={`p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-white/[0.035] shadow-xs space-y-3 ${className}`}
+      className={`p-4 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) shadow-xs space-y-3 ${className}`}
     >
       <div className="flex items-center justify-between">
-        <span className="type-caption font-mono text-(--text-muted) dark:text-zinc-400 font-medium">
+        <span className="type-caption font-mono text-(--text-muted) dark:text-(--text-secondary) font-medium">
           {label}
         </span>
-        {icon && <span className="text-(--text-secondary) dark:text-zinc-600">{icon}</span>}
+        {icon && <span className="text-(--text-secondary) dark:text-(--text-muted)">{icon}</span>}
       </div>
 
       <div className="flex items-baseline justify-between gap-2">
@@ -84,7 +84,7 @@ export function Spinner({
 
   const variantStyles = {
     emerald: 'text-emerald-500',
-    subtle: 'text-zinc-400 dark:text-zinc-600',
+    subtle: 'text-zinc-400 dark:text-(--text-muted)',
     white: 'text-white',
   }[variant];
 

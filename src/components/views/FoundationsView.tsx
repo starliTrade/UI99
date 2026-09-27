@@ -60,13 +60,13 @@ export function FoundationsView() {
     <div className="w-full space-y-12 pb-20">
       {/* Header */}
       <div className="space-y-3">
-        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card-hover) text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">
+        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft)">
           {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="type-display sm:type-display font-extrabold tracking-tight text-zinc-950 dark:text-white">
           Foundations.
         </h1>
-        <p className="type-body text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+        <p className="type-body text-zinc-600 dark:text-(--text-secondary) max-w-2xl leading-relaxed">
           The mathematical values, color tokens, optical refraction highlights, typographic scales, and anti-slop rules powering the UI \ [99] design system.
         </p>
       </div>
@@ -90,11 +90,11 @@ export function FoundationsView() {
             <div
               key={t.name}
               onClick={() => copyValue(isDark ? t.dark : t.light, t.name)}
-              className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3 cursor-pointer hover:border-black/20 dark:hover:border-white/10 transition-colors shadow-xs group"
+              className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-3 cursor-pointer hover:border-black/20 dark:hover:border-white/10 transition-colors shadow-xs group"
             >
               <div
                 style={{ backgroundColor: isDark ? t.dark : t.light }}
-                className="w-full h-16 rounded-(--radius-field) border border-black/[0.08] dark:border-white/[0.05] flex items-center justify-center relative overflow-hidden"
+                className="w-full h-16 rounded-(--radius-field) border border-(--border-strong) dark:border-(--border-strong) flex items-center justify-center relative overflow-hidden"
               >
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute inset-0 bg-black/40 flex items-center justify-center text-white type-caption font-mono gap-1">
                   {copiedToken === t.name ? (
@@ -132,7 +132,7 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-6 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-6">
+        <div className="p-6 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <div className="flex justify-between type-caption font-mono text-zinc-400">
@@ -172,13 +172,13 @@ export function FoundationsView() {
                 borderRadius: `${simOuterRadius}px`,
                 padding: `${simPadding}px`,
               }}
-              className="w-full max-w-md bg-white dark:bg-(--bg-elevated) border border-black/[0.08] dark:border-white/[0.04] shadow-md transition-all dur-quick"
+              className="w-full max-w-md bg-white dark:bg-(--bg-card) border border-(--border-strong) dark:border-(--border-soft) shadow-md transition-all dur-quick"
             >
               <div
                 style={{
                   borderRadius: `${simInnerRadius}px`,
                 }}
-                className="p-6 bg-(--bg-subtle) dark:bg-(--bg-card) border border-black/[0.06] dark:border-white/[0.03] text-center space-y-1 transition-all dur-quick"
+                className="p-6 bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) text-center space-y-1 transition-all dur-quick"
               >
                 <div className="type-caption font-bold text-zinc-900 dark:text-white">
                   Child Element Container
@@ -214,7 +214,7 @@ export function FoundationsView() {
               <ShieldAlert className="icon-md" />
               <span>Banned Anti-Patterns</span>
             </div>
-            <ul className="space-y-2 type-caption text-zinc-600 dark:text-zinc-400">
+            <ul className="space-y-2 type-caption text-zinc-600 dark:text-(--text-secondary)">
               <li>• Unjustified nested cards inside cards</li>
               <li>• Generic purple-to-blue marketing gradients</li>
               <li>• Thick colored side-tab borders on container edges</li>
@@ -228,7 +228,7 @@ export function FoundationsView() {
               <ShieldCheck className="icon-md" />
               <span>Enforced Standards in UI \ [99]</span>
             </div>
-            <ul className="space-y-2 type-caption text-zinc-600 dark:text-zinc-400">
+            <ul className="space-y-2 type-caption text-zinc-600 dark:text-(--text-secondary)">
               <li>• True velvet obsidian black <code className="font-mono type-micro">#06070A</code> with 0% unwanted tint</li>
               <li>• Sub-pixel specular top rim highlight: <code className="font-mono type-micro">inset 0 1px 0 0 rgba(255,255,255,0.05)</code></li>
               <li>• Mathematical nested corner radius ratio: Inside = Outside - Padding</li>
@@ -251,7 +251,7 @@ export function FoundationsView() {
           </p>
         </div>
 
-        <div className="p-5 sm:p-7 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-5">
+        <div className="p-5 sm:p-7 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-5">
           <div className="flex flex-wrap items-center gap-3">
             <Button
               variant={isDark ? 'outline' : 'primary'}
@@ -285,10 +285,10 @@ export function FoundationsView() {
                 key={row.token}
                 type="button"
                 onClick={() => copyValue(`var(${row.token})`, row.token)}
-                className="text-left p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.04] space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
+                className="text-left p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-soft) space-y-2 cursor-pointer hover:border-emerald-500/40 transition-colors focus-visible:outline-none focus-ui99-inset"
               >
                 <div
-                  className="w-full h-12 rounded-(--radius-field) border border-black/[0.06] dark:border-white/[0.05]"
+                  className="w-full h-12 rounded-(--radius-field) border border-(--border-soft) dark:border-(--border-strong)"
                   style={{ background: `var(${row.token})` }}
                 />
                 <div className="type-micro font-semibold text-zinc-900 dark:text-white">{row.label}</div>
@@ -319,38 +319,38 @@ export function FoundationsView() {
       {/* ========================================================================= */}
         <Reveal index={1}>
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="p-6 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+        <div className="p-6 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-3">
           <div className="w-8 h-8 rounded-(--radius-field) bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono type-caption font-bold">
             #06
           </div>
           <h3 className="type-body-lg font-bold text-zinc-950 dark:text-white">
             Obsidian Velvet Palette
           </h3>
-          <p className="type-caption text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="type-caption text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
             True obsidian black base (<code className="text-emerald-400 font-mono">#06070A</code>) with sub-pixel top rim highlights for zero visual fatigue during prolonged engineering workflows.
           </p>
         </div>
 
-        <div className="p-6 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+        <div className="p-6 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-3">
           <div className="w-8 h-8 rounded-(--radius-field) bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono type-caption font-bold">
             <Zap className="icon-md" />
           </div>
           <h3 className="type-body-lg font-bold text-zinc-950 dark:text-white">
             Linear Velocity Controls
           </h3>
-          <p className="type-caption text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="type-caption text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
             Keyboard first navigation (<Kbd size="xs">J</Kbd> / <Kbd size="xs">K</Kbd> / <Kbd size="xs">C</Kbd>) paired with instant spring physics and haptic micro-interactions.
           </p>
         </div>
 
-        <div className="p-6 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-black/[0.05] dark:border-white/[0.03] space-y-3">
+        <div className="p-6 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) space-y-3">
           <div className="w-8 h-8 rounded-(--radius-field) bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono type-caption font-bold">
             <Code2 className="icon-md" />
           </div>
           <h3 className="type-body-lg font-bold text-zinc-950 dark:text-white">
             Copy-Paste Architecture
           </h3>
-          <p className="type-caption text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="type-caption text-zinc-500 dark:text-(--text-secondary) leading-relaxed">
             100% code ownership. Copy source code directly into your components folder with Tailwind v4 classes and zero external wrapper dependencies.
           </p>
         </div>

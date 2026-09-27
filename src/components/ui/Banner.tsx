@@ -38,7 +38,7 @@ export function Banner({
   if (closed) return null;
 
   const variants = {
-    obsidian: 'bg-zinc-900/90 dark:bg-(--bg-elevated) text-white border-black/10 dark:border-white/[0.04]',
+    obsidian: 'bg-zinc-900/90 dark:bg-(--bg-card) text-white border-black/10 dark:border-(--border-soft)',
     emerald: 'bg-emerald-500/10 text-emerald-900 dark:text-emerald-300 border-emerald-500/20',
     amber: 'bg-amber-500/10 text-amber-900 dark:text-amber-300 border-amber-500/20',
     sapphire: 'bg-blue-500/10 text-blue-900 dark:text-blue-300 border-blue-500/20',
@@ -60,7 +60,7 @@ export function Banner({
         <div className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2 type-caption truncate">
           <span className="font-semibold text-current truncate">{title}</span>
           {description && (
-            <span className="text-(--text-secondary) dark:text-zinc-400 hidden sm:inline truncate">
+            <span className="text-(--text-secondary) dark:text-(--text-secondary) hidden sm:inline truncate">
               {description}
             </span>
           )}

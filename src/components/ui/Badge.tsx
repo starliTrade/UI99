@@ -38,9 +38,9 @@ export const badgeVariants = cva(
       variant: {
         default: 'bg-zinc-900 text-white shadow-xs dark:bg-white dark:text-black',
         secondary:
-          'bg-(--bg-subtle) dark:bg-white/[0.05] text-zinc-700 dark:text-zinc-300 border border-(--border-hairline)',
+          'bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-700 dark:text-(--text-secondary) border border-(--border-hairline)',
         outline:
-          'border border-(--border-strong) dark:border-white/[0.08] text-zinc-800 dark:text-zinc-200',
+          'border border-(--border-strong) dark:border-(--border-strong) text-zinc-800 dark:text-zinc-200',
         destructive: 'bg-(--intent-rose) text-(--intent-rose-on) shadow-xs hover:bg-(--intent-rose-hover)',
         green:
           'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20',

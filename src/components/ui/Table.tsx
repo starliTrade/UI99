@@ -33,7 +33,7 @@ export function TableFooter({ className = '', ...props }: React.HTMLAttributes<H
   return (
     <tfoot
       className={cn(
-        'border-t border-black/[0.06] dark:border-white/[0.05] bg-(--bg-sunken) font-medium',
+        'border-t border-(--border-soft) dark:border-(--border-strong) bg-(--bg-sunken) font-medium',
         className
       )}
       {...props}
@@ -46,7 +46,7 @@ export function TableRow({ className = '', ...props }: React.HTMLAttributes<HTML
   return (
     <tr
       className={cn(
-        'border-b border-black/[0.05] dark:border-white/[0.04] transition-colors hover:bg-black/[0.02] dark:hover:bg-white/[0.02] data-[state=selected]:bg-black/[0.03] dark:data-[state=selected]:bg-white/[0.04]',
+        'border-b border-(--border-soft) dark:border-(--border-soft) transition-colors hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle) data-[state=selected]:bg-(--bg-subtle) dark:data-[state=selected]:bg-white/[0.04]',
         className
       )}
       {...props}

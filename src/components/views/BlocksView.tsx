@@ -80,7 +80,7 @@ function LinearIssueTrackerBlock() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between pb-2 border-b border-black/[0.06] dark:border-white/[0.04]">
+      <div className="flex items-center justify-between pb-2 border-b border-(--border-soft) dark:border-(--border-soft)">
         <div className="flex items-center gap-2">
           <span className="type-caption font-bold text-zinc-900 dark:text-white">Active Cycle 99.1</span>
           <Tag variant="purple">3 Issues</Tag>
@@ -97,7 +97,7 @@ function LinearIssueTrackerBlock() {
         {issues.map((issue) => (
           <div
             key={issue.id}
-            className="p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-black/[0.05] dark:border-white/[0.035] flex items-center justify-between gap-4 hover:border-black/20 dark:hover:border-white/10 transition-colors cursor-pointer shadow-xs"
+            className="p-3.5 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-soft) flex items-center justify-between gap-4 hover:border-black/20 dark:hover:border-white/10 transition-colors cursor-pointer shadow-xs"
           >
             <div className="flex items-center gap-3 min-w-0">
               <PriorityBadge priority={issue.priority} size="sm" showLabel={false} />
@@ -110,7 +110,7 @@ function LinearIssueTrackerBlock() {
             <div className="flex items-center gap-3 shrink-0">
               <Tag variant="neutral">{issue.tag}</Tag>
               <StatusBadge status={issue.status} showLabel={true} />
-              <div className="w-5 h-5 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-zinc-800 type-micro font-bold flex items-center justify-center text-zinc-700 dark:text-zinc-300">
+              <div className="w-5 h-5 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-(--bg-card) type-micro font-bold flex items-center justify-center text-zinc-700 dark:text-(--text-secondary)">
                 {issue.assignee[0]}
               </div>
             </div>
@@ -145,7 +145,7 @@ function AuthCardBlock() {
 
           <div className="relative flex items-center justify-center py-2">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-black/[0.06] dark:border-white/[0.05]" />
+              <div className="w-full border-t border-(--border-soft) dark:border-(--border-strong)" />
             </div>
             <span className="relative px-3 bg-white dark:bg-(--bg-card) type-micro font-mono text-zinc-400">
               OR EMAIL
@@ -169,7 +169,7 @@ function AuthCardBlock() {
           </div>
 
           <div className="flex items-center justify-between type-caption pt-1">
-            <label className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 cursor-pointer">
+            <label className="flex items-center gap-2 text-zinc-600 dark:text-(--text-secondary) cursor-pointer">
               <input
                 type="checkbox"
                 checked={rememberMe}
@@ -296,9 +296,9 @@ function PricingPlansBlock() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2.5 pt-2 border-t border-black/[0.05] dark:border-white/[0.04]">
+                <div className="space-y-2.5 pt-2 border-t border-(--border-soft) dark:border-(--border-soft)">
                   {plan.features.map((feat) => (
-                    <div key={feat} className="flex items-center gap-2 type-caption text-zinc-700 dark:text-zinc-300">
+                    <div key={feat} className="flex items-center gap-2 type-caption text-zinc-700 dark:text-(--text-secondary)">
                       <Check className="icon-sm text-emerald-400 shrink-0" />
                       <span>{feat}</span>
                     </div>
@@ -513,7 +513,7 @@ export function SecuritySettingsBlock() {
     <div className="w-full space-y-8 pb-16">
       {/* PAGE HEADER */}
       <header className="pb-2 space-y-3">
-        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card-hover) text-zinc-600 dark:text-zinc-300 border border-black/[0.05] dark:border-white/[0.04]">v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
+        <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft) dark:border-(--border-soft)">v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         </div>
         <h1 className="type-display sm:type-hero font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.05] text-balance">
           Production Blocks.
@@ -524,15 +524,15 @@ export function SecuritySettingsBlock() {
       </header>
 
       {/* Block Category Navigation & Preview/Code Switcher */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-black/[0.06] dark:border-white/[0.04]">
-        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.03]">
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-(--border-soft) dark:border-(--border-soft)">
+        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)">
           <button
             type="button"
             onClick={() => setActiveBlock('linear')}
             className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
               activeBlock === 'linear'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+                : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
             }`}
           >
             Linear Issue Tracker
@@ -543,7 +543,7 @@ export function SecuritySettingsBlock() {
             className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
               activeBlock === 'auth'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+                : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
             }`}
           >
             Auth & Login Card
@@ -554,7 +554,7 @@ export function SecuritySettingsBlock() {
             className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
               activeBlock === 'pricing'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+                : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
             }`}
           >
             Pricing Matrix
@@ -565,7 +565,7 @@ export function SecuritySettingsBlock() {
             className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
               activeBlock === 'analytics'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+                : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
             }`}
           >
             Analytics & Deck
@@ -576,7 +576,7 @@ export function SecuritySettingsBlock() {
             className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors ${
               activeBlock === 'settings'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+                : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
             }`}
           >
             Security Preferences
@@ -584,14 +584,14 @@ export function SecuritySettingsBlock() {
         </div>
 
         {/* Preview / Code Tab Toggle */}
-        <div className="flex items-center gap-1.5 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.03]">
+        <div className="flex items-center gap-1.5 p-1 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)">
           <button
             type="button"
             onClick={() => setBlockTab('preview')}
             className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium flex items-center gap-1.5 cursor-pointer transition-colors ${
               blockTab === 'preview'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+                : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
             }`}
           >
             <Eye className="icon-sm" />
@@ -603,7 +603,7 @@ export function SecuritySettingsBlock() {
             className={`px-3 py-1.5 rounded-(--radius-field) type-caption font-medium flex items-center gap-1.5 cursor-pointer transition-colors ${
               blockTab === 'code'
                 ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-semibold shadow-xs'
-                : 'text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white'
+                : 'text-zinc-500 hover:text-black dark:text-(--text-secondary) dark:hover:text-white'
             }`}
           >
             <Code2 className="icon-sm" />
@@ -634,7 +634,7 @@ export function SecuritySettingsBlock() {
                   <span>Interactive Workflow Module</span>
                 </span>
               </div>
-              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-(--bg-subtle) dark:bg-(--bg-card) p-6 shadow-sm">
+              <div className="rounded-(--radius-lg) border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-subtle) dark:bg-(--bg-card) p-6 shadow-sm">
                 <LinearIssueTrackerBlock />
               </div>
             </div>
@@ -649,7 +649,7 @@ export function SecuritySettingsBlock() {
                   <span>SSO & Credentials Card</span>
                 </span>
               </div>
-              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-(--bg-subtle) dark:bg-[#06070A] p-6 sm:p-12 shadow-sm">
+              <div className="rounded-(--radius-lg) border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-subtle) dark:bg-[#06070A] p-6 sm:p-12 shadow-sm">
                 <AuthCardBlock />
               </div>
             </div>
@@ -664,7 +664,7 @@ export function SecuritySettingsBlock() {
                   <span>Tiered Pricing Table</span>
                 </span>
               </div>
-              <div className="rounded-(--radius-lg) border border-black/[0.06] dark:border-white/[0.035] bg-(--bg-subtle) dark:bg-[#06070A] p-6 sm:p-8 shadow-sm">
+              <div className="rounded-(--radius-lg) border border-(--border-soft) dark:border-(--border-soft) bg-(--bg-subtle) dark:bg-[#06070A] p-6 sm:p-8 shadow-sm">
                 <PricingPlansBlock />
               </div>
             </div>

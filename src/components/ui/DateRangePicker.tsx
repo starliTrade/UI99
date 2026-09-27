@@ -41,7 +41,7 @@ export function DateRangePicker({
         type="button"
         disabled={disabled}
         onClick={() => setOpen(!open)}
-        className="h-9 px-3 rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-white/[0.04] type-caption font-mono text-zinc-900 dark:text-white inline-flex items-center gap-2 hover:bg-(--bg-subtle) dark:hover:bg-(--bg-elevated) transition-colors cursor-pointer disabled:opacity-50"
+        className="h-9 px-3 rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-soft) type-caption font-mono text-zinc-900 dark:text-white inline-flex items-center gap-2 hover:bg-(--bg-subtle) dark:hover:bg-(--bg-card) transition-colors cursor-pointer disabled:opacity-50"
       >
         <Calendar className="icon-sm text-(--text-secondary)" />
         <span>{start}</span>
@@ -50,7 +50,7 @@ export function DateRangePicker({
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-1.5 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-elevated) border border-(--border-soft) dark:border-white/[0.06] shadow-2xl z-popover animate-in fade-in dur-fast space-y-3 min-w-[280px]">
+        <div className="absolute top-full left-0 mt-1.5 p-3 rounded-(--radius-control) bg-white dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-strong) shadow-2xl z-popover animate-in fade-in dur-fast space-y-3 min-w-[280px]">
           <div className="flex items-center justify-between type-caption font-mono font-bold text-zinc-950 dark:text-white">
             <span>Select Date Range</span>
             <span className="type-micro text-emerald-500 font-normal">Active Sprint</span>
@@ -66,7 +66,7 @@ export function DateRangePicker({
                   setStart(e.target.value);
                   onChange?.({ start: e.target.value, end });
                 }}
-                className="w-full px-2 py-1.5 rounded-(--radius-sm) bg-(--bg-subtle) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.06] text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
+                className="w-full px-2 py-1.5 rounded-(--radius-sm) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
               />
             </div>
             <div>
@@ -78,12 +78,12 @@ export function DateRangePicker({
                   setEnd(e.target.value);
                   onChange?.({ start, end: e.target.value });
                 }}
-                className="w-full px-2 py-1.5 rounded-(--radius-sm) bg-(--bg-subtle) dark:bg-white/[0.04] border border-(--border-soft) dark:border-white/[0.06] text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
+                className="w-full px-2 py-1.5 rounded-(--radius-sm) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
               />
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-1 border-t border-zinc-100 dark:border-white/[0.04]">
+          <div className="flex justify-end gap-2 pt-1 border-t border-zinc-100 dark:border-(--border-soft)">
             <button
               type="button"
               onClick={() => setOpen(false)}

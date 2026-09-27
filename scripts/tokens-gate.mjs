@@ -402,8 +402,138 @@ if (deadUtilityViolations.length) {
   process.exit(1);
 }
 
+/* ══════════════════ RULE E — soft continuity (پیوستگی مخملی) ══════════════════
+ *
+ * docs/standards.md §2.4: every resting surface must sit CLOSE to the canvas;
+ * separation is earned by elevation and state, not by bright fills or hard
+ * borders. The hero audit found the kit speaking ~30 hand-chosen white/black
+ * alphas while the token ladder (subtle/wash/raised · subtle/soft/strong) sat
+ * unused — two components playing the same role rendered at different
+ * distances from the canvas.
+ *
+ * Enforced here (kit AND product surfaces):
+ *   1. NO raw `dark:` white-alpha for bg/border/divide — the ladder token only.
+ *   2. NO raw `dark:` zinc for text/border/divide/bg below the on-fill tier —
+ *      semantic text/border tokens only.
+ *   3. NO light-side black-alpha paired with a dark override — the light
+ *      ladder only. (Unpaired black-alphas may be scrims/marks: left alone.)
+ *   4. NO resting `--bg-elevated` / `--bg-card-hover` outside FLOATING files —
+ *      elevated is reserved for layers that genuinely float.
+ *
+ * Scope mirrors scripts/migrate-softness.mjs exactly: only values the ladders
+ * can represent are flagged, so the codemod can always fix what this blocks.
+ * Ring alphas and bg alphas above the ladder (selection rings, dots, scrims,
+ * emphasis marks) are accent VALUES, not surfaces — never flagged.
+ */
+const SOFT_DIRS = [
+  'src/components/ui',
+  'src/components/views',
+  'src/components/home',
+  'src/components/shells',
+  'src/components/widgets',
+];
+const FLOATING_FILES = new Set([
+  'Modal.tsx', 'AlertDialog.tsx', 'Dialog.tsx', 'Sheet.tsx', 'Popover.tsx',
+  'DropdownMenu.tsx', 'Dropdown.tsx', 'DropdownButton.tsx', 'HoverCard.tsx',
+  'Tooltip.tsx', 'TooltipPrimitive.tsx', 'Combobox.tsx', 'Command.tsx',
+  'CommandBar.tsx', 'Toast.tsx', 'TopHeader.tsx', 'BottomNavigation.tsx',
+  'TourGuide.tsx', 'KeyboardShortcutsDialog.tsx',
+  'GlobalSearchModal.tsx', 'ObjectDetailModal.tsx', 'SettingsModal.tsx',
+  'UniversalCaptureModal.tsx',
+]);
+
+const walkTsx = (dir) =>
+  readdirSync(resolve(root, dir), { withFileTypes: true }).flatMap((e) =>
+    e.isDirectory()
+      ? walkTsx(`${dir}/${e.name}`)
+      : e.name.endsWith('.tsx') || e.name.endsWith('.ts')
+        ? [`${dir}/${e.name}`]
+        : [],
+  );
+
+// Same representability tables as the codemod — keep the two in lockstep.
+const SOFT_LADDERS = {
+  dark: {
+    border: (a) =>
+      a <= 0.03 ? '--border-subtle' : a <= 0.042 ? '--border-soft' : a <= 0.08 ? '--border-strong' : null,
+    bg: (a) =>
+      a <= 0.028 ? '--bg-subtle'
+      : a <= 0.05 ? '--bg-wash'
+      : a <= 0.08 ? '--bg-raised'
+      : a <= 0.1 ? '--state-selected'
+      : null,
+  },
+  light: {
+    border: (a) =>
+      a <= 0.045 ? '--border-subtle' : a <= 0.065 ? '--border-soft' : a <= 0.085 ? '--border-strong' : null,
+    bg: (a) =>
+      a <= 0.045 ? '--bg-subtle'
+      : a <= 0.065 ? '--bg-wash'
+      : a <= 0.085 ? '--bg-raised'
+      : a <= 0.1 ? '--state-selected'
+      : null,
+  },
+};
+
+const parseSoftAlpha = (intP, fracP, slashP) =>
+  slashP !== undefined ? Number(slashP) / 100 : Number(`${intP || '0'}.${fracP}`);
+
+const softViolations = [];
+const DARK_ALPHA_SOFT_RE =
+  /\bdark:((?:[a-z-]+:)*)(border|divide|bg)-white\/(?:\[0?(\d*)\.?(\d+)\]|(\d+)\b)/g;
+const DARK_ZINC_SOFT_RES = [
+  /\bdark:(?:[a-z-]+:)*text-zinc-(?:300|400|500|600)\b/g,
+  /\bdark:(?:[a-z-]+:)*(?:border|divide)-zinc-(?:600|700|800)\b/g,
+  /\bdark:(?:[a-z-]+:)*bg-zinc-(?:800|900)\b/g,
+];
+const LIGHT_ALPHA_SOFT_RE =
+  /\b((?:[a-z-]+:)*)(border|divide|bg)-black\/(?:\[0?(\d*)\.?(\d+)\]|(\d+)\b)/g;
+
+for (const dir of SOFT_DIRS) {
+  for (const rel of walkTsx(dir)) {
+    const file = rel.split('/').pop();
+    if (VALUE_ONLY_FILES.has(file)) continue;
+    const src = readFileSync(resolve(root, rel), 'utf8');
+    const floating = FLOATING_FILES.has(file);
+    src.split('\n').forEach((line, i) => {
+      for (const m of line.matchAll(DARK_ALPHA_SOFT_RE)) {
+        const tok = SOFT_LADDERS.dark[m[2] === 'bg' ? 'bg' : 'border'](parseSoftAlpha(m[3], m[4], m[5]));
+        if (tok) softViolations.push(`${rel}:${i + 1}: raw dark white-alpha — "${m[0]}" → ${m[2]}-(${tok})`);
+      }
+      for (const re of DARK_ZINC_SOFT_RES) {
+        for (const m of line.matchAll(re)) {
+          softViolations.push(`${rel}:${i + 1}: raw dark zinc color — "${m[0]}" → semantic token (see §2.4)`);
+        }
+      }
+      for (const m of line.matchAll(LIGHT_ALPHA_SOFT_RE)) {
+        if (!line.includes('dark:')) continue; // unpaired = possibly a scrim/value
+        const prop = m[2];
+        if (!new RegExp(`\\bdark:(?:[a-z-]+:)*${prop}-`).test(line)) continue;
+        const tok = SOFT_LADDERS.light[prop === 'bg' ? 'bg' : 'border'](parseSoftAlpha(m[3], m[4], m[5]));
+        if (tok) softViolations.push(`${rel}:${i + 1}: raw light black-alpha — "${m[0]}" → ${prop}-(${tok})`);
+      }
+      if (!floating) {
+        for (const m of line.matchAll(/\bdark:(?:[a-z-]+:)*bg-\(--bg-(?:elevated|card-hover)\)/g)) {
+          softViolations.push(
+            `${rel}:${i + 1}: far-from-canvas resting fill — "${m[0]}" → dark:bg-(--bg-card) (elevated is for floating layers, §2.4)`,
+          );
+        }
+      }
+    });
+  }
+}
+
+if (softViolations.length) {
+  console.error(
+    `\n✗ tokens-gate: ${softViolations.length} soft-continuity violation(s) — surfaces must sit close to the canvas (docs/standards.md §2.4):\n`,
+  );
+  for (const v of softViolations) console.error('  ' + v);
+  console.error('\nCodemod: node scripts/migrate-softness.mjs --write\n');
+  process.exit(1);
+}
+
 console.log(
   `✓ tokens-gate: ${files.length} kit files clean — no hardcoded hexes, no arbitrary or raw-scale ` +
-    `elevation/radius/blur/type, no dead utilities, all ${declared.size} tokens declared ` +
-    `(4 rules: hex · structural · declared · compiles)`,
+    `elevation/radius/blur/type, no dead utilities, all ${declared.size} tokens declared, ` +
+    `soft-continuity ladder enforced (5 rules: hex · structural · declared · compiles · soft)`,
 );

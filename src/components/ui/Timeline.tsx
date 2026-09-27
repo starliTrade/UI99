@@ -12,7 +12,7 @@ export interface TimelineProps extends React.ComponentProps<'ol'> {}
 export function Timeline({ className = '', ...props }: TimelineProps) {
   return (
     <ol
-      className={cn('relative space-y-6 before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-px before:bg-black/[0.08] dark:before:bg-white/[0.08]', className)}
+      className={cn('relative space-y-6 before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-px before:bg-(--bg-raised) dark:before:bg-(--bg-raised)', className)}
       {...props}
     />
   );

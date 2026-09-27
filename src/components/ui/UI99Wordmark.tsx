@@ -101,7 +101,7 @@ export function UI99Wordmark({
 
         {/* "/" separator with quiet opacity */}
         <span
-          className={`text-zinc-500/70 dark:text-zinc-600 font-light select-none transition-colors dur-base group-hover:text-zinc-400 ${sizeClasses.slash}`}
+          className={`text-zinc-500/70 dark:text-(--text-muted) font-light select-none transition-colors dur-base group-hover:text-zinc-400 ${sizeClasses.slash}`}
         >
           /
         </span>
@@ -114,13 +114,13 @@ export function UI99Wordmark({
               : 'text-zinc-900 group-hover:text-emerald-600'
           } ${sizeClasses.brackets}`}
         >
-          <span className="text-(--text-muted) dark:text-zinc-500 group-hover:text-emerald-500/60 font-light select-none">
+          <span className="text-(--text-muted) dark:text-(--text-muted) group-hover:text-emerald-500/60 font-light select-none">
             [
           </span>
           <span className="font-extrabold px-0.5 tracking-tighter">
             99
           </span>
-          <span className="text-(--text-muted) dark:text-zinc-500 group-hover:text-emerald-500/60 font-light select-none">
+          <span className="text-(--text-muted) dark:text-(--text-muted) group-hover:text-emerald-500/60 font-light select-none">
             ]
           </span>
         </span>
@@ -128,7 +128,7 @@ export function UI99Wordmark({
 
       {withSubtitle && (
         <span
-          className={`font-mono uppercase tracking-widest text-(--text-muted) dark:text-zinc-400 pt-1 px-3 ${sizeClasses.subtitle}`}
+          className={`font-mono uppercase tracking-widest text-(--text-muted) dark:text-(--text-secondary) pt-1 px-3 ${sizeClasses.subtitle}`}
         >
           Design System & Registry
         </span>
