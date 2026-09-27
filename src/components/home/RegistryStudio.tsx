@@ -513,8 +513,9 @@ export function RegistryStudio() {
 
         <div className="flex items-center gap-1.5 shrink-0">
           {/* Registry stepper — every component reachable without the ribbon.
-              28px visuals; the 44px touch floor comes from HIT_WIDE. */}
-          <div className="flex items-center gap-0.5 p-0.5 rounded-(--radius-sm) bg-(--bg-subtle) border border-(--border-hairline) shrink-0">
+              NO box of its own: the counter floats directly on the header —
+              the faintest a control can be. */}
+          <div className="flex items-center gap-0.5 shrink-0">
             <button
               type="button"
               onClick={() => stepComponent(-1)}
@@ -525,7 +526,7 @@ export function RegistryStudio() {
               {isRTL ? <ChevronRight className="icon-xs" /> : <ChevronLeft className="icon-xs" />}
             </button>
             <span
-              className="type-micro font-mono text-(--text-secondary) tabular-nums px-1 select-none"
+              className="type-micro font-code text-(--text-muted) tabular-nums px-0.5 select-none"
               aria-label={isRTL ? `${registryIndex + 1} از ${REGISTRY_COMPONENTS.length}` : `Component ${registryIndex + 1} of ${REGISTRY_COMPONENTS.length}`}
             >
               {registryIndex + 1}/{REGISTRY_COMPONENTS.length}
@@ -1031,7 +1032,7 @@ export function RegistryStudio() {
                             type="button"
                             onClick={() => setBtnVariant(v)}
                             aria-pressed={btnVariant === v}
-                            className={`relative flex items-center h-7 px-2.5 rounded-(--radius-xs) capitalize font-mono type-micro whitespace-nowrap cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT_WIDE} ${
+                            className={`relative flex items-center h-6 px-1.5 rounded-(--radius-xs) capitalize font-mono type-micro whitespace-nowrap cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT_WIDER} ${
                               btnVariant === v ? SELECTED_CHIP : `${IDLE_CHIP} bg-(--bg-raised) dark:bg-(--bg-wash)`
                             }`}
                           >
@@ -1049,7 +1050,7 @@ export function RegistryStudio() {
                             type="button"
                             onClick={() => setBtnSize(s)}
                             aria-pressed={btnSize === s}
-                            className={`relative flex items-center h-7 px-2.5 rounded-(--radius-xs) uppercase font-mono type-micro cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT_WIDE} ${
+                            className={`relative flex items-center h-6 px-1.5 rounded-(--radius-xs) uppercase font-mono type-micro cursor-pointer transition-colors shrink-0 focus-ui99 ${HIT_WIDER} ${
                               btnSize === s ? SELECTED_CHIP : `${IDLE_CHIP} bg-(--bg-raised) dark:bg-(--bg-wash)`
                             }`}
                           >
@@ -1061,7 +1062,7 @@ export function RegistryStudio() {
                   </div>
                 )}
 
-                <div className={`flex flex-col sm:flex-row sm:items-center gap-2 ${activeComponentId === 'button' ? 'pt-2 border-t border-(--border-subtle)' : ''}`}>
+                <div className={`flex flex-col sm:flex-row sm:items-center gap-2 ${activeComponentId === 'button' ? 'pt-2 border-t border-(--border-hairline)' : ''}`}>
                   <PmPicker value={packageManager} onChange={setPackageManager} isRTL={isRTL} />
                   <CommandWell
                     command={cliCommand}
@@ -1088,18 +1089,18 @@ export function RegistryStudio() {
             <div className="space-y-2.5">
               {/* Install — a padded code frame: label + PM picker on the head,
                   the command in a recessed mono block with a real copy target. */}
-              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-3 space-y-2.5">
+              <div className="rounded-(--radius-md) bg-(--bg-surface) border border-(--border-subtle) p-2.5 space-y-2">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="type-caption font-mono text-(--text-secondary) font-semibold truncate">
+                  <span className="type-micro font-mono text-(--text-secondary) font-semibold uppercase tracking-wide truncate">
                     {isRTL ? 'افزودن به پروژه' : 'Add component to your project'}
                   </span>
                   <PmPicker value={packageManager} onChange={setPackageManager} isRTL={isRTL} />
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2.5 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) transition-colors">
-                  <span className="text-emerald-500 dark:text-emerald-400 font-bold type-caption font-mono select-none shrink-0">
+                <div className="flex items-center gap-2 px-2.5 py-2 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) hover:border-(--border-soft) transition-colors">
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold type-micro font-mono select-none shrink-0">
                     &gt;_
                   </span>
-                  <code dir="ltr" className="flex-1 min-w-0 truncate type-caption font-code text-(--text-primary)">
+                  <code dir="ltr" className="flex-1 min-w-0 truncate type-micro font-code text-(--text-primary)">
                     {cliCommand}
                   </code>
                   <button
@@ -1132,10 +1133,10 @@ export function RegistryStudio() {
                   />
                 </button>
                 {importOpen && (
-                  <div id="studio-import" className="mt-2.5 flex items-center gap-2 px-3 py-2.5 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle)">
+                  <div id="studio-import" className="mt-2 flex items-center gap-2 px-2.5 py-2 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle)">
                     <code
                       dir="ltr"
-                      className="flex-1 min-w-0 truncate type-caption font-code text-(--text-primary) whitespace-nowrap overflow-x-auto no-scrollbar"
+                      className="flex-1 min-w-0 truncate type-micro font-code text-(--text-primary) whitespace-nowrap overflow-x-auto no-scrollbar"
                     >
                       {`import { ${currentComp.title.replace(/[\s-]+/g, '')} } from '@/components/ui/${currentComp.name}';`}
                     </code>
