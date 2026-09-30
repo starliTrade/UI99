@@ -352,7 +352,7 @@ export function RegistryStudio() {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Interactive Live Playground State for Core Families
-  const [btnVariant, setBtnVariant] = useState<'primary' | 'secondary' | 'outline' | 'ghost' | 'rose'>('primary');
+  const [btnVariant, setBtnVariant] = useState<'primary' | 'secondary' | 'quiet' | 'outline' | 'ghost' | 'rose'>('primary');
   const [btnSize, setBtnSize] = useState<'xs' | 'sm' | 'md' | 'lg'>('md');
   const [btnLoading, setBtnLoading] = useState(false);
 
@@ -1031,7 +1031,7 @@ export function RegistryStudio() {
                     <div className="flex items-center gap-1 min-w-0">
                       <span className="w-14 shrink-0 type-micro font-mono text-(--text-muted)">Variant</span>
                       <div className="flex items-center gap-1 overflow-x-auto no-scrollbar touch-pan-x min-w-0">
-                        {(['primary', 'secondary', 'outline', 'ghost', 'rose'] as const).map((v) => (
+                        {(['primary', 'secondary', 'quiet', 'outline', 'ghost', 'rose'] as const).map((v) => (
                           <button
                             key={v}
                             type="button"

@@ -23,14 +23,11 @@ export const buttonVariants = cva(
         primary:
           'bg-(--ink-fill) text-(--ink-on-fill) hover:bg-(--ink-fill) border border-black/10 shadow-xs dark:border-white/10 dark:shadow-(--elevation-2)',
         // §2.6 — one resting surface for every secondary control, in BOTH
-        // themes, with no light/dark fork at all. The old version had a raw
-        // `bg-zinc-100` on the light side, which is an opaque #F4F4F5: 24
-        // levels darker than the card it sits on and 13 levels BELOW the page
-        // canvas, so in porcelain it read as a hole punched in the page rather
-        // than a button resting on it. `dark:` is gone because there is nothing
-        // left to differ — the token already carries the polarity flip.
+        // themes, with no light/dark fork at all.
         secondary:
-          'bg-(--bg-control) text-(--text-primary) hover:bg-(--state-hover) border border-(--border-soft) shadow-(--shadow-card)',
+          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft) shadow-xs',
+        quiet:
+          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft) shadow-xs',
         outline:
           'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-(--text-primary) dark:border-(--border-soft)',
         ghost:
@@ -98,6 +95,7 @@ export interface ButtonProps
   variant?:
     | 'primary'
     | 'secondary'
+    | 'quiet'
     | 'outline'
     | 'ghost'
     | 'link'
@@ -153,7 +151,9 @@ export const iconButtonVariants = cva(
         // differently is how the GitHub button and the docs button ended up
         // wearing different fills while sitting side by side.
         secondary:
-          'bg-(--bg-control) text-(--text-secondary) hover:bg-(--state-hover) hover:text-(--text-primary) border border-(--border-soft)',
+          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft)',
+        quiet:
+          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft)',
         outline:
           'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover dark:text-(--text-secondary) dark:border-(--border-strong)',
         ghost:

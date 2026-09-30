@@ -791,6 +791,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                   [
                     'primary',
                     'secondary',
+                    'quiet',
                     'outline',
                     'ghost',
                     'link',
@@ -825,7 +826,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               </div>
 
               <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-(--border-subtle) dark:border-(--border-soft)">
-                {(['primary', 'white', 'secondary', 'outline', 'ghost', 'link', 'destructive', 'rose'] as const).map((v) => (
+                {(['primary', 'white', 'secondary', 'quiet', 'outline', 'ghost', 'link', 'destructive', 'rose'] as const).map((v) => (
                   <IconButton
                     key={v}
                     icon={<Sparkles className="icon-md" />}

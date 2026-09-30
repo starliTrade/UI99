@@ -256,39 +256,42 @@ export function DesignSystemHomeView() {
           />
 
           {/* 1. Primary Action: Browse the registry */}
-          <button
-            type="button"
+          <Button
+            variant="primary"
+            size="md"
+            shape="rounded"
             onClick={() => setCurrentTab('UIKIT')}
-            className="order-1 w-full sm:order-none sm:w-auto min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1 type-caption font-semibold cursor-pointer transition-all bg-(--ink-fill) hover:opacity-90 text-(--text-on-fill) shadow-xs active:scale-[0.98] whitespace-nowrap"
+            className="order-1 w-full sm:order-none sm:w-auto min-h-[44px] px-4 font-semibold shadow-xs"
+            icon={isRTL ? <ArrowLeft className="icon-sm" /> : <ArrowRight className="icon-sm" />}
           >
-            <span>
-              {isRTL
-                ? `مرور ${Number(KIT_COMPONENT_COUNT).toLocaleString('fa-IR')} کامپوننت`
-                : `Explore ${KIT_COMPONENT_COUNT} Components`}
-            </span>
-            {/* Forward = the reading direction: flipped in RTL. */}
-            {isRTL ? <ArrowLeft className="icon-sm" /> : <ArrowRight className="icon-sm" />}
-          </button>
+            {isRTL
+              ? `مرور ${Number(KIT_COMPONENT_COUNT).toLocaleString('fa-IR')} کامپوننت`
+              : `Explore ${KIT_COMPONENT_COUNT} Components`}
+          </Button>
 
           {/* 2. Secondary Action: Documentation */}
-          <button
-            type="button"
+          <Button
+            variant="quiet"
+            size="md"
+            shape="rounded"
             onClick={() => setCurrentTab('DOCS')}
-            className="order-3 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1 type-caption font-medium cursor-pointer transition-all bg-(--bg-quiet) hover:bg-(--bg-quiet-hover) text-zinc-800 dark:text-(--text-secondary) dark:hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft) active:scale-[0.98] whitespace-nowrap"
+            className="order-3 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4"
+            icon={<BookOpen className="icon-sm text-zinc-600 dark:text-(--text-secondary)" />}
           >
-            <BookOpen className="icon-sm text-zinc-600 dark:text-(--text-secondary)" />
-            <span>{isRTL ? 'مستندات تعاملی' : 'Interactive Docs'}</span>
-          </button>
+            {isRTL ? 'مستندات تعاملی' : 'Interactive Docs'}
+          </Button>
 
           {/* 3. GitHub Action */}
-          <button
-            type="button"
+          <Button
+            variant="quiet"
+            size="md"
+            shape="rounded"
             onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
-            className="order-4 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 rounded-(--radius-field) inline-flex items-center justify-center gap-1 type-caption font-medium cursor-pointer transition-all bg-(--bg-quiet) hover:bg-(--bg-quiet-hover) text-zinc-800 dark:text-(--text-secondary) dark:hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft) active:scale-[0.98] whitespace-nowrap"
+            className="order-4 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4"
+            icon={<Github className="icon-sm text-zinc-600 dark:text-(--text-secondary)" />}
           >
-            <Github className="icon-sm text-zinc-600 dark:text-(--text-secondary)" />
-            <span>GitHub</span>
-          </button>
+            GitHub
+          </Button>
 
           {/* 4. Terminal Action: CLI Install Box — the command itself stays
               LTR even in Persian: code is code, and mixing bidi into a shell

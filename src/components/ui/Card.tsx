@@ -16,6 +16,7 @@ import type { RadiusRung, SurfacePaddingStep } from '../../lib/utils';
 export type SurfaceVariant =
   | 'surface'            // Primary container surface (--bg-surface / white)
   | 'surfaceSecondary'   // Secondary container surface (--bg-card / --bg-sunken)
+  | 'quiet'              // Quiet surface resting Δ +6 from canvas (--bg-quiet / --border-subtle)
   | 'elevated'           // Elevated interactive surface (--bg-elevated / white)
   | 'glass'              // Translucent liquid glass with blur
   | 'compact'            // Ultra-compact quiet list container
@@ -72,6 +73,8 @@ export function Surface({
       'bg-(--bg-card) border border-(--border-subtle) shadow-(--shadow-card)',
     surfaceSecondary:
       'bg-(--bg-sunken) dark:bg-(--bg-surface) border border-(--border-hairline) shadow-(--shadow-card)',
+    quiet:
+      'bg-(--bg-quiet) border border-(--border-subtle) hover:border-(--border-soft) shadow-xs',
     elevated:
       'bg-(--bg-elevated) border border-(--border-hairline) shadow-(--shadow-card-hover)',
     glass:

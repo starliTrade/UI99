@@ -540,6 +540,116 @@ export function TokensAuditPlayground() {
           })}
         </div>
       </div>
+
+      {/* 5. VELVET OBSIDIAN ELEVATION & DELTA GAP MATRIX */}
+      <div className="p-6 rounded-(--radius-lg) bg-(--bg-card) border border-(--border-hairline) shadow-xs space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div className="flex items-center gap-2">
+              <Sparkles className="icon-md text-emerald-500" />
+              <h4 className="type-body font-bold text-(--text-primary)">
+                Velvet Obsidian Elevation & Delta (&Delta;) Gap Matrix
+              </h4>
+            </div>
+            <p className="type-caption text-(--text-secondary) mt-0.5">
+              Mathematical distance ladder from root canvas (<code className="font-mono text-emerald-500">#060709</code>) ensuring low-delta velvety continuity.
+            </p>
+          </div>
+          <span className="type-micro font-mono px-3 py-1 rounded-(--radius-pill) bg-emerald-500/10 text-emerald-400 font-semibold border border-emerald-500/20">
+            4-TIER HARMONY
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Tier 1: Quiet Control */}
+          <div className="p-4 rounded-(--radius-md) bg-(--bg-quiet) border border-(--border-subtle) hover:border-(--border-soft) transition-all space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="type-caption font-bold text-(--text-primary)">Tier 1: Quiet Control</span>
+              <span className="type-micro font-mono px-2 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 text-emerald-400 font-bold">
+                &Delta; +6
+              </span>
+            </div>
+            <p className="type-micro text-(--text-secondary)">
+              Secondary buttons, chips, doc actions.
+            </p>
+            <div className="pt-2">
+              <Button variant="quiet" size="sm" fullWidth>
+                Interactive Quiet CTA
+              </Button>
+            </div>
+            <div className="pt-1 text-[11px] font-mono text-(--text-muted) space-y-0.5">
+              <div>bg: rgba(255,255,255,0.008)</div>
+              <div>border: rgba(255,255,255,0.025)</div>
+            </div>
+          </div>
+
+          {/* Tier 2: Form & Input Surface */}
+          <div className="p-4 rounded-(--radius-md) bg-(--bg-control) border border-(--border-soft) transition-all space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="type-caption font-bold text-(--text-primary)">Tier 2: Control Field</span>
+              <span className="type-micro font-mono px-2 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 text-emerald-400 font-bold">
+                &Delta; +12
+              </span>
+            </div>
+            <p className="type-micro text-(--text-secondary)">
+              Inputs, segmented bars, toggles.
+            </p>
+            <div className="pt-2">
+              <Button variant="secondary" size="sm" fullWidth>
+                Standard Control Field
+              </Button>
+            </div>
+            <div className="pt-1 text-[11px] font-mono text-(--text-muted) space-y-0.5">
+              <div>bg: rgba(255,255,255,0.050)</div>
+              <div>border: rgba(255,255,255,0.035)</div>
+            </div>
+          </div>
+
+          {/* Tier 3: Card Surface */}
+          <div className="p-4 rounded-(--radius-md) bg-(--bg-card) border border-(--border-hairline) shadow-(--shadow-card) transition-all space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="type-caption font-bold text-(--text-primary)">Tier 3: Card Base</span>
+              <span className="type-micro font-mono px-2 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 text-emerald-400 font-bold">
+                &Delta; +18
+              </span>
+            </div>
+            <p className="type-micro text-(--text-secondary)">
+              Object cards, stat tiles, panels.
+            </p>
+            <div className="pt-2">
+              <div className="px-3 py-2 rounded-(--radius-sm) bg-(--bg-surface) border border-(--border-subtle) text-center type-caption font-semibold text-(--text-primary)">
+                Card Surface Layer
+              </div>
+            </div>
+            <div className="pt-1 text-[11px] font-mono text-(--text-muted) space-y-0.5">
+              <div>bg: #0C0D12 (--bg-card)</div>
+              <div>rim: inset 0 1px 0 0 white/4%</div>
+            </div>
+          </div>
+
+          {/* Tier 4: Elevated Layer */}
+          <div className="p-4 rounded-(--radius-md) bg-(--bg-elevated) border border-(--border-hairline) shadow-(--shadow-card-hover) transition-all space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="type-caption font-bold text-(--text-primary)">Tier 4: Elevated Float</span>
+              <span className="type-micro font-mono px-2 py-0.5 rounded-(--radius-xs) bg-emerald-500/10 text-emerald-400 font-bold">
+                &Delta; +24
+              </span>
+            </div>
+            <p className="type-micro text-(--text-secondary)">
+              Modals, dropdowns, floating sheets.
+            </p>
+            <div className="pt-2">
+              <div className="px-3 py-2 rounded-(--radius-sm) bg-(--bg-card) border border-(--border-soft) shadow-sm text-center type-caption font-semibold text-(--text-primary)">
+                Elevated Modal Top
+              </div>
+            </div>
+            <div className="pt-1 text-[11px] font-mono text-(--text-muted) space-y-0.5">
+              <div>bg: #111218 (--bg-elevated)</div>
+              <div>shadow: deep diffuse 18/40px</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
