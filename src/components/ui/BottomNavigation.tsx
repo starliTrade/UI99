@@ -15,10 +15,7 @@ import { House, Layers, LayoutTemplate, Component, BookOpen, Search } from 'luci
 import { motion, useReducedMotion } from 'motion/react';
 import { NAV_ITEMS, type NavTab } from './navItems';
 
-// DockIcon is the dock's slice of NavTab — AI_STUDIO is a command surface and
-// never renders in the dock (navItems.ts NAV_SURFACES comment).
-type DockTab = Exclude<NavTab, 'AI_STUDIO'>;
-const ICONS: Record<DockTab, React.ComponentType<{ className?: string }>> = {
+const ICONS: Record<NavTab, React.ComponentType<{ className?: string }>> = {
   // House: the only unambiguous "start of journey" glyph — in a product made
   // of grids, LayoutGrid collided with the Components icon (audit: both read
   // as "library"). Component: the tab inspects TOKENS, not colors — Palette
@@ -62,7 +59,7 @@ export function BottomNavigation({
         >
           {NAV_ITEMS.map((item) => {
             const isActive = currentTab === item.tab;
-            const Icon = ICONS[item.tab as DockTab]; // dock items are never AI_STUDIO
+            const Icon = ICONS[item.tab];
 
             return (
               <button

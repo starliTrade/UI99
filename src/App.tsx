@@ -19,7 +19,6 @@ import { UIKitView } from './components/views/UIKitView';
 import { DocsView } from './components/views/DocsView';
 import { FoundationsView } from './components/views/FoundationsView';
 import { BlocksView } from './components/views/BlocksView';
-import { AIStudioView } from './components/views/AIStudioView';
 import { UniversalCaptureModal } from './components/shells/UniversalCaptureModal';
 import { GlobalSearchModal } from './components/shells/GlobalSearchModal';
 import { ObjectDetailModal } from './components/shells/ObjectDetailModal';
@@ -41,13 +40,6 @@ function MainShell() {
   // The shipped TopHeader/BottomNavigation are presentational (props-only) so a
   // consumer can install them — the app shell owns the state and wires it in.
   const navigateToTab = (tab: string) => {
-    // AI_STUDIO is a command surface, not a dock destination (the dock keeps
-    // its five-item ceiling) — but it is still a real app surface, so the
-    // header may navigate to it.
-    if (tab === 'AI_STUDIO') {
-      setCurrentTab('AI_STUDIO');
-      return;
-    }
     const match = NAV_ITEMS.find((i) => i.tab === tab);
     if (match) setCurrentTab(match.tab);
   };
@@ -64,8 +56,6 @@ function MainShell() {
         return <DocsView />;
       case 'FOUNDATIONS':
         return <FoundationsView />;
-      case 'AI_STUDIO':
-        return <AIStudioView />;
       default:
         return <HomeView />;
     }

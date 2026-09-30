@@ -137,22 +137,6 @@ export function TopHeader({
             2 · RIGHT: Unified Fast-Action Glass Capsule
            ══════════════════════════════════════════════════════════════ */}
         <div className="flex items-center gap-1 sm:gap-2">
-          {/* AI Studio — the generative surface. A command, not a dock
-              destination: it enters through this capsule with its own voice
-              (emerald signal dot, like the version capsule). */}
-          <button
-            type="button"
-            onClick={() => onNavigate?.('AI_STUDIO')}
-            aria-pressed={currentTab === 'AI_STUDIO'}
-            className={`relative hidden sm:inline-flex items-center gap-1 h-8 px-2 rounded-(--radius-field) border type-caption font-mono transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
-              currentTab === 'AI_STUDIO'
-                ? 'bg-(--ink-fill) text-(--text-on-fill) border-transparent'
-                : 'bg-(--bg-quiet) hover:bg-(--bg-quiet-hover) border-(--border-subtle) hover:border-(--border-soft) text-(--text-secondary) hover:text-(--text-primary)'
-            }`}
-          >
-            <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-emerald-500 shrink-0" aria-hidden="true" />
-            <span>AI</span>
-          </button>
           {/* GitHub Quick Link */}
           <a
             href="https://github.com/starliTrade/UI99"

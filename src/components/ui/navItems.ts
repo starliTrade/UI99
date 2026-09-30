@@ -17,8 +17,8 @@
  * npm kit, and the registry would then register a dangling dependency on an
  * app-only module. `AppContext` re-exports this type instead, so the two can
  * never drift without a type error.
- */export type NavTab = 'HOME' | 'UIKIT' | 'BLOCKS' | 'DOCS' | 'FOUNDATIONS' | 'AI_STUDIO';
-
+ */
+export type NavTab = 'HOME' | 'UIKIT' | 'BLOCKS' | 'DOCS' | 'FOUNDATIONS';
 
 /** Job-to-be-done per destination — drives the copy and the ordering. */
 export interface NavItemDefinition {
@@ -70,12 +70,3 @@ export const NAV_ITEMS: readonly NavItemDefinition[] = [
 
 /** Every declared tab, as a Set — used by the navigation guard test. */
 export const NAV_TABS: ReadonlySet<NavTab> = new Set(NAV_ITEMS.map((i) => i.tab));
-
-/**
- * The dock shows exactly five destinations — but the product has a sixth
- * surface: the AI Studio. It is a COMMAND, not a destination (you don't browse
- * to it, you invoke it), so it lives outside the 3–5-item cognitive ceiling
- * (NNG) and enters through the hero CTA, the header capsule, and the command
- * palette. NAV_ITEMS stays the dock's truth; NAV_SURFACES is the app's truth.
- */
-export const NAV_SURFACES: readonly NavTab[] = [...NAV_ITEMS.map((i) => i.tab), 'AI_STUDIO'];
