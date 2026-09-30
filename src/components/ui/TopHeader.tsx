@@ -125,7 +125,7 @@ export function TopHeader({
                 `../../generated/kit-count` would have broken the install the same
                 way the contexts did. */}
             {version && (
-              <div className="flex items-center gap-1 px-1 py-0.5 rounded-(--radius-xs) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-subtle) type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) leading-none">
+              <div className="flex items-center gap-1 px-1 py-0.5 rounded-(--radius-xs) bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-subtle) type-micro font-mono text-(--text-muted) dark:text-(--text-secondary) leading-none">
                 <span className="w-1.5 h-1.5 rounded-(--radius-pill) bg-emerald-500 shrink-0" />
                 <span>v{version}</span>
               </div>
@@ -143,7 +143,7 @@ export function TopHeader({
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Repository"
-            className="hidden sm:inline-flex items-center gap-1 h-8 px-2 rounded-(--radius-field) border border-(--border-soft) bg-(--bg-control) hover:bg-(--state-hover) type-caption font-mono text-(--text-secondary) hover:text-(--text-primary) transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+            className="hidden sm:inline-flex items-center gap-1 h-8 px-2 rounded-(--radius-field) border border-(--border-subtle) bg-(--bg-quiet) hover:bg-(--bg-quiet-hover) type-caption font-mono text-(--text-secondary) hover:text-(--text-primary) transition-all cursor-pointer focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
           >
             <SquareArrowOutUpRight className="icon-sm" />
             <span>GitHub</span>
@@ -166,7 +166,7 @@ export function TopHeader({
             <button
               type="button"
               onClick={() => setIsDropdownOpen((v) => !v)}
-              className="relative h-8 w-8 rounded-(--radius-field) flex items-center justify-center border border-(--border-soft) bg-(--bg-control) hover:bg-(--state-hover) text-(--text-secondary) hover:text-(--text-primary) transition-all cursor-pointer active:scale-95 group focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
+              className="relative h-8 w-8 rounded-(--radius-field) flex items-center justify-center border border-(--border-subtle) bg-(--bg-quiet) hover:bg-(--bg-quiet-hover) text-(--text-secondary) hover:text-(--text-primary) transition-all cursor-pointer active:scale-95 group focus-ui99 after:absolute after:-inset-1.5 after:content-['']"
               aria-label="Studio Preferences"
               title="Studio Preferences"
             >
@@ -186,7 +186,7 @@ export function TopHeader({
                     <span className="block type-micro font-bold font-mono uppercase tracking-wider text-(--text-secondary) dark:text-(--text-muted) mb-1 px-1">
                       Quick Switch
                     </span>
-                    <div className="grid grid-cols-2 p-0.5 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-sunken) border border-(--border-soft) dark:border-(--border-subtle)">
+                    <div className="grid grid-cols-2 p-0.5 rounded-(--radius-field) bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-subtle)">
                       <button
                         type="button"
                         onClick={() => onThemeChange?.('dark')}
@@ -221,7 +221,7 @@ export function TopHeader({
                       onOpenSettings?.();
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full flex items-center gap-2 px-2 py-2 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) text-zinc-800 dark:text-zinc-200 focus-ui99-inset"
+                    className="w-full flex items-center gap-2 px-2 py-2 rounded-(--radius-field) type-caption font-medium cursor-pointer transition-colors hover:bg-(--bg-quiet-hover) text-zinc-800 dark:text-zinc-200 focus-ui99-inset"
                   >
                     <SlidersHorizontal className="icon-sm text-(--text-muted) dark:text-(--text-secondary)" />
                     <span>Design Tokens Inspector</span>

@@ -39,8 +39,10 @@ export const buttonVariants = cva(
           'bg-(--intent-emerald) text-(--intent-emerald-on) hover:bg-(--intent-emerald-hover) border border-emerald-700/40 dark:border-emerald-400/20 shadow-xs',
         'white-pill':
           'bg-(--ink-fill) text-(--ink-on-fill) font-semibold shadow-xs border border-white/20 dark:border-white/10',
+        // §2.6 — "dark-pill" was a control wearing an opaque card fill on an
+        // elevated parent; the quiet pair is theme-agnostic there too.
         'dark-pill':
-          'bg-(--bg-control) text-(--text-primary) hover:bg-(--state-hover) border border-(--border-soft) shadow-(--shadow-card)',
+          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft) shadow-xs',
         rose:
           'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
       },
@@ -238,7 +240,7 @@ export function Tag({
 
   const variantStyle = {
     neutral:
-      'bg-(--bg-control) text-(--text-secondary) border border-(--border-soft)',
+      'bg-(--bg-quiet) text-(--text-secondary) border border-(--border-subtle) hover:border-(--border-soft)',
     amber:
       'bg-amber-50 text-amber-800 border border-amber-300/40 font-medium dark:bg-amber-400/[0.08] dark:text-amber-300/90 dark:border-amber-400/20',
     purple:
@@ -248,7 +250,7 @@ export function Tag({
     red:
       'bg-rose-50 text-rose-800 border border-rose-300/40 font-medium dark:bg-rose-400/[0.08] dark:text-rose-300/90 dark:border-rose-400/20',
     rose:
-      'bg-(--bg-control) text-(--text-secondary) font-medium border border-(--border-soft)',
+      'bg-(--bg-quiet) text-(--text-secondary) font-medium border border-(--border-subtle) hover:border-(--border-soft)',
     blue:
       'bg-blue-50 text-blue-800 border border-blue-300/40 font-medium dark:bg-blue-400/[0.08] dark:text-blue-300/90 dark:border-blue-400/20',
     outline:
@@ -318,7 +320,7 @@ export function Avatar({
         />
       ) : (
         <div
-          className={`rounded-(--radius-pill) bg-(--bg-control) text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
+          className={`rounded-(--radius-pill) bg-(--bg-quiet) text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
         >
           {initial}
         </div>

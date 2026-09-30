@@ -118,7 +118,7 @@ export function CodeBlock({
     >
       {/* Top Header Tab Bar */}
       {showChrome && (
-        <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) bg-(--bg-wash) dark:bg-(--bg-surface) px-3 sm:px-3 py-1 sm:py-2 select-none min-w-0">
+        <div className="flex items-center justify-between border-b border-(--border-soft) dark:border-(--border-soft) bg-white dark:bg-(--bg-surface) px-3 sm:px-3 py-1 sm:py-2 select-none min-w-0">
           {/* Active File Tab */}
           <div className="flex items-center gap-2 min-w-0 flex-1">
             <div className="inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-sm) bg-white dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) shadow-xs min-w-0">
@@ -170,7 +170,7 @@ export function CodeBlock({
                 'inline-flex items-center gap-1 px-2 py-1 rounded-(--radius-sm) type-caption font-mono transition-all cursor-pointer border shrink-0',
                 copied
                   ? 'bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 shadow-xs'
-                  : 'bg-white dark:bg-(--bg-wash) text-zinc-700 dark:text-zinc-200 hover:text-(--text-primary) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border-(--border-soft) dark:border-(--border-strong)'
+                  : 'bg-white dark:bg-(--bg-wash) text-zinc-700 dark:text-zinc-200 hover:text-(--text-primary) hover:bg-(--bg-quiet-hover) border-(--border-soft) dark:border-(--border-strong)'
               )}
             >
               {copied ? (
@@ -236,14 +236,14 @@ export function CodeBlock({
       {allowCollapse && lineCount > 12 && (
         <div
           className={cn(
-            'flex items-center justify-center p-2 border-t border-(--border-soft) dark:border-(--border-subtle) bg-(--bg-wash) dark:bg-(--bg-surface)/90 backdrop-blur-md',
+            'flex items-center justify-center p-2 border-t border-(--border-soft) dark:border-(--border-subtle) bg-white dark:bg-(--bg-surface)/90 backdrop-blur-md',
             isCollapsed && 'absolute inset-x-0 bottom-0 pt-10 bg-gradient-to-t from-white dark:from-(--bg-sunken) via-white/90 dark:via-(--bg-sunken)/90 to-transparent'
           )}
         >
           <button
             type="button"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-pill) type-caption font-mono font-medium text-(--text-secondary) hover:text-(--text-primary) bg-white dark:bg-(--bg-wash) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) border border-(--border-soft) dark:border-(--border-strong) transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-pill) type-caption font-mono font-medium text-(--text-secondary) hover:text-(--text-primary) bg-white dark:bg-(--bg-wash) hover:bg-(--bg-quiet-hover) border border-(--border-soft) dark:border-(--border-strong) transition-colors cursor-pointer"
           >
             {isCollapsed ? (
               <>

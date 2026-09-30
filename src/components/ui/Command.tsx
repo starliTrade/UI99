@@ -110,7 +110,7 @@ const CommandSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CommandPrimitive.Separator
     ref={ref}
-    className={cn('-mx-1 my-1 h-px bg-(--bg-wash) dark:bg-(--bg-wash)', className)}
+    className={cn('-mx-1 my-1 h-px bg-(--bg-quiet)', className)}
     {...props}
   />
 ));
@@ -140,7 +140,7 @@ const CommandShortcut = ({
   return (
     <span
       className={cn(
-        'ml-auto type-micro tracking-widest text-(--text-muted) font-mono px-1 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-raised) border border-(--border-subtle) dark:border-(--border-strong)',
+        'ml-auto type-micro tracking-widest text-(--text-muted) font-mono px-1 py-0.5 rounded bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-strong)',
         className
       )}
       {...props}

@@ -46,7 +46,7 @@ export function TableRow({ className = '', ...props }: React.HTMLAttributes<HTML
   return (
     <tr
       className={cn(
-        'border-b border-(--border-soft) dark:border-(--border-soft) transition-colors hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle) data-[state=selected]:bg-(--bg-subtle) dark:data-[state=selected]:bg-white/[0.04]',
+        'border-b border-(--border-soft) dark:border-(--border-soft) transition-colors hover:bg-(--bg-quiet-hover) data-[state=selected]:bg-(--bg-subtle) dark:data-[state=selected]:bg-white/[0.04]',
         className
       )}
       {...props}

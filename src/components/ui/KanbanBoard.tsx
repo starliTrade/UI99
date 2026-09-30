@@ -68,7 +68,7 @@ export function KanbanBoard({
           <div
             key={col.id}
             aria-label={`${col.label} column`}
-            className="flex flex-col gap-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-card) p-3 border border-(--border-subtle) dark:border-(--border-subtle) min-w-[240px]"
+            className="flex flex-col gap-3 rounded-(--radius-control) bg-(--bg-quiet) p-3 border border-(--border-subtle) dark:border-(--border-subtle) min-w-[240px]"
           >
             {/* Column Header */}
             <div className="flex items-center justify-between px-1">
@@ -131,7 +131,7 @@ export function KanbanBoard({
                           'type-micro px-1 py-0.5 rounded font-mono transition-colors',
                           card.status === targetCol.id
                             ? 'bg-(--bg-raised) dark:bg-(--state-selected) text-zinc-900 dark:text-white font-bold'
-                            : 'hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) text-zinc-500'
+                            : 'hover:bg-(--bg-quiet-hover) text-zinc-500'
                         )}
                       >
                         {targetCol.label.slice(0, 3)}

@@ -332,7 +332,7 @@ function Inspector({
           type="button"
           onClick={onCopy}
           aria-label={isRTL ? 'کپی دستور نصب' : 'Copy install command'}
-          className={`relative flex items-center justify-center ${actionSize} ${variant === 'rail' ? 'w-9' : 'w-10'} shrink-0 rounded-(--radius-sm) bg-(--bg-control) border border-(--border-soft) text-(--text-secondary) hover:bg-(--state-hover) transition-colors cursor-pointer focus-ui99 ${HIT}`}
+          className={`relative flex items-center justify-center ${actionSize} ${variant === 'rail' ? 'w-9' : 'w-10'} shrink-0 rounded-(--radius-sm) bg-(--bg-quiet) border border-(--border-subtle) hover:border-(--border-soft) text-(--text-secondary) hover:bg-(--bg-quiet-hover) transition-colors cursor-pointer focus-ui99 ${HIT}`}
         >
           {copied ? <Check className="icon-sm text-emerald-500" /> : <Plus className="icon-sm" />}
         </button>
@@ -552,7 +552,7 @@ export function RegistryStudio() {
             type="button"
             onClick={openDocs}
             aria-label={isRTL ? 'مستندات کامل' : 'Open full API docs'}
-            className={`relative flex items-center justify-center sm:justify-start gap-1 h-8 w-8 sm:w-auto sm:px-2 rounded-(--radius-sm) type-caption font-medium text-(--text-secondary) bg-(--bg-control) border border-(--border-soft) hover:text-(--text-primary) hover:bg-(--state-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT_WIDE}`}
+            className={`relative flex items-center justify-center sm:justify-start gap-1 h-8 w-8 sm:w-auto sm:px-2 rounded-(--radius-sm) type-caption font-medium text-(--text-secondary) bg-(--bg-quiet) border border-(--border-subtle) hover:border-(--border-soft) hover:text-(--text-primary) hover:bg-(--bg-quiet-hover) transition-colors cursor-pointer shrink-0 focus-ui99 ${HIT_WIDE}`}
           >
             <BookOpen className="icon-xs shrink-0" />
             <span className="hidden sm:inline">{isRTL ? 'مستندات' : 'Full API'}</span>
@@ -704,7 +704,7 @@ export function RegistryStudio() {
                   )}
 
                   {activeComponentId === 'copy-button' && (
-                    <div className="flex items-center gap-3 p-3 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft)">
+                    <div className="flex items-center gap-3 p-3 rounded-(--radius-field) bg-(--bg-quiet) border border-(--border-soft)">
                       <code className="type-caption font-mono text-emerald-500">npx @99/ui add button</code>
                       <CopyButton text="npx @99/ui add button" />
                     </div>
@@ -904,7 +904,7 @@ export function RegistryStudio() {
                   )}
 
                   {activeComponentId === 'sparkline' && (
-                    <div className="w-full p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-surface) border border-(--border-soft) space-y-2">
+                    <div className="w-full p-4 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-soft) space-y-2">
                       <div className="flex justify-between type-caption font-mono">
                         <span className="text-(--text-muted)">Real-time Telemetry</span>
                         <span className="text-emerald-500 font-bold">+14.2%</span>

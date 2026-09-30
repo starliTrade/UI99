@@ -88,7 +88,7 @@ export function PasswordInput({
           }}
           className={cn(
             'w-full px-3 py-2 pr-10 type-body rounded-(--radius-field) transition-all dur-quick',
-            'bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary) placeholder-zinc-400',
+            'bg-(--bg-control) text-zinc-900 dark:text-(--text-primary) placeholder-zinc-400',
             'border border-(--border-strong) dark:border-(--border-strong) focus:border-zinc-500 dark:focus:border-white/20 focus:outline-none',
             error && 'border-rose-500',
             className

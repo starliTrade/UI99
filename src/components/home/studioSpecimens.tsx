@@ -470,7 +470,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   popover: () => (
     <Popover>
       <PopoverTrigger asChild>
-        <button className="min-h-[44px] px-4 rounded-(--radius-field) type-caption bg-(--bg-subtle) border border-(--border-subtle) text-(--text-primary) cursor-pointer">
+        <button className="min-h-[44px] px-4 rounded-(--radius-field) type-caption bg-(--bg-quiet) hover:bg-(--bg-quiet-hover) border border-(--border-subtle) hover:border-(--border-soft) text-(--text-secondary) hover:text-(--text-primary) cursor-pointer">
           Token preview
         </button>
       </PopoverTrigger>
@@ -520,7 +520,7 @@ export const STUDIO_SPECIMENS: Record<string, () => ReactNode> = {
   sheet: () => (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="min-h-[44px] px-4 rounded-(--radius-field) type-caption bg-(--bg-subtle) border border-(--border-subtle) text-(--text-primary) cursor-pointer">
+        <button className="min-h-[44px] px-4 rounded-(--radius-field) type-caption bg-(--bg-quiet) hover:bg-(--bg-quiet-hover) border border-(--border-subtle) hover:border-(--border-soft) text-(--text-secondary) hover:text-(--text-primary) cursor-pointer">
           Open settings sheet
         </button>
       </SheetTrigger>

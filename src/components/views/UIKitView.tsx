@@ -424,7 +424,7 @@ export function UIKitView() {
         />
 
         <div className="flex flex-col items-start gap-2">
-          <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft)">
+          <div className="inline-flex items-center h-7 px-3 rounded-(--radius-pill) type-micro font-mono bg-(--bg-quiet) text-zinc-600 dark:text-(--text-secondary) border border-(--border-soft)">
 v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           </div>
           <h1 className="type-display sm:type-billboard font-semibold tracking-[-0.035em] sm:tracking-[-0.04em] text-zinc-950 dark:text-[#EDEDEF] leading-[1.06] text-balance font-['Inter',_'Plus_Jakarta_Sans',_sans-serif]">
@@ -437,19 +437,19 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
         {/* 4-Pillar Quality Indicators */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
-          <div className="p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-(--shadow-card)">
+          <div className="p-3 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-subtle) shadow-(--shadow-card)">
             <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted) block">Catalog</span>
             <span className="type-body font-bold text-zinc-900 dark:text-zinc-100 font-mono">{KIT_COMPONENT_COUNT} Primitives</span>
           </div>
-          <div className="p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-(--shadow-card)">
+          <div className="p-3 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-subtle) shadow-(--shadow-card)">
             <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted) block">Accessibility</span>
             <span className="type-body font-bold text-emerald-600 dark:text-emerald-400 font-mono">WCAG 2.2 AAA</span>
           </div>
-          <div className="p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-(--shadow-card)">
+          <div className="p-3 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-subtle) shadow-(--shadow-card)">
             <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted) block">Radii Nested</span>
             <span className="type-body font-bold text-zinc-900 dark:text-zinc-100 font-mono">R_in = R_out - P</span>
           </div>
-          <div className="p-3 rounded-(--radius-control) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) shadow-(--shadow-card)">
+          <div className="p-3 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-subtle) shadow-(--shadow-card)">
             <span className="type-micro font-mono uppercase tracking-wider text-zinc-400 dark:text-(--text-muted) block">Engineering</span>
             <span className="type-body font-bold text-zinc-900 dark:text-zinc-100 font-mono">Zero AI Slop</span>
           </div>
@@ -458,7 +458,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
         {/* Hero Quick Action Bar */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
           {/* CLI Box */}
-          <div className="h-9 inline-flex items-center gap-2 pl-3 pr-1 rounded-(--radius-field) bg-(--bg-wash) dark:bg-(--bg-surface) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono text-zinc-800 dark:text-zinc-200">
+          <div className="h-9 inline-flex items-center gap-2 pl-3 pr-1 rounded-(--radius-field) bg-(--bg-quiet) border border-(--border-subtle) type-caption font-mono text-zinc-800 dark:text-zinc-200">
             <span className="text-emerald-500 font-bold select-none">&gt;_</span>
             <span className="font-medium">npx @99/ui add button</span>
             <button
@@ -494,7 +494,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={isRTL ? `جستجو در ${KIT_COMPONENT_COUNT.toLocaleString('fa-IR')} کامپوننت و توکن...` : `Filter ${KIT_COMPONENT_COUNT} components...`}
-              className="w-full pl-8 pr-7 py-1 rounded-(--radius-field) type-caption font-mono bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) text-zinc-900 dark:text-(--text-primary) placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-all"
+              className="w-full pl-8 pr-7 py-1 rounded-(--radius-field) type-caption font-mono bg-(--bg-quiet) border border-(--border-soft) text-zinc-900 dark:text-(--text-primary) placeholder:text-zinc-500 focus:outline-none focus:border-emerald-500/50 transition-all"
             />
             {searchQuery && (
               <button
@@ -508,7 +508,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
           </div>
 
           {/* Search Status / Total */}
-          <span className="hidden sm:inline-block type-micro font-mono text-zinc-500 dark:text-(--text-secondary) px-2 py-1 rounded-(--radius-sm) bg-(--bg-wash) dark:bg-(--bg-wash)">
+          <span className="hidden sm:inline-block type-micro font-mono text-zinc-500 dark:text-(--text-secondary) px-2 py-1 rounded-(--radius-sm) bg-(--bg-quiet)">
             {searchQuery ? `Searching: "${searchQuery}"` : `99 Elements Live`}
           </span>
         </div>
@@ -539,7 +539,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 </p>
               </div>
             </div>
-            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-(--text-secondary)">
+            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-quiet) text-zinc-600 dark:text-(--text-secondary)">
               RATIO 18.4:1
             </span>
           </div>
@@ -660,7 +660,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 <div
                   key={c.hex}
                   onClick={() => copyToClipboard(c.hex, c.name)}
-                  className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) hover:border-black/[0.15] dark:hover:border-(--border-soft) cursor-pointer transition-all active:scale-98"
+                  className="p-4 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-subtle) hover:border-black/[0.15] dark:hover:border-(--border-soft) cursor-pointer transition-all active:scale-98"
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <span className="w-3.5 h-3.5 rounded-(--radius-pill) shadow-xs" style={{ backgroundColor: c.hex }} />
@@ -688,7 +688,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Persian Luxury */}
-              <div className="p-5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) space-y-3 text-right rtl">
+              <div className="p-5 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-subtle) space-y-3 text-right rtl">
                 <span className="type-micro font-mono font-bold uppercase text-emerald-600 dark:text-emerald-400">
                   فارسی فاخر (وزیرمتن با اعداد فارسی)
                 </span>
@@ -705,7 +705,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               </div>
 
               {/* Latin Display */}
-              <div className="p-5 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) space-y-3">
+              <div className="p-5 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-subtle) space-y-3">
                 <span className="type-micro font-mono font-bold uppercase text-blue-600 dark:text-blue-400">
                   LATIN BODY & MONO TOKENS
                 </span>
@@ -739,7 +739,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
               When rounded containers nest inside another rounded container, the inner radius must equal the outer radius minus the intervening padding. This prevents optical discordance and visual clashing.
             </p>
 
-            <div className="p-6 rounded-(--radius-xl) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-strong) flex flex-col items-center justify-center gap-3">
+            <div className="p-6 rounded-(--radius-xl) bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-strong) flex flex-col items-center justify-center gap-3">
               <div className="type-micro font-mono text-zinc-500">
                 Outer Container: Radius 28px, Padding 16px
               </div>
@@ -773,7 +773,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                 </p>
               </div>
             </div>
-            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-(--text-secondary)">
+            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-quiet) text-zinc-600 dark:text-(--text-secondary)">
               ATOMIC EXPORTS
             </span>
           </div>
@@ -1019,7 +1019,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                         Complete keyboard focus trapping, Esc dismissal, and screen-reader accessibility.
                       </DialogDescription>
                     </DialogHeader>
-                    <div className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-strong) space-y-2">
+                    <div className="p-4 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-strong) space-y-2">
                       <div className="flex justify-between type-caption font-semibold">
                         <span className="text-zinc-600 dark:text-(--text-secondary)">Primitive</span>
                         <span className="text-emerald-500">@radix-ui/react-dialog</span>
@@ -1097,7 +1097,7 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                       </SheetDescription>
                     </SheetHeader>
                     <div className="py-6 space-y-3">
-                      <div className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-strong) type-caption leading-relaxed text-zinc-600 dark:text-(--text-secondary)">
+                      <div className="p-4 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-strong) type-caption leading-relaxed text-zinc-600 dark:text-(--text-secondary)">
                         Supports top, bottom, left, and right docking with responsive iPhone-first ergonomics.
                       </div>
                       <Button
@@ -1169,17 +1169,17 @@ v{KIT_VERSION} · {KIT_COMPONENT_COUNT} components · WCAG-verified · MIT
                   <TabsTrigger value="code">API Reference</TabsTrigger>
                   <TabsTrigger value="theme">Dual-Theme State</TabsTrigger>
                 </TabsList>
-                <TabsContent value="preview" className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-strong)">
+                <TabsContent value="preview" className="p-4 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-strong)">
                   <p className="type-caption leading-relaxed text-zinc-600 dark:text-(--text-secondary)">
                     Seamless Radix Tabs with automatic keyboard arrow navigation, ARIA tablist/tabpanel roles, and animated focus rings.
                   </p>
                 </TabsContent>
-                <TabsContent value="code" className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-strong)">
+                <TabsContent value="code" className="p-4 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-strong)">
                   <pre className="type-micro font-mono text-emerald-400 overflow-x-auto">
                     {`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui';`}
                   </pre>
                 </TabsContent>
-                <TabsContent value="theme" className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-strong)">
+                <TabsContent value="theme" className="p-4 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-strong)">
                   <div className="flex items-center justify-between type-caption font-semibold">
                     <span className="text-zinc-600 dark:text-(--text-secondary)">Current Palette</span>
                     <span className="font-mono text-zinc-900 dark:text-white">
@@ -2158,7 +2158,7 @@ export default function App() {
                 </p>
               </div>
             </div>
-            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-(--text-secondary)">
+            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-quiet) text-zinc-600 dark:text-(--text-secondary)">
               PHYSICS & BLUR
             </span>
           </div>
@@ -2238,7 +2238,7 @@ export default function App() {
                 </p>
               </div>
             </div>
-            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-(--text-secondary)">
+            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-quiet) text-zinc-600 dark:text-(--text-secondary)">
               UNIVERSAL REUSABILITY
             </span>
           </div>
@@ -2314,7 +2314,7 @@ export default function App() {
                     { name: 'Accordion', path: 'src/components/ui/Accordion.tsx', props: 'items, defaultOpenId, allowMultiple', status: 'Smooth Spring' },
                     { name: 'Tooltip', path: 'src/components/ui/Tooltip.tsx', props: 'content, side, delayMs', status: 'Micro-Elevation' },
                   ].map((row) => (
-                    <tr key={row.name} className="hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle)">
+                    <tr key={row.name} className="hover:bg-(--bg-quiet-hover)">
                       <td className="py-3 px-3 font-semibold text-zinc-900 dark:text-zinc-100">{row.name}</td>
                       <td className="py-3 px-3 font-mono text-zinc-400">{row.path}</td>
                       <td className="py-3 px-3 font-mono text-zinc-500">{row.props}</td>
@@ -2349,7 +2349,7 @@ export default function App() {
                 </p>
               </div>
             </div>
-            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) text-zinc-600 dark:text-(--text-secondary)">
+            <span className="type-micro font-mono px-2 py-1 rounded-(--radius-pill) bg-(--bg-quiet) text-zinc-600 dark:text-(--text-secondary)">
               LIVE GENERATOR
             </span>
           </div>
@@ -2436,7 +2436,7 @@ export default function App() {
             {/* Live Preview & Code */}
             <div className="lg:col-span-7 flex flex-col gap-4">
               <div
-                className="p-8 rounded-(--radius-lg) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) flex items-center justify-center min-h-[170px] relative overflow-hidden"
+                className="p-8 rounded-(--radius-lg) bg-(--bg-quiet) border border-(--border-soft) flex items-center justify-center min-h-[170px] relative overflow-hidden"
                 style={{
                   backgroundImage: isDark
                     ? 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0)'
@@ -2523,7 +2523,7 @@ export default function App() {
               </div>
 
               {/* Install CLI Pill */}
-              <div className="flex items-center justify-between px-3 py-2 rounded-(--radius-field) bg-(--bg-wash) dark:bg-(--bg-sunken) border border-(--border-soft) type-caption font-mono text-(--text-secondary)">
+              <div className="flex items-center justify-between px-3 py-2 rounded-(--radius-field) bg-(--bg-quiet) border border-(--border-soft) type-caption font-mono text-(--text-secondary)">
                 <span className="flex items-center gap-2 truncate">
                   <span className="text-emerald-500 font-bold">&gt;_</span>
                   <span className="truncate">{getSbCliCmd(sbComponent)}</span>
@@ -2573,7 +2573,7 @@ export default function App() {
             This modal responds natively to the active theme mode. In dark mode, it adopts deep #111114 obsidian depth with a 1px specular rim highlight. In light mode, it manifests as a crisp, shadow-diffused porcelain card.
           </p>
 
-          <div className="p-4 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-strong) flex items-center justify-between">
+          <div className="p-4 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-strong) flex items-center justify-between">
             <div>
               <h4 className="type-caption font-semibold text-zinc-900 dark:text-white">Live Status</h4>
               <p className="type-micro text-zinc-500">WCAG AAA contrast verified</p>

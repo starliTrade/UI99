@@ -82,7 +82,7 @@ export function Surface({
     compact:
       'bg-white/90 dark:bg-(--bg-surface) border border-(--border-hairline) shadow-(--elevation-1)',
     flat:
-      'bg-(--bg-wash) dark:bg-(--bg-surface)/80 border-transparent',
+      'bg-(--bg-quiet) border-transparent',
     outline:
       'bg-transparent border border-(--border-strong) dark:border-(--border-soft)',
   }[variant];

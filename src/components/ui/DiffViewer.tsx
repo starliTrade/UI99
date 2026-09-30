@@ -46,7 +46,7 @@ export function DiffViewer({
       )}
     >
       {/* Diff Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-(--bg-subtle) dark:bg-(--bg-card) border-b border-(--border-soft) dark:border-(--border-soft)">
+      <div className="flex items-center justify-between px-4 py-2 bg-(--bg-quiet) border-b border-(--border-soft) dark:border-(--border-soft)">
         <div className="flex items-center gap-2">
           <GitCommit className="icon-sm text-(--text-muted) dark:text-(--text-secondary)" />
           <span className="text-zinc-900 dark:text-zinc-200 font-medium">{fileName}</span>
@@ -79,7 +79,7 @@ export function DiffViewer({
                 'flex items-center px-2 py-0.5 leading-relaxed font-mono select-text',
                 isAdd && 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-medium',
                 isDelete && 'bg-rose-500/10 text-rose-700 dark:text-rose-300 line-through opacity-80',
-                !isAdd && !isDelete && 'text-zinc-600 dark:text-(--text-secondary) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle)'
+                !isAdd && !isDelete && 'text-zinc-600 dark:text-(--text-secondary) hover:bg-(--bg-quiet-hover)'
               )}
             >
               {/* Line Numbers */}

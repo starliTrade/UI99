@@ -166,7 +166,7 @@ export function SignaturePad({
         </div>
       </div>
 
-      <div className="relative rounded-(--radius-field) overflow-hidden bg-(--bg-subtle) dark:bg-(--bg-canvas) border border-dashed border-black/10 dark:border-white/10 touch-none">
+      <div className="relative rounded-(--radius-field) overflow-hidden bg-(--bg-quiet) border border-dashed border-black/10 dark:border-white/10 touch-none">
         <canvas
           ref={canvasRef}
           width={width}

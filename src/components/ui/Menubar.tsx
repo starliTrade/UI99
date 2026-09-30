@@ -129,7 +129,7 @@ export function MenubarSeparator({
 }: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Separator>) {
   return (
     <MenubarPrimitive.Separator
-      className={cn('-mx-1 my-1 h-px bg-(--bg-wash) dark:bg-(--bg-raised)', className)}
+      className={cn('-mx-1 my-1 h-px bg-(--bg-quiet)', className)}
       {...props}
     />
   );

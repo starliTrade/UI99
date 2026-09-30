@@ -176,7 +176,7 @@ export function AudioPlayer({
               if (muted) setMuted(false);
             }}
             aria-label="Volume"
-            className="w-16 h-1 bg-(--bg-raised) dark:bg-(--bg-card) rounded-(--radius-sm) appearance-none cursor-pointer accent-zinc-900 dark:accent-white"
+            className="w-16 h-1 bg-(--bg-quiet) rounded-(--radius-sm) appearance-none cursor-pointer accent-zinc-900 dark:accent-white"
           />
         </div>
       </div>

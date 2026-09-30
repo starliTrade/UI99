@@ -41,7 +41,7 @@ export function DateRangePicker({
         type="button"
         disabled={disabled}
         onClick={() => setOpen(!open)}
-        className="h-9 px-3 rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-(--border-soft) type-caption font-mono text-zinc-900 dark:text-white inline-flex items-center gap-2 hover:bg-(--bg-subtle) dark:hover:bg-(--bg-card) transition-colors cursor-pointer disabled:opacity-50"
+        className="h-9 px-3 rounded-(--radius-field) bg-white dark:bg-(--bg-surface) border border-(--border-soft) type-caption font-mono text-zinc-900 dark:text-white inline-flex items-center gap-2 hover:bg-(--bg-quiet-hover) transition-colors cursor-pointer disabled:opacity-50"
       >
         <Calendar className="icon-sm text-(--text-secondary)" />
         <span>{start}</span>
@@ -66,7 +66,7 @@ export function DateRangePicker({
                   setStart(e.target.value);
                   onChange?.({ start: e.target.value, end });
                 }}
-                className="w-full px-2 py-1 rounded-(--radius-sm) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
+                className="w-full px-2 py-1 rounded-(--radius-sm) bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-strong) text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
               />
             </div>
             <div>
@@ -78,7 +78,7 @@ export function DateRangePicker({
                   setEnd(e.target.value);
                   onChange?.({ start, end: e.target.value });
                 }}
-                className="w-full px-2 py-1 rounded-(--radius-sm) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
+                className="w-full px-2 py-1 rounded-(--radius-sm) bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-strong) text-zinc-950 dark:text-white type-caption font-mono focus-ui99"
               />
             </div>
           </div>

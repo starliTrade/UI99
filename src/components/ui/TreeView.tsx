@@ -124,7 +124,7 @@ function TreeItem({
           'focus-visible:ring-2 focus-visible:ring-emerald-500/60 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent',
           isSelected
             ? 'bg-(--bg-raised) dark:bg-(--bg-raised) text-zinc-950 dark:text-white font-semibold'
-            : 'text-zinc-600 dark:text-(--text-secondary) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) hover:text-zinc-900 dark:hover:text-zinc-200'
+            : 'text-zinc-600 dark:text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-zinc-900 dark:hover:text-zinc-200'
         )}
       >
         {isFolder ? (
@@ -137,7 +137,7 @@ function TreeItem({
                 e.stopPropagation();
                 toggleOpen(node.id);
               }}
-              className="p-0.5 hover:bg-(--bg-wash) dark:hover:bg-(--bg-wash) rounded"
+              className="p-0.5 hover:bg-(--bg-quiet-hover) rounded"
             >
               <ChevronRight
                 className={cn('w-3.5 h-3.5 transition-transform dur-quick', isOpen && 'rotate-90')}

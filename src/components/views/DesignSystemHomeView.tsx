@@ -360,7 +360,7 @@ export function DesignSystemHomeView() {
                   </h3>
                 </div>
                 <p className="type-micro sm:type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
-                  Roving tabindex, global <code className="px-1 py-0.5 rounded bg-(--bg-subtle) dark:bg-(--bg-raised) text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft)">⌘K</code> hotkeys, and tactile focus states across all 99 primitives.
+                  Roving tabindex, global <code className="px-1 py-0.5 rounded bg-(--bg-quiet) text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft)">⌘K</code> hotkeys, and tactile focus states across all 99 primitives.
                 </p>
               </div>
             </div>

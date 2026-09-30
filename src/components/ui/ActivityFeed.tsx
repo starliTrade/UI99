@@ -112,7 +112,7 @@ export function ActivityFeed({ events = DEFAULT_EVENTS, className }: ActivityFee
                 </div>
 
                 {evt.details && (
-                  <p className="type-caption text-(--text-muted) dark:text-(--text-secondary) bg-(--bg-subtle) dark:bg-(--bg-card) p-2 rounded-(--radius-field) border border-(--border-subtle) dark:border-(--border-subtle)">
+                  <p className="type-caption text-(--text-muted) dark:text-(--text-secondary) bg-(--bg-quiet) p-2 rounded-(--radius-field) border border-(--border-subtle) dark:border-(--border-subtle)">
                     {evt.details}
                   </p>
                 )}

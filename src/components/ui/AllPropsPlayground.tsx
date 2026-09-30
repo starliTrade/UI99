@@ -431,7 +431,7 @@ export function AllPropsPlayground() {
             className={`inline-flex items-center gap-1 h-8 px-3 rounded-(--radius-pill) type-caption font-medium transition-all cursor-pointer focus-visible:outline-none focus-ui99 ${
               component === c.value
                 ? 'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs'
-                : 'bg-(--bg-subtle) dark:bg-(--bg-wash) text-(--text-secondary) hover:bg-state-hover'
+                : 'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover)'
             }`}
           >
             {c.icon}
@@ -873,7 +873,7 @@ export function AllPropsPlayground() {
                 <HoverCardTrigger asChild>
                   <button
                     type="button"
-                    className="h-10 px-4 rounded-(--radius-field) type-body font-medium bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
+                    className="h-10 px-4 rounded-(--radius-field) type-body font-medium bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-strong) cursor-pointer hover:bg-state-hover focus-visible:outline-none focus-ui99"
                   >
                     Hover / focus me
                   </button>
@@ -1043,7 +1043,7 @@ function Segmented<T extends string | number>({
   options: { value: T; label: string }[];
 }) {
   return (
-    <div className="inline-flex p-0.5 rounded-(--radius-pill) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-soft)">
+    <div className="inline-flex p-0.5 rounded-(--radius-pill) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-soft)">
       {options.map((o) => (
         <button
           key={String(o.value)}

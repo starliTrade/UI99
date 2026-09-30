@@ -388,7 +388,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
       {/* 1. WORKFLOW TOOLBAR */}
       <div className="rounded-(--radius-lg) bg-(--bg-card) border border-(--border-hairline) shadow-xs overflow-hidden">
         {/* Top Segment Views & Action Button */}
-        <div className="p-4 border-b border-(--border-soft) dark:border-(--border-soft) flex flex-col md:flex-row md:items-center justify-between gap-3 bg-(--bg-subtle) dark:bg-(--bg-subtle)">
+        <div className="p-4 border-b border-(--border-soft) dark:border-(--border-soft) flex flex-col md:flex-row md:items-center justify-between gap-3 bg-(--bg-quiet)">
           {/* View Tabs */}
           <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
             {(['ALL', 'ACTIVE', 'DONE', 'URGENT'] as const).map((tab) => {
@@ -408,7 +408,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                   className={`px-3 py-1 rounded-(--radius-pill) type-caption font-semibold flex items-center gap-1 transition-all cursor-pointer select-none ${
                     isActive
                       ? 'bg-zinc-950 text-white dark:bg-white dark:text-black font-bold shadow-xs'
-                      : 'text-zinc-600 hover:text-black dark:text-(--text-secondary) dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
+                      : 'text-zinc-600 hover:text-black dark:text-(--text-secondary) dark:hover:text-white hover:bg-(--bg-quiet-hover)'
                   }`}
                 >
                   <span>{tab === 'ALL' ? 'All Issues' : tab.charAt(0) + tab.slice(1).toLowerCase()}</span>
@@ -416,7 +416,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                     className={`type-micro font-mono px-1 py-0.2 rounded-(--radius-pill) ${
                       isActive
                         ? 'bg-white/20 dark:bg-(--state-selected)'
-                        : 'bg-(--bg-wash) dark:bg-(--bg-raised)'
+                        : 'bg-(--bg-quiet)'
                     }`}
                   >
                     {count}
@@ -456,7 +456,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) text-(--text-secondary) flex items-center gap-1 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-quiet) border border-(--border-subtle) text-(--text-secondary) flex items-center gap-1 cursor-pointer hover:border-(--border-soft)"
                 >
                   <Filter className="icon-xs text-(--text-secondary)" />
                   <span className="capitalize">
@@ -486,7 +486,7 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) text-(--text-secondary) flex items-center gap-1 cursor-pointer hover:border-black/20 dark:hover:border-white/10"
+                  className="px-3 py-1 rounded-(--radius-pill) type-caption font-semibold bg-(--bg-quiet) border border-(--border-subtle) text-(--text-secondary) flex items-center gap-1 cursor-pointer hover:border-(--border-soft)"
                 >
                   <span className="capitalize">
                     {priorityFilter === 'all' ? 'All Priorities' : priorityFilter}
@@ -628,10 +628,10 @@ export function LinearIssueTracker({ notify }: LinearIssueTrackerProps = {}) {
                 }}
                 className={`group relative px-4 py-3 sm:px-5 sm:py-3 flex items-center justify-between gap-3 transition-colors cursor-pointer select-none ${
                   isCursorActive
-                    ? 'bg-(--bg-wash) dark:bg-(--bg-wash) shadow-(--accent-bar)'
+                    ? 'bg-(--bg-quiet) shadow-(--accent-bar)'
                     : issue.completed
                     ? 'bg-(--bg-subtle)'
-                    : 'hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle)'
+                    : 'hover:bg-(--bg-quiet-hover)'
                 }`}
               >
                 {/* Left Side: Checkbox, Status Trigger Dropdown, Code, Title */}

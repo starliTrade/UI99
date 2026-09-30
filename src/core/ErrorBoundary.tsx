@@ -67,7 +67,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
           <button
             type="button"
             onClick={this.handleReload}
-            className="min-h-[44px] rounded-full border border-(--border-soft) bg-(--bg-control) px-6 text-sm font-medium text-(--text-primary) transition-colors hover:bg-(--state-hover) focus-visible:outline-none focus-ui99"
+            className="min-h-[44px] rounded-full border border-(--border-subtle) bg-(--bg-quiet) hover:bg-(--bg-quiet-hover) px-6 text-sm font-medium text-(--text-primary) transition-colors hover:bg-(--state-hover) focus-visible:outline-none focus-ui99"
           >
             Reload UI99
           </button>

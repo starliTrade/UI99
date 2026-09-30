@@ -17,9 +17,9 @@ export const toggleVariants = cva(
         default:
           'bg-transparent text-zinc-600 hover:bg-(--bg-subtle) hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:bg-(--bg-wash) dark:hover:text-(--text-primary) data-[state=on]:bg-(--bg-wash) data-[state=on]:text-zinc-950 dark:data-[state=on]:bg-white/[0.08] dark:data-[state=on]:text-white',
         outline:
-          'bg-transparent border border-black/[0.1] dark:border-(--border-strong) text-(--text-primary) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) shadow-xs data-[state=on]:border-black/20 dark:data-[state=on]:border-white/25 data-[state=on]:bg-(--bg-wash) dark:data-[state=on]:bg-white/[0.06]',
+          'bg-transparent border border-black/[0.1] dark:border-(--border-strong) text-(--text-primary) hover:bg-(--bg-quiet-hover) shadow-xs data-[state=on]:border-black/20 dark:data-[state=on]:border-white/25 data-[state=on]:bg-(--bg-wash) dark:data-[state=on]:bg-white/[0.06]',
         secondary:
-          'bg-(--bg-subtle) dark:bg-(--bg-card) text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) data-[state=on]:bg-zinc-900 data-[state=on]:text-white dark:data-[state=on]:bg-(--text-primary) dark:data-[state=on]:text-(--text-on-fill)',
+          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) data-[state=on]:bg-zinc-900 data-[state=on]:text-white dark:data-[state=on]:bg-(--text-primary) dark:data-[state=on]:text-(--text-on-fill)',
       },
       size: {
         sm: 'h-8 px-2 type-caption',

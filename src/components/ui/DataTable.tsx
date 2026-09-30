@@ -93,7 +93,7 @@ export function DataTable<T extends Record<string, any>>({
             }}
             placeholder="Search records..."
             aria-label="Search records"
-            className="w-full pl-8 pr-3 py-1 rounded-(--radius-field) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-soft) dark:border-(--border-strong) type-caption font-mono text-zinc-950 dark:text-white placeholder:text-zinc-400 focus:border-zinc-400 dark:focus:border-white/20 focus-ui99"
+            className="w-full pl-8 pr-3 py-1 rounded-(--radius-field) bg-(--bg-control) border border-(--border-strong) dark:border-(--border-strong) type-caption font-mono text-zinc-950 dark:text-white placeholder:text-zinc-400 focus:border-zinc-400 dark:focus:border-white/20 focus-ui99"
           />
         </div>
       )}
@@ -187,7 +187,7 @@ export function DataTable<T extends Record<string, any>>({
               disabled={page === 0}
               onClick={() => setPage(page - 1)}
               aria-label="Previous page"
-              className="p-1 rounded-(--radius-sm) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) disabled:opacity-40"
+              className="p-1 rounded-(--radius-sm) hover:bg-(--bg-quiet-hover) disabled:opacity-40"
             >
               <ChevronLeft className="icon-md" />
             </button>
@@ -196,7 +196,7 @@ export function DataTable<T extends Record<string, any>>({
               disabled={page >= totalPages - 1}
               onClick={() => setPage(page + 1)}
               aria-label="Next page"
-              className="p-1 rounded-(--radius-sm) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) disabled:opacity-40"
+              className="p-1 rounded-(--radius-sm) hover:bg-(--bg-quiet-hover) disabled:opacity-40"
             >
               <ChevronRight className="icon-md" />
             </button>

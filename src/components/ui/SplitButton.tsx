@@ -67,9 +67,9 @@ export function SplitButton({
     primary:
       'bg-(--ink-fill) dark:bg-white text-white dark:text-zinc-950 hover:opacity-90 border border-transparent shadow-xs',
     secondary:
-      'bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-900 dark:text-(--text-primary) hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) border border-(--border-soft)',
+      'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft)',
     outline:
-      'bg-transparent text-zinc-900 dark:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) border border-(--border-strong) dark:border-(--border-strong)',
+      'bg-transparent text-zinc-900 dark:text-white hover:bg-(--bg-quiet-hover) border border-(--border-strong) dark:border-(--border-strong)',
   }[variant];
 
   return (
@@ -117,7 +117,7 @@ export function SplitButton({
                 item.onClick();
                 setOpen(false);
               }}
-              className="w-full px-3 py-1 type-caption text-left font-mono flex items-center gap-2 text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-raised) transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full px-3 py-1 type-caption text-left font-mono flex items-center gap-2 text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-quiet-hover) transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {item.icon && <span className="w-3.5 h-3.5">{item.icon}</span>}
               <span>{item.label}</span>

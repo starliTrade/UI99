@@ -317,7 +317,7 @@ export function ModernLinearHomeView() {
   return (
     <div className="w-full max-w-4xl mx-auto px-3 sm:px-6 pb-28 pt-1 select-none space-y-6">
       {/* 1. LINEAR HEADER BAR: Active Cycle, Velocity & Actions */}
-      <div className="p-4 sm:p-5 rounded-(--radius-lg) bg-(--bg-wash) dark:bg-(--bg-card) border border-(--border-soft) shadow-xs space-y-4">
+      <div className="p-4 sm:p-5 rounded-(--radius-lg) bg-(--bg-quiet) border border-(--border-soft) shadow-xs space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-(--radius-control) bg-(--ink-fill) dark:bg-(--state-selected) flex items-center justify-center text-white shrink-0 border border-(--border-strong) dark:border-(--border-soft)">
@@ -356,7 +356,7 @@ export function ModernLinearHomeView() {
             <button
               type="button"
               onClick={() => setCurrentTab('UIKIT')}
-              className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-field) type-caption font-medium bg-zinc-100 hover:bg-(--bg-raised) dark:bg-(--bg-wash) dark:hover:bg-(--bg-raised) text-(--text-secondary) transition-all cursor-pointer border border-(--border-subtle) dark:border-(--border-subtle)"
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-(--radius-field) type-caption font-medium bg-(--bg-quiet) hover:bg-(--bg-quiet-hover) text-(--text-secondary) transition-all cursor-pointer border border-(--border-subtle) dark:border-(--border-subtle)"
             >
               <Layers className="icon-sm" />
               <span className="hidden sm:inline">UI Kit</span>
@@ -366,7 +366,7 @@ export function ModernLinearHomeView() {
 
         {/* Progress Bar (Linear Sub-Pixel Specular) */}
         <div className="space-y-1 pt-1">
-          <div className="w-full h-2 rounded-(--radius-pill) bg-(--bg-raised) dark:bg-(--bg-card)/80 overflow-hidden flex">
+          <div className="w-full h-2 rounded-(--radius-pill) bg-(--bg-quiet)/80 overflow-hidden flex">
             <div
               className="h-full bg-emerald-500 transition-all dur-lazy"
               style={{ width: `${cycleCompletion}%` }}
@@ -437,7 +437,7 @@ export function ModernLinearHomeView() {
                   value={newPriority}
                   onChange={(e) => setNewPriority(e.target.value as PriorityLevel)}
                   aria-label="Issue priority level"
-                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2 py-1 text-(--text-secondary) border border-(--border-soft) focus:outline-none cursor-pointer"
+                  className="bg-(--bg-quiet) type-caption font-mono font-medium rounded-(--radius-sm) px-2 py-1 text-(--text-secondary) border border-(--border-soft) focus:outline-none cursor-pointer"
                 >
                   <option value="urgent">P0 Urgent</option>
                   <option value="high">P1 High</option>
@@ -450,7 +450,7 @@ export function ModernLinearHomeView() {
                   value={newEstimate}
                   onChange={(e) => setNewEstimate(Number(e.target.value))}
                   aria-label="Story points estimate"
-                  className="bg-(--bg-subtle) dark:bg-(--bg-wash) type-caption font-mono font-medium rounded-(--radius-sm) px-2 py-1 text-(--text-secondary) border border-(--border-soft) focus:outline-none cursor-pointer"
+                  className="bg-(--bg-quiet) type-caption font-mono font-medium rounded-(--radius-sm) px-2 py-1 text-(--text-secondary) border border-(--border-soft) focus:outline-none cursor-pointer"
                 >
                   <option value={1}>1 pt</option>
                   <option value={2}>2 pts</option>
@@ -485,7 +485,7 @@ export function ModernLinearHomeView() {
       {/* 3. FILTER AND SEARCH TOOLBAR */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         {/* Status filters */}
-        <div className="flex items-center gap-1 bg-(--bg-wash) dark:bg-(--bg-card) p-1 rounded-(--radius-control) border border-(--border-subtle) dark:border-(--border-subtle) overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-1 bg-(--bg-quiet) p-1 rounded-(--radius-control) border border-(--border-subtle) dark:border-(--border-subtle) overflow-x-auto no-scrollbar">
           {[
             { id: 'ALL', label: 'All' },
             { id: 'ACTIVE', label: 'In Flight' },
@@ -517,7 +517,7 @@ export function ModernLinearHomeView() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Filter issues..."
-              className="w-full bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) rounded-(--radius-field) pl-8 pr-3 py-1 type-caption text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
+              className="w-full bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-subtle) rounded-(--radius-field) pl-8 pr-3 py-1 type-caption text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none"
             />
           </div>
 
@@ -525,7 +525,7 @@ export function ModernLinearHomeView() {
             value={filterPriority}
             onChange={(e) => setFilterPriority(e.target.value)}
             aria-label="Filter issues by priority"
-            className="bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono rounded-(--radius-field) px-2 py-1 text-zinc-600 dark:text-(--text-secondary) focus:outline-none cursor-pointer"
+            className="bg-(--bg-quiet) border border-(--border-soft) dark:border-(--border-subtle) type-caption font-mono rounded-(--radius-field) px-2 py-1 text-zinc-600 dark:text-(--text-secondary) focus:outline-none cursor-pointer"
           >
             <option value="ALL">All Priorities</option>
             <option value="urgent">P0 Urgent</option>
@@ -555,8 +555,8 @@ export function ModernLinearHomeView() {
                 onClick={() => setSelectedIdx(idx)}
                 className={`group flex items-center justify-between p-3 sm:px-4 sm:py-3 transition-all cursor-pointer select-none ${
                   isSelected
-                    ? 'bg-(--bg-wash) dark:bg-(--bg-wash) ring-1 ring-inset ring-emerald-500/40'
-                    : 'hover:bg-(--bg-subtle) dark:hover:bg-(--bg-subtle)'
+                    ? 'bg-(--bg-quiet) ring-1 ring-inset ring-emerald-500/40'
+                    : 'hover:bg-(--bg-quiet-hover)'
                 }`}
               >
                 {/* Left section: toggle + ID + Title */}
@@ -596,7 +596,7 @@ export function ModernLinearHomeView() {
                       {iss.labels.map((lbl) => (
                         <span
                           key={lbl}
-                          className="px-1 py-0.2 rounded type-micro font-mono text-zinc-500 dark:text-(--text-secondary) bg-(--bg-subtle) dark:bg-(--bg-wash) border border-(--border-subtle) dark:border-(--border-subtle)"
+                          className="px-1 py-0.2 rounded type-micro font-mono text-zinc-500 dark:text-(--text-secondary) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-subtle)"
                         >
                           {lbl}
                         </span>
@@ -612,7 +612,7 @@ export function ModernLinearHomeView() {
 
                   {/* Estimate */}
                   {iss.estimate && (
-                    <span className="hidden sm:inline-block px-1 py-0.5 rounded type-micro font-mono font-semibold text-zinc-600 dark:text-(--text-secondary) bg-(--bg-subtle) dark:bg-(--bg-wash)">
+                    <span className="hidden sm:inline-block px-1 py-0.5 rounded type-micro font-mono font-semibold text-zinc-600 dark:text-(--text-secondary) bg-(--bg-quiet)">
                       {iss.estimate}pt
                     </span>
                   )}
@@ -637,7 +637,7 @@ export function ModernLinearHomeView() {
       </div>
 
       {/* 5. KEYBOARD SHORTCUTS REFERENCE BAR (Linear Pro Productivity Hint) */}
-      <div className="p-3 rounded-(--radius-control) bg-(--bg-subtle) dark:bg-(--bg-card) border border-(--border-subtle) dark:border-(--border-subtle) flex flex-wrap items-center justify-between gap-3 type-micro font-mono text-zinc-500">
+      <div className="p-3 rounded-(--radius-control) bg-(--bg-quiet) border border-(--border-subtle) dark:border-(--border-subtle) flex flex-wrap items-center justify-between gap-3 type-micro font-mono text-zinc-500">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1">
             <Kbd size="xs">J</Kbd>

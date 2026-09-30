@@ -70,14 +70,14 @@ export function CalendarView({
           <button
             type="button"
             aria-label="Previous month"
-            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors"
+            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-quiet-hover) transition-colors"
           >
             <ChevronLeft className="icon-md" />
           </button>
           <button
             type="button"
             aria-label="Next month"
-            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash) transition-colors"
+            className="p-1 rounded-(--radius-sm) text-(--text-secondary) hover:text-zinc-900 dark:hover:text-white hover:bg-(--bg-quiet-hover) transition-colors"
           >
             <ChevronRight className="icon-md" />
           </button>
@@ -120,8 +120,8 @@ export function CalendarView({
               className={cn(
                 'min-h-[44px] sm:min-h-[58px] p-1 sm:p-1 rounded-(--radius-sm) sm:rounded-(--radius-field) border flex flex-col items-start justify-between text-left transition-all dur-quick',
                 isSelected
-                  ? 'bg-(--bg-subtle) dark:bg-(--bg-raised) border-black/20 dark:border-white/20 shadow-xs'
-                  : 'bg-(--bg-subtle) dark:bg-(--bg-card)/50 border-(--border-subtle) dark:border-(--border-subtle) hover:bg-(--bg-subtle) dark:hover:bg-(--bg-wash)'
+                  ? 'bg-(--bg-quiet) border-black/20 dark:border-white/20 shadow-xs'
+                  : 'bg-(--bg-quiet) border-(--border-subtle) hover:bg-(--bg-quiet-hover)'
               )}
             >
               <span

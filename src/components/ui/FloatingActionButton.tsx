@@ -36,7 +36,7 @@ export function FloatingActionButton({
     emerald:
       'bg-emerald-500 hover:bg-emerald-400 text-white shadow-(--elevation-3) border border-emerald-400/30',
     secondary:
-      'bg-(--bg-subtle) dark:bg-(--bg-card) text-zinc-900 dark:text-white hover:bg-(--bg-raised) dark:hover:bg-(--bg-card) shadow-(--elevation-3) border border-(--border-soft) dark:border-(--border-strong)',
+      'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) shadow-(--elevation-3) border border-(--border-subtle) hover:border-(--border-soft)',
   }[variant];
 
   return (

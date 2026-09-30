@@ -814,6 +814,40 @@ if (controlViolations.length) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   RULE K — QUIET IS ONE TOKEN, NOT A PAIR (§2.6 / §2.9).
+
+   The quiet standard exists BECAUSE the old fills forked by theme: 49×
+   `bg-subtle + dark:bg-card`, 25× `bg-subtle + dark:bg-wash`, 41 hover forks
+   whose light and dark branches disagreed about the same state. An alpha
+   token composites correctly on any parent, so a fork is not consistency —
+   it is the bug coming back with two names. Resting `subtle/wash` fills and
+   the four hover forks above must not return; `bg-control`/`bg-elevated`/
+   `bg-card` forks stay legal (Tier 2/3 roles still fork by design).
+   ═══════════════════════════════════════════════════════════════════════════ */
+const quietViolations = [];
+const QUIET_FORK_REST = /(?<![\w-])bg-\(--bg-(?:subtle|wash)\)\s+dark:bg-\(--bg-[a-z-]+\)/;
+const QUIET_FORK_HOVER = /(?<![\w-])hover:bg-\(--bg-(?:subtle|wash|raised|card)\)\s+dark:hover:bg-\(--bg-(?:card|card-hover|subtle|wash|raised)\)/;
+for (const f of [...componentFiles, ...coreFiles, ...appShell]) {
+  const rel = f.startsWith(root) ? f.slice(root.length + 1) : f;
+  readFileSync(f, 'utf8')
+    .split('\n')
+    .forEach((line, i) => {
+      const code = line.replace(/\/\/.*$/, '');
+      if (QUIET_FORK_REST.test(code))
+        quietViolations.push(`${rel}:${i + 1}: theme-forked quiet fill — "${line.trim().slice(0, 70)}" → bg-(--bg-quiet) (§2.9)`);
+      if (QUIET_FORK_HOVER.test(code))
+        quietViolations.push(`${rel}:${i + 1}: theme-forked hover — "${line.trim().slice(0, 70)}" → hover:bg-(--bg-quiet-hover) (§2.9)`);
+    });
+}
+if (quietViolations.length) {
+  console.error(
+    `\n✗ tokens-gate: ${quietViolations.length} quiet-fork violation(s) — the quiet standard is ONE alpha token in BOTH themes; a dark: fork is the old disagreement re-armed (docs/standards.md §2.9):\n`,
+  );
+  for (const v of quietViolations) console.error('  ' + v);
+  process.exit(1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    RULE I — NO UNLAYERED SURFACE RULE.
 
    In CSS, a rule outside every `@layer` beats every rule inside one, at ANY
@@ -910,5 +944,5 @@ if (unlayeredViolations.length) {
 console.log(
   `✓ tokens-gate: ${files.length} kit files clean — no hardcoded hexes, no arbitrary or raw-scale ` +
     `elevation/radius/blur/type, no dead utilities, all ${declared.size} tokens declared, ` +
-    `soft-continuity ladder enforced (9 rules: hex · structural · declared · compiles · soft · grid · mirror · control · layering)`,
+    `soft-continuity ladder enforced (10 rules: hex · structural · declared · compiles · soft · grid · mirror · control · quiet · layering)`,
 );
