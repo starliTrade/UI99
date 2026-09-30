@@ -577,7 +577,7 @@ export function TokensAuditPlayground() {
                 Interactive Quiet CTA
               </Button>
             </div>
-            <div className="pt-1 text-[11px] font-mono text-(--text-muted) space-y-0.5">
+            <div className="pt-1 type-micro font-mono text-(--text-muted) space-y-0.5">
               <div>bg: rgba(255,255,255,0.008)</div>
               <div>border: rgba(255,255,255,0.025)</div>
             </div>
@@ -599,7 +599,7 @@ export function TokensAuditPlayground() {
                 Standard Control Field
               </Button>
             </div>
-            <div className="pt-1 text-[11px] font-mono text-(--text-muted) space-y-0.5">
+            <div className="pt-1 type-micro font-mono text-(--text-muted) space-y-0.5">
               <div>bg: rgba(255,255,255,0.050)</div>
               <div>border: rgba(255,255,255,0.035)</div>
             </div>
@@ -621,7 +621,7 @@ export function TokensAuditPlayground() {
                 Card Surface Layer
               </div>
             </div>
-            <div className="pt-1 text-[11px] font-mono text-(--text-muted) space-y-0.5">
+            <div className="pt-1 type-micro font-mono text-(--text-muted) space-y-0.5">
               <div>bg: #0C0D12 (--bg-card)</div>
               <div>rim: inset 0 1px 0 0 white/4%</div>
             </div>
@@ -643,7 +643,7 @@ export function TokensAuditPlayground() {
                 Elevated Modal Top
               </div>
             </div>
-            <div className="pt-1 text-[11px] font-mono text-(--text-muted) space-y-0.5">
+            <div className="pt-1 type-micro font-mono text-(--text-muted) space-y-0.5">
               <div>bg: #111218 (--bg-elevated)</div>
               <div>shadow: deep diffuse 18/40px</div>
             </div>
