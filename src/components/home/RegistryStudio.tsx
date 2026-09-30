@@ -246,7 +246,7 @@ function Inspector({
             <dl className="grid grid-cols-2 gap-x-3 gap-y-2 type-micro font-mono">
               {[
                 { l: isRTL ? 'دسته' : 'Category', v: comp.category },
-                { l: isRTL ? 'اولیه' : 'Primitive', v: comp.primitive || (isRTL ? 'بومی' : 'Native') },
+                { l: isRTL ? 'اصل پایه' : 'Primitive', v: comp.primitive || (isRTL ? 'بومی' : 'Native') },
                 { l: isRTL ? 'نسخه' : 'Version', v: `v${comp.version}` },
                 { l: isRTL ? 'پروپس' : 'Props', v: String(comp.props.length), tone: true },
               ].map((f) => (
@@ -352,7 +352,7 @@ export function RegistryStudio() {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Interactive Live Playground State for Core Families
-  const [btnVariant, setBtnVariant] = useState<'primary' | 'secondary' | 'quiet' | 'outline' | 'ghost' | 'rose'>('primary');
+  const [btnVariant, setBtnVariant] = useState<'primary' | 'secondary' | 'outline' | 'ghost' | 'rose'>('primary');
   const [btnSize, setBtnSize] = useState<'xs' | 'sm' | 'md' | 'lg'>('md');
   const [btnLoading, setBtnLoading] = useState(false);
 
@@ -1031,7 +1031,7 @@ export function RegistryStudio() {
                     <div className="flex items-center gap-1 min-w-0">
                       <span className="w-14 shrink-0 type-micro font-mono text-(--text-muted)">Variant</span>
                       <div className="flex items-center gap-1 overflow-x-auto no-scrollbar touch-pan-x min-w-0">
-                        {(['primary', 'secondary', 'quiet', 'outline', 'ghost', 'rose'] as const).map((v) => (
+                        {(['primary', 'secondary', 'outline', 'ghost', 'rose'] as const).map((v) => (
                           <button
                             key={v}
                             type="button"
@@ -1162,12 +1162,12 @@ export function RegistryStudio() {
           {studioView === 'tokens' && (
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
               {[
-                ['--bg-canvas', isRTL ? 'بوم' : 'Canvas'],
-                ['--bg-card', isRTL ? 'کارت' : 'Surface card'],
-                ['--border-subtle', isRTL ? 'حاشیه' : 'Hairline border'],
-                ['--radius-control', isRTL ? 'شعاع کنترل' : 'Control radius'],
-                ['--elevation-2', isRTL ? 'ارتفاع' : 'Elevation 2'],
-                ['--space-md', isRTL ? 'فاصله' : 'Space step'],
+                ['--bg-canvas', isRTL ? 'رنگ بستر صفحه' : 'Page canvas'],
+                ['--bg-card', isRTL ? 'سطح کارت' : 'Card surface'],
+                ['--border-subtle', isRTL ? 'لبه‌ی مویی' : 'Hairline edge'],
+                ['--radius-control', isRTL ? 'گردیِ کنترل‌ها' : 'Control radius'],
+                ['--elevation-2', isRTL ? 'سایه‌ی شناوری' : 'Float shadow'],
+                ['--space-md', isRTL ? 'گام فاصله‌گذاری' : 'Spacing step'],
               ].map(([token, label]) => (
                 <div key={token} className="p-2 rounded-(--radius-sm) bg-(--bg-sunken) border border-(--border-subtle) type-micro font-mono min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">

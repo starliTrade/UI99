@@ -26,8 +26,6 @@ export const buttonVariants = cva(
         // themes, with no light/dark fork at all.
         secondary:
           'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft) shadow-xs',
-        quiet:
-          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft) shadow-xs',
         outline:
           'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-(--text-primary) dark:border-(--border-soft)',
         ghost:
@@ -97,7 +95,6 @@ export interface ButtonProps
   variant?:
     | 'primary'
     | 'secondary'
-    | 'quiet'
     | 'outline'
     | 'ghost'
     | 'link'
@@ -153,8 +150,6 @@ export const iconButtonVariants = cva(
         // differently is how the GitHub button and the docs button ended up
         // wearing different fills while sitting side by side.
         secondary:
-          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft)',
-        quiet:
           'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft)',
         outline:
           'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover dark:text-(--text-secondary) dark:border-(--border-strong)',

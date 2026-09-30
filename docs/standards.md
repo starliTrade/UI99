@@ -105,7 +105,7 @@
 | کنترل | استراحت (Resting) | هاور (Hover) | فاصله دلتا از بوم (اندازه‌شده) | بوردر |
 |---|---|---|---|---|
 | **Secondary Button** | `--bg-quiet` (`a .008`) | `--bg-quiet-hover` (`a .020`) | **$\Delta +6$** | `--border-subtle` (`0.025`) → هاور `soft` |
-| **Quiet Button / Chip / پنل نرم** | `--bg-quiet` (`a .008`) | `--bg-quiet-hover` (`a .020`) | **$\Delta +6$** | `--border-subtle` (`0.025`) → هاور `soft` |
+| **Chip / پنل نرم** (همان واریانت `secondary` — «quiet» فقط نامِ نقش است، نه واریانت) | `--bg-quiet` (`a .008`) | `--bg-quiet-hover` (`a .020`) | **$\Delta +6$** | `--border-subtle` (`0.025`) → هاور `soft` |
 | **Form Control / Input** | `--bg-control` (`a .050` → `#121315`) | `--state-hover` (`a .045`) | **$\Delta +36$** (اندازه‌شده روی بوم) | `--border-soft` (`0.035`) |
 
 **قوانین:**

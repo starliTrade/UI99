@@ -573,7 +573,7 @@ export function TokensAuditPlayground() {
               Secondary buttons, chips, doc actions.
             </p>
             <div className="pt-2">
-              <Button variant="quiet" size="sm" fullWidth>
+              <Button variant="secondary" size="sm" fullWidth>
                 Interactive Quiet CTA
               </Button>
             </div>

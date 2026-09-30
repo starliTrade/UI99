@@ -315,7 +315,7 @@ export function DocsView() {
   }, []);
 
   // Live Component Playground State
-  const [demoBtnVariant, setDemoBtnVariant] = useState<'primary' | 'secondary' | 'quiet' | 'outline' | 'ghost' | 'rose'>('primary');
+  const [demoBtnVariant, setDemoBtnVariant] = useState<'primary' | 'secondary' | 'outline' | 'ghost' | 'rose'>('primary');
   const [demoBtnSize, setDemoBtnSize] = useState<'xs' | 'sm' | 'md' | 'lg'>('md');
   const [demoBtnLoading, setDemoBtnLoading] = useState(false);
   const [demoBtnDisabled, setDemoBtnDisabled] = useState(false);
@@ -2306,8 +2306,7 @@ export function DocsView() {
                             >
                               <option value="primary">primary</option>
                               <option value="secondary">secondary</option>
-                              <option value="quiet">quiet (Δ +6)</option>
-                              <option value="outline">outline</option>
+                                                            <option value="outline">outline</option>
                               <option value="ghost">ghost</option>
                               <option value="rose">rose</option>
                             </select>

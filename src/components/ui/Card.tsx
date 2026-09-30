@@ -16,7 +16,8 @@ import type { RadiusRung, SurfacePaddingStep } from '../../lib/utils';
 export type SurfaceVariant =
   | 'surface'            // Primary container surface (--bg-surface / white)
   | 'surfaceSecondary'   // Secondary container surface (--bg-card / --bg-sunken)
-  | 'quiet'              // Quiet surface resting Δ +6 from canvas (--bg-quiet / --border-subtle)
+  | 'quiet'              // §2.9 quiet SURFACE (Δ+6) — a panel role, not a button variant;
+                         // buttons carry this look via variant="secondary" (§2.6)
   | 'elevated'           // Elevated interactive surface (--bg-elevated / white)
   | 'glass'              // Translucent liquid glass with blur
   | 'compact'            // Ultra-compact quiet list container

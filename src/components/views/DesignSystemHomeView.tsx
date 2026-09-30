@@ -271,7 +271,7 @@ export function DesignSystemHomeView() {
 
           {/* 2. Secondary Action: Documentation */}
           <Button
-            variant="quiet"
+            variant="secondary"
             size="md"
             shape="rounded"
             onClick={() => setCurrentTab('DOCS')}
@@ -283,7 +283,7 @@ export function DesignSystemHomeView() {
 
           {/* 3. GitHub Action */}
           <Button
-            variant="quiet"
+            variant="secondary"
             size="md"
             shape="rounded"
             onClick={() => window.open('https://github.com/starliTrade/UI99', '_blank', 'noopener')}
@@ -330,19 +330,22 @@ export function DesignSystemHomeView() {
          ══════════════════════════════════════════════════════════════ */}
       <Reveal index={5}>
         <section className="pt-12 sm:pt-16 space-y-4">
-          {/* Left-Aligned Header */}
-          <div className="space-y-1 text-left">
+          {/* Section header — bilingual; in RTL the block mirrors, the
+              eyebrow keeps its mono voice (§2.8: code is code). */}
+          <div className="space-y-1 text-left rtl:text-right">
             <div className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-(--radius-pill) bg-emerald-500 inline-block" />
               <span className="type-micro font-mono uppercase tracking-widest text-zinc-500 dark:text-(--text-secondary)">
-                Engineering Architecture
+                {isRTL ? 'معماری مهندسی' : 'Engineering Architecture'}
               </span>
             </div>
             <h2 className="type-title sm:type-heading font-bold tracking-tight text-zinc-950 dark:text-white">
-              Crafted without compromise
+              {isRTL ? 'ساخته‌شده بدون مصالحه' : 'Crafted without compromise'}
             </h2>
             <p className="type-caption sm:type-body text-zinc-600 dark:text-(--text-secondary) max-w-xl">
-              Engineered with the exact standards required by production developer tools and enterprise web applications.
+              {isRTL
+                ? 'با همان استانداردهایی مهندسی شده که ابزارهای توسعه‌دهنده‌ی عملیاتی و اپلیکیشن‌های سازمانی از آن‌ها چشم‌پوشی نمی‌کنند.'
+                : 'Engineered with the exact standards required by production developer tools and enterprise web applications.'}
             </p>
           </div>
 
@@ -356,11 +359,21 @@ export function DesignSystemHomeView() {
               <div className="space-y-1 min-w-0">
                 <div className="flex items-center gap-1">
                   <h3 className="type-caption sm:type-body font-bold text-zinc-950 dark:text-white">
-                    Keyboard Velocity &amp; {KIT_COMPONENT_COUNT} Elements
+                    {isRTL ? `سرعت کیبورد و ${Number(KIT_COMPONENT_COUNT).toLocaleString('fa-IR')} المان` : `Keyboard Velocity & ${KIT_COMPONENT_COUNT} Elements`}
                   </h3>
                 </div>
                 <p className="type-micro sm:type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
-                  Roving tabindex, global <code className="px-1 py-0.5 rounded bg-(--bg-quiet) text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft)">⌘K</code> hotkeys, and tactile focus states across all 99 primitives.
+                  {isRTL ? (
+                    <>
+                      tabindex رونده، میان‌بر سراسری{' '}
+                      <code className="px-1 py-0.5 rounded bg-(--bg-quiet) text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft)">⌘K</code>{' '}
+                      و حالت‌های فوکوس لمسی روی تمام ۹۹ اصل پایه.
+                    </>
+                  ) : (
+                    <>
+                      Roving tabindex, global <code className="px-1 py-0.5 rounded bg-(--bg-quiet) text-zinc-800 dark:text-zinc-200 font-mono type-micro border border-(--border-soft)">⌘K</code> hotkeys, and tactile focus states across all 99 primitives.
+                    </>
+                  )}
                 </p>
               </div>
             </div>
@@ -373,11 +386,13 @@ export function DesignSystemHomeView() {
               <div className="space-y-1 min-w-0">
                 <div className="flex items-center gap-1">
                   <h3 className="type-caption sm:type-body font-bold text-zinc-950 dark:text-white">
-                    Specular Velvet Depth
+                    {isRTL ? 'عمق مخملیِ اسپکولار' : 'Specular Velvet Depth'}
                   </h3>
                 </div>
                 <p className="type-micro sm:type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
-                  Mathematical obsidian layers with sub-pixel rim highlights that separate naturally in any environment.
+                  {isRTL
+                    ? 'لایه‌های اُبسیدینِ حساب‌شده با ریم‌های زیرپیکسلی که در هر محیطی طبیعی از هم جدا می‌شوند.'
+                    : 'Mathematical obsidian layers with sub-pixel rim highlights that separate naturally in any environment.'}
                 </p>
               </div>
             </div>
@@ -390,11 +405,13 @@ export function DesignSystemHomeView() {
               <div className="space-y-1 min-w-0">
                 <div className="flex items-center gap-1">
                   <h3 className="type-caption sm:type-body font-bold text-zinc-950 dark:text-white">
-                    Zero Runtime Overhead
+                    {isRTL ? 'صفر سربارِ ران‌تایم' : 'Zero Runtime Overhead'}
                   </h3>
                 </div>
                 <p className="type-micro sm:type-caption text-zinc-600 dark:text-(--text-secondary) leading-relaxed">
-                  Pure Tailwind v4 utility tokens and headless primitives. Copy, paste, and ship without runtime weight.
+                  {isRTL
+                    ? 'توکن‌های خالص Tailwind v4 و اصل‌های هدلس. کپی کن، بچسبان، شپ کن — بدون وزنِ ران‌تایم.'
+                    : 'Pure Tailwind v4 utility tokens and headless primitives. Copy, paste, and ship without runtime weight.'}
                 </p>
               </div>
             </div>
@@ -411,7 +428,9 @@ export function DesignSystemHomeView() {
             <span className="font-mono type-caption sm:type-body font-bold text-zinc-950 dark:text-white">
               UI \ [99]
             </span>
-            <span className="type-micro font-mono text-emerald-500 bg-emerald-500/10 px-1 py-0.5 rounded border border-emerald-500/20">{KIT_COMPONENT_COUNT} Elements</span>
+            <span className="type-micro font-mono text-emerald-500 bg-emerald-500/10 px-1 py-0.5 rounded border border-emerald-500/20">
+              {isRTL ? `${Number(KIT_COMPONENT_COUNT).toLocaleString('fa-IR')} المان` : `${KIT_COMPONENT_COUNT} Elements`}
+            </span>
           </div>
 
           <nav className="flex items-center gap-3 sm:gap-4 type-caption font-mono text-zinc-500 dark:text-(--text-secondary)" aria-label="Footer Navigation">
@@ -422,15 +441,33 @@ export function DesignSystemHomeView() {
                 onClick={() => setCurrentTab(tab)}
                 className="hover:text-(--text-primary) transition-colors cursor-pointer"
               >
-                {tab === 'UIKIT' ? `${KIT_COMPONENT_COUNT} Components` : tab === 'BLOCKS' ? 'Patterns' : tab === 'DOCS' ? 'Guides' : 'Design Tokens'}
+                {isRTL
+                  ? tab === 'UIKIT'
+                    ? `${Number(KIT_COMPONENT_COUNT).toLocaleString('fa-IR')} کامپوننت`
+                    : tab === 'BLOCKS'
+                      ? 'الگوها'
+                      : tab === 'DOCS'
+                        ? 'راهنماها'
+                        : 'توکن‌های طراحی'
+                  : tab === 'UIKIT'
+                    ? `${KIT_COMPONENT_COUNT} Components`
+                    : tab === 'BLOCKS'
+                      ? 'Patterns'
+                      : tab === 'DOCS'
+                        ? 'Guides'
+                        : 'Design Tokens'}
               </button>
             ))}
           </nav>
         </div>
 
         <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-(--border-subtle) flex flex-wrap items-center justify-between gap-2 type-micro sm:type-micro font-mono text-zinc-500">
-          <span>© 2026 UI \ [99] · MIT Licensed</span>
-          <span>Dual Obsidian / Light Primitives · {KIT_COMPONENT_COUNT} Certified Elements</span>
+          <span>© 2026 UI \ [99] · {isRTL ? 'لایسنس MIT' : 'MIT Licensed'}</span>
+          <span>
+            {isRTL
+              ? `اصول‌های دوگانه‌ی اُبسیدین / لایت · ${Number(KIT_COMPONENT_COUNT).toLocaleString('fa-IR')} المان تأییدشده`
+              : `Dual Obsidian / Light Primitives · ${KIT_COMPONENT_COUNT} Certified Elements`}
+          </span>
         </div>
       </footer>
     </div>
