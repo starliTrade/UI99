@@ -255,13 +255,26 @@ export function DesignSystemHomeView() {
             className="absolute -inset-2 rounded-(--radius-control) bg-emerald-500/[0.03] dark:bg-emerald-400/[0.03] blur-xl pointer-events-none -z-content"
           />
 
-          {/* 1. Primary Action: Browse the registry */}
+          {/* 1. Primary Action: the generative surface — the era claim made
+              clickable. First position, primary ink: AI is the product now. */}
           <Button
             variant="primary"
             size="md"
             shape="rounded"
+            onClick={() => setCurrentTab('AI_STUDIO')}
+            className="order-1 w-full sm:order-none sm:flex-none min-h-[44px] px-4 font-semibold shadow-xs"
+            icon={<Sparkles className="icon-sm" />}
+          >
+            {isRTL ? 'استودیوی هوش مصنوعی' : 'AI Studio'}
+          </Button>
+
+          {/* 2. Primary Action: Browse the registry */}
+          <Button
+            variant="secondary"
+            size="md"
+            shape="rounded"
             onClick={() => setCurrentTab('UIKIT')}
-            className="order-1 w-full sm:order-none sm:w-auto min-h-[44px] px-4 font-semibold shadow-xs"
+            className="order-2 w-full sm:order-none sm:w-auto min-h-[44px] px-4 font-semibold shadow-xs"
             icon={isRTL ? <ArrowLeft className="icon-sm" /> : <ArrowRight className="icon-sm" />}
           >
             {isRTL
