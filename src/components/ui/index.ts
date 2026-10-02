@@ -349,4 +349,5 @@ export { BottomNavigation } from './BottomNavigation';
 export { ObjectCard } from './ObjectCard';
 export { LinearIssueTracker } from './LinearIssueTracker';
 export { TokensAuditPlayground } from './TokensAuditPlayground';
+export { ObsidianArchitectureLab } from './ObsidianArchitectureLab';
 export type { EmptyStateProps as ToastEmptyStateProps } from './Toast';

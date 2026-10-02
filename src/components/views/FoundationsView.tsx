@@ -25,7 +25,7 @@ import {
   Check,
 } from 'lucide-react';
 import { useApp } from '../../core/context/AppContext';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Kbd } from '../ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Kbd, ObsidianArchitectureLab } from '../ui';
 import { Reveal } from '../ui/motion';
 import { KIT_COMPONENT_COUNT } from '../../generated/kit-count';
 
@@ -70,6 +70,9 @@ export function FoundationsView() {
           The mathematical values, color tokens, optical refraction highlights, typographic scales, and anti-slop rules powering the UI \ [99] design system.
         </p>
       </div>
+
+      {/* 0. Dedicated Deep Architecture Calibration Studio */}
+      <ObsidianArchitectureLab />
 
       {/* 1. Color Palette Tokens */}
       <section className="space-y-6">

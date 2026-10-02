@@ -19,6 +19,7 @@ import { UIKitView } from './components/views/UIKitView';
 import { DocsView } from './components/views/DocsView';
 import { FoundationsView } from './components/views/FoundationsView';
 import { BlocksView } from './components/views/BlocksView';
+import { VelvetLabView } from './components/views/VelvetLabView';
 import { UniversalCaptureModal } from './components/shells/UniversalCaptureModal';
 import { GlobalSearchModal } from './components/shells/GlobalSearchModal';
 import { ObjectDetailModal } from './components/shells/ObjectDetailModal';
@@ -40,12 +41,16 @@ function MainShell() {
   // The shipped TopHeader/BottomNavigation are presentational (props-only) so a
   // consumer can install them — the app shell owns the state and wires it in.
   const navigateToTab = (tab: string) => {
+    if (tab === 'LAB') {
+      setCurrentTab('LAB' as any);
+      return;
+    }
     const match = NAV_ITEMS.find((i) => i.tab === tab);
     if (match) setCurrentTab(match.tab);
   };
 
   const renderActiveView = () => {
-    switch (currentTab) {
+    switch (currentTab as string) {
       case 'HOME':
         return <HomeView />;
       case 'UIKIT':
@@ -56,6 +61,8 @@ function MainShell() {
         return <DocsView />;
       case 'FOUNDATIONS':
         return <FoundationsView />;
+      case 'LAB':
+        return <VelvetLabView />;
       default:
         return <HomeView />;
     }

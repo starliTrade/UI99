@@ -241,6 +241,25 @@ export function calculateInnerRadius(outerRadius: number, padding: number): numb
 export { rounded, radiusClassForPadding } from '../../lib/utils';
 export type { RadiusRung, SurfacePaddingStep } from '../../lib/utils';
 
+// Re-export Master Mathematical & Perceptual UI Engine (Build 03.0)
+export {
+  MasterEngine,
+  createMasterEngine,
+  hexToOklch,
+  oklchToHex,
+  rgbToOklab,
+  oklabToRgb,
+  deriveBorderLuminance,
+  deriveShadow,
+  deriveConcentricRadius,
+} from './masterEngine';
+export type {
+  ColorOklch,
+  ColorRgb,
+  SurfaceTierSpec,
+  MasterEngineOutput,
+} from './masterEngine';
+
 // Re-export mathematical algorithms & audit helpers
 export {
   calculateLuminance,

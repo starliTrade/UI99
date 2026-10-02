@@ -137,6 +137,23 @@ export function TopHeader({
             2 · RIGHT: Unified Fast-Action Glass Capsule
            ══════════════════════════════════════════════════════════════ */}
         <div className="flex items-center gap-1 sm:gap-2">
+          {/* Dedicated Velvet Lab Live Test View Button */}
+          <button
+            type="button"
+            onClick={() => onNavigate?.('LAB')}
+            aria-label="Open Velvet Architecture Lab"
+            title="Open Velvet Architecture Lab"
+            className={`relative inline-flex items-center gap-1.5 h-8 px-2.5 rounded-(--radius-field) border text-xs font-mono font-semibold transition-all cursor-pointer active:scale-95 focus-ui99 after:absolute after:-inset-1.5 after:content-[''] ${
+              currentTab === 'LAB'
+                ? 'bg-white text-black border-white shadow-xs font-bold'
+                : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25 hover:bg-emerald-500/20 hover:border-emerald-500/40'
+            }`}
+          >
+            <Sparkles className="icon-xs text-emerald-400 animate-pulse" />
+            <span className="hidden xs:inline">{isRTL ? 'آزمایشگاه سطوح' : 'Velvet Lab'}</span>
+            <span className="xs:hidden">Lab</span>
+          </button>
+
           {/* GitHub Quick Link */}
           <a
             href="https://github.com/starliTrade/UI99"

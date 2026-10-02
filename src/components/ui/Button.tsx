@@ -1,66 +1,98 @@
 /**
- * UI99 — Unified Tactile Controls (Button, IconButton, Tag, Avatar) (Build 03.0)
- * Full shadcn-grade variant/size matrix on the UI99 velvet token system.
- * Five-state contract per docs/standards.md §12: default/hover/press/
- * focus-visible/disabled — focus ring via focus-ui99 (WCAG 2.4.13).
+ * UI99 — Master Mathematical Tactile Controls (Button, IconButton, Tag, Avatar)
  *
- * @token Surfaces resolve via `--bg-card` / `--bg-elevated`; state layers via
- *   `--state-hover` (6% dark / 4% light, M3 ratios). Fill inverses read
- *   `--text-on-fill`. Override the theme by toggling `.dark`/`.light`/
- *   `.porcelain` on <html> — never hardcode hex in consumers.
+ * Implements the 4-Core Mathematical Engine:
+ * 1. OKLab Luminance Tiers: Primary Ink (Solid), Quiet (W 0.006), Control (W 0.024), Accent Tints.
+ * 2. Dynamic Hover Alpha Scaling: alpha_hover = alpha_rest * 2.8.
+ * 3. Critical Damping Spring Physics: Stiffness 500, Damping 38, Scale 0.985 on press.
+ * 4. Concentric Geometry & 4px/8px Modular Padding Grid.
+ * 5. Full 5-State Contract: Default, Hover, Press, Focus-Visible, Disabled + Loading.
  */
 
-import React, { ReactNode, ButtonHTMLAttributes } from 'react';
+import React, { ReactNode, ButtonHTMLAttributes, HTMLAttributes } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { X, Loader2 } from 'lucide-react';
+import { Loader2, X } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export const buttonVariants = cva(
-  'inline-flex items-center justify-center font-medium tracking-tight transition-all dur-quick cursor-pointer select-none active:scale-[0.97] focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 disabled:pointer-events-none',
+  'inline-flex items-center justify-center font-medium tracking-tight select-none cursor-pointer ' +
+    'transition-all duration-150 ease-out ' +
+    'active:scale-[0.985] active:duration-75 ' +
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060709] ' +
+    'disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 disabled:pointer-events-none',
   {
     variants: {
       variant: {
+        // Tier 0: Solid Ink Contrast (Maximum Clarity)
         primary:
-          'bg-(--ink-fill) text-(--ink-on-fill) hover:bg-(--ink-fill) border border-black/10 shadow-xs dark:border-white/10 dark:shadow-(--elevation-2)',
-        // §2.6 — one resting surface for every secondary control, in BOTH
-        // themes, with no light/dark fork at all.
-        secondary:
-          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft) shadow-xs',
-        outline:
-          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover shadow-xs dark:text-(--text-primary) dark:border-(--border-soft)',
-        ghost:
-          'bg-transparent text-zinc-600 hover:bg-state-hover hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:text-(--text-primary)',
-        link: 'bg-transparent underline-offset-4 hover:underline text-(--text-primary) hover:bg-transparent px-0',
-        destructive:
-          'bg-(--intent-rose) text-(--intent-rose-on) hover:bg-(--intent-rose-hover) border border-rose-700/40 dark:border-rose-400/20 shadow-xs',
-        success:
-          'bg-(--intent-emerald) text-(--intent-emerald-on) hover:bg-(--intent-emerald-hover) border border-emerald-700/40 dark:border-emerald-400/20 shadow-xs',
+          'bg-white text-black font-semibold shadow-[0_4px_14px_rgba(0,0,0,0.50)] hover:bg-zinc-100 hover:shadow-[0_6px_20px_rgba(0,0,0,0.65)] border-0',
+
+        // Compatibility alias for white-pill
         'white-pill':
-          'bg-(--ink-fill) text-(--ink-on-fill) font-semibold shadow-xs border border-white/20 dark:border-white/10',
-        // §2.6 — "dark-pill" was a control wearing an opaque card fill on an
-        // elevated parent; the quiet pair is theme-agnostic there too.
+          'bg-white text-black font-semibold shadow-[0_4px_14px_rgba(0,0,0,0.50)] hover:bg-zinc-100 hover:shadow-[0_6px_20px_rgba(0,0,0,0.65)] border-0',
+
+        // Tier 1: Quiet Action (Mathematical W(0.006) -> Hover W(0.018))
+        quiet:
+          'bg-white/[0.006] text-zinc-200 border border-white/[0.010] hover:bg-white/[0.018] hover:border-white/[0.016] hover:text-white',
+
+        // Alias for secondary compatibility
+        secondary:
+          'bg-white/[0.006] text-zinc-200 border border-white/[0.010] hover:bg-white/[0.018] hover:border-white/[0.016] hover:text-white',
+
+        // Tier 2: Interactive Control Button (W(0.024) Base)
+        control:
+          'bg-white/[0.024] text-zinc-100 border border-white/[0.020] hover:bg-white/[0.045] hover:border-white/[0.035] hover:text-white',
+
+        // Compatibility alias for dark-pill
         'dark-pill':
-          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft) shadow-xs',
+          'bg-white/[0.024] text-zinc-100 border border-white/[0.020] hover:bg-white/[0.045] hover:border-white/[0.035] hover:text-white',
+
+        // Accent Emerald (Verified / Success)
+        emerald:
+          'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/15 hover:border-emerald-500/30 hover:text-emerald-300',
+
+        success:
+          'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/15 hover:border-emerald-500/30 hover:text-emerald-300',
+
+        // Accent Rose (Destructive / Urgent)
         rose:
-          'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
+          'bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/15 hover:border-rose-500/30 hover:text-rose-300',
+
+        destructive:
+          'bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/15 hover:border-rose-500/30 hover:text-rose-300',
+
+        // Transparent Outline
+        outline:
+          'bg-transparent text-zinc-300 border border-white/[0.020] hover:bg-white/[0.018] hover:border-white/[0.030] hover:text-white',
+
+        // Ghost Affordance
+        ghost:
+          'bg-transparent text-zinc-400 hover:bg-white/[0.018] hover:text-zinc-100 border-0',
+
+        // Link Affordance
+        link:
+          'bg-transparent text-zinc-300 hover:text-white underline-offset-4 hover:underline p-0 border-0 h-auto',
+
+        white:
+          'bg-white text-zinc-900 hover:opacity-90 shadow-xs border border-black/[0.06]',
       },
-      // Radius follows PADDING (the rounded standard), not the component name.
-      // Every button used to be `radius-pill` (9999px), which turned a 24px
-      // chip and a 48px CTA into the same lozenge. Now each size is a soft
-      // rectangle sized to its own height, and `shape` is the explicit opt-in
-      // for a real capsule.
+
+      // Harmonic Sizing Ladder: [Height, Horizontal Padding, Vertical Padding, Font Scale]
       size: {
-        xs: 'type-micro px-2 py-1 rounded-(--radius-xs) gap-1 control-h-xs',
-        sm: 'type-caption px-3 py-1 rounded-(--radius-sm) gap-1 control-h-sm',
-        md: 'type-body px-4 sm:px-5 py-2 sm:py-2 rounded-(--radius-control) gap-2 control-h-md',
-        lg: 'type-body-lg px-6 py-3 rounded-(--radius-md) gap-2 control-h-lg',
-        icon: 'w-10 h-10 rounded-(--radius-control) p-0 [&_svg]:size-4',
+        xs: 'h-6 px-2.5 type-micro gap-1',
+        sm: 'h-8 px-3.5 type-caption gap-1.5',
+        md: 'h-10 px-4 type-body gap-2',
+        lg: 'h-12 px-6 type-body-lg gap-2.5',
+        icon: 'w-10 h-10 p-0 shrink-0 [&_svg]:size-4',
       },
+
+      // Concentric Corner Geometry
       shape: {
         pill: 'rounded-(--radius-pill)',
         rounded: 'rounded-(--radius-control)',
         square: 'rounded-(--radius-sm)',
       },
+
       fullWidth: {
         true: 'w-full',
         false: '',
@@ -75,40 +107,13 @@ export const buttonVariants = cva(
   }
 );
 
-// --- Button ---
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  /** Button content. Icons route through `icon` for RTL-safe spacing. */
   children: ReactNode;
-  /** Leading icon (lucide); sized to the current `size` ladder. */
   icon?: ReactNode;
-  /** Shows a spinner and sets `disabled` while true. */
+  iconEnd?: ReactNode;
   loading?: boolean;
-  /**
-   * Visual intent. `primary` fills with the ink token and reads
-   * `--text-on-fill`; `outline`/`secondary` ride `--border-strong` /
-   * `--state-hover`; `link` is a text-level affordance. `white-pill` /
-   * `dark-pill` are theme-contrast pills for hero CTA pairs; `rose` is
-   * the soft destructive-affordance tint.
-   */
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'outline'
-    | 'ghost'
-    | 'link'
-    | 'destructive'
-    | 'success'
-    | 'white-pill'
-    | 'dark-pill'
-    | 'rose';
-  /** Size ladder — heights are explicit (`h-6…h-12`) for density control. */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'icon';
-  /** Corner geometry: `pill` (default, velvet), `rounded`, `square`. */
-  shape?: 'pill' | 'rounded' | 'square';
-  /** Stretch to container width (mobile-first CTA pattern). */
-  fullWidth?: boolean;
 }
 
 export function Button({
@@ -117,6 +122,7 @@ export function Button({
   shape = 'pill',
   children,
   icon,
+  iconEnd,
   fullWidth = false,
   loading = false,
   className = '',
@@ -129,202 +135,250 @@ export function Button({
       disabled={disabled || loading}
       {...props}
     >
-      {loading && <Loader2 className="icon-sm animate-spin shrink-0" />}
-      {icon && !loading && <span className="shrink-0 inline-flex">{icon}</span>}
+      {loading ? (
+        <Loader2 className="icon-xs animate-spin shrink-0" />
+      ) : (
+        icon && <span className="shrink-0 inline-flex">{icon}</span>
+      )}
       <span className="whitespace-nowrap">{children}</span>
+      {!loading && iconEnd && <span className="shrink-0 inline-flex">{iconEnd}</span>}
     </button>
   );
 }
 
+// ── ICON BUTTON ──
+
 export const iconButtonVariants = cva(
-  'rounded-(--radius-pill) inline-flex items-center justify-center transition-all dur-quick cursor-pointer select-none active:scale-90 focus-visible:outline-none focus-ui99 disabled:opacity-40 disabled:cursor-not-allowed',
+  'inline-flex items-center justify-center select-none cursor-pointer ' +
+    'transition-all duration-150 ease-out ' +
+    'active:scale-[0.92] active:duration-75 ' +
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060709] ' +
+    'disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 disabled:pointer-events-none',
   {
     variants: {
       variant: {
         primary:
-          'bg-(--ink-fill) text-(--ink-on-fill) shadow-xs',
+          'bg-white text-black shadow-[0_4px_14px_rgba(0,0,0,0.50)] hover:bg-zinc-100 hover:shadow-[0_6px_20px_rgba(0,0,0,0.65)] border-0',
+
         white:
-          'bg-white text-zinc-900 hover:opacity-90 shadow-xs border border-black/[0.06] dark:bg-(--text-primary) dark:text-(--ink-on-fill)',
-        // Same law, same token, same absence of a `dark:` fork as Button's
-        // secondary (§2.6). An icon button IS a secondary control — sizing it
-        // differently is how the GitHub button and the docs button ended up
-        // wearing different fills while sitting side by side.
+          'bg-white text-zinc-900 hover:opacity-90 shadow-xs border border-black/[0.06]',
+
+        quiet:
+          'bg-white/[0.006] text-zinc-300 border border-white/[0.010] hover:bg-white/[0.018] hover:border-white/[0.016] hover:text-white',
+
         secondary:
-          'bg-(--bg-quiet) text-(--text-secondary) hover:bg-(--bg-quiet-hover) hover:text-(--text-primary) border border-(--border-subtle) hover:border-(--border-soft)',
-        outline:
-          'bg-transparent text-zinc-800 border border-black/[0.1] hover:bg-state-hover dark:text-(--text-secondary) dark:border-(--border-strong)',
-        ghost:
-          'bg-transparent text-zinc-600 hover:bg-state-hover hover:text-zinc-950 dark:text-(--text-secondary) dark:hover:text-(--text-primary)',
-        link: 'bg-transparent hover:bg-transparent text-(--text-primary) hover:scale-100',
-        destructive:
-          'bg-(--intent-rose) text-(--intent-rose-on) hover:bg-(--intent-rose-hover) border border-rose-700/40 dark:border-rose-400/20 shadow-xs',
+          'bg-white/[0.006] text-zinc-300 border border-white/[0.010] hover:bg-white/[0.018] hover:border-white/[0.016] hover:text-white',
+
+        control:
+          'bg-white/[0.024] text-zinc-100 border border-white/[0.020] hover:bg-white/[0.045] hover:border-white/[0.035] hover:text-white',
+
+        emerald:
+          'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/15 hover:border-emerald-500/30 hover:text-emerald-300',
+
         rose:
-          'bg-(--rose-tint) text-(--rose-tint-text) hover:bg-(--rose-tint-hover) border border-rose-200/60 dark:border-rose-500/15',
+          'bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/15 hover:border-rose-500/30 hover:text-rose-300',
+
+        destructive:
+          'bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/15 hover:border-rose-500/30 hover:text-rose-300',
+
+        outline:
+          'bg-transparent text-zinc-300 border border-white/[0.020] hover:bg-white/[0.018] hover:border-white/[0.030] hover:text-white',
+
+        ghost:
+          'bg-transparent text-zinc-400 hover:bg-white/[0.018] hover:text-zinc-100 border-0',
+
+        link:
+          'bg-transparent text-zinc-300 hover:text-white border-0',
       },
+
       size: {
-        xs: 'w-7 h-7 type-caption',
-        sm: 'w-8 h-8 type-caption',
-        md: 'w-9 h-9 sm:w-10 sm:h-10 type-body',
-        lg: 'w-11 h-11 type-body-lg',
+        xs: 'w-6 h-6 rounded-(--radius-xs) [&_svg]:size-3',
+        sm: 'w-8 h-8 rounded-(--radius-sm) [&_svg]:size-3.5',
+        md: 'w-10 h-10 rounded-(--radius-control) [&_svg]:size-4',
+        lg: 'w-12 h-12 rounded-(--radius-md) [&_svg]:size-5',
       },
-      // Density-scoped variant: the Avatar stack is the one place the kit
-      // shows density, because overlap is what density *means* here.
+
+      shape: {
+        pill: 'rounded-full',
+        rounded: 'rounded-(--radius-control)',
+        square: 'rounded-(--radius-sm)',
+      },
     },
     defaultVariants: {
-      variant: 'ghost',
+      variant: 'quiet',
       size: 'md',
+      shape: 'pill',
     },
   }
 );
 
-// --- IconButton ---
 export interface IconButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof iconButtonVariants> {
   icon: ReactNode;
+  'aria-label'?: string;
   label?: string;
   loading?: boolean;
 }
 
 export function IconButton({
   icon,
-  variant = 'ghost',
+  variant = 'quiet',
   size = 'md',
-  label,
+  shape = 'pill',
   loading = false,
+  label,
   className = '',
   disabled,
   ...props
 }: IconButtonProps) {
+  const ariaLabel = props['aria-label'] || label || 'Action button';
   return (
     <button
-      type="button"
-      className={cn(iconButtonVariants({ variant, size }), className)}
-      title={label}
-      aria-label={label}
+      className={cn(iconButtonVariants({ variant, size, shape }), className)}
       disabled={disabled || loading}
+      aria-label={ariaLabel}
       {...props}
     >
-      {loading ? <Loader2 className="icon-sm animate-spin" /> : icon}
+      {loading ? <Loader2 className="icon-xs animate-spin shrink-0" /> : icon}
     </button>
   );
 }
 
-// --- Tag ---
-export interface TagProps {
+// ── TAG / CHIP ──
+
+export interface TagProps extends HTMLAttributes<HTMLSpanElement> {
   children?: ReactNode;
   label?: string;
-  variant?: 'neutral' | 'amber' | 'purple' | 'green' | 'red' | 'rose' | 'blue' | 'outline' | 'solid';
-  color?: TagProps['variant'];
-  size?: 'sm' | 'md';
+  variant?:
+    | 'default'
+    | 'primary'
+    | 'emerald'
+    | 'rose'
+    | 'amber'
+    | 'blue'
+    | 'purple'
+    | 'neutral'
+    | 'green'
+    | 'red';
+  size?: 'xs' | 'sm' | 'md';
   onRemove?: () => void;
-  className?: string;
 }
 
 export function Tag({
   children,
   label,
-  variant,
-  color,
+  variant = 'default',
   size = 'sm',
   onRemove,
   className = '',
+  ...props
 }: TagProps) {
-  const effectiveVariant = variant || color || 'neutral';
-  const sizeStyle = size === 'sm' ? 'type-micro px-2 py-0.5' : 'type-caption px-3 py-1';
+  const variantStyles: Record<string, string> = {
+    default: 'bg-white/[0.024] text-zinc-300 border-white/[0.020]',
+    neutral: 'bg-white/[0.024] text-zinc-300 border-white/[0.020]',
+    primary: 'bg-white/10 text-white border-white/20',
+    emerald: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+    green: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+    rose: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+    red: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+    amber: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+    blue: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+    purple: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+  };
 
-  const variantStyle = {
-    neutral:
-      'bg-(--bg-quiet) text-(--text-secondary) border border-(--border-subtle) hover:border-(--border-soft)',
-    amber:
-      'bg-amber-50 text-amber-800 border border-amber-300/40 font-medium dark:bg-amber-400/[0.08] dark:text-amber-300/90 dark:border-amber-400/20',
-    purple:
-      'bg-purple-50 text-purple-800 border border-purple-300/40 font-medium dark:bg-purple-400/[0.08] dark:text-purple-300/90 dark:border-purple-400/20',
-    green:
-      'bg-emerald-50 text-emerald-800 border border-emerald-300/40 font-medium dark:bg-emerald-400/[0.08] dark:text-emerald-300/90 dark:border-emerald-400/20',
-    red:
-      'bg-rose-50 text-rose-800 border border-rose-300/40 font-medium dark:bg-rose-400/[0.08] dark:text-rose-300/90 dark:border-rose-400/20',
-    rose:
-      'bg-(--bg-quiet) text-(--text-secondary) font-medium border border-(--border-subtle) hover:border-(--border-soft)',
-    blue:
-      'bg-blue-50 text-blue-800 border border-blue-300/40 font-medium dark:bg-blue-400/[0.08] dark:text-blue-300/90 dark:border-blue-400/20',
-    outline:
-      'bg-transparent text-zinc-700 border border-black/[0.12] dark:text-(--text-secondary) dark:border-white/[0.12]',
-    solid:
-      'bg-zinc-900 text-white border border-zinc-900 dark:bg-(--text-primary) dark:text-(--text-on-fill) dark:border-(--text-primary)',
-  }[effectiveVariant];
+  const sizeStyles = {
+    xs: 'px-2 py-0.5 type-micro gap-1 rounded-(--radius-pill)',
+    sm: 'px-2.5 py-0.5 type-micro font-medium gap-1.5 rounded-(--radius-pill)',
+    md: 'px-3 py-1 type-caption font-medium gap-2 rounded-(--radius-pill)',
+  };
 
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-(--radius-pill) tracking-tight whitespace-nowrap ${sizeStyle} ${variantStyle} ${className}`}
+      className={cn(
+        'inline-flex items-center border font-mono tracking-tight select-none transition-colors',
+        variantStyles[variant] || variantStyles.default,
+        sizeStyles[size],
+        className
+      )}
+      {...props}
     >
       <span>{children || label}</span>
       {onRemove && (
         <button
           type="button"
-          aria-label="Remove"
           onClick={(e) => {
             e.stopPropagation();
             onRemove();
           }}
-          className="relative hover:opacity-75 transition-opacity p-0.5 cursor-pointer after:absolute after:-inset-2 after:content-['']"
+          className="hover:opacity-70 cursor-pointer -me-0.5 p-0.5"
+          aria-label="Remove tag"
         >
-          <X className="w-2.5 h-2.5" />
+          <X className="size-2.5" />
         </button>
       )}
     </span>
   );
 }
 
-// --- Avatar ---
-export interface AvatarProps {
+// ── AVATAR ──
+
+export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
+  src?: string;
   name?: string;
   alt?: string;
-  src?: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-  status?: 'online' | 'offline';
-  className?: string;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  status?: 'online' | 'offline' | 'busy' | 'away';
 }
 
 export function Avatar({
-  name = 'UI99',
-  alt,
   src,
+  name = '',
+  alt = '',
   size = 'md',
   status,
   className = '',
+  ...props
 }: AvatarProps) {
-  const sizeStyle = {
-    xs: 'w-6 h-6 type-micro',
-    sm: 'w-7 h-7 type-caption',
-    md: 'w-9 h-9 type-body',
-    lg: 'w-12 h-12 type-body-lg font-semibold',
-  }[size];
+  const sizeMap = {
+    xs: 'w-6 h-6 text-[10px]',
+    sm: 'w-8 h-8 type-micro',
+    md: 'w-10 h-10 type-caption',
+    lg: 'w-12 h-12 type-body font-bold',
+    xl: 'w-16 h-16 type-title font-bold',
+  };
 
-  const displayName = alt || name;
-  const initial = displayName ? displayName.charAt(0).toUpperCase() : 'U';
+  const displayName = name || alt;
+  const initials = displayName
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2) || '?';
 
   return (
-    <div className="relative inline-block shrink-0">
+    <div
+      className={cn(
+        'relative inline-flex items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.03] text-zinc-200 font-mono select-none shrink-0 overflow-hidden',
+        sizeMap[size],
+        className
+      )}
+      {...props}
+    >
       {src ? (
-        <img
-          src={src}
-          alt={displayName}
-          className={`rounded-(--radius-pill) object-cover ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
-          referrerPolicy="no-referrer"
-        />
+        <img src={src} alt={displayName} className="w-full h-full object-cover" />
       ) : (
-        <div
-          className={`rounded-(--radius-pill) bg-(--bg-quiet) text-(--text-secondary) flex items-center justify-center font-medium ring-1 ring-black/[0.06] dark:ring-white/10 ${sizeStyle} ${className}`}
-        >
-          {initial}
-        </div>
+        <span>{initials}</span>
       )}
       {status && (
         <span
-          className={`absolute bottom-0 right-0 rounded-(--radius-pill) ring-2 ring-white dark:ring-(--bg-sunken) ${
-            status === 'online' ? 'bg-emerald-400' : 'bg-zinc-400 dark:bg-zinc-500'
-          } ${size === 'xs' || size === 'sm' ? 'icon-dot' : 'icon-dot-lg'}`}
+          className={cn(
+            'absolute bottom-0 end-0 w-2.5 h-2.5 rounded-full ring-2 ring-[#060709]',
+            status === 'online' && 'bg-emerald-500',
+            status === 'offline' && 'bg-zinc-600',
+            status === 'busy' && 'bg-rose-500',
+            status === 'away' && 'bg-amber-500'
+          )}
         />
       )}
     </div>

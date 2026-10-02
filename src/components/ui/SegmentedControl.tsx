@@ -96,12 +96,20 @@ export function SegmentedControl<T extends string = string>({
       role="radiogroup"
       aria-label={label}
       onKeyDown={handleKeyDown}
+      style={
+        isDark
+          ? {
+              backgroundColor: 'rgba(255, 255, 255, 0.006)',
+              borderColor: 'rgba(255, 255, 255, 0.010)',
+              borderWidth: 1,
+              borderStyle: 'solid',
+            }
+          : undefined
+      }
       className={`${
         fullWidth ? 'w-full flex' : 'inline-flex'
       } items-center rounded-(--radius-pill) transition-all overflow-x-auto no-scrollbar scroll-smooth ${
-        isDark
-          ? 'bg-(--bg-elevated) shadow-(--shadow-card) border border-white/[0.025]'
-          : 'bg-(--bg-raised) shadow-(--rim-subtle) border border-(--border-subtle)'
+        !isDark ? 'bg-(--bg-raised) shadow-(--rim-subtle) border border-(--border-subtle)' : ''
       } ${padMap} ${className}`}
     >
       <div className={`flex items-center gap-1 min-w-max sm:min-w-0 ${fullWidth ? 'w-full' : ''}`}>
@@ -122,20 +130,29 @@ export function SegmentedControl<T extends string = string>({
               } ${
                 isSelected
                   ? isDark
-                    ? 'text-black font-semibold'
+                    ? 'text-white font-semibold'
                     : 'text-zinc-950 font-semibold'
                   : isDark
-                  ? 'text-(--text-secondary) hover:text-white hover:bg-white/[0.03]'
+                  ? 'text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.010]'
                   : 'text-zinc-600 hover:text-zinc-950 hover:bg-black/[0.03]'
               }`}
             >
               {isSelected && (
                 <motion.div
                   layoutId={`segmented-pill-${options.map((o) => o.value).join('-')}`}
-                  className={`absolute inset-0 rounded-(--radius-pill) ${
+                  style={
                     isDark
-                      ? 'bg-white shadow-(--elevation-2)'
-                      : 'bg-white shadow-(--elevation-1) border border-black/[0.04]'
+                      ? {
+                          backgroundColor: 'rgba(255, 255, 255, 0.024)',
+                          borderColor: 'rgba(255, 255, 255, 0.020)',
+                          borderWidth: 1,
+                          borderStyle: 'solid',
+                          boxShadow: '0 2px 8px -2px rgba(0, 0, 0, 0.60)',
+                        }
+                      : undefined
+                  }
+                  className={`absolute inset-0 rounded-(--radius-pill) ${
+                    !isDark ? 'bg-white shadow-(--elevation-1) border border-black/[0.04]' : ''
                   }`}
                   transition={{ type: 'spring', stiffness: 500, damping: 38 }}
                 />
@@ -145,13 +162,13 @@ export function SegmentedControl<T extends string = string>({
                 <span className="tracking-tight">{opt.label}</span>
                 {opt.badge !== undefined && (
                   <span
-                    className={`px-1 py-0.2 type-micro rounded-(--radius-pill) font-semibold ${
+                    className={`px-1.5 py-0.2 type-micro rounded-(--radius-pill) font-semibold ${
                       isSelected
                         ? isDark
-                          ? 'bg-black text-white'
+                          ? 'bg-white/10 text-white'
                           : 'bg-(--bg-raised) text-zinc-900 border border-(--border-soft)'
                         : isDark
-                        ? 'bg-white/[0.08] text-(--text-secondary)'
+                        ? 'bg-white/[0.04] text-zinc-400'
                         : 'bg-black/[0.06] text-zinc-600'
                     }`}
                   >

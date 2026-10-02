@@ -269,7 +269,19 @@ export function DesignSystemHomeView() {
               : `Explore ${KIT_COMPONENT_COUNT} Components`}
           </Button>
 
-          {/* 2. Secondary Action: Documentation */}
+          {/* 2. Velvet Lab Action */}
+          <Button
+            variant="secondary"
+            size="md"
+            shape="rounded"
+            onClick={() => setCurrentTab('LAB' as any)}
+            className="order-2 flex-1 sm:order-none sm:flex-none min-h-[44px] px-4 border-emerald-500/30 text-emerald-400 hover:text-emerald-300"
+            icon={<Sparkles className="icon-sm text-emerald-400" />}
+          >
+            {isRTL ? '🧪 آزمایشگاه سطوح (Lab)' : '🧪 Velvet Lab'}
+          </Button>
+
+          {/* 3. Secondary Action: Documentation */}
           <Button
             variant="secondary"
             size="md"
